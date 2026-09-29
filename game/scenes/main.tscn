@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/player_hurtbox.gd" id="8_hurtbox"]
 
 [sub_resource type="BoxShape3D" id="PlayerHitShape"]
-size = Vector3(0.8, 1.0, 1.6)
+size = Vector3(0.45, 1.0, 0.9)
 
 [sub_resource type="Environment" id="Environment_flight"]
 background_mode = 1
@@ -69,7 +69,7 @@ shape = SubResource("PlayerHitShape")
 
 [node name="Aircraft" parent="Player/Bank" instance=ExtResource("3_aircraft")]
 rotation = Vector3(0, 3.14159265, 0)
-scale = Vector3(0.35, 0.35, 0.35)
+scale = Vector3(0.196875, 0.196875, 0.196875)
 
 [node name="Seascape" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("4_seascape")

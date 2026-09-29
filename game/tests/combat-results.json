@@ -1,7 +1,7 @@
 {
-	"checks": 6259,
+	"checks": 5691,
 	"failures": [],
-	"max_heading_rate": 1.79249441014393,
+	"max_heading_rate": 1.91236278094469,
 	"simulated_seconds": 180,
 	"wave_interval": 20
 }

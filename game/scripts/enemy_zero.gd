@@ -39,23 +39,23 @@ func _ready() -> void:
 	monitoring = false
 	var collider := CollisionShape3D.new()
 	var shape := BoxShape3D.new()
-	shape.size = Vector3(2.8, 1.0, 1.85)
+	shape.size = Vector3(1.575, 1.0, 1.040625)
 	collider.shape = shape
 	add_child(collider)
 	visual = Node3D.new()
 	add_child(visual)
 	var model := model_scene.instantiate()
-	model.scale = Vector3.ONE * 0.28
+	model.scale = Vector3.ONE * 0.1575
 	visual.add_child(model)
 	propeller = model.find_child(propeller_name, true, false)
 	flash = MeshInstance3D.new()
 	var mesh := PlaneMesh.new()
-	mesh.size = Vector2(0.65, 0.85)
+	mesh.size = Vector2(0.365625, 0.478125)
 	flash.mesh = mesh
 	var material := ShaderMaterial.new()
 	material.shader = preload("res://shaders/bullet_impact.gdshader")
 	flash.material_override = material
-	flash.position = Vector3(0, 0.15, 1.0)
+	flash.position = Vector3(0, 0.1125, 0.5625)
 	visual.add_child(flash)
 	flash.hide()
 

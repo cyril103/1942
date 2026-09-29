@@ -1,0 +1,12 @@
+{
+	"checks": 56,
+	"failures": [],
+	"formats": [
+		"16:9",
+		"ultrawide",
+		"5:4",
+		"portrait"
+	],
+	"lives": 3,
+	"playfield": "3:4"
+}

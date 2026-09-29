@@ -1,5 +1,9 @@
 # 1942 — Premier vol
 
+Dernier réglage cockpit : avions réduits de 25 % supplémentaires (joueur 0,196875, ennemis 0,1575), collisions et points de tir assortis. Les Hayabusa tournent vers le bas dès le tonneau, terminé en 1,25–1,45 s ; le pilotage de piqué répond plus vite avec accélération limitée. Trois salves conservées avant sortie, validées dans le cadre 3:4 par `tests/test_side_attacks.gd`.
+
+Lancement actuel : `scenes/cockpit.tscn`, interface cockpit avec aire de jeu 3:4, trois vies et record persistant. Ressources, polices, shaders et validation décrits dans [assets/ui/README.md](assets/ui/README.md). `scenes/main.tscn` reste la scène de vol utilisée à l'intérieur du cockpit et par les tests unitaires du prototype.
+
 
 
 Première scène jouable sous **Godot 4.7.2**, utilisant le véritable avion 3D créé dans Blender et les textures préparées pour ce projet.
@@ -297,3 +301,7 @@ Odd waves use four Zero from above; even waves use four Hayabusa from both sides
 ### Hayabusa flight revision
 
 Four distinct side-entry profiles now use 11-12.5 units/s, staggered depths, headings, roll durations and radii. Barrel rolls use a tapered helical displacement with tangent-derived pitch and heading, while retaining forward speed. A rate- and acceleration-limited steering controller replaces Bezier timing for the attack, banking into the turn toward a sampled player target before exiting downward. Regression verifies full rotation, vertical travel, pitch response, smooth headings and three firing salvos.
+
+### Aircraft and scenery scale
+
+Player and both enemy models are 25% smaller, with matching horizontal hitbox sizes, muzzle positions, muzzle flashes and takeoff contact shadow. The orthographic camera is unchanged; island sizes increase from 9-14 to 10-15.5 units (about 11%). Projectile visuals retain their size for readability. Screen containment continues to use the actual scaled mesh bounds.

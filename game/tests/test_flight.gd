@@ -55,7 +55,8 @@ func _run() -> void:
 	check(Engine.get_version_info().string.begins_with("4.7.2"), "Must run on Godot 4.7.2")
 	check(ProjectSettings.get_setting("display/window/size/mode") == 3, "Default must be fullscreen")
 	check(player._bounds_initialized, "Imported model must have real mesh bounds")
-	check(player._model_bounds.size.x > 3.0, "Bounds must include complete scaled wings")
+	var aircraft_scale: float = player.bank.get_node("Aircraft").scale.x
+	check(player._model_bounds.size.x > 8.57 * aircraft_scale, "Bounds must include complete scaled wings at the configured model scale")
 	check(inside(), "Initial aircraft must be fully on screen")
 
 	reset_player()

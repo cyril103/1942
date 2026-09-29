@@ -86,7 +86,7 @@ func _build_carrier() -> void:
 func _build_shadow() -> void:
 	_shadow_material = ShaderMaterial.new()
 	_shadow_material.shader = preload("res://shaders/aircraft_shadow.gdshader")
-	contact_shadow = _plane("TakeoffShadow", Vector2(3.7, 3.0), _shadow_material, self)
+	contact_shadow = _plane("TakeoffShadow", Vector2(2.08125, 1.6875), _shadow_material, self)
 	_shadow_material.render_priority = 1
 
 

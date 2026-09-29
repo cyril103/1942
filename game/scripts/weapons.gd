@@ -7,7 +7,7 @@ const SHOT_INTERVAL := 0.125
 const SPEED := 32.0
 const MAX_LIFETIME := 3.0
 const ENEMY_MASK := 2
-const MUZZLES := [Vector3(-0.78, 0.04, -0.52), Vector3(0.78, 0.04, -0.52)]
+const MUZZLES := [Vector3(-0.43875, 0.0225, -0.2925), Vector3(0.43875, 0.0225, -0.2925)]
 
 @export var player: Node3D
 @export var camera: Camera3D
@@ -46,8 +46,8 @@ func _ready() -> void:
 	for muzzle: Vector3 in MUZZLES:
 		var flash := MeshInstance3D.new()
 		flash.mesh = mesh
-		flash.position = muzzle + Vector3(0.0, 0.02, -0.13)
-		flash.scale = Vector3(2.0, 1.0, 0.4)
+		flash.position = muzzle + Vector3(0.0, 0.015, -0.0975)
+		flash.scale = Vector3(1.125, 1.0, 0.225)
 		flash.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		player.bank.add_child(flash)
 		flash.hide()

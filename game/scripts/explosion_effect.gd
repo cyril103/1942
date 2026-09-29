@@ -1,6 +1,8 @@
 extends Node3D
 ## Fixed reusable multi-layer VFX. No node allocation when triggered.
 const DURATION := 3.5
+# Match the two 25% aircraft reductions, including particle travel distances.
+const AIRCRAFT_EFFECT_SCALE := 0.5625
 const ATLAS := preload("res://assets/effects/explosion-atlas.png")
 var clouds: Array[MeshInstance3D] = []
 var sparks: Array[MeshInstance3D] = []
@@ -10,6 +12,7 @@ var age := DURATION
 var variant := 0.0
 
 func _ready() -> void:
+	scale = Vector3.ONE * AIRCRAFT_EFFECT_SCALE
 	var plane := PlaneMesh.new()
 	plane.size = Vector2.ONE
 	for index in range(5):

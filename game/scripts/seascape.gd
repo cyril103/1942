@@ -13,7 +13,7 @@ const POOL_SIZE: int = 6
 @export var camera: Camera3D
 @export_range(0.0, 10.0, 0.1) var scroll_speed: float = 2.4
 @export var scenery_seed: int = 1942
-@export var island_size_range: Vector2 = Vector2(9.0, 14.0)
+@export var island_size_range: Vector2 = Vector2(10.0, 15.5)
 @export var spacing_range: Vector2 = Vector2(15.0, 23.0)
 
 var islands: Array[MeshInstance3D] = []

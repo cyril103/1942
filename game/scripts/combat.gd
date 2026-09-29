@@ -18,6 +18,10 @@ var effects: Array[Node3D] = []
 var effect_times := PackedFloat32Array()
 var wave_count := 0
 var kills := 0
+var score := 0
+# Standalone combat tests use one life; the cockpit configures a three-life run.
+var remaining_lives := 1
+var respawn_time := 0.0
 var enemy_shots := 0
 var combat_time := 0.0
 var next_wave := 1.5
@@ -73,6 +77,10 @@ func screen_top() -> float:
 	return camera.project_position(Vector2.ZERO, camera.position.y).z
 
 func _physics_process(delta: float) -> void:
+	if respawn_time > 0:
+		respawn_time = maxf(0,respawn_time-delta)
+		if respawn_time <= 0:
+			player.respawn(Vector3(0,0,screen_bottom()-3.0))
 	_update_effects(delta)
 	_update_bullets(delta)
 	for enemy in enemies:
@@ -130,10 +138,10 @@ func _spawn_hayabusa(half_width: float) -> void:
 		var enemy := HAYABUSA.new()
 		enemy.side = -1.0 if index % 2 == 0 else 1.0
 		enemy.flight_speed = [11.0, 12.0, 11.5, 12.5][index]
-		enemy.roll_duration = [1.45, 1.65, 1.55, 1.75][index]
+		enemy.roll_duration = [1.25, 1.40, 1.30, 1.45][index]
 		enemy.roll_radius = [0.42, 0.52, 0.46, 0.58][index]
-		enemy.entry_heading = [1.42, 1.36, 1.46, 1.40][index]
-		enemy.attack_heading = [0.65, 0.52, 0.72, 0.60][index]
+		enemy.entry_heading = [1.26, 1.22, 1.30, 1.24][index]
+		enemy.attack_heading = [0.24, 0.18, 0.28, 0.20][index]
 		enemy.target_offset = [-2.4, 2.4, -0.8, 0.8][index]
 		enemy.position = Vector3(enemy.side * (half_width + 2.2 + index * 4.0), 0, screen_top() + [1.8, 3.0, 0.8, 2.2][index])
 		enemy.destroyed.connect(_on_enemy_destroyed)
@@ -148,7 +156,7 @@ func fire_enemy(enemy: Area3D) -> void:
 	for side in [-1, 1]:
 		for index in range(BULLET_CAPACITY):
 			if lifetimes[index] > 0: continue
-			var origin := enemy.global_position + enemy.global_basis * Vector3(side * 0.43, 0.25, 0.85)
+			var origin := enemy.global_position + enemy.global_basis * Vector3(side * 0.241875, 0.1875, 0.478125)
 			var direction := Vector3(target.x - origin.x, 0, target.z - origin.z).normalized()
 			if direction.length_squared() < 0.1: direction = Vector3(0, 0, 1)
 			bullets[index].global_position = origin
@@ -180,12 +188,15 @@ func _update_bullets(delta: float) -> void:
 
 func _on_enemy_destroyed(at: Vector3) -> void:
 	kills += 1
+	score += 100
 	_explode(at)
 
 func _on_player_destroyed(at: Vector3) -> void:
-	game_over = true
+	remaining_lives = maxi(0,remaining_lives-1)
+	game_over = remaining_lives == 0
 	_explode(at)
-	death_panel.show()
+	if game_over: death_panel.show()
+	else: respawn_time = 2.2
 	for index in range(BULLET_CAPACITY):
 		lifetimes[index] = 0
 		bullets[index].hide()

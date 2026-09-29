@@ -13,15 +13,28 @@ var _model_bounds: AABB
 var _bounds_initialized: bool = false
 var controls_enabled: bool = true
 var alive: bool = true
+var invulnerable_time := 0.0
 
 
 func take_damage(amount: int) -> void:
-	if not alive or not controls_enabled or amount <= 0:
+	if not alive or not controls_enabled or amount <= 0 or invulnerable_time > 0:
 		return
 	alive = false
 	controls_enabled = false
 	hide()
 	destroyed.emit(global_position)
+
+
+func respawn(at: Vector3) -> void:
+	position = at
+	bank.rotation = Vector3.ZERO
+	bank.scale = Vector3.ONE
+	bank.show()
+	alive = true
+	controls_enabled = true
+	invulnerable_time = 3.0
+	show()
+	_keep_inside_screen()
 
 
 func _ready() -> void:
@@ -31,6 +44,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if invulnerable_time > 0:
+		invulnerable_time = maxf(0,invulnerable_time-delta)
+		bank.visible = invulnerable_time <= 0 or fmod(invulnerable_time,0.3)<0.21
 	if not controls_enabled:
 		return
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
