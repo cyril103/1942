@@ -287,3 +287,13 @@ The active engine layers now derive from doubletrigger's P-51 Merlin recording (
 ### Deep engine mix v3
 
 Longer slowed P-51 excerpt, softened 1.9 kHz exhaust ceiling, dominant recorded bass plus harmonic pressure pulses. Stronger throttle volume ramp. Doppler scale reduced to 14 metres/unit to preserve engine weight. Actual mixer test: ratio 0.846-1.220, peak PCM 16121; 35-250 Hz RMS during seconds 2-8 is -20.5 dBFS versus -31.9 in v2. Source credits describe the synthesized reinforcement.
+
+
+### Alternating Hayabusa waves
+
+Odd waves use four Zero from above; even waves use four Hayabusa from both sides, with staggered entries. A complete eased axial roll starts inside the viewport, followed by a broad Bezier attack toward a snapshot of the player position with individual offsets. Three twin salvos fire during the dive. Damage, explosions and retirement use the shared enemy implementation. The 20-second cadence is unchanged. Validation: test_combat.gd (nine alternating waves, rolls, heading continuity, damage and cleanup), capture_hayabusa.gd (GPU views).
+
+
+### Hayabusa flight revision
+
+Four distinct side-entry profiles now use 11-12.5 units/s, staggered depths, headings, roll durations and radii. Barrel rolls use a tapered helical displacement with tangent-derived pitch and heading, while retaining forward speed. A rate- and acceleration-limited steering controller replaces Bezier timing for the attack, banking into the turn toward a sampled player target before exiting downward. Regression verifies full rotation, vertical travel, pitch response, smooth headings and three firing salvos.

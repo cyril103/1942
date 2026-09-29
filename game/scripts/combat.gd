@@ -1,6 +1,7 @@
 extends Node3D
 ## Test encounter director. Enemy bodies are freed; bullets and VFX have fixed pools.
 const EXPLOSION := preload("res://scripts/explosion_effect.gd")
+const HAYABUSA := preload("res://scripts/enemy_hayabusa.gd")
 const ENEMY := preload("res://scripts/enemy_zero.gd")
 const WAVE_INTERVAL := 20.0
 const BULLET_CAPACITY := 64
@@ -97,6 +98,9 @@ func spawn_wave() -> void:
 		enemies.clear()
 	wave_count += 1
 	var half_width := absf(camera.project_position(Vector2.ZERO, camera.position.y).x)
+	if wave_count % 2 == 0:
+		_spawn_hayabusa(half_width)
+		return
 	# Four independent lanes span the viewport, with space for each wingspan.
 	var usable_width := maxf(2.0, half_width - 1.8)
 	var lanes := [-0.95, -0.32, 0.32, 0.95]
@@ -117,6 +121,21 @@ func spawn_wave() -> void:
 		enemy.approach_target_x = clampf(lerpf(enemy.position.x, aim_x, 0.65) + side * 0.8, -usable_width * 0.55, usable_width * 0.55)
 		enemy.turn_duration = 2.5 + profile * 0.15
 		enemy.turn_angle = 0.42 + profile * 0.035
+		enemy.destroyed.connect(_on_enemy_destroyed)
+		add_child(enemy)
+		enemies.append(enemy)
+
+func _spawn_hayabusa(half_width: float) -> void:
+	for index in range(4):
+		var enemy := HAYABUSA.new()
+		enemy.side = -1.0 if index % 2 == 0 else 1.0
+		enemy.flight_speed = [11.0, 12.0, 11.5, 12.5][index]
+		enemy.roll_duration = [1.45, 1.65, 1.55, 1.75][index]
+		enemy.roll_radius = [0.42, 0.52, 0.46, 0.58][index]
+		enemy.entry_heading = [1.42, 1.36, 1.46, 1.40][index]
+		enemy.attack_heading = [0.65, 0.52, 0.72, 0.60][index]
+		enemy.target_offset = [-2.4, 2.4, -0.8, 0.8][index]
+		enemy.position = Vector3(enemy.side * (half_width + 2.2 + index * 4.0), 0, screen_top() + [1.8, 3.0, 0.8, 2.2][index])
 		enemy.destroyed.connect(_on_enemy_destroyed)
 		add_child(enemy)
 		enemies.append(enemy)

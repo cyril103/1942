@@ -32,6 +32,11 @@ func _run() -> void:
 	var observed_turn := false
 	var max_bank := 0.0
 	var max_curve := 0.0
+	var observed_roll := false
+	var observed_dive := false
+	var max_roll := 0.0
+	var roll_lift := 0.0
+	var roll_pitch := 0.0
 	var last_headings := {}
 	var max_heading_rate := 0.0
 	var max_pitch := 0.0
@@ -42,20 +47,39 @@ func _run() -> void:
 		if combat.wave_count != previous_wave:
 			spawn_times.append(combat.combat_time)
 			check(combat.enemies.size() == 4, "Each wave contains two groups of two Zero")
-			check(combat.enemies[0].position.z < combat.screen_top(), "Wave enters from above the screen")
-			var half_width := absf(combat.camera.project_position(Vector2.ZERO, combat.camera.position.y).x)
-			check(combat.enemies[3].position.x - combat.enemies[0].position.x > half_width * 1.5, "Enemies cover most of the screen width")
-			for i in range(1, 4):
-				check(combat.enemies[i].position.x - combat.enemies[i-1].position.x > 4.0, "Independent spaced entry lanes")
-				check(combat.enemies[i].flight_speed != combat.enemies[i-1].flight_speed and combat.enemies[i].loop_z != combat.enemies[i-1].loop_z, "Independent speed and maneuver timing")
-			for enemy in combat.enemies:
-				check(absf(enemy.approach_target_x) < absf(enemy.entry.x), "Approaches converge toward the centre with centred player")
+			if combat.wave_count % 2 == 0:
+				var half_width := absf(combat.camera.project_position(Vector2.ZERO, combat.camera.position.y).x)
+				for enemy in combat.enemies:
+					check(enemy.get_script() == combat.HAYABUSA, "Hayabusa on even waves")
+					check(absf(enemy.position.x) > half_width, "Hayabusa enters from sides")
+			else:
+				check(combat.enemies[0].position.z < combat.screen_top(), "Wave enters from above the screen")
+				var half_width := absf(combat.camera.project_position(Vector2.ZERO, combat.camera.position.y).x)
+				check(combat.enemies[3].position.x - combat.enemies[0].position.x > half_width * 1.5, "Enemies cover most of the screen width")
+				for i in range(1, 4):
+					check(combat.enemies[i].position.x - combat.enemies[i-1].position.x > 4.0, "Independent spaced entry lanes")
+					check(combat.enemies[i].flight_speed != combat.enemies[i-1].flight_speed and combat.enemies[i].loop_z != combat.enemies[i-1].loop_z, "Independent speed and maneuver timing")
+				for enemy in combat.enemies:
+					check(absf(enemy.approach_target_x) < absf(enemy.entry.x), "Approaches converge toward the centre with centred player")
 			previous_wave = combat.wave_count
 		for enemy in combat.enemies:
 			var id: int = enemy.get_instance_id()
 			if last_headings.has(id):
 				max_heading_rate = maxf(max_heading_rate, absf(wrapf(enemy.heading - last_headings[id], -PI, PI)) * 60.0)
 			last_headings[id] = enemy.heading
+			if enemy.get_script() == combat.HAYABUSA:
+				if enemy.attack_phase == enemy.AttackPhase.ROLL:
+					observed_roll = true
+					roll_lift = maxf(roll_lift,enemy.visual.position.y)
+					roll_pitch = maxf(roll_pitch,absf(enemy.visual.rotation.x))
+					max_roll = maxf(max_roll, absf(enemy.visual.rotation.z))
+					check(enemy.shot_count == 0, "Roll happens before firing")
+				if enemy.attack_phase == enemy.AttackPhase.DIVE:
+					observed_dive = true
+					check(enemy.roll_completed, "Dive follows completed roll")
+				if enemy.attack_phase == enemy.AttackPhase.EXIT:
+					check(enemy.shot_count == 3, "Hayabusa fires three salvos during dive")
+				continue
 			if enemy.phase == enemy.Phase.APPROACH:
 				max_curve = maxf(max_curve, absf(enemy.position.x - enemy.entry.x))
 			if enemy.phase == enemy.Phase.TURN:
@@ -78,6 +102,8 @@ func _run() -> void:
 		check(absf(spawn_times[index] - spawn_times[index - 1] - 20.0) < 0.02, "Waves remain 20 seconds apart")
 	check(observed_turn and max_bank > 0.2 and max_bank < 0.7 and max_curve > 0.8, "Converging approaches and gentle banked turns")
 	check(max_heading_rate < 2.0, "No abrupt heading changes across maneuver transitions")
+	check(roll_lift > 0.5 and roll_pitch > 0.1, "Barrel roll has vertical travel and tangent pitch")
+	check(observed_roll and observed_dive and max_roll > 6.1, "Side attacks perform complete axial rolls")
 	check(combat.BULLET_SPEED == 14.0, "Faster enemy projectiles")
 	check(combat.wave_count == 9, "Nine waves over three minutes")
 	check(observed_loop and observed_exit and max_height > 3.0 and max_pitch > 6.1, "Full 3D loop followed by departure")

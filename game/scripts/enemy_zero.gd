@@ -6,6 +6,8 @@ const SPEED := 10.0
 const LOOP_DURATION := 2.5
 enum Phase { APPROACH, LOOP, TURN, EXIT }
 
+var model_scene: PackedScene = MODEL
+var propeller_name := "Zero_Propeller"
 var phase := Phase.APPROACH
 var health := 2
 var alive := true
@@ -42,10 +44,10 @@ func _ready() -> void:
 	add_child(collider)
 	visual = Node3D.new()
 	add_child(visual)
-	var model := MODEL.instantiate()
+	var model := model_scene.instantiate()
 	model.scale = Vector3.ONE * 0.28
 	visual.add_child(model)
-	propeller = model.find_child("Zero_Propeller", true, false)
+	propeller = model.find_child(propeller_name, true, false)
 	flash = MeshInstance3D.new()
 	var mesh := PlaneMesh.new()
 	mesh.size = Vector2(0.65, 0.85)
