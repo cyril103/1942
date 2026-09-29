@@ -1,0 +1,9 @@
+{
+	"checks": 4240,
+	"failures": [],
+	"formats": [
+		"16:9",
+		"portrait"
+	],
+	"intro_seconds": 8.95
+}

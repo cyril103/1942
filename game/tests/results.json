@@ -1,0 +1,12 @@
+{
+	"aspect_ratios": [
+		"16:9",
+		"5:4",
+		"ultrawide",
+		"portrait"
+	],
+	"checks": 9615,
+	"escape": "Input event dispatched; exit code 0 required",
+	"failures": [],
+	"godot": "4.7.2-stable (official)"
+}

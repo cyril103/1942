@@ -1,0 +1,7 @@
+{
+  "meshes": 12,
+  "triangles": 16158,
+  "source_blend": "../blender/avion-joueur-studio.blend",
+  "forward_in_gltf": "+Z",
+  "textures": "Derived from original atlas and paint trim, embedded in GLB"
+}

@@ -1,0 +1,27 @@
+; Godot 4.7.2 — first playable scene.
+config_version=5
+
+[application]
+config/name="1942 — Premier vol"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/description="Avion 3D vu de dessus — flèches directionnelles, Échap pour quitter."
+
+[display]
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/size/mode=3
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+anti_aliasing/quality/msaa_3d=2
+environment/defaults/default_clear_color=Color(0.025, 0.065, 0.09, 1)
+
+[physics]
+common/physics_ticks_per_second=60

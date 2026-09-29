@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "sample_rate": 48000,
+  "variants": [
+    {
+      "file": "salvo_01.wav",
+      "duration": 0.6,
+      "peak_dbfs": -2.4999999999999996,
+      "attack_rms_dbfs": -18.055592369659152
+    },
+    {
+      "file": "salvo_02.wav",
+      "duration": 0.6,
+      "peak_dbfs": -2.4999999999999996,
+      "attack_rms_dbfs": -17.89485827628304
+    },
+    {
+      "file": "salvo_03.wav",
+      "duration": 0.6,
+      "peak_dbfs": -2.4999999999999996,
+      "attack_rms_dbfs": -17.34332487488327
+    },
+    {
+      "file": "salvo_04.wav",
+      "duration": 0.6,
+      "peak_dbfs": -2.4999999999999996,
+      "attack_rms_dbfs": -17.61559302612707
+    },
+    {
+      "file": "salvo_05.wav",
+      "duration": 0.6,
+      "peak_dbfs": -2.5000000000000004,
+      "attack_rms_dbfs": -17.594815331398536
+    },
+    {
+      "file": "salvo_06.wav",
+      "duration": 0.6,
+      "peak_dbfs": -2.4999999999999996,
+      "attack_rms_dbfs": -17.451203140035016
+    }
+  ],
+  "preview_peak_dbfs": -6.014118168429951,
+  "source_sha256": {
+    "P_30P.wav": "75621034e31c390edc44c963e00d44c995fb62ebcb11bec36ad7a752fafd4346",
+    "P_16P.wav": "3fe0a0774d8283ca977ca6b9446f21c16bb64bd67ff9815719fe33f0153954ab",
+    "lmg_fire01-KuraiWolf.mp3": "344c665ef123b8155f6b34d2d7827848d0a800679e1ba3acb4e7be1d05f211d5"
+  },
+  "layers": [
+    "stereo recorded attack",
+    "recorded low pressure body",
+    "recorded distant air",
+    "subtle early reflections"
+  ]
+}

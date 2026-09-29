@@ -1,0 +1,27 @@
+# Local tools and generated caches
+/tools/
+**/.godot/
+**/.venv/
+**/__pycache__/
+*.pyc
+*.log
+*.blend1
+*.blend2
+.DS_Store
+Thumbs.db
+
+# Downloaded archive and unused portions of the source library
+/audio/sources/*.7z
+/audio/sources/*.html
+/audio/sources/Prepared SFX Library/*
+!/audio/sources/Prepared SFX Library/PPSh/
+/audio/sources/Prepared SFX Library/PPSh/*
+!/audio/sources/Prepared SFX Library/PPSh/P_30P.wav
+!/audio/sources/Prepared SFX Library/PPSh/P_16P.wav
+
+# Local credentials / editor configuration
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/

@@ -1,0 +1,7 @@
+{
+  "base_triangles": 3844,
+  "mesh_objects": 66,
+  "render_engine": "Cycles",
+  "samples": 128,
+  "resolution": 2200
+}

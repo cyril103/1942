@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_player"]
+[ext_resource type="PackedScene" path="res://assets/aircraft.glb" id="3_aircraft"]
+[ext_resource type="Script" path="res://scripts/seascape.gd" id="4_seascape"]
+[ext_resource type="Script" path="res://scripts/departure.gd" id="5_departure"]
+[ext_resource type="Script" path="res://scripts/weapons.gd" id="6_weapons"]
+[ext_resource type="Script" path="res://scripts/combat.gd" id="7_combat"]
+[ext_resource type="Script" path="res://scripts/player_hurtbox.gd" id="8_hurtbox"]
+
+[sub_resource type="BoxShape3D" id="PlayerHitShape"]
+size = Vector3(0.8, 1.0, 1.6)
+
+[sub_resource type="Environment" id="Environment_flight"]
+background_mode = 1
+background_color = Color(0.025, 0.065, 0.09, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.74, 0.83, 0.95, 1)
+ambient_light_energy = 0.65
+reflected_light_source = 2
+tonemap_mode = 2
+
+[node name="PremierVol" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_flight")
+
+[node name="Camera" type="Camera3D" parent="."]
+position = Vector3(0, 35, 0)
+rotation = Vector3(-1.5707963, 0, 0)
+projection = 1
+size = 25.0
+near = 0.1
+far = 80.0
+current = true
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.95, -0.5, -0.35)
+light_color = Color(1, 0.94, 0.82, 1)
+light_energy = 1.4
+
+[node name="FillLight" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.5, 2.5, 0.4)
+light_color = Color(0.63, 0.78, 1, 1)
+light_energy = 0.45
+
+[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+position = Vector3(0, 0, 5)
+script = ExtResource("2_player")
+camera = NodePath("../Camera")
+
+[node name="Weapons" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera")]
+script = ExtResource("6_weapons")
+player = NodePath("../Player")
+camera = NodePath("../Camera")
+
+[node name="Bank" type="Node3D" parent="Player"]
+
+[node name="Hurtbox" type="Area3D" parent="Player"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_hurtbox")
+
+[node name="Shape" type="CollisionShape3D" parent="Player/Hurtbox"]
+shape = SubResource("PlayerHitShape")
+
+[node name="Aircraft" parent="Player/Bank" instance=ExtResource("3_aircraft")]
+rotation = Vector3(0, 3.14159265, 0)
+scale = Vector3(0.35, 0.35, 0.35)
+
+[node name="Seascape" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("4_seascape")
+camera = NodePath("../Camera")
+
+[node name="Combat" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera")]
+script = ExtResource("7_combat")
+player = NodePath("../Player")
+camera = NodePath("../Camera")
+
+[node name="Departure" type="Node3D" parent="." node_paths=PackedStringArray("player", "seascape", "camera")]
+script = ExtResource("5_departure")
+player = NodePath("../Player")
+seascape = NodePath("../Seascape")
+camera = NodePath("../Camera")

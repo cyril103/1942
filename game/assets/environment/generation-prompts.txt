@@ -1,0 +1,26 @@
+Tool: built-in image_gen. Original PNGs copied without resampling or alpha changes.
+
+OCEAN
+Use case: stylized-concept
+Asset type: production game texture, square seamless ocean surface tile for a premium top-down WWII arcade shoot-em-up with low-poly 3D planes over a painted 2D world.
+Primary request: Create a beautiful refined strictly vertical overhead view of open tropical deep ocean water, filling the entire square edge-to-edge. No horizon, no sky, no perspective. No islands, land, ships, objects or text.
+Color palette: rich dark petrol blue and deep sapphire with restrained cool teal variations, luminous but low-contrast. Avoid muddy black, saturated electric cyan, and broad white glare.
+Surface: graceful fine overlapping elongated ripples, small subtle wavelets, gently painted depth variation. Fine artisanal game art, elegant hand-painted realism, not a photograph and not a flat cartoon. Sparse soft narrow lighter strokes only, no foam masses, no giant waves, no strong directional lighting or visible sun reflection. The player aircraft must remain very legible over this texture.
+Technical composition: true seamless tile: match all four opposing edges and keep similar detail and brightness everywhere, no central vignette, no frame, no center focus. No large unique swirls that repeat obviously. Uniform visual density. Highest available native resolution, preferably 2048 square. This is the texture itself, not a preview on a plane or a material ball.
+
+ISLAND ATLAS
+Use case: stylized-concept
+Asset type: production transparent RGBA SPRITE ATLAS of FOUR tropical islands for a premium vertically scrolling top-down arcade airplane game. One square atlas, exactly 2 rows by 2 columns, four equally sized square cells, no grid lines. Highest native resolution.
+Camera: absolutely straight down orthographic 90-degree bird's-eye view. NOT isometric. No visible sky or horizon.
+Create four exquisitely painted distinct Pacific islands, one isolated island fully centered within each quadrant, all four completely separated by transparent gutters. Every island and its entire shallow-water halo must fit inside its own cell with at least 8% transparent margin along ALL cell boundaries.
+TOP LEFT: a medium irregular bean-shaped tropical island, lush clumps of rounded jungle canopy, a narrow ivory beach, a few weathered grey coastal rocks.
+TOP RIGHT: a graceful crescent atoll, golden sand, sparse palms visible as radial leafy crowns from straight overhead, lagoon opening toward the lower right.
+BOTTOM LEFT: a compact rugged rocky islet, irregular grey-brown rock formations, patches of dense dark green vegetation, two tiny satellite rocks within the same cell.
+BOTTOM RIGHT: an elongated curved tropical island, small pale sandy coves, varied rich green canopy and a shallow sheltered turquoise bay.
+Style: polished high-end hand-painted game environment art, fine readable forms and gorgeous natural palette, subtly stylized realistic illustration, harmonious with a low-poly WWII fighter. Soft overhead sunlight from upper left, shallow gentle shadows entirely within island surfaces. Broad readable shapes, not noisy photogrammetry.
+Coast treatment: delicate broken white surf at shore, narrow pale sand, turquoise and teal shallow-water skirts that feather smoothly into actual transparency. Ocean outside those limited shallow skirts MUST be fully transparent. Lagoons should have beautiful translucent turquoise water, never white fill. Avoid oversized pale glows. Land and trees opaque; outer water edge semi-transparent; the rest of the image truly alpha-transparent.
+No airplanes, buildings, boats, roads, text, border, captions, UI, drop shadow, black/white/colored backdrop, checkerboard drawn into pixels, or extra islands outside the four cells. Do not depict each island on an opaque square sea patch. This is the usable RGBA atlas itself.
+
+ATLAS LAYOUT REFINEMENT
+Edit target: the supplied transparent four-island sprite atlas. Preserve the four island designs, palette, painting style, top-down view, and true alpha transparency. Change ONLY their layout and size to make this a safe 2x2 production atlas.
+CRITICAL: each of the four entire sprites INCLUDING its outermost turquoise shallow-water halo must be reduced to about 68% of the width and height of its own square quadrant. Center each island at the exact center of its own quadrant (25%/25%,75%/25%,25%/75%,75%/75% of full canvas). Leave a broad fully transparent margin of at least 12% of EACH cell's width on ALL sides, including the image outer border AND both central grid boundaries. No turquoise pixels may touch image edges or the central horizontal or vertical divider. No overlap between any sprites. No additional design elements, no labels, no backgrounds, no grid lines. Maintain high detail and quality. Keep the existing island shapes and all details, just make all four safely fit inside their individual cells. Outer shallow water softly fades to true transparent alpha.

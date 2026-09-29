@@ -1,0 +1,11 @@
+{
+  "source_blend_reopened": true,
+  "studio_cameras": 3,
+  "hdr_packed": true,
+  "final_renders_2200": 3,
+  "glb_reimported_meshes": 2,
+  "glb_embedded_textures": 3,
+  "materials": 1,
+  "glb_bytes": 4445944,
+  "glb_render": "../../renders/zero/glb-verification.png"
+}

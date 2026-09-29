@@ -1,0 +1,14 @@
+{
+  "meshes": 2,
+  "triangles": 4952,
+  "maps": {
+    "basecolor": "C:\\ChatGPT\\1942\\art\\enemies\\zero\\textures\\v01\\zero_basecolor.png",
+    "roughness": "C:\\ChatGPT\\1942\\art\\enemies\\zero\\textures\\v01\\zero_roughness.png",
+    "normal": "C:\\ChatGPT\\1942\\art\\enemies\\zero\\textures\\v01\\zero_normal.png",
+    "metallic": "C:\\ChatGPT\\1942\\art\\enemies\\zero\\textures\\v01\\zero_metallic.png"
+  },
+  "map_resolution": 2048,
+  "normal_note": "Tangent-space bake of material microrelief, not a high-poly sculpt bake",
+  "forward_in_gltf": "+Z",
+  "propeller_separate": true
+}

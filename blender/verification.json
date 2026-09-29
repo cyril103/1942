@@ -1,0 +1,16 @@
+{
+  "blend_reopened": true,
+  "cameras": 3,
+  "packed_images": [
+    "aircraft-atlas-color-source.png",
+    "aircraft-paint-trim-color-source.png",
+    "avion-joueur-planche-01.png",
+    "studio_small_07_4k.exr"
+  ],
+  "render_dimensions": [
+    2200,
+    2200
+  ],
+  "renders_verified": 3,
+  "engine": "CYCLES"
+}

@@ -1,0 +1,22 @@
+Tool: built-in image_gen
+
+ATLAS
+Use case: stylized-concept
+Asset type: actual square aircraft BASE COLOR TEXTURE ATLAS source for a future low-poly 3D game asset, highest available native resolution.
+Reference image: supplied aircraft concept sheet is an identity and palette reference ONLY. Do not reproduce its presentation or aircraft renders.
+Create a premium professionally painted production texture sheet covering the WHOLE SQUARE image edge to edge with perfectly flat, orthographic unwrapped surface pieces. NO airplane renders, NO perspective, NO shadows, NO highlights, NO studio lighting, NO ambient occlusion, NO backdrop, NO titles, NO labels, NO UV wireframe. This is a usable albedo source image, not a mockup.
+Design coherent with reference: WWII radial engine fighter, desaturated olive upper paint, pale warm grey undersides, warm yellow cowling ring, off-white identification stripe, dark propeller. Beautiful restrained authentic aircraft finish: precise panel seams, sparse fine flush rivets, slight pigment variation between panels, minute paint chips only at access edges. Well-maintained hero aircraft, NOT rusty, NOT heavily distressed. AAA-level material authorship but low visual noise for top-down gameplay.
+Layout disciplined packed atlas, distinct nonoverlapping flattened symmetrical surface islands with wide solid-color bleed gutters:
+Upper left quarter: large left and right olive upper wing flattened surfaces with matching US white-star navy-disc white-bar insignia.
+Upper right quarter: matching pale grey lower wing surfaces and closed gear door panel lines.
+Middle horizontal region: two long fuselage side strips, mirrored structure, olive above and grey below, white rear identification band, no text or serials.
+Lower left quarter: olive horizontal tail tops, grey tail undersides, two olive vertical tail sides.
+Lower right quarter: generous long yellow cowling strip, olive cowling strip, charcoal propeller blade strips with yellow tips, several plain olive and grey repair-paint patches.
+All pieces fully inside canvas. Do not include glass: glass will use separate shader. Flat local pigment only, no baked directional lighting. Strong clean borders, exceptional crispness. Neutral olive-grey gutter color. Preserve the aircraft design language without implying an existing UV mesh.
+
+PAINT TRIM
+Use case: stylized-concept
+Asset type: actual flat BASE COLOR MATERIAL TRIM SHEET for a premium WWII aircraft game asset, square, highest available native resolution.
+Create a meticulously authored texture, NOT a presentation board. Whole image fully covered edge to edge. EXACTLY FOUR equal-height horizontal material strips, each spanning the ENTIRE width, perfectly horizontal boundaries at 25%,50%,75% image height. No gaps, no text, no labels, no icons, no frames. Reference aircraft determines colors only.
+TOP QUARTER: desaturated dark olive drab enamel paint, extremely subtle broad pigment variation, a very few small scratches, mostly beautiful clean paint. SECOND QUARTER: light warm grey aircraft enamel, same scale and restrained finish. THIRD QUARTER: warm golden yellow aircraft enamel, clean rich pigment with minute paint flecks, NOT orange, NOT neon. BOTTOM QUARTER: charcoal black propeller enamel, subtle fine material grain.
+Every strip is flat uniform albedo with gentle nondirectional pigment variation. No panel seams, no rivets, no outlines, no light source, no highlights, no shadows, NO shading gradients, NO geometry or objects. This texture is reusable color material coverage to fill model parts and UV seams. Avoid artificial directional shine. Rich professional material detail concentrated at close inspection only, very low noise at distance. Colors match the reference. Each strip should wrap seamlessly horizontally as closely as possible. Do not draw an aircraft, do not draw flattened aircraft components. Exactly four full-width swatches with understated texture.
