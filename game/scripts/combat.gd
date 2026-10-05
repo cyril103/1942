@@ -3,6 +3,8 @@ extends Node3D
 const EXPLOSION := preload("res://scripts/explosion_effect.gd")
 const HAYABUSA := preload("res://scripts/enemy_hayabusa.gd")
 const ENEMY := preload("res://scripts/enemy_zero.gd")
+const BOMBER := preload("res://scripts/enemy_bomber.gd")
+const BOMBER_INTERVAL := 30.0
 const WAVE_INTERVAL := 20.0
 const BULLET_CAPACITY := 64
 const BULLET_SPEED := 14.0
@@ -11,6 +13,12 @@ const EFFECT_CAPACITY := 8
 @export var player: Node3D
 @export var camera: Camera3D
 var enemies: Array[Area3D] = []
+var bombers: Array[Area3D] = []
+var bombers_enabled := true
+var next_bomber := BOMBER_INTERVAL
+var bomber_count := 0
+var bomber_shots := 0
+var bomber_audio: AudioStreamPlayer
 var bullets: Array[MeshInstance3D] = []
 var velocities := PackedVector3Array()
 var lifetimes := PackedFloat32Array()
@@ -68,6 +76,12 @@ func _ready() -> void:
 	explosion_audio.volume_db = -9.0
 	explosion_audio.max_polyphony = 4
 	add_child(explosion_audio)
+	bomber_audio = AudioStreamPlayer.new()
+	bomber_audio.stream = gun_audio.stream
+	bomber_audio.pitch_scale = 0.68
+	bomber_audio.volume_db = -17
+	bomber_audio.max_polyphony = 4
+	add_child(bomber_audio)
 	_build_hud()
 
 func screen_bottom() -> float:
@@ -87,9 +101,17 @@ func _physics_process(delta: float) -> void:
 		if is_instance_valid(enemy) and enemy.alive:
 			enemy.advance(delta, self)
 	enemies = enemies.filter(func(enemy): return is_instance_valid(enemy) and enemy.alive)
+	for bomber in bombers:
+		if is_instance_valid(bomber) and bomber.alive: bomber.advance(delta,self)
+	bombers = bombers.filter(func(bomber): return is_instance_valid(bomber) and bomber.alive)
 	if not game_over and player.controls_enabled:
 		started = true
 		combat_time += delta
+		if bombers_enabled:
+			next_bomber -= delta
+			if next_bomber <= 0:
+				spawn_bomber()
+				next_bomber += BOMBER_INTERVAL
 		next_wave -= delta
 		if next_wave <= 0:
 			spawn_wave()
@@ -154,17 +176,51 @@ func fire_enemy(enemy: Area3D) -> void:
 	var target: Vector3 = player.global_position
 	gun_audio.play()
 	for side in [-1, 1]:
-		for index in range(BULLET_CAPACITY):
-			if lifetimes[index] > 0: continue
-			var origin := enemy.global_position + enemy.global_basis * Vector3(side * 0.241875, 0.1875, 0.478125)
-			var direction := Vector3(target.x - origin.x, 0, target.z - origin.z).normalized()
-			if direction.length_squared() < 0.1: direction = Vector3(0, 0, 1)
-			bullets[index].global_position = origin
-			bullets[index].show()
-			velocities[index] = direction * BULLET_SPEED
-			lifetimes[index] = 6.0
-			enemy_shots += 1
-			break
+		var origin := enemy.global_position + enemy.global_basis * Vector3(side * 0.241875, 0.1875, 0.478125)
+		_launch_enemy_round(origin,target,BULLET_SPEED)
+
+func _launch_enemy_round(origin: Vector3, target: Vector3, speed: float) -> bool:
+	for index in range(BULLET_CAPACITY):
+		if lifetimes[index] > 0: continue
+		var direction := Vector3(target.x-origin.x,0,target.z-origin.z).normalized()
+		if direction.length_squared() < 0.1: direction = Vector3(0,0,1)
+		bullets[index].global_position = origin
+		bullets[index].show()
+		velocities[index] = direction*speed
+		lifetimes[index] = 6.0
+		enemy_shots += 1
+		return true
+	return false
+
+func fire_bomber(bomber: Area3D) -> void:
+	if game_over or not player.alive: return
+	bomber_audio.play()
+	for origin in bomber.get_rear_muzzles():
+		if _launch_enemy_round(origin,player.global_position,14.0): bomber_shots += 1
+
+func spawn_bomber() -> void:
+	if game_over or not bombers.is_empty(): return
+	bomber_count += 1
+	var bomber := BOMBER.new()
+	var half_width := absf(camera.project_position(Vector2.ZERO,camera.position.y).x)
+	bomber.direction = -1.0 if bomber_count % 2 == 0 else 1.0
+	bomber.position = Vector3(bomber.direction*1.4,0,screen_bottom()+2.7)
+	bomber.anchor = Vector3(0,0,screen_top()+4.2)
+	bomber.amplitude = minf(5.0,maxf(0.5,half_width-2.7))
+	bomber.destroyed.connect(_on_bomber_destroyed)
+	add_child(bomber)
+	bombers.append(bomber)
+
+func _on_bomber_destroyed(_at: Vector3) -> void:
+	kills += 1
+	score += 500
+
+func get_radar_contacts() -> Array[Area3D]:
+	var contacts: Array[Area3D] = []
+	contacts.append_array(enemies)
+	for bomber in bombers:
+		if is_instance_valid(bomber) and bomber.alive and not bomber.dying: contacts.append(bomber)
+	return contacts
 
 func _update_bullets(delta: float) -> void:
 	var viewport := get_viewport().get_visible_rect()
@@ -201,8 +257,9 @@ func _on_player_destroyed(at: Vector3) -> void:
 		lifetimes[index] = 0
 		bullets[index].hide()
 
-func _explode(at: Vector3) -> void:
-	explosion_audio.play()
+func _explode(at: Vector3, effect_scale: float = 1.0, sound: bool = true) -> void:
+	if sound: explosion_audio.play()
+	effects[_effect_cursor].scale = Vector3.ONE*EXPLOSION.AIRCRAFT_EFFECT_SCALE*effect_scale
 	effects[_effect_cursor].trigger(at, float(kills + _effect_cursor) * 1.713)
 	effect_times[_effect_cursor] = EXPLOSION.DURATION
 	_effect_cursor = (_effect_cursor + 1) % EFFECT_CAPACITY

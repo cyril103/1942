@@ -227,7 +227,7 @@ func _draw_contacts() -> void:
 	var viewport_size := Vector2(dashboard.viewport.size)
 	var inner := RADAR.grow(-24)
 	# Contact positions use the actual gameplay camera, including barrel-roll motion.
-	for enemy in dashboard.combat.enemies:
+	for enemy in dashboard.combat.get_radar_contacts():
 		if not is_instance_valid(enemy) or not enemy.alive: continue
 		var uv := camera.unproject_position(enemy.global_position)/viewport_size
 		if uv.x<0 or uv.x>1 or uv.y<0 or uv.y>1: continue

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "triangles": 6830,
+  "meshes": [
+    "Bomber_Airframe",
+    "Bomber_Propeller_L",
+    "Bomber_Propeller_R"
+  ],
+  "embedded_textures": 3,
+  "texture_resolution": 2048,
+  "independent_propeller_pivots": true,
+  "studio_hdr_and_reference_packed": true
+}

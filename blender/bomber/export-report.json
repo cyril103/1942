@@ -1,0 +1,14 @@
+{
+  "meshes": 3,
+  "triangles": 6830,
+  "maps": {
+    "basecolor": "C:\\ChatGPT\\1942\\art\\enemies\\bomber\\textures\\v01\\bomber_basecolor.png",
+    "roughness": "C:\\ChatGPT\\1942\\art\\enemies\\bomber\\textures\\v01\\bomber_roughness.png",
+    "normal": "C:\\ChatGPT\\1942\\art\\enemies\\bomber\\textures\\v01\\bomber_normal.png",
+    "metallic": "C:\\ChatGPT\\1942\\art\\enemies\\bomber\\textures\\v01\\bomber_metallic.png"
+  },
+  "map_resolution": 2048,
+  "normal_note": "Tangent-space bake of material microrelief, not a high-poly sculpt bake",
+  "forward_in_gltf": "+Z",
+  "propellers_separate": true
+}

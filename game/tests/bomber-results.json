@@ -1,0 +1,8 @@
+{
+	"checks": 1611,
+	"failures": [],
+	"max_bank": 0.476412194512001,
+	"max_pitch": 0.0458319311144694,
+	"max_yaw_rate": 0.999999999999996,
+	"patrol_width": 10.0
+}
