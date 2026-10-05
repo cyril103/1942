@@ -14,6 +14,8 @@ const MUZZLES := [Vector3(-0.43875, 0.0225, -0.2925), Vector3(0.43875, 0.0225, -
 
 var projectiles: Array[MeshInstance3D] = []
 var lifetimes := PackedFloat32Array()
+var velocities := PackedVector3Array()
+var spread_enabled := false
 var flashes: Array[MeshInstance3D] = []
 var impacts: Array[MeshInstance3D] = []
 var impact_times := PackedFloat32Array()
@@ -27,6 +29,7 @@ var audio: Node
 
 
 func _ready() -> void:
+	player.destroyed.connect(_on_player_destroyed)
 	audio = preload("res://scripts/weapon_audio.gd").new()
 	audio.name = "WeaponAudio"
 	add_child(audio)
@@ -36,6 +39,8 @@ func _ready() -> void:
 	mesh.size = Vector2(0.16, 0.85)
 	mesh.material = material
 	lifetimes.resize(CAPACITY)
+	velocities.resize(CAPACITY)
+	velocities.fill(Vector3(0,0,-SPEED))
 	for index in range(CAPACITY):
 		var shot := MeshInstance3D.new()
 		shot.mesh = mesh
@@ -83,7 +88,7 @@ func _physics_process(delta: float) -> void:
 			continue
 		var shot := projectiles[index]
 		var previous := shot.global_position
-		shot.position.z -= SPEED * delta
+		shot.position += velocities[index] * delta
 		lifetimes[index] -= delta
 		# Sweep the entire segment, on the gameplay plane regardless of bank.
 		_query.from = Vector3(previous.x, 0.0, previous.z)
@@ -113,15 +118,21 @@ func _physics_process(delta: float) -> void:
 
 
 func _fire_salvo() -> void:
-	if active_count > CAPACITY - 2:
+	var count := 4 if spread_enabled else 2
+	if active_count > CAPACITY - count:
 		return
 	audio.play_salvo()
-	for muzzle: Vector3 in MUZZLES:
+	for barrel in range(count):
+		var muzzle: Vector3 = MUZZLES[barrel / 2 if spread_enabled else barrel]
+		var angle := deg_to_rad([-15.0,-5.0,5.0,15.0][barrel]) if spread_enabled else 0.0
 		for index in range(CAPACITY):
 			if lifetimes[index] > 0.0:
 				continue
 			var shot := projectiles[index]
 			shot.global_position = player.bank.to_global(muzzle)
+			velocities[index] = Vector3(sin(angle),0,-cos(angle))*SPEED
+			shot.rotation.y = -angle
+			shot.scale = Vector3(1.45,1,1.18) if spread_enabled else Vector3.ONE
 			shot.show()
 			lifetimes[index] = MAX_LIFETIME
 			active_count += 1
@@ -146,3 +157,13 @@ func _show_impact(point: Vector3) -> void:
 	impact.show()
 	impact_times[_impact_cursor] = 0.16
 	_impact_cursor = (_impact_cursor + 1) % impacts.size()
+
+func upgrade_spread() -> void:
+	spread_enabled = true
+	audio.volume_db = -6.0
+	for flash in flashes: flash.scale = Vector3(1.55,1,0.30)
+
+func _on_player_destroyed(_at: Vector3) -> void:
+	spread_enabled = false
+	audio.volume_db = -5.0
+	for flash in flashes: flash.scale = Vector3(1.125,1,0.225)

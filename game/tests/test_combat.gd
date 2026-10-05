@@ -18,6 +18,7 @@ func _run() -> void:
 	for name_text in ["Combat", "Departure", "Player", "Weapons", "Seascape"]:
 		scene.get_node(name_text).set_physics_process(false)
 	var combat = scene.get_node("Combat")
+	combat.special_enabled = false
 	combat.bombers_enabled = false
 	var player = scene.get_node("Player")
 	var weapons = scene.get_node("Weapons")

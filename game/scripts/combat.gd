@@ -4,6 +4,9 @@ const EXPLOSION := preload("res://scripts/explosion_effect.gd")
 const HAYABUSA := preload("res://scripts/enemy_hayabusa.gd")
 const ENEMY := preload("res://scripts/enemy_zero.gd")
 const BOMBER := preload("res://scripts/enemy_bomber.gd")
+const RED := preload("res://scripts/enemy_red.gd")
+const POW := preload("res://scripts/pow_pickup.gd")
+const SPECIAL_INTERVAL := 40.0
 const BOMBER_INTERVAL := 30.0
 const WAVE_INTERVAL := 20.0
 const BULLET_CAPACITY := 64
@@ -14,6 +17,15 @@ const EFFECT_CAPACITY := 8
 @export var camera: Camera3D
 var enemies: Array[Area3D] = []
 var bombers: Array[Area3D] = []
+var red_enemies: Array[Area3D] = []
+var special_enabled := true
+var next_special := 12.0
+var special_count := 0
+var special_kills := 0
+var special_resolved := 0
+var special_failed := false
+var pow_spawn_count := 0
+var pickup: Node3D
 var bombers_enabled := true
 var next_bomber := BOMBER_INTERVAL
 var bomber_count := 0
@@ -82,6 +94,8 @@ func _ready() -> void:
 	bomber_audio.volume_db = -17
 	bomber_audio.max_polyphony = 4
 	add_child(bomber_audio)
+	pickup = POW.new()
+	add_child(pickup)
 	_build_hud()
 
 func screen_bottom() -> float:
@@ -104,6 +118,10 @@ func _physics_process(delta: float) -> void:
 	for bomber in bombers:
 		if is_instance_valid(bomber) and bomber.alive: bomber.advance(delta,self)
 	bombers = bombers.filter(func(bomber): return is_instance_valid(bomber) and bomber.alive)
+	for red in red_enemies:
+		if is_instance_valid(red) and red.alive: red.advance(delta,self)
+	red_enemies = red_enemies.filter(func(red): return is_instance_valid(red) and red.alive)
+	pickup.advance(delta,self)
 	if not game_over and player.controls_enabled:
 		started = true
 		combat_time += delta
@@ -112,6 +130,11 @@ func _physics_process(delta: float) -> void:
 			if next_bomber <= 0:
 				spawn_bomber()
 				next_bomber += BOMBER_INTERVAL
+		if special_enabled:
+			next_special -= delta
+			if next_special <= 0:
+				spawn_special()
+				next_special += SPECIAL_INTERVAL
 		next_wave -= delta
 		if next_wave <= 0:
 			spawn_wave()
@@ -218,6 +241,8 @@ func _on_bomber_destroyed(_at: Vector3) -> void:
 func get_radar_contacts() -> Array[Area3D]:
 	var contacts: Array[Area3D] = []
 	contacts.append_array(enemies)
+	for red in red_enemies:
+		if is_instance_valid(red) and red.alive and red.visible: contacts.append(red)
 	for bomber in bombers:
 		if is_instance_valid(bomber) and bomber.alive and not bomber.dying: contacts.append(bomber)
 	return contacts
@@ -306,3 +331,51 @@ func _update_hud() -> void:
 		hud.text = "TEST COMBAT  •  Décollage\nFlèches : piloter   Espace : tirer   R : recommencer"
 	else:
 		hud.text = "VAGUE %d  •  %d ABATTUS  •  %s\nEspace : tirer   R : recommencer" % [wave_count, kills, "TEST TERMINÉ" if game_over else "PROCHAINE : %ds" % ceili(maxf(0, next_wave))]
+
+func spawn_special() -> void:
+	if game_over or not red_enemies.is_empty(): return
+	special_count += 1
+	special_kills = 0
+	special_resolved = 0
+	special_failed = false
+	var side := 1.0 if special_count % 2 == 1 else -1.0
+	var w := absf(camera.project_position(Vector2.ZERO,camera.position.y).x)
+	var top := screen_top()
+	var route := Curve3D.new()
+	route.bake_interval = 0.04
+	# Circular Bezier quarters (radius >= aircraft span) prevent tight curvature spikes.
+	var radius := minf(4.0,w-1.5)
+	var handle := radius*0.55228475
+	var z := top+4.0
+	var points := [Vector3(-w-3,0,z),Vector3(0,0,z),Vector3(radius,0,z+radius),Vector3(0,0,z+2*radius),Vector3(-radius,0,z+3*radius),Vector3(-radius,0,screen_bottom()+5)]
+	var tangents := [Vector3(4,0,0),Vector3(handle,0,0),Vector3(0,0,handle),Vector3(-handle,0,0),Vector3(0,0,handle),Vector3(0,0,4)]
+	for index in range(points.size()):
+		var point: Vector3 = points[index]
+		var tangent: Vector3 = tangents[index]
+		point.x *= side
+		tangent.x *= side
+		route.add_point(point,-tangent,tangent)
+	for index in range(5):
+		var red := RED.new()
+		red.route = route
+		red.slot = index
+		red.destroyed.connect(_on_red_destroyed)
+		red.escaped.connect(_on_red_escaped)
+		add_child(red)
+		red_enemies.append(red)
+
+func _on_red_destroyed(at: Vector3) -> void:
+	special_kills += 1
+	special_resolved += 1
+	kills += 1
+	score += 150
+	_explode(at)
+	if special_kills == 5 and special_resolved == 5 and not special_failed:
+		var half_width := absf(camera.project_position(Vector2.ZERO,camera.position.y).x)
+		var drop := Vector3(clampf(at.x,-half_width+1,half_width-1),0,clampf(at.z,screen_top()+1.5,screen_bottom()-3))
+		pickup.activate(drop,player)
+		pow_spawn_count += 1
+
+func _on_red_escaped() -> void:
+	special_failed = true
+	special_resolved += 1

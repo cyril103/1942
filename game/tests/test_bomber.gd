@@ -12,6 +12,7 @@ func _run() -> void:
 	current_scene = cockpit
 	await process_frame
 	var combat = cockpit.combat
+	combat.special_enabled = false
 	var player = cockpit.player
 	var weapons = cockpit.flight.get_node("Weapons")
 	for node_name in ["Combat","Weapons","Seascape","Player","Departure"]:

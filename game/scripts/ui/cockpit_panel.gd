@@ -165,7 +165,11 @@ func _draw_left() -> void:
 	_text("V I E S",Vector2(72,770),27)
 	for i in range(3):
 		_plane(Vector2(266+i*80,763),26,CREAM if i<dashboard.combat.remaining_lives else Color("3c3d30"))
-	_text("ESCADRILLE  01",Vector2(277,881),26,DIM,false,true)
+	var armament := "TIR STANDARD"
+	if dashboard.flight.get_node("Weapons").spread_enabled: armament = "POW  /  ÉVENTAIL x4"
+	if not dashboard.combat.red_enemies.is_empty():
+		armament = "ESCADRILLE ROUGE  %d/5" % dashboard.combat.special_kills
+	_text(armament,Vector2(277,881),26,CREAM,false,true)
 	draw_line(Vector2(108,905),Vector2(447,905),Color("514b37"),1,true)
 	var status := "PRÊT AU DÉCOLLAGE"
 	var lamp := Color("e7a947")
