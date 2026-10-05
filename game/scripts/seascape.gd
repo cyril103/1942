@@ -91,7 +91,7 @@ func _configure_island(island: MeshInstance3D, at_z: float) -> void:
 	(island.mesh as PlaneMesh).size = Vector2(size, size)
 	island.rotation.y = _random.randf_range(-0.55, 0.55)
 	var lane := _random.randf_range(-0.76, 0.76)
-	if naval_corridor: lane = (-1.0 if (islands.find(island)+recycle_count)%2 == 0 else 1.0)*(1.15+size*0.025)
+	if naval_corridor: lane = (-1.0 if (islands.find(island)+recycle_count)%2 == 0 else 1.0)*maxf(.88,(7.0+size*.45)/_view_half.x)
 	island.set_meta("lane", lane)
 	island.set_meta("radius", size * 0.72)
 	island.set_meta("variant", _next_variant)
@@ -131,7 +131,8 @@ func _physics_process(delta: float) -> void:
 func configure_sector(mission: Dictionary) -> void:
 	_random.seed = int(mission.seed)
 	var biome: String = mission.biome
-	naval_corridor = mission.boss in ["destroyer","battleship","carrier"]
+	# Every sortie now starts and ends on a carrier; retain navigable central sea.
+	naval_corridor = true
 	for event in mission.events:
 		if event.kind == "naval": naval_corridor = true
 	var atlas: Texture2D = ISLAND_ATLAS

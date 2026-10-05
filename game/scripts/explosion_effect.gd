@@ -1,6 +1,6 @@
 extends Node3D
 ## Fixed reusable multi-layer VFX. No node allocation when triggered.
-const DURATION := 3.5
+const DURATION := 1.35
 # Match the two 25% aircraft reductions, including particle travel distances.
 const AIRCRAFT_EFFECT_SCALE := 0.5625
 const ATLAS := preload("res://assets/effects/explosion-atlas.png")
@@ -84,7 +84,7 @@ func advance(delta: float) -> void:
 		cloud.rotation.y = angle + t * (0.07 if index % 2 == 0 else -0.06)
 		var size := (0.7 + 2.7 * (1.0 - exp(-t * 5.5)) + t * 0.45) * (1.0 if index == 0 else 0.72)
 		cloud.scale = Vector3.ONE * size
-		cloud.material_override.set_shader_parameter("age", t * (0.93 + index * 0.04))
+		cloud.material_override.set_shader_parameter("age", t * 2.6 * (0.93 + index * 0.04))
 		cloud.material_override.set_shader_parameter("variation", angle)
 		cloud.material_override.set_shader_parameter("opacity", 1.0 if index == 0 else 0.82)
 	flash.visible = age < 0.34

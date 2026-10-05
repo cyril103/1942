@@ -1,4 +1,10 @@
-Musique originale pour Pacific Strike : menu.wav, flight.wav, boss.wav.
-Composition et synthèse déterministes : audio/build_campaign_music.py.
-Aucun sample musical externe. Instruments synthétiques : nappes harmoniques,
-basse, motif FM, percussions de bruit filtré et échos stéréo. Boucles PCM 16 bits.
+ACTION SOUNDTRACK — Juhani Junkala / SubspaceAudio
+5 Chiptunes (Action), released under CC0.
+https://opengameart.org/content/5-chiptunes-action
+https://creativecommons.org/publicdomain/zero/1.0/
+Title Screen -> menu.wav; Level 1 -> flight.wav; Level 2 -> flight2.wav;
+Level 3 -> boss.wav; Ending -> victory.wav.
+Adaptation: gain normalized to peak 0.75, PCM16. Original tempo/melodies retained.
+Downloaded 2026-10-05. Artist notice: Juhani-INFO.txt.
+Laser loop is an original procedural sound from audio/build_action_music.py.
+The former procedural music generator remains as historical source only.

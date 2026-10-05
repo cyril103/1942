@@ -14,13 +14,13 @@ func _run() -> void:
 	var combat = scene.get_node("Combat")
 	var count: int = scene.get_child_count()
 	for i in range(100): combat._explode(Vector3.ZERO)
-	check(combat.effects.size() == 8, "Fixed effect pool")
+	check(combat.effects.size() == combat.EFFECT_CAPACITY and combat.effects.size() <= 24, "Bounded effect pool supports dense formations")
 	check(scene.get_child_count() == count, "No scene growth on repeated explosions")
 	for effect in combat.effects:
 		check(effect.get_child_count() == 28, "Fixed internal meshes")
-	combat._update_effects(1.6)
+	combat._update_effects(0.8)
 	check(combat.effects[0].visible, "Smoke survives fireball")
-	combat._update_effects(2.0)
+	combat._update_effects(0.7)
 	for effect in combat.effects: check(not effect.visible, "Finished smoke hidden")
 	combat.explosion_audio.stop()
 	await create_timer(0.1).timeout
@@ -30,7 +30,7 @@ func _run() -> void:
 	recorder.set_recording_active(true)
 	combat._explode(Vector3(-2,0,0))
 	combat._explode(Vector3(2,0,0))
-	await create_timer(3.7).timeout
+	await create_timer(combat.explosion_audio.stream.get_length()+0.4).timeout
 	recorder.set_recording_active(false)
 	var recording := recorder.get_recording()
 	recording.save_to_wav(ProjectSettings.globalize_path("res://../audio/explosion-ingame-pair.wav"))

@@ -235,7 +235,7 @@ func _show_briefing(number: int) -> void:
 func _show_hangar() -> void:
 	page = "hangar"
 	_clear_menu("HANGAR","%d PIÈCES DISPONIBLES  •  Les premières victoires et les nouvelles médailles financent les améliorations." % profile.data.credits)
-	var descriptions := ["POLYVALENT\nVitesse 9  •  Coque 3  •  Bombes 2\nUn équilibre entre mobilité et résistance.","INTERCEPTEUR\nVitesse 11  •  Coque 2  •  Bombes 2\nTir plus rapide, esquives plus vives.","ASSAUT\nVitesse 7,8  •  Coque 4  •  Bombes 3\nPlus de réserve pour les engagements lourds."]
+	var descriptions := ["POLYVALENT\nVitesse 9  •  Coque 2  •  Bombes 2\nUn équilibre entre mobilité et résistance.","INTERCEPTEUR\nVitesse 11  •  Coque 2  •  Bombes 2\nTir plus rapide, esquives plus vives.","ASSAUT\nVitesse 7,8  •  Coque 3  •  Bombes 3\nPlus de réserve pour les engagements lourds."]
 	for i in range(3):
 		var x := 94+i*580
 		_label(PROFILE.AIRCRAFT[i].to_upper(),Vector2(x,290),Vector2(540,50),37,GOLD,true)
@@ -314,8 +314,8 @@ func _show_credits() -> void:
 	text.fit_content = true
 	text.bbcode_enabled = false
 	text.add_theme_font_size_override("normal_font_size",25)
-	text.text = "PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\nMusique : compositions procédurales originales du projet.\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n"
-	for file in ["res://assets/audio/engine/CREDITS.md","res://assets/audio/weapons/CREDITS.md"]:
+	text.text = "PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\nMusique : Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0.\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n"
+	for file in ["res://assets/audio/engine/CREDITS.md","res://assets/audio/weapons/CREDITS.md","res://assets/campaign/music/CREDITS.txt"]:
 		text.text += FileAccess.get_file_as_string(file)+"\n\n"
 	scroll.add_child(text)
 	_button("RETOUR",Vector2(94,936),Vector2(280,56),_show_main)
@@ -337,11 +337,12 @@ func _launch(number: int) -> void:
 	director.cockpit = cockpit
 	director.mission = missions[number-1].duplicate(true)
 	director.profile = profile
-	director.first_takeoff = number%4 == 1
+	director.first_takeoff = true
 	director.finished.connect(func(report): _show_result.call_deferred(report))
 	cockpit.flight.add_child(director)
-	if number == profile.data.next_mission and profile.data.pow_ready: cockpit.flight.get_node("Weapons").upgrade_spread()
+	cockpit.flight.get_node("Weapons").set_power(profile.data.power)
 	var hud := HUD.new()
+	hud.name = "CampaignHUD"
 	hud.cockpit = cockpit
 	hud.director = director
 	cockpit.add_child(hud)
@@ -376,20 +377,29 @@ func _resume() -> void:
 func _show_result(report: Dictionary) -> void:
 	if not is_instance_valid(director): return
 	result = report
+	cockpit.get_node("CampaignHUD").hide()
+	if is_instance_valid(music):
+		if report.won: music.set_mode("victory")
+		else: music.stop()
 	page = "result"
 	get_tree().paused = true
 	director.paused = true
 	var earned := 0
-	if selected_mission >= profile.data.next_mission: profile.data.pow_ready = report.won and report.get("spread",false)
-	if report.won: earned = profile.record_victory(selected_mission,report.score,report.grade)
+	profile.data.high_score = maxi(profile.data.high_score,int(report.score))
+	if report.won:
+		profile.data.run_score = int(report.score)
+		profile.data.run_lives = int(report.get("lives",3))
+		profile.data.power = report.get("power","none")
+		profile.data.pow_ready = profile.data.power == "spread"
+		earned = profile.record_victory(selected_mission,report.get("mission_score",report.score),report.grade)
 	var victory: bool = report.won and selected_mission == 32
-	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else "APPAREIL PERDU"),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
-	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else "NE RENONCEZ PAS.",Vector2(94,298),Vector2(1050,100),70,GOLD,true)
-	_label("SCORE DE MISSION    %08d\nAPPAREILS / NAVIRES DÉTRUITS    %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d\nPIÈCES GAGNÉES    +%d" % [report.score,report.kills-report.naval_kills,report.naval_kills,report.deaths,report.bonus,earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1"))
-	_label("32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est déverrouillée.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre progression est conservée.\nEssayez un autre profil, utilisez la précision et gardez une bombe pour vous dégager."),Vector2(1210,336),Vector2(590,310),33,MUTED)
+	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else "GAME OVER"),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
+	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else "AUCUNE VIE RESTANTE",Vector2(94,298),Vector2(1050,100),70,GOLD,true)
+	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAPPAREILS / NAVIRES    %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills,report.naval_kills,report.deaths,report.bonus,earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1"))
+	_label("32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est déverrouillée.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre record est enregistré.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde."),Vector2(1210,336),Vector2(590,310),33,MUTED)
 	if report.won and selected_mission < 32:
 		_button("MISSION SUIVANTE",Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
-	else: _button("REJOUER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission))
+	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission))
 	_button("HANGAR",Vector2(559,842),Vector2(320,66),_hangar_after_result)
 	_button("ACCUEIL",Vector2(904,842),Vector2(320,66),_show_main)
 	if victory: _button("CRÉDITS",Vector2(1249,842),Vector2(320,66),_credits_after_result)
@@ -444,7 +454,7 @@ func _quit() -> void:
 
 func _process(_delta: float) -> void:
 	if page == "playing" and is_instance_valid(director) and is_instance_valid(music):
-		music.set_mode("boss" if is_instance_valid(director.boss) and director.boss.alive else "flight")
+		music.set_mode("victory" if director.ending else ("boss" if is_instance_valid(director.boss) and director.boss.alive else ("flight" if int(director.mission.sector)%2==0 else "flight2")))
 
 func _confirm_new_campaign() -> void:
 	page = "new_campaign"

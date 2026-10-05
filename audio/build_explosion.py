@@ -6,7 +6,7 @@ import soundfile as sf
 from scipy.signal import butter, sosfilt, resample_poly
 ROOT=Path(__file__).resolve().parents[1]
 SR=48000
-N=int(3.4*SR)
+N=int(1.9*SR)
 t=np.arange(N)/SR
 rng=np.random.default_rng(194244)
 def filt(x,f,k):

@@ -31,6 +31,8 @@ var loop_duration := LOOP_DURATION
 var approach_target_x := 0.0
 var turn_duration := 2.6
 var turn_angle := 0.55
+var hit_time := 0.0
+var hit_material: ShaderMaterial
 
 func _ready() -> void:
 	entry = position
@@ -47,6 +49,9 @@ func _ready() -> void:
 	var model := model_scene.instantiate()
 	model.scale = Vector3.ONE * 0.1575
 	visual.add_child(model)
+	hit_material = ShaderMaterial.new()
+	hit_material.shader = preload("res://shaders/bomber_hit.gdshader")
+	for mesh in model.find_children("*","MeshInstance3D",true,false): mesh.material_overlay = hit_material
 	propeller = model.find_child(propeller_name, true, false)
 	flash = MeshInstance3D.new()
 	var mesh := PlaneMesh.new()
@@ -63,6 +68,7 @@ func advance(delta: float, combat: Node) -> void:
 	if not alive:
 		return
 	age += delta
+	_update_hit(delta)
 	flash_time = maxf(0, flash_time - delta)
 	flash.visible = flash_time > 0
 	if is_instance_valid(propeller):
@@ -84,7 +90,7 @@ func advance(delta: float, combat: Node) -> void:
 		if position.z >= loop_z - flight_speed * 0.68 and shot_count < 3 and shot_cooldown <= 0:
 			combat.fire_enemy(self)
 			shot_count += 1
-			shot_cooldown = 0.20
+			shot_cooldown = 0.28 if combat.dense_waves else 0.20
 			flash_time = 0.065
 		if position.z >= loop_z - 0.00001:
 			anchor = position
@@ -127,6 +133,7 @@ func take_damage(amount: int) -> void:
 	if not alive:
 		return
 	health -= amount
+	hit_time = 0.065
 	if health <= 0:
 		destroyed.emit(global_position + visual.position)
 		retire()
@@ -136,3 +143,7 @@ func retire() -> void:
 	collision_layer = 0
 	hide()
 	queue_free()
+
+func _update_hit(delta: float) -> void:
+	hit_time = maxf(0,hit_time-delta)
+	if is_instance_valid(hit_material): hit_material.set_shader_parameter("strength",hit_time/.065)

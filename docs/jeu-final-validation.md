@@ -1,5 +1,7 @@
 # Validation de la campagne — 5 octobre 2026
 
+**Ce document décrit la première livraison. Pour la révision actuelle, voir `revision-dynamique.md` et les résultats de tests à jour. Le hash et les chiffres ci-dessous sont ceux de la première version.**
+
 Branche : `codex/jeu-final`. Godot 4.7.2, Windows x64, rendu Compatibility/OpenGL, GPU NVIDIA GTX 1650.
 
 ## Résultats

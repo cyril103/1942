@@ -20,6 +20,7 @@ func _run() -> void:
 	app.profile.path = "user://campaign-runtime-test.json"
 	check(app.profile.save()==OK,"Standalone can save to its user directory")
 	app.profile.data.pow_ready = true
+	app.profile.data.power = "spread"
 	app.profile.save()
 	var profile = load("res://scripts/campaign/profile.gd").new()
 	profile.path = app.profile.path
@@ -28,6 +29,7 @@ func _run() -> void:
 	var d = app.director
 	var p = app.cockpit.player
 	var w = d.weapons
+	p.invulnerable_time = 30
 	check(w.spread_enabled,"Campaign restores POW at mission checkpoint")
 	w.spread_enabled = false
 	var recording := AudioEffectRecord.new()
@@ -36,7 +38,7 @@ func _run() -> void:
 	recording.set_recording_active(true)
 	# Real takeoff runs to completion with the original engine sound and new music.
 	for frame in range(780): await physics_frame
-	check(p.controls_enabled,"Takeoff completes in the full campaign")
+	check(not app.cockpit.flight.get_node("Departure").active and p.controls_enabled,"Takeoff completes in the full campaign")
 	p.invulnerable_time = 30
 	Input.action_press("fire")
 	for frame in range(360):

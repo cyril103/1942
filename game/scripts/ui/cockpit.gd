@@ -73,6 +73,17 @@ func _ready() -> void:
 
 func _layout() -> void:
 	if not is_instance_valid(viewport): return
+	if campaign_mode:
+		var ui_scale := size.y / 1080.0
+		play_rect = Rect2(Vector2(0,64*ui_scale),Vector2(size.x,size.y-108*ui_scale))
+		viewport.size = Vector2i(play_rect.size)
+		screen.position = play_rect.position
+		screen.size = play_rect.size
+		left.hide()
+		right.hide()
+		message.position = play_rect.position
+		message.size = play_rect.size
+		return
 	var available := size
 	var origin := Vector2.ZERO
 	# Narrow displays keep the entire cockpit visible, letterboxed as needed.
@@ -101,9 +112,10 @@ func _process(delta: float) -> void:
 	if _save_delay > 0:
 		_save_delay -= delta
 		if _save_delay <= 0: save_record()
-	left.refresh(delta)
-	right.refresh(delta)
-	message.visible = (combat.game_over and not campaign_mode) or combat.respawn_time > 0
+	if not campaign_mode:
+		left.refresh(delta)
+		right.refresh(delta)
+	message.visible = not campaign_mode and (combat.game_over or combat.respawn_time > 0)
 	message.text = "MISSION TERMINÉE\n\nR  —  REJOUER\nÉCHAP  —  QUITTER" if combat.game_over else "RENFORT EN APPROCHE"
 
 func save_record() -> void:

@@ -12,6 +12,7 @@ func _init() -> void:
 
 func reset() -> void:
 	data = {"version":VERSION,"unlocked":1,"next_mission":1,"completed":false,"pow_ready":false,"credits":0,"high_score":0,"aircraft":0,"difficulty":1,"upgrades":[0,0,0],"records":{},"settings":{"master":0.8,"music":0.35,"effects":0.8,"fullscreen":true,"shake":true,"flashes":true}}
+	data.merge({"run_score":0,"run_lives":3,"power":"none"})
 
 func load_profile() -> bool:
 	for candidate in [path,path+".bak"]:
@@ -38,6 +39,13 @@ func load_profile() -> bool:
 				if int(key)<1 or int(key)>32 or records[key] is not Dictionary: continue
 				data.records[str(key)] = {"score":clampi(int(records[key].get("score",0)),0,99999999),"grade":clampi(int(records[key].get("grade",0)),0,3)}
 		var settings = parsed.get("settings",{})
+		var legacy_total := 0
+		for record in data.records.values(): legacy_total += int(record.score)
+		data.run_score = clampi(int(parsed.get("run_score",legacy_total)),0,99999999)
+		data.run_lives = clampi(int(parsed.get("run_lives",3)),1,9)
+		data.power = str(parsed.get("power","spread" if data.pow_ready else "none"))
+		if data.power not in ["none","spread","laser","life"]: data.power = "none"
+		data.high_score = maxi(data.high_score,data.run_score)
 		if settings is Dictionary:
 			for key in ["master","music","effects"]: data.settings[key] = clampf(float(settings.get(key,data.settings[key])),0,1)
 			for key in ["fullscreen","shake","flashes"]: data.settings[key] = bool(settings.get(key,true))

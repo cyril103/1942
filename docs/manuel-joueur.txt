@@ -11,13 +11,20 @@ X : bombe. C : frappe spéciale lorsque la jauge atteint 100 %.
 Échap : pause. Depuis l'accueil, Échap quitte le jeu.
 Manette : stick, A pour tirer, B pour la bombe, X pour la frappe, LB pour la précision.
 
-Détruire les cinq avions d'une formation rouge puis ramasser le POW améliore le tir.
+Détruire les cinq avions d'une formation rouge fait apparaître un bonus à icône :
+éventail cyan = multi-tir, rayon violet = laser, avion vert + = vie supplémentaire.
+Un nouveau bonus remplace l'ancien. La vie supplémentaire est immédiatement acquise
+et rétablit le tir standard. Elle n'est pas retirée quand un autre bonus est ramassé.
+Le laser se maintient avec Espace, comme les tirs habituels.
 Le briefing indique l'objectif de mission et les conditions de médaille d'or.
 Les pièces gagnées permettent d'améliorer les armes, la coque et la charge spéciale.
 Trois profils du même avion et trois difficultés sont disponibles dans le hangar/options.
 
+Le score total, les vies et l'arme sont sauvegardés entre les missions. Un appontage
+termine chaque mission victorieuse ; chaque mission démarre par un décollage.
 La progression est sauvegardée automatiquement entre les missions. Quitter pendant
 une mission permet de recommencer cette mission ; aucune sauvegarde en plein vol.
+Une reprise restaure le score et les vies du début de mission, sans dupliquer les points.
 Le menu Missions donne accès aux niveaux débloqués. Nouvelle campagne demande
 confirmation et remet la progression à zéro en conservant options et record.
 
@@ -25,3 +32,9 @@ Options : plein écran, volumes musique/effets/général, secousses et effets lu
 Les licences et crédits des composants sont dans Licences/ et dans le menu Crédits.
 
 Projet indépendant inspiré des shmups 194X. Non affilié à Capcom.
+
+LISIBILITE DES TIRS
+Vos traceurs sont cyan/blanc ; les projectiles ennemis sont rouge/orange avec un coeur clair. Le laser touche sur toute sa largeur lumineuse et s arrete sur la premiere cible. Maintenir Maj permet les ajustements fins avec la vitesse de vol accrue.
+
+VIES ET BLINDAGE
+La jauge BLINDAGE indique les impacts restants avant destruction. Perdre un avion consomme une vie. S il reste des vies, retour apres 1,5 seconde dans la mission en cours, blindage restaure, avec clignotement et protection pendant 4 secondes. Le score et l avancement de la mission sont conserves. A zero vie : GAME OVER, bilan puis choix explicite de reessayer au dernier point de sauvegarde ou de revenir a l accueil.

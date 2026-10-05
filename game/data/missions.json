@@ -8,16 +8,31 @@
     "duration": 70,
     "briefing": "Reprenez la maîtrise du ciel. Suivez les traceurs, ménagez vos bombes et cherchez les formations rouges.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 24,
     "boss": "",
     "seed": 202119,
-    "scroll": 2.1,
-    "pressure": 0.7,
+    "scroll": 2.52,
+    "pressure": 1.05,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "zero",
         "pattern": 1
+      },
+      {
+        "time": 5.6,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 10.0,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 11.7,
@@ -25,13 +40,43 @@
         "pattern": 2
       },
       {
+        "time": 14.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 18.8,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.7,
         "kind": "zero",
         "pattern": 3
       },
       {
+        "time": 23.2,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 27.6,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 29.7,
         "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 32.0,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 36.4,
+        "kind": "hayabusa",
         "pattern": 0
       },
       {
@@ -40,14 +85,44 @@
         "pattern": 1
       },
       {
+        "time": 40.8,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 45.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 47.7,
         "kind": "red",
         "pattern": 2
       },
       {
+        "time": 49.6,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 54.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 56.7,
         "kind": "hayabusa",
         "pattern": 3
+      },
+      {
+        "time": 58.4,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 62.8,
+        "kind": "hayabusa",
+        "pattern": 2
       }
     ]
   },
@@ -60,15 +135,30 @@
     "duration": 76,
     "briefing": "Reprenez la maîtrise du ciel. Suivez les traceurs, ménagez vos bombes et cherchez les formations rouges.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 24,
     "boss": "",
     "seed": 210038,
-    "scroll": 2.18,
-    "pressure": 0.735,
+    "scroll": 2.62,
+    "pressure": 1.05,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 5.6,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 10.0,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -77,9 +167,29 @@
         "pattern": 3
       },
       {
+        "time": 14.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 18.8,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 21.4,
         "kind": "red",
         "pattern": 0
+      },
+      {
+        "time": 23.2,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 27.6,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 30.4,
@@ -87,8 +197,28 @@
         "pattern": 1
       },
       {
+        "time": 32.0,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 36.4,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 39.4,
         "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 40.8,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 45.2,
+        "kind": "hayabusa",
         "pattern": 2
       },
       {
@@ -97,9 +227,24 @@
         "pattern": 3
       },
       {
+        "time": 54.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 57.4,
         "kind": "hayabusa",
         "pattern": 0
+      },
+      {
+        "time": 62.8,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 67.2,
+        "kind": "zero",
+        "pattern": 3
       }
     ]
   },
@@ -112,11 +257,11 @@
     "duration": 82,
     "briefing": "Reprenez la maîtrise du ciel. Suivez les traceurs, ménagez vos bombes et cherchez les formations rouges.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 24,
     "boss": "",
     "seed": 217957,
-    "scroll": 2.2600000000000002,
-    "pressure": 0.77,
+    "scroll": 2.71,
+    "pressure": 1.05,
     "events": [
       {
         "time": 2.0,
@@ -124,9 +269,19 @@
         "pattern": 3
       },
       {
+        "time": 5.6,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 11.0,
         "kind": "zero",
         "pattern": 0
+      },
+      {
+        "time": 14.4,
+        "kind": "hayabusa",
+        "pattern": 3
       },
       {
         "time": 20.0,
@@ -134,9 +289,29 @@
         "pattern": 1
       },
       {
+        "time": 23.2,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 27.6,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
         "time": 29.0,
         "kind": "bomber",
         "pattern": 2
+      },
+      {
+        "time": 32.0,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 36.4,
+        "kind": "zero",
+        "pattern": 0
       },
       {
         "time": 38.0,
@@ -144,14 +319,54 @@
         "pattern": 3
       },
       {
+        "time": 40.8,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 45.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 47.0,
         "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 49.6,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 54.0,
+        "kind": "hayabusa",
         "pattern": 0
       },
       {
         "time": 56.0,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 58.4,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 62.8,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 67.2,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 71.6,
+        "kind": "zero",
+        "pattern": 0
       }
     ]
   },
@@ -167,13 +382,28 @@
     "quota": 1,
     "boss": "bomber",
     "seed": 225876,
-    "scroll": 2.34,
-    "pressure": 0.805,
+    "scroll": 2.81,
+    "pressure": 1.05,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "zero",
         "pattern": 0
+      },
+      {
+        "time": 5.6,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 10.0,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 11.7,
@@ -181,8 +411,28 @@
         "pattern": 1
       },
       {
+        "time": 14.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 18.8,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.7,
         "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 23.2,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 27.6,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -191,14 +441,74 @@
         "pattern": 3
       },
       {
+        "time": 32.0,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 36.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 38.7,
         "kind": "hayabusa",
         "pattern": 0
       },
       {
+        "time": 40.8,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 45.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 47.7,
         "kind": "zero",
         "pattern": 1
+      },
+      {
+        "time": 49.6,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 54.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 58.4,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 62.8,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 67.2,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 71.6,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 76.0,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 80.4,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 84,
@@ -216,15 +526,30 @@
     "duration": 72,
     "briefing": "Les convois alimentent les aérodromes adverses. Neutralisez les navires sans vous laisser enfermer par leur défense.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 27,
     "boss": "",
     "seed": 233795,
-    "scroll": 2.2,
-    "pressure": 0.775,
+    "scroll": 2.64,
+    "pressure": 1.095,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 5.42,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 9.64,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -233,9 +558,24 @@
         "pattern": 2
       },
       {
+        "time": 13.86,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 18.08,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 21.4,
         "kind": "red",
         "pattern": 3
+      },
+      {
+        "time": 26.52,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 30.4,
@@ -243,9 +583,19 @@
         "pattern": 2
       },
       {
+        "time": 34.96,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 39.4,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 43.4,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 48.4,
@@ -253,7 +603,27 @@
         "pattern": 2
       },
       {
+        "time": 51.84,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 56.06,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 57.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 60.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 64.5,
         "kind": "zero",
         "pattern": 3
       }
@@ -268,15 +638,25 @@
     "duration": 78,
     "briefing": "Les convois alimentent les aérodromes adverses. Neutralisez les navires sans vous laisser enfermer par leur défense.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 27,
     "boss": "",
     "seed": 241714,
-    "scroll": 2.2800000000000002,
-    "pressure": 0.81,
+    "scroll": 2.74,
+    "pressure": 1.095,
     "events": [
       {
         "time": 2.0,
         "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 5.42,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 9.64,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -285,9 +665,29 @@
         "pattern": 1
       },
       {
+        "time": 13.86,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 18.08,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.0,
         "kind": "red",
         "pattern": 0
+      },
+      {
+        "time": 22.3,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 26.52,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 29.0,
@@ -295,9 +695,24 @@
         "pattern": 1
       },
       {
+        "time": 30.74,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 34.96,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 38.0,
         "kind": "naval",
         "pattern": 1
+      },
+      {
+        "time": 43.4,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 47.0,
@@ -305,8 +720,28 @@
         "pattern": 3
       },
       {
+        "time": 51.84,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 56.0,
         "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 60.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 64.5,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 68.72,
+        "kind": "zero",
         "pattern": 0
       }
     ]
@@ -323,13 +758,28 @@
     "quota": 4,
     "boss": "",
     "seed": 249633,
-    "scroll": 2.3600000000000003,
-    "pressure": 0.845,
+    "scroll": 2.83,
+    "pressure": 1.095,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "naval",
         "pattern": 1
+      },
+      {
+        "time": 5.42,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 9.64,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 11.7,
@@ -337,9 +787,29 @@
         "pattern": 2
       },
       {
+        "time": 13.86,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 18.08,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.7,
         "kind": "zero",
         "pattern": 1
+      },
+      {
+        "time": 22.3,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 26.52,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 29.7,
@@ -347,9 +817,19 @@
         "pattern": 2
       },
       {
+        "time": 34.96,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 38.7,
         "kind": "bomber",
         "pattern": 3
+      },
+      {
+        "time": 43.4,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 47.7,
@@ -357,7 +837,32 @@
         "pattern": 0
       },
       {
+        "time": 51.84,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 56.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 60.28,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 64.5,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 68.72,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 72.94,
         "kind": "hayabusa",
         "pattern": 1
       }
@@ -375,12 +880,27 @@
     "quota": 1,
     "boss": "destroyer",
     "seed": 257552,
-    "scroll": 2.4400000000000004,
-    "pressure": 0.88,
+    "scroll": 2.93,
+    "pressure": 1.095,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 5.42,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 9.64,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -389,8 +909,23 @@
         "pattern": 1
       },
       {
+        "time": 13.86,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 18.08,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 21.4,
         "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 26.52,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -399,14 +934,64 @@
         "pattern": 2
       },
       {
+        "time": 34.96,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 39.4,
         "kind": "bomber",
         "pattern": 0
       },
       {
+        "time": 43.4,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
         "time": 48.4,
         "kind": "zero",
         "pattern": 1
+      },
+      {
+        "time": 51.84,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 56.06,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 60.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 64.5,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 68.72,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 72.94,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 77.16,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 81.38,
+        "kind": "hayabusa",
+        "pattern": 3
       },
       {
         "time": 86,
@@ -424,11 +1009,11 @@
     "duration": 74,
     "briefing": "La mousson réduit la visibilité. Les départs de tirs restent signalés : gardez une issue avant chaque rafale.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 30,
     "boss": "",
     "seed": 265471,
-    "scroll": 2.3000000000000003,
-    "pressure": 0.85,
+    "scroll": 2.76,
+    "pressure": 1.14,
     "events": [
       {
         "time": 2.0,
@@ -436,9 +1021,29 @@
         "pattern": 1
       },
       {
+        "time": 5.24,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 9.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 11.0,
         "kind": "hayabusa",
         "pattern": 2
+      },
+      {
+        "time": 13.32,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 17.36,
+        "kind": "zero",
+        "pattern": 0
       },
       {
         "time": 20.0,
@@ -446,8 +1051,23 @@
         "pattern": 3
       },
       {
+        "time": 21.4,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 25.44,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
         "time": 29.0,
         "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 33.52,
+        "kind": "zero",
         "pattern": 0
       },
       {
@@ -456,14 +1076,49 @@
         "pattern": 1
       },
       {
+        "time": 41.6,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 45.64,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 47.0,
         "kind": "zero",
         "pattern": 2
       },
       {
+        "time": 49.68,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 53.72,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 56.0,
         "kind": "red",
         "pattern": 3
+      },
+      {
+        "time": 57.76,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 61.8,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 65.84,
+        "kind": "zero",
+        "pattern": 0
       }
     ]
   },
@@ -476,15 +1131,30 @@
     "duration": 80,
     "briefing": "La mousson réduit la visibilité. Les départs de tirs restent signalés : gardez une issue avant chaque rafale.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 30,
     "boss": "",
     "seed": 273390,
-    "scroll": 2.3800000000000003,
-    "pressure": 0.885,
+    "scroll": 2.86,
+    "pressure": 1.14,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 5.24,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 9.28,
+        "kind": "hayabusa",
         "pattern": 2
       },
       {
@@ -493,9 +1163,24 @@
         "pattern": 3
       },
       {
+        "time": 13.32,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 17.36,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.7,
         "kind": "zero",
         "pattern": 0
+      },
+      {
+        "time": 25.44,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 29.7,
@@ -503,9 +1188,24 @@
         "pattern": 1
       },
       {
+        "time": 33.52,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 38.7,
         "kind": "bomber",
         "pattern": 2
+      },
+      {
+        "time": 41.6,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 45.64,
+        "kind": "hayabusa",
+        "pattern": 3
       },
       {
         "time": 47.7,
@@ -513,9 +1213,34 @@
         "pattern": 3
       },
       {
+        "time": 49.68,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 53.72,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 56.7,
         "kind": "zero",
         "pattern": 0
+      },
+      {
+        "time": 61.8,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 65.84,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 69.88,
+        "kind": "hayabusa",
+        "pattern": 1
       }
     ]
   },
@@ -531,17 +1256,37 @@
     "quota": 1,
     "boss": "",
     "seed": 281309,
-    "scroll": 2.4600000000000004,
-    "pressure": 0.92,
+    "scroll": 2.95,
+    "pressure": 1.14,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "hayabusa",
         "pattern": 3
       },
       {
+        "time": 5.24,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 9.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 12.4,
         "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 17.36,
+        "kind": "hayabusa",
         "pattern": 0
       },
       {
@@ -550,13 +1295,38 @@
         "pattern": 1
       },
       {
+        "time": 25.44,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 30.4,
         "kind": "red",
         "pattern": 2
       },
       {
+        "time": 33.52,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 37.56,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 39.4,
         "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 41.6,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 45.64,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -565,9 +1335,39 @@
         "pattern": 0
       },
       {
+        "time": 53.72,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 57.4,
         "kind": "zero",
         "pattern": 1
+      },
+      {
+        "time": 61.8,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 65.84,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 69.88,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 73.92,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 77.96,
+        "kind": "hayabusa",
+        "pattern": 3
       }
     ]
   },
@@ -583,8 +1383,8 @@
     "quota": 1,
     "boss": "squadron",
     "seed": 289228,
-    "scroll": 2.54,
-    "pressure": 0.955,
+    "scroll": 3.05,
+    "pressure": 1.14,
     "events": [
       {
         "time": 2.0,
@@ -592,13 +1392,43 @@
         "pattern": 0
       },
       {
+        "time": 5.24,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 9.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 11.0,
         "kind": "red",
         "pattern": 1
       },
       {
+        "time": 13.32,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 17.36,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.0,
         "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 21.4,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 25.44,
+        "kind": "hayabusa",
         "pattern": 2
       },
       {
@@ -607,14 +1437,74 @@
         "pattern": 3
       },
       {
+        "time": 33.52,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 38.0,
         "kind": "naval",
         "pattern": 1
       },
       {
+        "time": 41.6,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 45.64,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 47.0,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 49.68,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 53.72,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 57.76,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 61.8,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 65.84,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 69.88,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 73.92,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 77.96,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 82.0,
+        "kind": "zero",
+        "pattern": 0
       },
       {
         "time": 88,
@@ -632,16 +1522,31 @@
     "duration": 76,
     "briefing": "Les récifs canalisent les patrouilles. Interceptez les formations successives et gardez votre attaque spéciale pour les cibles lourdes.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 33,
     "boss": "",
     "seed": 297147,
-    "scroll": 2.4000000000000004,
-    "pressure": 0.925,
+    "scroll": 2.88,
+    "pressure": 1.185,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "red",
         "pattern": 1
+      },
+      {
+        "time": 5.06,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.92,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 11.7,
@@ -649,8 +1554,23 @@
         "pattern": 2
       },
       {
+        "time": 16.64,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.7,
         "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 24.36,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 28.22,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -659,9 +1579,24 @@
         "pattern": 1
       },
       {
+        "time": 32.08,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 35.94,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 38.7,
         "kind": "red",
         "pattern": 1
+      },
+      {
+        "time": 43.66,
+        "kind": "hayabusa",
+        "pattern": 3
       },
       {
         "time": 47.7,
@@ -669,9 +1604,34 @@
         "pattern": 2
       },
       {
+        "time": 51.38,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 55.24,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
         "time": 56.7,
         "kind": "hayabusa",
         "pattern": 3
+      },
+      {
+        "time": 59.1,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 62.96,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 66.82,
+        "kind": "hayabusa",
+        "pattern": 1
       }
     ]
   },
@@ -684,15 +1644,30 @@
     "duration": 82,
     "briefing": "Les récifs canalisent les patrouilles. Interceptez les formations successives et gardez votre attaque spéciale pour les cibles lourdes.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 33,
     "boss": "",
     "seed": 305066,
-    "scroll": 2.4800000000000004,
-    "pressure": 0.96,
+    "scroll": 2.98,
+    "pressure": 1.185,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 5.06,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 8.92,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -701,13 +1676,38 @@
         "pattern": 0
       },
       {
+        "time": 16.64,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 21.4,
         "kind": "zero",
         "pattern": 0
       },
       {
+        "time": 24.36,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 28.22,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
         "time": 30.4,
         "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 32.08,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 35.94,
+        "kind": "zero",
         "pattern": 1
       },
       {
@@ -716,14 +1716,54 @@
         "pattern": 2
       },
       {
+        "time": 43.66,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 48.4,
         "kind": "naval",
         "pattern": 1
       },
       {
+        "time": 51.38,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 55.24,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 57.4,
         "kind": "hayabusa",
         "pattern": 0
+      },
+      {
+        "time": 59.1,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 62.96,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 66.82,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 70.68,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 74.54,
+        "kind": "hayabusa",
+        "pattern": 3
       }
     ]
   },
@@ -739,8 +1779,8 @@
     "quota": 3,
     "boss": "",
     "seed": 312985,
-    "scroll": 2.5600000000000005,
-    "pressure": 0.995,
+    "scroll": 3.07,
+    "pressure": 1.185,
     "events": [
       {
         "time": 2.0,
@@ -748,8 +1788,28 @@
         "pattern": 0
       },
       {
+        "time": 5.06,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.92,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 11.0,
         "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 12.78,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 16.64,
+        "kind": "zero",
         "pattern": 0
       },
       {
@@ -758,13 +1818,38 @@
         "pattern": 2
       },
       {
+        "time": 24.36,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
         "time": 29.0,
         "kind": "hayabusa",
         "pattern": 2
       },
       {
+        "time": 32.08,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 35.94,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 38.0,
         "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 39.8,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 43.66,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -773,8 +1858,43 @@
         "pattern": 0
       },
       {
+        "time": 51.38,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 56.0,
         "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 59.1,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 62.96,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 66.82,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 70.68,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 74.54,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 78.4,
+        "kind": "zero",
         "pattern": 0
       }
     ]
@@ -791,13 +1911,28 @@
     "quota": 1,
     "boss": "fortress",
     "seed": 320904,
-    "scroll": 2.6400000000000006,
-    "pressure": 1.03,
+    "scroll": 3.17,
+    "pressure": 1.185,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "zero",
         "pattern": 0
+      },
+      {
+        "time": 5.06,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.92,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 11.7,
@@ -805,9 +1940,24 @@
         "pattern": 2
       },
       {
+        "time": 16.64,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 20.7,
         "kind": "hayabusa",
         "pattern": 2
+      },
+      {
+        "time": 24.36,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 28.22,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 29.7,
@@ -815,14 +1965,79 @@
         "pattern": 3
       },
       {
+        "time": 32.08,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 35.94,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 38.7,
         "kind": "bomber",
         "pattern": 0
       },
       {
+        "time": 43.66,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
         "time": 47.7,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 51.38,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 55.24,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 59.1,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 62.96,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 66.82,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 70.68,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 74.54,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 78.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 82.26,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 86.12,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 90,
@@ -840,15 +2055,30 @@
     "duration": 78,
     "briefing": "La flotte se rassemble près des volcans. Les tirs croisés sont plus denses : détruisez les pièces navales en priorité.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 36,
     "boss": "",
     "seed": 328823,
-    "scroll": 2.5,
-    "pressure": 1.0,
+    "scroll": 3.0,
+    "pressure": 1.23,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 4.88,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 8.56,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -857,9 +2087,29 @@
         "pattern": 2
       },
       {
+        "time": 15.92,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 19.6,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 23.4,
         "kind": "bomber",
         "pattern": 3
+      },
+      {
+        "time": 26.96,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 30.64,
+        "kind": "zero",
+        "pattern": 0
       },
       {
         "time": 33.4,
@@ -867,9 +2117,29 @@
         "pattern": 0
       },
       {
+        "time": 38.0,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 41.68,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 43.4,
         "kind": "naval",
         "pattern": 0
+      },
+      {
+        "time": 45.36,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 49.04,
+        "kind": "hayabusa",
+        "pattern": 1
       },
       {
         "time": 53.4,
@@ -877,9 +2147,24 @@
         "pattern": 2
       },
       {
+        "time": 56.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 60.08,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 63.4,
         "kind": "hayabusa",
         "pattern": 3
+      },
+      {
+        "time": 67.44,
+        "kind": "zero",
+        "pattern": 2
       }
     ]
   },
@@ -892,11 +2177,11 @@
     "duration": 84,
     "briefing": "La flotte se rassemble près des volcans. Les tirs croisés sont plus denses : détruisez les pièces navales en priorité.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 36,
     "boss": "",
     "seed": 336742,
-    "scroll": 2.58,
-    "pressure": 1.035,
+    "scroll": 3.1,
+    "pressure": 1.23,
     "events": [
       {
         "time": 2.0,
@@ -904,8 +2189,28 @@
         "pattern": 0
       },
       {
+        "time": 4.88,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.56,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 12.0,
         "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 15.92,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 19.6,
+        "kind": "zero",
         "pattern": 1
       },
       {
@@ -914,9 +2219,29 @@
         "pattern": 0
       },
       {
+        "time": 26.96,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 30.64,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 32.0,
         "kind": "red",
         "pattern": 1
+      },
+      {
+        "time": 34.32,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 38.0,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 42.0,
@@ -924,12 +2249,52 @@
         "pattern": 2
       },
       {
+        "time": 45.36,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 49.04,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 52.0,
         "kind": "naval",
         "pattern": 2
       },
       {
+        "time": 56.4,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 60.08,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 62.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 63.76,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 67.44,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 71.12,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 74.8,
         "kind": "zero",
         "pattern": 0
       }
@@ -947,13 +2312,28 @@
     "quota": 2,
     "boss": "",
     "seed": 344661,
-    "scroll": 2.66,
-    "pressure": 1.07,
+    "scroll": 3.19,
+    "pressure": 1.23,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "bomber",
         "pattern": 3
+      },
+      {
+        "time": 4.88,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.56,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 12.7,
@@ -961,13 +2341,43 @@
         "pattern": 2
       },
       {
+        "time": 15.92,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 19.6,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 22.7,
         "kind": "hayabusa",
         "pattern": 1
       },
       {
+        "time": 26.96,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 30.64,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
         "time": 32.7,
         "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 34.32,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 38.0,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -976,14 +2386,59 @@
         "pattern": 3
       },
       {
+        "time": 45.36,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 49.04,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 52.7,
         "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 56.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 60.08,
+        "kind": "zero",
         "pattern": 0
       },
       {
         "time": 62.7,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 67.44,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 71.12,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 74.8,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 78.48,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 82.16,
+        "kind": "zero",
+        "pattern": 2
       }
     ]
   },
@@ -999,12 +2454,27 @@
     "quota": 1,
     "boss": "battleship",
     "seed": 352580,
-    "scroll": 2.74,
-    "pressure": 1.105,
+    "scroll": 3.29,
+    "pressure": 1.23,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 4.88,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 8.56,
+        "kind": "zero",
         "pattern": 2
       },
       {
@@ -1013,13 +2483,43 @@
         "pattern": 1
       },
       {
+        "time": 15.92,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 19.6,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 23.4,
         "kind": "red",
         "pattern": 2
       },
       {
+        "time": 26.96,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 30.64,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 33.4,
         "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 38.0,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 41.68,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -1028,9 +2528,64 @@
         "pattern": 0
       },
       {
+        "time": 45.36,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 49.04,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 53.4,
         "kind": "zero",
         "pattern": 1
+      },
+      {
+        "time": 56.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 60.08,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 63.76,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 67.44,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 71.12,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 74.8,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 78.48,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 82.16,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 85.84,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 92,
@@ -1048,11 +2603,11 @@
     "duration": 80,
     "briefing": "Le soleil tombe et les interceptions se multiplient. Les avions rouges constituent votre meilleure occasion de renforcer le tir.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 39,
     "boss": "",
     "seed": 360499,
-    "scroll": 2.6,
-    "pressure": 1.075,
+    "scroll": 3.12,
+    "pressure": 1.275,
     "events": [
       {
         "time": 2.0,
@@ -1060,9 +2615,29 @@
         "pattern": 1
       },
       {
+        "time": 4.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 12.0,
         "kind": "red",
         "pattern": 2
+      },
+      {
+        "time": 15.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 18.7,
+        "kind": "zero",
+        "pattern": 1
       },
       {
         "time": 22.0,
@@ -1070,9 +2645,29 @@
         "pattern": 3
       },
       {
+        "time": 25.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 29.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 32.0,
         "kind": "bomber",
         "pattern": 0
+      },
+      {
+        "time": 36.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 39.7,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 42.0,
@@ -1080,14 +2675,49 @@
         "pattern": 1
       },
       {
+        "time": 46.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 50.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 52.0,
         "kind": "zero",
         "pattern": 2
       },
       {
+        "time": 53.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 57.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 62.0,
         "kind": "hayabusa",
         "pattern": 3
+      },
+      {
+        "time": 64.2,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 67.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 71.2,
+        "kind": "zero",
+        "pattern": 0
       }
     ]
   },
@@ -1100,16 +2730,31 @@
     "duration": 86,
     "briefing": "Le soleil tombe et les interceptions se multiplient. Les avions rouges constituent votre meilleure occasion de renforcer le tir.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 39,
     "boss": "",
     "seed": 368418,
-    "scroll": 2.68,
-    "pressure": 1.11,
+    "scroll": 3.22,
+    "pressure": 1.275,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "naval",
         "pattern": 1
+      },
+      {
+        "time": 4.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.2,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 12.7,
@@ -1117,8 +2762,28 @@
         "pattern": 3
       },
       {
+        "time": 15.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 18.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 22.7,
         "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 25.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 29.2,
+        "kind": "hayabusa",
         "pattern": 0
       },
       {
@@ -1127,8 +2792,28 @@
         "pattern": 1
       },
       {
+        "time": 36.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 39.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
         "time": 42.7,
         "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 46.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 50.2,
+        "kind": "hayabusa",
         "pattern": 2
       },
       {
@@ -1137,9 +2822,44 @@
         "pattern": 3
       },
       {
+        "time": 57.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 60.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 62.7,
         "kind": "zero",
         "pattern": 0
+      },
+      {
+        "time": 64.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 67.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 71.2,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 74.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 78.2,
+        "kind": "zero",
+        "pattern": 2
       }
     ]
   },
@@ -1152,15 +2872,35 @@
     "duration": 92,
     "briefing": "Le soleil tombe et les interceptions se multiplient. Les avions rouges constituent votre meilleure occasion de renforcer le tir.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 39,
     "boss": "",
     "seed": 376337,
-    "scroll": 2.7600000000000002,
-    "pressure": 1.145,
+    "scroll": 3.31,
+    "pressure": 1.275,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 4.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 8.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 11.7,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -1169,9 +2909,29 @@
         "pattern": 0
       },
       {
+        "time": 15.2,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 18.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 23.4,
         "kind": "bomber",
         "pattern": 1
+      },
+      {
+        "time": 25.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 29.2,
+        "kind": "zero",
+        "pattern": 0
       },
       {
         "time": 33.4,
@@ -1179,9 +2939,29 @@
         "pattern": 2
       },
       {
+        "time": 36.2,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 39.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 43.4,
         "kind": "red",
         "pattern": 3
+      },
+      {
+        "time": 46.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 50.2,
+        "kind": "zero",
+        "pattern": 2
       },
       {
         "time": 53.4,
@@ -1189,9 +2969,44 @@
         "pattern": 0
       },
       {
+        "time": 57.2,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 60.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 63.4,
         "kind": "zero",
         "pattern": 1
+      },
+      {
+        "time": 67.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 71.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 74.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 78.2,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 81.7,
+        "kind": "zero",
+        "pattern": 3
       }
     ]
   },
@@ -1207,8 +3022,8 @@
     "quota": 1,
     "boss": "ace",
     "seed": 384256,
-    "scroll": 2.84,
-    "pressure": 1.18,
+    "scroll": 3.41,
+    "pressure": 1.275,
     "events": [
       {
         "time": 2.0,
@@ -1216,8 +3031,28 @@
         "pattern": 0
       },
       {
+        "time": 4.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 8.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 12.0,
         "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 15.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 18.7,
+        "kind": "zero",
         "pattern": 1
       },
       {
@@ -1226,8 +3061,28 @@
         "pattern": 2
       },
       {
+        "time": 25.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 29.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 32.0,
         "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 36.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 39.7,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -1236,8 +3091,73 @@
         "pattern": 0
       },
       {
+        "time": 46.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 50.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 52.0,
         "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 53.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 57.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 60.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 64.2,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 67.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 71.2,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 74.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 78.2,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 81.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 85.2,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 88.7,
+        "kind": "zero",
         "pattern": 1
       },
       {
@@ -1256,19 +3176,54 @@
     "duration": 82,
     "briefing": "Le front du nord abrite la dernière escadre de surface. Alternez mouvement précis et larges déplacements.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 42,
     "boss": "",
     "seed": 392175,
-    "scroll": 2.7,
-    "pressure": 1.15,
+    "scroll": 3.24,
+    "pressure": 1.32,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "naval",
         "pattern": 1
       },
       {
+        "time": 4.52,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 7.84,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 11.16,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 12.7,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 14.48,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 17.8,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 21.12,
         "kind": "zero",
         "pattern": 2
       },
@@ -1278,8 +3233,38 @@
         "pattern": 0
       },
       {
+        "time": 24.44,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 27.76,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 31.08,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 32.7,
         "kind": "red",
+        "pattern": 0
+      },
+      {
+        "time": 34.4,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 37.72,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 41.04,
+        "kind": "zero",
         "pattern": 0
       },
       {
@@ -1288,14 +3273,64 @@
         "pattern": 1
       },
       {
+        "time": 44.36,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 47.68,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 51.0,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 52.7,
         "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 54.32,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 57.64,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 60.96,
+        "kind": "zero",
         "pattern": 2
       },
       {
         "time": 62.7,
         "kind": "naval",
         "pattern": 1
+      },
+      {
+        "time": 64.28,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 67.6,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 70.92,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 74.24,
+        "kind": "zero",
+        "pattern": 2
       }
     ]
   },
@@ -1308,16 +3343,31 @@
     "duration": 88,
     "briefing": "Le front du nord abrite la dernière escadre de surface. Alternez mouvement précis et larges déplacements.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 42,
     "boss": "",
     "seed": 400094,
-    "scroll": 2.7800000000000002,
-    "pressure": 1.185,
+    "scroll": 3.34,
+    "pressure": 1.32,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "naval",
         "pattern": 2
+      },
+      {
+        "time": 7.84,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 11.16,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 13.4,
@@ -1325,9 +3375,29 @@
         "pattern": 3
       },
       {
+        "time": 17.8,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 21.12,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 23.4,
         "kind": "bomber",
         "pattern": 0
+      },
+      {
+        "time": 27.76,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 31.08,
+        "kind": "zero",
+        "pattern": 1
       },
       {
         "time": 33.4,
@@ -1335,9 +3405,29 @@
         "pattern": 2
       },
       {
+        "time": 37.72,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 41.04,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 43.4,
         "kind": "red",
         "pattern": 2
+      },
+      {
+        "time": 47.68,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 51.0,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 53.4,
@@ -1345,8 +3435,43 @@
         "pattern": 3
       },
       {
+        "time": 57.64,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 60.96,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 63.4,
         "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 67.6,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 70.92,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 74.24,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 77.56,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 80.88,
+        "kind": "zero",
         "pattern": 0
       }
     ]
@@ -1363,8 +3488,8 @@
     "quota": 4,
     "boss": "",
     "seed": 408013,
-    "scroll": 2.8600000000000003,
-    "pressure": 1.22,
+    "scroll": 3.43,
+    "pressure": 1.32,
     "events": [
       {
         "time": 2.0,
@@ -1372,9 +3497,29 @@
         "pattern": 0
       },
       {
+        "time": 4.52,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 7.84,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 12.0,
         "kind": "bomber",
         "pattern": 0
+      },
+      {
+        "time": 14.48,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 17.8,
+        "kind": "zero",
+        "pattern": 1
       },
       {
         "time": 22.0,
@@ -1382,9 +3527,29 @@
         "pattern": 2
       },
       {
+        "time": 24.44,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 27.76,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 32.0,
         "kind": "hayabusa",
         "pattern": 2
+      },
+      {
+        "time": 34.4,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 37.72,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 42.0,
@@ -1392,13 +3557,68 @@
         "pattern": 3
       },
       {
+        "time": 44.36,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 47.68,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 52.0,
         "kind": "naval",
         "pattern": 2
       },
       {
+        "time": 54.32,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 57.64,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
         "time": 62.0,
         "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 64.28,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 67.6,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 70.92,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 74.24,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 77.56,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 80.88,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 84.2,
+        "kind": "zero",
         "pattern": 1
       }
     ]
@@ -1415,13 +3635,33 @@
     "quota": 1,
     "boss": "carrier",
     "seed": 415932,
-    "scroll": 2.9400000000000004,
-    "pressure": 1.255,
+    "scroll": 3.53,
+    "pressure": 1.32,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "naval",
         "pattern": 1
+      },
+      {
+        "time": 4.52,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 7.84,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 11.16,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 12.7,
@@ -1429,9 +3669,39 @@
         "pattern": 1
       },
       {
+        "time": 14.48,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 17.8,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 21.12,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 22.7,
         "kind": "red",
         "pattern": 2
+      },
+      {
+        "time": 24.44,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 27.76,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 31.08,
+        "kind": "zero",
+        "pattern": 1
       },
       {
         "time": 32.7,
@@ -1439,14 +3709,104 @@
         "pattern": 3
       },
       {
+        "time": 34.4,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 37.72,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 41.04,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 42.7,
         "kind": "naval",
         "pattern": 2
       },
       {
+        "time": 44.36,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 47.68,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 51.0,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 52.7,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 54.32,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 57.64,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 60.96,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 64.28,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 67.6,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 70.92,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 74.24,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 77.56,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 80.88,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 84.2,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 87.52,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 90.84,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 96,
@@ -1464,16 +3824,31 @@
     "duration": 84,
     "briefing": "La route du quartier général est ouverte. Traversez les dernières défenses et mettez fin à cette offensive.",
     "objective": "patrol",
-    "quota": 12,
+    "quota": 45,
     "boss": "",
     "seed": 423851,
-    "scroll": 2.8000000000000003,
-    "pressure": 1.225,
+    "scroll": 3.36,
+    "pressure": 1.365,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 7.48,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 10.62,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 13.4,
@@ -1481,9 +3856,29 @@
         "pattern": 0
       },
       {
+        "time": 16.9,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 20.04,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 23.4,
         "kind": "bomber",
         "pattern": 3
+      },
+      {
+        "time": 26.32,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 29.46,
+        "kind": "zero",
+        "pattern": 1
       },
       {
         "time": 33.4,
@@ -1491,9 +3886,39 @@
         "pattern": 0
       },
       {
+        "time": 35.74,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 38.88,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 42.02,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 43.4,
         "kind": "hayabusa",
         "pattern": 1
+      },
+      {
+        "time": 45.16,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 48.3,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 51.44,
+        "kind": "hayabusa",
+        "pattern": 0
       },
       {
         "time": 53.4,
@@ -1501,9 +3926,39 @@
         "pattern": 1
       },
       {
+        "time": 57.72,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 60.86,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
         "time": 63.4,
         "kind": "bomber",
         "pattern": 3
+      },
+      {
+        "time": 67.14,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 70.28,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 73.42,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 76.56,
+        "kind": "zero",
+        "pattern": 0
       }
     ]
   },
@@ -1516,11 +3971,11 @@
     "duration": 90,
     "briefing": "La route du quartier général est ouverte. Traversez les dernières défenses et mettez fin à cette offensive.",
     "objective": "intercept",
-    "quota": 16,
+    "quota": 45,
     "boss": "",
     "seed": 431770,
-    "scroll": 2.8800000000000003,
-    "pressure": 1.26,
+    "scroll": 3.46,
+    "pressure": 1.365,
     "events": [
       {
         "time": 2.0,
@@ -1528,9 +3983,39 @@
         "pattern": 2
       },
       {
+        "time": 4.34,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 7.48,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 10.62,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
         "time": 12.0,
         "kind": "hayabusa",
         "pattern": 3
+      },
+      {
+        "time": 13.76,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 16.9,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 20.04,
+        "kind": "hayabusa",
+        "pattern": 2
       },
       {
         "time": 22.0,
@@ -1538,9 +4023,29 @@
         "pattern": 0
       },
       {
+        "time": 26.32,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 29.46,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 32.0,
         "kind": "bomber",
         "pattern": 1
+      },
+      {
+        "time": 35.74,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 38.88,
+        "kind": "hayabusa",
+        "pattern": 0
       },
       {
         "time": 42.0,
@@ -1548,14 +4053,69 @@
         "pattern": 2
       },
       {
+        "time": 45.16,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 48.3,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
         "time": 52.0,
         "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 54.58,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 57.72,
+        "kind": "hayabusa",
         "pattern": 2
       },
       {
         "time": 62.0,
         "kind": "hayabusa",
         "pattern": 0
+      },
+      {
+        "time": 64.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 67.14,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 70.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 73.42,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 76.56,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 79.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 82.84,
+        "kind": "zero",
+        "pattern": 2
       }
     ]
   },
@@ -1571,12 +4131,32 @@
     "quota": 2,
     "boss": "",
     "seed": 439689,
-    "scroll": 2.9600000000000004,
-    "pressure": 1.295,
+    "scroll": 3.55,
+    "pressure": 1.365,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 2.7,
         "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 4.34,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 7.48,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 10.62,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -1585,9 +4165,29 @@
         "pattern": 0
       },
       {
+        "time": 16.9,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 20.04,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 22.7,
         "kind": "naval",
         "pattern": 0
+      },
+      {
+        "time": 26.32,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 29.46,
+        "kind": "zero",
+        "pattern": 1
       },
       {
         "time": 32.7,
@@ -1595,8 +4195,28 @@
         "pattern": 2
       },
       {
+        "time": 35.74,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 38.88,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
         "time": 42.7,
         "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 45.16,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 48.3,
+        "kind": "zero",
         "pattern": 3
       },
       {
@@ -1605,9 +4225,64 @@
         "pattern": 0
       },
       {
+        "time": 54.58,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 57.72,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 60.86,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
         "time": 62.7,
         "kind": "naval",
         "pattern": 1
+      },
+      {
+        "time": 64.0,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 67.14,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 70.28,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 73.42,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 76.56,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 79.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 82.84,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 85.98,
+        "kind": "zero",
+        "pattern": 3
       }
     ]
   },
@@ -1623,13 +4298,28 @@
     "quota": 1,
     "boss": "citadel",
     "seed": 447608,
-    "scroll": 3.04,
-    "pressure": 1.33,
+    "scroll": 3.65,
+    "pressure": 1.365,
     "events": [
+      {
+        "time": 1.2,
+        "kind": "zero",
+        "pattern": 0
+      },
       {
         "time": 3.4,
         "kind": "hayabusa",
         "pattern": 0
+      },
+      {
+        "time": 7.48,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 10.62,
+        "kind": "zero",
+        "pattern": 3
       },
       {
         "time": 13.4,
@@ -1637,9 +4327,29 @@
         "pattern": 1
       },
       {
+        "time": 16.9,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 20.04,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
         "time": 23.4,
         "kind": "red",
         "pattern": 2
+      },
+      {
+        "time": 26.32,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 29.46,
+        "kind": "zero",
+        "pattern": 1
       },
       {
         "time": 33.4,
@@ -1647,13 +4357,103 @@
         "pattern": 2
       },
       {
+        "time": 35.74,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 38.88,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 42.02,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
         "time": 43.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 45.16,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 48.3,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 51.44,
         "kind": "hayabusa",
         "pattern": 0
       },
       {
         "time": 53.4,
         "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 57.72,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 60.86,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 64.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 67.14,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 70.28,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 73.42,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 76.56,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 79.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 82.84,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 85.98,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 89.12,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 92.26,
+        "kind": "zero",
         "pattern": 1
       },
       {

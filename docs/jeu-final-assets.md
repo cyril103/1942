@@ -1,5 +1,13 @@
 # Assets de campagne
 
+## Révision dynamique
+
+La musique active est désormais **5 Chiptunes (Action)** de **Juhani Junkala / SubspaceAudio**, CC0 : https://opengameart.org/content/5-chiptunes-action. Les cinq fichiers sont normalisés à une crête de 0,75 par `audio/build_action_music.py` sans changement de tempo. Attribution et notice de l'artiste dans `game/assets/campaign/music/`.
+
+Les trois icônes SVG des bonus sont dessinées pour le projet dans `game/assets/campaign/icons/`. Le laser utilise un shader additif original, un rayon physique et une boucle sonore originale d'une seconde. Les explosions gardent les samples crédités, avec un master raccourci à 1,9 s et une animation de 1,35 s.
+
+La liste ci-dessous décrit les assets de la première version ; ses musiques procédurales ont été remplacées par les morceaux ci-dessus.
+
 Les avions, textures, animations, samples et effets précédemment validés restent utilisés. Cette campagne ajoute :
 
 - `game/assets/campaign/title-ocean.png` : illustration d'accueil, créée avec l'outil imagegen intégré. Prompt conservé dans `title-prompt.txt`.

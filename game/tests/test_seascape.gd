@@ -31,12 +31,13 @@ func _run() -> void:
 		ids.append(island.get_instance_id())
 		check(island.position.y < -2.0, "Scenery must remain below the aircraft")
 	var before: float = sea.islands[0].position.z
+	var phase_before: float = sea._scroll_a
 	var screen_before: Vector2 = sea.camera.unproject_position(sea.islands[0].global_position)
 	sea._physics_process(0.5)
 	var screen_after: Vector2 = sea.camera.unproject_position(sea.islands[0].global_position)
 	check(is_equal_approx(sea.islands[0].position.z - before, sea.scroll_speed * 0.5), "Island speed matches configured scroll")
 	check(screen_after.y > screen_before.y, "Islands must scroll TOP TO BOTTOM on screen")
-	check(absf(sea._scroll_a - sea.scroll_speed * 0.5 / sea.TILE_SIZE) < 0.0001, "Ocean and islands use the same scroll distance")
+	check(absf(sea._scroll_a - phase_before - sea.scroll_speed * 0.5 / sea.TILE_SIZE) < 0.0001, "Ocean and islands use the same scroll distance")
 	check(sea.ISLAND_ATLAS.get_image().has_mipmaps(), "Coastal blending requires imported atlas mipmaps")
 	check(sea.OCEAN_TEXTURE.get_image().has_mipmaps(), "Ocean texture requires mipmaps for stable small waves")
 	for coastal_island in sea.islands:

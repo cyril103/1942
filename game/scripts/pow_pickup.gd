@@ -1,5 +1,8 @@
 extends Node3D
 ## One reusable pickup and collection burst; no per-frame allocation.
+var power_kind := "spread"
+var icon: MeshInstance3D
+const ICONS := {"spread":preload("res://assets/campaign/icons/spread.svg"),"laser":preload("res://assets/campaign/icons/laser.svg"),"life":preload("res://assets/campaign/icons/life.svg")}
 var active := false
 var age := 0.0
 var burst_time := 0.0
@@ -15,38 +18,25 @@ var collect_sound: AudioStreamWAV
 func _ready() -> void:
 	visual = Node3D.new()
 	add_child(visual)
-	var body := MeshInstance3D.new()
-	var box := BoxMesh.new()
-	box.size = Vector3(1.13,0.10,0.66)
-	body.mesh = box
+	icon = MeshInstance3D.new()
+	var tile := PlaneMesh.new()
+	tile.size = Vector2(1.3,1.3)
+	icon.mesh = tile
 	var material := StandardMaterial3D.new()
-	material.albedo_color = Color(0.06,0.035,0.008)
-	material.metallic = 0.7
-	material.roughness = 0.26
-	body.material_override = material
-	visual.add_child(body)
-	for side in [-1,1]:
-		var trim := MeshInstance3D.new()
-		var bar := BoxMesh.new()
-		bar.size = Vector3(1.17,0.035,0.035)
-		trim.mesh = bar
-		trim.position = Vector3(0,0.07,side*0.32)
-		var gold := StandardMaterial3D.new()
-		gold.albedo_color = Color(1.0,0.59,0.08)
-		gold.emission_enabled = true
-		gold.emission = Color(0.65,0.24,0.025)
-		trim.material_override = gold
-		visual.add_child(trim)
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.albedo_texture = ICONS.spread
+	icon.material_override = material
+	icon.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	visual.add_child(icon)
 	label = Label3D.new()
-	label.text = "POW"
-	label.font = preload("res://assets/ui/fonts/BlackOpsOne-Regular.ttf")
-	label.font_size = 64
-	label.pixel_size = 0.007
-	label.modulate = Color(1,0.85,0.36)
-	label.outline_modulate = Color(0.08,0.025,0)
-	label.outline_size = 5
-	label.position.y = 0.085
+	label.text = "MULTI"
+	label.font = preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
+	label.font_size = 48
+	label.pixel_size = .005
+	label.outline_size = 8
 	label.rotation.x = -PI/2
+	label.position = Vector3(0,.05,.95)
 	visual.add_child(label)
 	halo = MeshInstance3D.new()
 	var plane := PlaneMesh.new()
@@ -85,7 +75,11 @@ func _make_chime(ascending: bool) -> AudioStreamWAV:
 	stream.data = data
 	return stream
 
-func activate(at: Vector3, player: Node3D) -> void:
+func activate(at: Vector3, player: Node3D, kind: String = "spread") -> void:
+	power_kind = kind if ICONS.has(kind) else "spread"
+	icon.material_override.albedo_texture = ICONS[power_kind]
+	label.text = {"spread":"MULTI","laser":"LASER","life":"1 UP"}[power_kind]
+	halo.material_override.set_shader_parameter("tint",{"spread":Color("54efff"),"laser":Color("f883ff"),"life":Color("75ffad")}[power_kind])
 	global_position = Vector3(at.x,0.35,at.z)
 	age = 0
 	burst_time = 0
@@ -130,7 +124,12 @@ func collect(combat: Node) -> void:
 	if not active: return
 	active = false
 	collected_count += 1
-	combat.get_parent().get_node("Weapons").upgrade_spread()
+	combat.get_parent().get_node("Weapons").set_power(power_kind)
+	if power_kind == "life": combat.remaining_lives = mini(9,combat.remaining_lives+1)
+	var campaign = combat.campaign_driver
+	if is_instance_valid(campaign):
+		campaign.feedback = {"spread":"MULTI-TIR ÉQUIPÉ","laser":"LASER ÉQUIPÉ","life":"VIE SUPPLÉMENTAIRE  /  TIR STANDARD"}[power_kind]
+		campaign.feedback_time = 1.6
 	visual.hide()
 	burst_time = 0.65
 	halo.material_override.set_shader_parameter("burst",1.0)

@@ -14,6 +14,7 @@ var roll_offset := Vector3.ZERO
 var attack_target := Vector3.ZERO
 var roll_path_heading := 0.0
 var roll_angle := 0.0
+var entry_delay := 0.0
 
 func _ready() -> void:
 	model_scene = preload("res://assets/enemies/hayabusa.glb")
@@ -24,7 +25,11 @@ func _ready() -> void:
 
 func advance(delta: float, combat: Node) -> void:
 	if not alive: return
+	if entry_delay > 0:
+		entry_delay -= delta
+		return
 	age += delta
+	_update_hit(delta)
 	flash_time = maxf(0, flash_time - delta)
 	flash.visible = flash_time > 0
 	if is_instance_valid(propeller): propeller.rotate_z(delta * 65.0)
@@ -79,7 +84,7 @@ func advance(delta: float, combat: Node) -> void:
 		if maneuver_time >= 0.12 and shot_count < 3 and shot_cooldown <= 0:
 			combat.fire_enemy(self)
 			shot_count += 1
-			shot_cooldown = 0.18
+			shot_cooldown = 0.26 if combat.dense_waves else 0.18
 			flash_time = 0.065
 		if shot_count == 3 and absf(heading) < 0.06 and position.z >= attack_target.z:
 			attack_phase = AttackPhase.EXIT

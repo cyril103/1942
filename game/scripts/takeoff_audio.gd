@@ -40,8 +40,9 @@ func _physics_process(delta: float) -> void:
 	radial_speed = lerpf(radial_speed, clampf(measured * METERS_PER_UNIT, -75.0, 75.0), 1.0 - exp(-delta * 9.0))
 	doppler = clampf(SOUND_SPEED / (SOUND_SPEED + radial_speed), 0.82, 1.26)
 	var throttle := smoothstep(departure.HOLD_DURATION, departure.RUN_END, departure.elapsed)
+	if departure.landing_active: throttle = lerpf(.75,.12,smoothstep(1,6,departure.landing_time))
 	var rpm := lerpf(0.78, 1.0, throttle)
-	if not departure.active:
+	if not departure.active and not departure.landing_active:
 		fade += delta / 1.5
 	if not player.alive:
 		fade += delta * 4.0

@@ -32,6 +32,8 @@ var ring_time := 0.0
 var paused := false
 var start_score := 0
 var first_takeoff := true
+var reinforcement_time := 7.5
+var defeat_time := 0.0
 
 func _ready() -> void:
 	combat = cockpit.combat
@@ -39,28 +41,34 @@ func _ready() -> void:
 	weapons = cockpit.flight.get_node("Weapons")
 	cockpit.campaign = self
 	combat.automatic_waves = false
+	combat.dense_waves = true
+	combat.campaign_driver = self
+	combat.score = int(profile.data.run_score)
+	combat.next_power_kind = ["spread","laser","life"][int(mission.sector)%3]
 	combat.bombers_enabled = false
 	combat.special_enabled = false
-	combat.remaining_lives = 3
-	combat.projectile_speed_scale = [0.72,0.9,1.06][profile.data.difficulty]*float(mission.pressure)
+	combat.remaining_lives = int(profile.data.run_lives)
+	combat.projectile_speed_scale = [0.88,1.0,1.15][profile.data.difficulty]*float(mission.pressure)
 	var aircraft: int = profile.data.aircraft
-	player.speed = [9.0,11.0,7.8][aircraft]
-	player.max_health = [3,2,4][aircraft]+int(profile.data.upgrades[1])
+	player.speed = [12.0,14.0,10.4][aircraft]
+	player.max_health = [2,2,3][aircraft]+int(profile.data.upgrades[1])
 	player.health = player.max_health
 	player.focus_enabled = true
 	player.damaged.connect(_on_damage)
 	player.destroyed.connect(_on_death)
+	player.respawned.connect(_on_respawn)
 	bombs = 3 if aircraft == 2 else 2
-	weapons.shot_interval = [0.125,0.105,0.145][aircraft]*(1.0-0.06*int(profile.data.upgrades[0]))
+	weapons.shot_interval = [0.105,0.09,0.12][aircraft]*(1.0-0.06*int(profile.data.upgrades[0]))
 	weapons.projectile_damage = 2 if int(profile.data.upgrades[0]) == 3 else 1
 	start_score = combat.score
 	cockpit.high_score = profile.data.high_score
 	if not first_takeoff: cockpit.flight.get_node("Departure").finish_immediately()
 	var sea = cockpit.flight.get_node("Seascape")
-	sea.scroll_speed = mission.scroll
+	var departure = cockpit.flight.get_node("Departure")
+	departure._cruise_speed = float(mission.scroll)
+	sea.scroll_speed = .8 if departure.active else float(mission.scroll)
 	sea.scenery_seed = mission.seed
 	sea.configure_sector(mission)
-	cockpit.right.radar_surface.material.set_shader_parameter("island_atlas",sea.islands[0].material_override.get_shader_parameter("island_atlas"))
 	cockpit.flight.get_node("KeyLight").shadow_enabled = true
 	_build_ring()
 	feedback = "MISSION %02d  /  %s" % [mission.id,mission.title.to_upper()]
@@ -100,15 +108,24 @@ func advance(delta: float) -> void:
 	for ship in navals:
 		if is_instance_valid(ship) and ship.alive: ship.advance(delta,combat)
 	navals = navals.filter(func(ship): return is_instance_valid(ship) and ship.alive)
-	if is_instance_valid(boss) and boss.alive: boss.advance(delta,self)
+	if is_instance_valid(boss) and boss.alive:
+		boss.advance(delta,self)
+		if not boss.dying and boss.age > 4:
+			reinforcement_time -= delta
+			if reinforcement_time <= 0:
+				spawn_reinforcement()
+				reinforcement_time = 8.5-float(mission.sector)*.3
 	combat.campaign_contacts = navals.duplicate()
 	if is_instance_valid(boss) and boss.alive: combat.campaign_contacts.append(boss)
 	if combat.game_over:
-		_end(false)
+		defeat_time += delta
+		if defeat_time >= 2.4: _end(false)
 		return
 	if ending:
 		ending_time += delta
-		if ending_time > 2.0: _end(true)
+		var departure = cockpit.flight.get_node("Departure")
+		departure.advance_landing(delta)
+		if departure.landed: _end(true)
 		return
 	if not player.controls_enabled: return
 	elapsed += delta
@@ -120,11 +137,13 @@ func advance(delta: float) -> void:
 	if Input.is_action_just_pressed("strike"): use_strike()
 	if elapsed >= float(mission.duration) and (mission.boss == "" or boss_won):
 		ending = true
-		feedback = "SECTEUR SÉCURISÉ"
-		feedback_time = 3
+		feedback = "SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS"
+		feedback_time = 6
 		combat.clear_enemy_bullets()
 		player.invulnerable_time = 6
 		_clear_actors()
+		weapons.cease_fire()
+		cockpit.flight.get_node("Departure").begin_landing()
 
 func _dispatch(event: Dictionary) -> void:
 	match event.kind:
@@ -132,7 +151,7 @@ func _dispatch(event: Dictionary) -> void:
 			combat.wave_count = int(event.get("pattern",0))*2+(0 if event.kind == "zero" else 1)
 			combat.spawn_wave()
 			for enemy in combat.enemies:
-				if enemy.age == 0: enemy.flight_speed *= clampf(float(mission.pressure),0.75,1.1)
+				if enemy.age == 0: enemy.flight_speed *= clampf(float(mission.pressure),1.0,1.2)
 		"red":
 			combat.spawn_special()
 			feedback = "ESCADRILLE ROUGE  •  5 AVIONS = POW"
@@ -147,7 +166,8 @@ func _spawn_naval(pattern: int) -> void:
 		var ship := NAVAL.new()
 		ship.variant = pattern
 		ship.health = 10+int(mission.sector)*2
-		ship.position = Vector3((-1.0 if i == 0 else 1.0)*(3.5+pattern*0.6),0,combat.screen_top()-3-i*4)
+		var half_width := absf(combat.camera.project_position(Vector2.ZERO,combat.camera.position.y).x)
+		ship.position = Vector3((-1.0 if i == 0 else 1.0)*minf(half_width*.38,9.0),0,combat.screen_top()-3-i*4)
 		ship.destroyed.connect(_on_naval_destroyed)
 		combat.add_child(ship)
 		navals.append(ship)
@@ -158,7 +178,7 @@ func _spawn_boss(kind: String) -> void:
 	boss = BOSS.new()
 	boss.kind = kind
 	boss.combat = combat
-	boss.max_health = int([260,310,350,390,440,360,520,650][int(mission.sector)]*[0.80,1.0,1.2][profile.data.difficulty])
+	boss.max_health = int([260,310,350,390,440,360,520,650][int(mission.sector)]*[1.0,1.25,1.5][profile.data.difficulty])
 	boss.health = boss.max_health
 	boss.position = Vector3(0,0,-17)
 	boss.defeated.connect(_on_boss_defeated)
@@ -168,7 +188,7 @@ func _spawn_boss(kind: String) -> void:
 	feedback_time = 4.5
 
 func spawn_reinforcement() -> void:
-	if combat.enemies.size() > 4: return
+	if combat.enemies.size() > 20: return
 	combat.wave_count = 0
 	combat.spawn_wave()
 
@@ -194,6 +214,12 @@ func _on_damage(_health: int) -> void:
 func _on_death(_at: Vector3) -> void:
 	deaths += 1
 	charge = maxf(0,charge-20)
+	feedback = ""
+	feedback_time = 0
+
+func _on_respawn() -> void:
+	feedback = "RETOUR EN VOL  /  PROTECTION 4 SECONDES"
+	feedback_time = 2.5
 
 func use_bomb() -> bool:
 	if not active or ending or not player.controls_enabled or bombs <= 0: return false
@@ -247,4 +273,4 @@ func _end(won: bool) -> void:
 		if deaths == 0 and damage_taken <= 2 and objective_met: grade = 3
 	var bonus := maxi(0,player.health*100+combat.remaining_lives*250+bombs*150) if won else 0
 	combat.score += bonus
-	finished.emit({"won":won,"mission":mission.id,"score":combat.score-start_score,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})
+	finished.emit({"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})

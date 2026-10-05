@@ -1,6 +1,8 @@
 extends Node3D
 signal destroyed(at: Vector3)
 signal damaged(remaining: int)
+signal respawned
+const RESPAWN_PROTECTION := 4.0
 var max_health := 1
 var health := 1
 var focus_enabled := false
@@ -42,9 +44,11 @@ func respawn(at: Vector3) -> void:
 	alive = true
 	health = max_health
 	controls_enabled = true
-	invulnerable_time = 3.0
+	invulnerable_time = RESPAWN_PROTECTION
+	set_physics_process(true)
 	show()
 	_keep_inside_screen()
+	respawned.emit()
 
 
 func _ready() -> void:
@@ -56,7 +60,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if invulnerable_time > 0:
 		invulnerable_time = maxf(0,invulnerable_time-delta)
-		bank.visible = invulnerable_time <= 0 or fmod(invulnerable_time,0.3)<0.21
+		bank.visible = invulnerable_time <= 0 or fmod(invulnerable_time,0.25)<0.14
 	if not controls_enabled:
 		return
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")

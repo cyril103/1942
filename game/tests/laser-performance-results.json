@@ -1,0 +1,12 @@
+[
+	{
+		"cpu_frame_p95_ms": 17.37,
+		"render_fps": 60.2120424084817,
+		"shadows": true
+	},
+	{
+		"cpu_frame_p95_ms": 17.28,
+		"render_fps": 60.2167804094741,
+		"shadows": false
+	}
+]

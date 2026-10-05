@@ -98,6 +98,8 @@ func advance(delta: float, director: Node) -> void:
 	phase = mini(2,int((1-float(health)/max_health)*3))
 	var frequency := 0.38 if naval else (0.72 if kind == "ace" else 0.48)
 	var amplitude := 2.0 if naval else (5.0 if kind == "ace" else 3.3)
+	var half_width := absf(combat.camera.project_position(Vector2.ZERO,combat.camera.position.y).x)
+	amplitude = minf(half_width*(.16 if naval else .43),4.0 if naval else (12.0 if kind=="ace" else 10.0))
 	position.x = sin((age-4)*frequency)*amplitude
 	position.z = -6.3+sin((age-4)*0.33)*0.65
 	if not naval:
@@ -117,7 +119,7 @@ func advance(delta: float, director: Node) -> void:
 		if cooldown <= 0 and director.player.alive:
 			telegraph = 0.6
 			telegraph_target = director.player.global_position
-			cooldown = 1.25-phase*0.18
+			cooldown = 1.55-phase*0.18
 
 func _fire(director: Node) -> void:
 	volley += 1

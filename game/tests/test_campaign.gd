@@ -57,7 +57,7 @@ func _run() -> void:
 		director.set_physics_process(false)
 		var phases := {}
 		var max_contacts := 0
-		for frame in range(60*180):
+		for frame in range(60*240):
 			combat._physics_process(1.0/60)
 			director.advance(1.0/60)
 			max_contacts = maxi(max_contacts,combat.get_radar_contacts().size())
@@ -72,7 +72,7 @@ func _run() -> void:
 			if not stage_report.is_empty(): break
 		check(stage_report.get("won",false),"Mission %02d reaches victory" % number)
 		check(director.event_index==director.mission.events.size(),"Mission %02d dispatches every event" % number)
-		check(max_contacts <= 25,"Mission %02d keeps actors bounded" % number)
+		check(max_contacts <= 46,"Mission %02d keeps actors bounded with dense formations" % number)
 		if director.mission.boss != "":
 			check(director.boss_won and phases.size()==3,"Boss %02d traverses three phases before defeat" % number)
 		if stage_report.get("won",false): save.record_victory(number,stage_report.score,stage_report.grade)
@@ -114,7 +114,7 @@ func _run() -> void:
 	p.health = 1
 	p.invulnerable_time = 0
 	p.take_damage(1)
-	d.advance(0.1)
+	d.advance(2.5)
 	check(not stage_report.is_empty() and not stage_report.won,"Defeat produces a retryable result")
 	app._launch(2)
 	check(app.cockpit.combat.remaining_lives==3 and app.director.elapsed==0,"Retry resets mission")

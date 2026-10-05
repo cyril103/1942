@@ -1,5 +1,8 @@
 # Aircraft gun audio
 
+Campaign pacing revision, 2026-10-05: the explosion master now lasts 1.9 seconds,
+rebuilt by `audio/build_explosion.py` from the same credited sources below.
+
 ## Explosion version 2
 
 CC0 sources, downloaded 2026-09-29:

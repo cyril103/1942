@@ -1,227 +1,227 @@
 {
-	"checks": 380,
+	"checks": 940,
 	"failures": [],
 	"missions": [
 		{
 			"elapsed": 70.016666666664,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 1,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 76.0166666666636,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 2,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 82.0166666666633,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 3,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 112.383333333328,
-			"max_contacts": 4,
+			"elapsed": 117.883333333328,
+			"max_contacts": 12,
 			"mission": 4,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 72.0166666666639,
-			"max_contacts": 4,
+			"max_contacts": 14,
 			"mission": 5,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 78.0166666666635,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 6,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 84.0166666666632,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 7,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 118.633333333328,
-			"max_contacts": 4,
+			"elapsed": 124.883333333328,
+			"max_contacts": 12,
 			"mission": 8,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 74.0166666666638,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 9,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 80.0166666666634,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 10,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 86.0166666666631,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 11,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 123.883333333328,
-			"max_contacts": 5,
+			"elapsed": 131.13333333333,
+			"max_contacts": 13,
 			"mission": 12,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 76.0166666666636,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 13,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 82.0166666666633,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 14,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 88.016666666663,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 15,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 129.133333333328,
-			"max_contacts": 4,
+			"elapsed": 137.383333333335,
+			"max_contacts": 12,
 			"mission": 16,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 78.0166666666635,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 17,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 84.0166666666632,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 18,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 90.0166666666628,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 19,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 135.383333333333,
-			"max_contacts": 4,
+			"elapsed": 144.633333333341,
+			"max_contacts": 10,
 			"mission": 20,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 80.0166666666634,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 21,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 86.0166666666631,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 22,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 92.0166666666627,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 23,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 130.633333333329,
-			"max_contacts": 4,
+			"elapsed": 138.133333333335,
+			"max_contacts": 9,
 			"mission": 24,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 82.0166666666633,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 25,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 88.016666666663,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 26,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 94.0166666666626,
-			"max_contacts": 4,
+			"max_contacts": 10,
 			"mission": 27,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 146.133333333342,
-			"max_contacts": 5,
+			"elapsed": 156.88333333335,
+			"max_contacts": 17,
 			"mission": 28,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 84.0166666666632,
-			"max_contacts": 4,
+			"max_contacts": 13,
 			"mission": 29,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 90.0166666666628,
-			"max_contacts": 4,
+			"max_contacts": 14,
 			"mission": 30,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 96.0166666666625,
-			"max_contacts": 4,
+			"max_contacts": 12,
 			"mission": 31,
 			"phases": 0,
 			"won": true
 		},
 		{
-			"elapsed": 158.883333333352,
-			"max_contacts": 4,
+			"elapsed": 172.383333333363,
+			"max_contacts": 13,
 			"mission": 32,
 			"phases": 3,
 			"won": true

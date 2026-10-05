@@ -9,9 +9,9 @@ const POW := preload("res://scripts/pow_pickup.gd")
 const SPECIAL_INTERVAL := 40.0
 const BOMBER_INTERVAL := 30.0
 const WAVE_INTERVAL := 20.0
-const BULLET_CAPACITY := 64
+const BULLET_CAPACITY := 192
 const BULLET_SPEED := 14.0
-const EFFECT_CAPACITY := 8
+const EFFECT_CAPACITY := 18
 
 @export var player: Node3D
 @export var camera: Camera3D
@@ -19,6 +19,10 @@ var enemies: Array[Area3D] = []
 var bombers: Array[Area3D] = []
 var red_enemies: Array[Area3D] = []
 var automatic_waves := true
+var dense_waves := false
+var campaign_driver: Node
+var max_fighters := 32
+var next_power_kind := "spread"
 var campaign_contacts: Array[Area3D] = []
 var projectile_speed_scale := 1.0
 var special_enabled := true
@@ -60,7 +64,7 @@ var explosion_audio: AudioStreamPlayer
 func _ready() -> void:
 	player.destroyed.connect(_on_player_destroyed)
 	var mesh := PlaneMesh.new()
-	mesh.size = Vector2(0.44, 0.44)
+	mesh.size = Vector2(0.68, 0.68)
 	var material := ShaderMaterial.new()
 	material.shader = preload("res://shaders/enemy_bullet.gdshader")
 	mesh.material = material
@@ -111,6 +115,7 @@ func _physics_process(delta: float) -> void:
 	if respawn_time > 0:
 		respawn_time = maxf(0,respawn_time-delta)
 		if respawn_time <= 0:
+			clear_enemy_bullets()
 			player.respawn(Vector3(0,0,screen_bottom()-3.0))
 	_update_effects(delta)
 	_update_bullets(delta)
@@ -148,7 +153,8 @@ func spawn_wave() -> void:
 	if game_over:
 		return
 	# Safety cap for extremely tall windows; stale formations cannot accumulate.
-	if enemies.size() >= 8:
+	if dense_waves and enemies.size() >= max_fighters - 7: return
+	if not dense_waves and enemies.size() >= 8:
 		for enemy in enemies:
 			if is_instance_valid(enemy): enemy.retire()
 		enemies.clear()
@@ -162,12 +168,15 @@ func spawn_wave() -> void:
 	var lanes := [-0.95, -0.32, 0.32, 0.95]
 	var delays := [0.0, 0.75, 0.30, 1.15]
 	var speeds := [10.0, 11.4, 10.7, 11.0]
-	for index in range(4):
+	for index in range(8 if dense_waves else 4):
 		var profile := (index + wave_count - 1) % 4
 		var side := -1.0 if index < 2 else 1.0
 		var enemy := ENEMY.new()
 		enemy.flight_speed = speeds[profile]
-		enemy.position = Vector3(lanes[index] * usable_width, 0, screen_top() - 4.5 - delays[profile] * enemy.flight_speed)
+		var lane: float = lerpf(-0.93,0.93,float(index)/7.0) if dense_waves else lanes[index]
+		if dense_waves: side = signf(lane)
+		enemy.position = Vector3(lane * usable_width, 0, screen_top() - 2.5 - delays[profile] * enemy.flight_speed)
+		if dense_waves: enemy.health = 3
 		enemy.loop_z = [-2.8, 1.2, -0.8, 2.6][profile]
 		enemy.loop_duration = [2.4, 2.7, 2.6, 2.8][profile]
 		enemy.maneuver = profile % 2
@@ -175,6 +184,8 @@ func spawn_wave() -> void:
 		# Aim once per pass so a moving player cannot cause sudden course changes.
 		var aim_x := player.global_position.x * (0.65 if profile % 2 == 0 else 0.25)
 		enemy.approach_target_x = clampf(lerpf(enemy.position.x, aim_x, 0.65) + side * 0.8, -usable_width * 0.55, usable_width * 0.55)
+		if dense_waves:
+			enemy.approach_target_x = clampf(lerpf(enemy.position.x,player.position.x,.24+profile*.04),-usable_width*.9,usable_width*.9)
 		enemy.turn_duration = 2.5 + profile * 0.15
 		enemy.turn_angle = 0.42 + profile * 0.035
 		enemy.destroyed.connect(_on_enemy_destroyed)
@@ -182,7 +193,8 @@ func spawn_wave() -> void:
 		enemies.append(enemy)
 
 func _spawn_hayabusa(half_width: float) -> void:
-	for index in range(4):
+	for slot in range(8 if dense_waves else 4):
+		var index := slot % 4
 		var enemy := HAYABUSA.new()
 		enemy.side = -1.0 if index % 2 == 0 else 1.0
 		enemy.flight_speed = [11.0, 12.0, 11.5, 12.5][index]
@@ -191,7 +203,11 @@ func _spawn_hayabusa(half_width: float) -> void:
 		enemy.entry_heading = [1.26, 1.22, 1.30, 1.24][index]
 		enemy.attack_heading = [0.24, 0.18, 0.28, 0.20][index]
 		enemy.target_offset = [-2.4, 2.4, -0.8, 0.8][index]
-		enemy.position = Vector3(enemy.side * (half_width + 2.2 + index * 4.0), 0, screen_top() + [1.8, 3.0, 0.8, 2.2][index])
+		enemy.position = Vector3(enemy.side * (half_width + 2.2 + index * 2.0 + (slot/4)*6.0), 0, screen_top() + [1.8, 3.0, 0.8, 2.2][index] + (slot/4)*3.0)
+		if dense_waves:
+			enemy.health = 3
+			enemy.position = Vector3(enemy.side*(half_width+2.2),0,screen_top()-.4+index*.55)
+			enemy.entry_delay = (slot/4)*1.1+index*.16
 		enemy.destroyed.connect(_on_enemy_destroyed)
 		add_child(enemy)
 		enemies.append(enemy)
@@ -201,7 +217,7 @@ func fire_enemy(enemy: Area3D) -> void:
 		return
 	var target: Vector3 = player.global_position
 	gun_audio.play()
-	for side in [-1, 1]:
+	for side in ([0] if dense_waves else [-1, 1]):
 		var origin := enemy.global_position + enemy.global_basis * Vector3(side * 0.241875, 0.1875, 0.478125)
 		_launch_enemy_round(origin,target,BULLET_SPEED)
 
@@ -281,8 +297,10 @@ func _on_player_destroyed(at: Vector3) -> void:
 	remaining_lives = maxi(0,remaining_lives-1)
 	game_over = remaining_lives == 0
 	_explode(at)
-	if game_over: death_panel.show()
-	else: respawn_time = 2.2
+	if game_over:
+		respawn_time = 0
+		if not is_instance_valid(campaign_driver): death_panel.show()
+	else: respawn_time = 1.5
 	for index in range(BULLET_CAPACITY):
 		lifetimes[index] = 0
 		bullets[index].hide()
@@ -378,7 +396,8 @@ func _on_red_destroyed(at: Vector3) -> void:
 	if special_kills == 5 and special_resolved == 5 and not special_failed:
 		var half_width := absf(camera.project_position(Vector2.ZERO,camera.position.y).x)
 		var drop := Vector3(clampf(at.x,-half_width+1,half_width-1),0,clampf(at.z,screen_top()+1.5,screen_bottom()-3))
-		pickup.activate(drop,player)
+		pickup.activate(drop,player,next_power_kind)
+		if dense_waves: next_power_kind = {"spread":"laser","laser":"life","life":"spread"}[next_power_kind]
 		pow_spawn_count += 1
 
 func _on_red_escaped() -> void:

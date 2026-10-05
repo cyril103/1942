@@ -36,6 +36,11 @@ var _settle_start := Vector3.ZERO
 var _wake_material: ShaderMaterial
 var _shadow_material: ShaderMaterial
 var engine_audio: Node3D
+var landing_active := false
+var landed := false
+var landing_time := 0.0
+var landing_start := Vector3.ZERO
+const LANDING_DURATION := 7.0
 
 
 func _ready() -> void:
@@ -91,7 +96,7 @@ func _build_shadow() -> void:
 
 
 func _on_scrolled(distance: float) -> void:
-	if carrier.visible:
+	if carrier.visible and not landing_active:
 		carrier.position.z += distance
 
 
@@ -110,7 +115,7 @@ func _physics_process(delta: float) -> void:
 	elif elapsed < CLIMB_END:
 		phase = Phase.TAKEOFF if elapsed < RUN_END else Phase.CLIMB
 		var run_u := clampf((elapsed - HOLD_DURATION) / RUN_DURATION, 0.0, 1.0)
-		seascape.scroll_speed = lerpf(0.8, _cruise_speed, smoothstep(0.0, 1.0, run_u))
+		seascape.scroll_speed = lerpf(0.8, minf(_cruise_speed,2.4), smoothstep(0.0, 1.0, run_u))
 		if elapsed < LIFT_START:
 			player.position = Vector3(0.0, DECK_ALTITUDE, carrier.position.z + lerpf(8.1, -9.3, run_u * run_u))
 		else:
@@ -139,8 +144,9 @@ func _physics_process(delta: float) -> void:
 			_settle_start = Vector3(0.0, 0.0, carrier.position.z + _loop_entry_position().z + LOOP_RADIUS * sin(LOOP_ENTRY))
 		phase = Phase.SETTLE
 		var u := (elapsed - LOOP_END) / SETTLE_DURATION
+		seascape.scroll_speed = lerpf(minf(_cruise_speed,2.4),_cruise_speed,smoothstep(0,1,u))
 		# Match the loop's outgoing screen velocity, then settle gently.
-		var outgoing := Vector3(0.0, 0.0, _cruise_speed - LOOP_RADIUS * LOOP_RATE)
+		var outgoing := Vector3(0.0, 0.0, minf(_cruise_speed,2.4) - LOOP_RADIUS * LOOP_RATE)
 		player.position = _settle_start.bezier_interpolate(_settle_start + outgoing * SETTLE_DURATION / 3.0, Vector3(0.0, 0.0, 5.0), Vector3(0.0, 0.0, 5.0), u)
 		player.bank.rotation = Vector3(TAU, 0.0, 0.0)
 		player.bank.scale = Vector3.ONE
@@ -189,3 +195,52 @@ func finish_immediately() -> void:
 	_finish_flight()
 	carrier.hide()
 	set_physics_process(false)
+
+func begin_landing() -> void:
+	active = false
+	landing_active = true
+	landed = false
+	landing_time = 0
+	landing_start = player.position
+	player.set_physics_process(false)
+	player.controls_enabled = false
+	player.invulnerable_time = LANDING_DURATION+2
+	player.bank.show()
+	carrier.position = Vector3(0,0,-26)
+	carrier.show()
+	contact_shadow.show()
+	set_physics_process(false)
+	engine_audio.finished = false
+	engine_audio.fade = 0
+	engine_audio.set_physics_process(true)
+	for voice in engine_audio.voices: voice.play()
+
+func advance_landing(delta: float) -> void:
+	if not landing_active or landed: return
+	landing_time = minf(LANDING_DURATION,landing_time+delta)
+	var t := landing_time
+	carrier.position.z = lerpf(-26,-2,smoothstep(0,3.5,t))
+	seascape.scroll_speed = lerpf(_cruise_speed,0.5,smoothstep(0,6,t))
+	if t < 2:
+		var u := smoothstep(0,2,t)
+		player.position = landing_start.lerp(Vector3(0,0,8),u)
+		player.bank.rotation = Vector3(0,0,clampf(landing_start.x*.06,-.38,.38)*sin(u*PI))
+	elif t < 4.8:
+		var u := (t-2)/2.8
+		player.position = Vector3(0,lerpf(0,DECK_ALTITUDE,smoothstep(0,1,u)),lerpf(8,4,u))
+		# Descent attitude followed by a gentle nose-up flare before touchdown.
+		player.bank.rotation.x = -0.16*sin(u*PI)+0.08*smoothstep(.7,1,u)
+		player.bank.rotation.z = 0
+	else:
+		var u := clampf((t-4.8)/2.2,0,1)
+		player.position = Vector3(0,DECK_ALTITUDE,lerpf(4,-3,1-pow(1-u,3)))
+		player.bank.rotation.x = lerpf(.08,0,smoothstep(0,.45,u))
+	_update_altitude_scale()
+	contact_shadow.position = Vector3(player.position.x+.04,-2.66,player.position.z+.06)
+	contact_shadow.scale = player.bank.scale
+	_shadow_material.set_shader_parameter("opacity",0.25)
+	_shadow_material.set_shader_parameter("softness",.04+maxf(0,player.position.y-DECK_ALTITUDE)*.025)
+	_wake_material.set_shader_parameter("wave_phase",t*.8)
+	if t >= LANDING_DURATION:
+		landed = true
+		engine_audio.stop()
