@@ -18,6 +18,9 @@ const EFFECT_CAPACITY := 8
 var enemies: Array[Area3D] = []
 var bombers: Array[Area3D] = []
 var red_enemies: Array[Area3D] = []
+var automatic_waves := true
+var campaign_contacts: Array[Area3D] = []
+var projectile_speed_scale := 1.0
 var special_enabled := true
 var next_special := 12.0
 var special_count := 0
@@ -135,8 +138,8 @@ func _physics_process(delta: float) -> void:
 			if next_special <= 0:
 				spawn_special()
 				next_special += SPECIAL_INTERVAL
-		next_wave -= delta
-		if next_wave <= 0:
+		if automatic_waves: next_wave -= delta
+		if automatic_waves and next_wave <= 0:
 			spawn_wave()
 			next_wave += WAVE_INTERVAL
 	_update_hud()
@@ -209,7 +212,7 @@ func _launch_enemy_round(origin: Vector3, target: Vector3, speed: float) -> bool
 		if direction.length_squared() < 0.1: direction = Vector3(0,0,1)
 		bullets[index].global_position = origin
 		bullets[index].show()
-		velocities[index] = direction*speed
+		velocities[index] = direction*speed*projectile_speed_scale
 		lifetimes[index] = 6.0
 		enemy_shots += 1
 		return true
@@ -241,6 +244,8 @@ func _on_bomber_destroyed(_at: Vector3) -> void:
 func get_radar_contacts() -> Array[Area3D]:
 	var contacts: Array[Area3D] = []
 	contacts.append_array(enemies)
+	for actor in campaign_contacts:
+		if is_instance_valid(actor) and actor.alive: contacts.append(actor)
 	for red in red_enemies:
 		if is_instance_valid(red) and red.alive and red.visible: contacts.append(red)
 	for bomber in bombers:
@@ -379,3 +384,8 @@ func _on_red_destroyed(at: Vector3) -> void:
 func _on_red_escaped() -> void:
 	special_failed = true
 	special_resolved += 1
+
+func clear_enemy_bullets() -> void:
+	for index in range(BULLET_CAPACITY):
+		lifetimes[index] = 0
+		bullets[index].hide()

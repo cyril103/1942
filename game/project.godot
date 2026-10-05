@@ -1,11 +1,11 @@
-; Godot 4.7.2 — first playable scene.
+; Godot 4.7.2 — Pacific Strike campaign.
 config_version=5
 
 [application]
-config/name="1942 — Premier vol"
-run/main_scene="res://scenes/cockpit.tscn"
+config/name="Pacific Strike — Campagne 1942"
+run/main_scene="res://scenes/campaign.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/description="Avion 3D vu de dessus — flèches directionnelles, Échap pour quitter."
+config/description="Campagne aérienne de 32 missions dans le Pacifique."
 
 [display]
 window/size/viewport_width=1920

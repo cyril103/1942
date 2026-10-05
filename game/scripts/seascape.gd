@@ -26,6 +26,8 @@ var _scroll_a: float = 0.0
 var _scroll_b: float = 0.0
 var _wave_phase: float = 0.0
 var _next_variant: int = 0
+var sector_variant := -1
+var naval_corridor := false
 
 
 func _ready() -> void:
@@ -84,10 +86,12 @@ func _update_view() -> void:
 
 
 func _configure_island(island: MeshInstance3D, at_z: float) -> void:
+	if sector_variant >= 0: _next_variant = sector_variant
 	var size := _random.randf_range(island_size_range.x, island_size_range.y)
 	(island.mesh as PlaneMesh).size = Vector2(size, size)
 	island.rotation.y = _random.randf_range(-0.55, 0.55)
 	var lane := _random.randf_range(-0.76, 0.76)
+	if naval_corridor: lane = (-1.0 if (islands.find(island)+recycle_count)%2 == 0 else 1.0)*(1.15+size*0.025)
 	island.set_meta("lane", lane)
 	island.set_meta("radius", size * 0.72)
 	island.set_meta("variant", _next_variant)
@@ -123,3 +127,26 @@ func _physics_process(delta: float) -> void:
 			_configure_island(island, first_z - _random.randf_range(spacing_range.x, spacing_range.y))
 			recycle_count += 1
 	scrolled.emit(distance)
+
+func configure_sector(mission: Dictionary) -> void:
+	_random.seed = int(mission.seed)
+	var biome: String = mission.biome
+	naval_corridor = mission.boss in ["destroyer","battleship","carrier"]
+	for event in mission.events:
+		if event.kind == "naval": naval_corridor = true
+	var atlas: Texture2D = ISLAND_ATLAS
+	sector_variant = {"volcanic":0,"arctic":1,"convoy":2,"jade":3,"final":3}.get(biome,-1)
+	if sector_variant >= 0: atlas = load("res://assets/campaign/sector-islands.png")
+	var sea_tints := {"coral":Color(0.8,1.08,1.0),"convoy":Color(0.75,0.95,0.9),"storm":Color(0.58,0.7,0.8),"jade":Color(0.8,1.1,0.9),"volcanic":Color(0.75,0.72,0.68),"dusk":Color(1.15,0.68,0.57),"arctic":Color(0.77,0.94,1.07),"final":Color(1.1,0.94,0.75)}
+	var tint: Color = sea_tints[biome]
+	var desaturation := 0.4 if biome in ["storm","volcanic","arctic"] else 0.0
+	ocean_material.set_shader_parameter("ocean_tint",tint)
+	ocean_material.set_shader_parameter("sea_desaturation",desaturation)
+	var next_z := -3.0
+	for island in islands:
+		island.material_override.set_shader_parameter("island_atlas",atlas)
+		island.material_override.set_shader_parameter("ocean_tint",tint)
+		island.material_override.set_shader_parameter("sea_desaturation",desaturation)
+		island.material_override.set_shader_parameter("land_tint",Color(0.65,0.72,0.79) if biome == "storm" else (Color(1.0,0.83,0.65) if biome == "dusk" else Color.WHITE))
+		_configure_island(island,next_z)
+		next_z -= _random.randf_range(spacing_range.x,spacing_range.y)

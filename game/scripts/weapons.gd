@@ -16,6 +16,8 @@ var projectiles: Array[MeshInstance3D] = []
 var lifetimes := PackedFloat32Array()
 var velocities := PackedVector3Array()
 var spread_enabled := false
+var shot_interval := SHOT_INTERVAL
+var projectile_damage := 1
 var flashes: Array[MeshInstance3D] = []
 var impacts: Array[MeshInstance3D] = []
 var impact_times := PackedFloat32Array()
@@ -98,7 +100,7 @@ func _physics_process(delta: float) -> void:
 			_show_impact(hit.position)
 			var target: Object = hit.collider
 			if target.has_method("take_damage"):
-				target.take_damage(1)
+				target.take_damage(projectile_damage)
 			_release(index)
 			continue
 		var screen_position := camera.unproject_position(shot.global_position)
@@ -114,7 +116,7 @@ func _physics_process(delta: float) -> void:
 	if _cooldown <= 0.0:
 		_fire_salvo()
 		# Preserve fractional cadence, without generating a burst after a stall.
-		_cooldown = maxf(_cooldown + SHOT_INTERVAL, 0.0)
+		_cooldown = maxf(_cooldown + shot_interval, 0.0)
 
 
 func _fire_salvo() -> void:

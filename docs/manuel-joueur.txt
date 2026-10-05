@@ -1,0 +1,27 @@
+PACIFIC STRIKE — CAMPAGNE 1942
+
+Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
+Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.
+
+32 missions / 8 secteurs / 8 combats de boss à phases.
+
+Flèches, WASD ou ZQSD : piloter.
+Espace maintenu : tirer. Maj : déplacement précis.
+X : bombe. C : frappe spéciale lorsque la jauge atteint 100 %.
+Échap : pause. Depuis l'accueil, Échap quitte le jeu.
+Manette : stick, A pour tirer, B pour la bombe, X pour la frappe, LB pour la précision.
+
+Détruire les cinq avions d'une formation rouge puis ramasser le POW améliore le tir.
+Le briefing indique l'objectif de mission et les conditions de médaille d'or.
+Les pièces gagnées permettent d'améliorer les armes, la coque et la charge spéciale.
+Trois profils du même avion et trois difficultés sont disponibles dans le hangar/options.
+
+La progression est sauvegardée automatiquement entre les missions. Quitter pendant
+une mission permet de recommencer cette mission ; aucune sauvegarde en plein vol.
+Le menu Missions donne accès aux niveaux débloqués. Nouvelle campagne demande
+confirmation et remet la progression à zéro en conservant options et record.
+
+Options : plein écran, volumes musique/effets/général, secousses et effets lumineux.
+Les licences et crédits des composants sont dans Licences/ et dans le menu Crédits.
+
+Projet indépendant inspiré des shmups 194X. Non affilié à Capcom.

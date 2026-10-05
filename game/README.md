@@ -1,4 +1,6 @@
-# 1942 — Premier vol
+# Notes techniques du prototype 1942
+
+**La scène principale est désormais `scenes/campaign.tscn` : campagne de 32 missions, menus et sauvegarde.** Consulter `../README.md` et `../docs/manuel-joueur.txt` pour le jeu final et les commandes actuelles (Échap ouvre la pause). Les notes ci-dessous décrivent les étapes historiques du prototype et ses scènes de test autonomes.
 
 Dernier réglage cockpit : avions réduits de 25 % supplémentaires (joueur 0,196875, ennemis 0,1575), collisions et points de tir assortis. Les Hayabusa tournent vers le bas dès le tonneau, terminé en 1,25–1,45 s ; le pilotage de piqué répond plus vite avec accélération limitée. Trois salves conservées avant sortie, validées dans le cadre 3:4 par `tests/test_side_attacks.gd`.
 

@@ -1,5 +1,7 @@
 # Local tools and generated caches
 /tools/
+/dist/
+/audio/campaign-mix-validation.wav
 **/.godot/
 **/.venv/
 **/__pycache__/

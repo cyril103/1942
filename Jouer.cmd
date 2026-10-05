@@ -6,4 +6,4 @@ if not exist "%GODOT_EXE%" (
     pause
     exit /b 1
 )
-start "1942 - Premier vol" "%GODOT_EXE%" --path "%~dp0game"
+start "Pacific Strike - Campagne 1942" "%GODOT_EXE%" --path "%~dp0game"

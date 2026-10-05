@@ -1,5 +1,7 @@
 // Shared open sea / coast shading guarantees identical waves at the join.
 uniform sampler2D ocean_texture : source_color, filter_linear_mipmap, repeat_disable;
+uniform vec3 ocean_tint : source_color = vec3(1.0);
+uniform float sea_desaturation = 0.0;
 uniform float tile_size = 14.0;
 uniform float scroll_a = 0.0;
 uniform float scroll_b = 0.0;
@@ -28,5 +30,7 @@ vec3 ocean_surface(vec2 world_xz) {
 	vec3 water = mix(water_a, water_b, 0.30);
 	float glint = sin(uv_a.x * 31.4159265 + uv_a.y * 25.1327412 + wave_phase * 2.0);
 	water *= 1.0 + 0.025 * glint;
-	return mix(vec3(0.003, 0.026, 0.044), water, 0.64);
+	vec3 result = mix(vec3(0.003, 0.026, 0.044), water, 0.64);
+	result = mix(result,vec3(dot(result,vec3(0.299,0.587,0.114))),sea_desaturation);
+	return result * ocean_tint;
 }

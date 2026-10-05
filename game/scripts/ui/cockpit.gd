@@ -2,6 +2,8 @@ extends Control
 ## Gameplay lives in its own 3:4 viewport: panels cannot obscure actors or shots.
 const PANEL = preload("res://scripts/ui/cockpit_panel.gd")
 const SAVE_PATH := "user://pilot-record.cfg"
+var campaign_mode := false
+var campaign: Node
 var flight: Node3D
 var combat: Node3D
 var player: Node3D
@@ -35,6 +37,7 @@ func _ready() -> void:
 	add_child(viewport)
 	flight = preload("res://scenes/main.tscn").instantiate()
 	viewport.add_child(flight)
+	if campaign_mode: flight.set_process_unhandled_key_input(false)
 	combat = flight.get_node("Combat")
 	player = flight.get_node("Player")
 	combat.remaining_lives = 3
@@ -100,7 +103,7 @@ func _process(delta: float) -> void:
 		if _save_delay <= 0: save_record()
 	left.refresh(delta)
 	right.refresh(delta)
-	message.visible = combat.game_over or combat.respawn_time > 0
+	message.visible = (combat.game_over and not campaign_mode) or combat.respawn_time > 0
 	message.text = "MISSION TERMINÉE\n\nR  —  REJOUER\nÉCHAP  —  QUITTER" if combat.game_over else "RENFORT EN APPROCHE"
 
 func save_record() -> void:
@@ -112,6 +115,7 @@ func save_record() -> void:
 	else: push_warning("Could not save pilot record: %s" % error_string(result))
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if campaign_mode: return
 	if event.is_action_pressed("restart_test") and not event.echo:
 		save_record()
 		get_viewport().set_input_as_handled()

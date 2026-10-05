@@ -1,5 +1,9 @@
 extends Node3D
 signal destroyed(at: Vector3)
+signal damaged(remaining: int)
+var max_health := 1
+var health := 1
+var focus_enabled := false
 ## Motion stays on the XZ plane; only the visual child banks.
 
 @export var camera: Camera3D
@@ -19,6 +23,11 @@ var invulnerable_time := 0.0
 func take_damage(amount: int) -> void:
 	if not alive or not controls_enabled or amount <= 0 or invulnerable_time > 0:
 		return
+	health = maxi(0,health-amount)
+	damaged.emit(health)
+	if health > 0:
+		invulnerable_time = 0.85
+		return
 	alive = false
 	controls_enabled = false
 	hide()
@@ -31,6 +40,7 @@ func respawn(at: Vector3) -> void:
 	bank.scale = Vector3.ONE
 	bank.show()
 	alive = true
+	health = max_health
 	controls_enabled = true
 	invulnerable_time = 3.0
 	show()
@@ -50,7 +60,9 @@ func _physics_process(delta: float) -> void:
 	if not controls_enabled:
 		return
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	position += Vector3(direction.x, 0.0, direction.y) * speed * delta
+	var motion_speed := speed
+	if focus_enabled and Input.is_action_pressed("focus_flight"): motion_speed *= 0.48
+	position += Vector3(direction.x, 0.0, direction.y) * motion_speed * delta
 	# Negative Z rotation lowers the right wing when steering right.
 	var target_bank := -direction.x * deg_to_rad(max_bank_degrees)
 	bank.rotation.z = lerpf(bank.rotation.z, target_bank, 1.0 - exp(-bank_response * delta))

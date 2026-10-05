@@ -1,0 +1,1666 @@
+[
+  {
+    "id": 1,
+    "sector": 0,
+    "title": "Premier engagement",
+    "region": "Mer de Corail",
+    "biome": "coral",
+    "duration": 70,
+    "briefing": "Reprenez la maîtrise du ciel. Suivez les traceurs, ménagez vos bombes et cherchez les formations rouges.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 202119,
+    "scroll": 2.1,
+    "pressure": 0.7,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 11.7,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 20.7,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 29.7,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 38.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 47.7,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 56.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "sector": 0,
+    "title": "Les ailes rouges",
+    "region": "Mer de Corail",
+    "biome": "coral",
+    "duration": 76,
+    "briefing": "Reprenez la maîtrise du ciel. Suivez les traceurs, ménagez vos bombes et cherchez les formations rouges.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 210038,
+    "scroll": 2.18,
+    "pressure": 0.735,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 12.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 21.4,
+        "kind": "red",
+        "pattern": 0
+      },
+      {
+        "time": 30.4,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 39.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 48.4,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 57.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "sector": 0,
+    "title": "Au ras des vagues",
+    "region": "Mer de Corail",
+    "biome": "coral",
+    "duration": 82,
+    "briefing": "Reprenez la maîtrise du ciel. Suivez les traceurs, ménagez vos bombes et cherchez les formations rouges.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 217957,
+    "scroll": 2.2600000000000002,
+    "pressure": 0.77,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 11.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 20.0,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 29.0,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 38.0,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 47.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 56.0,
+        "kind": "hayabusa",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "sector": 0,
+    "title": "L'ombre du Kestrel",
+    "region": "Mer de Corail",
+    "biome": "coral",
+    "duration": 88,
+    "briefing": "Reprenez la maîtrise du ciel. Suivez les traceurs, ménagez vos bombes et cherchez les formations rouges.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "bomber",
+    "seed": 225876,
+    "scroll": 2.34,
+    "pressure": 0.805,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 11.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 20.7,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 29.7,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 38.7,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 47.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 84,
+        "kind": "boss",
+        "variant": "bomber"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "sector": 1,
+    "title": "La ligne de ravitaillement",
+    "region": "Route des convois",
+    "biome": "convoy",
+    "duration": 72,
+    "briefing": "Les convois alimentent les aérodromes adverses. Neutralisez les navires sans vous laisser enfermer par leur défense.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 233795,
+    "scroll": 2.2,
+    "pressure": 0.775,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 12.4,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 21.4,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 30.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 39.4,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 48.4,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 57.4,
+        "kind": "zero",
+        "pattern": 3
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "sector": 1,
+    "title": "Détroit des épaves",
+    "region": "Route des convois",
+    "biome": "convoy",
+    "duration": 78,
+    "briefing": "Les convois alimentent les aérodromes adverses. Neutralisez les navires sans vous laisser enfermer par leur défense.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 241714,
+    "scroll": 2.2800000000000002,
+    "pressure": 0.81,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 11.0,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 20.0,
+        "kind": "red",
+        "pattern": 0
+      },
+      {
+        "time": 29.0,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 38.0,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 47.0,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 56.0,
+        "kind": "bomber",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "sector": 1,
+    "title": "Escorte sous le feu",
+    "region": "Route des convois",
+    "biome": "convoy",
+    "duration": 84,
+    "briefing": "Les convois alimentent les aérodromes adverses. Neutralisez les navires sans vous laisser enfermer par leur défense.",
+    "objective": "strike",
+    "quota": 4,
+    "boss": "",
+    "seed": 249633,
+    "scroll": 2.3600000000000003,
+    "pressure": 0.845,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 11.7,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 20.7,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 29.7,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 38.7,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 47.7,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 56.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "sector": 1,
+    "title": "Le croiseur Kurogane",
+    "region": "Route des convois",
+    "biome": "convoy",
+    "duration": 90,
+    "briefing": "Les convois alimentent les aérodromes adverses. Neutralisez les navires sans vous laisser enfermer par leur défense.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "destroyer",
+    "seed": 257552,
+    "scroll": 2.4400000000000004,
+    "pressure": 0.88,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 12.4,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 21.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 30.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 39.4,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 48.4,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 86,
+        "kind": "boss",
+        "variant": "destroyer"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "sector": 2,
+    "title": "Rideau de pluie",
+    "region": "Front des moussons",
+    "biome": "storm",
+    "duration": 74,
+    "briefing": "La mousson réduit la visibilité. Les départs de tirs restent signalés : gardez une issue avant chaque rafale.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 265471,
+    "scroll": 2.3000000000000003,
+    "pressure": 0.85,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 11.0,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 20.0,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 29.0,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 38.0,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 47.0,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 56.0,
+        "kind": "red",
+        "pattern": 3
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "sector": 2,
+    "title": "Le chant des radars",
+    "region": "Front des moussons",
+    "biome": "storm",
+    "duration": 80,
+    "briefing": "La mousson réduit la visibilité. Les départs de tirs restent signalés : gardez une issue avant chaque rafale.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 273390,
+    "scroll": 2.3800000000000003,
+    "pressure": 0.885,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 11.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 20.7,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 29.7,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 38.7,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 47.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 56.7,
+        "kind": "zero",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "sector": 2,
+    "title": "Traversée électrique",
+    "region": "Front des moussons",
+    "biome": "storm",
+    "duration": 86,
+    "briefing": "La mousson réduit la visibilité. Les départs de tirs restent signalés : gardez une issue avant chaque rafale.",
+    "objective": "strike",
+    "quota": 1,
+    "boss": "",
+    "seed": 281309,
+    "scroll": 2.4600000000000004,
+    "pressure": 0.92,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 12.4,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 21.4,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 30.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 39.4,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 48.4,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 57.4,
+        "kind": "zero",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "sector": 2,
+    "title": "L'escadre Raiden",
+    "region": "Front des moussons",
+    "biome": "storm",
+    "duration": 92,
+    "briefing": "La mousson réduit la visibilité. Les départs de tirs restent signalés : gardez une issue avant chaque rafale.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "squadron",
+    "seed": 289228,
+    "scroll": 2.54,
+    "pressure": 0.955,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 11.0,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 20.0,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 29.0,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 38.0,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 47.0,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 88,
+        "kind": "boss",
+        "variant": "squadron"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "sector": 3,
+    "title": "Les passes jumelles",
+    "region": "Archipel de jade",
+    "biome": "jade",
+    "duration": 76,
+    "briefing": "Les récifs canalisent les patrouilles. Interceptez les formations successives et gardez votre attaque spéciale pour les cibles lourdes.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 297147,
+    "scroll": 2.4000000000000004,
+    "pressure": 0.925,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 11.7,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 20.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 29.7,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 38.7,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 47.7,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 56.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "sector": 3,
+    "title": "Au-dessus des mangroves",
+    "region": "Archipel de jade",
+    "biome": "jade",
+    "duration": 82,
+    "briefing": "Les récifs canalisent les patrouilles. Interceptez les formations successives et gardez votre attaque spéciale pour les cibles lourdes.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 305066,
+    "scroll": 2.4800000000000004,
+    "pressure": 0.96,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 12.4,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 21.4,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 30.4,
+        "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 39.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 48.4,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 57.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "sector": 3,
+    "title": "L'anneau de défense",
+    "region": "Archipel de jade",
+    "biome": "jade",
+    "duration": 88,
+    "briefing": "Les récifs canalisent les patrouilles. Interceptez les formations successives et gardez votre attaque spéciale pour les cibles lourdes.",
+    "objective": "strike",
+    "quota": 3,
+    "boss": "",
+    "seed": 312985,
+    "scroll": 2.5600000000000005,
+    "pressure": 0.995,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 11.0,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 20.0,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 29.0,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 38.0,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 47.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 56.0,
+        "kind": "naval",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "sector": 3,
+    "title": "Forteresse Tenryu",
+    "region": "Archipel de jade",
+    "biome": "jade",
+    "duration": 94,
+    "briefing": "Les récifs canalisent les patrouilles. Interceptez les formations successives et gardez votre attaque spéciale pour les cibles lourdes.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "fortress",
+    "seed": 320904,
+    "scroll": 2.6400000000000006,
+    "pressure": 1.03,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 11.7,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 20.7,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 29.7,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 38.7,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 47.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 90,
+        "kind": "boss",
+        "variant": "fortress"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "sector": 4,
+    "title": "Cendres sur la mer",
+    "region": "Ceinture de feu",
+    "biome": "volcanic",
+    "duration": 78,
+    "briefing": "La flotte se rassemble près des volcans. Les tirs croisés sont plus denses : détruisez les pièces navales en priorité.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 328823,
+    "scroll": 2.5,
+    "pressure": 1.0,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 13.4,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 23.4,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 33.4,
+        "kind": "red",
+        "pattern": 0
+      },
+      {
+        "time": 43.4,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 53.4,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 63.4,
+        "kind": "hayabusa",
+        "pattern": 3
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "sector": 4,
+    "title": "Le dernier mouillage",
+    "region": "Ceinture de feu",
+    "biome": "volcanic",
+    "duration": 84,
+    "briefing": "La flotte se rassemble près des volcans. Les tirs croisés sont plus denses : détruisez les pièces navales en priorité.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 336742,
+    "scroll": 2.58,
+    "pressure": 1.035,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 12.0,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 22.0,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 32.0,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 42.0,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 52.0,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 62.0,
+        "kind": "zero",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "sector": 4,
+    "title": "Des braises dans le ciel",
+    "region": "Ceinture de feu",
+    "biome": "volcanic",
+    "duration": 90,
+    "briefing": "La flotte se rassemble près des volcans. Les tirs croisés sont plus denses : détruisez les pièces navales en priorité.",
+    "objective": "strike",
+    "quota": 2,
+    "boss": "",
+    "seed": 344661,
+    "scroll": 2.66,
+    "pressure": 1.07,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 12.7,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 22.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 32.7,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 42.7,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 52.7,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 62.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "sector": 4,
+    "title": "Le cuirassé Onyx",
+    "region": "Ceinture de feu",
+    "biome": "volcanic",
+    "duration": 96,
+    "briefing": "La flotte se rassemble près des volcans. Les tirs croisés sont plus denses : détruisez les pièces navales en priorité.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "battleship",
+    "seed": 352580,
+    "scroll": 2.74,
+    "pressure": 1.105,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 13.4,
+        "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 23.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 33.4,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 43.4,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 53.4,
+        "kind": "zero",
+        "pattern": 1
+      },
+      {
+        "time": 92,
+        "kind": "boss",
+        "variant": "battleship"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "sector": 5,
+    "title": "L'heure dorée",
+    "region": "Mer crépusculaire",
+    "biome": "dusk",
+    "duration": 80,
+    "briefing": "Le soleil tombe et les interceptions se multiplient. Les avions rouges constituent votre meilleure occasion de renforcer le tir.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 360499,
+    "scroll": 2.6,
+    "pressure": 1.075,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 12.0,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 22.0,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 32.0,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 42.0,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 52.0,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 62.0,
+        "kind": "hayabusa",
+        "pattern": 3
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "sector": 5,
+    "title": "Le convoi fantôme",
+    "region": "Mer crépusculaire",
+    "biome": "dusk",
+    "duration": 86,
+    "briefing": "Le soleil tombe et les interceptions se multiplient. Les avions rouges constituent votre meilleure occasion de renforcer le tir.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 368418,
+    "scroll": 2.68,
+    "pressure": 1.11,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 12.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 22.7,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 32.7,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 42.7,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 52.7,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 62.7,
+        "kind": "zero",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "sector": 5,
+    "title": "Des ailes dans le soleil",
+    "region": "Mer crépusculaire",
+    "biome": "dusk",
+    "duration": 92,
+    "briefing": "Le soleil tombe et les interceptions se multiplient. Les avions rouges constituent votre meilleure occasion de renforcer le tir.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 376337,
+    "scroll": 2.7600000000000002,
+    "pressure": 1.145,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 13.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 23.4,
+        "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 33.4,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 43.4,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 53.4,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 63.4,
+        "kind": "zero",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "sector": 5,
+    "title": "L'as écarlate",
+    "region": "Mer crépusculaire",
+    "biome": "dusk",
+    "duration": 98,
+    "briefing": "Le soleil tombe et les interceptions se multiplient. Les avions rouges constituent votre meilleure occasion de renforcer le tir.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "ace",
+    "seed": 384256,
+    "scroll": 2.84,
+    "pressure": 1.18,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 12.0,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 22.0,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 32.0,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 42.0,
+        "kind": "zero",
+        "pattern": 0
+      },
+      {
+        "time": 52.0,
+        "kind": "red",
+        "pattern": 1
+      },
+      {
+        "time": 94,
+        "kind": "boss",
+        "variant": "ace"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "sector": 6,
+    "title": "Le silence des glaces",
+    "region": "Front du nord",
+    "biome": "arctic",
+    "duration": 82,
+    "briefing": "Le front du nord abrite la dernière escadre de surface. Alternez mouvement précis et larges déplacements.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 392175,
+    "scroll": 2.7,
+    "pressure": 1.15,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 12.7,
+        "kind": "zero",
+        "pattern": 2
+      },
+      {
+        "time": 22.7,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 32.7,
+        "kind": "red",
+        "pattern": 0
+      },
+      {
+        "time": 42.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 52.7,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 62.7,
+        "kind": "naval",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "sector": 6,
+    "title": "Les sentinelles du fjord",
+    "region": "Front du nord",
+    "biome": "arctic",
+    "duration": 88,
+    "briefing": "Le front du nord abrite la dernière escadre de surface. Alternez mouvement précis et larges déplacements.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 400094,
+    "scroll": 2.7800000000000002,
+    "pressure": 1.185,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 13.4,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 23.4,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 33.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 43.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 53.4,
+        "kind": "zero",
+        "pattern": 3
+      },
+      {
+        "time": 63.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "sector": 6,
+    "title": "Opération brise-lame",
+    "region": "Front du nord",
+    "biome": "arctic",
+    "duration": 94,
+    "briefing": "Le front du nord abrite la dernière escadre de surface. Alternez mouvement précis et larges déplacements.",
+    "objective": "strike",
+    "quota": 4,
+    "boss": "",
+    "seed": 408013,
+    "scroll": 2.8600000000000003,
+    "pressure": 1.22,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 12.0,
+        "kind": "bomber",
+        "pattern": 0
+      },
+      {
+        "time": 22.0,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 32.0,
+        "kind": "hayabusa",
+        "pattern": 2
+      },
+      {
+        "time": 42.0,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 52.0,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 62.0,
+        "kind": "bomber",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "sector": 6,
+    "title": "Le porte-avions Shiro",
+    "region": "Front du nord",
+    "biome": "arctic",
+    "duration": 100,
+    "briefing": "Le front du nord abrite la dernière escadre de surface. Alternez mouvement précis et larges déplacements.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "carrier",
+    "seed": 415932,
+    "scroll": 2.9400000000000004,
+    "pressure": 1.255,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 12.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 22.7,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 32.7,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 42.7,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 52.7,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 96,
+        "kind": "boss",
+        "variant": "carrier"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "sector": 7,
+    "title": "Le verrou du Pacifique",
+    "region": "Dernière offensive",
+    "biome": "final",
+    "duration": 84,
+    "briefing": "La route du quartier général est ouverte. Traversez les dernières défenses et mettez fin à cette offensive.",
+    "objective": "patrol",
+    "quota": 12,
+    "boss": "",
+    "seed": 423851,
+    "scroll": 2.8000000000000003,
+    "pressure": 1.225,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 13.4,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 23.4,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 33.4,
+        "kind": "red",
+        "pattern": 0
+      },
+      {
+        "time": 43.4,
+        "kind": "hayabusa",
+        "pattern": 1
+      },
+      {
+        "time": 53.4,
+        "kind": "naval",
+        "pattern": 1
+      },
+      {
+        "time": 63.4,
+        "kind": "bomber",
+        "pattern": 3
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "sector": 7,
+    "title": "Les quatre escadrilles",
+    "region": "Dernière offensive",
+    "biome": "final",
+    "duration": 90,
+    "briefing": "La route du quartier général est ouverte. Traversez les dernières défenses et mettez fin à cette offensive.",
+    "objective": "intercept",
+    "quota": 16,
+    "boss": "",
+    "seed": 431770,
+    "scroll": 2.8800000000000003,
+    "pressure": 1.26,
+    "events": [
+      {
+        "time": 2.0,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 12.0,
+        "kind": "hayabusa",
+        "pattern": 3
+      },
+      {
+        "time": 22.0,
+        "kind": "red",
+        "pattern": 0
+      },
+      {
+        "time": 32.0,
+        "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 42.0,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 52.0,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 62.0,
+        "kind": "hayabusa",
+        "pattern": 0
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "sector": 7,
+    "title": "Jusqu'au dernier vol",
+    "region": "Dernière offensive",
+    "biome": "final",
+    "duration": 96,
+    "briefing": "La route du quartier général est ouverte. Traversez les dernières défenses et mettez fin à cette offensive.",
+    "objective": "strike",
+    "quota": 2,
+    "boss": "",
+    "seed": 439689,
+    "scroll": 2.9600000000000004,
+    "pressure": 1.295,
+    "events": [
+      {
+        "time": 2.7,
+        "kind": "bomber",
+        "pattern": 3
+      },
+      {
+        "time": 12.7,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 22.7,
+        "kind": "naval",
+        "pattern": 0
+      },
+      {
+        "time": 32.7,
+        "kind": "bomber",
+        "pattern": 2
+      },
+      {
+        "time": 42.7,
+        "kind": "red",
+        "pattern": 3
+      },
+      {
+        "time": 52.7,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 62.7,
+        "kind": "naval",
+        "pattern": 1
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "sector": 7,
+    "title": "L'aube de la victoire",
+    "region": "Dernière offensive",
+    "biome": "final",
+    "duration": 102,
+    "briefing": "La route du quartier général est ouverte. Traversez les dernières défenses et mettez fin à cette offensive.",
+    "objective": "boss",
+    "quota": 1,
+    "boss": "citadel",
+    "seed": 447608,
+    "scroll": 3.04,
+    "pressure": 1.33,
+    "events": [
+      {
+        "time": 3.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 13.4,
+        "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 23.4,
+        "kind": "red",
+        "pattern": 2
+      },
+      {
+        "time": 33.4,
+        "kind": "naval",
+        "pattern": 2
+      },
+      {
+        "time": 43.4,
+        "kind": "hayabusa",
+        "pattern": 0
+      },
+      {
+        "time": 53.4,
+        "kind": "bomber",
+        "pattern": 1
+      },
+      {
+        "time": 98,
+        "kind": "boss",
+        "variant": "citadel"
+      }
+    ]
+  }
+]

@@ -4,6 +4,7 @@ render_mode unshaded, blend_mix, depth_draw_never, cull_disabled, shadows_disabl
 #include "res://shaders/ocean_surface.gdshaderinc"
 uniform sampler2D island_atlas : source_color, filter_linear_mipmap, repeat_disable;
 uniform vec2 atlas_cell = vec2(0.0);
+uniform vec3 land_tint : source_color = vec3(1.0);
 uniform float phase_offset = 0.0;
 uniform float coast_blend_lod : hint_range(4.0, 7.0) = 6.0;
 uniform float shallows_strength : hint_range(0.0, 1.0) = 0.72;
@@ -34,8 +35,8 @@ void fragment() {
 	vec3 sea = ocean_surface(world_xz);
 	float shimmer = sin(UV.x * 90.0 + wave_phase * 2.0 + phase_offset)
 		* sin(UV.y * 74.0 - wave_phase);
-	vec3 shallows = texel.rgb * (0.91 + 0.018 * shimmer);
+	vec3 shallows = texel.rgb * ocean_tint * (0.91 + 0.018 * shimmer);
 	vec3 coastal_water = mix(sea, shallows, shallow_blend * shallows_strength);
-	ALBEDO = mix(texel.rgb * 0.96, coastal_water, water_mask);
+	ALBEDO = mix(texel.rgb * land_tint * 0.96, coastal_water, water_mask);
 	ALPHA = texel.a * cell_mask;
 }

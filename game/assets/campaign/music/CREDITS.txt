@@ -1,0 +1,4 @@
+Musique originale pour Pacific Strike : menu.wav, flight.wav, boss.wav.
+Composition et synthèse déterministes : audio/build_campaign_music.py.
+Aucun sample musical externe. Instruments synthétiques : nappes harmoniques,
+basse, motif FM, percussions de bruit filtré et échos stéréo. Boucles PCM 16 bits.
