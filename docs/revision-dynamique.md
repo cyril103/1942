@@ -85,3 +85,22 @@ Le fondu côtier conserve l'échantillonnage de l'océan et ses phases ; un ress
 Validation : `test_archipelago.gd` simule les 32 missions avec escortes, boss naval, décollage et récupération. Il vérifie les intersections géométriques entre coques orientées et rectangles des îles, ainsi que diversité et présence dans la zone centrale. Régressions : endurance du décor sur 30 minutes, chorégraphie du départ et cycle de campagne. Captures réelles à `renders/archipelago-gameplay-{01,17,25}.png` et `archipelago-landing.png` ; le script de capture accélère la simulation et neutralise les dégâts au joueur pour l'inspection visuelle.
 
 Résultat final Windows : 38 432 contrôles de navigation réussis, avec dimensions extraites des maillages navals et 4 à 8 motifs observés pendant la durée réelle de chaque mission. Endurance : 4 377 contrôles, 285 recyclages et 11 objets de décor stables sur 30 minutes. Départ : 4 240 contrôles sur formats paysage et portrait ; campagne dynamique : 60 contrôles. SHA256 de l'exécutable : `2FBDFF0B70514BDDC909B741A21C407AEC9CB01F3409E8199876CC0BBBF62DFB`.
+
+## Nuages intermédiaires — 6 octobre 2026
+
+Six bancs réutilisables de cumulus 2,5D, sous les avions et au-dessus du décor. Textures volumétriques préparées dans Blender, puis affinées avec image_gen pour mieux lire les reliefs à distance. Transparence graduelle, dérive au vent, légère évolution des contours et ombres douces sur les îles et l'océan. Teintes adaptées aux secteurs. Les nuages s'effacent progressivement pendant le départ et l'appontage pour laisser visibles l'avion à basse altitude et le pont.
+
+Le rendu reste en Compatibility : deux lectures d'atlas par pixel de nuage, une pour son ombre, aucune simulation volumétrique en temps réel. Le pool contient douze plans et reste fixe. Les avions et les tirs gardent leur priorité naturelle via le test de profondeur. Production, sources et protocole de mesure : `blender/clouds/README.md` ; prompt exact : `game/assets/environment/clouds/CREDITS.md`.
+
+Validation : 1 537 contrôles des nuages, dont dix minutes de recyclage et comparaison d'images pour l'occlusion du joueur. Benchmark 1080p sur GTX 1650 : coût GPU moyen supplémentaire de 0,095 ms, mise à jour CPU des nuages 0,028 ms ; scène figée de 32 chasseurs, 96 projectiles ennemis et huit explosions. Ces chiffres isolent le coût de l'effet, pas les FPS de toute la campagne. Captures : `renders/clouds-{01,09,17,21,25}.png` et `clouds-stress.png`.
+
+
+### Continuité des nuages
+
+Suppression du fondu lié au décollage et à la récupération. Les bancs restent visibles et sont placés hors de l’enveloppe du chenal du porte-avions, avec une marge pour leur dérive bornée. Leur recyclage se fait uniquement hors champ. Validation : 2 617 contrôles réussis, dont dix minutes de défilement et le maintien de la trouée.
+
+### Nuages : grands bancs et diversité
+
+Huit silhouettes sur deux atlas avec mipmaps, huit bancs recyclés et des tailles allant de petits cumulus à des nappes de près de 19 unités. Les grands bancs restent hors du chenal et sont espacés pour éviter les superpositions. Les voiles ont une opacité et une ombre plus légères. Aucun échantillonnage supplémentaire dans les shaders.
+
+Validation : 5 150 contrôles réussis. Mesure GTX 1650 / 1080p avec 32 chasseurs, 96 tirs ennemis, huit explosions et six bancs visibles : environ +0,13 ms GPU par rapport au même rendu sans nuages ; mise à jour CPU 0,030 ms. La scène de mesure est figée pour isoler le coût de dessin ; elle ne garantit pas les FPS de toutes les situations.

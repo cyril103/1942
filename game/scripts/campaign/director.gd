@@ -75,6 +75,7 @@ func _ready() -> void:
 	sea.scroll_speed = .8 if departure.active else float(mission.scroll)
 	sea.scenery_seed = mission.seed
 	sea.configure_sector(mission)
+	cockpit.flight.get_node("Clouds").configure_sector(mission)
 	cockpit.flight.get_node("KeyLight").shadow_enabled = true
 	_build_ring()
 	feedback = "MISSION %02d  /  %s" % [mission.id,mission.title.to_upper()]

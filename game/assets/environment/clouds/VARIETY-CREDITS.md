@@ -1,0 +1,7 @@
+# Extended cloud atlas
+
+Original asset generated with the built-in ImageGen tool, 6 October 2026. No external textures. File: `cumulus-variety-atlas.png`.
+
+## Exact prompt
+
+Use case: photorealistic-natural. Asset type: production RGBA cloud sprite atlas for a premium overhead Pacific aerial game. Create a square 2x2 atlas of FOUR clearly different clouds seen strictly vertically from above, orthographic satellite perspective, no horizon. Each cloud entirely contained inside its own equal quadrant with at least 10% transparent padding on all sides. Top left: monumental dense billowing cumulus with many sculpted cauliflower towers and shaded deep valleys. Top right: elongated wind-sculpted stratocumulus bank, irregular scalloped perimeter, fine wisps. Bottom left: an open horseshoe-shaped cluster of connected small cotton towers with a large transparent interior opening, asymmetrical. Bottom right: delicate broken translucent cloud veil with a few raised sunlit billows, noticeably airier. Photoreal physically plausible volume, ivory sunlit tops, subtle cool blue-gray self shadow, soft multiple scattering, exquisite fine edge filaments, warm sunlight from upper left consistently across all four. Actual transparent alpha background including holes and thin translucent edges. No ocean, ground, sky background, cast shadow on ground, text, frame, grid, labels or watermark. Generous clear gutters at the exact 50% horizontal and vertical midlines. These must look like real clouds viewed from an airplane far above them, not rocks or smoke explosions.

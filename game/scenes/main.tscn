@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_player"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/weapons.gd" id="6_weapons"]
 [ext_resource type="Script" path="res://scripts/combat.gd" id="7_combat"]
 [ext_resource type="Script" path="res://scripts/player_hurtbox.gd" id="8_hurtbox"]
+[ext_resource type="Script" path="res://scripts/cloudscape.gd" id="9_clouds"]
 
 [sub_resource type="BoxShape3D" id="PlayerHitShape"]
 size = Vector3(0.45, 1.0, 0.9)
@@ -78,6 +79,11 @@ camera = NodePath("../Camera")
 [node name="Combat" type="Node3D" parent="." node_paths=PackedStringArray("player", "camera")]
 script = ExtResource("7_combat")
 player = NodePath("../Player")
+camera = NodePath("../Camera")
+
+[node name="Clouds" type="Node3D" parent="." node_paths=PackedStringArray("seascape", "camera")]
+script = ExtResource("9_clouds")
+seascape = NodePath("../Seascape")
 camera = NodePath("../Camera")
 
 [node name="Departure" type="Node3D" parent="." node_paths=PackedStringArray("player", "seascape", "camera")]
