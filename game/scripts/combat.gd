@@ -25,6 +25,7 @@ var max_fighters := 32
 var next_power_kind := "spread"
 var campaign_contacts: Array[Area3D] = []
 var projectile_speed_scale := 1.0
+var seascape: Node3D
 var enemy_interval_scale := 1.0
 var fighter_salvos := 3.0
 var _salvo_fraction := 0.0
@@ -65,6 +66,7 @@ var gun_audio: AudioStreamPlayer
 var explosion_audio: AudioStreamPlayer
 
 func _ready() -> void:
+	seascape = get_parent().get_node_or_null("Seascape")
 	player.destroyed.connect(_on_player_destroyed)
 	var mesh := PlaneMesh.new()
 	mesh.size = Vector2(0.68, 0.68)
@@ -107,6 +109,11 @@ func _ready() -> void:
 	pickup = POW.new()
 	add_child(pickup)
 	_build_hud()
+
+func navigate_naval(ship: Node3D, offset: float = 0.0) -> void:
+	if not is_instance_valid(seascape): return
+	ship.position.x = seascape.channel_center(ship.position.z)+offset
+	ship.rotation.y = seascape.channel_heading(ship.position.z)
 
 func screen_bottom() -> float:
 	return camera.project_position(get_viewport().get_visible_rect().size, camera.position.y).z

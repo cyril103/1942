@@ -5,6 +5,7 @@ render_mode unshaded, blend_mix, depth_draw_never, cull_disabled, shadows_disabl
 uniform sampler2D island_atlas : source_color, filter_linear_mipmap, repeat_disable;
 uniform vec2 atlas_cell = vec2(0.0);
 uniform vec3 land_tint : source_color = vec3(1.0);
+uniform vec3 detail_tint : source_color = vec3(1.0);
 uniform float phase_offset = 0.0;
 uniform float coast_blend_lod : hint_range(4.0, 7.0) = 6.0;
 uniform float shallows_strength : hint_range(0.0, 1.0) = 0.72;
@@ -37,6 +38,10 @@ void fragment() {
 		* sin(UV.y * 74.0 - wave_phase);
 	vec3 shallows = texel.rgb * ocean_tint * (0.91 + 0.018 * shimmer);
 	vec3 coastal_water = mix(sea, shallows, shallow_blend * shallows_strength);
-	ALBEDO = mix(texel.rgb * land_tint * 0.96, coastal_water, water_mask);
+	// Low-contrast surf pulses only in the inner shoals; no sticker-like rim.
+	float surf = pow(max(0.0,sin(depth*46.0-wave_phase*2.8+phase_offset)),10.0);
+	float surf_mask = water_mask*shallow_blend*(1.0-smoothstep(0.88,1.0,depth));
+	coastal_water = mix(coastal_water,vec3(0.68,0.85,0.84)*ocean_tint,surf*surf_mask*0.18);
+	ALBEDO = mix(texel.rgb * land_tint * detail_tint * 0.96, coastal_water, water_mask);
 	ALPHA = texel.a * cell_mask;
 }

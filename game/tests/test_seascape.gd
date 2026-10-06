@@ -25,7 +25,7 @@ func _run() -> void:
 	sea.set_physics_process(false)
 	scene.get_node("Player").set_physics_process(false)
 	var initial_count: int = sea.get_child_count()
-	check(sea.islands.size() == 6 and initial_count == 7, "One ocean and a fixed pool of six islands")
+	check(sea.islands.size() == sea.POOL_SIZE and initial_count == sea.POOL_SIZE+1, "One ocean and a fixed pool of islands")
 	var ids: Array[int] = []
 	for island in sea.islands:
 		ids.append(island.get_instance_id())

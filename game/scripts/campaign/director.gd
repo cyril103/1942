@@ -172,8 +172,9 @@ func _spawn_naval(pattern: int) -> void:
 		var ship := NAVAL.new()
 		ship.variant = pattern
 		ship.health = 10+int(mission.sector)*2
-		var half_width := absf(combat.camera.project_position(Vector2.ZERO,combat.camera.position.y).x)
-		ship.position = Vector3((-1.0 if i == 0 else 1.0)*minf(half_width*.38,9.0),0,combat.screen_top()-3-i*4)
+		ship.route_offset = (-1.0 if i == 0 else 1.0)*1.7
+		ship.position = Vector3(0,0,combat.screen_top()-3-i*6)
+		combat.navigate_naval(ship,ship.route_offset)
 		ship.destroyed.connect(_on_naval_destroyed)
 		combat.add_child(ship)
 		navals.append(ship)
@@ -189,6 +190,7 @@ func _spawn_boss(kind: String) -> void:
 	boss.position = Vector3(0,0,-17)
 	boss.defeated.connect(_on_boss_defeated)
 	combat.add_child(boss)
+	if boss.naval: combat.navigate_naval(boss)
 	combat.clear_enemy_bullets()
 	feedback = "ALERTE  /  " + BOSS.NAMES[kind].to_upper()
 	feedback_time = 4.5

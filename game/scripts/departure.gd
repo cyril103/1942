@@ -98,6 +98,11 @@ func _build_shadow() -> void:
 func _on_scrolled(distance: float) -> void:
 	if carrier.visible and not landing_active:
 		carrier.position.z += distance
+		_follow_channel()
+
+func _follow_channel() -> void:
+	carrier.position.x = seascape.channel_center(carrier.position.z)
+	carrier.rotation.y = seascape.channel_heading(carrier.position.z)
 
 
 func _physics_process(delta: float) -> void:
@@ -207,6 +212,7 @@ func begin_landing() -> void:
 	player.invulnerable_time = LANDING_DURATION+2
 	player.bank.show()
 	carrier.position = Vector3(0,0,-26)
+	_follow_channel()
 	carrier.show()
 	contact_shadow.show()
 	set_physics_process(false)
@@ -220,23 +226,26 @@ func advance_landing(delta: float) -> void:
 	landing_time = minf(LANDING_DURATION,landing_time+delta)
 	var t := landing_time
 	carrier.position.z = lerpf(-26,-2,smoothstep(0,3.5,t))
+	_follow_channel()
 	seascape.scroll_speed = lerpf(_cruise_speed,0.5,smoothstep(0,6,t))
 	if t < 2:
 		var u := smoothstep(0,2,t)
-		player.position = landing_start.lerp(Vector3(0,0,8),u)
+		player.position = landing_start.lerp(carrier.to_global(Vector3(0,0,10)),u)
 		player.bank.rotation = Vector3(0,0,clampf(landing_start.x*.06,-.38,.38)*sin(u*PI))
 	elif t < 4.8:
 		var u := (t-2)/2.8
-		player.position = Vector3(0,lerpf(0,DECK_ALTITUDE,smoothstep(0,1,u)),lerpf(8,4,u))
+		player.position = carrier.to_global(Vector3(0,lerpf(0,DECK_ALTITUDE,smoothstep(0,1,u)),lerpf(10,6,u)))
 		# Descent attitude followed by a gentle nose-up flare before touchdown.
 		player.bank.rotation.x = -0.16*sin(u*PI)+0.08*smoothstep(.7,1,u)
 		player.bank.rotation.z = 0
 	else:
 		var u := clampf((t-4.8)/2.2,0,1)
-		player.position = Vector3(0,DECK_ALTITUDE,lerpf(4,-3,1-pow(1-u,3)))
+		player.position = carrier.to_global(Vector3(0,DECK_ALTITUDE,lerpf(6,-1,1-pow(1-u,3))))
 		player.bank.rotation.x = lerpf(.08,0,smoothstep(0,.45,u))
 	_update_altitude_scale()
 	contact_shadow.position = Vector3(player.position.x+.04,-2.66,player.position.z+.06)
+	player.bank.rotation.y = lerp_angle(0,carrier.rotation.y,smoothstep(0,2,t))
+	contact_shadow.rotation.y = player.bank.rotation.y
 	contact_shadow.scale = player.bank.scale
 	_shadow_material.set_shader_parameter("opacity",0.25)
 	_shadow_material.set_shader_parameter("softness",.04+maxf(0,player.position.y-DECK_ALTITUDE)*.025)

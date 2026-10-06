@@ -1,13 +1,13 @@
 {
-	"checks": 2921,
+	"checks": 4377,
 	"failures": [],
-	"recycles": 230,
-	"scenery_nodes": 7,
+	"recycles": 285,
+	"scenery_nodes": 11,
 	"simulated_minutes": 30,
 	"variants_sampled": [
-		267,
-		280,
-		273,
-		260
+		451,
+		451,
+		449,
+		449
 	]
 }

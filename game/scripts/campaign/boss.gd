@@ -79,6 +79,7 @@ func advance(delta: float, director: Node) -> void:
 	hit_material.set_shader_parameter("strength",flash_time/0.07)
 	for prop in props: prop.rotate_z(delta*55)
 	if dying:
+		if naval: combat.navigate_naval(self)
 		death_age += delta
 		visual.rotation.z += delta*0.13
 		while blast_cursor < 10 and death_age >= blast_cursor*0.18:
@@ -93,6 +94,7 @@ func advance(delta: float, director: Node) -> void:
 		return
 	if age < 4:
 		position.z = lerpf(-17.0,-6.3,smoothstep(0,4,age))
+		if naval: combat.navigate_naval(self)
 		return
 	collision_layer = 2
 	phase = mini(2,int((1-float(health)/max_health)*3))
@@ -102,6 +104,7 @@ func advance(delta: float, director: Node) -> void:
 	amplitude = minf(half_width*(.16 if naval else .43),4.0 if naval else (12.0 if kind=="ace" else 10.0))
 	position.x = sin((age-4)*frequency)*amplitude
 	position.z = -6.3+sin((age-4)*0.33)*0.65
+	if naval: combat.navigate_naval(self,sin((age-4)*frequency)*1.2)
 	if not naval:
 		visual.rotation.z = -cos((age-4)*frequency)*0.22
 		if kind == "ace":

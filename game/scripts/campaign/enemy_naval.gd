@@ -11,6 +11,7 @@ var visual: Node3D
 var flare: MeshInstance3D
 var hit_material: ShaderMaterial
 var hit_time := 0.0
+var route_offset := 0.0
 
 func _ready() -> void:
 	collision_layer = 2
@@ -57,6 +58,7 @@ func advance(delta: float, combat: Node) -> void:
 	if not alive: return
 	age += delta
 	position.z += delta*1.7
+	combat.navigate_naval(self,route_offset)
 	visual.rotation.z = sin(age*1.5)*0.02
 	hit_time = maxf(0,hit_time-delta)
 	hit_material.set_shader_parameter("strength",hit_time/0.08)
