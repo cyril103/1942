@@ -25,6 +25,9 @@ var max_fighters := 32
 var next_power_kind := "spread"
 var campaign_contacts: Array[Area3D] = []
 var projectile_speed_scale := 1.0
+var enemy_interval_scale := 1.0
+var fighter_salvos := 3.0
+var _salvo_fraction := 0.0
 var special_enabled := true
 var next_special := 12.0
 var special_count := 0
@@ -172,6 +175,7 @@ func spawn_wave() -> void:
 		var profile := (index + wave_count - 1) % 4
 		var side := -1.0 if index < 2 else 1.0
 		var enemy := ENEMY.new()
+		enemy.shot_limit = next_fighter_shot_limit()
 		enemy.flight_speed = speeds[profile]
 		var lane: float = lerpf(-0.93,0.93,float(index)/7.0) if dense_waves else lanes[index]
 		if dense_waves: side = signf(lane)
@@ -196,6 +200,7 @@ func _spawn_hayabusa(half_width: float) -> void:
 	for slot in range(8 if dense_waves else 4):
 		var index := slot % 4
 		var enemy := HAYABUSA.new()
+		enemy.shot_limit = next_fighter_shot_limit()
 		enemy.side = -1.0 if index % 2 == 0 else 1.0
 		enemy.flight_speed = [11.0, 12.0, 11.5, 12.5][index]
 		enemy.roll_duration = [1.25, 1.40, 1.30, 1.45][index]
@@ -211,6 +216,16 @@ func _spawn_hayabusa(half_width: float) -> void:
 		enemy.destroyed.connect(_on_enemy_destroyed)
 		add_child(enemy)
 		enemies.append(enemy)
+
+func next_fighter_shot_limit() -> int:
+	# Distribute extra rounds across the formation rather than upgrading every
+	# aircraft at once at an arbitrary mission boundary.
+	var count := int(floor(fighter_salvos))
+	_salvo_fraction += fighter_salvos-count
+	if _salvo_fraction >= 0.99999:
+		count += 1
+		_salvo_fraction = maxf(0.0,_salvo_fraction-1.0)
+	return clampi(count,1,3)
 
 func fire_enemy(enemy: Area3D) -> void:
 	if game_over or not player.alive:

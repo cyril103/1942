@@ -14,6 +14,7 @@ var alive := true
 var age := 0.0
 var loop_time := 0.0
 var shot_count := 0
+var shot_limit := 3
 var shot_cooldown := 0.0
 var visual: Node3D
 var propeller: Node3D
@@ -87,7 +88,7 @@ func advance(delta: float, combat: Node) -> void:
 		target_bank = -clampf(atan(flight_speed * rate / 9.8), -0.65, 0.65)
 		heading = next_heading
 		shot_cooldown -= delta
-		if position.z >= loop_z - flight_speed * 0.68 and shot_count < 3 and shot_cooldown <= 0:
+		if position.z >= loop_z - flight_speed * 0.68 and shot_count < shot_limit and shot_cooldown <= 0:
 			combat.fire_enemy(self)
 			shot_count += 1
 			shot_cooldown = 0.28 if combat.dense_waves else 0.20

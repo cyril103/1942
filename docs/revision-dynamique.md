@@ -65,3 +65,11 @@ Deux nouveaux environnements originaux générés avec l'outil intégré image_g
 Le hangar affiche désormais les appareils, la sélection active, les statistiques calculées avec les améliorations, les pièces et des fiches d'équipement illustrées. Le briefing affiche une carte tactique animée indicative, l'appareil effectivement sélectionné, le texte de mission, les conditions de médaille et les commandes. Tous les menus gardent leurs callbacks de navigation et d'achat, et le fond océan revient lorsqu'on quitte ces deux salles.
 
 Validation : 20 contrôles de navigation, sélection, achat, conservation de la mission et position des boutons. Captures GPU à 1920×1080 revues pour hangar, première mission et mission 32. Les assets sont embarqués dans l'export Windows.
+
+## Progression des tirs ennemis — 6 octobre 2026
+
+La pression dépend désormais du numéro de mission, indépendamment des achats : le joueur sans amélioration bénéficie du même début accessible. Les huit chasseurs et leurs trajectoires sont conservés. En difficulté normale, chaque chasseur tire une fois au niveau 1 ; les tirs supplémentaires sont répartis entre avions, progressivement jusqu'à trois tirs au niveau 20. Mesures sur vagues complètes Zero/Hayabusa : 8/8 projectiles en mission 1, 10/11 en mission 4, 13/14 en mission 8, 17/17 en mission 12, 24/24 en missions 20 et 32.
+
+Le délai entre salves des bombardiers, navires et boss passe progressivement de 1,9 fois à 1 fois son ancienne valeur. La vitesse des projectiles reçoit un multiplicateur de 0,82 à 1, en plus de la pression de mission existante. Les modes facile et difficile conservent leurs différences et ajustent aussi la fréquence. Les boss des missions 1–4 sont limités à trois tirs en éventail et un tir par canon latéral ; missions 5–8 : cinq et deux. Les anneaux arrivent à partir de la mission 9. Les avertissements visuels existants sont conservés.
+
+Validation : 150 contrôles de progression (32 niveaux et trois difficultés, vraies vagues, sorties de trajectoire, cadence navale et motifs de boss à six jalons), plus les 60 contrôles de régression dynamique. Script : `game/tests/test_difficulty_progression.gd`. Les mesures de densité utilisent des ennemis laissés vivants ; en jouant, les éliminer avant leur attaque réduit encore les tirs.

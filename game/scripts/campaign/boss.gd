@@ -119,16 +119,16 @@ func advance(delta: float, director: Node) -> void:
 		if cooldown <= 0 and director.player.alive:
 			telegraph = 0.6
 			telegraph_target = director.player.global_position
-			cooldown = 1.55-phase*0.18
+			cooldown = (1.55-phase*0.18)*director.combat.enemy_interval_scale
 
 func _fire(director: Node) -> void:
 	volley += 1
 	var origin := global_position+Vector3(0,0.22,1.0)
 	var aim := Vector3(telegraph_target.x-origin.x,0,telegraph_target.z-origin.z).normalized()
 	var sector: int = director.mission.sector
-	var count := 3+phase*2
+	var count := mini(3+phase*2,int(director.balance.boss_fan))
 	var speed := 6.2+sector*0.25
-	if phase == 2 and volley%3 == 0:
+	if phase == 2 and volley%3 == 0 and director.balance.boss_ring:
 		# The rotating ring always retains a wide safe gap toward the bottom.
 		for i in range(12):
 			if i in [2,3]: continue
@@ -143,7 +143,7 @@ func _fire(director: Node) -> void:
 	if kind in ["destroyer","battleship"] and phase >= 1:
 		for side in [-1,1]:
 			var gun_origin := origin+Vector3(side*0.75,0,2.0)
-			for i in range(2+phase):
+			for i in range(mini(2+phase,int(director.balance.boss_flank))):
 				var angle: float = side*(0.22+i*0.23)+sin(volley*0.7)*0.2
 				var direction := Vector3(sin(angle),0,cos(angle))
 				director.combat._launch_enemy_round(gun_origin,gun_origin+direction*10,speed*0.8)

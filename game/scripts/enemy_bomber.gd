@@ -142,7 +142,7 @@ func advance(delta: float, combat: Node) -> void:
 		if combat.player.alive and to_player.normalized().dot(-global_basis.z) > 0.3:
 			combat.fire_bomber(self)
 			muzzle_time = 0.085
-			cooldown = 1.15
+			cooldown = 1.15*combat.enemy_interval_scale
 
 func get_rear_muzzles() -> Array[Vector3]:
 	var positions: Array[Vector3] = []

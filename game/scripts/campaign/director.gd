@@ -34,6 +34,7 @@ var start_score := 0
 var first_takeoff := true
 var reinforcement_time := 7.5
 var defeat_time := 0.0
+var balance: Dictionary
 
 func _ready() -> void:
 	combat = cockpit.combat
@@ -48,7 +49,10 @@ func _ready() -> void:
 	combat.bombers_enabled = false
 	combat.special_enabled = false
 	combat.remaining_lives = int(profile.data.run_lives)
-	combat.projectile_speed_scale = [0.88,1.0,1.15][profile.data.difficulty]*float(mission.pressure)
+	balance = preload("res://scripts/campaign/balance.gd").settings(int(mission.id),int(profile.data.difficulty))
+	combat.projectile_speed_scale = [0.88,1.0,1.15][profile.data.difficulty]*float(mission.pressure)*float(balance.speed)
+	combat.enemy_interval_scale = float(balance.interval)
+	combat.fighter_salvos = float(balance.salvos)
 	var aircraft: int = profile.data.aircraft
 	player.configure_aircraft(aircraft)
 	weapons.configure_aircraft(aircraft)

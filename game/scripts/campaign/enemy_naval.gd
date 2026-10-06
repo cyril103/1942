@@ -79,7 +79,7 @@ func advance(delta: float, combat: Node) -> void:
 		if cooldown <= 0 and combat.player.alive:
 			aim = combat.player.global_position
 			warning_time = 0.5
-			cooldown = 3.1-variant*0.2
+			cooldown = (3.1-variant*0.2)*combat.enemy_interval_scale
 
 func take_damage(amount: int) -> void:
 	if not alive or amount <= 0: return

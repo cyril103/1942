@@ -81,12 +81,12 @@ func advance(delta: float, combat: Node) -> void:
 		bank = lerpf(bank,-clampf(atan(flight_speed*turn_rate/9.8),-0.85,0.85),1.0-exp(-delta*5.0))
 		visual.rotation.z = bank
 		shot_cooldown -= delta
-		if maneuver_time >= 0.12 and shot_count < 3 and shot_cooldown <= 0:
+		if maneuver_time >= 0.12 and shot_count < shot_limit and shot_cooldown <= 0:
 			combat.fire_enemy(self)
 			shot_count += 1
 			shot_cooldown = 0.26 if combat.dense_waves else 0.18
 			flash_time = 0.065
-		if shot_count == 3 and absf(heading) < 0.06 and position.z >= attack_target.z:
+		if shot_count >= shot_limit and absf(heading) < 0.06 and position.z >= attack_target.z:
 			attack_phase = AttackPhase.EXIT
 			phase = Phase.EXIT
 	else:
