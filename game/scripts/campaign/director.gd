@@ -50,6 +50,8 @@ func _ready() -> void:
 	combat.remaining_lives = int(profile.data.run_lives)
 	combat.projectile_speed_scale = [0.88,1.0,1.15][profile.data.difficulty]*float(mission.pressure)
 	var aircraft: int = profile.data.aircraft
+	player.configure_aircraft(aircraft)
+	weapons.configure_aircraft(aircraft)
 	player.speed = [12.0,14.0,10.4][aircraft]
 	player.max_health = [2,2,3][aircraft]+int(profile.data.upgrades[1])
 	player.health = player.max_health

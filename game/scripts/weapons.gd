@@ -9,6 +9,7 @@ const MAX_LIFETIME := 3.0
 const ENEMY_MASK := 2
 const LASER_WIDTH := 0.96
 const LASER_SAMPLES := 9
+const NOSE_FAN_DURATION := 0.06
 const MUZZLES := [Vector3(-0.43875, 0.0225, -0.2925), Vector3(0.43875, 0.0225, -0.2925)]
 
 @export var player: Node3D
@@ -17,6 +18,7 @@ const MUZZLES := [Vector3(-0.43875, 0.0225, -0.2925), Vector3(0.43875, 0.0225, -
 var projectiles: Array[MeshInstance3D] = []
 var lifetimes := PackedFloat32Array()
 var velocities := PackedVector3Array()
+var opening_offsets := PackedVector3Array()
 var spread_enabled := false
 var power_type := "none"
 var laser: MeshInstance3D
@@ -36,6 +38,21 @@ var _cooldown := 0.0
 var _flash_time := 0.0
 var _query := PhysicsRayQueryParameters3D.new()
 var audio: Node
+var muzzle_positions: Array = MUZZLES.duplicate()
+var laser_nose := -0.55
+var nose_fan := false
+
+func configure_aircraft(index: int) -> void:
+	nose_fan = index == 1
+	muzzle_positions = MUZZLES.duplicate()
+	laser_nose = -0.55
+	if index == 1:
+		muzzle_positions = [Vector3(-.035,.03,-.69),Vector3(.035,.03,-.69)]
+		laser_nose = -.71
+	elif index == 2:
+		muzzle_positions = [Vector3(-.414,-.075,-.24),Vector3(.414,-.075,-.24)]
+		laser_nose = -.78
+	for i in range(flashes.size()): flashes[i].position = muzzle_positions[i]+Vector3(0,.015,-.0975)
 
 
 func _ready() -> void:
@@ -69,6 +86,7 @@ func _ready() -> void:
 	mesh.material = material
 	lifetimes.resize(CAPACITY)
 	velocities.resize(CAPACITY)
+	opening_offsets.resize(CAPACITY)
 	velocities.fill(Vector3(0,0,-SPEED))
 	for index in range(CAPACITY):
 		var shot := MeshInstance3D.new()
@@ -119,6 +137,16 @@ func _physics_process(delta: float) -> void:
 		var shot := projectiles[index]
 		var previous := shot.global_position
 		shot.position += velocities[index] * delta
+		# Open from the P-38 nose into the same lanes as wing-mounted guns.
+		# Offset is fixed at launch, so steering never drags rounds already fired.
+		var age := MAX_LIFETIME-lifetimes[index]
+		if age < NOSE_FAN_DURATION and not opening_offsets[index].is_zero_approx():
+			var before := smoothstep(0.0,NOSE_FAN_DURATION,age)
+			var after := smoothstep(0.0,NOSE_FAN_DURATION,age+delta)
+			shot.position += opening_offsets[index]*(after-before)
+		var travel := shot.global_position-previous
+		if travel.length_squared() > 0.000001:
+			shot.rotation.y = -atan2(travel.x,-travel.z)
 		lifetimes[index] -= delta
 		# Sweep the entire segment, on the gameplay plane regardless of bank.
 		_query.from = Vector3(previous.x, 0.0, previous.z)
@@ -153,13 +181,17 @@ func _fire_salvo() -> void:
 		return
 	audio.play_salvo()
 	for barrel in range(count):
-		var muzzle: Vector3 = MUZZLES[barrel / 2 if spread_enabled else barrel]
+		var muzzle: Vector3 = muzzle_positions[barrel / 2 if spread_enabled else barrel]
 		var angle := deg_to_rad([-15.0,-5.0,5.0,15.0][barrel]) if spread_enabled else 0.0
 		for index in range(CAPACITY):
 			if lifetimes[index] > 0.0:
 				continue
 			var shot := projectiles[index]
 			shot.global_position = player.bank.to_global(muzzle)
+			opening_offsets[index] = Vector3.ZERO
+			if nose_fan:
+				var side := barrel / 2 if spread_enabled else barrel
+				opening_offsets[index].x = (MUZZLES[side].x-muzzle.x)*player.bank.global_basis.x.x
 			velocities[index] = Vector3(sin(angle),0,-cos(angle))*SPEED
 			shot.rotation.y = -angle
 			shot.scale = Vector3(1.45,1,1.18) if spread_enabled else Vector3.ONE
@@ -217,7 +249,7 @@ func _update_laser(delta: float) -> void:
 		laser_audio.stop()
 		return
 	if not laser_audio.playing: laser_audio.play()
-	var origin := player.global_position+Vector3(0,0,-0.55)
+	var origin := player.global_position+Vector3(0,0,laser_nose)
 	var end := Vector3(origin.x,0,camera.project_position(Vector2.ZERO,camera.position.y).z-1)
 	# Parallel sweeps cover the luminous core, select the closest obstruction once.
 	# A single target takes damage per tick, irrespective of how many rays touch it.

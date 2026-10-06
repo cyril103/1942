@@ -20,6 +20,43 @@ var _bounds_initialized: bool = false
 var controls_enabled: bool = true
 var alive: bool = true
 var invulnerable_time := 0.0
+var aircraft_index := 0
+var propellers: Array[Node3D] = []
+
+func configure_aircraft(index: int) -> void:
+	aircraft_index = clampi(index,0,2)
+	if aircraft_index == 0: return
+	var old := bank.get_node("Aircraft") as Node3D
+	var pose := old.transform
+	bank.remove_child(old)
+	old.queue_free()
+	var resource := "res://assets/player-fleet/p38.glb" if aircraft_index == 1 else "res://assets/player-fleet/f4u.glb"
+	var model := (load(resource) as PackedScene).instantiate() as Node3D
+	model.name = "Aircraft"
+	model.transform = pose
+	bank.add_child(model)
+	if aircraft_index == 1:
+		for node in model.find_children("*","MeshInstance3D",true,false):
+			for surface in range(node.mesh.get_surface_count()):
+				var source = node.mesh.surface_get_material(surface)
+				if source is StandardMaterial3D and source.resource_name == "Aircraft_skin":
+					var tuned := source.duplicate() as StandardMaterial3D
+					tuned.albedo_color = Color(.62,.66,.72)
+					tuned.metallic = .35
+					tuned.roughness = .58
+					node.set_surface_override_material(surface,tuned)
+	propellers.clear()
+	for name_text in ["Propeller_L","Propeller_R","Propeller_Center"]:
+		var prop := model.find_child(name_text,true,false) as Node3D
+		if prop != null: propellers.append(prop)
+	_bounds_initialized = false
+	_collect_bounds(model)
+	_keep_inside_screen()
+
+func _process(delta: float) -> void:
+	if not alive: return
+	for i in range(propellers.size()):
+		propellers[i].rotate_z(delta*65.0*(-1.0 if aircraft_index==1 and i==1 else 1.0))
 
 
 func take_damage(amount: int) -> void:

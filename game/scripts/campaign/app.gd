@@ -122,6 +122,7 @@ func _build_theme() -> void:
 	theme = t
 
 func _clear_menu(title: String, subtitle: String, dark := true) -> void:
+	background.texture = load("res://assets/campaign/title-ocean.png")
 	for child in design.get_children():
 		design.remove_child(child)
 		child.queue_free()
@@ -217,41 +218,13 @@ func _show_briefing(number: int) -> void:
 	page = "briefing"
 	var m: Dictionary = missions[number-1]
 	_clear_menu("MISSION %02d  /  %s" % [number,str(m.region).to_upper()],str(m.title).to_upper())
-	_label(m.title,Vector2(94,285),Vector2(1080,100),48,GOLD,true)
-	_label(m.briefing,Vector2(94,420),Vector2(920,180),33,Color("d6e0e2"))
-	var objective := "Rejoindre le point de sortie en vie."
-	if m.boss != "": objective = "Détruire le commandant du secteur."
-	var mastery := "Détruire %d adversaires." % int(m.quota)
-	if m.objective == "strike": mastery = "Couler %d navires." % int(m.quota)
-	if m.boss != "": mastery = "Détruire le boss."
-	_label("OBJECTIF PRINCIPAL\n"+objective+"\n\nMÉDAILLE D'OR\nAucune vie perdue, deux impacts au maximum.\n"+mastery,Vector2(94,628),Vector2(920,250),28,MUTED)
-	_label("PRÉPARATION DU VOL",Vector2(1170,289),Vector2(600,48),31,GOLD)
-	_label("APPAREIL   %s\nDIFFICULTÉ   %s\n\nFlèches / WASD / ZQSD : piloter\nEspace : tir continu\nMaj : déplacement précis\nX : bombe d'urgence\nC : frappe spéciale à 100%%\nÉchap : pause\n\nManette : stick, A, B, X et LB." % [PROFILE.AIRCRAFT[profile.data.aircraft],PROFILE.DIFFICULTIES[profile.data.difficulty]],Vector2(1170,365),Vector2(610,440),29,Color("d6e0e2"))
-	_button("DÉCOLLER",Vector2(94,910),Vector2(360,64),_launch.bind(number))
-	_button("HANGAR",Vector2(479,910),Vector2(260,64),_show_hangar)
-	_button("RETOUR",Vector2(764,910),Vector2(260,64),_show_missions)
+	preload("res://scripts/campaign/carrier_menu.gd").new().briefing(self,m)
 	_focus_first()
 
 func _show_hangar() -> void:
 	page = "hangar"
-	_clear_menu("HANGAR","%d PIÈCES DISPONIBLES  •  Les premières victoires et les nouvelles médailles financent les améliorations." % profile.data.credits)
-	var descriptions := ["POLYVALENT\nVitesse 9  •  Coque 2  •  Bombes 2\nUn équilibre entre mobilité et résistance.","INTERCEPTEUR\nVitesse 11  •  Coque 2  •  Bombes 2\nTir plus rapide, esquives plus vives.","ASSAUT\nVitesse 7,8  •  Coque 3  •  Bombes 3\nPlus de réserve pour les engagements lourds."]
-	for i in range(3):
-		var x := 94+i*580
-		_label(PROFILE.AIRCRAFT[i].to_upper(),Vector2(x,290),Vector2(540,50),37,GOLD,true)
-		_label(descriptions[i],Vector2(x,370),Vector2(510,180),28,MUTED)
-		_button("SÉLECTIONNÉ" if profile.data.aircraft == i else "CHOISIR",Vector2(x,555),Vector2(510,56),_select_aircraft.bind(i))
-	var names := ["ARMEMENT","BLINDAGE","CONDENSATEUR"]
-	var details := ["Cadence +6% par rang. Rang III : dégâts doublés.","Un point de coque supplémentaire par rang.","La frappe se recharge plus vite à chaque destruction."]
-	for i in range(3):
-		var x := 94+i*580
-		_label("%s  /  %d–3" % [names[i],profile.data.upgrades[i]],Vector2(x,684),Vector2(530,42),30,GOLD)
-		_label(details[i],Vector2(x,746),Vector2(510,78),25,MUTED)
-		var maximum: bool = int(profile.data.upgrades[i]) >= 3
-		var cost: int = profile.upgrade_cost(i)
-		_button("RANG MAXIMUM" if maximum else "AMÉLIORER  /  %d PIÈCES" % cost,Vector2(x,846),Vector2(510,56),_buy.bind(i),maximum or profile.data.credits<cost)
-	_button("RETOUR AU BRIEFING",Vector2(94,936),Vector2(360,56),_show_briefing.bind(selected_mission))
-	_button("ACCUEIL",Vector2(479,936),Vector2(240,56),_show_main)
+	_clear_menu("HANGAR D'ESCADRILLE","PONT INFÉRIEUR  /  PRÉPARATION DES APPAREILS")
+	preload("res://scripts/campaign/carrier_menu.gd").new().hangar(self)
 	_focus_first()
 
 func _select_aircraft(index: int) -> void:

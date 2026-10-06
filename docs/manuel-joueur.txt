@@ -38,3 +38,6 @@ Vos traceurs sont cyan/blanc ; les projectiles ennemis sont rouge/orange avec un
 
 VIES ET BLINDAGE
 La jauge BLINDAGE indique les impacts restants avant destruction. Perdre un avion consomme une vie. S il reste des vies, retour apres 1,5 seconde dans la mission en cours, blindage restaure, avec clignotement et protection pendant 4 secondes. Le score et l avancement de la mission sont conserves. A zero vie : GAME OVER, bilan puis choix explicite de reessayer au dernier point de sauvegarde ou de revenir a l accueil.
+
+FLOTTE JOUABLE
+Vanguard : appareil polyvalent original. Interceptor : Lockheed P-38 Lightning, plus rapide, canons de nez. Bulwark : Chance Vought F4U Corsair, blindage renforce, trois bombes, tir depuis les ailes. Choisir le profil au hangar remplace aussi le modele utilise en mission.

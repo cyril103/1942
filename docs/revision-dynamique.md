@@ -56,3 +56,12 @@ Les nouvelles icônes sont des SVG originaux ; le shader et le son du laser sont
 - Validation : 17 contrôles du cycle complet passent sur GPU et sur le paquet Windows (dégâts, trois vies, même mission/score, clignotement, immunité puis expiration, Game Over, retry). Campagne : 940 contrôles passent. Régression dynamique : 60 contrôles passent.
 - Captures revues : `renders/lives-protected.png` et `renders/lives-game-over.png`.
 - SHA256 Windows : `89A97AFC1FC92E9BCF9AA1CE23188CAFDAEE4B55EC11C475D52C71FD034DC7C1`.
+
+
+## Hangar et briefing — 6 octobre 2026
+
+Deux nouveaux environnements originaux générés avec l'outil intégré image_gen : hangar naval industriel et salle à cartes de porte-avions. Images et prompts enregistrés dans `game/assets/campaign/carrier-ui/` (`prompts.txt`). Trois portraits transparents des profils Vanguard, Interceptor et Bulwark rendus avec Blender à partir du modèle existant et de son éclairage HDR ; script reproductible `blender/render_carrier_cards.py`. Les trois profils conservent le même modèle d'avion en jeu, montré sous trois angles. Six icônes SVG originales pour équipements, objectifs, médaille et appareil.
+
+Le hangar affiche désormais les appareils, la sélection active, les statistiques calculées avec les améliorations, les pièces et des fiches d'équipement illustrées. Le briefing affiche une carte tactique animée indicative, l'appareil effectivement sélectionné, le texte de mission, les conditions de médaille et les commandes. Tous les menus gardent leurs callbacks de navigation et d'achat, et le fond océan revient lorsqu'on quitte ces deux salles.
+
+Validation : 20 contrôles de navigation, sélection, achat, conservation de la mission et position des boutons. Captures GPU à 1920×1080 revues pour hangar, première mission et mission 32. Les assets sont embarqués dans l'export Windows.
