@@ -109,7 +109,7 @@ func _pattern(kind: String, sector: int, rapid := false) -> void:
 	combat.free()
 
 func _interruptions() -> void:
-	for interruption in ["jam","destroy","behind","above","side","dead_pilot","takeoff","game_over"]:
+	for interruption in ["jam","destroy","near_pilot","below","above","side","dead_pilot","takeoff","game_over"]:
 		var combat := _range()
 		var target := _target(combat,"battery",7)
 		check(_wait_for_warning(target,combat) and _wait_for_round(target,combat),"Battery begins a burst before interruption: "+interruption)
@@ -117,7 +117,8 @@ func _interruptions() -> void:
 		match interruption:
 			"jam": target.jammed = true
 			"destroy": target.take_damage(target.health)
-			"behind": target.position.z = 8
+			"near_pilot": target.position = combat.player.position+Vector3(0,0,.5)
+			"below": target.position.z = 20
 			"above": target.position.z = -20
 			"side": target.position.x = 100
 			"dead_pilot": combat.player.alive = false
@@ -209,6 +210,20 @@ func _entry_and_endurance() -> void:
 		check(not target.alive,kind+" has finite armor and can still be destroyed normally")
 		combat.free()
 
+func _passed_guns() -> void:
+	for kind in ["battery","bunker"]:
+		var combat := _range()
+		var target := _target(combat,kind,0)
+		combat.player.position = Vector3(2,0,-10)
+		check(_wait_for_warning(target,combat),kind+" announces an attack after the player passes its row")
+		var announced_at := combat.clock
+		check(_wait_for_round(target,combat),kind+" can aim back toward a pilot near the top edge")
+		if not combat.rounds.is_empty():
+			var shot: Dictionary = combat.rounds[0]
+			check(float(shot.time)-announced_at>=.35,kind+" keeps a readable warning when aiming upward")
+			check(shot.target.z<shot.origin.z,kind+" actually fires toward the passed pilot instead of away")
+		combat.free()
+
 func _run() -> void:
 	for kind in ["battery","bunker"]:
 		for sector in [0,3,7]: _pattern(kind,sector)
@@ -217,6 +232,7 @@ func _run() -> void:
 	_silent_targets_and_pool()
 	_progression()
 	_entry_and_endurance()
+	_passed_guns()
 	await process_frame
 	if "--packaged" not in OS.get_cmdline_user_args():
 		FileAccess.open("res://tests/ground-dca-results.json",FileAccess.WRITE).store_string(JSON.stringify({"checks":checks,"failures":failures,"patterns":summaries},"\t"))

@@ -96,8 +96,20 @@ func _show_challenges(mode: String) -> void:
 	_focus_first()
 
 func _start_mode(mode: String, number: int) -> void:
-	play_mode = mode
-	_launch(number)
+	_launch(number,mode)
+
+func _can_launch(number: int, mode: String) -> bool:
+	if mode not in ["campaign","arcade","practice"] or number < 1 or number > missions.size(): return false
+	if mode=="campaign": return number <= int(profile.data.unlocked)
+	if mode=="practice": return preload("res://scripts/campaign/boss.gd").MODELS.has(str(missions[number-1].get("boss","")))
+	return true
+
+func _campaign_context(number: int) -> void:
+	# The hangar, map and briefing always display the persistent campaign profile.
+	# Keep their launch context aligned, including when leaving an isolated mode.
+	play_mode = "campaign"
+	session_profile = profile
+	selected_mission = clampi(number,1,mini(int(profile.data.unlocked),missions.size()))
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -264,7 +276,7 @@ func _save() -> void:
 func _show_main() -> void:
 	_dispose_run()
 	page = "main"
-	play_mode = "campaign"
+	_campaign_context(int(profile.data.next_mission))
 	if is_instance_valid(music): music.set_mode("menu")
 	_clear_menu("PACIFIC STRIKE", "CAMPAGNE 1942  /  32 MISSIONS  /  8 SECTEURS",false)
 	var completed: int = profile.data.records.size()
@@ -280,10 +292,12 @@ func _show_main() -> void:
 	_button("ENTRAÎNEMENT AUX BOSS",Vector2(1290,667),Vector2(510,58),_show_challenges.bind("practice"))
 	_label("CARNET DE VOL",Vector2(1290,792),Vector2(520,45),26,GOLD)
 	_label("%02d / 32 missions accomplies\nRecord  %08d\n%d pièces disponibles au hangar" % [completed,profile.data.high_score,profile.data.credits],Vector2(1290,842),Vector2(520,120),29,Color("dae5e7"))
-	if not profile.data.records.is_empty(): _button("NOUVELLE CAMPAGNE",Vector2(1290,950),Vector2(510,52),_confirm_new_campaign)
+	if not profile.data.records.is_empty() or profile.last_error==ERR_FILE_CORRUPT: _button("NOUVELLE CAMPAGNE",Vector2(1290,950),Vector2(510,52),_confirm_new_campaign)
+	if profile.last_error==ERR_FILE_CORRUPT: notice.text = "SAUVEGARDE ILLISIBLE — fichiers conservés. Progression non enregistrée. Nouvelle campagne permet de repartir après confirmation."
 	_focus_first()
 
 func _show_missions() -> void:
+	_campaign_context(selected_mission)
 	page = "missions"
 	_clear_menu("CARTE DES OPÉRATIONS","Huit secteurs. Les missions accomplies restent rejouables pour améliorer leur médaille.")
 	for i in range(32):
@@ -302,8 +316,8 @@ func _show_missions() -> void:
 	_focus_first()
 
 func _show_briefing(number: int) -> void:
-	if number < 1 or number > profile.data.unlocked: return
-	selected_mission = number
+	if not _can_launch(number,"campaign"): return
+	_campaign_context(number)
 	page = "briefing"
 	var m: Dictionary = missions[number-1]
 	_clear_menu("MISSION %02d  /  %s" % [number,str(m.region).to_upper()],str(m.title).to_upper())
@@ -311,6 +325,7 @@ func _show_briefing(number: int) -> void:
 	_focus_first()
 
 func _show_hangar() -> void:
+	_campaign_context(selected_mission)
 	page = "hangar"
 	_clear_menu("HANGAR D'ESCADRILLE","PONT INFÉRIEUR  /  PRÉPARATION DES APPAREILS")
 	preload("res://scripts/campaign/carrier_menu.gd").new().hangar(self)
@@ -385,8 +400,13 @@ func _show_credits() -> void:
 	_button("RETOUR",Vector2(94,936),Vector2(280,56),_show_main)
 	_focus_first()
 
-func _launch(number: int) -> void:
+func _launch(number: int, mode := "") -> void:
+	var launch_mode: String = play_mode if mode.is_empty() else mode
+	if not _can_launch(number,launch_mode):
+		if is_instance_valid(notice): notice.text = "Mission indisponible dans ce mode. Choisissez une mission accessible."
+		return
 	_dispose_run()
+	play_mode = launch_mode
 	selected_mission = number
 	page = "playing"
 	menu.hide()
@@ -481,7 +501,9 @@ func _show_result(report: Dictionary) -> void:
 	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else ("MISSION INACCOMPLIE" if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
 	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else ("OBJECTIF NON ATTEINT" if objective_failed else "AUCUNE VIE RESTANTE"),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
 	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.bonus,earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1"))
-	_label("32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est déverrouillée.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre record est enregistré.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde."),Vector2(1210,336),Vector2(590,310),33,MUTED)
+	var summary := "32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est déverrouillée.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre record est enregistré.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde.")
+	if play_mode!="campaign": summary = ("Votre record Arcade est enregistré." if play_mode=="arcade" else "Entraînement terminé.")+"\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée."
+	_label(summary,Vector2(1210,336),Vector2(590,310),33,MUTED)
 	if report.won and selected_mission < 32 and play_mode=="campaign":
 		_button("MISSION SUIVANTE",Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
 	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission))
@@ -497,7 +519,8 @@ func _briefing_after_result(number: int) -> void:
 	_dispose_run()
 	_show_briefing(number)
 func _hangar_after_result() -> void:
-	if result.get("won",false): selected_mission = mini(32,selected_mission+1)
+	if play_mode!="campaign": selected_mission = int(profile.data.next_mission)
+	elif result.get("won",false): selected_mission = mini(missions.size(),selected_mission+1)
 	_dispose_run()
 	_show_hangar()
 func _credits_after_result() -> void:

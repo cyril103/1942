@@ -8,7 +8,7 @@ func _initialize() -> void: _run.call_deferred()
 func _run() -> void:
 	var app = load("res://scenes/campaign.tscn").instantiate()
 	app.testing = true
-	app.profile.path = "res://tests/dynamic-save-test.json"
+	app.profile.path = "user://dynamic-save-test.json"
 	root.add_child(app)
 	current_scene = app
 	await process_frame
@@ -25,7 +25,19 @@ func _run() -> void:
 	FileAccess.open(restored.path,FileAccess.WRITE).store_string(JSON.stringify(legacy))
 	check(restored.load_profile() and restored.data.run_score==1000 and restored.data.power=="spread","Old campaign migrates totals and POW without losing progress")
 	app.profile.save()
-	for m in app.missions: check(m.events.size()>=19,"Each stage has at least 19 encounters")
+	for m in app.missions:
+		if m.get("ground_assault",false):
+			check(m.events.size()>=3 and m.events.all(func(e): return float(e.time)<12.0 and e.kind in ["zero","hayabusa","bomber"]),"Raid %d has a finite air approach before the low-flight handoff" % int(m.id))
+			check(m.boss=="" and m.objective=="ground" and int(m.quota)>0 and int(m.ground_count)>=int(m.quota),"Raid %d provides enough real ground targets for its required objective" % int(m.id))
+			check(m.secondary=="radar" and int(m.secondary_target)==2,"Raid %d exposes its radar disruption objective" % int(m.id))
+		else:
+			check(m.events.size()>=19,"Air mission %d retains its authored encounter budget" % int(m.id))
+		var ordered := true
+		var previous := -1.0
+		for event in m.events:
+			ordered = ordered and float(event.time)>=previous and float(event.time)>=0 and float(event.time)<=float(m.duration)
+			previous = float(event.time)
+		check(ordered,"Mission %d schedules events in a bounded chronological order" % int(m.id))
 	app._launch(2)
 	var cockpit = app.cockpit
 	var d = app.director
@@ -86,7 +98,8 @@ func _run() -> void:
 	for suffix in ["",".bak",".tmp"]:
 		if FileAccess.file_exists(restored.path+suffix): DirAccess.remove_absolute(restored.path+suffix)
 	var report := {"checks":checks,"failures":failures}
-	FileAccess.open("res://tests/dynamic-results.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
+	if "--packaged" not in OS.get_cmdline_user_args():
+		FileAccess.open("res://tests/dynamic-results.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print("DYNAMIC CAMPAIGN: ",report)
 	await create_timer(.2).timeout
 	quit(0 if failures.is_empty() else 1)

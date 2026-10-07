@@ -129,9 +129,12 @@ func advance(delta: float, combat: Node) -> void:
 	if combat.game_over or not is_instance_valid(combat.player) or not combat.player.alive or not combat.player.controls_enabled:
 		_cancel_salvo(0.24+defense_stagger)
 		return
-	# Begin the tell as soon as the gun enters the screen: the former two-unit
-	# inset plus long delay let incoming player fire erase it before any shot.
-	if global_position.z < combat.screen_top()+0.25 or global_position.z > combat.player.global_position.z-1.4:
+	# Visible guns can turn back toward an aircraft that has passed them. A
+	# player-relative Z cutoff created an empty firing range at the top edge.
+	# Keep offscreen fire disabled and a small radial clearance around the pilot
+	# so a gun directly underneath cannot release a point-blank volley.
+	var pilot_distance := Vector2(global_position.x-combat.player.global_position.x,global_position.z-combat.player.global_position.z)
+	if global_position.z < combat.screen_top()+0.25 or global_position.z > combat.screen_bottom()-0.25 or pilot_distance.length_squared() < 1.4*1.4:
 		_cancel_salvo(0.03+defense_stagger)
 		return
 	if _outside_horizontal_view(combat):

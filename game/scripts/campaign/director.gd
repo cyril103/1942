@@ -316,6 +316,7 @@ func _spawn_boss(kind: String) -> void:
 	boss.health = boss.max_health
 	boss.position = Vector3(0,0,-17)
 	boss.defeated.connect(_on_boss_defeated)
+	boss.weak_points_neutralized.connect(func(): complete_objective("boss"))
 	combat.add_child(boss)
 	if boss.naval: combat.navigate_naval(boss)
 	combat.clear_enemy_bullets()
@@ -328,9 +329,12 @@ func spawn_reinforcement() -> void:
 	combat.spawn_wave()
 
 func _on_boss_defeated() -> void:
+	if boss_won: return
 	boss_won = true
 	combat.score += 5000+int(mission.sector)*1000
-	on_kill(5000,"boss")
+	# Killing the hull advances the chain, while only the component signal can
+	# complete the distinct challenge to neutralize both weak points.
+	on_kill(5000,"boss_destroyed")
 	combat.kills += 1
 	combat.clear_enemy_bullets()
 	shake_time = 0.6

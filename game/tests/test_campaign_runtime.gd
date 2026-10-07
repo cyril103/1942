@@ -11,6 +11,7 @@ func _initialize() -> void: _run.call_deferred()
 func _run() -> void:
 	var app = load("res://scenes/campaign.tscn").instantiate()
 	app.testing = true
+	app.profile.path = "user://campaign-runtime-test.json"
 	root.add_child(app)
 	current_scene = app
 	await process_frame
@@ -31,7 +32,7 @@ func _run() -> void:
 	var w = d.weapons
 	p.invulnerable_time = 30
 	check(w.spread_enabled,"Campaign restores POW at mission checkpoint")
-	w.spread_enabled = false
+	w.set_power("none")
 	var recording := AudioEffectRecord.new()
 	recording.format = AudioStreamWAV.FORMAT_16_BITS
 	AudioServer.add_bus_effect(0,recording)
@@ -53,7 +54,11 @@ func _run() -> void:
 	var ship = d.navals[0]
 	ship.position = Vector3(0,0,-3)
 	p.position.x = 0
-	for frame in range(240): await physics_frame
+	for frame in range(240):
+		await physics_frame
+		# The ship follows the real ocean channel and no longer stays at x=0.
+		# Track its actual lane, as this test already does for the boss below.
+		if is_instance_valid(ship) and ship.alive: p.position.x = ship.position.x
 	check(not is_instance_valid(ship) or not ship.alive,"Player bullets destroy a naval collider")
 	d._clear_actors()
 	d._spawn_boss("bomber")
@@ -74,7 +79,8 @@ func _run() -> void:
 	check(p.health==hull-1,"Enemy projectile removes one hull point")
 	recording.set_recording_active(false)
 	var audio := recording.get_recording()
-	audio.save_to_wav("C:/ChatGPT/1942/audio/campaign-mix-validation.wav")
+	if "--packaged" not in OS.get_cmdline_user_args():
+		audio.save_to_wav("C:/ChatGPT/1942/audio/campaign-mix-validation.wav")
 	var peak := 0
 	var bytes := audio.data
 	for offset in range(0,bytes.size(),2): peak=maxi(peak,absi(bytes.decode_s16(offset)))
@@ -82,14 +88,16 @@ func _run() -> void:
 	AudioServer.remove_bus_effect(0,AudioServer.get_bus_effect_count(0)-1)
 	app._show_pause()
 	await RenderingServer.frame_post_draw
-	root.get_texture().get_image().save_png("C:/ChatGPT/1942/renders/campaign-runtime.png")
+	if "--packaged" not in OS.get_cmdline_user_args():
+		root.get_texture().get_image().save_png("C:/ChatGPT/1942/renders/campaign-runtime.png")
 	app._show_main()
 	app.music.stop()
 	for suffix in ["",".bak",".tmp"]:
 		if FileAccess.file_exists(profile.path+suffix): DirAccess.remove_absolute(profile.path+suffix)
 	frame_times.sort()
 	var report := {"checks":checks,"failures":failures,"audio_peak":peak,"sampled_frame_p95_ms":frame_times[int(frame_times.size()*.95)]*1000}
-	FileAccess.open(OUTPUT+"campaign-runtime-results.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
+	if "--packaged" not in OS.get_cmdline_user_args():
+		FileAccess.open(OUTPUT+"campaign-runtime-results.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print("CAMPAIGN RUNTIME: ",report)
 	await create_timer(.3).timeout
 	quit(0 if failures.is_empty() else 1)

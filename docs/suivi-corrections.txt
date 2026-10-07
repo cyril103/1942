@@ -1,0 +1,97 @@
+PACIFIC STRIKE — SUIVI DE LA REVUE DU 7 OCTOBRE 2026
+Branche : jeu_toppissime
+Plan complet : https://github.com/cyril103/1942/issues/23
+
+LOT 1 — FIABILITÉ DES RÈGLES ET DES TESTS
+
+#1 : la DCA visible peut viser un avion qui l'a dépassée. Le départ reste
+annoncé ; une distance radiale minimale évite les tirs à bout portant.
+Les blocages hors champ, brouillage, mort et récupération sont conservés.
+
+#2 : les écrans Hangar / Carte / Briefing utilisent le contexte de campagne
+et son équipement sauvegardé. Rejouer et recommencer gardent leur mode.
+Une mission inaccessible ou un entraînement sans boss reconnu est refusé
+avant de détruire la session active.
+
+#3 : les balayages de canons et de laser reconnaissent une origine située
+dans une cible. Un impact consomme le projectile une seule fois ; le laser
+garde sa cadence et masque son faisceau lorsque la distance est nulle.
+
+#4 : seul le signal de neutralisation des deux composants valide l'objectif
+des points faibles. La mort du corps reste distincte et son callback ne
+peut pas attribuer une deuxième récompense.
+
+#5 : chaque sauvegarde candidate est validée avant conversion, puis chargée
+atomiquement. Un backup récupéré reste protégé pendant la réparation du
+fichier principal. Si les deux fichiers sont illisibles, l'accueil le
+signale et l'écriture est refusée jusqu'à une réinitialisation confirmée
+ou un chargement valide. Les fichiers altérés ne sont pas écrasés.
+
+#21 : les tests distinguent les contrats des missions aériennes et des
+raids. La fixture navale suit le chenal réel et détruit le navire avec
+les projectiles du joueur, dans le délai existant de 240 images physiques.
+Les sorties générées peuvent être supprimées avec l'argument --packaged.
+
+VALIDATION DU LOT 1
+
+Godot 4.7.2, Windows, GTX 1650, rendu OpenGL Compatibility.
+Treize suites : 7 313 assertions, zéro échec. Plusieurs assertions sont
+répétées par image ou configuration : ce total n'est pas un nombre de
+scénarios indépendants.
+
+Suite                         Assertions   Exécution
+test_campaign                        790   rendu réel
+test_life_cycle                       17   rendu réel
+test_toppissime                      106   rendu réel
+test_difficulty_progression          150   rendu réel
+test_lowflight_camera                130   rendu réel
+test_ground_assault                 4997   rendu réel
+test_dynamic_campaign                108   rendu réel
+test_campaign_runtime                 10   rendu réel, physique et audio
+test_combat_regressions              324   rendu réel
+test_profile_recovery                202   headless
+test_session_modes                   165   headless
+test_ground_dca                      206   headless
+test_ground_boundaries               108   headless
+
+Les six suites de référence ont conservé leurs assertions ; seuls leurs
+chemins de fixtures/sorties ont été redirigés vers le dossier local de
+revue pour ne pas modifier les résultats historiques versionnés.
+
+Le test des bords couvre 36 configurations : missions 03 / 31, trois
+avions, quatre coins et centres des bords haut / bas. La DCA a tiré dans
+toutes ces configurations avec les HP réels. Ces essais enregistrent
+les émissions sans blesser le pilote ; ils ne mesurent pas un taux de
+victoire humain. Les tests de salves vérifient séparément les préavis,
+interruptions, pool, brouillage et Game Over.
+
+L'intégration audio a enregistré une crête de 19 097 sur 32 768, avec le
+décollage, la musique et les armes. Cet essai fonctionnel n'est pas un
+benchmark de performances ni une validation d'écoute humaine.
+
+Après drainage différé de la fermeture du test des bords, les treize
+journaux finaux ne contiennent ni ERROR ni WARNING. git diff --check
+ne signale pas d'erreur d'espacement.
+
+Commandes de reproduction des nouvelles suites :
+  Godot --headless --path game --script res://tests/test_profile_recovery.gd
+  Godot --headless --path game --script res://tests/test_session_modes.gd
+  Godot --headless --path game --script res://tests/test_ground_dca.gd -- --packaged
+  Godot --headless --path game --script res://tests/test_ground_boundaries.gd
+  Godot --path game --script res://tests/test_combat_regressions.gd
+  Godot --path game --script res://tests/test_dynamic_campaign.gd -- --packaged
+  Godot --path game --script res://tests/test_campaign_runtime.gd -- --packaged
+
+SUITE DU PLAN — ENCORE À TRAITER
+
+Lot 2 : #6, #7, #8, #9, #10 — HUD, briefing, commandes, textes, Windows.
+Le texte des résultats hors campagne de #9 est déjà corrigé ; les crédits
+musicaux restent à traiter avant de clôturer ce ticket.
+Lot 3 : #11 à #16 — rôles des avions, progression, tactique et confort.
+Lot 4 : #17 à #20 — terrain, lisibilité, son et mesures de régularité.
+Lot 5 : #22 — protocole et parties humaines sur la campagne complète.
+
+Ce lot n'achève pas les 22 tickets. L'export Windows 1.6 existant n'a pas
+été reconstruit pour ces correctifs ; les validations ci-dessus portent
+sur le projet source. Aucun parcours humain intégral de 32 missions ni
+garantie universelle de FPS n'est revendiqué.

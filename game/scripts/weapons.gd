@@ -119,6 +119,9 @@ func _ready() -> void:
 		flashes.append(flash)
 	_query.collision_mask = ENEMY_MASK
 	_query.collide_with_areas = true
+	# Aircraft can overlap their targets: a sweep starting within an Area3D must
+	# still consume the round and count one hit, even before crossing its surface.
+	_query.hit_from_inside = true
 	impact_times.resize(8)
 	var impact_mesh := PlaneMesh.new()
 	impact_mesh.size = Vector2.ONE
@@ -265,7 +268,7 @@ func _update_laser(delta: float) -> void:
 		return
 	if not laser_audio.playing: laser_audio.play()
 	var origin := player.global_position+Vector3(0,0,laser_nose)
-	var end := Vector3(origin.x,0,camera.project_position(Vector2.ZERO,1.0).z-1)
+	var end := Vector3(origin.x,0,minf(origin.z,camera.project_position(Vector2.ZERO,1.0).z-1))
 	# Parallel sweeps cover the luminous core, select the closest obstruction once.
 	# A single target takes damage per tick, irrespective of how many rays touch it.
 	var hit: Dictionary = {}
@@ -280,13 +283,18 @@ func _update_laser(delta: float) -> void:
 			nearest_z = candidate.position.z
 			hit = candidate
 	if not hit.is_empty(): end.z = nearest_z
-	var length := maxf(.1,absf(end.z-origin.z))
+	var distance := maxf(0.0,origin.z-end.z)
+	var length := maxf(.1,distance)
+	# An interior hit is at the muzzle itself. Show the flares there, while
+	# keeping the beam mesh hidden instead of extending it behind the aircraft.
+	laser.visible = distance>.001
 	laser.global_position = (origin+end)*.5+Vector3(0,presentation_altitude+.25,0)
 	laser.scale.z = length
 	laser.material_override.set_shader_parameter("beam_length",length)
 	laser_muzzle.global_position = origin+Vector3(0,presentation_altitude+.3,0)
 	laser_contact.visible = not hit.is_empty()
-	laser_contact.global_position = end+Vector3(0,presentation_altitude+.3,0)
+	var contact: Vector3 = hit.position if not hit.is_empty() else end
+	laser_contact.global_position = contact+Vector3(0,presentation_altitude+.3,0)
 	laser_clock -= delta
 	if laser_clock <= 0:
 		laser_clock += .1*laser_interval_multiplier
@@ -295,7 +303,7 @@ func _update_laser(delta: float) -> void:
 			hits_landed += 1
 			if hit.collider.has_method("take_hit_at"): hit.collider.take_hit_at(2+projectile_damage,hit.position)
 			else: hit.collider.take_damage(2+projectile_damage)
-			_show_impact(end)
+			_show_impact(contact)
 
 func _make_laser_flare(size: float) -> MeshInstance3D:
 	var effect := MeshInstance3D.new()

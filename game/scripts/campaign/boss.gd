@@ -1,5 +1,6 @@
 extends Area3D
 signal defeated
+signal weak_points_neutralized
 const MODELS := {"bomber":"res://assets/enemies/bomber.glb","destroyer":"res://assets/campaign/models/destroyer.glb","squadron":"res://assets/enemies/bomber.glb","fortress":"res://assets/campaign/models/fortress.glb","battleship":"res://assets/campaign/models/battleship.glb","ace":"res://assets/enemies/zero.glb","carrier":"res://assets/campaign/models/carrier.glb","citadel":"res://assets/campaign/models/fortress.glb"}
 const NAMES := {"bomber":"KESTREL • bombardier de commandement","destroyer":"KUROGANE • croiseur lourd","squadron":"RAIDEN • escadre de choc","fortress":"TENRYU • forteresse volante","battleship":"ONYX • cuirassé d'assaut","ace":"AKAI • l'as écarlate","carrier":"SHIRO • porte-avions","citadel":"DAWNBREAKER • dernier rempart"}
 var kind := "bomber"
@@ -45,7 +46,8 @@ func take_hit_at(amount: int, at: Vector3) -> void:
 				if is_instance_valid(combat.campaign_driver):
 					combat.campaign_driver.feedback = "POINT FAIBLE NEUTRALISÉ  /  DÉFENSE RÉDUITE"
 					combat.campaign_driver.feedback_time = 2
-					if component_health[0]==0 and component_health[1]==0: combat.campaign_driver.complete_objective("boss")
+				if component_health[0]==0 and component_health[1]==0:
+					weak_points_neutralized.emit()
 			take_damage(amount*2)
 			return
 	take_damage(amount)
