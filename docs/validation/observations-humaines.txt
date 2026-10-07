@@ -1,0 +1,17 @@
+PACIFIC STRIKE — OBSERVATIONS HUMAINES
+
+7 OCTOBRE 2026 — TICKET #10 / PROPRIÉTÉS WINDOWS
+
+Build local : Windows 1.6.1.0, sources b3cc25485b4eacfe37c615ffdabbd969c6e4e82f.
+SHA-256 de PacificStrike.exe :
+06BF66C22393B14A67512688E126D63048B5A09C4680214EC8AA5584EDB5B78A
+
+Question posée au joueur : dans Explorateur, propriétés de
+dist/PacificStrike/PacificStrike.exe → Détails, présence du nom Pacific
+Strike, de la version 1.6.1.0 et de l'icône dorée de l'avion.
+Réponse explicite du joueur : « Oui, tout est conforme ».
+
+Cette confirmation complète l'inspection automatique VersionInfo / shell
+et le lancement du ZIP extrait. L'issue #10 est clôturée avec cette preuve.
+Elle ne constitue pas une session de gameplay, un contrôle de manette
+ou une validation de performances. Les cases du protocole #22 ne changent pas.

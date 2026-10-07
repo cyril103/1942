@@ -1,5 +1,6 @@
 extends RefCounted
 ## Deterministic scoring, independent from frame rate and campaign persistence.
+const RULES := preload("res://scripts/campaign/scoring_rules.gd")
 var chain := 0
 var best_chain := 0
 var multiplier := 1
@@ -22,8 +23,8 @@ func advance(delta: float) -> void:
 func kill(base: int) -> int:
 	chain += 1
 	best_chain = maxi(chain,best_chain)
-	window = 4.5
-	multiplier = mini(5,1+chain/8)
+	window = RULES.CHAIN_SECONDS
+	multiplier = RULES.chain_multiplier(chain)
 	var extra := base*(multiplier-1)
 	bonus_score += extra
 	return extra
@@ -40,13 +41,10 @@ func objective(kind: String) -> int:
 	secondary_progress += 1
 	if secondary_progress<secondary_target: return 0
 	secondary_complete = true
-	cue = "OBJECTIF SECONDAIRE  +2500"
+	cue = "OBJECTIF SECONDAIRE  +%d" % RULES.SECONDARY_BONUS
 	cue_time = 4
-	bonus_score += 2500
-	return 2500
+	bonus_score += RULES.SECONDARY_BONUS
+	return RULES.SECONDARY_BONUS
 
 func rank(won: bool, deaths: int, damage: int) -> String:
-	if not won: return "D"
-	if deaths==0 and damage<=1 and secondary_complete and best_chain>=16: return "S"
-	if deaths==0 and secondary_complete: return "A"
-	return "B" if deaths<=1 else "C"
+	return RULES.rank(won,deaths,damage,secondary_complete,best_chain)

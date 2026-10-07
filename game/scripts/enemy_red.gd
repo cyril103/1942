@@ -49,8 +49,8 @@ func advance(delta: float, _combat: Node) -> void:
 	_update_pose(delta if was_visible else 0.0)
 	if is_instance_valid(propeller): propeller.rotate_z(delta*65)
 
-func take_damage(amount: int) -> void:
-	if not alive or distance < 0 or amount <= 0: return
+func take_damage(amount: float) -> void:
+	if not alive or distance < 0 or amount <= 0 or not is_finite(amount): return
 	if health-amount <= 0: destroyed_by_player = true
 	super.take_damage(amount)
 

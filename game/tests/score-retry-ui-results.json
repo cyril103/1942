@@ -1,0 +1,159 @@
+{
+	"checks": 31962,
+	"departures": [
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "campaign",
+			"plane": 0,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "campaign",
+			"plane": 0,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 3,
+			"mode": "campaign",
+			"plane": 0,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 3,
+			"mode": "campaign",
+			"plane": 0,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 0.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "arcade",
+			"plane": 0,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 0.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "arcade",
+			"plane": 0,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "campaign",
+			"plane": 1,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "campaign",
+			"plane": 1,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 3,
+			"mode": "campaign",
+			"plane": 1,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 3,
+			"mode": "campaign",
+			"plane": 1,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 0.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "arcade",
+			"plane": 1,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 0.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "arcade",
+			"plane": 1,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "campaign",
+			"plane": 2,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "campaign",
+			"plane": 2,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 3,
+			"mode": "campaign",
+			"plane": 2,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 3,
+			"mode": "campaign",
+			"plane": 2,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 0.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "arcade",
+			"plane": 2,
+			"transition_seconds": 8.95
+		},
+		{
+			"charge": 0.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "arcade",
+			"plane": 2,
+			"transition_seconds": 1.6
+		},
+		{
+			"charge": 25.03,
+			"event_index": 0,
+			"mission": 1,
+			"mode": "campaign",
+			"plane": 2,
+			"transition_seconds": 8.95
+		}
+	],
+	"failures": [],
+	"human_controller_check": "NOT_PERFORMED"
+}

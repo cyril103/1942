@@ -24,7 +24,7 @@ func _run() -> void:
 	app.profile.data.credits = 20
 	app._show_hangar()
 	await capture(app,"hangar")
-	check(app.buttons.size()==8,"Three aircraft, three upgrades, two navigation buttons")
+	check(app.buttons.size()==9,"Three aircraft, three upgrades, three navigation buttons including the workshop")
 	app.buttons[1].pressed.emit()
 	check(app.profile.data.aircraft==1 and app.page=="hangar","Aircraft selection updates loadout")
 	var credits: int = app.profile.data.credits
@@ -32,7 +32,7 @@ func _run() -> void:
 	check(app.profile.data.upgrades[0]==1 and app.profile.data.credits<credits,"Upgrade purchase keeps its cost and effect")
 	app._show_briefing(1)
 	await capture(app,"briefing")
-	check(app.page=="briefing" and app.buttons.size()==3,"Briefing exposes launch, hangar and mission map")
+	check(app.page=="briefing" and app.buttons.size()==4,"Briefing exposes launch, hangar, mission map and shared scoring guide")
 	app._show_briefing(32)
 	await capture(app,"briefing-final")
 	app.buttons[1].pressed.emit()

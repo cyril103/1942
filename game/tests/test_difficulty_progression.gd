@@ -31,7 +31,7 @@ func _run() -> void:
 		d.weapons.set_physics_process(false)
 		app.cockpit.flight.get_node("Departure").finish_immediately()
 		d.player.invulnerable_time = 1000
-		check(d.player.max_health == 2 and is_equal_approx(d.weapons.shot_interval,.105),"Balance works with unupgraded Vanguard")
+		check(d.player.max_health == 2 and is_equal_approx(d.weapons.shot_interval,.090),"Balance works with the unupgraded Vanguard at its authored 0.090 s cadence")
 		var counts: Array[int] = []
 		for variant in [0,1]:
 			c.wave_count = variant

@@ -1,0 +1,640 @@
+{
+	"checks": 68384,
+	"configuration_scope": "3 aircraft x 64 independent upgrade triples x 39 legal module selections; repeated assertions, not human playthroughs",
+	"economy": [
+		{
+			"income": 96,
+			"medal_profile": "bronze",
+			"milestones": [
+				{
+					"after_mission": 4,
+					"credits": 0,
+					"income": 12,
+					"owned_modules": [
+						"precision"
+					],
+					"spent": 12,
+					"upgrades": [
+						1,
+						1,
+						1
+					]
+				},
+				{
+					"after_mission": 8,
+					"credits": 2,
+					"income": 24,
+					"owned_modules": [
+						"precision",
+						"coverage"
+					],
+					"spent": 22,
+					"upgrades": [
+						2,
+						1,
+						1
+					]
+				},
+				{
+					"after_mission": 12,
+					"credits": 0,
+					"income": 36,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates"
+					],
+					"spent": 36,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 16,
+					"credits": 0,
+					"income": 48,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield"
+					],
+					"spent": 48,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 20,
+					"credits": 0,
+					"income": 60,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 60,
+					"upgrades": [
+						3,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 24,
+					"credits": 0,
+					"income": 72,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 72,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 28,
+					"credits": 0,
+					"income": 84,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared"
+					],
+					"spent": 84,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 32,
+					"credits": 0,
+					"income": 96,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared",
+						"endurance",
+						"impact"
+					],
+					"spent": 96,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				}
+			],
+			"remaining": 0,
+			"spent": 96
+		},
+		{
+			"income": 128,
+			"medal_profile": "argent",
+			"milestones": [
+				{
+					"after_mission": 4,
+					"credits": 4,
+					"income": 16,
+					"owned_modules": [
+						"precision"
+					],
+					"spent": 12,
+					"upgrades": [
+						1,
+						1,
+						1
+					]
+				},
+				{
+					"after_mission": 8,
+					"credits": 2,
+					"income": 32,
+					"owned_modules": [
+						"precision",
+						"coverage"
+					],
+					"spent": 30,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 12,
+					"credits": 6,
+					"income": 48,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile"
+					],
+					"spent": 42,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 16,
+					"credits": 10,
+					"income": 64,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 54,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 20,
+					"credits": 8,
+					"income": 80,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 72,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 24,
+					"credits": 12,
+					"income": 96,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared"
+					],
+					"spent": 84,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 28,
+					"credits": 16,
+					"income": 112,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared",
+						"endurance",
+						"impact"
+					],
+					"spent": 96,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 32,
+					"credits": 32,
+					"income": 128,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared",
+						"endurance",
+						"impact"
+					],
+					"spent": 96,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				}
+			],
+			"remaining": 32,
+			"spent": 96
+		},
+		{
+			"income": 160,
+			"medal_profile": "or",
+			"milestones": [
+				{
+					"after_mission": 4,
+					"credits": 2,
+					"income": 20,
+					"owned_modules": [
+						"precision",
+						"coverage"
+					],
+					"spent": 18,
+					"upgrades": [
+						1,
+						1,
+						1
+					]
+				},
+				{
+					"after_mission": 8,
+					"credits": 10,
+					"income": 40,
+					"owned_modules": [
+						"precision",
+						"coverage"
+					],
+					"spent": 30,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 12,
+					"credits": 18,
+					"income": 60,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile"
+					],
+					"spent": 42,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 16,
+					"credits": 26,
+					"income": 80,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 54,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 20,
+					"credits": 28,
+					"income": 100,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 72,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 24,
+					"credits": 36,
+					"income": 120,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared"
+					],
+					"spent": 84,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 28,
+					"credits": 44,
+					"income": 140,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared",
+						"endurance",
+						"impact"
+					],
+					"spent": 96,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 32,
+					"credits": 64,
+					"income": 160,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared",
+						"endurance",
+						"impact"
+					],
+					"spent": 96,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				}
+			],
+			"remaining": 64,
+			"spent": 96
+		},
+		{
+			"income": 128,
+			"medal_profile": "mixte",
+			"milestones": [
+				{
+					"after_mission": 4,
+					"credits": 4,
+					"income": 16,
+					"owned_modules": [
+						"precision"
+					],
+					"spent": 12,
+					"upgrades": [
+						1,
+						1,
+						1
+					]
+				},
+				{
+					"after_mission": 8,
+					"credits": 2,
+					"income": 32,
+					"owned_modules": [
+						"precision",
+						"coverage"
+					],
+					"spent": 30,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 12,
+					"credits": 6,
+					"income": 48,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile"
+					],
+					"spent": 42,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 16,
+					"credits": 10,
+					"income": 64,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 54,
+					"upgrades": [
+						2,
+						2,
+						2
+					]
+				},
+				{
+					"after_mission": 20,
+					"credits": 8,
+					"income": 80,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve"
+					],
+					"spent": 72,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 24,
+					"credits": 12,
+					"income": 96,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared"
+					],
+					"spent": 84,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 28,
+					"credits": 16,
+					"income": 112,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared",
+						"endurance",
+						"impact"
+					],
+					"spent": 96,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				},
+				{
+					"after_mission": 32,
+					"credits": 32,
+					"income": 128,
+					"owned_modules": [
+						"precision",
+						"coverage",
+						"plates",
+						"agile",
+						"yield",
+						"reserve",
+						"payload",
+						"prepared",
+						"endurance",
+						"impact"
+					],
+					"spent": 96,
+					"upgrades": [
+						3,
+						3,
+						3
+					]
+				}
+			],
+			"remaining": 32,
+			"spent": 96
+		}
+	],
+	"equipment_configurations": 7488,
+	"failures": [],
+	"human_viability": "NOT_TESTED"
+}

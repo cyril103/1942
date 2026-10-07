@@ -6,6 +6,7 @@ const RESPAWN_PROTECTION := 4.0
 var max_health := 1
 var health := 1
 var focus_enabled := false
+var hit_invulnerability_multiplier := 1.0
 ## Motion stays on the XZ plane; only the visual child banks.
 
 @export var camera: Camera3D
@@ -65,7 +66,7 @@ func take_damage(amount: int) -> void:
 	health = maxi(0,health-amount)
 	damaged.emit(health)
 	if health > 0:
-		invulnerable_time = 0.85
+		invulnerable_time = 0.85*hit_invulnerability_multiplier
 		return
 	alive = false
 	controls_enabled = false

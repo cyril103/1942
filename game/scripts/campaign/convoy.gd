@@ -36,9 +36,9 @@ func advance(delta: float, combat: Node) -> void:
 		rescued.emit()
 		retire()
 
-func take_damage(amount: int) -> void:
-	if not alive or amount<=0 or protection>0: return
-	health = maxi(0,health-amount)
+func take_damage(amount: float) -> void:
+	if not alive or amount<=0 or protection>0 or not is_finite(amount): return
+	health = maxf(0.0,health-amount)
 	protection = .6
 	hit_time = .08
 	if health==0:

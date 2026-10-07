@@ -1,0 +1,2796 @@
+{
+	"checks": 1081,
+	"failures": [],
+	"human_campaign_viability": "NOT_PERFORMED",
+	"renderer": "gl_compatibility",
+	"stationary_target_timings": [
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.1917,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.1917,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.1917,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 10,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.4708,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 4,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.3042,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 12,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.5042,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 4,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.3042,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 22,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.9792,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 8,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.7042,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 260,
+			"power": "none",
+			"rank": 0,
+			"seconds": 11.6917,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 87,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 8.6042,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.1875,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.1875,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.1875,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 8,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.3708,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.1958,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 10,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.4,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 4,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.2917,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 18,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.7708,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 6,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.4833,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 208,
+			"power": "none",
+			"rank": 1,
+			"seconds": 8.9958,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 70,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 6.6375,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.1042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.1042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.1042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 7,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.3625,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.1875,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 8,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.3042,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.1875,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 15,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.6625,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 5,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.3708,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 168,
+			"power": "none",
+			"rank": 2,
+			"seconds": 7.0,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 56,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 5.0958,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.1042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.1042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.1042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 6,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.2708,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 2,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0917,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 7,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.2917,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 3,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.1792,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 12,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.4792,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 4,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.2708,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 137,
+			"power": "none",
+			"rank": 3,
+			"seconds": 5.5458,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 0,
+			"hits": 46,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4.0208,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.1917,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.1917,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.1917,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 10,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.5,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 4,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.3375,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 12,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.5417,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 4,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.3375,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 22,
+			"power": "none",
+			"rank": 0,
+			"seconds": 1.0667,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 8,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.7792,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 260,
+			"power": "none",
+			"rank": 0,
+			"seconds": 12.9708,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 87,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 9.5583,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.1875,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.1875,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.1875,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 8,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.3875,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.2167,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 10,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.425,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 4,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.3208,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 18,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.8333,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 6,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.5375,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 208,
+			"power": "none",
+			"rank": 1,
+			"seconds": 9.9708,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 70,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 7.375,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.0917,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.0917,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.0917,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 7,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.375,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.2083,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 8,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.3167,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.2083,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 15,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.7125,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 5,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.4125,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 168,
+			"power": "none",
+			"rank": 2,
+			"seconds": 7.7542,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 56,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 5.6625,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.0917,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.0917,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.0917,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 6,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.275,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 2,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.1,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 7,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.3083,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 3,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.2,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 12,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.5125,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 4,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.3,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 137,
+			"power": "none",
+			"rank": 3,
+			"seconds": 6.1417,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 1,
+			"hits": 46,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4.4667,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.2167,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.2167,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.2167,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 10,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.55,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 4,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.3708,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 12,
+			"power": "none",
+			"rank": 0,
+			"seconds": 0.6083,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 4,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.3708,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 22,
+			"power": "none",
+			"rank": 0,
+			"seconds": 1.1792,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 8,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 0.8583,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 260,
+			"power": "none",
+			"rank": 0,
+			"seconds": 14.275,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 87,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 10.5125,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.2125,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.2125,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.2125,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 8,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.4292,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.2375,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 10,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.4792,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 4,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.3542,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 18,
+			"power": "none",
+			"rank": 1,
+			"seconds": 0.925,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 6,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 0.5917,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 208,
+			"power": "none",
+			"rank": 1,
+			"seconds": 10.9792,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 70,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 8.1125,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.1083,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.1083,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 2,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.1083,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 7,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.4167,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.2292,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 8,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.3625,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.2292,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 15,
+			"power": "none",
+			"rank": 2,
+			"seconds": 0.7917,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 5,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 0.4542,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 168,
+			"power": "none",
+			"rank": 2,
+			"seconds": 8.5375,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 56,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 6.225,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.1083,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "zero",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.1083,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "hayabusa",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 2,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.1083,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 1,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.0042,
+			"target": "red",
+			"target_hp": 3.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 6,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.3083,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 2,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.1125,
+			"target": "bomber",
+			"target_hp": 10.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 7,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.35,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 3,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.2208,
+			"target": "naval",
+			"target_hp": 12.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 12,
+			"power": "none",
+			"rank": 3,
+			"seconds": 0.5667,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 4,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 0.3292,
+			"target": "dca",
+			"target_hp": 22.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 137,
+			"power": "none",
+			"rank": 3,
+			"seconds": 6.7625,
+			"target": "boss",
+			"target_hp": 260.0
+		},
+		{
+			"aircraft": 2,
+			"hits": 46,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4.9125,
+			"target": "boss",
+			"target_hp": 260.0
+		}
+	],
+	"tap_hold_cadence": [
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 90,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.09,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 40,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.1,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 134,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.06,
+			"tapped_shots": 120
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 60,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.0666666666666667,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 98,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.0818181818181818,
+			"tapped_shots": 96
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 44,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.0909090909090909,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 148,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.0545454545454545,
+			"tapped_shots": 120
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 66,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.0606060606060606,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 94,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0865384615384615,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 42,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0961538461538461,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 140,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0576923076923077,
+			"tapped_shots": 120
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 63,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0641025641025641,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 102,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0786713286713287,
+			"tapped_shots": 96
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 46,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0874125874125874,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 154,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0524475524475524,
+			"tapped_shots": 120
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 69,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0582750582750583,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 96,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0833333333333333,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 44,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0925925925925926,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 146,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0555555555555556,
+			"tapped_shots": 120
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 65,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0617283950617284,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 106,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0757575757575757,
+			"tapped_shots": 96
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 48,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0841750841750842,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 160,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0505050505050505,
+			"tapped_shots": 120
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 72,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0561167227833894,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 100,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0803571428571428,
+			"tapped_shots": 96
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 45,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0892857142857143,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 150,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0535714285714286,
+			"tapped_shots": 120
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 68,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0595238095238095,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 110,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.073051948051948,
+			"tapped_shots": 104
+		},
+		{
+			"ability": false,
+			"aircraft": 0,
+			"held_shots": 50,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0811688311688312,
+			"tapped_shots": 48
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 166,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0487012987012987,
+			"tapped_shots": 160
+		},
+		{
+			"ability": true,
+			"aircraft": 0,
+			"held_shots": 74,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0541125541125541,
+			"tapped_shots": 60
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 80,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.1,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 36,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.111111111111111,
+			"tapped_shots": 35
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 80,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.1,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 36,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.111111111111111,
+			"tapped_shots": 35
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 88,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.0909090909090909,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 40,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.101010101010101,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 88,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.0909090909090909,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 40,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.101010101010101,
+			"tapped_shots": 40
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 84,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0961538461538462,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 38,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.106837606837607,
+			"tapped_shots": 36
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 84,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0961538461538462,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 38,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.106837606837607,
+			"tapped_shots": 36
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 92,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0874125874125874,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 42,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0971250971250971,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 92,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0874125874125874,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 42,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0971250971250971,
+			"tapped_shots": 40
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 88,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0925925925925926,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 39,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.102880658436214,
+			"tapped_shots": 38
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 88,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0925925925925926,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 39,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.102880658436214,
+			"tapped_shots": 38
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 96,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0841750841750842,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 43,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0935278713056491,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 96,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0841750841750842,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 43,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0935278713056491,
+			"tapped_shots": 40
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 90,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0892857142857143,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 41,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0992063492063492,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 90,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0892857142857143,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 41,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0992063492063492,
+			"tapped_shots": 40
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 100,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0811688311688312,
+			"tapped_shots": 96
+		},
+		{
+			"ability": false,
+			"aircraft": 1,
+			"held_shots": 45,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0901875901875902,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 100,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0811688311688312,
+			"tapped_shots": 96
+		},
+		{
+			"ability": true,
+			"aircraft": 1,
+			"held_shots": 45,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0901875901875902,
+			"tapped_shots": 40
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 74,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.11,
+			"tapped_shots": 70
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 33,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.122222222222222,
+			"tapped_shots": 30
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 74,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.11,
+			"tapped_shots": 70
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 33,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.122222222222222,
+			"tapped_shots": 30
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 80,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.1,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 36,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.111111111111111,
+			"tapped_shots": 35
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 80,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.1,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 36,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 0,
+			"seconds": 4,
+			"shot_interval": 0.111111111111111,
+			"tapped_shots": 35
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 76,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.105769230769231,
+			"tapped_shots": 72
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 35,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.117521367521368,
+			"tapped_shots": 30
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 76,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.105769230769231,
+			"tapped_shots": 72
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 35,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.117521367521368,
+			"tapped_shots": 30
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 84,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0961538461538461,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 38,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.106837606837607,
+			"tapped_shots": 36
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 84,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.0961538461538461,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 38,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 1,
+			"seconds": 4,
+			"shot_interval": 0.106837606837607,
+			"tapped_shots": 36
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 80,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.101851851851852,
+			"tapped_shots": 78
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 36,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.113168724279835,
+			"tapped_shots": 35
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 80,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.101851851851852,
+			"tapped_shots": 78
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 36,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.113168724279835,
+			"tapped_shots": 35
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 88,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0925925925925926,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 39,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.102880658436214,
+			"tapped_shots": 38
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 88,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.0925925925925926,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 39,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 2,
+			"seconds": 4,
+			"shot_interval": 0.102880658436214,
+			"tapped_shots": 38
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 82,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0982142857142857,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 37,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.109126984126984,
+			"tapped_shots": 35
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 82,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0982142857142857,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 37,
+			"modules": [],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.109126984126984,
+			"tapped_shots": 35
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 90,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0892857142857143,
+			"tapped_shots": 80
+		},
+		{
+			"ability": false,
+			"aircraft": 2,
+			"held_shots": 41,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0992063492063492,
+			"tapped_shots": 40
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 90,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "none",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0892857142857143,
+			"tapped_shots": 80
+		},
+		{
+			"ability": true,
+			"aircraft": 2,
+			"held_shots": 41,
+			"modules": [
+				"precision"
+			],
+			"physics_hz": 60,
+			"power": "laser",
+			"rank": 3,
+			"seconds": 4,
+			"shot_interval": 0.0992063492063492,
+			"tapped_shots": 40
+		}
+	],
+	"worst_case_projectile_pools": [
+		{
+			"capacity": 96,
+			"origin_z": 11.4727630615234,
+			"peak": 64,
+			"resolution": "(1280, 720)",
+			"seconds": 3,
+			"shots": 248
+		},
+		{
+			"capacity": 96,
+			"origin_z": 11.4727630615234,
+			"peak": 64,
+			"resolution": "(1920, 1080)",
+			"seconds": 3,
+			"shots": 248
+		},
+		{
+			"capacity": 96,
+			"origin_z": 11.4727554321289,
+			"peak": 64,
+			"resolution": "(2560, 1080)",
+			"seconds": 3,
+			"shots": 248
+		}
+	]
+}

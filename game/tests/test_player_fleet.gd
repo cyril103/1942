@@ -13,6 +13,7 @@ func capture(label: String) -> void:
 func _run() -> void:
 	var app = load("res://scenes/campaign.tscn").instantiate()
 	app.testing = true
+	app.profile.path = "user://fleet-validation-fixture.json"
 	root.add_child(app)
 	current_scene = app
 	await process_frame
@@ -29,7 +30,7 @@ func _run() -> void:
 		check(p.propellers.size()==[0,2,1][index],"Expected propeller pivots")
 		check(is_equal_approx(p.speed,[12.0,14.0,10.4][index]) and p.max_health==[2,2,3][index],"Aircraft speed and hull preserved")
 		check(d.bombs==[2,2,3][index],"Bomb capacity follows selected aircraft")
-		check(is_equal_approx(w.shot_interval,[.105,.09,.12][index]),"Cadence follows selected aircraft")
+		check(is_equal_approx(w.shot_interval,[.090,.100,.110][index]),"Cadence follows the aircraft's documented mobility/firepower tradeoff")
 		for node in [d,c,w,p,departure]: node.set_physics_process(false)
 		if index>0:
 			check(p.bank.get_node("Aircraft").scene_file_path.ends_with("p38.glb" if index==1 else "f4u.glb"),"Distinct imported GLB instantiated")
@@ -85,6 +86,8 @@ func _run() -> void:
 	await capture("hangar")
 	app._show_main()
 	app.music.stop()
+	for suffix in ["", ".bak", ".tmp"]:
+		if FileAccess.file_exists(app.profile.path + suffix): DirAccess.remove_absolute(app.profile.path + suffix)
 	await create_timer(.2).timeout
 	print("PLAYER FLEET: ",checks," checks; failures: ",failures)
 	quit(0 if failures.is_empty() else 1)

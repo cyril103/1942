@@ -1,9 +1,14 @@
 extends SceneTree
+const FIXTURE := "user://weapon-readability-isolated.json"
 var failures: Array[String] = []
 var checks := 0
 class Target extends Area3D:
 	var health := 100
 	func take_damage(amount: int) -> void: health -= amount
+class StationaryShooter extends Area3D:
+	var alive := true
+	var age := 0.0
+	func advance(delta: float, _combat: Node) -> void: age += delta
 func check(ok: bool, label: String) -> void:
 	checks += 1
 	if not ok: failures.append(label); push_error(label)
@@ -20,9 +25,17 @@ func target_at(position: Vector3, parent: Node) -> Target:
 	target.position = position
 	return target
 func _initialize() -> void: _run.call_deferred()
+func _cleanup_fixture() -> void:
+	for suffix in ["",".bak",".tmp"]:
+		if FileAccess.file_exists(FIXTURE+suffix): DirAccess.remove_absolute(FIXTURE+suffix)
+func _stop_audio(node: Node) -> void:
+	if node is AudioStreamPlayer or node is AudioStreamPlayer3D: node.stop()
+	for child in node.get_children(): _stop_audio(child)
 func _run() -> void:
+	_cleanup_fixture()
 	var app = load("res://scenes/campaign.tscn").instantiate()
 	app.testing = true
+	app.profile.path = FIXTURE
 	root.add_child(app)
 	current_scene = app
 	await process_frame
@@ -46,15 +59,33 @@ func _run() -> void:
 	Input.action_press("fire")
 	for i in range(60): w._physics_process(1.0/60)
 	Input.action_release("fire")
-	check(w.shots_fired-shots >= 18 and w.shots_fired-shots <= 20,"Base gun delivers 9-10 twin salvos per second")
+	check(w.shots_fired-shots >= 22 and w.shots_fired-shots <= 24,"Base Vanguard delivers 11.11 twin salvos per second, including one initially ready salvo")
 	w.cease_fire()
-	var shooter := Area3D.new()
+	# Use the same registered-enemy walker that consumes campaign fire warnings.
+	# This stationary fixture never requests its own shots or automatic waves.
+	c.automatic_waves = false
+	c.bombers_enabled = false
+	c.special_enabled = false
+	c.clear_enemy_bullets()
+	var shooter := StationaryShooter.new()
+	shooter.collision_layer = 0
+	shooter.collision_mask = 0
 	c.add_child(shooter)
 	shooter.position = Vector3(0,0,-4)
+	c.enemies.append(shooter)
+	check(c.dense_waves and c.enemies.size()==1 and c.bombers.is_empty() and c.red_enemies.is_empty(),"Campaign fixture has one stationary registered shooter and no automatic aircraft sources")
 	var enemy_shots: int = c.enemy_shots
-	for i in range(3): c.fire_enemy(shooter)
+	for i in range(3):
+		c.fire_enemy(shooter)
+		check(shooter.has_meta("fire_warning") and c.enemy_shots==enemy_shots+i,"Attack %d queues its 220 ms warning without an immediate projectile" % (i+1))
+		c._physics_process(.210)
+		check(shooter.has_meta("fire_warning") and c.enemy_shots==enemy_shots+i,"Attack %d still emits no projectile after 210 ms of warning" % (i+1))
+		c._physics_process(.011)
 	check(c.enemy_shots-enemy_shots == 3,"Campaign fighter burst has 3 rounds instead of 6")
+	check(c.lifetimes.count(0.0)==c.BULLET_CAPACITY-3 and c.bullets.filter(func(bullet): return bullet.visible).size()==3,"Three advertised attacks occupy exactly three reusable enemy projectile slots")
 	c.clear_enemy_bullets()
+	check(c.lifetimes.count(0.0)==c.BULLET_CAPACITY and c.bullets.all(func(bullet): return not bullet.visible),"Clearing the telegraphed fighter burst releases and hides every enemy projectile slot")
+	c.enemies.erase(shooter)
 	var near := target_at(Vector3(.42,0,-2),c)
 	var far := target_at(Vector3(0,0,-5),c)
 	await physics_frame
@@ -82,9 +113,16 @@ func _run() -> void:
 	near.free()
 	far.free()
 	shooter.free()
-	app._show_main()
-	app.music.stop()
-	await create_timer(.2).timeout
+	app.set_process(false)
+	_stop_audio(app)
+	app._dispose_run()
+	await create_timer(.25).timeout
+	app.queue_free()
+	current_scene = null
+	await process_frame
+	await process_frame
+	await create_timer(.10).timeout
+	_cleanup_fixture()
 	var report := {"checks":checks,"failures":failures}
 	FileAccess.open("res://tests/weapon-readability-results.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print("WEAPON READABILITY: ",report)

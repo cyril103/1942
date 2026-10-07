@@ -1,124 +1,162 @@
-PACIFIC STRIKE — CONCEPTION DE LA PASSE D'ÉQUIPEMENT
-Tickets #11, #12, #13 ; proposition pour la prochaine phase du plan #23.
-État : conception calculée, pas encore implémentée ni validée humainement.
+PACIFIC STRIKE — CONTRAT D'ÉQUIPEMENT IMPLÉMENTÉ
+Tickets #11, #12, #13 ; phase 3 du plan #23, 7 octobre 2026.
+État : implémentation et contrôles automatiques disponibles ; parties humaines
+et viabilité de chaque avion sur une campagne complète encore non validées.
 
-PROBLÈMES À RÉSOUDRE ENSEMBLE
+SOURCE COMMUNE ET RÔLES
 
-Le P-38 cumule actuellement +16,7 % de vitesse et +16,7 % de DPS contre
-le Vanguard, avec le même blindage et la même hitbox. Le rang III double
-brutalement les dégâts. Le laser ne bénéficie presque pas des deux achats
-précédents. La progression économique permet tous les rangs bien avant
-la fin des 32 missions. Les statistiques du hangar et du combat sont copiées.
+game/scripts/campaign/loadout.gd définit avions, capacités, rangs, prix,
+accès et modules. stats() calcule l'équipement final utilisé par le directeur
+et le hangar. Le profil utilise ce même catalogue pour autoriser les achats.
+Les armes et le joueur appliquent ces résultats, y compris les compromis.
 
-Les capacités ont aussi un effet différent selon l'arme : +1 dégât donne
-+100 % au tir standard initial, mais +33 % au laser. Une frappe détruisant
-13 cibles avec condensateur III peut recharger immédiatement sa propre jauge.
-Ce défaut doit être traité dans la même passe, sans augmenter uniformément
-les PV ennemis pour masquer les écarts de puissance.
+Valeurs initiales sans rang, module ou capacité active : standard par défaut,
+laser seulement lorsqu'un POW laser est équipé.
+Avion                 Vitesse   PV   Bombes   Intervalle   Standard   Laser
+Vanguard              12,0      2    2        0,090 s      22,22 DPS  30,00 DPS
+Interceptor P-38       14,0      2    2        0,100 s      20,00 DPS  27,00 DPS
+Bulwark F4U Corsair    10,4      3    3        0,110 s      18,18 DPS  24,55 DPS
 
-RÔLES À IMPLEMENTER ET À COMPARER
+Le Vanguard privilégie le feu soutenu. Le P-38 échange 10 % de ce DPS contre
+16,7 % de mobilité, avec le même blindage. Le Corsair gagne un PV et une bombe
+contre 13,3 % de vitesse et 18,2 % de DPS en moins face au Vanguard. Ces rôles
+sont visibles au hangar et ne dépendent pas de l'obtention d'un POW.
+La hitbox du joueur reste commune. Les tirs du P-38 s'ouvrent en 0,06 s sur
+les couloirs de référence du Vanguard : écartement de 0,8775 unité sans inclinaison.
+Les canons d'ailes du Corsair gardent leur écartement propre de 0,828 unité.
 
-                     Vitesse   PV   Intervalle   DPS standard initial
-Vanguard             12,0      2    0,090 s      22,22
-Interceptor P-38     14,0      2    0,100 s      20,00
-Bulwark Corsair      10,4      3    0,110 s      18,18
+VARIANTES COMPARÉES ET CHOIX DES VALEURS (#11)
 
-Le Vanguard offre le meilleur feu soutenu. Le P-38 échange 10 % de DPS
-contre 16,7 % de mobilité. Le Corsair conserve son blindage et sa troisième
-bombe, avec une vitesse et un feu soutenu plus faibles. Même hitbox et
-écartement standard des canons : le nez du P-38 ne redevient pas un handicap.
+Comparaison calculée à deux projectiles de 1 dégât, avec vitesses/PV ci-dessus :
+Variante                       Intervalles V / P-38 / F4U   DPS V / P-38 / F4U
+Réglage avant cette passe      0,105 / 0,090 / 0,120 s     19,05 / 22,22 / 16,67
+Cadence égale envisagée        0,100 / 0,100 / 0,100 s     20,00 / 20,00 / 20,00
+Spécialisations plus marquées  0,090 / 0,110 / 0,120 s     22,22 / 18,18 / 16,67
+Réglage implémenté             0,090 / 0,100 / 0,110 s     22,22 / 20,00 / 18,18
 
-Le laser applique le coefficient intervalle_avion / 0,090 à sa cadence.
-Avec 3 dégâts par tick initial, DPS 30 / 27 / 24,55 respectivement.
+Le premier réglage donne au P-38 +16,7 % de DPS et de vitesse sans coût en PV.
+La cadence égale laisse au P-38 la même puissance avec une meilleure mobilité.
+La troisième option pénalise son feu de 18,2 % face au Vanguard et celui du
+Corsair de 25 %. Le choix implémenté conserve un coût de mobilité mesurable
+sans réduire autant leur tir initial ; le Vanguard gagne un bénéfice immédiat.
+Ces alternatives sont des calculs de conception, pas des variantes jouées ni
+des résultats de préférence humaine. Les valeurs restent réévaluables après
+les sessions sur missions 01/03/08/16/31 et une campagne complète.
 
-Capacités proposées :
-Surcharge : cadence ×1,50 sur standard, éventail et laser pendant 5 s.
-Poursuite : vitesse ×1,30 et dégâts ×1,35 pendant 4 s.
-Bastion : protection 3,5 s et dégâts ×1,20, frappe large conservée.
-Aucune relance active. Pas de charge gagnée pendant l'effet, ni de gains
-différés à son expiration. Bombes et dégâts de frappe initiaux sont mesurés
-séparément : un DPS moyen ne représente pas une attaque de zone.
+ARMEMENT, COUVERTURE ET CAPACITÉS
 
-COURBE D'ARMEMENT
+Rang armement   Dégât/projectile   Débit   Facteur DPS   Gain du palier
+Aucun           1,00               ×1,00   ×1,000        —
+I               1,25               ×1,04   ×1,300        +30,0 %
+II              1,55               ×1,08   ×1,674        +28,8 %
+III             1,90               ×1,12   ×2,128        +27,1 %
 
-Rang          Dégâts      Cadence       Gain de DPS total   Gain du palier
-Aucun         1,00        ×1,00         ×1,000               —
-I             1,25        ×1,04         ×1,300               +30,0 %
-II            1,55        ×1,08         ×1,674               +28,8 %
-III           1,90        ×1,12         ×2,128               +27,1 %
+Avec I = intervalle de l'avion, D = dégât du rang et R = produit des facteurs
+de débit du rang, du module de visée et de la capacité active :
+  intervalle standard = I / R ; DPS standard = 2 × D × dégâts_capacité × R / I.
+  intervalle laser = 0,100 × (I / 0,090) / R.
+  dégâts par tick laser = 3 × D × dégâts_capacité.
+  DPS laser = dégâts par tick / intervalle laser.
+Le laser touche une seule obstruction par tick, même si plusieurs des neuf
+rayons la rencontrent. L'éventail comporte quatre branches ; son débit total
+de dégâts émis vaut deux fois le standard, sans garantir quatre impacts sur
+une cible. Angles initiaux : −15°, −5°, +5°, +15°. Les modules modifient les
+trajectoires et la largeur de collision laser, initialement de 0,96 unité.
+Au rang III, sans module/capacité : standard 47,29 / 42,56 / 38,69 DPS ; laser
+63,84 / 57,46 / 52,23 DPS. Tapoter ne permet pas de dépasser la cadence maintenue.
+Le moteur conserve la fraction de temps entre frames, sans salves de rattrapage
+après un arrêt long. Les DPS sont des débits théoriques, tous tirs au but.
 
-DPS standard au rang III : 47,29 / 42,56 / 38,69.
-Laser Vanguard : 30 / 39 / 50,22 / 63,84. L'éventail conserve quatre
-branches ; son plafond théorique vaut deux fois celui du standard, sans
-supposer que les quatre branches touchent une cible unique.
+Surcharge : débit standard/éventail/laser ×1,50 pendant 5 s ; frappe de 25 dégâts.
+Poursuite : vitesse ×1,30, dégâts des armes ×1,35 pendant 4 s ; frappe de 45 dégâts.
+Bastion : protection pendant 3,5 s, dégâts des armes ×1,20 ; frappe de 85 dégâts.
+Les deux premières frappes visent les contacts visibles à moins de 4 unités
+latérales du joueur ; Bastion vise tous les contacts visibles. La bombe est
+une attaque distincte : 35 dégâts sur les contacts visibles, sans multiplier
+ses dégâts par Endurance ou Impact. Toute décharge efface les tirs ennemis et
+accorde au moins 1,5 s de protection ; Bastion entretient ensuite sa protection.
 
-Les fractions doivent traverser toutes les armes et cibles ennemies,
-y compris les points faibles. Le blindage du joueur reste entier. Tester
-les vrais délais de destruction : les seuils de PV créent encore des
-paliers pratiques que les seules tables de DPS ne peuvent pas prédire.
+La capacité consomme 100 de charge et ne peut pas être relancée tant qu'elle
+est active. Pas de recharge passive ni de crédit des destructions pendant
+l'effet ; les compteurs sont consommés sans gains différés à l'expiration.
+La mort et l'atterrissage annulent les multiplicateurs. La mort retire jusqu'à 20 de
+charge. Un projectile déjà lancé conserve ses dégâts, sa direction et son
+ouverture malgré l'expiration de la capacité. Les dégâts restent fractionnaires
+sur les ennemis, leurs sous-types et les points faibles ; le blindage du joueur
+reste entier. Un point faible actif transmet deux fois les dégâts à la coque.
 
-CHOIX SUR LES HUIT SECTEURS
+PROGRESSION ET MODULES
 
-Mission 01 : avion et rang I.
-Mission 05 : premier emplacement ; précision ou couverture.
-Mission 09 : achats de rang II accessibles.
-Mission 13 : second emplacement ; plaques ou aile vive.
-Mission 17 : modules rendement ou réserve.
-Mission 21 : achats de rang III accessibles.
-Mission 25 : modules soute ou préparation.
-Mission 29 : modules endurance ou impact.
+Trois branches permanentes communes aux avions : armement, blindage, condensateur.
+Changer d'avion au hangar conserve les rangs et les modules. Chaque branche
+coûte 2 / 4 / 6 pièces pour ses rangs I / II / III, accessibles quand les missions
+01 / 09 / 21 sont débloquées. Le blindage ajoute un PV par rang ; le condensateur
+porte la charge par destruction de 5 à 6 / 7 / 8. Recharge passive : 1,8 par
+seconde de combat en vie, commandes actives, hors capacité et atterrissage.
 
-Deux modules équipés au maximum, changements gratuits entre missions.
-Une seule option par famille. Chaque module coûte 6 pièces ; les rangs
-conservent leurs coûts 2 / 4 / 6. Aucun module n'est requis pour décoller.
+Le premier emplacement de module arrive en mission 05, le second en 13.
+Deux modules au maximum, un seul par famille, tous à 6 pièces. Acheter
+n'équipe pas automatiquement. Équiper/déséquiper est gratuit entre missions ;
+une famille occupée ou un emplacement plein impose un retrait explicite.
+Aucun achat ni module n'est requis pour décoller.
 
-Précision : débit ×1,10 ; angles d'éventail et largeur laser ×0,80.
-Couverture : angles/largeur ×1,30 ; débit ×0,90.
-Plaques : +1 PV ; vitesse ×0,92.
-Aile vive : vitesse ×1,08 ; protection après impact ×0,75.
-Rendement : charge par destruction ×1,20 ; recharge passive ×0,75.
-Réserve : recharge passive ×1,40 ; charge par destruction ×0,80.
-Soute : +1 bombe ; recharge de frappe ×0,88.
-Préparation : +25 charge au départ ; −1 bombe.
-Endurance : durée de capacité ×1,25 ; frappe initiale ×0,80.
-Impact : frappe initiale ×1,20 ; durée de capacité ×0,75.
+Accès  Famille   Module       Bénéfice ; compromis
+05     Visée     Précision    Débit ×1,10 ; angles/largeur laser ×0,80.
+05     Visée     Couverture   Angles/largeur laser ×1,30 ; débit ×0,90.
+13     Cellule   Plaques      +1 PV ; vitesse ×0,92.
+13     Cellule   Aile vive    Vitesse ×1,08 ; protection après impact ×0,75.
+17     Systèmes  Rendement    Charge/destruction ×1,20 ; passive ×0,75.
+17     Systèmes  Réserve      Passive ×1,40 ; charge/destruction ×0,80.
+25     Systèmes  Soute        +1 bombe ; temps de recharge de frappe ×0,88.
+25     Systèmes  Préparation  +25 charge au départ ; −1 bombe.
+29     Systèmes  Endurance    Durée de capacité ×1,25 ; frappe initiale ×0,80.
+29     Systèmes  Impact       Frappe initiale ×1,20 ; durée de capacité ×0,75.
 
-Familles : visée, cellule, systèmes. Les trois dernières paires partagent
-la famille systèmes pour empêcher le cumul de toutes leurs synergies.
-Les compromis doivent modifier les collisions et trajectoires réelles,
-et pas seulement les images du hangar ou les effets du laser.
+Soute divise les gains de charge passifs et par destruction par 0,88 : elle
+réduit le temps nécessaire de 12 %. Précision/Couverture ne changent pas
+l'écartement du tir standard. Aile vive réduit la protection d'un impact
+non létal de 0,85 à 0,6375 s ; la protection de réapparition reste à 4 s.
+Les six modules Systèmes partagent leur famille : leurs synergies ne se cumulent
+pas. Comparer un avion au hangar ne change pas l'équipement du profil.
 
 ÉCONOMIE ET MIGRATION
 
-Premières victoires bronze / argent / or sur 32 missions : 96 / 128 / 160
-pièces. Tous les rangs coûtent 36 ; dix modules coûtent 60. Tous les rangs
-et deux modules coûtent 48. Les portes de secteur préservent des décisions
-tardives même quand le joueur obtient l'or. Rejouer sans meilleure médaille
-ne finance toujours pas un achat. La progression doit être simulée avec
-achats réels ; les seuls totaux théoriques ne démontrent pas sa disponibilité.
+Première victoire bronze / argent / or : 3 / 4 / 5 pièces. Sur 32 premières
+victoires : 96 / 128 / 160. Une meilleure médaille ne paie que son amélioration ;
+un meilleur score seul, une médaille égale ou inférieure ne rapporte rien.
+Tous les rangs coûtent 36 ; les dix modules 60 ; les rangs et deux modules 48.
+Les portes de secteur maintiennent des achats disponibles tard dans la campagne.
+Les simulations avec achats réels dépensent 96 sans replay pour acquérir tous
+les rangs et modules : soldes finaux bronze 0, argent 32, or 64, mixte 32.
 
-Conserver chaque rang déjà acheté, même au-delà d'une nouvelle porte de
-secteur. Préserver missions, médailles, crédits, score, vies, POW et options.
-Les modules commencent vides. Révision d'équipement séparée du format du
-profil ; chargement robuste du lot #5, aucune recréditation au rechargement.
+Format du profil inchangé : version 1. Révision d'équipement indépendante : 1.
+Les profils anciens reçoivent owned_modules et equipped_modules vides ; chaque
+rang déjà payé reste actif même sous une nouvelle porte d'achat. Le chargement
+conserve crédits, progression, records, score de partie, vies, POW et réglages,
+sans remboursement ni recréditation à chaque reload. Les types invalides
+rejettent le candidat entier avant recours au backup ; identifiants inconnus,
+doublons, familles incompatibles et équipements excédentaires sont filtrés.
+Un échec de sauvegarde annule en mémoire la dépense et le changement d'équipement.
 
-ARCHITECTURE ET PREUVES ATTENDUES
+PREUVES AUTOMATIQUES ET LIMITES
 
-Source unique : scripts/campaign/loadout.gd, sans dépendance vers profile.
-Catalogue, rôles, capacités, prix, accès, modules et calcul final partagés
-par profil, directeur, armes et hangar. Les chiffres affichés doivent être
-ceux effectivement appliqués, y compris les compromis des modules.
+game/tests/loadout-profile-results.json : 68 384 contrôles, zéro échec ;
+7 488 configurations = 3 avions × 64 triplets indépendants armement/blindage/
+condensateur × 39 choix légaux de modules. Quatre campagnes économiques
+simulées, achats/gates/familles, anti-farm, rollback et migrations avec reloads.
+Ces contrôles ne sont ni 7 488 campagnes jouées ni des mesures de survie humaine.
 
-Vérifier courbes, économie bronze/argent/or/mixte, accès et anti-farm ;
-migrations partielles/complètes/backup avec deux reloads ; dégâts réels sur
-chasseurs, bombardiers, navires, DCA, boss et points faibles ; combinaisons
-avion/rang/POW/capacité/modules ; charge sans relance ni rattrapage.
+game/tests/loadout-combat-results.json : contrôles des balayages d'armes et
+colliders de production, dégâts fractionnaires, capacités, points faibles,
+modules, instantanés des tirs et comparaison maintien/tapotement à 60 Hz.
+Les temps de destruction publiés concernent des cibles stationnaires, pas les
+trajectoires et la pression d'une mission entière. Le cas Vanguard III,
+Surcharge, Précision, éventail émet 248 tirs sur 3 s ; pic de 64 projectiles
+actifs sur un pool de 96, en 1280×720, 1920×1080 et 2560×1080 dans ce scénario.
+Cela vérifie ce budget de pool ; cela ne garantit pas les FPS de toutes les missions.
 
-Cas de pool estimé le plus chargé : Vanguard III, Surcharge, précision,
-éventail ≈82,1 projectiles/s, environ 64 actifs sur 25 unités à vitesse 32,
-sous le pool de 96. Mesurer aussi les écrans larges et les tirs sans impact.
-
-Le choix définitif des valeurs dépend de combats réels et des sessions
-humaines prévues par docs/protocole-parties.txt, notamment 01/03/08/16/31.
-Les calculs précédents ne prouvent ni le plaisir ni la viabilité de chaque
-avion sur une campagne complète. Les tickets restent ouverts à ce stade.
+Restent à observer par de vrais joueurs : survie aux missions 01/03/08/16/31,
+préférences et raisons du choix d'avion, usage des capacités, viabilité de chaque
+appareil au début et à la fin, puis campagne complète. Voir docs/protocole-parties.txt.
+Les preuves automatiques établissent les règles et leur application ; elles
+n'établissent pas encore le plaisir, l'addiction ou l'équilibre humain final.

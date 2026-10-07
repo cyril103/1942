@@ -1,0 +1,110 @@
+PACIFIC STRIKE — MESURES DE MISSIONS COMPLÈTES / #20
+7 octobre 2026 ; état partiel, aucune clôture du ticket.
+
+RÉFÉRENCE AVANT LA PASSE VISUELLE
+
+Paquet Windows 1.6.1.0, sources b3cc25485b4eacfe37c615ffdabbd969c6e4e82f.
+SHA-256 : 06BF66C22393B14A67512688E126D63048B5A09C4680214EC8AA5584EDB5B78A.
+Moteur console éditeur 4.7.2 avec --main-pack : ce n'est pas l'EXE release
+exécutant une option --script que ses templates ne prennent pas en charge.
+Windows x64, Intel Core i5-10300H, GTX 1650, pilote NVIDIA 561.03,
+OpenGL Compatibility, fenêtre 1920×1080, viewport 1920×972, VSync désactivée.
+Une seule instance Godot, aucun test/export concurrent. L'édition de textes
+et d'assets dans Codex continue ; les tâches système ne sont pas contrôlées.
+
+Mission 31, profil maximal Vanguard, 140 secondes / 8 400 ticks à 60 Hz
+par passage. Entrées latérales/verticales et tir déterminés par les ticks ;
+déplacement, projectiles et collisions réels. Joueur invulnérable uniquement
+pour maintenir le scénario de mesure. Quota manqué : six cibles au sol ;
+ces passages ne sont pas des tests de victoire ou d'équilibrage humain.
+
+Chaque profil redémarre dans un nouveau processus. Passage 0 : premier
+affichage de ses scènes, caches disque/pilote existants non effacés.
+Passage 1 : mêmes scènes rechargées à chaud dans ce processus.
+Les trois profils comprennent décollage, approche, descente, sol, remontée,
+interception au retour et appontage, puis un résultat jusqu'au tick 8 400.
+Les statistiques ci-dessous portent sur gameplay, sans l'écran de résultat.
+
+Profil / passage    Moyenne   p95     p99     Maximum   >16,67 / >33,33 ms
+Performance / 0      3,284    5,654   7,407   92,657       10 / 2
+Performance / 1      3,259    5,341   6,992   28,959        1 / 0
+Équilibré / 0        3,832    6,104   7,475   98,228        6 / 4
+Équilibré / 1        3,698    6,150   7,590   34,397        6 / 1
+Qualité / 0          3,649    6,044   7,715   88,730       17 / 3
+Qualité / 1          4,405    6,943   8,405   33,947        7 / 1
+
+Toutes les valeurs de temps sont en millisecondes. L'ordre observé ne
+démontre pas qu'une qualité est plus rapide qu'une autre ; charge du système,
+fréquences et caches restent des facteurs de variation. Construction
+synchrone de mission : 312 à 587 ms, séparée des intervalles de jeu.
+Initialisation de l'application : 296 à 2 054 ms, premier frame compris.
+
+Une comparaison indépendante des six JSON a vérifié : 8 400 ticks,
+input_signature 1547431443, state_signature 1555804110 et résultat au
+tick 6 718 dans tous les cas. Le hash d'état échantillonne position du
+joueur, horloge, index d'événement, destructions et tirs ennemis chaque
+seconde. Il ne garantit pas l'identité de chaque pixel, particule ou son.
+La sonorisation de tirs emploie encore son RNG indépendant dans ces données
+de schéma 1 ; les événements physiques extérieurs n'y sont pas neutralisés.
+Ces limites doivent accompagner toute réutilisation des chiffres.
+
+INSTRUMENTATION ET LIMITES
+
+Le schéma 1 conserve phases, marqueurs d'état et pics >16,67 ms. Les causes
+restent « unknown » : coïncidence d'un marqueur et d'un pic n'établit pas
+sa cause. Les mesures GPU terminées peuvent être décalées ; TIME_PROCESS
+ne mesure pas tout le travail CPU. Aucun gain de shader n'est revendiqué.
+
+La télémétrie du schéma 1 s'accumule en mémoire ; les allocations observées
+ne permettent pas de conclure à une fuite du jeu. Tous les passages
+reviennent néanmoins à un nœud, zéro orphelin et 203 ressources. Ces
+compteurs ne représentent ni la mémoire privée du processus ni la VRAM
+physiquement occupée.
+
+Le benchmark courant, schéma 2, fixe également le RNG des tirs et efface
+les liaisons matérielles de la fixture avant le pilotage par Input actions.
+Il refuse une divergence entre répétitions. Les détails sont écrits par
+passage et libérés avant l'échantillon after_probe_release_memory ; seuls
+les résumés restent en mémoire. Les données de schéma 1 ne valident pas
+ces branches ; leur contrôle séparé est décrit ci-dessous.
+
+CONTRÔLE DU SCHÉMA 2 — PAQUET 1.7.0, ÉQUILIBRÉ
+
+SHA-256 : 1D6F36B118C48CB13B94DD8166820C751F5867194A83322B4BC1B9FDF91E7BFC.
+Même machine, dimensions et protocole ; deux passages complets de 140 s.
+Zéro divergence et aucun diagnostic moteur. Les huit phases sont présentes.
+Entrées : 1547431443 ; état : 1612253471 ; résultat au tick 6 718 dans
+les deux passages. Sept cibles détruites, quota manqué : aucun gain de
+viabilité humaine n'est déduit de cette trajectoire de mesure.
+
+Passage             Moyenne   p95     p99     Maximum   >16,67 / >33,33 ms
+Première scène        3,353    5,393   6,841    90,805       9 / 4
+Scènes rechargées     3,268    5,199   6,452    19,916       2 / 0
+
+Après libération du scénario ET de la télémétrie détaillée : un nœud,
+zéro orphelin, 205 ressources dans les deux cas ; allocations moteur
+55 567 169 puis 55 599 765 octets, graphiques estimées 308 922 090 octets.
+Les résumés des passages restent résidents. Deux répétitions ne démontrent
+pas la stabilité sur une longue session ni toute la mémoire du processus.
+Preuves et détails avec marqueurs : game/tests/performance-1.7.0/.
+Ces chiffres ne sont pas un avant/après visuel : les règles d'armement
+ont changé entre 1.6.1 et 1.7.0, avec une destruction au sol supplémentaire.
+
+À FAIRE AVANT CLÔTURE #20
+
+Compléter les trois profils du schéma 2 et refaire des mesures comparables
+après modifications visuelles. Consigner les différences de charge liées aux nouvelles
+compositions tactiques plutôt que les attribuer à un shader. Enregistrer
+une session prolongée avec mémoire de processus et acteurs après plusieurs
+missions, puis une seconde configuration matérielle. La seule GTX 1650
+ne justifie aucune garantie de FPS sur tous les PC.
+
+Commandes : game/tests/benchmark_full_mission.gd, paramètres --mission=31,
+--quality=0/1/2, --repeats=2, --duration=140, --size=1920x1080,
+--build-id=<identité du paquet>, --output-dir=<dossier de preuves>.
+Les journaux d'essai locaux sont dans tools/review/baseline-full-final-*.log.
+Le paquet de référence est conservé hors Git pour les comparaisons suivantes.
+
+Références officielles :
+https://docs.godotengine.org/en/stable/tutorials/performance/pipeline_compilations.html
+https://docs.godotengine.org/en/4.6/classes/class_performance.html

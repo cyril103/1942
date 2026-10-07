@@ -1,7 +1,7 @@
 extends Area3D
 signal destroyed(at: Vector3)
 var alive := true
-var health := 12
+var health := 12.0
 var age := 0.0
 var variant := 0
 var cooldown := 2.0
@@ -83,9 +83,9 @@ func advance(delta: float, combat: Node) -> void:
 			warning_time = 0.5
 			cooldown = (3.1-variant*0.2)*combat.enemy_interval_scale
 
-func take_damage(amount: int) -> void:
-	if not alive or amount <= 0: return
-	health -= amount
+func take_damage(amount: float) -> void:
+	if not alive or amount <= 0 or not is_finite(amount): return
+	health = maxf(0.0,health-amount)
 	hit_time = 0.08
 	if health <= 0:
 		destroyed.emit(global_position)

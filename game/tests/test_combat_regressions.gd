@@ -1,6 +1,7 @@
 extends SceneTree
 ## Real production collisions: contact sweeps, bounded pools, and boss objectives.
 const DT := 1.0/60.0
+const LOADOUT := preload("res://scripts/campaign/loadout.gd")
 const BOSS := preload("res://scripts/campaign/boss.gd")
 const NAVAL := preload("res://scripts/campaign/enemy_naval.gd")
 const GROUND := preload("res://scripts/campaign/ground_target.gd")
@@ -31,6 +32,15 @@ func _stop_audio(node: Node) -> void:
 func _sync_physics() -> void:
 	await physics_frame
 	await physics_frame
+
+func _ready_laser_tick(weapons: Node3D) -> void:
+	# These are independent collision fixtures. Since releasing fire no longer
+	# resets cadence, let an actual released interval ready the next tick.
+	Input.action_release("fire")
+	var hits: int = weapons.hits_landed
+	weapons._update_laser(LOADOUT.BASE_LASER_INTERVAL*weapons.laser_interval_multiplier+DT)
+	check(weapons.hits_landed==hits,"Waiting with fire released cannot damage a target")
+	check(weapons.laser_clock==0,"A real released cooldown interval readies the independent laser fixture")
 
 func _make_target(kind: String) -> Area3D:
 	var target: Area3D
@@ -70,6 +80,7 @@ func _contact_target(kind: String) -> void:
 		weapons.set_power("laser")
 		director.player.position = Vector3(0,0,origin_z-weapons.laser_nose)
 		await _sync_physics()
+		_ready_laser_tick(weapons)
 		hp = target.health
 		hits = weapons.hits_landed
 		Input.action_press("fire")
@@ -96,7 +107,7 @@ func _overlap_and_shield() -> void:
 	weapons.set_power("laser")
 	await _sync_physics()
 	var combined: int = first.health+second.health
-	weapons._update_laser(0)
+	_ready_laser_tick(weapons)
 	Input.action_press("fire")
 	weapons._update_laser(.001)
 	check(combined-first.health-second.health==3,"Overlapping production ships receive exactly one laser damage tick in total")
@@ -113,9 +124,11 @@ func _overlap_and_shield() -> void:
 	weapons._physics_process(.15)
 	check(boss.health==hp and weapons.active_count==0,"Invulnerable boss consumes contact rounds without losing health")
 	weapons.set_power("laser")
+	_ready_laser_tick(weapons)
+	var laser_hits: int = weapons.hits_landed
 	Input.action_press("fire")
 	weapons._update_laser(.001)
-	check(boss.health==hp,"Interior laser preserves boss phase invulnerability")
+	check(boss.health==hp and weapons.hits_landed-laser_hits==1,"Interior laser reaches the boss while preserving phase invulnerability")
 	Input.action_release("fire")
 	weapons.set_power("none")
 	boss.queue_free()
@@ -189,6 +202,7 @@ func _weapon_components(kind: String, power: String) -> void:
 		var at: Vector3 = boss.component_position(side)
 		director.player.position = Vector3(at.x,0,4.7)
 		await _sync_physics()
+		if power=="laser": _ready_laser_tick(weapons)
 		var rounds := 0
 		while boss.component_health[side]>0 and not boss.dying and rounds<40:
 			if power=="laser":

@@ -14,13 +14,23 @@ Branche : `jeu_toppissime`, issue de `dbcdd8e`. Le titre conserve ses 32 mission
 8. **Audio** : les pistes d'action de `codex/jeu-final` sont rétablies en version 1.5, avec les fondus entre vol et boss. La composition adaptative originale à 140 BPM reste conservée comme source historique. Messages radio sous-titrés avec indicatif sonore ; pas de comédiens enregistrés. Les morceaux CC0 sont conservés avec leurs crédits.
 9. **Finition et rejouabilité** : modes arcade à équipement fixe et entraînement direct aux boss, records arcade locaux par avion/mission, sauvegarde de campagne isolée, touches reconfigurables avec conflits détectés, conservation des commandes manette, trois profils graphiques, VSync et compteur FPS. Les indications de capacités dans le HUD suivent les touches attribuées.
 
-## Fiabilité et interface — version 1.6.1
+## Équipement, score et reprises — version 1.7.0
+
+L'atelier propose dix modules avec des compromis de visée, cellule, recharge et capacité. Les rangs d'amélioration s'ouvrent aux missions 01, 09 et 21 ; les modules prolongent les choix jusqu'au dernier secteur. Un catalogue commun fournit les statistiques au hangar et au combat. Le P-38 privilégie la mobilité, le Vanguard le feu soutenu, le Corsair le blindage et les bombes. Les anciens achats sont conservés. Le [contrat d'équilibrage](equilibrage-equipement.txt) précise coûts, dégâts, cadence, migration et limites des simulations.
+
+Un guide explique les médailles, chaînes et rangs avant le vol ; le bilan indique les critères atteints et manquants. Une option de reprise courte, désactivée par défaut, rejoint la stabilisation après un décollage déjà découvert pendant cette session. La première introduction et l'appontage restent complets. Le moteur garde son fondu d'entrée même lors d'une reprise courte.
+
+Validations : 7 488 configurations calculées, quatre parcours économiques, 168 combats avec collisions réelles et 96 comparaisons tap/maintien. Le hangar/atelier passe 3 652 assertions rendues, les reprises et le guide 31 962 ; les [captures](../renders/validation-equipment/README.md) sont versionnées. Les scénarios répétés ne représentent pas autant de parties humaines. Les retours d'équilibrage sur les trois avions restent à effectuer.
+
+**Distribution actuelle : Windows 1.7.0**, `dist/PacificStrike/PacificStrike.exe` et `dist/PacificStrike-Windows-x64.zip`. Versions Windows 1.7.0.0 ; SHA256 : `1D6F36B118C48CB13B94DD8166820C751F5867194A83322B4BC1B9FDF91E7BFC`. Le ZIP passe ses **27 contrôles**, dont un démarrage normal de 180 images depuis un dossier temporaire extérieur au dépôt. Les métadonnées sont contrôlées automatiquement ; la confirmation humaine de l'Explorateur ci-dessous concernait 1.6.1. ZIP/EXE générés localement, exclus du dépôt Git. Lancement : `Jouer-Final.cmd`, ou extraire le ZIP et ouvrir l'EXE.
+
+## Fiabilité et interface — version 1.6.1 (historique)
 
 La passe de revue corrige les règles de DCA, les contacts des tirs, les récompenses de points faibles, les modes de session et la récupération des sauvegardes. Le HUD de brouillage, les briefings et les aides de commandes sont adaptés aux différentes résolutions. Les crédits distinguent les musiques actives des compositions historiques. Détails, commandes de reproduction et limites : [suivi des corrections](suivi-corrections.txt).
 
 Validation de l'interface : **1 110 assertions avec rendu réel**, dont 25 captures, sans échec. Session : 165 assertions sans échec. Les [captures avant/après](../renders/validation-interface/README.md) et les [mesures de géométrie](../game/tests/ui-readability-results.json) sont versionnées. La manette physique et une campagne humaine complète restent à vérifier.
 
-**Distribution actuelle : Windows 1.6.1**, `dist/PacificStrike/PacificStrike.exe` et `dist/PacificStrike-Windows-x64.zip`. Nom produit Pacific Strike, versions Windows 1.6.1.0, icône propre au jeu. SHA256 : `06BF66C22393B14A67512688E126D63048B5A09C4680214EC8AA5584EDB5B78A`. Le test du ZIP passe ses **27 contrôles**, dont un lancement normal de 180 images depuis un dossier temporaire extérieur au dépôt. Ce test ne remplace pas une partie complète ; l'observation visuelle des propriétés dans l'Explorateur reste à faire. Le ZIP et l'EXE sont générés localement et exclus du dépôt Git. Lancement : `Jouer-Final.cmd`, ou extraire le ZIP et ouvrir l'EXE.
+**Distribution antérieure : Windows 1.6.1**, `dist/PacificStrike/PacificStrike.exe` et `dist/PacificStrike-Windows-x64.zip`. Nom produit Pacific Strike, versions Windows 1.6.1.0, icône propre au jeu. SHA256 : `06BF66C22393B14A67512688E126D63048B5A09C4680214EC8AA5584EDB5B78A`. Le test du ZIP passait ses **27 contrôles**, dont un lancement normal de 180 images depuis un dossier temporaire extérieur au dépôt. L'observation visuelle dans l'Explorateur a été [confirmée par le joueur](validation/observations-humaines.txt). Une copie immuable de cet exécutable est conservée localement pour les mesures de référence.
 
 ## Interceptions pendant le retour — version 1.6 (historique)
 
@@ -171,7 +181,7 @@ Mesures du test animé, GTX 1650 / 1080p :
 
 Ces profils ont été mesurés successivement dans une bataille évolutive (jusqu'à 35 contacts et 48 projectiles ennemis), pas sur des images identiques. La moyenne Qualité légèrement inférieure à Équilibré n'implique donc pas que MSAA 4× soit plus rapide. Le budget de 60 FPS est de 16,67 ms. Les chargements de scènes et la chauffe initiale sont exclus des mesures.
 
-La version 1.1 avait également passé ses 114 contrôles dédiés contre son paquet embarqué via le moteur console (`--main-pack`), avec un profil temporaire distinct supprimé après le test, et ses 946 contrôles de campagne après correction du cache de ciel. L'export courant est la version 1.6.1 décrite plus haut.
+La version 1.1 avait également passé ses 114 contrôles dédiés contre son paquet embarqué via le moteur console (`--main-pack`), avec un profil temporaire distinct supprimé après le test, et ses 946 contrôles de campagne après correction du cache de ciel. L'export courant est la version 1.7.0 décrite plus haut.
 
 ## Références consultées
 

@@ -9,7 +9,7 @@ enum Phase { APPROACH, LOOP, TURN, EXIT }
 var model_scene: PackedScene = MODEL
 var propeller_name := "Zero_Propeller"
 var phase := Phase.APPROACH
-var health := 2
+var health := 2.0
 var alive := true
 var age := 0.0
 var loop_time := 0.0
@@ -134,10 +134,10 @@ func advance(delta: float, combat: Node) -> void:
 	if position.z > combat.screen_bottom() + 2.0 or age > 35.0:
 		retire()
 
-func take_damage(amount: int) -> void:
-	if not alive:
+func take_damage(amount: float) -> void:
+	if not alive or amount <= 0 or not is_finite(amount):
 		return
-	health -= amount
+	health = maxf(0.0,health-amount)
 	hit_time = 0.065
 	if health <= 0:
 		destroyed.emit(global_position + visual.position)

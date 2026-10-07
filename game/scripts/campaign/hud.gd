@@ -12,6 +12,7 @@ var jam_label: Label
 var jam_scale := -1.0
 const FONT := preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 const COMMANDS := preload("res://scripts/campaign/command_labels.gd")
+const RULES := preload("res://scripts/campaign/scoring_rules.gd")
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -134,8 +135,10 @@ func _draw() -> void:
 		var at: Vector2 = c.camera.unproject_position(ship.global_position)+r.position
 		text_at("ALLIÉ  %d/6  •  %ds" % [ship.health,ceili(ship.remaining)],at+Vector2(-65,-50)*u,19*u,Color(.4,1,.75))
 	var status_at := Vector2(18*u,r.position.y+30*u)
-	text_at("CHAÎNE %d   ×%d" % [director.mastery.chain,director.mastery.multiplier],status_at,23*u,gold)
-	draw_rect(Rect2(status_at+Vector2(0,8*u),Vector2(145*u*director.mastery.window/4.5,3*u)),gold)
+	text_at("CHAÎNE %d   ×%d" % [director.mastery.chain,director.mastery.multiplier],status_at,23*u,gold,145*u)
+	if director.mastery.window>0:
+		text_at("%.1f s" % director.mastery.window,status_at+Vector2(157*u,0),18*u,Color("a8bcc4"),60*u)
+	draw_rect(Rect2(status_at+Vector2(0,8*u),Vector2(145*u*director.mastery.window/RULES.CHAIN_SECONDS,3*u)),gold)
 	text_at(director.act_title,Vector2(w-430*u,r.position.y+28*u),19*u,Color(.75,.85,.87),410*u)
 	var objective := preload("res://scripts/campaign/operations.gd").objective_text(director.mastery.secondary_kind)
 	text_at(("✓ " if director.mastery.secondary_complete else "◇ ")+objective,Vector2(w-430*u,r.position.y+53*u),18*u,gold,410*u)

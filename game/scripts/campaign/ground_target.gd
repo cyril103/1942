@@ -15,8 +15,8 @@ const MODELS := {
 const FIELD_ATLAS := preload("res://assets/ground-forces/field-material-atlas.png")
 
 var variant := "fuel"
-var health := 0
-var max_health := 0
+var health := 0.0
+var max_health := 0.0
 var alive := true
 var jammed := false
 var age := 0.0
@@ -238,9 +238,9 @@ func _fire_volley(combat: Node) -> void:
 		if variant=="battery" and rapid_fire: interval = lerpf(0.75,0.48,progress)
 		cooldown = interval*combat.enemy_interval_scale
 
-func take_damage(amount: int) -> void:
-	if not alive or amount <= 0: return
-	health = maxi(0,health-amount)
+func take_damage(amount: float) -> void:
+	if not alive or amount <= 0 or not is_finite(amount): return
+	health = maxf(0.0,health-amount)
 	hit_time = 0.09
 	material.set_shader_parameter("hit_flash",1.0)
 	material.set_shader_parameter("damage",1.0-float(health)/max_health)

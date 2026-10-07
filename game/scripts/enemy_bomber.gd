@@ -8,7 +8,7 @@ const BLAST_TIMES := [0.0, 0.14, 0.32, 0.50, 0.67, 0.84, 1.06]
 const BLAST_OFFSETS := [Vector3(-0.63,0,1.0), Vector3(0.63,0,1.0), Vector3(0,0,0.4), Vector3(-1.25,0,0), Vector3(1.25,0,0), Vector3(0,0,-1.2), Vector3.ZERO]
 var alive := true
 var dying := false
-var health := 10
+var health := 10.0
 var age := 0.0
 var death_age := 0.0
 var blast_count := 0
@@ -149,9 +149,9 @@ func get_rear_muzzles() -> Array[Vector3]:
 	for muzzle in muzzles: positions.append(muzzle.global_position)
 	return positions
 
-func take_damage(amount: int) -> void:
-	if not alive or dying or collision_layer == 0 or amount <= 0: return
-	health = maxi(0,health-amount)
+func take_damage(amount: float) -> void:
+	if not alive or dying or collision_layer == 0 or amount <= 0 or not is_finite(amount): return
+	health = maxf(0.0,health-amount)
 	hit_time = 0.10
 	hit_material.set_shader_parameter("strength",1.0)
 	if health == 0:

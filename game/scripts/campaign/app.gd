@@ -3,6 +3,8 @@ const PROFILE := preload("res://scripts/campaign/profile.gd")
 const DIRECTOR := preload("res://scripts/campaign/director.gd")
 const HUD := preload("res://scripts/campaign/hud.gd")
 const COMMANDS := preload("res://scripts/campaign/command_labels.gd")
+const LOADOUT := preload("res://scripts/campaign/loadout.gd")
+const RULES := preload("res://scripts/campaign/scoring_rules.gd")
 const FONT := preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 const TITLE := preload("res://assets/ui/fonts/BlackOpsOne-Regular.ttf")
 const GOLD := Color("e2c383")
@@ -18,6 +20,7 @@ var background: TextureRect
 var page := "main"
 var selected_mission := 1
 var result: Dictionary = {}
+var result_earned := 0
 var notice: Label
 var buttons: Array[Button] = []
 var settings_from_pause := false
@@ -25,6 +28,9 @@ var testing := false
 var music: Node
 var play_mode := "campaign"
 var waiting_binding := ""
+var module_group := 0
+var rules_from := "briefing"
+var seen_departures: Dictionary = {}
 var session_profile: RefCounted
 var asset_cache: Array[Resource] = []
 const BIND_NAMES := {"move_left":"Gauche","move_right":"Droite","move_up":"Monter","move_down":"Descendre","fire":"Tirer","bomb":"Bombe","strike":"Capacité de l'avion","focus_flight":"Vol de précision"}
@@ -71,7 +77,16 @@ func _show_graphics() -> void:
 		check.button_pressed = profile.data.settings.get(key,true if i==0 else false)
 		check.toggled.connect(func(value): profile.data.settings[key]=value; _apply_settings(); _save())
 		design.add_child(check)
-	_button("RETOUR",Vector2(94,870),Vector2(330,60),func(): _show_settings(settings_from_pause))
+	var short_intro := CheckButton.new()
+	short_intro.name = "ShortRetryIntro"
+	short_intro.text = "Stabilisation courte après un décollage déjà vu"
+	short_intro.position = Vector2(94,768)
+	short_intro.size = Vector2(1160,56)
+	short_intro.button_pressed = bool(profile.data.settings.get("short_retry_intro",false))
+	short_intro.toggled.connect(func(value): profile.data.settings.short_retry_intro=value; _apply_settings(); _save())
+	design.add_child(short_intro)
+	_label("Première découverte : décollage complet depuis le porte-avions. Réessayer : stabilisation de 1,6 s si activée.\nSans effet en entraînement aux boss. Le retour au porte-avions reste complet.",Vector2(94,833),Vector2(1670,71),25,MUTED).name = "ShortRetryExplanation"
+	_button("RETOUR",Vector2(94,946),Vector2(330,55),func(): _show_settings(settings_from_pause))
 	_focus_first()
 
 func _apply_graphics() -> void:
@@ -336,9 +351,10 @@ func _show_briefing(number: int) -> void:
 func _show_hangar() -> void:
 	_campaign_context(selected_mission)
 	page = "hangar"
-	_clear_menu("HANGAR D'ESCADRILLE","PONT INFÉRIEUR  /  PRÉPARATION DES APPAREILS")
+	_clear_menu("HANGAR D'ESCADRILLE","APPAREILS & RANGS  /  STATISTIQUES SANS POW, AVEC VOTRE ÉQUIPEMENT")
 	preload("res://scripts/campaign/carrier_menu.gd").new().hangar(self)
-	_focus_first()
+	var assigned_aircraft: Button = design.get_node("SelectAircraft_%d" % int(profile.data.aircraft))
+	assigned_aircraft.grab_focus()
 
 func _select_aircraft(index: int) -> void:
 	profile.data.aircraft = index
@@ -349,6 +365,53 @@ func _buy(index: int) -> void:
 	var purchased: bool = profile.buy_upgrade(index)
 	_show_hangar()
 	if not purchased and profile.last_error != OK: notice.text = "Achat annulé : la sauvegarde n’a pas pu être écrite."
+
+func _show_modules(group := -1, focus_id := "") -> void:
+	_campaign_context(selected_mission)
+	if group>=0: module_group = clampi(group,0,4)
+	page = "modules"
+	_clear_menu("ATELIER D'ÉQUIPEMENT","DEUX EMPLACEMENTS MAXIMUM  /  UN MODULE PAR FAMILLE  /  CHANGEMENTS GRATUITS ENTRE LES MISSIONS")
+	preload("res://scripts/campaign/carrier_menu.gd").new().modules(self)
+	_focus_first()
+	if focus_id.is_empty(): focus_id = "ModuleTab_%d" % module_group
+	if not focus_id.is_empty():
+		var focused: Button = design.find_child(focus_id,true,false)
+		if is_instance_valid(focused) and not focused.disabled: focused.grab_focus()
+
+func _show_rules(from_page := "briefing") -> void:
+	rules_from = from_page
+	page = "rules"
+	_clear_menu("GUIDE DE VOL  /  SCORE & MAÎTRISE","RÈGLES DE CAMPAGNE  /  LA MÉDAILLE ET LE RANG ÉVALUENT DES CRITÈRES DIFFÉRENTS")
+	preload("res://scripts/campaign/carrier_menu.gd").new().scoring_guide(self)
+	_button("RETOUR AU BRIEFING" if rules_from=="briefing" else "RETOUR AU BILAN",Vector2(94,946),Vector2(440,55),_return_from_rules).name = "RulesReturn"
+	_focus_first()
+
+func _show_criteria() -> void:
+	if result.is_empty() or not is_instance_valid(director): return
+	page = "criteria"
+	_clear_menu("DÉBRIEFING  /  MÉDAILLE & RANG","MISSION %02d  /  %s  /  %s" % [selected_mission,director.mission.title,play_mode.to_upper()])
+	preload("res://scripts/campaign/carrier_menu.gd").new().scoring_criteria(self,result)
+	_button("RETOUR AU RÉSULTAT",Vector2(94,946),Vector2(440,55),_draw_result.bind(result)).name = "CriteriaReturn"
+	_button("GUIDE DE SCORE",Vector2(559,946),Vector2(440,55),_show_rules.bind("criteria")).name = "CriteriaRules"
+	_focus_first()
+
+func _return_from_rules() -> void:
+	if rules_from=="criteria": _show_criteria()
+	else: _show_briefing(selected_mission)
+
+func _buy_module(id: String) -> void:
+	var purchased: bool = profile.buy_module(id)
+	_show_modules(-1,"EquipModule_"+id if purchased else "BuyModule_"+id)
+	if purchased: notice.text = "MODULE ACQUIS — équipez-le sur un emplacement libre."
+	elif profile.last_error!=OK: notice.text = "Achat annulé : la sauvegarde n’a pas pu être écrite."
+
+func _equip_module(id: String) -> void:
+	var previously_equipped: bool = id in profile.data.equipped_modules
+	var changed: bool = profile.equip_module(id)
+	_show_modules(-1,"EquipModule_"+id)
+	if changed: notice.text = "MODULE RETIRÉ — emplacement libre." if previously_equipped else "MODULE ÉQUIPÉ — statistiques actualisées pour les trois appareils."
+	elif profile.last_error!=OK: notice.text = "Modification annulée : la sauvegarde n’a pas pu être écrite."
+	else: notice.text = "Retirez d'abord le module de cette famille ou libérez un emplacement."
 
 func _show_settings(from_pause: bool) -> void:
 	settings_from_pause = from_pause
@@ -410,7 +473,7 @@ func _show_credits() -> void:
 	_button("RETOUR",Vector2(94,936),Vector2(280,56),_show_main)
 	_focus_first()
 
-func _launch(number: int, mode := "") -> void:
+func _launch(number: int, mode := "", retry := false) -> void:
 	var launch_mode: String = play_mode if mode.is_empty() else mode
 	if not _can_launch(number,launch_mode):
 		if is_instance_valid(notice): notice.text = "Mission indisponible dans ce mode. Choisissez une mission accessible."
@@ -443,13 +506,21 @@ func _launch(number: int, mode := "") -> void:
 	director.finished.connect(func(report): _show_result.call_deferred(report))
 	cockpit.flight.add_child(director)
 	cockpit.flight.get_node("Weapons").set_power(session_profile.data.power)
+	var departure = cockpit.flight.get_node("Departure")
+	var departure_key := "%s:%d" % [play_mode,number]
+	var use_short_intro: bool = retry and play_mode!="practice" and bool(profile.data.settings.get("short_retry_intro",false)) and seen_departures.has(departure_key)
+	# Mark only a normal takeoff that actually reached flight. Leaving the menu
+	# during its choreography never makes the next attempt skip that discovery.
+	if play_mode!="practice" and not use_short_intro:
+		departure.flight_started.connect(func(): seen_departures[departure_key]=true,CONNECT_ONE_SHOT)
+	if use_short_intro: departure.begin_short_retry()
 	var hud := HUD.new()
 	hud.name = "CampaignHUD"
 	hud.cockpit = cockpit
 	hud.director = director
 	cockpit.add_child(hud)
 	if play_mode=="practice":
-		cockpit.flight.get_node("Departure").finish_immediately()
+		departure.finish_immediately()
 		director._spawn_boss(director.mission.boss)
 	_apply_graphics()
 	_assign_audio(cockpit)
@@ -468,7 +539,7 @@ func _show_pause() -> void:
 	_clear_menu("VOL SUSPENDU","MISSION %02d  /  %s" % [selected_mission,director.mission.title])
 	_button("REPRENDRE LE VOL",Vector2(94,315),Vector2(580,70),_resume)
 	_button("OPTIONS",Vector2(94,415),Vector2(580,64),func(): _show_settings(true))
-	_button("RECOMMENCER LA MISSION",Vector2(94,509),Vector2(580,64),_launch.bind(selected_mission))
+	_button("RECOMMENCER LA MISSION",Vector2(94,509),Vector2(580,64),_launch.bind(selected_mission,"",true))
 	_button("RETOUR À L'ACCUEIL",Vector2(94,603),Vector2(580,64),_show_main)
 	_label("La progression est enregistrée entre les missions.\nReprendre depuis l'accueil relance le briefing de la mission.",Vector2(850,325),Vector2(870,150),32,MUTED)
 	_label("COMMANDES  /  CLAVIER · MANETTE",Vector2(850,495),Vector2(870,48),27,GOLD)
@@ -493,7 +564,7 @@ func _show_result(report: Dictionary) -> void:
 	page = "result"
 	get_tree().paused = true
 	director.paused = true
-	var earned := 0
+	result_earned = 0
 	if play_mode=="campaign": profile.data.high_score = maxi(profile.data.high_score,int(report.score))
 	elif play_mode=="arcade":
 		var key := "%d:%d" % [selected_mission,profile.data.aircraft]
@@ -503,30 +574,36 @@ func _show_result(report: Dictionary) -> void:
 		profile.data.run_lives = int(report.get("lives",3))
 		profile.data.power = report.get("power","none")
 		profile.data.pow_ready = profile.data.power == "spread"
-		earned = profile.record_victory(selected_mission,report.get("mission_score",report.score),report.grade)
+		result_earned = profile.record_victory(selected_mission,report.get("mission_score",report.score),report.grade)
 	if play_mode=="campaign" and report.won:
 		var record: Dictionary = profile.data.records[str(selected_mission)]
 		record.best_chain = maxi(int(record.get("best_chain",0)),int(report.get("best_chain",0)))
 		var ranks := ["D","C","B","A","S"]
 		if ranks.find(str(report.get("rank","D")))>ranks.find(str(record.get("rank","D"))): record.rank=report.rank
+	_draw_result(report)
+	_save()
+
+func _draw_result(report: Dictionary) -> void:
+	if not is_instance_valid(director): return
+	page = "result"
 	var victory: bool = report.won and selected_mission == 32 and play_mode=="campaign"
 	var objective_failed: bool = report.get("objective_failed",false)
 	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else ("MISSION INACCOMPLIE" if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
 	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else ("OBJECTIF NON ATTEINT" if objective_failed else "AUCUNE VIE RESTANTE"),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
-	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.bonus,earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1"))
+	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.bonus,result_earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1")).name = "ResultScoreDetails"
 	var summary := "32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est disponible.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre meilleur score est conservé.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde.")
 	if play_mode!="campaign": summary = ("Le record Arcade est mis à jour si ce score est supérieur." if play_mode=="arcade" else "Entraînement terminé. Aucun record ni récompense de campagne.")+"\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée."
 	var summary_label := _label(summary,Vector2(1210,336),Vector2(590,360),30,MUTED)
 	summary_label.name = "ResultSummary"
 	if report.won and selected_mission < 32 and play_mode=="campaign":
 		_button("MISSION SUIVANTE",Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
-	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission))
+	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission,"",true))
 	_button("HANGAR",Vector2(559,842),Vector2(320,66),_hangar_after_result)
 	_button("ACCUEIL",Vector2(904,842),Vector2(320,66),_show_main)
-	if victory: _button("CRÉDITS",Vector2(1249,842),Vector2(320,66),_credits_after_result)
+	_button("MÉDAILLE & RANG  /  DÉTAILS",Vector2(1249,842),Vector2(551,66),_show_criteria).name = "ResultCriteria"
+	if victory: _button("CRÉDITS",Vector2(94,931),Vector2(320,55),_credits_after_result)
 	if play_mode!="campaign": _label("MODE "+play_mode.to_upper()+"  /  CAMPAGNE INCHANGÉE",Vector2(1210,665),Vector2(590,70),26,GOLD)
 	_label("RANG %s   •   CHAÎNE MAX %d   •   PRÉCISION %d %%\nOBJECTIF SECONDAIRE : %s" % [report.get("rank","C"),report.get("best_chain",0),int(float(report.get("accuracy",0))*100),"ACCOMPLI" if report.get("secondary",false) else "NON ACCOMPLI"],Vector2(94,744),Vector2(1620,85),27,GOLD)
-	_save()
 	_focus_first()
 
 func _briefing_after_result(number: int) -> void:
@@ -579,6 +656,9 @@ func _input(event: InputEvent) -> void:
 			"playing": _show_pause()
 			"pause": _resume()
 			"bindings", "graphics": _show_settings(settings_from_pause)
+			"modules": _show_hangar()
+			"rules": _return_from_rules()
+			"criteria": _draw_result(result)
 			"settings":
 				if settings_from_pause: _show_pause()
 				else: _show_main()

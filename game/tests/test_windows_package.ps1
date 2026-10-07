@@ -1,7 +1,7 @@
 param(
     [string]$PackageZip = (Join-Path $PSScriptRoot '../../dist/PacificStrike-Windows-x64.zip'),
     [string]$BuiltExecutable = (Join-Path $PSScriptRoot '../../dist/PacificStrike/PacificStrike.exe'),
-    [string]$ExpectedVersion = '1.6.1.0',
+    [string]$ExpectedVersion = '1.7.0.0',
     [switch]$SkipRuntime
 )
 $ErrorActionPreference = 'Stop'

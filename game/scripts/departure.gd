@@ -201,6 +201,23 @@ func finish_immediately() -> void:
 	carrier.hide()
 	set_physics_process(false)
 
+func begin_short_retry() -> bool:
+	# An opt-in retry rejoins the airborne settling phase. It keeps the same
+	# control handoff, without speeding up the carrier run or the full loop.
+	if not active or landing_active or not is_instance_valid(carrier): return false
+	elapsed = LOOP_END
+	phase = Phase.SETTLE
+	_settle_start = Vector3(0.0,0.0,-2.0)
+	player.position = _settle_start
+	player.bank.rotation = Vector3.ZERO
+	player.bank.scale = Vector3.ONE
+	player.controls_enabled = false
+	seascape.scroll_speed = minf(_cruise_speed,2.4)
+	contact_shadow.hide()
+	engine_audio.last_distance = player.global_position.distance_to(camera.global_position)
+	engine_audio.radial_speed = 0.0
+	return true
+
 func begin_landing() -> void:
 	active = false
 	landing_active = true
@@ -216,10 +233,7 @@ func begin_landing() -> void:
 	carrier.show()
 	contact_shadow.show()
 	set_physics_process(false)
-	engine_audio.finished = false
-	engine_audio.fade = 0
-	engine_audio.set_physics_process(true)
-	for voice in engine_audio.voices: voice.play()
+	engine_audio.start()
 
 func advance_landing(delta: float) -> void:
 	if not landing_active or landed: return

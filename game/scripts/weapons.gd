@@ -2,8 +2,9 @@ extends Node3D
 ## Fixed-capacity pool. Inactive slots have no processing or collision bodies.
 ## Enemy colliders occupy physics layer 2, cross Y=0 and expose take_damage(amount).
 
+const LOADOUT := preload("res://scripts/campaign/loadout.gd")
 const CAPACITY := 96
-const SHOT_INTERVAL := 0.125
+const SHOT_INTERVAL: float = LOADOUT.AIRCRAFT[0].shot_interval
 const SPEED := 32.0
 const MAX_LIFETIME := 3.0
 const ENEMY_MASK := 2
@@ -19,6 +20,7 @@ var projectiles: Array[MeshInstance3D] = []
 var lifetimes := PackedFloat32Array()
 var velocities := PackedVector3Array()
 var opening_offsets := PackedVector3Array()
+var round_damages := PackedFloat64Array()
 var spread_enabled := false
 var power_type := "none"
 var laser: MeshInstance3D
@@ -27,7 +29,9 @@ var laser_muzzle: MeshInstance3D
 var laser_contact: MeshInstance3D
 var laser_audio: AudioStreamPlayer
 var shot_interval := SHOT_INTERVAL
-var projectile_damage := 1
+var projectile_damage := 1.0
+var spread_multiplier := 1.0
+var laser_width_multiplier := 1.0
 var laser_interval_multiplier := 1.0
 var flashes: Array[MeshInstance3D] = []
 var impacts: Array[MeshInstance3D] = []
@@ -100,6 +104,7 @@ func _ready() -> void:
 	lifetimes.resize(CAPACITY)
 	velocities.resize(CAPACITY)
 	opening_offsets.resize(CAPACITY)
+	round_damages.resize(CAPACITY)
 	velocities.fill(Vector3(0,0,-SPEED))
 	for index in range(CAPACITY):
 		var shot := MeshInstance3D.new()
@@ -138,6 +143,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Cadence belongs to the weapon, not to the button state. Releasing fire
+	# must not ready another salvo early (including keyboard or pad turbo).
+	_cooldown -= delta
 	_update_laser(delta)
 	for index in range(impacts.size()):
 		impact_times[index] = maxf(0.0, impact_times[index] - delta)
@@ -173,8 +181,8 @@ func _physics_process(delta: float) -> void:
 			var target: Object = hit.collider
 			if target.has_method("take_damage"):
 				hits_landed += 1
-				if target.has_method("take_hit_at"): target.take_hit_at(projectile_damage,hit.position)
-				else: target.take_damage(projectile_damage)
+				if target.has_method("take_hit_at"): target.take_hit_at(round_damages[index],hit.position)
+				else: target.take_damage(round_damages[index])
 			_release(index)
 			continue
 		var screen_position := camera.unproject_position(shot.global_position)
@@ -184,9 +192,8 @@ func _physics_process(delta: float) -> void:
 	for flash in flashes:
 		flash.visible = _flash_time > 0.0 and player.controls_enabled
 	if not player.controls_enabled or not Input.is_action_pressed("fire") or power_type == "laser":
-		_cooldown = 0.0
+		_cooldown = maxf(0.0,_cooldown)
 		return
-	_cooldown -= delta
 	if _cooldown <= 0.0:
 		_fire_salvo()
 		# Preserve fractional cadence, without generating a burst after a stall.
@@ -200,7 +207,7 @@ func _fire_salvo() -> void:
 	audio.play_salvo()
 	for barrel in range(count):
 		var muzzle: Vector3 = muzzle_positions[barrel / 2 if spread_enabled else barrel]
-		var angle := deg_to_rad([-15.0,-5.0,5.0,15.0][barrel]) if spread_enabled else 0.0
+		var angle := deg_to_rad([-15.0,-5.0,5.0,15.0][barrel])*spread_multiplier if spread_enabled else 0.0
 		for index in range(CAPACITY):
 			if lifetimes[index] > 0.0:
 				continue
@@ -215,6 +222,7 @@ func _fire_salvo() -> void:
 			shot.scale = Vector3(1.45,1,1.18) if spread_enabled else Vector3.ONE
 			shot.show()
 			lifetimes[index] = MAX_LIFETIME
+			round_damages[index] = projectile_damage
 			active_count += 1
 			shots_fired += 1
 			break
@@ -226,6 +234,7 @@ func _fire_salvo() -> void:
 func _release(index: int) -> void:
 	projectiles[index].hide()
 	lifetimes[index] = 0.0
+	round_damages[index] = 0.0
 	active_count -= 1
 
 
@@ -258,12 +267,13 @@ func cease_fire() -> void:
 	for flash in flashes: flash.hide()
 
 func _update_laser(delta: float) -> void:
+	laser_clock -= delta
 	var firing: bool = power_type == "laser" and player.alive and player.controls_enabled and Input.is_action_pressed("fire")
 	laser.visible = firing
 	laser_muzzle.visible = firing
 	laser_contact.hide()
 	if not firing:
-		laser_clock = 0
+		laser_clock = maxf(0.0,laser_clock)
 		laser_audio.stop()
 		return
 	if not laser_audio.playing: laser_audio.play()
@@ -275,7 +285,7 @@ func _update_laser(delta: float) -> void:
 	var nearest_z := end.z
 	var space := get_world_3d().direct_space_state
 	for sample in range(LASER_SAMPLES):
-		var offset := lerpf(-LASER_WIDTH*.5,LASER_WIDTH*.5,float(sample)/(LASER_SAMPLES-1))
+		var offset := lerpf(-LASER_WIDTH*.5*laser_width_multiplier,LASER_WIDTH*.5*laser_width_multiplier,float(sample)/(LASER_SAMPLES-1))
 		_query.from = Vector3(origin.x+offset,0,origin.z)
 		_query.to = Vector3(end.x+offset,0,end.z)
 		var candidate := space.intersect_ray(_query)
@@ -290,19 +300,21 @@ func _update_laser(delta: float) -> void:
 	laser.visible = distance>.001
 	laser.global_position = (origin+end)*.5+Vector3(0,presentation_altitude+.25,0)
 	laser.scale.z = length
+	laser.scale.x = laser_width_multiplier
+	laser_muzzle.scale.x = laser_width_multiplier
+	laser_contact.scale.x = laser_width_multiplier
 	laser.material_override.set_shader_parameter("beam_length",length)
 	laser_muzzle.global_position = origin+Vector3(0,presentation_altitude+.3,0)
 	laser_contact.visible = not hit.is_empty()
 	var contact: Vector3 = hit.position if not hit.is_empty() else end
 	laser_contact.global_position = contact+Vector3(0,presentation_altitude+.3,0)
-	laser_clock -= delta
 	if laser_clock <= 0:
-		laser_clock += .1*laser_interval_multiplier
+		laser_clock = maxf(laser_clock+LOADOUT.BASE_LASER_INTERVAL*laser_interval_multiplier,0.0)
 		shots_fired += 1
 		if not hit.is_empty() and hit.collider.has_method("take_damage"):
 			hits_landed += 1
-			if hit.collider.has_method("take_hit_at"): hit.collider.take_hit_at(2+projectile_damage,hit.position)
-			else: hit.collider.take_damage(2+projectile_damage)
+			if hit.collider.has_method("take_hit_at"): hit.collider.take_hit_at(LOADOUT.BASE_LASER_DAMAGE*projectile_damage,hit.position)
+			else: hit.collider.take_damage(LOADOUT.BASE_LASER_DAMAGE*projectile_damage)
 			_show_impact(contact)
 
 func _make_laser_flare(size: float) -> MeshInstance3D:

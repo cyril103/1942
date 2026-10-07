@@ -1,0 +1,347 @@
+{
+	"checks": 3652,
+	"failures": [],
+	"human_controller_check": "NOT_PERFORMED",
+	"screens": [
+		{
+			"aircraft": 0,
+			"context": "Initial hangar (1280, 720)",
+			"controls": 52,
+			"equipped": [],
+			"page": "hangar",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"aircraft": 0,
+			"context": "Initial workshop (1280, 720)",
+			"controls": 41,
+			"equipped": [],
+			"page": "modules",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"aircraft": 0,
+			"context": "Equipped hangar aircraft0 (1280, 720)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 1,
+			"context": "Equipped hangar aircraft1 (1280, 720)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Equipped hangar aircraft2 (1280, 720)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group0 (1280, 720)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group1 (1280, 720)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group2 (1280, 720)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group3 (1280, 720)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group4 (1280, 720)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Long-key hangar (1280, 720)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1280, 720)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 0,
+			"context": "Initial hangar (1920, 1080)",
+			"controls": 52,
+			"equipped": [],
+			"page": "hangar",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"aircraft": 0,
+			"context": "Initial workshop (1920, 1080)",
+			"controls": 41,
+			"equipped": [],
+			"page": "modules",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				0,
+				0,
+				0
+			]
+		},
+		{
+			"aircraft": 0,
+			"context": "Equipped hangar aircraft0 (1920, 1080)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 1,
+			"context": "Equipped hangar aircraft1 (1920, 1080)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Equipped hangar aircraft2 (1920, 1080)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group0 (1920, 1080)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group1 (1920, 1080)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group2 (1920, 1080)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group3 (1920, 1080)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Workshop group4 (1920, 1080)",
+			"controls": 43,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "modules",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		},
+		{
+			"aircraft": 2,
+			"context": "Long-key hangar (1920, 1080)",
+			"controls": 52,
+			"equipped": [
+				"precision",
+				"plates"
+			],
+			"page": "hangar",
+			"physical_size": "(1920, 1080)",
+			"upgrades": [
+				3,
+				3,
+				3
+			]
+		}
+	]
+}

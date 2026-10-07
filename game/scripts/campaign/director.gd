@@ -2,6 +2,8 @@ extends Node
 signal finished(report: Dictionary)
 const NAVAL := preload("res://scripts/campaign/enemy_naval.gd")
 const BOSS := preload("res://scripts/campaign/boss.gd")
+const LOADOUT := preload("res://scripts/campaign/loadout.gd")
+const SCORING := preload("res://scripts/campaign/scoring_rules.gd")
 var cockpit: Control
 var mission: Dictionary
 var profile: RefCounted
@@ -44,7 +46,9 @@ var radio_time := 0.0
 var ability_time := 0.0
 var base_speed := 12.0
 var base_interval := .105
-var base_damage := 1
+var base_damage := 1.0
+var equipment: Dictionary
+var base_laser_interval := 1.0
 var practice := false
 var last_boss_phase := -1
 var convoy: Area3D
@@ -76,16 +80,23 @@ func _ready() -> void:
 	var aircraft: int = profile.data.aircraft
 	player.configure_aircraft(aircraft)
 	weapons.configure_aircraft(aircraft)
-	player.speed = [12.0,14.0,10.4][aircraft]
-	player.max_health = [2,2,3][aircraft]+int(profile.data.upgrades[1])
+	equipment = LOADOUT.stats(profile.data,aircraft)
+	player.speed = float(equipment.speed)
+	player.max_health = int(equipment.max_health)
+	player.hit_invulnerability_multiplier = float(equipment.hit_invulnerability_multiplier)
 	player.health = player.max_health
 	player.focus_enabled = true
 	player.damaged.connect(_on_damage)
 	player.destroyed.connect(_on_death)
 	player.respawned.connect(_on_respawn)
-	bombs = 3 if aircraft == 2 else 2
-	weapons.shot_interval = [0.105,0.09,0.12][aircraft]*(1.0-0.06*int(profile.data.upgrades[0]))
-	weapons.projectile_damage = 2 if int(profile.data.upgrades[0]) == 3 else 1
+	bombs = int(equipment.bombs)
+	charge = float(equipment.initial_charge)
+	previous_kills = combat.kills
+	weapons.shot_interval = float(equipment.shot_interval)
+	weapons.projectile_damage = float(equipment.projectile_damage)
+	weapons.laser_interval_multiplier = float(equipment.laser_interval_multiplier)
+	weapons.spread_multiplier = float(equipment.spread_multiplier)
+	weapons.laser_width_multiplier = float(equipment.laser_width_multiplier)
 	start_score = combat.score
 	cockpit.high_score = profile.data.high_score
 	if not first_takeoff: cockpit.flight.get_node("Departure").finish_immediately()
@@ -103,6 +114,7 @@ func _ready() -> void:
 	base_speed = player.speed
 	base_interval = weapons.shot_interval
 	base_damage = weapons.projectile_damage
+	base_laser_interval = weapons.laser_interval_multiplier
 	details = preload("res://scripts/campaign/combat_detail.gd").new()
 	details.player = player
 	cockpit.flight.add_child(details)
@@ -158,18 +170,25 @@ func _update_ability(delta: float) -> void:
 	player.speed = base_speed
 	weapons.shot_interval = base_interval
 	weapons.projectile_damage = base_damage
-	weapons.laser_interval_multiplier = 1.0
-	if ability_time<=0 or not player.alive: return
-	match int(profile.data.aircraft):
-		0:
-			weapons.shot_interval = base_interval*.6
-			weapons.laser_interval_multiplier = .6
-		1:
-			player.speed = base_speed*1.3
-			weapons.projectile_damage = base_damage+1
-		2:
-			player.invulnerable_time = maxf(player.invulnerable_time,.2)
-			weapons.projectile_damage = base_damage+1
+	weapons.laser_interval_multiplier = base_laser_interval
+	if not player.alive or ending or not active: ability_time = 0
+	if ability_time<=0: return
+	player.speed *= float(equipment.ability_speed_multiplier)
+	weapons.projectile_damage *= float(equipment.ability_damage_multiplier)
+	var rate := float(equipment.ability_rate_multiplier)
+	weapons.shot_interval /= rate
+	weapons.laser_interval_multiplier /= rate
+	if int(profile.data.aircraft)==2:
+		player.invulnerable_time = maxf(player.invulnerable_time,.2)
+
+func _update_charge(delta: float, ability_was_active: bool) -> void:
+	# Observe every kill exactly once, including kills produced by the strike.
+	# A frame that expires an ability remains blocked, so a long frame cannot
+	# turn those kills into a delayed recharge or credit active-time seconds.
+	var new_kills: int = maxi(0,combat.kills-previous_kills)
+	previous_kills = combat.kills
+	if not active or ability_was_active or ability_time>0 or ending or not player.alive or not player.controls_enabled: return
+	charge = minf(100,charge+delta*float(equipment.charge_passive)+new_kills*float(equipment.charge_kill))
 
 func _physics_process(delta: float) -> void:
 	advance(delta)
@@ -178,10 +197,11 @@ func advance(delta: float) -> void:
 	if not active or paused: return
 	feedback_time = maxf(0,feedback_time-delta)
 	radio_time = maxf(0,radio_time-delta)
-	if player.controls_enabled and not ending:
+	if player.alive and player.controls_enabled and not ending:
 		mastery.advance(delta)
-		charge = minf(100,charge+delta*1.8)
+	var ability_was_active := ability_time>0
 	_update_ability(delta)
+	_update_charge(delta,ability_was_active)
 	if ring_time > 0:
 		ring_time = maxf(0,ring_time-delta)
 		special_ring.scale = Vector3.ONE*lerpf(1,13,1-ring_time/0.7)
@@ -192,9 +212,6 @@ func advance(delta: float) -> void:
 		var strength := shake_time*9 if profile.data.settings.shake else 0.0
 		cockpit.screen.position = cockpit.play_rect.position+Vector2(sin(elapsed*79),cos(elapsed*91))*strength
 	else: cockpit.screen.position = cockpit.play_rect.position
-	if combat.kills > previous_kills:
-		charge = minf(100,charge+(combat.kills-previous_kills)*(5.0+float(profile.data.upgrades[2])))
-		previous_kills = combat.kills
 	for ship in navals:
 		if is_instance_valid(ship) and ship.alive: ship.advance(delta,combat)
 	navals = navals.filter(func(ship): return is_instance_valid(ship) and ship.alive)
@@ -235,6 +252,7 @@ func advance(delta: float) -> void:
 		if is_instance_valid(assault) and (not assault.approach_clear() or extraction_started_at<0): return
 		mission_completed = not is_instance_valid(assault) or assault.kills>=int(mission.quota)
 		ending = true
+		_update_ability(0)
 		feedback = "SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS" if mission_completed else "OBJECTIF INCOMPLET  /  REPLI VERS LE PORTE-AVIONS"
 		feedback_time = 6
 		combat.clear_enemy_bullets()
@@ -366,7 +384,7 @@ func _on_respawn() -> void:
 	feedback_time = 2.5
 
 func use_bomb() -> bool:
-	if not active or ending or not player.controls_enabled or bombs <= 0: return false
+	if not active or paused or ending or not player.alive or not player.controls_enabled or bombs <= 0: return false
 	bombs -= 1
 	attacks_used += 1
 	_discharge(35,false)
@@ -375,16 +393,17 @@ func use_bomb() -> bool:
 	return true
 
 func use_strike() -> bool:
-	if not active or ending or not player.controls_enabled or charge < 100: return false
+	if not active or paused or ending or not player.alive or not player.controls_enabled or ability_time>0 or charge < 100: return false
 	charge = 0
 	attacks_used += 1
-	ability_time = [5.0,4.0,3.5][profile.data.aircraft]
-	_discharge([25,45,85][profile.data.aircraft],profile.data.aircraft!=2)
-	feedback = ["VANGUARD  /  SURCHARGE 5 S","INTERCEPTOR  /  PURSUITE 4 S","BULWARK  /  BASTION 3,5 S"][profile.data.aircraft]
+	ability_time = float(equipment.ability_duration)
+	_update_ability(0)
+	_discharge(float(equipment.strike_damage),bool(equipment.strike_focused))
+	feedback = "%s  /  %s %.1f S" % [LOADOUT.aircraft(int(profile.data.aircraft)).name,str(equipment.ability_label),ability_time]
 	feedback_time = 2.0
 	return true
 
-func _discharge(damage: int, focused: bool) -> void:
+func _discharge(damage: float, focused: bool) -> void:
 	combat.clear_enemy_bullets()
 	player.invulnerable_time = maxf(player.invulnerable_time,1.5)
 	special_ring.global_position = player.global_position+Vector3(0,combat.presentation_altitude+0.5,0)
@@ -409,16 +428,15 @@ func _clear_actors() -> void:
 func _end(won: bool) -> void:
 	if not active: return
 	active = false
+	_update_ability(0)
+	weapons.cease_fire()
+	previous_kills = combat.kills
 	player.controls_enabled = false
-	var grade := 0
-	if won:
-		grade = 1
-		if deaths == 0: grade = 2
-		var objective_met: bool = combat.kills >= int(mission.quota)
-		if mission.objective == "strike": objective_met = naval_kills >= int(mission.quota)
-		if mission.objective == "ground": objective_met = is_instance_valid(assault) and assault.kills>=int(mission.quota)
-		if mission.objective == "boss": objective_met = boss_won
-		if deaths == 0 and damage_taken <= 2 and objective_met: grade = 3
+	var objective_met: bool = combat.kills >= int(mission.quota)
+	if mission.objective == "strike": objective_met = naval_kills >= int(mission.quota)
+	if mission.objective == "ground": objective_met = is_instance_valid(assault) and assault.kills>=int(mission.quota)
+	if mission.objective == "boss": objective_met = boss_won
+	var grade := SCORING.medal(won,deaths,damage_taken,objective_met)
 	var bonus := maxi(0,player.health*100+combat.remaining_lives*250+bombs*150) if won else 0
 	combat.score += bonus
-	finished.emit({"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":not won and not mission_completed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})
+	finished.emit({"objective_met":objective_met,"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":not won and not mission_completed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})

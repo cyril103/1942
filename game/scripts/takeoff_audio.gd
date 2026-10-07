@@ -12,6 +12,7 @@ var radial_speed := 0.0
 var doppler := 1.0
 var finished := false
 var fade := 0.0
+var attack_elapsed := 0.0
 
 func _ready() -> void:
 	process_physics_priority = 1
@@ -29,10 +30,25 @@ func _ready() -> void:
 		voice.volume_db = -60.0
 		add_child(voice)
 		voices.append(voice)
+	start()
+
+func start() -> void:
+	# Voice attack follows playback time, not a cinematic clock that a short
+	# retry can skip. The same restart contract applies to carrier recovery.
+	finished = false
+	fade = 0.0
+	attack_elapsed = 0.0
+	last_distance = player.global_position.distance_to(camera.global_position)
+	radial_speed = 0.0
+	doppler = 1.0
+	for voice in voices:
+		voice.volume_db = -60.0
 		voice.play()
+	set_physics_process(true)
 
 func _physics_process(delta: float) -> void:
 	if finished: return
+	attack_elapsed += maxf(0.0,delta)
 	global_position = player.global_position
 	var distance := global_position.distance_to(camera.global_position)
 	var measured := (distance - last_distance) / maxf(delta, 0.001)
@@ -49,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	if fade >= 1.0:
 		stop()
 		return
-	var entry_fade := smoothstep(0.0, 0.35, departure.elapsed)
+	var entry_fade := smoothstep(0.0, 0.35, attack_elapsed)
 	var distance_gain := clampf(pow(35.0 / maxf(distance, 1.0), 2.0), 0.55, 1.4)
 	var envelope := entry_fade * (1.0 - smoothstep(0.0, 1.0, fade)) * distance_gain
 	for index in range(voices.size()):
@@ -59,5 +75,6 @@ func _physics_process(delta: float) -> void:
 
 func stop() -> void:
 	finished = true
+	attack_elapsed = 0.0
 	for voice in voices: voice.stop()
 	set_physics_process(false)

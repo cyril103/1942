@@ -30,10 +30,11 @@ func _run() -> void:
 	check(weapons.active_count == 0, "No shooting during takeoff")
 	departure.finish_immediately()
 	var initial_nodes: int = weapons.get_child_count()
+	var initial_children: Array[Node] = weapons.get_children()
 	for tick in range(60 * 60 * 5):
 		weapons._physics_process(1.0 / 60.0)
-	check(weapons.shots_fired >= 4798 and weapons.shots_fired <= 4802, "Eight twin salvos per second over five minutes")
-	check(weapons.get_child_count() == initial_nodes and initial_nodes == weapons.CAPACITY + 9, "Projectile, impact and audio pools stay fixed after prolonged continuous fire")
+	check(weapons.shots_fired >= 6666 and weapons.shots_fired <= 6670, "Vanguard sustains 11.11 twin salvos per second over five minutes")
+	check(initial_nodes == weapons.CAPACITY + 13 and weapons.get_child_count() == initial_nodes and weapons.get_children() == initial_children and weapons.projectiles.size() == weapons.CAPACITY, "The exact projectile, impact, laser and audio children remain fixed after prolonged continuous fire")
 	check(weapons.audio.salvos_played * 2 == weapons.shots_fired, "Exactly one sound per twin salvo")
 	check(weapons.audio.get_child_count() == 8, "Audio voice count stays bounded")
 	check(weapons.active_count < 32, "Offscreen projectiles are reclaimed while firing")

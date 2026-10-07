@@ -1,5 +1,5 @@
 PACIFIC STRIKE — CAMPAGNE 1942
-Version 1.6.1 — correctifs de fiabilité et d'interface.
+Version 1.7.0 — équipement, progression et reprises de mission.
 
 Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
 Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.
@@ -41,7 +41,23 @@ VIES ET BLINDAGE
 La jauge BLINDAGE indique les impacts restants avant destruction. Perdre un avion consomme une vie. S il reste des vies, retour apres 1,5 seconde dans la mission en cours, blindage restaure, avec clignotement et protection pendant 4 secondes. Le score et l avancement de la mission sont conserves. A zero vie : GAME OVER, bilan puis choix explicite de reessayer au dernier point de sauvegarde ou de revenir a l accueil.
 
 FLOTTE JOUABLE
-Vanguard : appareil polyvalent original. Interceptor : Lockheed P-38 Lightning, plus rapide, canons de nez. Bulwark : Chance Vought F4U Corsair, blindage renforce, trois bombes, tir depuis les ailes. Choisir le profil au hangar remplace aussi le modele utilise en mission.
+Vanguard : meilleur débit de feu continu, vitesse et blindage équilibrés.
+Interceptor : P-38 Lightning, vitesse +16,7 % et DPS standard −10 % face au Vanguard ;
+canons de nez ouverts au même écartement, blindage et hitbox identiques.
+Bulwark : F4U Corsair, un point de blindage et une bombe de plus ; vitesse −13,3 %
+et DPS standard −18,2 % face au Vanguard. Le choix remplace aussi le modèle 3D.
+Le hangar affiche les valeurs réelles de l'appareil équipé, sans POW ni capacité active.
+
+ATELIER ET PROGRESSION
+Les rangs I / II / III coûtent 2 / 4 / 6 pièces et deviennent accessibles aux
+missions 01 / 09 / 21. Les anciens rangs achetés restent acquis.
+Modules & équipement : dix options à 6 pièces, réparties sur cinq pages.
+Visée à la mission 05 ; Cellule au 13 ; Recharge au 17 ; Soute au 25 ; Capacité au 29.
+Un emplacement au 05, deux au 13. Une option par famille : Visée, Cellule ou Systèmes.
+Les pages Recharge, Soute et Capacité appartiennent toutes à la famille Systèmes.
+Acheter ne pose pas automatiquement un module. Équiper / retirer reste gratuit ;
+retirer une option incompatible libère sa famille ou son emplacement.
+Chaque carte explique son bénéfice et son compromis avant l'achat.
 
 ÉDITION TOPPISSIME
 Chaque mission comporte quatre actes et un objectif secondaire affiché en haut à droite.
@@ -53,14 +69,18 @@ Une destruction entretient la chaîne pendant 4,5 secondes. Le multiplicateur mo
 à chaque groupe de huit destructions, jusqu’à ×5. Un impact ou l’expiration du délai
 rompt la chaîne. Un objectif secondaire accompli rapporte 2 500 points une seule fois.
 Rang S : victoire sans vie perdue, au plus un impact, objectif secondaire accompli
-et chaîne maximale d’au moins 16. Le bilan affiche précision, meilleure chaîne et rang.
+et chaîne maximale d’au moins 16. L'or exige la victoire, aucune vie perdue, au plus
+deux impacts et le quota principal atteint : l'or et S ont des critères différents.
+Le Guide de vol / score est accessible au briefing. Après la mission, Médaille & rang
+montre les critères atteints et manquants. Le HUD indique le délai restant de la chaîne.
 
 CAPACITÉS (C / bouton X)
 La jauge se recharge avec le temps et les destructions.
 Vanguard : surcharge de cadence pendant 5 secondes.
 Interceptor P-38 : vitesse et dégâts accrus pendant 4 secondes.
 Bulwark Corsair : protection et dégâts accrus pendant 3,5 secondes, frappe de zone.
-Les capacités ne remplacent pas le POW équipé.
+Les capacités ne remplacent pas le POW équipé. La charge ne progresse pas pendant
+une capacité active ; ses propres destructions ne financent pas la frappe suivante.
 Les deux cercles dorés des boss indiquent leurs points faibles. Les neutraliser
 réduit leurs défenses. Une transition de phase offre une courte respiration.
 
@@ -70,7 +90,13 @@ Arcade : 32 missions sélectionnables, difficulté Pilote, améliorations fixes 
 Entraînement : accès direct aux boss avec multi-tir. Aucun gain de campagne.
 Les deux modes ne modifient pas votre progression, vos pièces ou votre score de campagne.
 Options > Commandes : touches reconfigurables ; Échap annule une attribution.
-Options > Graphismes : Performance, Équilibré ou Qualité, VSync et compteur FPS.
+Options > Graphismes & Confort : Performance, Équilibré ou Qualité, VSync et compteur FPS.
+Reprise courte : option désactivée par défaut. Après un décollage terminé dans cette
+mission et ce mode, Réessayer rejoint une stabilisation de 1,6 seconde. La première
+découverte garde le décollage complet, y compris après une relance de l'application.
+Campagne et Arcade disposent de cette option ; l'entraînement reste direct au boss.
+Le score, l'équipement et le départ des événements restent identiques. L'appontage
+normal est toujours conservé. L'option peut être désactivée à tout moment.
 Le mode Performance supprime les ombres dynamiques et les débris facultatifs.
 Musique de combat : les pistes d'action de la version jeu-final, avec fondus entre vol et boss.
 

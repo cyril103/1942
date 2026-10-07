@@ -4,8 +4,8 @@ signal weak_points_neutralized
 const MODELS := {"bomber":"res://assets/enemies/bomber.glb","destroyer":"res://assets/campaign/models/destroyer.glb","squadron":"res://assets/enemies/bomber.glb","fortress":"res://assets/campaign/models/fortress.glb","battleship":"res://assets/campaign/models/battleship.glb","ace":"res://assets/enemies/zero.glb","carrier":"res://assets/campaign/models/carrier.glb","citadel":"res://assets/campaign/models/fortress.glb"}
 const NAMES := {"bomber":"KESTREL • bombardier de commandement","destroyer":"KUROGANE • croiseur lourd","squadron":"RAIDEN • escadre de choc","fortress":"TENRYU • forteresse volante","battleship":"ONYX • cuirassé d'assaut","ace":"AKAI • l'as écarlate","carrier":"SHIRO • porte-avions","citadel":"DAWNBREAKER • dernier rempart"}
 var kind := "bomber"
-var health := 260
-var max_health := 260
+var health := 260.0
+var max_health := 260.0
 var alive := true
 var dying := false
 var age := 0.0
@@ -23,7 +23,7 @@ var props: Array[Node3D] = []
 var combat: Node
 var blast_cursor := 0
 var naval := false
-var component_health := [24,24]
+var component_health: Array[float] = [24.0,24.0]
 var component_visuals: Array[MeshInstance3D] = []
 var component_fires: Array[MeshInstance3D] = []
 var transition_time := 0.0
@@ -32,13 +32,13 @@ var previous_phase := 0
 func component_position(index: int) -> Vector3:
 	return Vector3((-1.0 if index==0 else 1.0)*.65,-1.5,1.8) if naval else Vector3((-1.0 if index==0 else 1.0)*(.65 if kind=="ace" else 1.15),.15,0)
 
-func take_hit_at(amount: int, at: Vector3) -> void:
-	if not alive or dying or collision_layer==0 or transition_time>0: return
+func take_hit_at(amount: float, at: Vector3) -> void:
+	if not alive or dying or collision_layer==0 or transition_time>0 or amount<=0 or not is_finite(amount): return
 	var local := to_local(at)
 	for i in range(2):
 		var target := component_position(i)
 		if component_health[i]>0 and absf(local.x-target.x)<(.6 if naval or kind=="ace" else .85):
-			component_health[i] = maxi(0,component_health[i]-amount)
+			component_health[i] = maxf(0.0,component_health[i]-amount)
 			if component_health[i]==0:
 				component_visuals[i].hide()
 				component_fires[i].show()
@@ -100,7 +100,7 @@ func _ready() -> void:
 	flare.material_override = material
 	add_child(flare)
 	flare.hide()
-	component_health = [maxi(12,max_health/12),maxi(12,max_health/12)]
+	component_health = [float(maxi(12,int(max_health)/12)),float(maxi(12,int(max_health)/12))]
 	for i in range(2):
 		var part := MeshInstance3D.new()
 		var mesh := CylinderMesh.new()
@@ -223,9 +223,9 @@ func _fire(director: Node) -> void:
 			director.combat._launch_enemy_round(gun_origin,gun_origin+aim*10,speed*1.25)
 	if kind in ["squadron","carrier"] and volley%5 == 0: director.spawn_reinforcement()
 
-func take_damage(amount: int) -> void:
-	if not alive or dying or collision_layer == 0 or amount<=0 or transition_time>0: return
-	health = maxi(0,health-amount)
+func take_damage(amount: float) -> void:
+	if not alive or dying or collision_layer == 0 or amount<=0 or transition_time>0 or not is_finite(amount): return
+	health = maxf(0.0,health-amount)
 	flash_time = 0.07
 	if health == 0:
 		dying = true

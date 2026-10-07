@@ -131,7 +131,8 @@ de l'EXE extrait dans un dossier temporaire extérieur au dépôt termine
 180 images avec OpenGL actif, code zéro et sans diagnostic moteur.
 Le dossier de travail reste vide. Ce contrôle est un test de démarrage,
 pas une partie complète ni une suite de gameplay exécutée par l'EXE.
-L'inspection visuelle manuelle de la fenêtre Explorateur reste à faire.
+L'inspection visuelle manuelle de la fenêtre Explorateur a été confirmée
+par le joueur le 7 octobre 2026 ; voir docs/validation/observations-humaines.txt.
 Résultat reproductible : game/tests/windows-package-results.json.
 
 Les templates officiels désactivent --path et --script. Le test autonome
@@ -148,21 +149,119 @@ Commandes de reproduction :
   Godot --path game --script res://tests/test_ui_readability.gd -- --capture-ui
   powershell -File game/tests/test_windows_package.ps1
 
+LOT 3A — ÉQUIPEMENT, SCORE ET REPRISES (SOURCES 1.7.0)
+
+#11 : les trois avions ont un bénéfice initial et un compromis. Le Vanguard
+privilégie le feu soutenu ; le P-38 la mobilité ; le Corsair le blindage et
+les bombes. Catalogue commun loadout.gd pour profil, hangar et combat.
+Le choix de modèle, la hitbox commune et les canons ouverts du P-38 restent
+conservés. À l'ouverture du hangar, le focus suit l'appareil affecté.
+
+#12 : chaque rang d'armement augmente progressivement les dégâts et le
+débit. Facteurs DPS 1 / 1,300 / 1,674 / 2,128 : gains de 30 %, 28,8 %,
+puis 27,1 %. Les dégâts fractionnaires traversent toutes les cibles et
+leurs composants. Un projectile en vol conserve les dégâts du lancement.
+La cadence ne peut plus être contournée en tapotant. Les horloges des
+canons et du laser continuent lorsque le bouton est relâché.
+
+#13 : rangs I / II / III aux missions 01 / 09 / 21, prix 2 / 4 / 6 pièces.
+Dix modules à 6 pièces, en cinq pages, accessibles jusqu'au secteur final.
+Deux emplacements maximum, une option par famille ; équipement gratuit.
+Les rangs déjà achetés sont préservés. La migration n'attribue aucun crédit
+et un achat/équipement est annulé si sa sauvegarde échoue.
+Les destructions et la recharge passive ne financent pas une frappe
+pendant sa capacité active, ni avec des gains différés après l'expiration.
+
+Contrat, variantes calculées, formules, coûts et compromis détaillés :
+docs/equilibrage-equipement.txt. Les alternatives sont des calculs de
+conception, pas des variantes jouées ni des préférences humaines établies.
+
+#15 : scoring_rules.gd centralise les seuils, calculs et explications.
+Guide avant décollage et bilan Or / S après la mission ; les critères
+atteints et manquants sont distincts. Consulter le bilan ne distribue pas
+une deuxième récompense. Le HUD compact montre le délai de chaîne restant.
+Les seuils des médailles et rangs sont inchangés.
+
+#16 : option de reprise courte désactivée par défaut. La première découverte
+garde son décollage complet ; une reprise après décollage terminé rejoint
+la stabilisation de 1,6 s. La mémorisation reste propre à la mission et au
+mode pendant cette exécution de l'application. Une relance montre donc
+à nouveau l'introduction complète. Campagne / Arcade : option disponible ;
+entraînement : départ direct aux boss inchangé. Appontage normal conservé.
+Le moteur possède une attaque de voix indépendante du temps cinématique,
+pour que la reprise courte conserve son fondu d'entrée.
+
+VALIDATIONS DU LOT 3A
+
+Catalogue et profil : 68 384 contrôles, zéro échec. Ils couvrent 7 488
+configurations (trois avions, 64 triplets de rangs, 39 sélections légales
+de modules) avec plusieurs assertions par configuration. Quatre simulations
+d'achat exécutent le vrai profil : bronze / argent / or / mixte, revenus
+96 / 128 / 160 / 128 pièces, dépenses 96, soldes 0 / 32 / 64 / 32.
+Cette solvabilité ne démontre pas une campagne réalisable par un humain.
+
+Combat rendu : 1 081 contrôles, zéro échec ; 168 combats avec collisions
+réelles contre sept types de cibles, 24 cas de points faibles et 96
+comparaisons tap / maintien. Pic 64 / 96 projectiles aux trois résolutions,
+248 projectiles émis en trois secondes dans la configuration stressée,
+aucune salve perdue, puis tous les projectiles libérés.
+Les temps de destruction sont des mesures sur cibles stationnaires.
+
+Score : 70 contrôles, zéro échec. Seuils 0/1/2 impacts, 0/1/2 morts,
+chaînes 15/16, objectifs principal/secondaire, limite de multiplicateur
+et expiration réelle de la chaîne. Or n'implique pas S, et inversement.
+
+Reprises et guide : 31 962 contrôles rendus, zéro échec ; dix captures.
+Neuf paires normales/courtes (trois avions, Campagne M01/M03 et Arcade M01)
+simulent les fonctions de production à 60 Hz. États de combat et premier
+événement équivalents, aucun tir avant contrôle, horloge et événements
+conservés. Durées simulées 8,95 s / 1,6 s ; pas un chronométrage humain.
+
+Hangar et atelier : 3 652 contrôles rendus, zéro échec ; seize captures,
+dont six contrôles du focus réel et de l'activation Entrée pour les trois
+appareils. Images retenues dans renders/validation-equipment.
+
+Moteur : 784 contrôles, zéro échec ; attaque des voix testée lors du
+décollage normal, de la reprise courte et de l'appontage. Doppler mesuré
+0,846 à 1,220 ; crête PCM 15 969 / 32 768. Ce contrôle numérique ne vaut
+pas une écoute humaine de préférence. Résultat : takeoff-audio-results.json.
+
+Régressions : combat 370, lisibilité des armes 18, difficulté 150,
+flotte 50, dynamique 108, campagne temps réel 10, raids 4 997,
+caméra basse 130, Toppissime 106, campagne 32 missions 790, cycle 17,
+modes de session 165, récupération de profil 202 : zéro échec.
+Le test d'armes exerce cinq minutes simulées : 109 enfants directs
+identiques avant/après (96 projectiles, huit impacts, cinq nœuds audio/laser),
+tous les projectiles libérés après relâchement. Les avertissements de tirs
+de chasseurs sont exercés via leur marcheur réel, sans émission avant 220 ms.
+La fixture est retirée avant fermeture et ne laisse aucun diagnostic moteur.
+
+Windows 1.7.0 : 27 contrôles du paquet extrait réussis, démarrage normal
+180 images sans diagnostic moteur. Versions fichier/produit 1.7.0.0,
+nom et icône préservés ; SHA-256 :
+1D6F36B118C48CB13B94DD8166820C751F5867194A83322B4BC1B9FDF91E7BFC
+Physique, tirs et audio contre les ressources embarquées : 10 contrôles,
+zéro échec ; crête PCM 18 366 / 32 768. Scénario fonctionnel, pas benchmark.
+Ce paquet contient le manuel 1.7.0. L'observation manuelle #10 concernait
+la version 1.6.1 ; elle n'est pas attribuée rétrospectivement à cet export.
+
 SUITE DU PLAN — ENCORE À TRAITER
 
-Le contrôle physique d'une manette (#8) et l'observation de l'Explorateur
-Windows (#10) ne sont pas revendiqués. Les contrôles techniques ci-dessus
-restent distincts de ces observations humaines.
-Lot 3 : #11 à #16 — rôles des avions, progression, tactique et confort.
+Le contrôle physique d'une manette (#8) reste à effectuer. Le contrôle
+manuel de l'Explorateur (#10) est confirmé par le joueur, distinct des
+contrôles techniques ci-dessus ; ce ticket est maintenant clôturé.
+Lot 3 : #11 à #13 / #15 / #16 — implémentés et exportés ; retours humains à compléter.
+#14 : conception des secteurs préparée, non intégrée au jeu à ce stade.
 Lot 4 : #17 à #20 — terrain, lisibilité, son et mesures de régularité.
 Lot 5 : #22 — protocole et parties humaines sur la campagne complète.
 
-La conception commune #11/#12/#13 est préparée dans
-docs/equilibrage-equipement.txt ; ses valeurs ne sont pas implémentées.
+La conception commune #11/#12/#13 est implémentée dans les sources 1.7.0.
+La prochaine passe #14/#17 est décrite dans docs/conception-secteurs.txt.
 Le protocole #22 et sa matrice de 288 cas sont préparés dans
 docs/protocole-parties.txt et docs/validation/matrice-parties.csv.
 Toutes les cases humaines restent NON_JOUE.
 
-Ce lot n'achève pas les 22 tickets. L'export Windows 1.6.1 contient les
-correctifs de fiabilité et d'interface. Aucun parcours humain intégral
-de 32 missions ni garantie universelle de FPS n'est revendiqué.
+Ces travaux n'achèvent pas les 22 tickets. L'export Windows 1.6.1 conservé
+sert de référence de performance ; l'export 1.7.0 est reconstruit et contrôlé.
+Les sessions humaines demandées par #11 à #16 et #22 ne sont pas effectuées.
+Aucun parcours humain intégral ni garantie universelle de FPS n'est revendiqué.
