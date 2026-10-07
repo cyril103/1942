@@ -29,6 +29,8 @@ var heading := 0.0
 var bank := 0.0
 var flight_speed := SPEED
 var loop_duration := LOOP_DURATION
+var loop_height_scale := 1.0
+var loop_elevation := 0.0
 var approach_target_x := 0.0
 var turn_duration := 2.6
 var turn_angle := 0.55
@@ -103,11 +105,13 @@ func advance(delta: float, combat: Node) -> void:
 		# Ease pitch rate into/out of the loop while maintaining flight speed.
 		var angle := TAU * p - sin(TAU * p)
 		position.z += flight_speed * cos(angle) * delta
-		visual.position.y += flight_speed * sin(angle) * delta
+		loop_elevation += flight_speed * sin(angle) * delta
+		visual.position.y = loop_elevation * loop_height_scale
 		visual.rotation.x = -angle
 		visual.scale = Vector3.ONE * (1.0 + 0.035 * (1.0 - cos(angle)))
 		if loop_time >= loop_duration - 0.00001:
 			phase = Phase.EXIT
+			loop_elevation = 0
 			visual.position.y = 0
 			visual.rotation.x = 0
 			visual.scale = Vector3.ONE

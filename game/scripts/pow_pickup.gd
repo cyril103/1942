@@ -14,6 +14,7 @@ var previous_relative := Vector3.ZERO
 var audio: AudioStreamPlayer
 var spawn_sound: AudioStreamWAV
 var collect_sound: AudioStreamWAV
+var presentation_altitude := 0.0
 
 func _ready() -> void:
 	visual = Node3D.new()
@@ -80,7 +81,7 @@ func activate(at: Vector3, player: Node3D, kind: String = "spread") -> void:
 	icon.material_override.albedo_texture = ICONS[power_kind]
 	label.text = {"spread":"MULTI","laser":"LASER","life":"1 UP"}[power_kind]
 	halo.material_override.set_shader_parameter("tint",{"spread":Color("54efff"),"laser":Color("f883ff"),"life":Color("75ffad")}[power_kind])
-	global_position = Vector3(at.x,0.35,at.z)
+	global_position = Vector3(at.x,presentation_altitude+0.35,at.z)
 	age = 0
 	burst_time = 0
 	active = true

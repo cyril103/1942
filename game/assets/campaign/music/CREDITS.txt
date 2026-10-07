@@ -8,3 +8,11 @@ Adaptation: gain normalized to peak 0.75, PCM16. Original tempo/melodies retaine
 Downloaded 2026-10-05. Artist notice: Juhani-INFO.txt.
 Laser loop is an original procedural sound from audio/build_action_music.py.
 The former procedural music generator remains as historical source only.
+
+HISTORICAL TOPPISSIME ADAPTIVE COMBAT SCORE
+Original procedural composition: audio/build_toppissime_music.py. No third-party samples.
+140 BPM, 16 bars, sample-aligned pulse / percussion / melody stems.
+The pulse / drive / hero stems are retained as source assets but are no longer played.
+Gameplay now uses the original jeu-final flight / flight2 / boss action tracks above,
+with the same gain and crossfades as that branch. Menu / victory also use the CC0 tracks.
+The original radio cue from the procedural generator remains in use on the Effects bus.

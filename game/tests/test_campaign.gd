@@ -25,10 +25,11 @@ func _run() -> void:
 		for event in mission.events:
 			check(float(event.time)>=previous and event.time<mission.duration,"Mission events ordered and reachable")
 			previous = event.time
-		var signature := JSON.stringify(mission.events)
+		# Ground sorties combine short ocean patrols with progressive installations.
+		var signature := JSON.stringify([mission.events,mission.get("ground_count",0),int(mission.quota) if mission.get("ground_assault",false) else 0])
 		signatures[signature] = true
 		if mission.boss != "": bosses += 1
-	check(bosses==8 and signatures.size()==32,"Eight boss missions and 32 distinct authored schedules")
+	check(bosses==9 and signatures.size()==32,"Nine boss missions including showcase and 32 distinct encounter configurations")
 	var save = app.profile
 	check(save.save()==OK,"Profile can be saved atomically")
 	save.record_victory(1,2000,3)
@@ -57,10 +58,19 @@ func _run() -> void:
 		director.set_physics_process(false)
 		var phases := {}
 		var max_contacts := 0
+		var ground_approach_aircraft := false
+		var ground_low_aircraft := false
 		for frame in range(60*240):
+			app.cockpit.flight.get_node("Seascape")._physics_process(1.0/60)
 			combat._physics_process(1.0/60)
 			director.advance(1.0/60)
 			max_contacts = maxi(max_contacts,combat.get_radar_contacts().size())
+			if is_instance_valid(director.assault):
+				var aircraft_present: bool = not combat.enemies.is_empty() or not combat.bombers.is_empty() or not combat.red_enemies.is_empty()
+				if director.assault.low_flight>.02 or director.assault.is_over_land(player.global_position):
+					ground_low_aircraft = ground_low_aircraft or aircraft_present
+				elif director.elapsed<12:
+					ground_approach_aircraft = ground_approach_aircraft or aircraft_present
 			if frame%15==0:
 				for enemy in combat.get_radar_contacts():
 					if not is_instance_valid(enemy) or enemy==director.boss: continue
@@ -73,6 +83,8 @@ func _run() -> void:
 		check(stage_report.get("won",false),"Mission %02d reaches victory" % number)
 		check(director.event_index==director.mission.events.size(),"Mission %02d dispatches every event" % number)
 		check(max_contacts <= 46,"Mission %02d keeps actors bounded with dense formations" % number)
+		if is_instance_valid(director.assault):
+			check(ground_approach_aircraft and not ground_low_aircraft,"Mission %02d retains ocean patrols but no aircraft during the ground raid" % number)
 		if director.mission.boss != "":
 			check(director.boss_won and phases.size()==3,"Boss %02d traverses three phases before defeat" % number)
 		if stage_report.get("won",false): save.record_victory(number,stage_report.score,stage_report.grade)

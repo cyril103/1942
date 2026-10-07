@@ -168,7 +168,7 @@ func _advance_destruction(delta: float, combat: Node) -> void:
 	visual.rotation.z += delta*0.32*direction
 	while blast_count < BLAST_TIMES.size() and death_age >= BLAST_TIMES[blast_count]:
 		var final_blast := blast_count == BLAST_TIMES.size()-1
-		combat._explode(visual.to_global(BLAST_OFFSETS[blast_count]),1.55 if final_blast else 0.72,blast_count == 0 or final_blast)
+		combat._explode(visual.to_global(BLAST_OFFSETS[blast_count]),1.55 if final_blast else 0.72,blast_count == 0 or final_blast,false,true)
 		blast_count += 1
 	if death_age > 1.08: visual.hide()
 	if death_age > 1.4: retire()

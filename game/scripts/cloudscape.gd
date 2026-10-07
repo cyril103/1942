@@ -12,6 +12,7 @@ const SHADOW_ALTITUDE := -2.94
 var clouds: Array[MeshInstance3D] = []
 var shadows: Array[MeshInstance3D] = []
 var enabled := true
+var shadow_altitude := SHADOW_ALTITUDE
 var strength := .72
 var evolution := 0.0
 var recycle_count := 0
@@ -44,8 +45,8 @@ func _ready() -> void:
 func _update_view() -> void:
 	var size := get_viewport().get_visible_rect().size
 	if size.x<=0 or size.y<=0: return
-	var a := camera.project_position(Vector2.ZERO,camera.position.y)
-	var b := camera.project_position(size,camera.position.y)
+	var a := camera.project_position(Vector2.ZERO,1.0)
+	var b := camera.project_position(size,1.0)
 	_half = Vector2(absf(b.x-a.x),absf(b.z-a.z))*.5
 	for i in range(clouds.size()):
 		clouds[i].position.x = float(clouds[i].get_meta("lane",0.0))*_half.x
@@ -110,7 +111,7 @@ func _spawn(index: int, at_z: float) -> void:
 	_update_opacity(index)
 
 func _sync_shadow(index: int) -> void:
-	shadows[index].position = Vector3(clouds[index].position.x+.65,SHADOW_ALTITUDE,clouds[index].position.z+.85)
+	shadows[index].position = Vector3(clouds[index].position.x+.65,shadow_altitude,clouds[index].position.z+.85)
 
 func _place_bank(cloud: MeshInstance3D) -> void:
 	# Reserve the complete curved carrier approach before a bank enters the view.

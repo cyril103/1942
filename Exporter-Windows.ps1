@@ -16,6 +16,8 @@ Copy-Item -LiteralPath (Join-Path $projectPath 'assets/audio/engine/CREDITS.md')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/audio/weapons/CREDITS.md') -Destination (Join-Path $licenseDirectory 'Tirs-explosions.md')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/campaign/music/CREDITS.txt') -Destination (Join-Path $licenseDirectory 'Musique.txt')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/campaign/music/Juhani-INFO.txt') -Destination $licenseDirectory
+Copy-Item -LiteralPath (Join-Path $projectPath 'assets/environment/raid-v2/CREDITS.md') -Destination (Join-Path $licenseDirectory 'Terrains-terrestres.md')
+Copy-Item -LiteralPath (Join-Path $projectPath 'assets/ground-forces/CREDITS.md') -Destination (Join-Path $licenseDirectory 'Installations-militaires.md')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'docs/manuel-joueur.txt') -Destination (Join-Path $outputDirectory 'LISEZ-MOI.txt')
 Compress-Archive -LiteralPath $outputDirectory -DestinationPath (Join-Path $PSScriptRoot 'dist/PacificStrike-Windows-x64.zip') -Force
 Get-FileHash -LiteralPath (Join-Path $outputDirectory 'PacificStrike.exe') -Algorithm SHA256 | Format-List

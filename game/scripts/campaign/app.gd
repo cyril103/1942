@@ -22,15 +22,97 @@ var buttons: Array[Button] = []
 var settings_from_pause := false
 var testing := false
 var music: Node
+var play_mode := "campaign"
+var waiting_binding := ""
+var session_profile: RefCounted
+var asset_cache: Array[Resource] = []
+const BIND_NAMES := {"move_left":"Gauche","move_right":"Droite","move_up":"Monter","move_down":"Descendre","fire":"Tirer","bomb":"Bombe","strike":"Capacité de l'avion","focus_flight":"Vol de précision"}
+
+func _apply_bindings() -> void:
+	for action in profile.data.bindings:
+		if not BIND_NAMES.has(action): continue
+		for event in InputMap.action_get_events(action):
+			if event is InputEventKey: InputMap.action_erase_event(action,event)
+		var key := InputEventKey.new()
+		key.keycode = int(profile.data.bindings[action])
+		InputMap.action_add_event(action,key)
+
+func _show_bindings() -> void:
+	page = "bindings"
+	_clear_menu("COMMANDES","Sélectionnez une action puis appuyez sur une touche. Échap annule. Manette : stick / A / B / X / LB.")
+	var i := 0
+	for action in BIND_NAMES:
+		var label := ""
+		for event in InputMap.action_get_events(action):
+			if event is InputEventKey: label += (" / " if label!="" else "")+OS.get_keycode_string(event.keycode)
+		_button(BIND_NAMES[action]+"  :  "+label,Vector2(94+(i%2)*860,290+(i/2)*125),Vector2(810,76),func(): waiting_binding=action; notice.text="Appuyez sur la nouvelle touche pour "+BIND_NAMES[action])
+		i += 1
+	_button("RÉTABLIR",Vector2(94,862),Vector2(330,60),func():
+		profile.data.bindings.clear()
+		for action in BIND_NAMES:
+			for event in InputMap.action_get_events(action):
+				if event is InputEventKey: InputMap.action_erase_event(action,event)
+		_bind_controls(); _save(); _show_bindings())
+	_button("RETOUR",Vector2(454,862),Vector2(330,60),func(): _show_settings(settings_from_pause))
+	_focus_first()
+
+func _show_graphics() -> void:
+	page = "graphics"
+	_clear_menu("GRAPHISMES & CONFORT","Les effets utilisent des capacités fixes. Choisissez le compromis adapté à votre écran.")
+	for i in range(3):
+		_button(("✓  " if int(profile.data.settings.get("quality",1))==i else "")+["PERFORMANCE","ÉQUILIBRÉ","QUALITÉ"][i],Vector2(94+i*560,320),Vector2(520,80),func(): profile.data.settings.quality=i; _apply_graphics(); _save(); _show_graphics())
+	_label("Performance : sans ombres dynamiques ni débris, anti-crénelage désactivé.\nÉquilibré : ombres, débris et anti-crénelage 2×.\nQualité : anti-crénelage 4×. Le gameplay et les nuages restent identiques.",Vector2(94,450),Vector2(1640,180),31,MUTED)
+	for i in range(2):
+		var key: String = ["vsync","fps"][i]
+		var check := CheckButton.new()
+		check.text = ["Synchronisation verticale","Afficher les FPS"][i]
+		check.position = Vector2(94+i*700,700)
+		check.button_pressed = profile.data.settings.get(key,true if i==0 else false)
+		check.toggled.connect(func(value): profile.data.settings[key]=value; _apply_settings(); _save())
+		design.add_child(check)
+	_button("RETOUR",Vector2(94,870),Vector2(330,60),func(): _show_settings(settings_from_pause))
+	_focus_first()
+
+func _apply_graphics() -> void:
+	if not is_instance_valid(cockpit): return
+	var quality := int(profile.data.settings.get("quality",1))
+	cockpit.viewport.msaa_3d = [Viewport.MSAA_DISABLED,Viewport.MSAA_2X,Viewport.MSAA_4X][quality]
+	cockpit.flight.get_node("KeyLight").shadow_enabled = quality>0
+	if is_instance_valid(director) and is_instance_valid(director.details): director.details.enabled = quality>0
+	if is_instance_valid(director) and is_instance_valid(director.assault): director.assault.set_quality(quality)
+
+func _show_challenges(mode: String) -> void:
+	page = "challenges"
+	_clear_menu("ARCADE  /  SCORE ATTACK" if mode=="arcade" else "ÉCOLE DE CHASSE  /  BOSS","Équipement fixe, difficulté Pilote. Aucun changement à la progression de votre campagne.")
+	var index := 0
+	for m in missions:
+		if mode=="practice" and m.boss=="": continue
+		var key := "%d:%d" % [int(m.id),profile.data.aircraft]
+		var label := "%02d  /  %s\n%s" % [int(m.id),m.title,"RECORD  %08d" % int(profile.data.arcade_records.get(key,0)) if mode=="arcade" else "ENTRAÎNEMENT  /  MULTI-TIR"]
+		var button := _button(label,Vector2(94+(index%4)*437,270+(index/4)*80),Vector2(418,72),_start_mode.bind(mode,int(m.id)))
+		button.add_theme_font_size_override("font_size",19)
+		index += 1
+	_button("RETOUR",Vector2(94,944),Vector2(300,56),_show_main)
+	_focus_first()
+
+func _start_mode(mode: String, number: int) -> void:
+	play_mode = mode
+	_launch(number)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().auto_accept_quit = false
 	missions = JSON.parse_string(FileAccess.get_file_as_string("res://data/missions.json"))
+	for i in range(missions.size()): missions[i] = preload("res://scripts/campaign/operations.gd").prepare(missions[i])
 	profile.load_profile()
 	_bind_controls()
+	_apply_bindings()
 	_setup_audio()
 	_build_theme()
+	# Keep boss resources resident from the menu, avoiding disk loads mid-fight.
+	for path in preload("res://scripts/campaign/boss.gd").MODELS.values():
+		var resource := load(path)
+		if not asset_cache.has(resource): asset_cache.append(resource)
 	background = TextureRect.new()
 	background.texture = load("res://assets/campaign/title-ocean.png")
 	background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -88,11 +170,14 @@ func _setup_audio() -> void:
 		add_child(music)
 
 func _apply_settings() -> void:
+	if is_instance_valid(session_profile) and session_profile!=profile: session_profile.data.settings=profile.data.settings.duplicate()
 	for pair in [["Master","master"],["Music","music"],["Effects","effects"]]:
 		var volume: float = profile.data.settings[pair[1]]
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index(pair[0]),linear_to_db(maxf(0.0001,volume)))
 		AudioServer.set_bus_mute(AudioServer.get_bus_index(pair[0]),volume <= 0)
+	_apply_graphics()
 	if not testing and DisplayServer.get_name() != "headless":
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if profile.data.settings.get("vsync",true) else DisplayServer.VSYNC_DISABLED)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if profile.data.settings.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _build_theme() -> void:
@@ -122,6 +207,7 @@ func _build_theme() -> void:
 	theme = t
 
 func _clear_menu(title: String, subtitle: String, dark := true) -> void:
+	waiting_binding = ""
 	background.texture = load("res://assets/campaign/title-ocean.png")
 	for child in design.get_children():
 		design.remove_child(child)
@@ -178,6 +264,7 @@ func _save() -> void:
 func _show_main() -> void:
 	_dispose_run()
 	page = "main"
+	play_mode = "campaign"
 	if is_instance_valid(music): music.set_mode("menu")
 	_clear_menu("PACIFIC STRIKE", "CAMPAGNE 1942  /  32 MISSIONS  /  8 SECTEURS",false)
 	var completed: int = profile.data.records.size()
@@ -189,6 +276,8 @@ func _show_main() -> void:
 	_button("OPTIONS",Vector2(94,818),Vector2(235,54),func(): _show_settings(false))
 	_button("CRÉDITS",Vector2(349,818),Vector2(235,54),_show_credits)
 	_button("QUITTER",Vector2(94,892),Vector2(490,54),_quit)
+	_button("ARCADE  /  SCORE ATTACK",Vector2(1290,590),Vector2(510,58),_show_challenges.bind("arcade"))
+	_button("ENTRAÎNEMENT AUX BOSS",Vector2(1290,667),Vector2(510,58),_show_challenges.bind("practice"))
 	_label("CARNET DE VOL",Vector2(1290,792),Vector2(520,45),26,GOLD)
 	_label("%02d / 32 missions accomplies\nRecord  %08d\n%d pièces disponibles au hangar" % [completed,profile.data.high_score,profile.data.credits],Vector2(1290,842),Vector2(520,120),29,Color("dae5e7"))
 	if not profile.data.records.is_empty(): _button("NOUVELLE CAMPAGNE",Vector2(1290,950),Vector2(510,52),_confirm_new_campaign)
@@ -268,6 +357,8 @@ func _show_settings(from_pause: bool) -> void:
 		_button(("✓  " if profile.data.difficulty == i else "")+PROFILE.DIFFICULTIES[i],Vector2(94+i*320,802),Vector2(295,58),_difficulty.bind(i),from_pause)
 	_label("La difficulté agit sur les projectiles ennemis et la résistance des boss. Modifiable entre les missions.",Vector2(94,885),Vector2(1600,42),24,MUTED)
 	_button("RETOUR",Vector2(94,947),Vector2(280,56),_show_pause if from_pause else _show_main)
+	_button("COMMANDES",Vector2(410,947),Vector2(280,56),_show_bindings)
+	_button("GRAPHISMES",Vector2(726,947),Vector2(280,56),_show_graphics)
 	_focus_first()
 
 func _difficulty(index: int) -> void:
@@ -287,7 +378,7 @@ func _show_credits() -> void:
 	text.fit_content = true
 	text.bbcode_enabled = false
 	text.add_theme_font_size_override("normal_font_size",25)
-	text.text = "PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\nMusique : Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0.\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n"
+	text.text = "PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\nMusique de combat adaptative : composition originale Pacific Strike. Menus : Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0.\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n"
 	for file in ["res://assets/audio/engine/CREDITS.md","res://assets/audio/weapons/CREDITS.md","res://assets/campaign/music/CREDITS.txt"]:
 		text.text += FileAccess.get_file_as_string(file)+"\n\n"
 	scroll.add_child(text)
@@ -309,16 +400,28 @@ func _launch(number: int) -> void:
 	director = DIRECTOR.new()
 	director.cockpit = cockpit
 	director.mission = missions[number-1].duplicate(true)
-	director.profile = profile
+	session_profile = profile
+	if play_mode!="campaign":
+		session_profile = PROFILE.new()
+		session_profile.data.aircraft = profile.data.aircraft
+		session_profile.data.settings = profile.data.settings.duplicate()
+		session_profile.data.difficulty = 1
+		session_profile.data.power = "spread" if play_mode=="practice" else "none"
+	director.profile = session_profile
+	director.practice = play_mode=="practice"
 	director.first_takeoff = true
 	director.finished.connect(func(report): _show_result.call_deferred(report))
 	cockpit.flight.add_child(director)
-	cockpit.flight.get_node("Weapons").set_power(profile.data.power)
+	cockpit.flight.get_node("Weapons").set_power(session_profile.data.power)
 	var hud := HUD.new()
 	hud.name = "CampaignHUD"
 	hud.cockpit = cockpit
 	hud.director = director
 	cockpit.add_child(hud)
+	if play_mode=="practice":
+		cockpit.flight.get_node("Departure").finish_immediately()
+		director._spawn_boss(director.mission.boss)
+	_apply_graphics()
 	_assign_audio(cockpit)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	if is_instance_valid(music): music.set_mode("flight")
@@ -358,24 +461,35 @@ func _show_result(report: Dictionary) -> void:
 	get_tree().paused = true
 	director.paused = true
 	var earned := 0
-	profile.data.high_score = maxi(profile.data.high_score,int(report.score))
-	if report.won:
+	if play_mode=="campaign": profile.data.high_score = maxi(profile.data.high_score,int(report.score))
+	elif play_mode=="arcade":
+		var key := "%d:%d" % [selected_mission,profile.data.aircraft]
+		profile.data.arcade_records[key] = maxi(int(profile.data.arcade_records.get(key,0)),int(report.get("mission_score",report.score)))
+	if report.won and play_mode=="campaign":
 		profile.data.run_score = int(report.score)
 		profile.data.run_lives = int(report.get("lives",3))
 		profile.data.power = report.get("power","none")
 		profile.data.pow_ready = profile.data.power == "spread"
 		earned = profile.record_victory(selected_mission,report.get("mission_score",report.score),report.grade)
-	var victory: bool = report.won and selected_mission == 32
-	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else "GAME OVER"),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
-	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else "AUCUNE VIE RESTANTE",Vector2(94,298),Vector2(1050,100),70,GOLD,true)
-	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAPPAREILS / NAVIRES    %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills,report.naval_kills,report.deaths,report.bonus,earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1"))
+	if play_mode=="campaign" and report.won:
+		var record: Dictionary = profile.data.records[str(selected_mission)]
+		record.best_chain = maxi(int(record.get("best_chain",0)),int(report.get("best_chain",0)))
+		var ranks := ["D","C","B","A","S"]
+		if ranks.find(str(report.get("rank","D")))>ranks.find(str(record.get("rank","D"))): record.rank=report.rank
+	var victory: bool = report.won and selected_mission == 32 and play_mode=="campaign"
+	var objective_failed: bool = report.get("objective_failed",false)
+	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else ("MISSION INACCOMPLIE" if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
+	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else ("OBJECTIF NON ATTEINT" if objective_failed else "AUCUNE VIE RESTANTE"),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
+	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.bonus,earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1"))
 	_label("32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est déverrouillée.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre record est enregistré.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde."),Vector2(1210,336),Vector2(590,310),33,MUTED)
-	if report.won and selected_mission < 32:
+	if report.won and selected_mission < 32 and play_mode=="campaign":
 		_button("MISSION SUIVANTE",Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
 	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission))
 	_button("HANGAR",Vector2(559,842),Vector2(320,66),_hangar_after_result)
 	_button("ACCUEIL",Vector2(904,842),Vector2(320,66),_show_main)
 	if victory: _button("CRÉDITS",Vector2(1249,842),Vector2(320,66),_credits_after_result)
+	if play_mode!="campaign": _label("MODE "+play_mode.to_upper()+"  /  CAMPAGNE INCHANGÉE",Vector2(1210,665),Vector2(590,70),26,GOLD)
+	_label("RANG %s   •   CHAÎNE MAX %d   •   PRÉCISION %d %%\nOBJECTIF SECONDAIRE : %s" % [report.get("rank","C"),report.get("best_chain",0),int(float(report.get("accuracy",0))*100),"ACCOMPLI" if report.get("secondary",false) else "NON ACCOMPLI"],Vector2(94,744),Vector2(1620,85),27,GOLD)
 	_save()
 	_focus_first()
 
@@ -401,11 +515,33 @@ func _dispose_run() -> void:
 	director = null
 
 func _input(event: InputEvent) -> void:
+	if waiting_binding!="" and event is InputEventKey and event.pressed and not event.echo:
+		get_viewport().set_input_as_handled()
+		if event.keycode==KEY_ESCAPE:
+			waiting_binding = ""
+			_show_bindings()
+			return
+		if event.keycode in [KEY_ENTER,KEY_TAB] or event.alt_pressed or event.ctrl_pressed or event.meta_pressed:
+			notice.text = "Cette touche est réservée à la navigation. Choisissez une autre touche."
+			return
+		for action in BIND_NAMES:
+			if action==waiting_binding: continue
+			for bound in InputMap.action_get_events(action):
+				if bound is InputEventKey and bound.keycode==event.keycode:
+					notice.text = "Touche déjà utilisée : "+BIND_NAMES[action]
+					return
+		profile.data.bindings[waiting_binding] = event.keycode
+		waiting_binding = ""
+		_apply_bindings()
+		_save()
+		_show_bindings()
+		return
 	if event.is_action_pressed("quit_game") and not event.is_echo():
 		get_viewport().set_input_as_handled()
 		match page:
 			"playing": _show_pause()
 			"pause": _resume()
+			"bindings", "graphics": _show_settings(settings_from_pause)
 			"settings":
 				if settings_from_pause: _show_pause()
 				else: _show_main()
@@ -427,6 +563,7 @@ func _quit() -> void:
 
 func _process(_delta: float) -> void:
 	if page == "playing" and is_instance_valid(director) and is_instance_valid(music):
+		music.update_combat(director)
 		music.set_mode("victory" if director.ending else ("boss" if is_instance_valid(director.boss) and director.boss.alive else ("flight" if int(director.mission.sector)%2==0 else "flight2")))
 
 func _confirm_new_campaign() -> void:
@@ -441,7 +578,11 @@ func _confirm_new_campaign() -> void:
 func _new_campaign() -> void:
 	var options: Dictionary = profile.data.settings.duplicate()
 	var record: int = profile.data.high_score
+	var bindings: Dictionary = profile.data.bindings.duplicate()
+	var arcade: Dictionary = profile.data.arcade_records.duplicate()
 	profile.reset()
+	profile.data.bindings = bindings
+	profile.data.arcade_records = arcade
 	profile.data.settings = options
 	profile.data.high_score = record
 	selected_mission = 1

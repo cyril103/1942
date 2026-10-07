@@ -35,6 +35,25 @@ var first_takeoff := true
 var reinforcement_time := 7.5
 var defeat_time := 0.0
 var balance: Dictionary
+var mastery = preload("res://scripts/campaign/mastery.gd").new()
+var details: Node3D
+var act_index := -1
+var act_title := ""
+var radio := ""
+var radio_time := 0.0
+var ability_time := 0.0
+var base_speed := 12.0
+var base_interval := .105
+var base_damage := 1
+var practice := false
+var last_boss_phase := -1
+var convoy: Area3D
+var assault: Node3D
+var mission_completed := true
+var extraction_started_at := -1.0
+var extraction_end_at := 0.0
+var extraction_next_wave := 0.0
+var extraction_wave_count := 0
 
 func _ready() -> void:
 	combat = cockpit.combat
@@ -42,6 +61,7 @@ func _ready() -> void:
 	weapons = cockpit.flight.get_node("Weapons")
 	cockpit.campaign = self
 	combat.automatic_waves = false
+	combat.aircraft_enabled = true
 	combat.dense_waves = true
 	combat.campaign_driver = self
 	combat.score = int(profile.data.run_score)
@@ -77,6 +97,19 @@ func _ready() -> void:
 	sea.configure_sector(mission)
 	cockpit.flight.get_node("Clouds").configure_sector(mission)
 	cockpit.flight.get_node("KeyLight").shadow_enabled = true
+	preload("res://scripts/campaign/materials.gd").flight_lighting(cockpit.flight,mission.biome)
+	mastery.secondary_kind = mission.get("secondary","formation")
+	mastery.secondary_target = int(mission.get("secondary_target",1))
+	base_speed = player.speed
+	base_interval = weapons.shot_interval
+	base_damage = weapons.projectile_damage
+	details = preload("res://scripts/campaign/combat_detail.gd").new()
+	details.player = player
+	cockpit.flight.add_child(details)
+	if mission.get("ground_assault",false):
+		assault = preload("res://scripts/campaign/ground_assault.gd").new()
+		assault.director = self
+		cockpit.flight.add_child(assault)
 	_build_ring()
 	feedback = "MISSION %02d  /  %s" % [mission.id,mission.title.to_upper()]
 	feedback_time = 5
@@ -93,12 +126,62 @@ func _build_ring() -> void:
 	cockpit.flight.add_child(special_ring)
 	special_ring.hide()
 
+func on_kill(base: int, kind: String) -> void:
+	combat.score += mastery.kill(base)
+	complete_objective(kind)
+
+func complete_objective(kind: String) -> void:
+	combat.score += mastery.objective(kind)
+
+func _update_acts() -> void:
+	var acts: Array = mission.get("acts",[])
+	while act_index+1<acts.size() and elapsed>=float(acts[act_index+1].time):
+		act_index += 1
+		act_title = acts[act_index].title
+		radio = acts[act_index].radio
+		radio_time = 5
+		if act_index==1 and mastery.secondary_kind=="convoy" and not practice:
+			convoy = preload("res://scripts/campaign/convoy.gd").new()
+			convoy.position = Vector3(0,0,4)
+			convoy.rescued.connect(func(): complete_objective("convoy"); radio="Convoi : route sécurisée. Merci pour la couverture."; radio_time=5)
+			convoy.lost.connect(func(): combat._explode(convoy.position,1.6); radio="Contrôle : convoi perdu. Poursuivez la mission."; radio_time=5)
+			combat.add_child(convoy)
+			combat.navigate_naval(convoy)
+			radio = "Convoi allié en approche. Interceptez les bombardiers !"
+			combat.spawn_bomber()
+		if feedback_time<=0:
+			feedback = act_title
+			feedback_time = 3
+
+func _update_ability(delta: float) -> void:
+	ability_time = maxf(0,ability_time-delta)
+	player.speed = base_speed
+	weapons.shot_interval = base_interval
+	weapons.projectile_damage = base_damage
+	weapons.laser_interval_multiplier = 1.0
+	if ability_time<=0 or not player.alive: return
+	match int(profile.data.aircraft):
+		0:
+			weapons.shot_interval = base_interval*.6
+			weapons.laser_interval_multiplier = .6
+		1:
+			player.speed = base_speed*1.3
+			weapons.projectile_damage = base_damage+1
+		2:
+			player.invulnerable_time = maxf(player.invulnerable_time,.2)
+			weapons.projectile_damage = base_damage+1
+
 func _physics_process(delta: float) -> void:
 	advance(delta)
 
 func advance(delta: float) -> void:
 	if not active or paused: return
 	feedback_time = maxf(0,feedback_time-delta)
+	radio_time = maxf(0,radio_time-delta)
+	if player.controls_enabled and not ending:
+		mastery.advance(delta)
+		charge = minf(100,charge+delta*1.8)
+	_update_ability(delta)
 	if ring_time > 0:
 		ring_time = maxf(0,ring_time-delta)
 		special_ring.scale = Vector3.ONE*lerpf(1,13,1-ring_time/0.7)
@@ -115,6 +198,8 @@ func advance(delta: float) -> void:
 	for ship in navals:
 		if is_instance_valid(ship) and ship.alive: ship.advance(delta,combat)
 	navals = navals.filter(func(ship): return is_instance_valid(ship) and ship.alive)
+	if is_instance_valid(convoy) and convoy.alive: convoy.advance(delta,combat)
+	if is_instance_valid(assault): assault.advance(delta)
 	if is_instance_valid(boss) and boss.alive:
 		boss.advance(delta,self)
 		if not boss.dying and boss.age > 4:
@@ -123,6 +208,7 @@ func advance(delta: float) -> void:
 				spawn_reinforcement()
 				reinforcement_time = 8.5-float(mission.sector)*.3
 	combat.campaign_contacts = navals.duplicate()
+	if is_instance_valid(assault): combat.campaign_contacts.append_array(assault.contacts())
 	if is_instance_valid(boss) and boss.alive: combat.campaign_contacts.append(boss)
 	if combat.game_over:
 		defeat_time += delta
@@ -132,19 +218,24 @@ func advance(delta: float) -> void:
 		ending_time += delta
 		var departure = cockpit.flight.get_node("Departure")
 		departure.advance_landing(delta)
-		if departure.landed: _end(true)
+		if departure.landed: _end(mission_completed)
 		return
 	if not player.controls_enabled: return
 	elapsed += delta
+	_update_acts()
+	_update_extraction()
 	while event_index < mission.events.size() and elapsed >= float(mission.events[event_index].time):
 		_dispatch(mission.events[event_index])
 		event_index += 1
-	combat.next_wave = maxf(0,float(mission.duration)-elapsed)
+	var combat_deadline := maxf(float(mission.duration),extraction_end_at)
+	combat.next_wave = maxf(0,combat_deadline-elapsed)
 	if Input.is_action_just_pressed("bomb"): use_bomb()
 	if Input.is_action_just_pressed("strike"): use_strike()
-	if elapsed >= float(mission.duration) and (mission.boss == "" or boss_won):
+	if (elapsed >= combat_deadline or practice) and (mission.boss == "" or boss_won):
+		if is_instance_valid(assault) and (not assault.approach_clear() or extraction_started_at<0): return
+		mission_completed = not is_instance_valid(assault) or assault.kills>=int(mission.quota)
 		ending = true
-		feedback = "SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS"
+		feedback = "SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS" if mission_completed else "OBJECTIF INCOMPLET  /  REPLI VERS LE PORTE-AVIONS"
 		feedback_time = 6
 		combat.clear_enemy_bullets()
 		player.invulnerable_time = 6
@@ -152,13 +243,44 @@ func advance(delta: float) -> void:
 		weapons.cease_fire()
 		cockpit.flight.get_node("Departure").begin_landing()
 
+func _update_extraction() -> void:
+	if not is_instance_valid(assault) or ending or not active or paused: return
+	if not player.alive or not player.controls_enabled or combat.game_over: return
+	if not combat.aircraft_enabled or not assault.extraction_ready():
+		# Never collect overdue salvos while below the cloud deck.
+		extraction_next_wave = maxf(extraction_next_wave,elapsed+.35)
+		return
+	if extraction_started_at<0:
+		extraction_started_at = elapsed
+		extraction_end_at = maxf(float(mission.duration),elapsed+12.0)
+		extraction_next_wave = elapsed
+		act_title = "INTERCEPTION AU RETOUR"
+		radio = "Contrôle : chasseurs sur votre route de retour ! Dégagez l'approche du porte-avions."
+		radio_time = 5.0
+		feedback = "REMONTÉE  /  CONTACTS AÉRIENS"
+		feedback_time = 3.0
+	# Leave five seconds for the last formation to pass before automatic landing.
+	if elapsed>=extraction_end_at-5.0 or elapsed<extraction_next_wave: return
+	var before: int = combat.enemies.size()
+	var kind := "zero" if extraction_wave_count%2==0 else "hayabusa"
+	_dispatch({"kind":kind,"pattern":int(mission.sector)+extraction_wave_count,"role":"interceptor" if kind=="hayabusa" else "escort"})
+	if combat.enemies.size()>before: extraction_wave_count += 1
+	# One formation at most per update, including after a long pause or respawn.
+	var interval := lerpf(4.8,3.4,float(mission.sector)/7.0)
+	extraction_next_wave = elapsed+interval
+
 func _dispatch(event: Dictionary) -> void:
+	if mission.get("ground_assault",false) and not combat.aircraft_enabled: return
 	match event.kind:
 		"zero", "hayabusa":
 			combat.wave_count = int(event.get("pattern",0))*2+(0 if event.kind == "zero" else 1)
 			combat.spawn_wave()
 			for enemy in combat.enemies:
-				if enemy.age == 0: enemy.flight_speed *= clampf(float(mission.pressure),1.0,1.2)
+				if enemy.age == 0:
+					enemy.flight_speed *= clampf(float(mission.pressure),1.0,1.2)
+					enemy.set_meta("role",event.get("role","escort"))
+					if event.get("role","")=="interceptor": enemy.flight_speed *= 1.08
+					if event.get("role","")=="gunner": enemy.flight_speed *= .88
 		"red":
 			combat.spawn_special()
 			feedback = "ESCADRILLE ROUGE  •  5 AVIONS = POW"
@@ -168,6 +290,7 @@ func _dispatch(event: Dictionary) -> void:
 		"boss": _spawn_boss(event.variant)
 
 func _spawn_naval(pattern: int) -> void:
+	if mission.get("ground_assault",false): return
 	if navals.size() >= 4: return
 	for i in range(1 if pattern == 0 else 2):
 		var ship := NAVAL.new()
@@ -181,12 +304,15 @@ func _spawn_naval(pattern: int) -> void:
 		navals.append(ship)
 
 func _spawn_boss(kind: String) -> void:
+	if mission.get("ground_assault",false): return
 	if boss_spawned: return
 	boss_spawned = true
+	if practice: event_index = mission.events.size()
 	boss = BOSS.new()
 	boss.kind = kind
 	boss.combat = combat
 	boss.max_health = int([260,310,350,390,440,360,520,650][int(mission.sector)]*[1.0,1.25,1.5][profile.data.difficulty])
+	boss.max_health = int(boss.max_health*float(mission.get("boss_health_scale",1.0)))
 	boss.health = boss.max_health
 	boss.position = Vector3(0,0,-17)
 	boss.defeated.connect(_on_boss_defeated)
@@ -204,6 +330,7 @@ func spawn_reinforcement() -> void:
 func _on_boss_defeated() -> void:
 	boss_won = true
 	combat.score += 5000+int(mission.sector)*1000
+	on_kill(5000,"boss")
 	combat.kills += 1
 	combat.clear_enemy_bullets()
 	shake_time = 0.6
@@ -212,16 +339,20 @@ func _on_naval_destroyed(at: Vector3) -> void:
 	naval_kills += 1
 	combat.kills += 1
 	combat.score += 300
+	on_kill(300,"naval")
 	combat._explode(at,1.2)
 
 func _on_damage(_health: int) -> void:
 	damage_taken += 1
+	mastery.hit()
 	shake_time = 0.28
 	feedback = "IMPACT  /  BLINDAGE %d" % player.health
 	feedback_time = 1.2
 
 func _on_death(_at: Vector3) -> void:
 	deaths += 1
+	ability_time = 0
+	_update_ability(0)
 	charge = maxf(0,charge-20)
 	feedback = ""
 	feedback_time = 0
@@ -243,15 +374,16 @@ func use_strike() -> bool:
 	if not active or ending or not player.controls_enabled or charge < 100: return false
 	charge = 0
 	attacks_used += 1
-	_discharge(65,true)
-	feedback = "FRAPPE SPÉCIALE"
+	ability_time = [5.0,4.0,3.5][profile.data.aircraft]
+	_discharge([25,45,85][profile.data.aircraft],profile.data.aircraft!=2)
+	feedback = ["VANGUARD  /  SURCHARGE 5 S","INTERCEPTOR  /  PURSUITE 4 S","BULWARK  /  BASTION 3,5 S"][profile.data.aircraft]
 	feedback_time = 2.0
 	return true
 
 func _discharge(damage: int, focused: bool) -> void:
 	combat.clear_enemy_bullets()
 	player.invulnerable_time = maxf(player.invulnerable_time,1.5)
-	special_ring.global_position = player.global_position+Vector3(0,0.5,0)
+	special_ring.global_position = player.global_position+Vector3(0,combat.presentation_altitude+0.5,0)
 	ring_time = 0.7
 	special_ring.show()
 	shake_time = 0.35
@@ -263,6 +395,8 @@ func _discharge(damage: int, focused: bool) -> void:
 		if on_screen and (not focused or absf(target.global_position.x-player.global_position.x)<4.0): target.take_damage(damage)
 
 func _clear_actors() -> void:
+	if is_instance_valid(assault): assault.finish()
+	if is_instance_valid(convoy): convoy.retire()
 	for group in [combat.enemies,combat.bombers,combat.red_enemies,navals]:
 		for actor in group:
 			if is_instance_valid(actor) and actor.alive: actor.retire()
@@ -278,8 +412,9 @@ func _end(won: bool) -> void:
 		if deaths == 0: grade = 2
 		var objective_met: bool = combat.kills >= int(mission.quota)
 		if mission.objective == "strike": objective_met = naval_kills >= int(mission.quota)
+		if mission.objective == "ground": objective_met = is_instance_valid(assault) and assault.kills>=int(mission.quota)
 		if mission.objective == "boss": objective_met = boss_won
 		if deaths == 0 and damage_taken <= 2 and objective_met: grade = 3
 	var bonus := maxi(0,player.health*100+combat.remaining_lives*250+bombs*150) if won else 0
 	combat.score += bonus
-	finished.emit({"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})
+	finished.emit({"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":not won and not mission_completed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})

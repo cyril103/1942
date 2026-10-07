@@ -1,0 +1,57 @@
+{
+  "battery": {
+    "triangles": 3028,
+    "meshes": 2,
+    "surfaces": 2,
+    "width_depth_height": [
+      2.4507251977920532,
+      2.482639193534851,
+      1.2134674787521362
+    ],
+    "file": "battery.glb"
+  },
+  "bunker": {
+    "triangles": 1516,
+    "meshes": 2,
+    "surfaces": 2,
+    "width_depth_height": [
+      2.9926085472106934,
+      2.320647716522217,
+      1.3450000286102295
+    ],
+    "file": "bunker.glb"
+  },
+  "radar": {
+    "triangles": 2764,
+    "meshes": 2,
+    "surfaces": 2,
+    "width_depth_height": [
+      2.27020001411438,
+      2.0638762712478638,
+      2.2520001009106636
+    ],
+    "file": "radar.glb"
+  },
+  "fuel": {
+    "triangles": 4308,
+    "meshes": 2,
+    "surfaces": 2,
+    "width_depth_height": [
+      2.8900002241134644,
+      2.253399968147278,
+      1.5940001010894775
+    ],
+    "file": "fuel.glb"
+  },
+  "runway": {
+    "triangles": 4159,
+    "meshes": 2,
+    "surfaces": 2,
+    "width_depth_height": [
+      3.424999952316284,
+      4.0899999141693115,
+      2.0999999046325684
+    ],
+    "file": "runway.glb"
+  }
+}

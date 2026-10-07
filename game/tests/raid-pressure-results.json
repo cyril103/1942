@@ -1,0 +1,38 @@
+{
+	"checks": 16,
+	"failures": [],
+	"missions": [
+		{
+			"aircraft_during_low": false,
+			"authored_target_count": 30,
+			"damaged_installations_that_fired": 9,
+			"different_firing_installations": 16,
+			"enemy_rounds": 161,
+			"first_dca_mission_second": 20.6000000000001,
+			"first_low_mission_second": 20.5500000000001,
+			"ground_kills": 10,
+			"ignored_collected_powers": 0,
+			"measured_low_seconds": 25.0166666666665,
+			"mission": 3,
+			"peak_enemy_bullets": 29,
+			"player_hits": 253,
+			"player_rounds": 476
+		},
+		{
+			"aircraft_during_low": false,
+			"authored_target_count": 45,
+			"damaged_installations_that_fired": 15,
+			"different_firing_installations": 19,
+			"enemy_rounds": 563,
+			"first_dca_mission_second": 18.5666666666669,
+			"first_low_mission_second": 18.5333333333336,
+			"ground_kills": 2,
+			"ignored_collected_powers": 0,
+			"measured_low_seconds": 25.0166666666665,
+			"mission": 31,
+			"peak_enemy_bullets": 49,
+			"player_hits": 233,
+			"player_rounds": 476
+		}
+	]
+}

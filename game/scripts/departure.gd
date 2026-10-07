@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 	elapsed += delta
 	_wake_material.set_shader_parameter("wave_phase", fposmod(elapsed * 0.8, TAU))
 	if not active:
-		var bottom_world := camera.project_position(get_viewport().get_visible_rect().size, camera.position.y)
+		var bottom_world := camera.project_position(get_viewport().get_visible_rect().size, 1.0)
 		if carrier.position.z - 12.0 > bottom_world.z + 1.0:
 			carrier.hide()
 			set_physics_process(false)

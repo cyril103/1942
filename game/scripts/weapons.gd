@@ -28,12 +28,14 @@ var laser_contact: MeshInstance3D
 var laser_audio: AudioStreamPlayer
 var shot_interval := SHOT_INTERVAL
 var projectile_damage := 1
+var laser_interval_multiplier := 1.0
 var flashes: Array[MeshInstance3D] = []
 var impacts: Array[MeshInstance3D] = []
 var impact_times := PackedFloat32Array()
 var _impact_cursor := 0
 var active_count := 0
 var shots_fired := 0
+var hits_landed := 0
 var _cooldown := 0.0
 var _flash_time := 0.0
 var _query := PhysicsRayQueryParameters3D.new()
@@ -41,6 +43,17 @@ var audio: Node
 var muzzle_positions: Array = MUZZLES.duplicate()
 var laser_nose := -0.55
 var nose_fan := false
+var presentation_altitude := 0.0
+
+func set_presentation_altitude(altitude: float) -> void:
+	var change := altitude-presentation_altitude
+	presentation_altitude = altitude
+	if is_zero_approx(change): return
+	for i in range(CAPACITY):
+		if lifetimes[i]>0: projectiles[i].position.y += change
+	for i in range(impacts.size()):
+		if impact_times[i]>0: impacts[i].position.y += change
+	for effect in [laser,laser_muzzle,laser_contact]: effect.position.y += change
 
 func configure_aircraft(index: int) -> void:
 	nose_fan = index == 1
@@ -156,7 +169,9 @@ func _physics_process(delta: float) -> void:
 			_show_impact(hit.position)
 			var target: Object = hit.collider
 			if target.has_method("take_damage"):
-				target.take_damage(projectile_damage)
+				hits_landed += 1
+				if target.has_method("take_hit_at"): target.take_hit_at(projectile_damage,hit.position)
+				else: target.take_damage(projectile_damage)
 			_release(index)
 			continue
 		var screen_position := camera.unproject_position(shot.global_position)
@@ -213,7 +228,7 @@ func _release(index: int) -> void:
 
 func _show_impact(point: Vector3) -> void:
 	var impact := impacts[_impact_cursor]
-	impact.global_position = point + Vector3(0.0, 0.2, 0.0)
+	impact.global_position = point + Vector3(0.0, presentation_altitude+0.2, 0.0)
 	impact.scale = Vector3.ONE * 0.25
 	impact.material_override.set_shader_parameter("intensity", 1.0)
 	impact.show()
@@ -250,7 +265,7 @@ func _update_laser(delta: float) -> void:
 		return
 	if not laser_audio.playing: laser_audio.play()
 	var origin := player.global_position+Vector3(0,0,laser_nose)
-	var end := Vector3(origin.x,0,camera.project_position(Vector2.ZERO,camera.position.y).z-1)
+	var end := Vector3(origin.x,0,camera.project_position(Vector2.ZERO,1.0).z-1)
 	# Parallel sweeps cover the luminous core, select the closest obstruction once.
 	# A single target takes damage per tick, irrespective of how many rays touch it.
 	var hit: Dictionary = {}
@@ -266,18 +281,20 @@ func _update_laser(delta: float) -> void:
 			hit = candidate
 	if not hit.is_empty(): end.z = nearest_z
 	var length := maxf(.1,absf(end.z-origin.z))
-	laser.global_position = (origin+end)*.5+Vector3(0,.25,0)
+	laser.global_position = (origin+end)*.5+Vector3(0,presentation_altitude+.25,0)
 	laser.scale.z = length
 	laser.material_override.set_shader_parameter("beam_length",length)
-	laser_muzzle.global_position = origin+Vector3(0,.3,0)
+	laser_muzzle.global_position = origin+Vector3(0,presentation_altitude+.3,0)
 	laser_contact.visible = not hit.is_empty()
-	laser_contact.global_position = end+Vector3(0,.3,0)
+	laser_contact.global_position = end+Vector3(0,presentation_altitude+.3,0)
 	laser_clock -= delta
 	if laser_clock <= 0:
-		laser_clock += .1
+		laser_clock += .1*laser_interval_multiplier
 		shots_fired += 1
 		if not hit.is_empty() and hit.collider.has_method("take_damage"):
-			hit.collider.take_damage(2+projectile_damage)
+			hits_landed += 1
+			if hit.collider.has_method("take_hit_at"): hit.collider.take_hit_at(2+projectile_damage,hit.position)
+			else: hit.collider.take_damage(2+projectile_damage)
 			_show_impact(end)
 
 func _make_laser_flare(size: float) -> MeshInstance3D:

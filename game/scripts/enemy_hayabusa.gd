@@ -35,7 +35,7 @@ func advance(delta: float, combat: Node) -> void:
 	if is_instance_valid(propeller): propeller.rotate_z(delta * 65.0)
 	if attack_phase == AttackPhase.ENTRY:
 		position += Vector3(sin(heading), 0, cos(heading)) * flight_speed * delta
-		var half_width := absf(combat.camera.project_position(Vector2.ZERO, combat.camera.position.y).x)
+		var half_width := absf(combat.camera.project_position(Vector2.ZERO, 1.0).x)
 		if absf(position.x) < half_width - 2.0:
 			attack_phase = AttackPhase.ROLL
 			maneuver_time = 0.0

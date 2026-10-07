@@ -22,6 +22,33 @@ var props: Array[Node3D] = []
 var combat: Node
 var blast_cursor := 0
 var naval := false
+var component_health := [24,24]
+var component_visuals: Array[MeshInstance3D] = []
+var component_fires: Array[MeshInstance3D] = []
+var transition_time := 0.0
+var previous_phase := 0
+
+func component_position(index: int) -> Vector3:
+	return Vector3((-1.0 if index==0 else 1.0)*.65,-1.5,1.8) if naval else Vector3((-1.0 if index==0 else 1.0)*(.65 if kind=="ace" else 1.15),.15,0)
+
+func take_hit_at(amount: int, at: Vector3) -> void:
+	if not alive or dying or collision_layer==0 or transition_time>0: return
+	var local := to_local(at)
+	for i in range(2):
+		var target := component_position(i)
+		if component_health[i]>0 and absf(local.x-target.x)<(.6 if naval or kind=="ace" else .85):
+			component_health[i] = maxi(0,component_health[i]-amount)
+			if component_health[i]==0:
+				component_visuals[i].hide()
+				component_fires[i].show()
+				combat._explode(to_global(target),.8)
+				if is_instance_valid(combat.campaign_driver):
+					combat.campaign_driver.feedback = "POINT FAIBLE NEUTRALISÉ  /  DÉFENSE RÉDUITE"
+					combat.campaign_driver.feedback_time = 2
+					if component_health[0]==0 and component_health[1]==0: combat.campaign_driver.complete_objective("boss")
+			take_damage(amount*2)
+			return
+	take_damage(amount)
 
 func _ready() -> void:
 	collision_layer = 0
@@ -71,10 +98,35 @@ func _ready() -> void:
 	flare.material_override = material
 	add_child(flare)
 	flare.hide()
+	component_health = [maxi(12,max_health/12),maxi(12,max_health/12)]
+	for i in range(2):
+		var part := MeshInstance3D.new()
+		var mesh := CylinderMesh.new()
+		mesh.top_radius = .24
+		mesh.bottom_radius = .32
+		mesh.height = .18
+		part.mesh = mesh
+		var mat := StandardMaterial3D.new()
+		mat.albedo_color = Color(.28,.33,.35)
+		mat.metallic = .6
+		mat.emission_enabled = true
+		mat.emission = Color(.25,.07,.01)
+		part.material_override = mat
+		part.position = component_position(i)
+		add_child(part)
+		if not naval: part.hide()
+		component_visuals.append(part)
+		var fire := preload("res://scripts/campaign/combat_detail.gd").make_card(1,Vector2(1.3,2.6))
+		fire.position = part.position+Vector3(0,.7,.5)
+		add_child(fire)
+		fire.hide()
+		component_fires.append(fire)
 
 func advance(delta: float, director: Node) -> void:
 	if not alive: return
 	age += delta
+	for fire in component_fires:
+		if fire.visible: fire.material_override.set_shader_parameter("age",age)
 	flash_time = maxf(0,flash_time-delta)
 	hit_material.set_shader_parameter("strength",flash_time/0.07)
 	for prop in props: prop.rotate_z(delta*55)
@@ -98,9 +150,20 @@ func advance(delta: float, director: Node) -> void:
 		return
 	collision_layer = 2
 	phase = mini(2,int((1-float(health)/max_health)*3))
+	if phase!=previous_phase:
+		previous_phase = phase
+		transition_time = 1.2
+		telegraph = 0
+		flare.hide()
+		combat.clear_enemy_bullets()
+		director.feedback = "PHASE %d  /  %s" % [phase+1,["APPROCHE","DÉFENSE RENFORCÉE","DERNIÈRE OFFENSIVE"][phase]]
+		director.feedback_time = 2
+	if transition_time>0:
+		transition_time = maxf(0,transition_time-delta)
+		return
 	var frequency := 0.38 if naval else (0.72 if kind == "ace" else 0.48)
 	var amplitude := 2.0 if naval else (5.0 if kind == "ace" else 3.3)
-	var half_width := absf(combat.camera.project_position(Vector2.ZERO,combat.camera.position.y).x)
+	var half_width := absf(combat.camera.project_position(Vector2.ZERO,1.0).x)
 	amplitude = minf(half_width*(.16 if naval else .43),4.0 if naval else (12.0 if kind=="ace" else 10.0))
 	position.x = sin((age-4)*frequency)*amplitude
 	position.z = -6.3+sin((age-4)*0.33)*0.65
@@ -130,6 +193,7 @@ func _fire(director: Node) -> void:
 	var aim := Vector3(telegraph_target.x-origin.x,0,telegraph_target.z-origin.z).normalized()
 	var sector: int = director.mission.sector
 	var count := mini(3+phase*2,int(director.balance.boss_fan))
+	count = maxi(1,count-(1 if component_health[0]==0 else 0)-(1 if component_health[1]==0 else 0))
 	var speed := 6.2+sector*0.25
 	if phase == 2 and volley%3 == 0 and director.balance.boss_ring:
 		# The rotating ring always retains a wide safe gap toward the bottom.
@@ -145,6 +209,7 @@ func _fire(director: Node) -> void:
 			director.combat._launch_enemy_round(origin,origin+aim.rotated(Vector3.UP,angle)*10,speed)
 	if kind in ["destroyer","battleship"] and phase >= 1:
 		for side in [-1,1]:
+			if component_health[0 if side<0 else 1]==0: continue
 			var gun_origin := origin+Vector3(side*0.75,0,2.0)
 			for i in range(mini(2+phase,int(director.balance.boss_flank))):
 				var angle: float = side*(0.22+i*0.23)+sin(volley*0.7)*0.2
@@ -157,7 +222,7 @@ func _fire(director: Node) -> void:
 	if kind in ["squadron","carrier"] and volley%5 == 0: director.spawn_reinforcement()
 
 func take_damage(amount: int) -> void:
-	if not alive or dying or collision_layer == 0 or amount<=0: return
+	if not alive or dying or collision_layer == 0 or amount<=0 or transition_time>0: return
 	health = maxi(0,health-amount)
 	flash_time = 0.07
 	if health == 0:

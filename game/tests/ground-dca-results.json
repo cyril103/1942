@@ -1,0 +1,88 @@
+{
+	"checks": 195,
+	"failures": [],
+	"patterns": [
+		{
+			"first_attack_shots": 6,
+			"first_shot_at": 0.516666666666667,
+			"kind": "battery",
+			"rapid": false,
+			"sector": 0,
+			"spread": 0.335373779102936
+		},
+		{
+			"first_attack_shots": 8,
+			"first_shot_at": 0.466666666666667,
+			"kind": "battery",
+			"rapid": false,
+			"sector": 3,
+			"spread": 0.335373779102936
+		},
+		{
+			"first_attack_shots": 10,
+			"first_shot_at": 0.4,
+			"kind": "battery",
+			"rapid": false,
+			"sector": 7,
+			"spread": 0.335373779102936
+		},
+		{
+			"first_attack_shots": 10,
+			"first_shot_at": 0.516666666666667,
+			"kind": "bunker",
+			"rapid": false,
+			"sector": 0,
+			"spread": 3.95240083940925
+		},
+		{
+			"first_attack_shots": 10,
+			"first_shot_at": 0.466666666666667,
+			"kind": "bunker",
+			"rapid": false,
+			"sector": 3,
+			"spread": 3.95240083940925
+		},
+		{
+			"first_attack_shots": 21,
+			"first_shot_at": 0.4,
+			"kind": "bunker",
+			"rapid": false,
+			"sector": 7,
+			"spread": 5.14727275135415
+		},
+		{
+			"first_attack_shots": 6,
+			"first_shot_at": 0.516666666666667,
+			"kind": "battery",
+			"rapid": true,
+			"sector": 0,
+			"spread": 1.0450483930868
+		},
+		{
+			"first_attack_shots": 7,
+			"first_shot_at": 0.466666666666667,
+			"kind": "battery",
+			"rapid": true,
+			"sector": 3,
+			"spread": 1.0450483930868
+		},
+		{
+			"first_attack_shots": 9,
+			"first_shot_at": 0.4,
+			"kind": "battery",
+			"rapid": true,
+			"sector": 7,
+			"spread": 1.0450483930868
+		},
+		{
+			"kind": "battery",
+			"shots_in_20s_early": 66,
+			"shots_in_20s_late": 140
+		},
+		{
+			"kind": "bunker",
+			"shots_in_20s_early": 90,
+			"shots_in_20s_late": 252
+		}
+	]
+}

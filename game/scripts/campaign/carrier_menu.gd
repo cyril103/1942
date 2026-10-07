@@ -78,7 +78,7 @@ func hangar(app: Control) -> void:
 		bar(app,Vector2(x+205,579),float(hull)/6,GOLD)
 		bar(app,Vector2(x+380,579),rate/14.0,Color("7fdce3"))
 		app._button("EN SERVICE" if selected else "AFFECTER CET APPAREIL",Vector2(x+22,603),Vector2(506,38),app._select_aircraft.bind(i))
-	text(app,"ATELIER  /  AMÉLIORATIONS COMMUNES AUX TROIS PROFILS",Vector2(94,680),Vector2(1300,34),24,GOLD)
+	text(app,"C : SURCHARGE (VANGUARD)  /  POURSUITE (P-38)  /  BASTION (CORSAIR)",Vector2(94,680),Vector2(1300,34),24,GOLD)
 	var names := ["ARMEMENT","BLINDAGE","CONDENSATEUR"]
 	var icons := ["armament","armor","charge"]
 	var descriptions := ["Cadence accrue par rang.\nRang III : dégâts doublés.","+1 point de blindage par rang.\nEncaissez un impact de plus.","Recharge de frappe accélérée\nà chaque ennemi détruit."]
@@ -102,6 +102,7 @@ func briefing(app: Control, mission: Dictionary) -> void:
 	chart.size = Vector2(974,340)
 	chart.sector = int(mission.sector)
 	chart.boss = mission.boss != ""
+	chart.ground = mission.get("ground_assault",false)
 	app.design.add_child(chart)
 	panel(app,Rect2(94,688,1010,220),.94)
 	image(app,"objective.svg",Rect2(120,712,54,54))
@@ -113,13 +114,17 @@ func briefing(app: Control, mission: Dictionary) -> void:
 	image(app,PLANES[app.profile.data.aircraft]+".png",Rect2(1170,345,610,180))
 	text(app,"DIFFICULTÉ  "+app.PROFILE.DIFFICULTIES[app.profile.data.difficulty].to_upper()+"   •   SECTEUR %02d" % (int(mission.sector)+1),Vector2(1170,524),Vector2(625,35),23,MUTED)
 	image(app,"objective.svg",Rect2(1170,575,42,42))
-	text(app,"Détruire le commandant du secteur." if mission.boss != "" else "Rejoindre le point de sortie en vie.",Vector2(1230,575),Vector2(555,65),26)
+	var primary := "Détruire le commandant du secteur." if mission.boss!="" else "Rejoindre le point de sortie en vie."
+	if mission.objective=="ground": primary = "Détruire %d installations, puis revenir au porte-avions." % int(mission.quota)
+	text(app,primary,Vector2(1230,575),Vector2(555,65),26)
 	image(app,"medal.svg",Rect2(1170,654,42,42))
 	var mastery := "Abattre %d adversaires." % int(mission.quota)
 	if mission.objective == "strike": mastery = "Couler %d navires." % int(mission.quota)
+	if mission.objective == "ground": mastery = "Détruire %d cibles terrestres." % int(mission.quota)
 	if mission.boss != "": mastery = "Détruire le boss."
 	text(app,"MÉDAILLE D'OR",Vector2(1230,649),Vector2(555,35),23,GOLD)
 	text(app,"Aucune vie perdue • 2 impacts maximum\n"+mastery,Vector2(1230,685),Vector2(555,75),24,MUTED)
+	text(app,"BONUS : "+preload("res://scripts/campaign/operations.gd").objective_text(mission.get("secondary","formation")),Vector2(1170,759),Vector2(625,40),20,GOLD)
 	text(app,"ESPACE  Tir   /   MAJ  Précision   /   X  Bombe\nC  Frappe   /   FLÈCHES · ZQSD · WASD  Piloter\nMANETTE  Stick · A · B · X · LB   /   ÉCHAP  Pause",Vector2(1170,802),Vector2(625,90),21,MUTED)
 	app._button("DÉCOLLER",Vector2(94,946),Vector2(420,55),app._launch.bind(int(mission.id)))
 	app._button("HANGAR",Vector2(539,946),Vector2(270,55),app._show_hangar)

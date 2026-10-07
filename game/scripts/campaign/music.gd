@@ -1,10 +1,12 @@
 extends Node
-## Two persistent voices with crossfade; menu, sortie and boss loops share a motif.
+## Original jeu-final action soundtrack, with two voices for seamless crossfades.
 var players: Array[AudioStreamPlayer] = []
 var current_mode := ""
 var current := 0
 var fade := 1.0
 var tracks := {}
+var radio_player: AudioStreamPlayer
+var previous_radio := ""
 func _ready() -> void:
 	for key in ["menu","flight","flight2","boss","victory"]:
 		var stream = load("res://assets/campaign/music/"+key+".wav")
@@ -16,6 +18,16 @@ func _ready() -> void:
 		player.bus = "Music"
 		add_child(player)
 		players.append(player)
+	radio_player = AudioStreamPlayer.new()
+	radio_player.stream = preload("res://assets/campaign/music/radio-cue.wav")
+	radio_player.bus = "Effects"
+	radio_player.volume_db = -12
+	add_child(radio_player)
+
+func update_combat(director: Node) -> void:
+	if director.radio_time>0 and director.radio!=previous_radio:
+		previous_radio = director.radio
+		radio_player.play()
 func set_mode(mode: String) -> void:
 	if mode == current_mode or not tracks.has(mode): return
 	current_mode = mode
@@ -32,3 +44,7 @@ func _process(delta: float) -> void:
 	if fade >= 1: players[1-current].stop()
 func stop() -> void:
 	for player in players: player.stop()
+	if is_instance_valid(radio_player): radio_player.stop()
+	fade = 1.0
+	current_mode = ""
+	previous_radio = ""

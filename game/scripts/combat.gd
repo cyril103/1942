@@ -19,6 +19,8 @@ var enemies: Array[Area3D] = []
 var bombers: Array[Area3D] = []
 var red_enemies: Array[Area3D] = []
 var automatic_waves := true
+var aircraft_enabled := true
+var air_withdrawals: Array[Dictionary] = []
 var dense_waves := false
 var campaign_driver: Node
 var max_fighters := 32
@@ -64,12 +66,78 @@ var _effect_cursor := 0
 var _query := PhysicsRayQueryParameters3D.new()
 var gun_audio: AudioStreamPlayer
 var explosion_audio: AudioStreamPlayer
+var ground_audio: AudioStreamPlayer
+var ground_audio_cooldown := 0.0
+var presentation_altitude := 0.0
+
+func withdraw_aircraft() -> void:
+	# The player dives beneath this airspace. Stop gameplay immediately, while
+	# the detached models climb above the descending camera for a short exit.
+	for group in [enemies,bombers,red_enemies]:
+		for actor in group:
+			if not is_instance_valid(actor): continue
+			if actor.alive and actor.visual.is_visible_in_tree():
+				var model: Node3D = actor.visual
+				var side := -1.0 if actor.position.x<0 else 1.0
+				model.reparent(self,true)
+				air_withdrawals.append({"model":model,"side":side,"time":0.0})
+			actor.retire()
+		group.clear()
+	clear_enemy_bullets()
+
+func _update_withdrawals(delta: float) -> void:
+	for exit_flight in air_withdrawals:
+		exit_flight.time += delta
+		var model: Node3D = exit_flight.model
+		model.position += Vector3(float(exit_flight.side)*14.0,52.0,-9.0)*delta
+		model.rotate_z(-float(exit_flight.side)*delta*.7)
+		if exit_flight.time>=.75: model.queue_free()
+	air_withdrawals = air_withdrawals.filter(func(item): return item.time<.75)
+
+func play_ground_volley(kind: String, rapid_fire: bool) -> void:
+	# One shared voice budget for a whole battery line: dense fire cannot stack
+	# dozens of identical samples into a clipped transient.
+	if ground_audio_cooldown>0: return
+	ground_audio_cooldown = .075
+	ground_audio.pitch_scale = .70 if kind=="bunker" else (1.12 if rapid_fire else .86)
+	ground_audio.play()
+
+func set_presentation_altitude(altitude: float) -> void:
+	var change := altitude-presentation_altitude
+	presentation_altitude = altitude
+	if not is_zero_approx(change):
+		for i in range(BULLET_CAPACITY):
+			if lifetimes[i]>0: bullets[i].position.y += change
+		for i in range(EFFECT_CAPACITY):
+			if effect_times[i]>0 and not effects[i].get_meta("ground_scroll",false): effects[i].position.y += change
+	pickup.presentation_altitude = altitude
+	pickup.position.y = altitude+.35
+	for group in [enemies,bombers,red_enemies]:
+		for actor in group:
+			if is_instance_valid(actor): _apply_aircraft_altitude(actor)
+
+func _apply_aircraft_altitude(actor: Node3D) -> void:
+	if is_zero_approx(presentation_altitude) and not actor.has_meta("altitude_pivot"): return
+	var pivot: Node3D
+	if actor.has_meta("altitude_pivot"):
+		pivot = actor.get_meta("altitude_pivot")
+	else:
+		pivot = Node3D.new()
+		pivot.name = "FlightAltitude"
+		actor.add_child(pivot)
+		actor.visual.reparent(pivot,false)
+		actor.set_meta("altitude_pivot",pivot)
+	pivot.position.y = presentation_altitude
+	if actor is ENEMY:
+		actor.loop_height_scale = lerpf(1.0,.18,clampf(-presentation_altitude/5.8,0,1))
+		# Rescale the complete maneuver, including height gained before descent.
+		if actor.phase==ENEMY.Phase.LOOP: actor.visual.position.y = actor.loop_elevation*actor.loop_height_scale
 
 func _ready() -> void:
 	seascape = get_parent().get_node_or_null("Seascape")
 	player.destroyed.connect(_on_player_destroyed)
 	var mesh := PlaneMesh.new()
-	mesh.size = Vector2(0.68, 0.68)
+	mesh.size = Vector2(0.90, 0.90)
 	var material := ShaderMaterial.new()
 	material.shader = preload("res://shaders/enemy_bullet.gdshader")
 	mesh.material = material
@@ -106,6 +174,12 @@ func _ready() -> void:
 	bomber_audio.volume_db = -17
 	bomber_audio.max_polyphony = 4
 	add_child(bomber_audio)
+	ground_audio = AudioStreamPlayer.new()
+	ground_audio.stream = gun_audio.stream
+	ground_audio.bus = "Effects"
+	ground_audio.volume_db = -20.0
+	ground_audio.max_polyphony = 4
+	add_child(ground_audio)
 	pickup = POW.new()
 	add_child(pickup)
 	_build_hud()
@@ -116,12 +190,14 @@ func navigate_naval(ship: Node3D, offset: float = 0.0) -> void:
 	ship.rotation.y = seascape.channel_heading(ship.position.z)
 
 func screen_bottom() -> float:
-	return camera.project_position(get_viewport().get_visible_rect().size, camera.position.y).z
+	return camera.project_position(get_viewport().get_visible_rect().size, 1.0).z
 
 func screen_top() -> float:
-	return camera.project_position(Vector2.ZERO, camera.position.y).z
+	return camera.project_position(Vector2.ZERO, 1.0).z
 
 func _physics_process(delta: float) -> void:
+	ground_audio_cooldown = maxf(0,ground_audio_cooldown-delta)
+	_update_withdrawals(delta)
 	if respawn_time > 0:
 		respawn_time = maxf(0,respawn_time-delta)
 		if respawn_time <= 0:
@@ -132,6 +208,12 @@ func _physics_process(delta: float) -> void:
 	for enemy in enemies:
 		if is_instance_valid(enemy) and enemy.alive:
 			enemy.advance(delta, self)
+			if enemy.has_meta("fire_warning"):
+				var remaining: float = float(enemy.get_meta("fire_warning"))-delta
+				enemy.set_meta("fire_warning",remaining)
+				if remaining<=0:
+					enemy.remove_meta("fire_warning")
+					_fire_enemy_now(enemy)
 	enemies = enemies.filter(func(enemy): return is_instance_valid(enemy) and enemy.alive)
 	for bomber in bombers:
 		if is_instance_valid(bomber) and bomber.alive: bomber.advance(delta,self)
@@ -160,7 +242,7 @@ func _physics_process(delta: float) -> void:
 	_update_hud()
 
 func spawn_wave() -> void:
-	if game_over:
+	if game_over or not aircraft_enabled:
 		return
 	# Safety cap for extremely tall windows; stale formations cannot accumulate.
 	if dense_waves and enemies.size() >= max_fighters - 7: return
@@ -169,7 +251,7 @@ func spawn_wave() -> void:
 			if is_instance_valid(enemy): enemy.retire()
 		enemies.clear()
 	wave_count += 1
-	var half_width := absf(camera.project_position(Vector2.ZERO, camera.position.y).x)
+	var half_width := absf(camera.project_position(Vector2.ZERO, 1.0).x)
 	if wave_count % 2 == 0:
 		_spawn_hayabusa(half_width)
 		return
@@ -201,6 +283,7 @@ func spawn_wave() -> void:
 		enemy.turn_angle = 0.42 + profile * 0.035
 		enemy.destroyed.connect(_on_enemy_destroyed)
 		add_child(enemy)
+		_apply_aircraft_altitude(enemy)
 		enemies.append(enemy)
 
 func _spawn_hayabusa(half_width: float) -> void:
@@ -222,6 +305,7 @@ func _spawn_hayabusa(half_width: float) -> void:
 			enemy.entry_delay = (slot/4)*1.1+index*.16
 		enemy.destroyed.connect(_on_enemy_destroyed)
 		add_child(enemy)
+		_apply_aircraft_altitude(enemy)
 		enemies.append(enemy)
 
 func next_fighter_shot_limit() -> int:
@@ -235,15 +319,32 @@ func next_fighter_shot_limit() -> int:
 	return clampi(count,1,3)
 
 func fire_enemy(enemy: Area3D) -> void:
-	if game_over or not player.alive:
+	if not aircraft_enabled: return
+	if is_instance_valid(campaign_driver):
+		if game_over or not player.alive or enemy.has_meta("fire_warning"): return
+		var aim := player.global_position
+		var role: String = enemy.get_meta("role","escort")
+		if role=="interceptor":
+			var motion := Input.get_vector("move_left","move_right","move_up","move_down")
+			aim += Vector3(motion.x,0,motion.y)*player.speed*.18
+		elif role=="gunner": aim.x += sin(enemy.age*2)*2.4
+		enemy.set_meta("locked_aim",aim)
+		enemy.set_meta("fire_warning",.22)
 		return
-	var target: Vector3 = player.global_position
+	_fire_enemy_now(enemy)
+
+func _fire_enemy_now(enemy: Area3D) -> void:
+	if game_over or not aircraft_enabled or not player.alive:
+		return
+	var target: Vector3 = enemy.get_meta("locked_aim",player.global_position)
+	if enemy.has_meta("locked_aim"): enemy.remove_meta("locked_aim")
 	gun_audio.play()
 	for side in ([0] if dense_waves else [-1, 1]):
 		var origin := enemy.global_position + enemy.global_basis * Vector3(side * 0.241875, 0.1875, 0.478125)
 		_launch_enemy_round(origin,target,BULLET_SPEED)
 
-func _launch_enemy_round(origin: Vector3, target: Vector3, speed: float) -> bool:
+func _launch_enemy_round(origin: Vector3, target: Vector3, speed: float, visual_origin := false) -> bool:
+	if not visual_origin: origin.y += presentation_altitude
 	for index in range(BULLET_CAPACITY):
 		if lifetimes[index] > 0: continue
 		var direction := Vector3(target.x-origin.x,0,target.z-origin.z).normalized()
@@ -257,27 +358,32 @@ func _launch_enemy_round(origin: Vector3, target: Vector3, speed: float) -> bool
 	return false
 
 func fire_bomber(bomber: Area3D) -> void:
-	if game_over or not player.alive: return
+	if game_over or not aircraft_enabled or not player.alive: return
 	bomber_audio.play()
+	var target := player.global_position
+	if is_instance_valid(campaign_driver) and is_instance_valid(campaign_driver.convoy) and campaign_driver.convoy.alive:
+		target = campaign_driver.convoy.global_position
 	for origin in bomber.get_rear_muzzles():
-		if _launch_enemy_round(origin,player.global_position,14.0): bomber_shots += 1
+		if _launch_enemy_round(origin,target,14.0,true): bomber_shots += 1
 
 func spawn_bomber() -> void:
-	if game_over or not bombers.is_empty(): return
+	if game_over or not aircraft_enabled or not bombers.is_empty(): return
 	bomber_count += 1
 	var bomber := BOMBER.new()
-	var half_width := absf(camera.project_position(Vector2.ZERO,camera.position.y).x)
+	var half_width := absf(camera.project_position(Vector2.ZERO,1.0).x)
 	bomber.direction = -1.0 if bomber_count % 2 == 0 else 1.0
 	bomber.position = Vector3(bomber.direction*1.4,0,screen_bottom()+2.7)
 	bomber.anchor = Vector3(0,0,screen_top()+4.2)
 	bomber.amplitude = minf(5.0,maxf(0.5,half_width-2.7))
 	bomber.destroyed.connect(_on_bomber_destroyed)
 	add_child(bomber)
+	_apply_aircraft_altitude(bomber)
 	bombers.append(bomber)
 
 func _on_bomber_destroyed(_at: Vector3) -> void:
 	kills += 1
 	score += 500
+	if is_instance_valid(campaign_driver): campaign_driver.on_kill(500,"bomber")
 
 func get_radar_contacts() -> Array[Area3D]:
 	var contacts: Array[Area3D] = []
@@ -313,6 +419,7 @@ func _update_bullets(delta: float) -> void:
 func _on_enemy_destroyed(at: Vector3) -> void:
 	kills += 1
 	score += 100
+	if is_instance_valid(campaign_driver): campaign_driver.on_kill(100,"fighter")
 	_explode(at)
 
 func _on_player_destroyed(at: Vector3) -> void:
@@ -327,9 +434,12 @@ func _on_player_destroyed(at: Vector3) -> void:
 		lifetimes[index] = 0
 		bullets[index].hide()
 
-func _explode(at: Vector3, effect_scale: float = 1.0, sound: bool = true) -> void:
+func _explode(at: Vector3, effect_scale: float = 1.0, sound: bool = true, ground_scroll: bool = false, visual_origin := false) -> void:
+	if not visual_origin: at.y += presentation_altitude
+	if is_instance_valid(campaign_driver) and is_instance_valid(campaign_driver.details): campaign_driver.details.burst(at,effect_scale>1.1,ground_scroll)
 	if sound: explosion_audio.play()
 	effects[_effect_cursor].scale = Vector3.ONE*EXPLOSION.AIRCRAFT_EFFECT_SCALE*effect_scale
+	effects[_effect_cursor].set_meta("ground_scroll",ground_scroll)
 	effects[_effect_cursor].trigger(at, float(kills + _effect_cursor) * 1.713)
 	effect_times[_effect_cursor] = EXPLOSION.DURATION
 	_effect_cursor = (_effect_cursor + 1) % EFFECT_CAPACITY
@@ -378,13 +488,14 @@ func _update_hud() -> void:
 		hud.text = "VAGUE %d  •  %d ABATTUS  •  %s\nEspace : tirer   R : recommencer" % [wave_count, kills, "TEST TERMINÉ" if game_over else "PROCHAINE : %ds" % ceili(maxf(0, next_wave))]
 
 func spawn_special() -> void:
+	if not aircraft_enabled: return
 	if game_over or not red_enemies.is_empty(): return
 	special_count += 1
 	special_kills = 0
 	special_resolved = 0
 	special_failed = false
 	var side := 1.0 if special_count % 2 == 1 else -1.0
-	var w := absf(camera.project_position(Vector2.ZERO,camera.position.y).x)
+	var w := absf(camera.project_position(Vector2.ZERO,1.0).x)
 	var top := screen_top()
 	var route := Curve3D.new()
 	route.bake_interval = 0.04
@@ -407,6 +518,7 @@ func spawn_special() -> void:
 		red.destroyed.connect(_on_red_destroyed)
 		red.escaped.connect(_on_red_escaped)
 		add_child(red)
+		_apply_aircraft_altitude(red)
 		red_enemies.append(red)
 
 func _on_red_destroyed(at: Vector3) -> void:
@@ -414,13 +526,15 @@ func _on_red_destroyed(at: Vector3) -> void:
 	special_resolved += 1
 	kills += 1
 	score += 150
+	if is_instance_valid(campaign_driver): campaign_driver.on_kill(150,"red")
 	_explode(at)
 	if special_kills == 5 and special_resolved == 5 and not special_failed:
-		var half_width := absf(camera.project_position(Vector2.ZERO,camera.position.y).x)
+		var half_width := absf(camera.project_position(Vector2.ZERO,1.0).x)
 		var drop := Vector3(clampf(at.x,-half_width+1,half_width-1),0,clampf(at.z,screen_top()+1.5,screen_bottom()-3))
 		pickup.activate(drop,player,next_power_kind)
 		if dense_waves: next_power_kind = {"spread":"laser","laser":"life","life":"spread"}[next_power_kind]
 		pow_spawn_count += 1
+		if is_instance_valid(campaign_driver): campaign_driver.complete_objective("formation")
 
 func _on_red_escaped() -> void:
 	special_failed = true

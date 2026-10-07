@@ -89,8 +89,8 @@ func refresh(delta: float) -> void:
 func _update_chart() -> void:
 	var camera: Camera3D = dashboard.flight.get_node("Camera")
 	var viewport_size := Vector2(dashboard.viewport.size)
-	var world_a := camera.project_position(Vector2.ZERO,camera.position.y)
-	var world_b := camera.project_position(viewport_size,camera.position.y)
+	var world_a := camera.project_position(Vector2.ZERO,1.0)
+	var world_b := camera.project_position(viewport_size,1.0)
 	radar_surface.material.set_shader_parameter("world_size",Vector2(absf(world_b.x-world_a.x),absf(world_b.z-world_a.z)))
 	var data := PackedVector4Array()
 	var details := PackedVector2Array()

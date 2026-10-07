@@ -1,0 +1,7 @@
+# Military island atlas
+
+Original image generated using built-in ImageGen, 6 October 2026. No external image sources.
+
+## Exact prompt
+
+Production game terrain atlas for overhead Pacific WW2 aerial shmup. Square 2x2 equal quadrant RGBA atlas, FOUR isolated lush tropical islands, each fully inside its quadrant with 12 percent transparent padding and clear center gutters. Strict top down orthographic view, absolutely no perspective horizon. Photoreal high quality miniature terrain rendered with consistent warm upper-left daylight, detailed emerald palms, limestone cliffs, pale beaches, shallow turquoise reef water fading smoothly to true alpha transparency. Top left: crescent island with small 1940s military harbor, two wooden piers, gray warehouses, fuel tanks and tiny cranes. Top right: long rounded island with a weathered grass airstrip, two aircraft hangars and dispersed trees. Bottom left: rugged lush island with hilltop radar station, coastal battery and winding dirt road. Bottom right: small coastal supply base, sandbag emplacements, camouflage storage buildings and secluded lagoon. Buildings tiny in relation to island and readable from high altitude. Lived-in believable coherent AAA environment artwork. No ships, no aircraft, no fire, no text, labels, grid or border. Each entire island and surrounding reef contained in quadrant, transparent open ocean outside reefs. Preserve genuinely transparent background and softly fading semitransparent shallows.

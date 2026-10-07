@@ -5,6 +5,7 @@ signal scrolled(distance: float)
 
 const OCEAN_TEXTURE: Texture2D = preload("res://assets/environment/ocean.png")
 const ISLAND_ATLAS: Texture2D = preload("res://assets/environment/islands-atlas.png")
+const MILITARY_ATLAS: Texture2D = preload("res://assets/environment/military-islands-atlas.png")
 const ARCHIPELAGO_ATLAS: Texture2D = preload("res://assets/environment/archipelago-atlas.png")
 const OCEAN_SHADER: Shader = preload("res://shaders/ocean.gdshader")
 const ISLAND_SHADER: Shader = preload("res://shaders/island.gdshader")
@@ -84,8 +85,8 @@ func _update_view() -> void:
 	var viewport_size := get_viewport().get_visible_rect().size
 	if viewport_size.x <= 0.0 or viewport_size.y <= 0.0:
 		return
-	var a := camera.project_position(Vector2.ZERO, camera.position.y)
-	var b := camera.project_position(viewport_size, camera.position.y)
+	var a := camera.project_position(Vector2.ZERO, 1.0)
+	var b := camera.project_position(viewport_size, 1.0)
 	_view_half = Vector2(absf(b.x - a.x), absf(b.z - a.z)) * 0.5
 	(ocean.mesh as PlaneMesh).size = _view_half * 2.0 + Vector2(8.0, 8.0)
 	for island in islands:
@@ -136,6 +137,7 @@ func _pick_variant() -> int:
 		elif _biome in ["jade","final"]: _variant_bag.assign([11,4,7,6,0,3])
 		elif _biome=="convoy": _variant_bag.assign([10,4,6,7,1,2])
 		else: _variant_bag.assign([0,1,2,3,4,5,6,7])
+		if _biome!="arctic": _variant_bag.append_array([16,17,18,19])
 		# Seeded shuffle keeps each mission reproducible and avoids a single motif.
 		for i in range(_variant_bag.size()-1,0,-1):
 			var j := _random.randi_range(0,i)
@@ -175,7 +177,8 @@ func _configure_island(island: MeshInstance3D, at_z: float) -> void:
 	_place_island(island)
 	var material := island.material_override as ShaderMaterial
 	var atlas: Texture2D = ISLAND_ATLAS
-	if variant>=12: atlas = _polar_atlas
+	if variant>=16: atlas = MILITARY_ATLAS
+	elif variant>=12: atlas = _polar_atlas
 	elif variant>=8: atlas = _sector_atlas
 	elif variant>=4: atlas = ARCHIPELAGO_ATLAS
 	material.set_shader_parameter("island_atlas",atlas)

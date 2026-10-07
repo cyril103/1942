@@ -1,6 +1,7 @@
 extends Control
 var sector := 0
 var boss := false
+var ground := false
 var clock := 0.0
 const FONT := preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 func _ready() -> void: mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -22,11 +23,20 @@ func _draw() -> void:
 		points.append(points[0])
 		draw_polyline(points,Color(.72,.72,.51,.65),1.5,true)
 	var route := PackedVector2Array([Vector2(70,270),Vector2(320,240),Vector2(490,90),Vector2(710,70),Vector2(900,210)])
+	if ground:
+		var coast := PackedVector2Array([Vector2(290,40),Vector2(370,20),Vector2(720,35),Vector2(780,130),Vector2(725,210),Vector2(510,255),Vector2(350,205)])
+		draw_colored_polygon(coast,Color(.29,.38,.25,.8))
+		coast.append(coast[0])
+		draw_polyline(coast,Color(.81,.76,.48,.7),2,true)
+		for at in [Vector2(415,133),Vector2(585,97),Vector2(650,158)]:
+			draw_rect(Rect2(at-Vector2(13,8),Vector2(26,16)),Color(.85,.46,.29,.9),false,2)
+			draw_arc(at,24,0,TAU,24,Color(.85,.46,.29,.55),1,true)
 	for i in range(route.size()-1): draw_dashed_line(route[i],route[i+1],Color("e2c383"),2,9,true)
 	for i in range(route.size()):
 		draw_circle(route[i],5,Color("e2c383"))
 		draw_arc(route[i],12,0,TAU,32,ink,1,true)
-		draw_string(FONT,route[i]+Vector2(16,-14),["DÉPART","PATROUILLE","CONTACTS","INTERCEPTION","BOSS" if boss else "RETOUR"][i],HORIZONTAL_ALIGNMENT_LEFT,-1,18,ink)
+		var labels := ["DÉPART","DESCENTE","RADARS","BASE AU SOL","RETOUR"] if ground else ["DÉPART","PATROUILLE","CONTACTS","INTERCEPTION","BOSS" if boss else "RETOUR"]
+		draw_string(FONT,route[i]+Vector2(16,-14),labels[i],HORIZONTAL_ALIGNMENT_LEFT,-1,18,ink)
 	var progress := fmod(clock*.17,4.0)
 	var at := route[int(progress)].lerp(route[mini(4,int(progress)+1)],fmod(progress,1.0))
 	draw_circle(at,4,Color.WHITE)
