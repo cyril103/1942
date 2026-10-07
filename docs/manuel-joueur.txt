@@ -1,5 +1,5 @@
 PACIFIC STRIKE — CAMPAGNE 1942
-Version 1.7.0 — équipement, progression et reprises de mission.
+Version 1.8.0 — secteurs, objectifs de raid et nouveaux terrains.
 
 Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
 Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.
@@ -70,7 +70,7 @@ Une destruction entretient la chaîne pendant 4,5 secondes. Le multiplicateur mo
 rompt la chaîne. Un objectif secondaire accompli rapporte 2 500 points une seule fois.
 Rang S : victoire sans vie perdue, au plus un impact, objectif secondaire accompli
 et chaîne maximale d’au moins 16. L'or exige la victoire, aucune vie perdue, au plus
-deux impacts et le quota principal atteint : l'or et S ont des critères différents.
+deux impacts et l'objectif principal accompli : l'or et S ont des critères différents.
 Le Guide de vol / score est accessible au briefing. Après la mission, Médaille & rang
 montre les critères atteints et manquants. Le HUD indique le délai restant de la chaîne.
 
@@ -100,13 +100,16 @@ normal est toujours conservé. L'option peut être désactivée à tout moment.
 Le mode Performance supprime les ombres dynamiques et les débris facultatifs.
 Musique de combat : les pistes d'action de la version jeu-final, avec fondus entre vol et boss.
 
-RAIDS TERRESTRES — VERSION 1.6
+RAIDS TERRESTRES — VERSION 1.8
 Missions 03, 07, 11, 15, 19, 23, 27 et 31 : approche maritime, descente tactique,
 survol d'une base en relief, extraction au large et retour au porte-avions.
-Le compteur CIBLES AU SOL indique l'objectif obligatoire : 12 à 26 installations.
+Le compteur CIBLES AU SOL indique le quota obligatoire : 12 à 26 installations.
+Les cibles PRIORITAIRES doivent aussi être détruites. Une cible prioritaire compte
+dans le quota ; si elle quitte l'écran intacte, le raid doit être rejoué.
 Le vol rasant et la remontée sont automatiques ; vous gardez le contrôle du pilotage.
 Vos mitrailleuses, votre laser, vos bombes et votre capacité touchent les bâtiments.
-Les radars (repères cyan) brouillent les batteries pendant 6 secondes après destruction.
+Les radars (repères cyan) brouillent leur réseau de batteries pendant 6 secondes
+après destruction. Seul le premier raid dispose d'un réseau couvrant toute la base.
 Les réservoirs de carburant explosent et endommagent les défenses proches.
 Les chasseurs et bombardiers défendent l'approche au-dessus de l'océan. À la descente,
 ils restent en altitude et leurs tirs disparaissent : seule la DCA combat au ras du sol.
@@ -114,7 +117,11 @@ ils restent en altitude et leurs tirs disparaissent : seule la DCA combat au ras
 de face et par les côtés toutes les 3,4 à 4,8 secondes selon le secteur. Le retour
 comprend au moins 12 secondes de combat aérien ; les apparitions cessent 5 secondes
 avant l'approche automatique du porte-avions. Aucun rattrapage de vagues après une pause.
-Chaque raid compte 30 à 45 installations, dont 24 à 36 positions armées.
+Chaque raid compte 30 à 40 installations dans une composition propre au secteur.
+Le briefing présente les radars, les cibles prioritaires et les infrastructures.
+Les aérodromes, dépôts, réseaux radar et batteries mobiles imposent des parcours
+différents. Les batteries mobiles annoncent leur déplacement, s'arrêtent, puis
+préparent leur rafale ; elles ne tirent pas en roulant.
 Les batteries tirent de longues rafales doubles ; les bunkers croisent leurs éventails.
 Un canon rapide par groupe alterne ses deux tubes. Les défenses ouvrent le feu dès
 leur entrée à l'écran après un court préavis et résistent mieux aux mitrailleuses.
@@ -122,9 +129,11 @@ Bougez après le préavis pour esquiver la visée mémorisée ; la pression augm
 Les projectiles ennemis sont agrandis, avec un cœur clair et une bordure sombre.
 Un POW apparaît après 3 destructions, puis 9 (deux maximum). Si un POW est déjà actif,
 la récompense attend une destruction ultérieure pour ne pas l'effacer.
-Détruire les deux radars rapporte le bonus secondaire de 2 500 points.
+L'objectif secondaire du briefing rapporte 2 500 points : selon le raid, il vise
+les radars, les dépôts, les hangars ou les batteries mobiles des complexes.
 Les objectifs et le score restent acquis après la perte d'un avion dans la mission.
-Si le quota n'est pas atteint, vous regagnez le pont mais la mission doit être rejouée.
+Si le quota ou les priorités ne sont pas accomplis, vous regagnez le pont mais
+la mission doit être rejouée. Le bilan explique séparément ces deux conditions.
 Pour essayer immédiatement : ARCADE / SCORE ATTACK > mission 03, Opération Coupe-Circuit.
 Ce mode n'altère pas la progression de votre campagne.
 

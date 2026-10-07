@@ -1,0 +1,82 @@
+{
+	"checks": 693,
+	"failures": [],
+	"human_validation": "NOT_PERFORMED",
+	"performance": "NOT_MEASURED",
+	"runtime_colliders": "SEPARATE_COMBAT_SUITE_REQUIRED",
+	"sectors": [
+		{
+			"biome": "coral",
+			"infrastructure_triangles": 68,
+			"mission": 3,
+			"props": 244,
+			"segments": 3,
+			"strips": 1,
+			"triangles": 17660
+		},
+		{
+			"biome": "convoy",
+			"infrastructure_triangles": 89,
+			"mission": 7,
+			"props": 244,
+			"segments": 6,
+			"strips": 1,
+			"triangles": 19217
+		},
+		{
+			"biome": "storm",
+			"infrastructure_triangles": 90,
+			"mission": 11,
+			"props": 244,
+			"segments": 4,
+			"strips": 1,
+			"triangles": 21010
+		},
+		{
+			"biome": "jade",
+			"infrastructure_triangles": 70,
+			"mission": 15,
+			"props": 244,
+			"segments": 3,
+			"strips": 2,
+			"triangles": 22174
+		},
+		{
+			"biome": "volcanic",
+			"infrastructure_triangles": 178,
+			"mission": 19,
+			"props": 220,
+			"segments": 8,
+			"strips": 1,
+			"triangles": 23906
+		},
+		{
+			"biome": "dusk",
+			"infrastructure_triangles": 120,
+			"mission": 23,
+			"props": 244,
+			"segments": 8,
+			"strips": 2,
+			"triangles": 25472
+		},
+		{
+			"biome": "arctic",
+			"infrastructure_triangles": 92,
+			"mission": 27,
+			"props": 184,
+			"segments": 4,
+			"strips": 2,
+			"triangles": 25108
+		},
+		{
+			"biome": "final",
+			"infrastructure_triangles": 144,
+			"mission": 31,
+			"props": 244,
+			"segments": 8,
+			"strips": 1,
+			"triangles": 25656
+		}
+	],
+	"tiling_capture": "SEPARATE_CAPTURE_REQUIRED"
+}

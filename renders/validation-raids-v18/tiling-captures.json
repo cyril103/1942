@@ -1,0 +1,103 @@
+{
+	"human_inspection": "PENDING",
+	"performance": "NOT_MEASURED",
+	"records": [
+		{
+			"biome": "volcanic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/volcanic-raw-3x3-4m.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.0,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 4.0,
+			"view": "vertical"
+		},
+		{
+			"biome": "volcanic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/volcanic-gameplay-3x3-4m.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.2,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 4.0,
+			"view": "vertical"
+		},
+		{
+			"biome": "volcanic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/volcanic-gameplay-oblique-3x3-4m.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.2,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 4.0,
+			"view": "oblique"
+		},
+		{
+			"biome": "volcanic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/volcanic-raw-3x3-6m35.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.0,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 6.34920634920635,
+			"view": "vertical"
+		},
+		{
+			"biome": "arctic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/arctic-raw-3x3-4m.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.0,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 4.0,
+			"view": "vertical"
+		},
+		{
+			"biome": "arctic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/arctic-gameplay-3x3-4m.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.2,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 4.0,
+			"view": "vertical"
+		},
+		{
+			"biome": "arctic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/arctic-gameplay-oblique-3x3-4m.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.2,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 4.0,
+			"view": "oblique"
+		},
+		{
+			"biome": "arctic",
+			"file": "C:/ChatGPT/1942/tools/review/raid-v3-tiling-final/arctic-raw-3x3-6m35.png",
+			"inspection": "PENDING",
+			"lights": "main.tscn gameplay key/fill and ambient values",
+			"repetitions": "3x3 continuous local X/Z",
+			"save_error": 0,
+			"secondary_strength": 0.0,
+			"shader": "res://shaders/assault_terrain.gdshader",
+			"tile_metres": 6.34920634920635,
+			"view": "vertical"
+		}
+	],
+	"seamless_verified": false
+}

@@ -3,7 +3,10 @@ extends Node3D
 ## installations and wrecks; it must fully clear the carrier approach.
 const TARGET := preload("res://scripts/campaign/ground_target.gd")
 const TERRAIN := preload("res://scripts/campaign/assault_terrain.gd")
+const LAYOUTS := preload("res://scripts/campaign/raid_layouts.gd")
 const LABELS := {"fuel":"CARBURANT", "radar":"RADAR", "battery":"DCA", "bunker":"BUNKER", "runway":"HANGAR"}
+signal network_disrupted(network_id: String, seconds: float, global_scope: bool)
+signal mobile_route_announced(target_id: String, from: Vector3, to: Vector3, seconds: float)
 var director: Node
 var sea: Node3D
 var terrain: Node3D
@@ -25,6 +28,14 @@ var next_supply_kill := 3
 var presentation_altitude := 0.0
 var cruise_camera_height := 35.0
 var cruise_camera_size := 25.0
+var layout: Dictionary = {}
+var destroyed_ids: Dictionary = {}
+var escaped_ids: Dictionary = {}
+var network_jams: Dictionary = {}
+var secondary_destroyed_ids: Dictionary = {}
+var _targets_by_id: Dictionary = {}
+var _networks_for_target: Dictionary = {}
+var _objective_announced := false
 const LOW_ALTITUDE := -5.8
 const LOW_CAMERA_HEIGHT := -3.2
 const LOW_CAMERA_SIZE := 21.0
@@ -43,10 +54,12 @@ func _ready() -> void:
 	director.cockpit.flight.get_node("Clouds").shadow_altitude = TERRAIN.PLATEAU_Y+.025
 	width = maxf(40,sea._view_half.x*2+14)
 	length = (float(director.mission.duration)-43.0)*float(director.mission.scroll)*1.18
+	var safe_x := minf(width*.33-2.3,sea._view_half.x*LOW_CAMERA_SIZE/cruise_camera_size-2.3)
+	layout = LAYOUTS.instantiate_layout(director.mission,width,length,safe_x)
 	position.z = -10000
 	terrain = TERRAIN.new()
 	add_child(terrain)
-	terrain.configure(director.mission,width,length)
+	terrain.configure(director.mission,width,length,layout)
 	terrain.set_ground_detail(preload("res://assets/environment/raid-v2/coral-grass-detail.png"))
 	terrain.set_ocean_parameter("ocean_texture",sea.OCEAN_TEXTURE)
 	for parameter in ["ocean_tint","sea_desaturation","tile_size"]:
@@ -55,53 +68,54 @@ func _ready() -> void:
 	sea.scrolled.connect(_on_scrolled)
 
 func _build_targets() -> void:
-	var rows := int(director.mission.ground_count)/5
-	var safe_x := minf(width*.33-2.3,sea._view_half.x*LOW_CAMERA_SIZE/cruise_camera_size-2.3)
-	for row in range(rows):
-		var z := lerpf(length*.5-16,-length*.5+16,float(row)/maxi(1,rows-1))
-		var shift: float = [-.7,.6,-.2,.7,-.6,.2,-.5,.6,.0][row%9]
-		for side in range(5):
-			var target := TARGET.new()
-			target.variant = "battery" if side!=2 else ["fuel","fuel","runway"][row%3]
-			# The opening line can fight before the first radar's tactical shutdown.
-			if side==2 and row in [1,rows-2]: target.variant = "radar"
-			if side in [0,4] and (row+side)%3!=0: target.variant = "bunker"
-			target.rapid_fire = side==1
-			var x: float = [-safe_x*.85,-4.2,0.0,4.2,safe_x*.85][side]+shift
-			# Keep five staggered positions across the clearing, with an open strip.
-			if absf(z)<minf(30,length*.22)+6:
-				var runway_x := width*.18
-				var center := clampf(shift,-safe_x+4.2,minf(safe_x,runway_x-4.0)-4.2)
-				x = center+(side-2)*4.2
-				if side==0: x = -safe_x
-				if side==4: x = runway_x+4.0 if runway_x+4.0<=safe_x else -safe_x
-			target.position = Vector3(x,0,z+[3.6,-2.4,0.0,2.4,-5.4][side])
-			target.health = int(TARGET.HEALTH[target.variant])+mini(4,int(director.mission.sector)/2)
-			target.destroyed.connect(_on_destroyed.bind(target))
-			add_child(target)
-			target.configure_defense(int(director.mission.sector),float((row+side)%5)*.045)
-			target.set_visual_altitude(TERRAIN.PLATEAU_Y)
-			target.collision_layer = 0
-			target.set_meta("spawn_x",target.position.x)
-			target.set_meta("spawn_z",target.position.z)
-			targets.append(target)
+	# Authored IDs, roads and priority lists are shared with terrain/briefing.
+	# Count actual installations, rather than flooring a requested count / 5.
+	var groups: Dictionary = layout.get("radar_groups",{})
+	for network_id in groups:
+		network_jams[str(network_id)] = 0.0
+		for target_id in groups[network_id].get("target_ids",[]):
+			if not _networks_for_target.has(str(target_id)): _networks_for_target[str(target_id)] = []
+			_networks_for_target[str(target_id)].append(str(network_id))
+	var routes: Dictionary = layout.get("routes",{})
+	for spec in layout.get("targets",[]):
+		var target := TARGET.new()
+		target.variant = str(spec.variant)
+		target.mobile = bool(spec.get("mobile",false))
+		target.rapid_fire = bool(spec.get("rapid_fire",false))
+		target.position = Vector3(spec.position.x,0.0,spec.position.z)
+		# Priority/mobile status grants no extra armor. Preserve the established
+		# sector bonus ceiling and fractional damage all the way to destruction.
+		var bonus_cap := mini(4,int(director.mission.sector)/2)
+		target.health = float(TARGET.HEALTH[target.variant])+clampi(int(spec.get("health_bonus",0)),0,bonus_cap)
+		target.destroyed.connect(_on_destroyed.bind(target))
+		target.movement_announced.connect(_on_mobile_route_announced)
+		add_child(target)
+		target.configure_defense(int(director.mission.sector),float(spec.get("defense_stagger",0.0)))
+		target.configure_tactical(spec,routes.get(str(spec.get("mobile_route_id","")),{}))
+		target.set_visual_altitude(TERRAIN.PLATEAU_Y)
+		target.collision_layer = 0
+		target.set_meta("spawn_x",target.position.x)
+		target.set_meta("spawn_z",target.position.z)
+		_targets_by_id[target.tactical_id] = target
+		targets.append(target)
 
 func advance(delta: float) -> void:
-	if director.ending: return
+	if director.ending or director.paused or get_tree().paused: return
 	if not deployed and director.elapsed>=12.0:
 		deployed = true
 		position.z = director.combat.screen_top()-length*.5-8
 		deployment_distance = sea.scroll_distance
 		for target in targets: target.collision_layer = 2
 	if not deployed: return
-	jam_remaining = maxf(0,jam_remaining-delta)
+	_advance_network_jams(delta)
 	for target in targets:
 		if not is_instance_valid(target) or not target.alive: continue
 		if target.global_position.z>director.combat.screen_bottom()+4:
 			escaped += 1
+			escaped_ids[target.tactical_id] = true
 			target.retire()
 			continue
-		target.jammed = jam_remaining>0
+		target.set_jammed(_is_target_jammed(target.tactical_id))
 		target.advance(delta,director.combat)
 	targets = targets.filter(func(target): return is_instance_valid(target) and not target.is_queued_for_deletion())
 	cleared = position.z-length*.5>director.combat.screen_bottom()+18.0
@@ -175,7 +189,100 @@ func contacts() -> Array[Area3D]:
 			result.append(target)
 	return result
 
+func target_by_id(target_id: String) -> Area3D:
+	var target = _targets_by_id.get(target_id)
+	return target if is_instance_valid(target) and not target.is_queued_for_deletion() else null
+
+func main_objective_met() -> bool:
+	if layout.is_empty(): return false
+	if kills<int(layout.get("quota",director.mission.quota)): return false
+	for target_id in layout.get("priority_ids",[]):
+		if not destroyed_ids.has(str(target_id)): return false
+	return true
+
+func objective_status() -> Dictionary:
+	# The director's victory and medal, briefing and HUD must all use this same
+	# predicate. A priority is already one kill in the quota, never an extra kill.
+	var missing: Array[String] = []
+	var priority_escaped: Array[String] = []
+	var priorities: Array = layout.get("priority_ids",[])
+	for target_id in priorities:
+		if not destroyed_ids.has(str(target_id)): missing.append(str(target_id))
+		if escaped_ids.has(str(target_id)): priority_escaped.append(str(target_id))
+	var secondary: Dictionary = layout.get("secondary_spec",{})
+	var secondary_minimum := int(secondary.get("minimum",layout.get("secondary_target",0)))
+	return {
+		"layout_valid":bool(layout.get("valid",false)),"layout_warnings":layout.get("warnings",[]),
+		"kills":kills,"quota":int(layout.get("quota",director.mission.quota)),
+		"priority_total":priorities.size(),"priority_destroyed":priorities.size()-missing.size(),
+		"missing_priority_ids":missing,"escaped_priority_ids":priority_escaped,
+		"main_met":main_objective_met(),
+		"secondary_kind":str(secondary.get("kind",layout.get("secondary_kind","ground_layout"))),
+		"secondary_label":str(secondary.get("label","")),
+		"secondary_progress":secondary_destroyed_ids.size(),"secondary_target":secondary_minimum,
+		"secondary_met":secondary_minimum>0 and secondary_destroyed_ids.size()>=secondary_minimum
+	}
+
+func _advance_network_jams(delta: float) -> void:
+	for network_id in network_jams:
+		network_jams[network_id] = maxf(0.0,float(network_jams[network_id])-maxf(0.0,delta))
+	_refresh_global_jam()
+
+func _refresh_global_jam() -> void:
+	# Legacy HUD's jam_remaining is reserved for a genuinely global shutdown.
+	# Local networks are exposed separately, so it cannot claim all DCA is off.
+	jam_remaining = 0.0
+	var groups: Dictionary = layout.get("radar_groups",{})
+	for network_id in network_jams:
+		if bool(groups.get(network_id,{}).get("global",false)):
+			jam_remaining = maxf(jam_remaining,float(network_jams[network_id]))
+
+func _is_target_jammed(target_id: String) -> bool:
+	if jam_remaining>0: return true
+	if not _networks_for_target.has(target_id): return false
+	for network_id in _networks_for_target[target_id]:
+		if float(network_jams.get(network_id,0.0))>0: return true
+	return false
+
+func jam_status() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var groups: Dictionary = layout.get("radar_groups",{})
+	for network_id in network_jams:
+		var seconds := float(network_jams[network_id])
+		if seconds<=0: continue
+		var group: Dictionary = groups.get(network_id,{})
+		var live_members := 0
+		for target_id in group.get("target_ids",[]):
+			var target := target_by_id(str(target_id))
+			if is_instance_valid(target) and target.alive: live_members += 1
+		result.append({"id":str(network_id),"seconds":seconds,"global":bool(group.get("global",false)),"alive_members":live_members})
+	return result
+
+func _disrupt_radar_networks(radar_id: String) -> void:
+	var groups: Dictionary = layout.get("radar_groups",{})
+	for network_id in groups:
+		var group: Dictionary = groups[network_id]
+		if not group.get("radar_ids",[]).has(radar_id): continue
+		var seconds := maxf(0.0,float(group.get("jam_seconds",6.0)))
+		network_jams[str(network_id)] = maxf(float(network_jams.get(str(network_id),0.0)),seconds)
+		network_disrupted.emit(str(network_id),seconds,bool(group.get("global",false)))
+	_refresh_global_jam()
+	for target in targets:
+		if is_instance_valid(target) and target.alive:
+			target.set_jammed(_is_target_jammed(target.tactical_id))
+	# The director owns the radio wording through network_disrupted, using the
+	# authored readable label. Do not overwrite it with internal network IDs.
+
+func _on_mobile_route_announced(target_id: String, from: Vector3, to: Vector3, seconds: float) -> void:
+	mobile_route_announced.emit(target_id,from,to,seconds)
+	if director.radio_time<=0:
+		director.radio = "DCA mobile en déplacement. Exploitez son arrêt avant la rafale !"
+		director.radio_time = 3.0
+
 func _on_destroyed(at: Vector3, target: Area3D) -> void:
+	var target_id: String = target.tactical_id
+	if destroyed_ids.has(target_id): return
+	destroyed_ids[target_id] = true
 	kills += 1
 	director.combat.kills += 1
 	director.combat.score += 350
@@ -184,14 +291,17 @@ func _on_destroyed(at: Vector3, target: Area3D) -> void:
 	director.shake_time = maxf(director.shake_time,.16)
 	if target.variant=="radar":
 		radar_kills += 1
-		jam_remaining = 6.0
-		director.complete_objective("radar")
-		director.radio = "Radar neutralisé. Guidage de la DCA interrompu pendant 6 secondes !"
-		director.radio_time = 4
+		_disrupt_radar_networks(target_id)
 	elif target.variant=="fuel":
 		for other in targets:
 			if is_instance_valid(other) and other.alive and other.global_position.distance_to(at)<5.5: other.take_damage(9)
-	if kills==int(director.mission.quota):
+	var secondary: Dictionary = layout.get("secondary_spec",{})
+	var secondary_ids: Array = secondary.get("target_ids",layout.get("secondary_ids",[]))
+	if secondary_ids.has(target_id) and not secondary_destroyed_ids.has(target_id):
+		secondary_destroyed_ids[target_id] = true
+		director.complete_objective(str(secondary.get("kind",layout.get("secondary_kind","ground_layout"))))
+	if not _objective_announced and main_objective_met():
+		_objective_announced = true
 		director.feedback = "FRAPPE CONFIRMÉE  /  OBJECTIF TERRESTRE ACCOMPLI"
 		director.feedback_time = 4
 	_drop_supplies(at)
@@ -222,3 +332,6 @@ func finish() -> void:
 	for target in targets:
 		if is_instance_valid(target): target.retire()
 	targets.clear()
+	_targets_by_id.clear()
+	network_jams.clear()
+	jam_remaining = 0.0

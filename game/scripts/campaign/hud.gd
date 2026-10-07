@@ -61,10 +61,18 @@ func _process(delta: float) -> void:
 
 func _update_jam_status() -> void:
 	var raid = director.assault
-	jam_badge.visible = is_instance_valid(raid) and raid.jam_remaining>0
+	var networks: Array = raid.jam_status() if is_instance_valid(raid) else []
+	jam_badge.visible = not networks.is_empty()
 	if not jam_badge.visible: return
 	var u := cockpit.size.y/1080.0
-	var value := "DCA BROUILLÉE  %.1f s" % raid.jam_remaining
+	var seconds := 0.0
+	for network in networks: seconds = maxf(seconds,float(network.seconds))
+	var value := "DCA BROUILLÉE  %.1f s" % seconds
+	if not networks.any(func(network): return bool(network.global)):
+		if networks.size()==1:
+			var group: Dictionary = raid.layout.get("radar_groups",{}).get(str(networks[0].id),{})
+			value = "%s BROUILLÉ  %.1f s" % [str(group.get("label","RÉSEAU RADAR")).to_upper(),seconds]
+		else: value = "%d RÉSEAUX BROUILLÉS  %.1f s" % [networks.size(),seconds]
 	var changed := jam_label.text!=value or not is_equal_approx(jam_scale,u)
 	jam_label.text = value
 	if not is_equal_approx(jam_scale,u):
@@ -140,7 +148,7 @@ func _draw() -> void:
 		text_at("%.1f s" % director.mastery.window,status_at+Vector2(157*u,0),18*u,Color("a8bcc4"),60*u)
 	draw_rect(Rect2(status_at+Vector2(0,8*u),Vector2(145*u*director.mastery.window/RULES.CHAIN_SECONDS,3*u)),gold)
 	text_at(director.act_title,Vector2(w-430*u,r.position.y+28*u),19*u,Color(.75,.85,.87),410*u)
-	var objective := preload("res://scripts/campaign/operations.gd").objective_text(director.mastery.secondary_kind)
+	var objective := preload("res://scripts/campaign/operations.gd").objective_text(director.mastery.secondary_kind,director.mission)
 	text_at(("✓ " if director.mastery.secondary_complete else "◇ ")+objective,Vector2(w-430*u,r.position.y+53*u),18*u,gold,410*u)
 	if director.mastery.cue_time>0: text_at(director.mastery.cue,Vector2(18*u,r.position.y+77*u),23*u,gold)
 	if is_instance_valid(director.assault): _draw_ground_assault(r,u)
@@ -185,17 +193,24 @@ func text_at(value: String, at: Vector2, pixels: float, color: Color, width := -
 
 func _draw_ground_assault(r: Rect2, u: float) -> void:
 	var raid = director.assault
-	var accomplished: bool = raid.kills>=int(director.mission.quota)
+	var status: Dictionary = raid.objective_status()
+	var accomplished: bool = bool(status.main_met)
 	var ink := Color("9ff1c3") if accomplished else Color("ffd392")
 	var at := Vector2(18*u,r.position.y+110*u)
-	draw_rect(Rect2(at-Vector2(8,24)*u,Vector2(250,56)*u),Color(.018,.045,.045,.78))
-	text_at("CIBLES AU SOL  %02d / %02d" % [raid.kills,int(director.mission.quota)],at,22*u,ink)
+	var has_priorities := int(status.priority_total)>0
+	draw_rect(Rect2(at-Vector2(8,24)*u,Vector2(300,78 if has_priorities else 56)*u),Color(.018,.045,.045,.78))
+	text_at("CIBLES AU SOL  %02d / %02d" % [raid.kills,int(status.quota)],at,22*u,ink)
+	if has_priorities:
+		var priority_text := "PRIORITÉS  %d / %d" % [status.priority_destroyed,status.priority_total]
+		var escaped: Array = status.escaped_priority_ids
+		if not escaped.is_empty(): priority_text += "  •  %d ÉCHAPPÉE(S)" % escaped.size()
+		text_at(priority_text,at+Vector2(0,22)*u,17*u,Color("ff926d") if not escaped.is_empty() else ink,285*u)
 	var phase := "APPROCHE CÔTIÈRE"
 	if director.extraction_started_at>=0:
 		phase = "APPROCHE PORTE-AVIONS" if director.ending else "INTERCEPTION AU RETOUR"
 	if raid.low_flight>.98: phase = "VOL RASANT"
 	elif raid.low_flight>.02: phase = "REMONTÉE" if raid.position.z>director.player.position.z else "DESCENTE"
-	text_at(phase,at+Vector2(0,23)*u,17*u,Color(.73,.85,.80))
+	text_at(phase,at+Vector2(0,45 if has_priorities else 23)*u,17*u,Color(.73,.85,.80))
 	for target in raid.contacts():
 		var center: Vector2 = director.combat.camera.unproject_position(target.global_position)+r.position
 		if not r.grow(-35*u).has_point(center): continue

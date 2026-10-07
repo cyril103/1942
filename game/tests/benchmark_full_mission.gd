@@ -6,12 +6,15 @@ class ReplayPilot extends Node:
 	var ticks := 0
 	var input_signature := 0
 	var state_signature := 0
+	var state_samples: Array[Dictionary] = []
 	func _physics_process(_delta: float) -> void:
 		ticks += 1
 		if is_instance_valid(director) and ticks % 60 == 0:
 			# Sample actual gameplay state independently of render frame count.
 			var state := "%d|%d|%d|%d|%d|%d" % [roundi(director.player.position.x*1000),roundi(director.player.position.z*1000),roundi(director.elapsed*60),director.event_index,director.combat.kills,director.combat.enemy_shots]
 			state_signature = (state_signature*31+state.hash())%2147483647
+			var sea: Node = director.cockpit.flight.get_node("Seascape")
+			state_samples.append({"tick":ticks,"state":state,"position":str(director.player.position),"viewport":str(director.cockpit.viewport.size),"scroll_distance":sea.scroll_distance})
 		var flying: bool = is_instance_valid(director) and director.player.controls_enabled and not director.ending
 		for action in ["move_left","move_right","move_up","move_down","fire"]: Input.action_release(action)
 		if not flying: return
@@ -116,7 +119,7 @@ func _run() -> void:
 	var filename := "full-mission-%02d-q%d-%dx%d.json" % [mission_number,quality,dimensions.x,dimensions.y]
 	report.schema = 2
 	report.audio_rng_seed = 1942
-	report.input_isolation = "Hardware bindings are erased inside the fixture; the pilot uses the real Input actions and movement code."
+	report.input_isolation = "Hardware bindings are erased inside the fixture; prototype key/focus callbacks are detached after _ready and guarded against gameplay process callbacks. Actual movement, weapons and campaign controllers remain active."
 	report.cpu_timing_note = "TIME_PROCESS is a process-callback monitor, not total CPU cost; it can be stale relative to the current frame."
 	report.memory_note += " after_probe_release_memory is taken after raw frame arrays and detailed telemetry have been released; compact summaries remain resident."
 	write_report(output_dir.path_join(filename),report)
@@ -149,6 +152,21 @@ func _pass(pass_index: int) -> void:
 		Input.action_release(action)
 		InputMap.action_erase_events(action)
 	var flight: Node = app.cockpit.flight
+	# The prototype wrapper only handles keys, focus-out releases and optional
+	# preview capture. Its _ready already ran. Remove these OS input callbacks
+	# from this automated fixture; retain every actual gameplay controller.
+	var prototype_script: Script = flight.get_script()
+	var prototype_methods: Array[String] = []
+	for method in prototype_script.get_script_method_list():
+		prototype_methods.append(str(method.name))
+	for callback in ["_physics_process","_process"]:
+		if callback in prototype_methods:
+			failures.append("Prototype input wrapper acquired gameplay callback: "+callback)
+			app._dispose_run()
+			app.music.stop()
+			app.queue_free()
+			return
+	flight.set_script(null)
 	var viewport_size: Vector2i = app.cockpit.viewport.size
 	var flight_rid: RID = app.cockpit.viewport.get_viewport_rid()
 	var root_rid := root.get_viewport_rid()
@@ -237,6 +255,8 @@ func _pass(pass_index: int) -> void:
 		for phase in ["takeoff","approach","descent","ground","climb","return_combat","landing"]:
 			if not phases.has(phase): failures.append("Missing phase %s in pass %d" % [phase,pass_index])
 	var pass_report := {"pass":pass_index,"cache":"first_scene_in_fresh_process" if pass_index==0 else "warm_same_process","init_ms":init_ms,"launch_ms":launch_ms,"viewport":[viewport_size.x,viewport_size.y],"wall_seconds":(Time.get_ticks_usec()-started)/1000000.0,"physics_ticks":pilot.ticks,"finished_tick":finished_tick,"input_signature":pilot.input_signature,"state_signature":pilot.state_signature,"overall":summarize(overall),"gameplay":summarize(gameplay),"gpu_ms":summarize(gpu_samples),"cpu_process_ms":summarize(cpu_samples),"instrumentation_ms":summarize(probe_samples),"phases":phases,"markers":markers,"spikes":spikes,"memory_samples":memory,"peak_bullets":peak_bullets,"peak_contacts":peak_contacts,"result":result}
+	pass_report.state_samples = pilot.state_samples.duplicate()
+	pass_report.prototype_input_wrapper_methods = prototype_methods
 	for action in ["move_left","move_right","move_up","move_down","fire"]: Input.action_release(action)
 	pilot.queue_free()
 	app._dispose_run()
@@ -249,7 +269,7 @@ func _pass(pass_index: int) -> void:
 	var detail_name := "details-m%02d-q%d-%dx%d-pass%02d.json" % [mission_number,quality,dimensions.x,dimensions.y,pass_index]
 	write_report(output_dir.path_join(detail_name),pass_report)
 	var compact := pass_report.duplicate(false)
-	for field in ["markers","spikes","memory_samples"]: compact.erase(field)
+	for field in ["markers","spikes","memory_samples","state_samples"]: compact.erase(field)
 	compact.details_file = detail_name
 	reports.append(compact)
 	print("BENCHMARK PASS ",pass_index," gameplay=",JSON.stringify(pass_report.gameplay)," ticks=",pass_report.physics_ticks," result_tick=",finished_tick)

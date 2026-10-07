@@ -38,7 +38,7 @@ static func medal_checks(target: int, report: Dictionary) -> Array:
 	if target>=2: rows.append(_criterion("Aucune vie perdue",int(report.get("deaths",0))==0))
 	if target>=3:
 		rows.append(_criterion("Au plus %d impacts" % GOLD_MAX_HITS,int(report.get("damage",0))<=GOLD_MAX_HITS))
-		rows.append(_criterion("Quota principal atteint",bool(report.get("objective_met",false))))
+		rows.append(_criterion("Objectif principal accompli",bool(report.get("objective_met",false))))
 	return rows
 
 static func rank(won: bool, deaths: int, damage: int, secondary: bool, best_chain: int) -> String:
@@ -63,4 +63,4 @@ static func criteria_text(rows: Array) -> String:
 	return text.strip_edges()
 
 static func guide() -> String:
-	return "MÉDAILLE — RÉCOMPENSE DE CAMPAGNE\nBronze : victoire. Argent : victoire sans vie perdue.\nOr : victoire, aucune vie perdue, au plus %d impacts et quota principal atteint.\n\nRANG — MAÎTRISE DU PILOTAGE\nS : victoire, aucune vie perdue, au plus %d impact, objectif secondaire et chaîne ≥ %d.\nA : victoire sans vie perdue avec l'objectif secondaire.\nB : victoire avec au plus une vie perdue. C : autre victoire. D : défaite.\n\nCHAÎNE — SCORE EN COMBAT\nDétruire à nouveau en %.1f secondes maintient la chaîne.\nMultiplicateur +1 tous les %d ennemis, jusqu'à ×%d. Un impact rompt la chaîne.\nObjectif secondaire : +%d points, une seule fois.\nLa médaille et le rang évaluent des critères différents." % [GOLD_MAX_HITS,S_MAX_HITS,S_CHAIN,CHAIN_SECONDS,CHAIN_STEP,MAX_MULTIPLIER,SECONDARY_BONUS]
+	return "MÉDAILLE — RÉCOMPENSE DE CAMPAGNE\nBronze : victoire. Argent : victoire sans vie perdue.\nOr : victoire, aucune vie perdue, au plus %d impacts et objectif principal accompli.\n\nRANG — MAÎTRISE DU PILOTAGE\nS : victoire, aucune vie perdue, au plus %d impact, objectif secondaire et chaîne ≥ %d.\nA : victoire sans vie perdue avec l'objectif secondaire.\nB : victoire avec au plus une vie perdue. C : autre victoire. D : défaite.\n\nCHAÎNE — SCORE EN COMBAT\nDétruire à nouveau en %.1f secondes maintient la chaîne.\nMultiplicateur +1 tous les %d ennemis, jusqu'à ×%d. Un impact rompt la chaîne.\nObjectif secondaire : +%d points, une seule fois.\nLa médaille et le rang évaluent des critères différents." % [GOLD_MAX_HITS,S_MAX_HITS,S_CHAIN,CHAIN_SECONDS,CHAIN_STEP,MAX_MULTIPLIER,SECONDARY_BONUS]

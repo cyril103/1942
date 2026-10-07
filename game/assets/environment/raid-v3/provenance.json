@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "purpose": "Issue #17 : matériaux sources hors du jeu ; intégration différée après publication de la phase 3.",
+  "generation_date": "2026-10-07",
+  "tool": "image_gen.imagegen (built-in)",
+  "skill": "C:/Users/cyril/.codex/skills/.system/imagegen/SKILL.md",
+  "prompt_guidance": "C:/Users/cyril/.codex/skills/.system/imagegen/references/prompting.md",
+  "references": [],
+  "transparent_background": false,
+  "status": "INTEGRATED_RENDERED_AGENT_INSPECTED",
+  "postprocessing": "Aucun. Copie binaire complète des PNG natifs. Aucun recadrage, redimensionnement, retouche ou encodage.",
+  "originals_preserved": true,
+  "assets": [
+    {
+      "id": "volcanic-basalt",
+      "workspace_file": "textures/raid-v3/sources/volcanic-basalt-albedo-native.png",
+      "native_source": "C:/Users/cyril/.codex/generated_images/01a115df-11a9-78b0-836e-bab0d8632a73/exec-e79bd23e-98a2-47a2-8e52-d211dbfae20d.png",
+      "prompt_file": "textures/raid-v3/sources/volcanic-basalt-prompt.txt",
+      "exact_prompt": "Use case: photorealistic-natural.\nAsset type: one production-quality seamless tileable BASE COLOR / ALBEDO terrain texture for a detailed volcanic ground material in a WWII vertical shoot-em-up.\nOutput: a single square texture filling the whole image, highest native detail available, no borders.\nView: exact orthographic vertical overhead, perfectly flat texture scan, approximately 4 metres of natural ground across the tile. This is a material texture, not a scene or landscape.\nSurface: weathered grey basalt pavement naturally broken into irregular small stone plates, fine volcanic ash and granular grit settled between them, restrained warm ochre mineral dust, a few thin subtle green moss veins in sheltered cracks. Rich convincing microtexture: tiny pores, worn stone grains, granular ash, small fissures, mineral flecks. Mostly medium-light neutral grey with warm muted patches; clearly brighter than black lava so aircraft, orange bullets, and ground targets remain legible. Natural unevenness at material scale, neither dramatic huge lava slabs nor repeating geometric polygons.\nLighting: perfectly uniform diffuse flat illumination. Base color only: no directional cast shadows, no baked ambient occlusion, no highlights, no glints, no vignette, no dark edge shading, no lighting gradient, no exaggerated relief illusion.\nTiling: genuinely seamless on all four edges, consistent feature scale and color at opposing edges, no large recognisable central motif, no isolated focal object, organic evenly distributed texture.\nConstraints: no lava glow, no crater, no mountains, no perspective, no horizon, no water, no shoreline, no sky, no clouds, no buildings, no vegetation silhouettes, no roads, no tracks, no debris props, no labels, no letters, no UI, no watermark, no collage, no texture-sheet panels, no rendered material sphere. One natural ground albedo only.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 4566420,
+      "sha256": "949DBC8BBEDC941EB580AE377843EA1F4ACADBE1E0B27506053660427F468A65",
+      "generation_calls": 1,
+      "inspection": "PNG complet inspecté par view_image : roche grise poreuse et granulaire, fissures naturelles, ocre retenu, fines touches de mousse. Éclairage visuellement homogène et pas de paysage, eau, route, bâtiment, texte ou UI."
+    },
+    {
+      "id": "arctic-packed-snow",
+      "workspace_file": "textures/raid-v3/sources/arctic-packed-snow-albedo-native.png",
+      "native_source": "C:/Users/cyril/.codex/generated_images/01a115df-11a9-78b0-836e-bab0d8632a73/exec-cec722db-b3f7-4dd9-90a1-86dac77f0d90.png",
+      "prompt_file": "textures/raid-v3/sources/arctic-packed-snow-prompt.txt",
+      "exact_prompt": "Use case: photorealistic-natural.\nAsset type: one production-quality seamless tileable BASE COLOR / ALBEDO terrain texture for realistic arctic ground in a WWII vertical shoot-em-up.\nOutput: a single square texture filling the entire image, highest native detail available, no borders.\nView: exact orthographic vertical overhead, perfectly flat material scan, approximately 4 metres of natural ground across the tile. This is a texture of the ground surface only, not an arctic landscape.\nSurface: wind-packed and lightly compacted off-white snow in irregular low thin patches blending into exposed cold grey small stones, frost-encrusted earthy grit, muted taupe soil, tiny restrained pale olive frost-moss flecks. Natural irregular mixture around sixty percent compacted snow and forty percent exposed ground. Detailed convincing microtexture: fine snow grains, crystalline frost stipple, small worn rock grains, subtle compressed powder patterns, tiny pebbles. Snow should feel settled and firm, not pillowy, not deep drifts, not fluffy foam, not huge white islands. Balanced muted cold palette with enough natural earth contrast to read in gameplay, no glaring pure-white overexposure and no enormous black rocks.\nLighting: perfectly uniform diffuse flat illumination. Pure base color: no directional cast shadows, no baked ambient occlusion, no specular highlights, no glints, no vignette, no lighting gradient, no exaggerated rendered relief.\nTiling: genuinely seamless on all four edges, consistent microdetail scale and color at opposing edges, organic evenly distributed patchwork, no large recognisable central motif or isolated focal object.\nConstraints: no landscape, no mountains, no cliffs, no horizon, no perspective, no sky, no water, no frozen lake, no shore, no trees, no grass tufts rising above the ground, no buildings, no roads, no tire tracks, no footprints, no debris props, no labels, no letters, no UI, no watermark, no collage, no panels, no material sphere. One natural arctic ground albedo only.",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "bytes": 4056887,
+      "sha256": "8B9D99CE1FA0DB238BF1BA9F332B89F5F4FF26305EE838A81BDF8063A3BE0CD1",
+      "generation_calls": 1,
+      "inspection": "PNG complet inspecté par view_image : neige compacte en fines plages irrégulières, petits cailloux et terre froide givrée. Pas de neige gonflée, horizon, eau, trace de véhicule, route, bâtiment, texte ou UI."
+    }
+  ],
+  "integration_checks_pending": [
+    "Acceptation artistique humaine du rendu et lecture en mouvement.",
+    "Mesurer les temps d'image et la mémoire du paquet exporté sur la même séquence.",
+    "Ces actifs sont uniquement des albedos : aucune normal, roughness ou height map fournie."
+  ],
+  "generation_status": "SOURCE_GENERATED_NOT_INTEGRATED",
+  "integration_validation": {
+    "version": "1.8.0 candidate",
+    "shader": "game/shaders/assault_terrain.gdshader",
+    "test_report": "game/tests/raid-terrain-results.json",
+    "checks": 693,
+    "failures": 0,
+    "native_pngs_unchanged": true,
+    "mipmaps": true,
+    "gpu_tiling_capture_count": 8,
+    "agent_inspection": "Les huit rendus 3x3 du shader réel ont été inspectés ; pas de joint carré net observé à cette échelle. Motifs répétés encore visibles. Pas de preuve de périodicité pixel exacte.",
+    "visual_comparison": "48 paires des 8 raids à trois phases ; caméra et réglages conservés",
+    "evidence": "renders/validation-raids-v18",
+    "human_visual_acceptance": "NOT_PERFORMED",
+    "performance": "NOT_MEASURED_YET"
+  }
+}

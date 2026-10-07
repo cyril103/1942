@@ -248,15 +248,17 @@ la version 1.6.1 ; elle n'est pas attribuée rétrospectivement à cet export.
 SUITE DU PLAN — ENCORE À TRAITER
 
 Le contrôle physique d'une manette (#8) reste à effectuer. Le contrôle
-manuel de l'Explorateur (#10) est confirmé par le joueur, distinct des
-contrôles techniques ci-dessus ; ce ticket est maintenant clôturé.
+manuel de l'Explorateur (#10) est confirmé par le joueur pour la version
+1.6.1 uniquement, distinct des contrôles techniques des exports suivants ;
+ce ticket est clôturé avec cette preuve, sans observation humaine de 1.8.
 Lot 3 : #11 à #13 / #15 / #16 — implémentés et exportés ; retours humains à compléter.
-#14 : conception des secteurs préparée, non intégrée au jeu à ce stade.
+#14 : huit compositions intégrées et contrôlées ; essais humains à compléter.
 Lot 4 : #17 à #20 — terrain, lisibilité, son et mesures de régularité.
 Lot 5 : #22 — protocole et parties humaines sur la campagne complète.
 
 La conception commune #11/#12/#13 est implémentée dans les sources 1.7.0.
-La prochaine passe #14/#17 est décrite dans docs/conception-secteurs.txt.
+La passe #14/#17 est intégrée dans le candidat 1.8 ; contrats dans
+docs/conception-secteurs.txt, preuves dans docs/validation/raids-1.8.txt.
 Le protocole #22 et sa matrice de 288 cas sont préparés dans
 docs/protocole-parties.txt et docs/validation/matrice-parties.csv.
 Toutes les cases humaines restent NON_JOUE.
@@ -265,3 +267,99 @@ Ces travaux n'achèvent pas les 22 tickets. L'export Windows 1.6.1 conservé
 sert de référence de performance ; l'export 1.7.0 est reconstruit et contrôlé.
 Les sessions humaines demandées par #11 à #16 et #22 ne sont pas effectuées.
 Aucun parcours humain intégral ni garantie universelle de FPS n'est revendiqué.
+
+LOT 4A — SECTEURS ET TERRAINS, CANDIDAT 1.8
+
+Les huit raids utilisent une composition partagée entre briefing, terrain,
+cibles et objectifs : dépôts, aérodromes, réseaux radar, batteries mobiles
+et commandement. Quota ET IDs prioritaires sont nécessaires pour le principal.
+Une cible obligatoire échappée reste distinguée au bilan. Les secondaires
+visent les types annoncés au briefing, sans doubler la récompense.
+Corail introduit un brouillage global ; les autres réseaux sont locaux.
+La DCA mobile annonce son trajet, se déplace, s'arrête puis prépare son tir.
+
+Les routes et pistes sont issues du même catalogue que les installations.
+Deux textures natives basalte/neige, des accotements irréguliers et des
+compositions par biome remplacent la variation de teinte seule. L'océan
+et la côte conservent leur shader partagé. Les sources, crédits et hashes
+des textures originales sont conservés ; aucun réencodage des assets.
+
+Validations : données 111 806 contrôles / 96 configurations, tactiques 7 699,
+terrain 693, UI 16 240 et intégration des raids 4 403, zéro échec.
+24 sorties avec Input, déplacements, armes, réserves, collisions et POW réels :
+24 principaux accomplis, 21 secondaires ; le pilote manque le quatrième
+mobile arrière en M19. Deux lots de 12, 194 contrôles chacun ; les assertions
+d'initialisation se répètent. Le joueur était protégé des impacts : aucun
+taux de survie humain, équilibre de difficulté ou plaisir n'est validé.
+
+Comparaisons : 48 paires avant 1.7 / après candidat 1.8 pour les huit raids,
+approche/descente/combat, caméras et réglages conservés. Le viewport interne
+reste 1920×972 malgré deux tailles de PNG. Les scènes ont des cibles nouvelles,
+donc la charge de combat peut différer. Preuves : renders/validation-raids-v18.
+Huit captures de répétition 3×3 inspectées par l'agent avec le shader final :
+pas de joint carré net observé à cette échelle, motifs répétés encore visibles.
+L'acceptation artistique humaine reste distincte et n'a pas été effectuée.
+
+Régressions : UI 1 149, dynamique 108, guide/reprises 31 952, score 70,
+DCA 206, limites sol 108, caméra basse 130, Toppissime 106, campagne 790,
+modes 165, zéro échec. Les deux corrections trouvées en revue indépendante
+sont désormais validées : cause Game Over distincte du repli vivant sans
+objectif, et radio radar conservant son nom lisible plutôt que l'ID interne.
+Nouvelle suite test_raid_result_radio : 946 contrôles, zéro échec, 14 fixtures.
+Huit pertes de dernière vie avant/après quota ET priorités, aux deux tailles
+720/1080, exercent Player.take_damage, Combat.game_over, Director.advance et
+le résultat réel. GAME OVER / AUCUNE VIE RESTANTE prime sur le cache d'objectif ;
+objective_met réel reste dans le rapport. Deux replis et deux victoires après
+atterrissage conservent leurs titres historiques. Rectangles contrôlés en
+coordonnées logiques puis en pixels réels lus après le rendu ; huit captures.
+Les vrais radars M11/r01 et M31/r02 détruits au laser annoncent Réseau Ouest
+et Ceinture intermédiaire. Timer six secondes conservé, autres réseaux actifs
+et tirs réels observés. La suite UI entière repasse également à 16 240/0.
+
+L'export final 1.8.0.0, reconstruit après ces corrections, a passé 29 contrôles
+du ZIP extrait et 180 images de démarrage autonome, exit_code=0. SHA256 EXE
+(pas ZIP) :
+83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14
+L'intégration des ressources embarquées passe dix contrôles sans échec,
+physique/tirs/audio actifs, crête PCM 16 496 / 32 768. La valeur de sonde
+sampled_frame_p95_ms=27,569 appartient à ce court démarrage ; elle n'est pas
+une mesure comparable de performances de mission. Journal local :
+tools/review/phase4-pack-runtime.log. Le lancement autonome n'exécute pas de
+suites GDScript dans le release ; le contrôle du pack utilise le moteur
+éditeur console avec --main-pack. Aucun contrôle humain de l'Explorateur 1.8
+n'est attribué à la confirmation explicite de 1.6.1.
+
+Le premier benchmark complet du candidat a été refusé pour divergence de
+signature d'état malgré les mêmes entrées, phases, compteurs et résultat.
+Il n'est pas publié comme mesure comparable validée. Des traces physiques
+de chaque composante ont été ajoutées pour identifier la cause. Le relevé
+Windows du processus réel et de ses descendants a fonctionné ; ses limites
+et l'issue #20 restent ouvertes. Les candidats #18/#19 sont préparés hors du
+jeu, sans compilation, rendu, écoute ou performance revendiqués à ce stade.
+
+TESTS SILENCIEUX — CONSIGNE DU JOUEUR
+
+Les tests doivent être inaudibles. Le volume de la session Windows du moteur
+de test est mis à zéro, sans toucher aux préférences audio du profil joueur.
+Le démarrage automatique du paquet utilise désormais --audio-driver Dummy.
+Les sondes PCM nécessitant un vrai pilote gardent le mix interne actif et
+utilisent une session Windows muette ; une crête mesurée ne vaut pas écoute.
+
+MESURES FINALES DU LOT 4A
+
+Le replay renforcé passe dans les trois qualités sur chacun des packs 1.7/1.8 :
+12 passages de 140 s, mêmes entrées et trajectoire, zéro divergence au sein de
+chaque version. Les états de combat diffèrent entre versions : tirs ennemis
+1 598→1 466, destructions 30→29. Aucun gain de shader isolé n'est déduit.
+Les passages rechargés 1.8 ont des p99 de 5,838/5,491/6,516 ms ; 2/3/0 frames
+dépassent 16,67 ms. Les premières scènes présentent encore des pics inexpliqués.
+Le relevé Qualité avec intervention Windows est conservé distinctement de
+sa répétition sans intervention. Hashes de packs inchangés après les mesures.
+
+Terrain seul : 64 scénarios, 32 paires de protocole et 192 états concordants.
+Même caméra, largeur/longueur, scroll, biomes et durée, zéro échec de nettoyage.
+p99 par scénario avant 4,067–6,495 ms, après 4,458–5,670 ms ; variations mixtes,
+10→6 frames au-delà de 16,67 ms, aucune >33,33. Le rig exclut les acteurs du jeu.
+Tables, scripts et rapports permanents : docs/validation/performance-missions.txt,
+game/tests/performance-1.7.0-matched, performance-1.8.0, performance-terrain-*.
+RAM privée prolongée et seconde configuration restent à contrôler pour #20.

@@ -1,0 +1,65 @@
+BENCHMARK RENDU ISOLÉ DU TERRAIN — SOURCE À VALIDER AVEC LE MOTEUR
+
+Ce banc mesure la nouvelle charge artistique des huit raids, sans avions,
+DCA, projectiles, collisions, étiquettes ou logique de victoire. Il ne mesure
+pas les FPS d'une mission complète ni la difficulté du jeu. Il complète le
+replay de mission 31, qui ne charge pas les albedos volcanique et arctique.
+
+32 scénarios : huit biomes x côte/plateau x deux passages de six secondes
+minimum. Chaque scénario possède un réchauffement préalable de 60 ticks,
+une construction mesurée séparément, puis un scroll calculé sur 60 ticks/s.
+Terrain standardisé de 65 x 220 m, caméra basse réelle à Y = -3,2 et taille
+21 m, déplacement mesuré de 18 m. La côte reste dans le cadrage pendant le
+passage. Avec --duration=6, la vitesse est de 3 m/s ; une durée plus longue
+ralentit ce même parcours de 18 m. Même preset pour les deux packs et les
+huit biomes. La séquence complète dure au moins 224 secondes, plus les
+constructions et le nettoyage.
+Les deux passages doivent produire mêmes ticks, signatures et échantillons
+de position. Une divergence fait échouer le banc ; elle n'est pas masquée.
+
+Invocation avec un pack immuable :
+Godot_console.exe --main-pack C:/chemin/PacificStrike.exe --script C:/ChatGPT/1942/game/tests/benchmark_raid_terrain.gd -- --quality=1 --duration=6 --size=1920x1080 --build-id=1.8.0-SHA-verifie --output-dir=C:/chemin/preuve
+
+Exécuter exactement le même fichier externe sur les packs 1.7 et 1.8, un seul
+processus GPU à la fois, mêmes paramètres. Le fichier versionné peut être
+copié vers un dossier de preuve puis utilisé comme source immuable.
+Le banc refuse le rendu headless. Un défaut d'écriture, scénario incomplet,
+divergence ou échec de nettoyage est signalé par un code de sortie non nul.
+
+Le rig lit les lumières et la caméra dans main.tscn sans instancier ses
+acteurs. Le helper d'éclairage réel utilise deux transforms vides Player/Bank,
+sans mesh ni contrôleur. Le terrain utilise configure avec 3 arguments dans
+1.7, puis 4 arguments avec le catalogue partagé dans 1.8. Cette différence
+artistique est intentionnelle ; elle ne modifie pas la trajectoire du banc.
+Les palettes d'océan reproduisent seascape.configure_sector, avec le shader
+réel et les mêmes phases calculées sur les ticks. Les missions proviennent
+exactement de operations.prepare ; leur durée et leur cadence de combat ne
+pilotent pas ce banc artistique standardisé. Le seed local du terrain reste
+celui de production, id * 7919 + 1942, et le seed global est remis à 1942 à chaque
+scénario.
+
+Par scénario : mean/p95/p99/max, compte des frames au-delà de 16,67/33,33 ms,
+GPU terminé, moniteur TIME_PROCESS, temps de construction et de réchauffement,
+triangles/props, mémoire moteur/estimation rendu, nodes/resources/orphelins
+avant/pendant/après nettoyage, et échantillons de scroll bornés.
+
+Les tableaux bruts de frames sont libérés avant le contrôle de nettoyage.
+Le rapport conserve les synthèses et six échantillons par passage standard.
+Les ressources mises en cache par Godot peuvent rester résidentes. La mémoire
+moteur n'est pas la RAM privée du processus ; l'estimation rendu n'est pas
+l'occupation physique de VRAM. Les mesures GPU peuvent être retardées et
+les valeurs nulles indisponibles. Aucun gain de shader isolé ne peut être
+déduit du seul intervalle des frames : géométrie et props évoluent aussi.
+Le chargement de main.tscn lit ses références aux ressources de jeu ; ce coût
+initial est séparé, sans instanciation ni rendu de ces acteurs. La compilation
+GPU différée peut apparaître dans le réchauffement ou dans une frame mesurée.
+
+La divergence historique d'un replay complet n'a pas de cause établie ; un
+nouveau replay avec traces a concordé. Ce rig n'utilise pas Input et ne retire
+aucun contrôleur de production : il crée une scène artistique indépendante.
+
+Validation root : compilation et 32 scénarios sur chacun des packs 1.7/1.8,
+zéro échec, 32 paires de protocole/192 états concordants. Rapports permanents :
+game/tests/performance-terrain-1.7.0, performance-terrain-1.8.0 et
+performance-terrain-comparison. Analyse : compare_raid_performance.py.
+Conditions, tables et limites : docs/validation/performance-missions.txt.

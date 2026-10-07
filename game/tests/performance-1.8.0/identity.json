@@ -1,0 +1,8 @@
+{
+  "audio_output": "Windows Godot editor application session volume 0, muted since original q2 pass0; engine audio mix retained",
+  "version": "1.8.0.0",
+  "terrain_probe_sha256": "89A236B153F6B631E9E10D2466B1A53B27EDD08E191F223630D54BEEF6D4BFC5",
+  "q2_initial_note": "Retained in q2-with-output-intervention. Windows output muting and C# compilation happened during pass0; concurrence does not prove cause of spikes. Clean repeated experiment stored separately.",
+  "mission_probe_sha256": "2E7686BAD1D7012EE631FF55C357C56F4E8E514332C499F62FBE6FA61AA00B25",
+  "pack_sha256": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14"
+}

@@ -105,7 +105,9 @@ func _inspect_jam(dimensions: Vector2i) -> void:
 	app._launch(3)
 	app.cockpit.flight.process_mode = Node.PROCESS_MODE_DISABLED
 	var hud: Control = app.cockpit.get_node("CampaignHUD")
-	app.director.assault.jam_remaining = 6
+	var raid: Node = app.director.assault
+	var radar: Area3D = raid.targets.filter(func(target): return target.variant=="radar")[0]
+	radar.take_damage(radar.health)
 	hud._process(0)
 	await process_frame
 
@@ -126,7 +128,7 @@ func _inspect_jam(dimensions: Vector2i) -> void:
 	hud._process(.25)
 	check(app.director.assault.jam_remaining==unchanged,"Displaying the jam countdown never changes gameplay duration")
 	await capture("jammed-"+str(dimensions.x)+"x"+str(dimensions.y))
-	app.director.assault.jam_remaining = 0
+	raid._advance_network_jams(6.0)
 	hud._process(0)
 	check(not badge.visible,"Jam badge hides when the real duration is exhausted")
 	app._show_main()

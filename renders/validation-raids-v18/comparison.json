@@ -1,0 +1,482 @@
+[
+  {
+    "file": "m03-1280x720-approach.png",
+    "mission": 3,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 18268,
+    "triangles_after": 18336,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m03-1280x720-descent.png",
+    "mission": 3,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 18268,
+    "triangles_after": 18336,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m03-1280x720-combat.png",
+    "mission": 3,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 18268,
+    "triangles_after": 18336,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m07-1280x720-approach.png",
+    "mission": 7,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 19948,
+    "triangles_after": 20037,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m07-1280x720-descent.png",
+    "mission": 7,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 19948,
+    "triangles_after": 20037,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m07-1280x720-combat.png",
+    "mission": 7,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 19948,
+    "triangles_after": 20037,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m11-1280x720-approach.png",
+    "mission": 11,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 21768,
+    "triangles_after": 21858,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m11-1280x720-descent.png",
+    "mission": 11,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 21768,
+    "triangles_after": 21858,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m11-1280x720-combat.png",
+    "mission": 11,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 21768,
+    "triangles_after": 21858,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m15-1280x720-approach.png",
+    "mission": 15,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 23680,
+    "triangles_after": 23750,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m15-1280x720-descent.png",
+    "mission": 15,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 23680,
+    "triangles_after": 23750,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m15-1280x720-combat.png",
+    "mission": 15,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 23680,
+    "triangles_after": 23750,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m19-1280x720-approach.png",
+    "mission": 19,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 25344,
+    "triangles_after": 25522,
+    "props_before": 244,
+    "props_after": 220
+  },
+  {
+    "file": "m19-1280x720-descent.png",
+    "mission": 19,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 25344,
+    "triangles_after": 25522,
+    "props_before": 244,
+    "props_after": 220
+  },
+  {
+    "file": "m19-1280x720-combat.png",
+    "mission": 19,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 25344,
+    "triangles_after": 25522,
+    "props_before": 244,
+    "props_after": 220
+  },
+  {
+    "file": "m23-1280x720-approach.png",
+    "mission": 23,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 27264,
+    "triangles_after": 25134,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m23-1280x720-descent.png",
+    "mission": 23,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 27264,
+    "triangles_after": 25134,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m23-1280x720-combat.png",
+    "mission": 23,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 27264,
+    "triangles_after": 25134,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m27-1280x720-approach.png",
+    "mission": 27,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 26722,
+    "triangles_after": 25436,
+    "props_before": 244,
+    "props_after": 184
+  },
+  {
+    "file": "m27-1280x720-descent.png",
+    "mission": 27,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 26722,
+    "triangles_after": 25436,
+    "props_before": 244,
+    "props_after": 184
+  },
+  {
+    "file": "m27-1280x720-combat.png",
+    "mission": 27,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 26722,
+    "triangles_after": 25436,
+    "props_before": 244,
+    "props_after": 184
+  },
+  {
+    "file": "m31-1280x720-approach.png",
+    "mission": 31,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 26760,
+    "triangles_after": 25518,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m31-1280x720-descent.png",
+    "mission": 31,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 26760,
+    "triangles_after": 25518,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m31-1280x720-combat.png",
+    "mission": 31,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 26760,
+    "triangles_after": 25518,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m03-1920x1080-approach.png",
+    "mission": 3,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 18268,
+    "triangles_after": 18336,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m03-1920x1080-descent.png",
+    "mission": 3,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 18268,
+    "triangles_after": 18336,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m03-1920x1080-combat.png",
+    "mission": 3,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 18268,
+    "triangles_after": 18336,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m07-1920x1080-approach.png",
+    "mission": 7,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 19948,
+    "triangles_after": 20037,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m07-1920x1080-descent.png",
+    "mission": 7,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 19948,
+    "triangles_after": 20037,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m07-1920x1080-combat.png",
+    "mission": 7,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 19948,
+    "triangles_after": 20037,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m11-1920x1080-approach.png",
+    "mission": 11,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 21768,
+    "triangles_after": 21858,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m11-1920x1080-descent.png",
+    "mission": 11,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 21768,
+    "triangles_after": 21858,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m11-1920x1080-combat.png",
+    "mission": 11,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 21768,
+    "triangles_after": 21858,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m15-1920x1080-approach.png",
+    "mission": 15,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 23680,
+    "triangles_after": 23750,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m15-1920x1080-descent.png",
+    "mission": 15,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 23680,
+    "triangles_after": 23750,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m15-1920x1080-combat.png",
+    "mission": 15,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 23680,
+    "triangles_after": 23750,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m19-1920x1080-approach.png",
+    "mission": 19,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 25344,
+    "triangles_after": 25522,
+    "props_before": 244,
+    "props_after": 220
+  },
+  {
+    "file": "m19-1920x1080-descent.png",
+    "mission": 19,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 25344,
+    "triangles_after": 25522,
+    "props_before": 244,
+    "props_after": 220
+  },
+  {
+    "file": "m19-1920x1080-combat.png",
+    "mission": 19,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 25344,
+    "triangles_after": 25522,
+    "props_before": 244,
+    "props_after": 220
+  },
+  {
+    "file": "m23-1920x1080-approach.png",
+    "mission": 23,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 27264,
+    "triangles_after": 25134,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m23-1920x1080-descent.png",
+    "mission": 23,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 27264,
+    "triangles_after": 25134,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m23-1920x1080-combat.png",
+    "mission": 23,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 27264,
+    "triangles_after": 25134,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m27-1920x1080-approach.png",
+    "mission": 27,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 26722,
+    "triangles_after": 25436,
+    "props_before": 244,
+    "props_after": 184
+  },
+  {
+    "file": "m27-1920x1080-descent.png",
+    "mission": 27,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 26722,
+    "triangles_after": 25436,
+    "props_before": 244,
+    "props_after": 184
+  },
+  {
+    "file": "m27-1920x1080-combat.png",
+    "mission": 27,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 26722,
+    "triangles_after": 25436,
+    "props_before": 244,
+    "props_after": 184
+  },
+  {
+    "file": "m31-1920x1080-approach.png",
+    "mission": 31,
+    "phase": "approach",
+    "camera_mismatches": [],
+    "triangles_before": 26760,
+    "triangles_after": 25518,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m31-1920x1080-descent.png",
+    "mission": 31,
+    "phase": "descent",
+    "camera_mismatches": [],
+    "triangles_before": 26760,
+    "triangles_after": 25518,
+    "props_before": 244,
+    "props_after": 244
+  },
+  {
+    "file": "m31-1920x1080-combat.png",
+    "mission": 31,
+    "phase": "combat",
+    "camera_mismatches": [],
+    "triangles_before": 26760,
+    "triangles_after": 25518,
+    "props_before": 244,
+    "props_after": 244
+  }
+]

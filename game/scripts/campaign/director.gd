@@ -122,6 +122,7 @@ func _ready() -> void:
 		assault = preload("res://scripts/campaign/ground_assault.gd").new()
 		assault.director = self
 		cockpit.flight.add_child(assault)
+		assault.network_disrupted.connect(_on_network_disrupted)
 	_build_ring()
 	feedback = "MISSION %02d  /  %s" % [mission.id,mission.title.to_upper()]
 	feedback_time = 5
@@ -144,6 +145,12 @@ func on_kill(base: int, kind: String) -> void:
 
 func complete_objective(kind: String) -> void:
 	combat.score += mastery.objective(kind)
+
+func _on_network_disrupted(network_id: String, seconds: float, global_scope: bool) -> void:
+	var group: Dictionary = assault.layout.get("radar_groups",{}).get(network_id,{})
+	var label: String = str(group.get("label","Réseau radar"))
+	radio = "Contrôle : toute la DCA est brouillée pendant %.0f secondes." % seconds if global_scope else "Contrôle : %s brouillé %.0f secondes. Les autres défenses restent actives." % [label,seconds]
+	radio_time = 4.0
 
 func _update_acts() -> void:
 	var acts: Array = mission.get("acts",[])
@@ -250,7 +257,7 @@ func advance(delta: float) -> void:
 	if Input.is_action_just_pressed("strike"): use_strike()
 	if (elapsed >= combat_deadline or practice) and (mission.boss == "" or boss_won):
 		if is_instance_valid(assault) and (not assault.approach_clear() or extraction_started_at<0): return
-		mission_completed = not is_instance_valid(assault) or assault.kills>=int(mission.quota)
+		mission_completed = not is_instance_valid(assault) or assault.main_objective_met()
 		ending = true
 		_update_ability(0)
 		feedback = "SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS" if mission_completed else "OBJECTIF INCOMPLET  /  REPLI VERS LE PORTE-AVIONS"
@@ -434,9 +441,13 @@ func _end(won: bool) -> void:
 	player.controls_enabled = false
 	var objective_met: bool = combat.kills >= int(mission.quota)
 	if mission.objective == "strike": objective_met = naval_kills >= int(mission.quota)
-	if mission.objective == "ground": objective_met = is_instance_valid(assault) and assault.kills>=int(mission.quota)
+	if mission.objective == "ground": objective_met = is_instance_valid(assault) and assault.main_objective_met()
 	if mission.objective == "boss": objective_met = boss_won
+	# The landing decision is cached separately from the actual objective. Losing
+	# the last life is always Game Over, even during an incomplete retreat.
+	var game_over: bool = not won and combat.game_over
+	var objective_failed: bool = not won and not game_over and not mission_completed
 	var grade := SCORING.medal(won,deaths,damage_taken,objective_met)
 	var bonus := maxi(0,player.health*100+combat.remaining_lives*250+bombs*150) if won else 0
 	combat.score += bonus
-	finished.emit({"objective_met":objective_met,"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":not won and not mission_completed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})
+	finished.emit({"game_over":game_over,"objective_met":objective_met,"ground_status":assault.objective_status() if is_instance_valid(assault) else {},"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":objective_failed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})

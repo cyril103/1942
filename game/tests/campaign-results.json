@@ -4,7 +4,7 @@
 	"missions": [
 		{
 			"elapsed": 105.383333333329,
-			"max_contacts": 17,
+			"max_contacts": 15,
 			"mission": 1,
 			"phases": 3,
 			"won": true
@@ -25,21 +25,21 @@
 		},
 		{
 			"elapsed": 119.883333333328,
-			"max_contacts": 16,
+			"max_contacts": 13,
 			"mission": 4,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 72.0166666666639,
-			"max_contacts": 14,
+			"max_contacts": 12,
 			"mission": 5,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 78.0166666666635,
-			"max_contacts": 12,
+			"max_contacts": 11,
 			"mission": 6,
 			"phases": 0,
 			"won": true
@@ -53,14 +53,14 @@
 		},
 		{
 			"elapsed": 126.883333333327,
-			"max_contacts": 12,
+			"max_contacts": 10,
 			"mission": 8,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 74.0166666666638,
-			"max_contacts": 12,
+			"max_contacts": 14,
 			"mission": 9,
 			"phases": 0,
 			"won": true
@@ -95,7 +95,7 @@
 		},
 		{
 			"elapsed": 82.0166666666633,
-			"max_contacts": 16,
+			"max_contacts": 13,
 			"mission": 14,
 			"phases": 0,
 			"won": true
@@ -109,28 +109,28 @@
 		},
 		{
 			"elapsed": 139.383333333336,
-			"max_contacts": 10,
+			"max_contacts": 13,
 			"mission": 16,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 78.0166666666635,
-			"max_contacts": 10,
+			"max_contacts": 11,
 			"mission": 17,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 84.0166666666632,
-			"max_contacts": 17,
+			"max_contacts": 14,
 			"mission": 18,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 90.0166666666628,
-			"max_contacts": 9,
+			"max_contacts": 10,
 			"mission": 19,
 			"phases": 0,
 			"won": true
@@ -165,21 +165,21 @@
 		},
 		{
 			"elapsed": 140.133333333337,
-			"max_contacts": 9,
+			"max_contacts": 12,
 			"mission": 24,
 			"phases": 3,
 			"won": true
 		},
 		{
 			"elapsed": 82.0166666666633,
-			"max_contacts": 12,
+			"max_contacts": 16,
 			"mission": 25,
 			"phases": 0,
 			"won": true
 		},
 		{
 			"elapsed": 88.016666666663,
-			"max_contacts": 10,
+			"max_contacts": 12,
 			"mission": 26,
 			"phases": 0,
 			"won": true
@@ -200,7 +200,7 @@
 		},
 		{
 			"elapsed": 84.0166666666632,
-			"max_contacts": 13,
+			"max_contacts": 14,
 			"mission": 29,
 			"phases": 0,
 			"won": true
@@ -221,7 +221,7 @@
 		},
 		{
 			"elapsed": 174.383333333364,
-			"max_contacts": 14,
+			"max_contacts": 13,
 			"mission": 32,
 			"phases": 3,
 			"won": true

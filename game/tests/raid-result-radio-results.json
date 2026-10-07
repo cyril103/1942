@@ -1,0 +1,1851 @@
+{
+	"checks": 946,
+	"failures": [],
+	"fixtures": {
+		"deaths": 8,
+		"radars": 2,
+		"retreats": 2,
+		"victories": 2
+	},
+	"human_play": "NOT_PERFORMED",
+	"method": "controlled actual weapons, lethal damage, Director.advance and deferred App UI",
+	"observations": [
+		{
+			"context": "720p main=false cached=false",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@1084",
+					"physical_rect": "[P: (60.0, 40.0), S: (1160.0, 60.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@1085",
+					"physical_rect": "[P: (62.66667, 101.3333), S: (1153.333, 41.33334)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@1086",
+					"physical_rect": "[P: (62.66667, 150.6667), S: (1154.667, 0.666672)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@1087",
+					"physical_rect": "[P: (62.66667, 673.3334), S: (1133.333, 23.33331)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@1088",
+					"physical_rect": "[P: (62.66667, 198.6667), S: (700.0, 66.66667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (62.66667, 292.0), S: (693.3334, 200.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (806.6667, 224.0), S: (393.3333, 61.33334)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (806.6667, 298.6667), S: (393.3333, 138.6667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@1092",
+					"physical_rect": "[P: (62.66667, 561.3334), S: (293.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@1093",
+					"physical_rect": "[P: (372.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@1094",
+					"physical_rect": "[P: (602.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (832.6667, 561.3334), S: (367.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@1096",
+					"physical_rect": "[P: (62.66667, 496.0), S: (1080.0, 56.66669)]"
+				}
+			],
+			"final_transform": "[X: (0.666667, 0.0), Y: (0.0, 0.666667), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1280,
+				720
+			],
+			"physical_window_size": [
+				1280,
+				720
+			],
+			"viewport_texture_declared_size": [
+				854.0,
+				480.0
+			]
+		},
+		{
+			"cached_completion": false,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 0,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": false,
+				"missing_priority_ids": [
+					"jade/h01",
+					"jade/h02",
+					"jade/h03"
+				],
+				"priority_destroyed": 0,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 0,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 0.0,
+				"best_chain": 0,
+				"bonus": 0,
+				"chain_bonus": 0,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 0,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"jade/h01",
+						"jade/h02"
+					],
+					"kills": 0,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 0,
+					"secondary_target": 4
+				},
+				"kills": 0,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 0,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 0,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1280, 720)"
+		},
+		{
+			"context": "720p main=false cached=true",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@2168",
+					"physical_rect": "[P: (60.0, 40.0), S: (1160.0, 60.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@2169",
+					"physical_rect": "[P: (62.66667, 101.3333), S: (1153.333, 41.33334)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@2170",
+					"physical_rect": "[P: (62.66667, 150.6667), S: (1154.667, 0.666672)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@2171",
+					"physical_rect": "[P: (62.66667, 673.3334), S: (1133.333, 23.33331)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@2172",
+					"physical_rect": "[P: (62.66667, 198.6667), S: (700.0, 66.66667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (62.66667, 292.0), S: (693.3334, 200.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (806.6667, 224.0), S: (393.3333, 61.33334)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (806.6667, 298.6667), S: (393.3333, 138.6667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@2176",
+					"physical_rect": "[P: (62.66667, 561.3334), S: (293.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@2177",
+					"physical_rect": "[P: (372.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@2178",
+					"physical_rect": "[P: (602.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (832.6667, 561.3334), S: (367.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@2180",
+					"physical_rect": "[P: (62.66667, 496.0), S: (1080.0, 56.66669)]"
+				}
+			],
+			"final_transform": "[X: (0.666667, 0.0), Y: (0.0, 0.666667), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1280,
+				720
+			],
+			"physical_window_size": [
+				1280,
+				720
+			],
+			"viewport_texture_declared_size": [
+				854.0,
+				480.0
+			]
+		},
+		{
+			"cached_completion": true,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 0,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": false,
+				"missing_priority_ids": [
+					"jade/h01",
+					"jade/h02",
+					"jade/h03"
+				],
+				"priority_destroyed": 0,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 0,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 0.0,
+				"best_chain": 0,
+				"bonus": 0,
+				"chain_bonus": 0,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 0,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"jade/h01",
+						"jade/h02"
+					],
+					"kills": 0,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 0,
+					"secondary_target": 4
+				},
+				"kills": 0,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 0,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 0,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1280, 720)"
+		},
+		{
+			"context": "720p main=true cached=false",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@3252",
+					"physical_rect": "[P: (60.0, 40.0), S: (1160.0, 60.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@3253",
+					"physical_rect": "[P: (62.66667, 101.3333), S: (1153.333, 41.33334)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@3254",
+					"physical_rect": "[P: (62.66667, 150.6667), S: (1154.667, 0.666672)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@3255",
+					"physical_rect": "[P: (62.66667, 673.3334), S: (1133.333, 23.33331)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@3256",
+					"physical_rect": "[P: (62.66667, 198.6667), S: (700.0, 66.66667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (62.66667, 292.0), S: (693.3334, 200.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (806.6667, 224.0), S: (393.3333, 61.33334)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (806.6667, 298.6667), S: (393.3333, 138.6667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@3260",
+					"physical_rect": "[P: (62.66667, 561.3334), S: (293.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@3261",
+					"physical_rect": "[P: (372.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@3262",
+					"physical_rect": "[P: (602.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (832.6667, 561.3334), S: (367.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@3264",
+					"physical_rect": "[P: (62.66667, 496.0), S: (1080.0, 56.66669)]"
+				}
+			],
+			"final_transform": "[X: (0.666667, 0.0), Y: (0.0, 0.666667), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1280,
+				720
+			],
+			"physical_window_size": [
+				1280,
+				720
+			],
+			"viewport_texture_declared_size": [
+				854.0,
+				480.0
+			]
+		},
+		{
+			"cached_completion": false,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 16,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": true,
+				"missing_priority_ids": [],
+				"priority_destroyed": 3,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 3,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 1.0,
+				"best_chain": 16,
+				"bonus": 0,
+				"chain_bonus": 3500,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 16,
+				"ground_status": {
+					"escaped_priority_ids": [],
+					"kills": 16,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": true,
+					"missing_priority_ids": [],
+					"priority_destroyed": 3,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 3,
+					"secondary_target": 4
+				},
+				"kills": 16,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 9100,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": true,
+				"power": "none",
+				"rank": "D",
+				"score": 9100,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1280, 720)"
+		},
+		{
+			"context": "720p main=true cached=true",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@4336",
+					"physical_rect": "[P: (60.0, 40.0), S: (1160.0, 60.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@4337",
+					"physical_rect": "[P: (62.66667, 101.3333), S: (1153.333, 41.33334)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@4338",
+					"physical_rect": "[P: (62.66667, 150.6667), S: (1154.667, 0.666672)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@4339",
+					"physical_rect": "[P: (62.66667, 673.3334), S: (1133.333, 23.33331)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@4340",
+					"physical_rect": "[P: (62.66667, 198.6667), S: (700.0, 66.66667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (62.66667, 292.0), S: (693.3334, 200.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (806.6667, 224.0), S: (393.3333, 61.33334)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (806.6667, 298.6667), S: (393.3333, 138.6667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@4344",
+					"physical_rect": "[P: (62.66667, 561.3334), S: (293.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@4345",
+					"physical_rect": "[P: (372.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@4346",
+					"physical_rect": "[P: (602.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (832.6667, 561.3334), S: (367.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@4348",
+					"physical_rect": "[P: (62.66667, 496.0), S: (1080.0, 56.66669)]"
+				}
+			],
+			"final_transform": "[X: (0.666667, 0.0), Y: (0.0, 0.666667), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1280,
+				720
+			],
+			"physical_window_size": [
+				1280,
+				720
+			],
+			"viewport_texture_declared_size": [
+				854.0,
+				480.0
+			]
+		},
+		{
+			"cached_completion": true,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 16,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": true,
+				"missing_priority_ids": [],
+				"priority_destroyed": 3,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 3,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 1.0,
+				"best_chain": 16,
+				"bonus": 0,
+				"chain_bonus": 3500,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 16,
+				"ground_status": {
+					"escaped_priority_ids": [],
+					"kills": 16,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": true,
+					"missing_priority_ids": [],
+					"priority_destroyed": 3,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 3,
+					"secondary_target": 4
+				},
+				"kills": 16,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 9100,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": true,
+				"power": "none",
+				"rank": "D",
+				"score": 9100,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1280, 720)"
+		},
+		{
+			"context": "living 720p won=false",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@5484",
+					"physical_rect": "[P: (60.0, 40.0), S: (1160.0, 60.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@5485",
+					"physical_rect": "[P: (62.66667, 101.3333), S: (1153.333, 41.33334)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@5486",
+					"physical_rect": "[P: (62.66667, 150.6667), S: (1154.667, 0.666672)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@5487",
+					"physical_rect": "[P: (62.66667, 673.3334), S: (1133.333, 23.33331)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@5488",
+					"physical_rect": "[P: (62.66667, 198.6667), S: (700.0, 66.66667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (62.66667, 292.0), S: (693.3334, 200.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (806.6667, 224.0), S: (393.3333, 61.33334)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (806.6667, 298.6667), S: (393.3333, 138.6667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@5492",
+					"physical_rect": "[P: (62.66667, 561.3334), S: (293.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@5493",
+					"physical_rect": "[P: (372.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@5494",
+					"physical_rect": "[P: (602.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (832.6667, 561.3334), S: (367.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@5496",
+					"physical_rect": "[P: (62.66667, 496.0), S: (1080.0, 56.66669)]"
+				}
+			],
+			"final_transform": "[X: (0.666667, 0.0), Y: (0.0, 0.666667), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1280,
+				720
+			],
+			"physical_window_size": [
+				1280,
+				720
+			],
+			"viewport_texture_declared_size": [
+				854.0,
+				480.0
+			]
+		},
+		{
+			"kind": "carrier_result",
+			"report": {
+				"accuracy": 0.0,
+				"best_chain": 0,
+				"bonus": 0,
+				"chain_bonus": 0,
+				"damage": 0,
+				"deaths": 0,
+				"game_over": false,
+				"grade": 0,
+				"ground_kills": 0,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"kills": 0,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 0,
+					"secondary_target": 4
+				},
+				"kills": 0,
+				"lives": 1,
+				"mission": 15.0,
+				"mission_score": 0,
+				"naval_kills": 0,
+				"objective_failed": true,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 0,
+				"secondary": false,
+				"seconds": 100.25,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1280, 720)"
+		},
+		{
+			"context": "living 720p won=true",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@6632",
+					"physical_rect": "[P: (60.0, 40.0), S: (1160.0, 60.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@6633",
+					"physical_rect": "[P: (62.66667, 101.3333), S: (1153.333, 41.33334)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@6634",
+					"physical_rect": "[P: (62.66667, 150.6667), S: (1154.667, 0.666672)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@6635",
+					"physical_rect": "[P: (62.66667, 673.3334), S: (1133.333, 23.33331)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@6636",
+					"physical_rect": "[P: (62.66667, 198.6667), S: (700.0, 66.66667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (62.66667, 292.0), S: (693.3334, 200.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (806.6667, 224.0), S: (393.3333, 61.33334)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (806.6667, 298.6667), S: (393.3333, 138.6667)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@6640",
+					"physical_rect": "[P: (62.66667, 561.3334), S: (293.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@6641",
+					"physical_rect": "[P: (372.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@6642",
+					"physical_rect": "[P: (602.6667, 561.3334), S: (213.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (832.6667, 561.3334), S: (367.3333, 44.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@6644",
+					"physical_rect": "[P: (62.66667, 496.0), S: (1080.0, 56.66669)]"
+				}
+			],
+			"final_transform": "[X: (0.666667, 0.0), Y: (0.0, 0.666667), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1280,
+				720
+			],
+			"physical_window_size": [
+				1280,
+				720
+			],
+			"viewport_texture_declared_size": [
+				854.0,
+				480.0
+			]
+		},
+		{
+			"kind": "carrier_result",
+			"report": {
+				"accuracy": 1.0,
+				"best_chain": 16,
+				"bonus": 750,
+				"chain_bonus": 3500,
+				"damage": 0,
+				"deaths": 0,
+				"game_over": false,
+				"grade": 3,
+				"ground_kills": 16,
+				"ground_status": {
+					"escaped_priority_ids": [],
+					"kills": 16,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": true,
+					"missing_priority_ids": [],
+					"priority_destroyed": 3,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 3,
+					"secondary_target": 4
+				},
+				"kills": 16,
+				"lives": 1,
+				"mission": 15.0,
+				"mission_score": 9850,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": true,
+				"power": "laser",
+				"rank": "B",
+				"score": 9850,
+				"secondary": false,
+				"seconds": 100.25,
+				"spread": false,
+				"won": true
+			},
+			"window": "(1280, 720)"
+		},
+		{
+			"context": "1080p main=false cached=false",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@7716",
+					"physical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@7717",
+					"physical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@7718",
+					"physical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@7719",
+					"physical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@7720",
+					"physical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@7724",
+					"physical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@7725",
+					"physical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@7726",
+					"physical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@7728",
+					"physical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]"
+				}
+			],
+			"final_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1920,
+				1080
+			],
+			"physical_window_size": [
+				1920,
+				1080
+			],
+			"viewport_texture_declared_size": [
+				1920.0,
+				1080.0
+			]
+		},
+		{
+			"cached_completion": false,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 0,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": false,
+				"missing_priority_ids": [
+					"jade/h01",
+					"jade/h02",
+					"jade/h03"
+				],
+				"priority_destroyed": 0,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 0,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 0.0,
+				"best_chain": 0,
+				"bonus": 0,
+				"chain_bonus": 0,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 0,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"jade/h01",
+						"jade/h02"
+					],
+					"kills": 0,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 0,
+					"secondary_target": 4
+				},
+				"kills": 0,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 0,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 0,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1920, 1080)"
+		},
+		{
+			"context": "1080p main=false cached=true",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@8800",
+					"physical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@8801",
+					"physical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@8802",
+					"physical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@8803",
+					"physical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@8804",
+					"physical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@8808",
+					"physical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@8809",
+					"physical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@8810",
+					"physical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@8812",
+					"physical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]"
+				}
+			],
+			"final_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1920,
+				1080
+			],
+			"physical_window_size": [
+				1920,
+				1080
+			],
+			"viewport_texture_declared_size": [
+				1920.0,
+				1080.0
+			]
+		},
+		{
+			"cached_completion": true,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 0,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": false,
+				"missing_priority_ids": [
+					"jade/h01",
+					"jade/h02",
+					"jade/h03"
+				],
+				"priority_destroyed": 0,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 0,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 0.0,
+				"best_chain": 0,
+				"bonus": 0,
+				"chain_bonus": 0,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 0,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"jade/h01",
+						"jade/h02"
+					],
+					"kills": 0,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 0,
+					"secondary_target": 4
+				},
+				"kills": 0,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 0,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 0,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1920, 1080)"
+		},
+		{
+			"context": "1080p main=true cached=false",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@9884",
+					"physical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@9885",
+					"physical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@9886",
+					"physical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@9887",
+					"physical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@9888",
+					"physical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@9892",
+					"physical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@9893",
+					"physical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@9894",
+					"physical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@9896",
+					"physical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]"
+				}
+			],
+			"final_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1920,
+				1080
+			],
+			"physical_window_size": [
+				1920,
+				1080
+			],
+			"viewport_texture_declared_size": [
+				1920.0,
+				1080.0
+			]
+		},
+		{
+			"cached_completion": false,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 16,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": true,
+				"missing_priority_ids": [],
+				"priority_destroyed": 3,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 3,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 1.0,
+				"best_chain": 16,
+				"bonus": 0,
+				"chain_bonus": 3500,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 16,
+				"ground_status": {
+					"escaped_priority_ids": [],
+					"kills": 16,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": true,
+					"missing_priority_ids": [],
+					"priority_destroyed": 3,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 3,
+					"secondary_target": 4
+				},
+				"kills": 16,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 9100,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": true,
+				"power": "none",
+				"rank": "D",
+				"score": 9100,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1920, 1080)"
+		},
+		{
+			"context": "1080p main=true cached=true",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@10968",
+					"physical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@10969",
+					"physical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@10970",
+					"physical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@10971",
+					"physical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@10972",
+					"physical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@10976",
+					"physical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@10977",
+					"physical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@10978",
+					"physical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@10980",
+					"physical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]"
+				}
+			],
+			"final_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1920,
+				1080
+			],
+			"physical_window_size": [
+				1920,
+				1080
+			],
+			"viewport_texture_declared_size": [
+				1920.0,
+				1080.0
+			]
+		},
+		{
+			"cached_completion": true,
+			"kind": "last_life",
+			"objective_before": {
+				"escaped_priority_ids": [],
+				"kills": 16,
+				"layout_valid": true,
+				"layout_warnings": [],
+				"main_met": true,
+				"missing_priority_ids": [],
+				"priority_destroyed": 3,
+				"priority_total": 3,
+				"quota": 16,
+				"secondary_kind": "ground_layout",
+				"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+				"secondary_met": false,
+				"secondary_progress": 3,
+				"secondary_target": 4
+			},
+			"report": {
+				"accuracy": 1.0,
+				"best_chain": 16,
+				"bonus": 0,
+				"chain_bonus": 3500,
+				"damage": 1,
+				"deaths": 1,
+				"game_over": true,
+				"grade": 0,
+				"ground_kills": 16,
+				"ground_status": {
+					"escaped_priority_ids": [],
+					"kills": 16,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": true,
+					"missing_priority_ids": [],
+					"priority_destroyed": 3,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 3,
+					"secondary_target": 4
+				},
+				"kills": 16,
+				"lives": 0,
+				"mission": 15.0,
+				"mission_score": 9100,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": true,
+				"power": "none",
+				"rank": "D",
+				"score": 9100,
+				"secondary": false,
+				"seconds": 12.0,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1920, 1080)"
+		},
+		{
+			"context": "living 1080p won=false",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@12116",
+					"physical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@12117",
+					"physical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@12118",
+					"physical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@12119",
+					"physical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@12120",
+					"physical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@12124",
+					"physical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@12125",
+					"physical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@12126",
+					"physical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@12128",
+					"physical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]"
+				}
+			],
+			"final_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1920,
+				1080
+			],
+			"physical_window_size": [
+				1920,
+				1080
+			],
+			"viewport_texture_declared_size": [
+				1920.0,
+				1080.0
+			]
+		},
+		{
+			"kind": "carrier_result",
+			"report": {
+				"accuracy": 0.0,
+				"best_chain": 0,
+				"bonus": 0,
+				"chain_bonus": 0,
+				"damage": 0,
+				"deaths": 0,
+				"game_over": false,
+				"grade": 0,
+				"ground_kills": 0,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"kills": 0,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"jade/h01",
+						"jade/h02",
+						"jade/h03"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 0,
+					"secondary_target": 4
+				},
+				"kills": 0,
+				"lives": 1,
+				"mission": 15.0,
+				"mission_score": 0,
+				"naval_kills": 0,
+				"objective_failed": true,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 0,
+				"secondary": false,
+				"seconds": 100.25,
+				"spread": false,
+				"won": false
+			},
+			"window": "(1920, 1080)"
+		},
+		{
+			"context": "living 1080p won=true",
+			"controls": [
+				{
+					"logical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]",
+					"name": "@Label@13264",
+					"physical_rect": "[P: (90.0, 60.0), S: (1740.0, 90.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]",
+					"name": "@Label@13265",
+					"physical_rect": "[P: (94.0, 152.0), S: (1730.0, 62.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]",
+					"name": "@ColorRect@13266",
+					"physical_rect": "[P: (94.0, 226.0), S: (1732.0, 1.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]",
+					"name": "@Label@13267",
+					"physical_rect": "[P: (94.0, 1010.0), S: (1700.0, 35.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]",
+					"name": "@Label@13268",
+					"physical_rect": "[P: (94.0, 298.0), S: (1050.0, 100.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]",
+					"name": "ResultScoreDetails",
+					"physical_rect": "[P: (94.0, 438.0), S: (1040.0, 300.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]",
+					"name": "ResultGroundObjective",
+					"physical_rect": "[P: (1210.0, 336.0), S: (590.0, 92.0)]"
+				},
+				{
+					"logical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]",
+					"name": "ResultSummary",
+					"physical_rect": "[P: (1210.0, 448.0), S: (590.0, 208.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]",
+					"name": "@Button@13272",
+					"physical_rect": "[P: (94.0, 842.0), S: (440.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@13273",
+					"physical_rect": "[P: (559.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]",
+					"name": "@Button@13274",
+					"physical_rect": "[P: (904.0, 842.0), S: (320.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]",
+					"name": "ResultCriteria",
+					"physical_rect": "[P: (1249.0, 842.0), S: (551.0, 66.0)]"
+				},
+				{
+					"logical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]",
+					"name": "@Label@13276",
+					"physical_rect": "[P: (94.0, 744.0), S: (1620.0, 85.0)]"
+				}
+			],
+			"final_transform": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (0.0, 0.0)]",
+			"kind": "ui_geometry",
+			"logical_size": [
+				1920.0,
+				1080.0
+			],
+			"logical_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+			"physical_render_size": [
+				1920,
+				1080
+			],
+			"physical_window_size": [
+				1920,
+				1080
+			],
+			"viewport_texture_declared_size": [
+				1920.0,
+				1080.0
+			]
+		},
+		{
+			"kind": "carrier_result",
+			"report": {
+				"accuracy": 1.0,
+				"best_chain": 16,
+				"bonus": 750,
+				"chain_bonus": 3500,
+				"damage": 0,
+				"deaths": 0,
+				"game_over": false,
+				"grade": 3,
+				"ground_kills": 16,
+				"ground_status": {
+					"escaped_priority_ids": [],
+					"kills": 16,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": true,
+					"missing_priority_ids": [],
+					"priority_destroyed": 3,
+					"priority_total": 3,
+					"quota": 16,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre hangars des deux aérodromes",
+					"secondary_met": false,
+					"secondary_progress": 3,
+					"secondary_target": 4
+				},
+				"kills": 16,
+				"lives": 1,
+				"mission": 15.0,
+				"mission_score": 9850,
+				"naval_kills": 0,
+				"objective_failed": false,
+				"objective_met": true,
+				"power": "laser",
+				"rank": "B",
+				"score": 9850,
+				"secondary": false,
+				"seconds": 100.25,
+				"spread": false,
+				"won": true
+			},
+			"window": "(1920, 1080)"
+		},
+		{
+			"emissions": [
+				{
+					"global": false,
+					"id": "west",
+					"seconds": 6.0
+				}
+			],
+			"kind": "radar_radio",
+			"linked_rounds": 0,
+			"mission": 11,
+			"network": "west",
+			"outsider_rounds": 12,
+			"radar": "storm/r01",
+			"radio": "Contrôle : Réseau Ouest brouillé 6 secondes. Les autres défenses restent actives."
+		},
+		{
+			"emissions": [
+				{
+					"global": false,
+					"id": "middle",
+					"seconds": 6.0
+				}
+			],
+			"kind": "radar_radio",
+			"linked_rounds": 0,
+			"mission": 31,
+			"network": "middle",
+			"outsider_rounds": 20,
+			"radar": "final/r02",
+			"radio": "Contrôle : Ceinture intermédiaire brouillé 6 secondes. Les autres défenses restent actives."
+		}
+	],
+	"performance": "NOT_MEASURED"
+}

@@ -211,6 +211,8 @@ func briefing(app: Control, mission: Dictionary) -> void:
 	chart.sector = int(mission.sector)
 	chart.boss = mission.boss != ""
 	chart.ground = mission.get("ground_assault",false)
+	chart.mission = mission
+	if chart.ground: chart.layout = preload("res://scripts/campaign/raid_layouts.gd").layout_for_sector(int(mission.sector))
 	app.design.add_child(chart)
 	var order_panel := panel(app,Rect2(94,594,1010,314),.94)
 	order_panel.name = "MissionOrderPanel"
@@ -226,16 +228,20 @@ func briefing(app: Control, mission: Dictionary) -> void:
 	text(app,"DIFFICULTÉ  "+app.PROFILE.DIFFICULTIES[app.profile.data.difficulty].to_upper()+"   •   SECTEUR %02d" % (int(mission.sector)+1),Vector2(1170,491),Vector2(625,35),23,MUTED)
 	image(app,"objective.svg",Rect2(1170,545,42,42))
 	var primary := "Détruire le commandant du secteur." if mission.boss!="" else "Rejoindre le point de sortie en vie."
-	if mission.objective=="ground": primary = "Détruire %d installations, puis revenir au porte-avions." % int(mission.quota)
-	text(app,primary,Vector2(1230,545),Vector2(555,60),25)
+	if mission.objective=="ground": primary = str(mission.get("primary_text","Détruire %d installations, puis revenir au porte-avions." % int(mission.quota)))
+	var primary_label: Label = app._label(primary,Vector2(1230,541),Vector2(555,66),25)
+	primary_label.name = "PrimaryMissionObjective"
+	app._fit_label(primary_label,66,21)
 	image(app,"medal.svg",Rect2(1170,615,42,42))
 	var mastery := "Abattre %d adversaires." % int(mission.quota)
 	if mission.objective == "strike": mastery = "Couler %d navires." % int(mission.quota)
-	if mission.objective == "ground": mastery = "Détruire %d cibles terrestres." % int(mission.quota)
+	if mission.objective == "ground": mastery = "Quota %d + %d priorité(s)." % [int(mission.quota),mission.get("priority_ids",[]).size()] if not mission.get("priority_ids",[]).is_empty() else "Détruire %d cibles terrestres." % int(mission.quota)
 	if mission.boss != "": mastery = "Détruire le boss."
 	text(app,"OR  /  Aucune vie perdue • %d impacts maximum" % RULES.GOLD_MAX_HITS,Vector2(1230,612),Vector2(555,32),23,GOLD)
 	text(app,mastery,Vector2(1230,648),Vector2(555,32),23,MUTED)
-	text(app,"BONUS : "+preload("res://scripts/campaign/operations.gd").objective_text(mission.get("secondary","formation")),Vector2(1170,687),Vector2(625,32),20,GOLD)
+	var bonus_label: Label = app._label("BONUS : "+preload("res://scripts/campaign/operations.gd").objective_text(mission.get("secondary","formation"),mission),Vector2(1170,687),Vector2(625,32),20,GOLD)
+	bonus_label.name = "SecondaryMissionObjective"
+	app._fit_label(bonus_label,32,18)
 	text(app,"COMMANDES  /  CLAVIER · MANETTE",Vector2(1170,726),Vector2(625,27),19,GOLD)
 	var commands: Label = app._label(COMMANDS.flight_guide(),Vector2(1170,759),Vector2(625,136),21,MUTED)
 	commands.name = "FlightCommands"
@@ -267,4 +273,4 @@ func scoring_criteria(app: Control, report: Dictionary) -> void:
 	named_text(app,"RankCriteria",RULES.criteria_text(RULES.rank_checks("S",report)),Vector2(985,469),Vector2(800,333),29)
 	var final_line: String = RULES.guide().split("\n")[-1]
 	named_text(app,"CriteriaDifference",final_line,Vector2(124,831),Vector2(762,58),25,MUTED)
-	named_text(app,"CriteriaMode","Aucun record ni récompense en entraînement." if app.play_mode=="practice" else ("Arcade : record de score uniquement." if app.play_mode=="arcade" else "Le quota principal et l'objectif secondaire sont distincts."),Vector2(985,831),Vector2(800,58),25,MUTED)
+	named_text(app,"CriteriaMode","Aucun record ni récompense en entraînement." if app.play_mode=="practice" else ("Arcade : record de score uniquement." if app.play_mode=="arcade" else "L'objectif principal et l'objectif secondaire sont distincts."),Vector2(985,831),Vector2(800,58),25,MUTED)

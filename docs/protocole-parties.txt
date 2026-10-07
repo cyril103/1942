@@ -14,6 +14,13 @@ Référence avant cette passe : fbd6a332572c0d85574423d187e7565f7174c55b.
 Chaque essai doit indiquer le commit et le hash du paquet réellement joué.
 Une version de l'exécutable seule ne suffit pas à identifier un build.
 
+Complément pour les raids 1.8 : les compositions et objectifs ont changé.
+Lire docs/conception-secteurs.txt et docs/validation/raids-1.8.txt pour leurs
+contrats et preuves techniques. Les sorties protégées, arènes de régression,
+captures et démarrages d'export ne sont pas des parties humaines. Les cas
+4A ci-dessous complètent les observations des mêmes 288 combinaisons ; ils
+n'ajoutent aucune ligne jouée à la matrice et aucun résultat à ce document.
+
 Le travail suit l'ordre de #23. Commencer par préparer ce protocole, puis
 stabiliser les défauts fonctionnels. Les premiers retours guident #11 à #14.
 Après chaque réglage, rejouer les situations concernées ; la validation
@@ -103,8 +110,9 @@ le combat. Ne pas modifier la santé en vol ni augmenter artificiellement les
 dégâts contre les cibles. Si le plafond/les coûts changent dans #12/#13,
 créer de nouveaux profils et ne pas réutiliser silencieusement les anciens.
 
-Pour chaque profil, consigner armes/coque/charge, pièces restantes, vies,
-POW initial, avion, difficulté, mission débloquée et next_mission. Vérifier
+Pour chaque profil, consigner les rangs armement/blindage/condensateur,
+modules équipés (noms ou IDs), pièces restantes, vies, POW initial, avion,
+difficulté, mission débloquée et next_mission. Vérifier
 ces valeurs dans le jeu avant de lancer. Toute préparation technique est
 archivée et déclarée ; elle ne constitue pas une preuve de progression.
 
@@ -193,6 +201,88 @@ machine et scène, temps de construction compris et présentés à part.
 Les captures vidéo peuvent coûter des images : comparer aussi sans capture.
 Ne pas transformer une mesure GTX 1650 en garantie pour toutes les machines.
 
+4A. OBSERVATIONS SPÉCIFIQUES AUX HUIT RAIDS 1.8
+
+La matrice couvre déjà M03/M07/M11/M15/M19/M23/M27/M31 avec les trois avions
+et trois difficultés, soit 72 de ses 288 combinaisons. M03/M31 sont des jalons
+P1 ; les six autres restent les extensions P2 prévues, à jouer également.
+Commencer leur comparaison en Pilote sur des checkpoints humains cohérents,
+puis compléter Cadet/As et les contrastes. Ne pas assimiler les équipements
+fixés dans les simulations à une progression réellement gagnée par le testeur.
+
+Référence à relever pour chaque raid ; IDs réservés à la fiche du responsable :
+Mission  Quota  Priorités du principal                   Secondaire
+M03       12    aucune                                   deux radars
+M07       14    aucune                                   trois dépôts sur quatre
+M11       14    storm/r01, storm/r02                      trois radars
+M15       16    jade/h01, jade/h02, jade/h03               quatre hangars
+M19       18    volcanic/m01, volcanic/m02               quatre mobiles arrière
+M23       20    dusk/k05, dusk/k06                       deux radars
+M27       22    aucune                                   deux dépôts
+M31       26    final/command                            trois radars
+Le joueur se repère avec noms, briefing, marqueurs et positions visibles ;
+le responsable relie ses captures au catalogue, sans inventer un ID observé.
+
+Principal : relever destructions/quota ET priorités détruites/requises.
+Un quota rempli avec une priorité manquée ne suffit pas à réussir. Observer
+si ce besoin est compris à la découverte, si une priorité sortie de l'écran
+est identifiable et si le bilan distingue quota et cible échappée. Une cible
+prioritaire compte déjà comme une destruction, pas comme deux. Le secondaire
+reste un bonus indépendant : le manquer ne doit pas devenir un échec principal.
+
+Réseaux : Corail M03 enseigne un brouillage global de six secondes. Ailleurs,
+un radar brouille seulement ses défenses liées ; les autres canons restent
+actifs. Relever quel radar a été visé, le nom du groupe annoncé, le délai
+perçu, les défenses encore actives et leur reprise annoncée/échelonnée.
+M11 : comparer Réseau Ouest, Réseau Est et Réseau arrière. M31 : distinguer
+Ceinture extérieure, Ceinture intermédiaire et réseau du Commandement.
+Noter si la radio, le HUD et le terrain permettent au joueur de comprendre
+la portée locale, sans explication préalable lors de sa première découverte.
+
+Mobiles M19 : observer séparément les deux véhicules d'ouverture obligatoires
+et les quatre mobiles arrière du bonus. Relever l'annonce du trajet, le
+déplacement continu sur la route, l'arrêt avant rafale et la lisibilité de
+la visée. Noter si le préavis permet de se replacer et de viser sans dépendre
+d'un POW chanceux, si la cible reste identifiable au milieu des effets,
+et si pause/reprise conserve le préavis restant, tandis que mort/respawn
+redonne une annonce exploitable avant de repartir.
+Le brouillage suspend le tir du véhicule, pas son moteur. Tester le bonus
+des quatre mobiles arrière ; 3/4 est un bonus manqué à documenter, jamais 4/4.
+
+Ordres tactiques : après une première tentative libre, comparer radar d'abord,
+canon direct et dépôt d'abord, sur le même build et une copie du même checkpoint,
+avec avion/difficulté/rangs/modules/POW/réserves initiaux identiques. Relever
+l'ordre réellement joué, les divergences de ramassage, temps d'exposition,
+impacts/morts, bombes/frappes, quota/priorités et bonus. Consigner aussi les
+échecs ; ne pas donner au joueur des kills, PV, munitions ou positions de diagnostic.
+Espacer ces comparaisons en sessions pour garder la limite de trois tentatives
+et réduire fatigue/mémorisation. Une stratégie non essayée reste NON_OBSERVE.
+
+Cas de secteur : M07/M27, ouverture dépôt contre canon/radar ; M15, ordre des
+deux aérodromes ; M23, bastion Ouest puis Est et ordre inverse ; M31, attaque
+directe du bunker de commandement contre ouverture par son radar ou un dépôt.
+Aucune priorité n'accorde une invulnérabilité magique aux autres installations.
+Comparer la possibilité d'attaque, son coût et sa compréhension, sans supposer
+que tous les ordres ont le même risque ou que chaque réussite doit donner le bonus.
+
+Fins et décès : relever une mort avant le principal, puis après quota ET
+priorités accomplis alors que le combat est encore actif avant l'appontage.
+Une vie perdue avec réserve doit reprendre en vol avec protection ; perdre
+la dernière vie doit afficher GAME OVER / AUCUNE VIE RESTANTE dans les deux
+états d'objectif, avec le véritable quota/priorités dans le bilan. Repli vivant
+sans objectif : MISSION INACCOMPLIE. Principal accompli et appontage vivant :
+MISSION ACCOMPLIE. Ne pas contourner l'invulnérabilité de l'atterrissage ni
+préparer une mort avec des dégâts directs. Si un décès est recherché volontairement
+par jeu normal pour ce diagnostic, le marquer PROVOQUE et le séparer des pertes
+spontanées dans le bilan d'équilibrage. Un état non rencontré reste NON_OBSERVE.
+
+Relever ces cas à 720p/1080p, avec la vraie taille de fenêtre et la qualité,
+sans confondre pixels de capture et viewport logique. Vérifier le texte complet,
+les priorités, le nom des réseaux et la visibilité des tirs en mouvement.
+Les variantes sont des fiches/tentatives liées à la même ligne de matrice,
+pas de nouvelles combinaisons ni des sessions réputées jouées d'avance.
+Une victoire ne valide pas les stratégies, décès ou secondaires non observés.
+
 5. RETOUR SIMPLE DU JOUEUR
 
 Le joueur peut copier ce bloc dans le chat ou une fiche texte. Remplir les
@@ -204,10 +294,13 @@ SESSION : <date> / <identifiant joueur> / <débutant ou expérimenté> / <tentat
 BUILD : <version> / <commit> / <SHA-256 EXE>
 CAS : <mission 01..32> / <Vanguard, Interceptor ou Bulwark> / <Cadet, Pilote ou As>
 PARCOURS : <CAMPAGNE, PROGRESSION_ISOLEE, SANS_AMELIORATION ou EQUIPEMENT_ELEVE>
-PROFIL : <référence et hash> / armes-coque-charge <rangs> / pièces <nombre>
+PROFIL : <référence et hash> / armement-blindage-condensateur <rangs> / modules <noms ou IDs> / pièces <nombre>
 DEPART : vies <nombre> / blindage <nombre> / POW <none, spread, laser ou life>
-RESULTAT : <victoire, quota manqué, Game Over, interrompu> / durée <mesurée ou estimée>
+RESULTAT : <victoire, repli objectif incomplet, Game Over, interrompu> / durée <mesurée ou estimée>
 COMBAT : morts <nombre> / impacts <nombre> / cibles <nombre>/<quota>
+RAID : principal <accompli ou non> / priorités <détruites>/<requises> / secondaire <progression>/<objectif>
+TACTIQUE RAID : ordre <libre, radar/canon/dépôt d'abord, bastions, commandement> / réseaux <noms et effets observés>
+MOBILES / FIN : annonce-arrêt-reprise <avis ou NON_OBSERVE> / décès <avant/après principal, dernière vie ou non, spontané/PROVOQUE> / titre <texte lu>
 RESSOURCES : POW trouvés/pris <types> / bombes utilisées <nombre> / frappes <nombre>
 BILAN : vies et blindage restants <valeurs> / score <nombre> / rang <lettre>
 RYTHME : plus longue attente <secondes ou INCONNU> / moment <phase ou horodatage>

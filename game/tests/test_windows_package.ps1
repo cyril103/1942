@@ -1,7 +1,7 @@
 param(
     [string]$PackageZip = (Join-Path $PSScriptRoot '../../dist/PacificStrike-Windows-x64.zip'),
     [string]$BuiltExecutable = (Join-Path $PSScriptRoot '../../dist/PacificStrike/PacificStrike.exe'),
-    [string]$ExpectedVersion = '1.7.0.0',
+    [string]$ExpectedVersion = '1.8.0.0',
     [switch]$SkipRuntime
 )
 $ErrorActionPreference = 'Stop'
@@ -26,7 +26,7 @@ Check-Package ($metadata.FileDescription -eq 'Pacific Strike - Campagne 1942') '
 Check-Package ($metadata.FileVersion -eq $ExpectedVersion) 'Version fichier Windows incorrecte.'
 Check-Package ($metadata.ProductVersion -eq $ExpectedVersion) 'Version produit Windows incorrecte.'
 Check-Package (Test-Path -LiteralPath (Join-Path $directory 'LISEZ-MOI.txt')) 'Manuel absent du ZIP.'
-$requiredCredits = @('Godot-LICENSE.txt','Godot-COPYRIGHT.txt','Musique.txt','Juhani-INFO.txt','Moteur-avion.md','Tirs-explosions.md','Terrains-terrestres.md','Installations-militaires.md','barlowcondensed-OFL.txt','blackopsone-OFL.txt','DSEG-LICENSE.txt')
+$requiredCredits = @('Godot-LICENSE.txt','Godot-COPYRIGHT.txt','Musique.txt','Juhani-INFO.txt','Moteur-avion.md','Tirs-explosions.md','Terrains-terrestres.md','Terrains-volcaniques-arctiques.txt','Installations-militaires.md','DCA-mobile.md','barlowcondensed-OFL.txt','blackopsone-OFL.txt','DSEG-LICENSE.txt')
 foreach ($credit in $requiredCredits) {
     Check-Package (Test-Path -LiteralPath (Join-Path $directory ('Licences/' + $credit))) ('Attribution absente : ' + $credit)
 }
@@ -61,7 +61,8 @@ if (-not $SkipRuntime) {
     $emptyDirectory = Join-Path $scratch 'isolated-working-directory'
     New-Item -ItemType Directory -Path $emptyDirectory | Out-Null
     $runLog = Join-Path $scratch 'standalone-startup.log'
-    $arguments = @('--windowed','--resolution','1280x720','--quit-after','180','--log-file',('"' + $runLog + '"'))
+    # Automated startup stays silent; audio mixing has separate real-driver probes.
+    $arguments = @('--audio-driver','Dummy','--windowed','--resolution','1280x720','--quit-after','180','--log-file',('"' + $runLog + '"'))
     $stdout = Join-Path $scratch 'standalone-stdout.log'
     $stderr = Join-Path $scratch 'standalone-stderr.log'
     $process = Start-Process -FilePath $exe -WorkingDirectory $emptyDirectory -ArgumentList $arguments -WindowStyle Hidden -RedirectStandardOutput $stdout -RedirectStandardError $stderr -PassThru

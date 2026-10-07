@@ -587,14 +587,33 @@ func _draw_result(report: Dictionary) -> void:
 	if not is_instance_valid(director): return
 	page = "result"
 	var victory: bool = report.won and selected_mission == 32 and play_mode=="campaign"
-	var objective_failed: bool = report.get("objective_failed",false)
+	# Explicit terminal cause takes precedence over an old cached objective flag.
+	# Zero lives also keeps historical reports without game_over unambiguous.
+	var game_over: bool = not report.won and (bool(report.get("game_over",false)) or int(report.get("lives",1))<=0)
+	var objective_failed: bool = not game_over and bool(report.get("objective_failed",false))
 	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else ("MISSION INACCOMPLIE" if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
 	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else ("OBJECTIF NON ATTEINT" if objective_failed else "AUCUNE VIE RESTANTE"),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
 	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.bonus,result_earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1")).name = "ResultScoreDetails"
 	var summary := "32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est disponible.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre meilleur score est conservé.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde.")
 	if play_mode!="campaign": summary = ("Le record Arcade est mis à jour si ce score est supérieur." if play_mode=="arcade" else "Entraînement terminé. Aucun record ni récompense de campagne.")+"\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée."
-	var summary_label := _label(summary,Vector2(1210,336),Vector2(590,360),30,MUTED)
+	var summary_y := 336.0
+	var summary_height := 320.0
+	var ground_status: Dictionary = report.get("ground_status",{})
+	if not ground_status.is_empty():
+		var ground_text := "CIBLES DÉTRUITES  %d / %d" % [int(ground_status.get("kills",0)),int(ground_status.get("quota",0))]
+		var priority_total := int(ground_status.get("priority_total",0))
+		if priority_total>0:
+			ground_text += "\nPRIORITÉS  %d / %d" % [int(ground_status.get("priority_destroyed",0)),priority_total]
+			var escaped: Array = ground_status.get("escaped_priority_ids",[])
+			if not escaped.is_empty(): ground_text += "  •  %d ÉCHAPPÉE(S)" % escaped.size()
+		var ground_label := _label(ground_text,Vector2(1210,336),Vector2(590,92),27,GOLD if bool(ground_status.get("main_met",false)) else Color("ff986c"))
+		ground_label.name = "ResultGroundObjective"
+		_fit_label(ground_label,92,21)
+		summary_y = 448.0
+		summary_height = 208.0
+	var summary_label := _label(summary,Vector2(1210,summary_y),Vector2(590,summary_height),30,MUTED)
 	summary_label.name = "ResultSummary"
+	_fit_label(summary_label,summary_height,21)
 	if report.won and selected_mission < 32 and play_mode=="campaign":
 		_button("MISSION SUIVANTE",Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
 	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission,"",true))

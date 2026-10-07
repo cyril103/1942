@@ -70,7 +70,7 @@ func _validate_layout(director: Node) -> void:
 		check(absf(base_y-assault.terrain.PLATEAU_Y)<.001,"Mission %d %s mesh meets the terrain" % [director.mission.id,target.variant])
 		check(target.collision_layer==0,"Undeployed installation cannot absorb offscreen shots")
 	check(kinds.size()==5,"Mission %d features all five ground silhouettes" % director.mission.id)
-	check(radars==2,"Mission %d has two radar objectives" % director.mission.id)
+	check(radars==int(director.mission.radar_count),"Mission %d has the authored number of physical radar stations" % director.mission.id)
 	check(assault.targets.size()>=30 and assault.targets.size()<=45,"Mission %d builds the denser ground battlefield within its fixed budget" % director.mission.id)
 	check(defenses>=int(ceil(assault.targets.size()*.8)),"Mission %d reserves at least four installations in five for active DCA" % director.mission.id)
 	check(director.combat.aircraft_enabled,"Mission %d permits aircraft during its ocean approach" % director.mission.id)
@@ -419,7 +419,8 @@ func _run() -> void:
 		if not m.get("ground_assault",false): continue
 		count += 1
 		check(RAIDS.has(int(m.id)) and m.objective=="ground","Low-level missions occupy the eight intended campaign slots")
-		check(m.secondary=="radar" and int(m.secondary_target)==2,"Radar side objective matches the two physical stations")
+		var secondary: Dictionary = m.secondary_spec
+		check(m.secondary=="ground_layout" and int(m.secondary_target)==int(secondary.minimum) and int(secondary.minimum)>0 and int(secondary.minimum)<=secondary.target_ids.size(),"Mission %d side objective uses the authored target IDs and achievable count" % m.id)
 		check(m.boss=="" and not m.events.any(func(event): return event.kind in ["boss","naval","convoy"]),"Ground raids cannot spawn ships or bosses inside land")
 		check(not m.events.is_empty() and m.events.all(func(event): return event.kind in ["zero","hayabusa","red","bomber"] and float(event.time)<12.0),"Ground raids reserve aerial encounters for the ocean approach")
 		check(int(m.quota)>=6 and int(m.quota)<=int(m.ground_count)*.65,"Ground quota leaves room for missed installations")

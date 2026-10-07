@@ -1,0 +1,44 @@
+ACTIFS TERRAIN RAID V3 — SOURCES ET CRÉDITS
+État : sources originales intégrées dans le candidat 1.8 ; rendu inspecté par l'agent, acceptation humaine et performance encore à valider.
+Date de génération : 7 octobre 2026.
+Outil : image_gen.imagegen intégré, conformément au skill ImageGen.
+Deux appels indépendants, un par matériau. Aucune image de référence, aucun
+sample tiers ou photographie externe fournis à ces générations.
+
+Basalte volcanique
+  Source : textures/raid-v3/sources/volcanic-basalt-albedo-native.png
+  Dimensions natives : 1254 x 1254 pixels, PNG, 4 566 420 octets.
+  SHA256 : 949DBC8BBEDC941EB580AE377843EA1F4ACADBE1E0B27506053660427F468A65
+  Prompt exact : textures/raid-v3/sources/volcanic-basalt-prompt.txt
+  Destination jeu : game/assets/environment/raid-v3/volcanic-basalt-albedo-native.png
+
+Terrain arctique
+  Source : textures/raid-v3/sources/arctic-packed-snow-albedo-native.png
+  Dimensions natives : 1254 x 1254 pixels, PNG, 4 056 887 octets.
+  SHA256 : 8B9D99CE1FA0DB238BF1BA9F332B89F5F4FF26305EE838A81BDF8063A3BE0CD1
+  Prompt exact : textures/raid-v3/sources/arctic-packed-snow-prompt.txt
+  Destination jeu : game/assets/environment/raid-v3/arctic-packed-snow-albedo-native.png
+
+La provenance complète conserve les prompts exacts, les chemins des originaux
+de l'outil et les contrôles visuels : textures/raid-v3/sources/provenance.json.
+Les PNG natifs ont été copiés intégralement sans recadrage, redimensionnement,
+retouche, conversion ou réencodage. Les SHA256 des copies et originaux sont égaux.
+Les matériaux ne comportent que l'albedo : ni normal, ni hauteur, ni roughness.
+
+Actifs antérieurs réutilisés
+  Macro tropicale : game/assets/environment/raid-v2/tropical-battlefield.png
+  Détail corallien : game/assets/environment/raid-v2/coral-grass-detail.png
+  Attribution/provenance antérieure : game/assets/environment/raid-v2/CREDITS.md
+  Shader océan partagé : game/shaders/ocean_surface.gdshaderinc
+Ces sources sont réutilisées, pas attribuées aux deux générations nouvelles.
+Aucun modèle de DCA ou véhicule supplémentaire n'a été créé par cette préparation.
+
+Ne pas interpréter une demande de seamless dans le prompt comme une preuve de
+périodicité pixel exacte : les raccords répétés 3 x 3 ont été inspectés avec le
+shader final, sans joint carré net observé à cette échelle. Ces crédits ne
+revendiquent aucune licence de banque d'images.
+
+Validation d'intégration : 693 contrôles, zéro échec ; huit captures GPU 3 x 3
+et 48 paires de vues des huit raids. Inspection de l'agent, sans acceptation
+artistique humaine. Les motifs répétés restent visibles. Preuves :
+renders/validation-raids-v18 ; mesures de performance à compléter.

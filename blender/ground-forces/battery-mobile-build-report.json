@@ -1,0 +1,24 @@
+{
+  "triangles": 1768,
+  "meshes": 2,
+  "surfaces": 2,
+  "width_depth_height": [
+    1.7419999837875366,
+    2.3343124389648438,
+    1.4952807426452637
+  ],
+  "footprint": [
+    2.8,
+    2.8
+  ],
+  "turret_pivot_blender": [
+    0,
+    0.18,
+    0.77
+  ],
+  "atlas": "C:\\ChatGPT\\1942\\game\\assets\\ground-forces\\field-material-atlas.png",
+  "forward_blender": "-Y",
+  "forward_godot": "+Z",
+  "runtime_variant": "battery",
+  "rendered_or_imported_in_game": false
+}

@@ -108,3 +108,149 @@ Le paquet de référence est conservé hors Git pour les comparaisons suivantes.
 Références officielles :
 https://docs.godotengine.org/en/stable/tutorials/performance/pipeline_compilations.html
 https://docs.godotengine.org/en/4.6/classes/class_performance.html
+
+PASSE 4 — PAQUET 1.8.0, TROIS QUALITÉS
+
+EXE SHA256 : 83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14.
+Banc externe SHA256 :
+2E7686BAD1D7012EE631FF55C357C56F4E8E514332C499F62FBE6FA61AA00B25.
+Même machine et cadrage que ci-dessus. Six passages de 140 secondes :
+8 400 ticks, entrées 1547431443, état 1729331200, résultat au tick 6 718.
+Les sept phases de vol et le résultat sont présents. Le pilote protégé
+détruit six cibles au sol et manque le principal : ce n'est pas un essai
+de survie ni de viabilité humaine. Toutes les causes de pics restent inconnues.
+
+Le banc efface les liaisons physiques et détache les seuls callbacks clavier/
+perte de focus du prototype après son _ready, avec garde contre l'ajout d'un
+callback _process/_physics_process. Tous les contrôleurs de déplacement,
+combat, décor et campagne restent actifs. Il conserve les composantes brutes
+du hash d'état chaque seconde. Cette isolation concerne seulement la fixture.
+La divergence historique du candidat provisoire reste inexpliquée ; la
+concordance des nouveaux passages n'en démontre pas la cause.
+
+Profil / passage    Moyenne   p95     p99     Maximum   >16,67 / >33,33 ms
+Performance / 0      3,261    5,743   7,306   94,908       13 / 4
+Performance / 1      2,907    4,507   5,838   29,391        2 / 0
+Équilibré / 0        3,398    5,401   6,919   93,922        7 / 3
+Équilibré / 1        3,001    4,547   5,491   22,972        3 / 0
+Qualité, reprise / 0 3,071    5,340   6,576  103,664        9 / 2
+Qualité, reprise / 1 3,041    5,303   6,516   14,439        0 / 0
+
+La première expérience Qualité est conservée séparément : moyenne/p99/max
+3,515/15,603/276,088 ms, 86/12 dépassements au premier passage ; puis
+3,231/7,150/26,146 ms et 2/0. Le volume de session Windows a été coupé à la
+demande du joueur pendant ce premier passage, avec compilation d'un helper C#.
+Cette concomitance n'établit pas la cause des pics, principalement au sol.
+Le nouvel essai ne supprime pas ce relevé ; il mesure une session sans cette
+intervention, avec le mix moteur toujours actif et une sortie Windows muette.
+Les essais Performance/Équilibré précèdent la consigne de silence.
+
+Après libération du jeu et des tableaux du banc : un nœud, zéro orphelin,
+212 ressources, dans les six passages. Mémoire statique moteur :
+56 070 536→56 105 280 octets (q0), 56 587 184→56 621 928 (q1),
+56 243 140→56 277 884 (q2 repris). Estimation graphique inchangée entre
+répétitions : 300 600 952 / 302 731 144 / 306 991 528 octets selon qualité.
+Les résumés conservés ajoutent une petite charge au banc ; ces allocations
+ne représentent ni la RAM privée, ni la VRAM physique, ni une preuve sans fuite.
+Construction de mission : 381,887–446,649 ms, séparée des frames de jeu.
+Initialisation : 292,056–2 145,638 ms, premier frame compris.
+
+Preuves : game/tests/performance-1.8.0, sous-dossier
+q2-with-output-intervention pour le relevé initial. Les JSON détaillent états,
+phases, compteurs, GPU/CPU, mémoire et chaque pic significatif. Une frame
+au-delà du budget reste un dépassement, même lorsque le p99 est favorable.
+La comparaison complète 1.7 avec exactement ce nouveau banc est terminée ;
+les anciennes séries avec isolation différente ne la remplacent pas.
+
+RÉFÉRENCE 1.7 REJOUÉE AVEC CE MÊME BANC
+
+Preuves : game/tests/performance-1.7.0-matched, trois qualités/deux passages.
+8 400 ticks, entrées 1547431443, état 1612253471, résultat tick 6 718 dans
+les six passages. Les 140 états bruts et résultats sont identiques entre
+les qualités de chaque version. Entre versions, positions complètes, scroll,
+viewport et changements de phase restent identiques ; le combat change.
+Première différence de l'état observé : tick 1 680, tirs ennemis 72→58.
+Au terme : tirs ennemis 1 598→1 466, tirs joueur 2 390→2 390, vagues 22→22,
+bombardier 1→1 ; destructions 30→29, sol 7→6, score 6 450→6 100.
+Pic de balles observé 58→83, contacts 13→13. Cette différence de charge
+reproduite empêche d'isoler une régression ou un gain du seul shader.
+
+Profil / passage    Moyenne   p95     p99     Maximum   >16,67 / >33,33 ms
+Performance / 0      2,706    4,831   5,943  106,791        6 / 2
+Performance / 1      2,934    4,919   6,011   25,794        1 / 0
+Équilibré / 0        3,155    5,402   6,649   99,372       10 / 2
+Équilibré / 1        3,449    5,813   7,220   37,211        5 / 1
+Qualité / 0          3,069    5,684   7,305   90,864        7 / 1
+Qualité / 1          2,939    5,014   6,139   15,488        0 / 0
+
+Sur les passages rechargés, p99 gameplay avant→après : 6,011→5,838,
+7,220→5,491, 6,139→6,516 ms selon qualité ; GPU p99 terminé :
+2,042→1,630, 2,794→2,514, 3,021→2,665 ms. Résultats mixtes : pas
+d'amélioration uniforme ni de promesse sans chute. Les douze passages
+nettoient à un nœud/zéro orphelin ; ressources 205 avant, 212 après.
+Tous les premiers passages ont leur maximum au tick 8, cause inconnue.
+Les estimations mémoire de rendu ne prouvent ni l'occupation physique VRAM,
+ni le MSAA appliqué. La source inchangée configure 0/2x/4x par qualité ;
+ces rapports ne consignent pas une lecture directe de cette propriété.
+L'ordre des expériences et les charges système ne sont pas contrôlés comme
+en laboratoire. Le volume Windows est muet pour les trois références 1.7.
+
+COÛT ARTISTIQUE DES HUIT TERRAINS — AVANT 1.7 / APRÈS 1.8
+
+game/tests/benchmark_raid_terrain.gd, source externe identique SHA256 :
+89A236B153F6B631E9E10D2466B1A53B27EDD08E191F223630D54BEEF6D4BFC5.
+32 scénarios dans chaque pack : huit biomes, côte/plateau, deux passages.
+Qualité 1, même GTX 1650/i5-10300H, fenêtre réelle 1920×1080, viewport
+1920×972, VSync désactivée, sans plafond FPS. Terrain 65×220 m ; caméra
+locale X=0, Y=-3,2, Z=0, taille 21 ; trajet de 18 m à 3 m/s, 360 ticks à 60 Hz,
+après 60 ticks de réchauffement séparé. Seeds global/terrain de production.
+Les assets/lumières de main.tscn sont lus sans instancier ses acteurs.
+
+Le comparateur refuse toute divergence de protocole consigné, de répétition,
+de trajectoire ou de nettoyage : 32 paires valides, 192 états appariés
+identiques, zéro erreur. Main.tscn et materials.gd sont inchangés par rapport
+à f33a28e, après normalisation des fins de ligne. Rotation/projection/near/
+far et lumière ne sont pas des champs mesurés dans ces JSON : cette identité
+des sources fournit une preuve complémentaire du template, pas une télémétrie.
+Géométrie, routes, props et textures diffèrent intentionnellement.
+
+Plages des 32 percentiles PAR SCÉNARIO ; aucun p99 global reconstruit :
+                          Avant                 Après
+p99 cadence (ms)          4,067–6,495           4,458–5,670
+p99 GPU terminé (ms)      2,263–2,504           2,028–2,284
+Maximum cadence (ms)         24,993                23,769
+Samples                     79 826                82 873
+Frames >16,67 / >33,33       10 / 0                 6 / 0
+Construction rig (ms)    138,890–273,052       181,877–347,802
+Chargement assets (ms)     1 419,429             1 557,526
+
+Le p99 de cadence augmente dans 23 paires et diminue dans neuf, écarts
+−0,825 à +0,925 ms. Le p99 GPU diminue dans les 32 paires, de 0,108 à
+0,412 ms ; cela ne démontre ni une amélioration uniforme des FPS, ni un
+gain du seul shader. Le maximum GPU augmente de 4,542 à 10,400 ms.
+L'ordre avant puis après n'est pas randomisé ; caches/thermique et charge
+système restent des facteurs. TIME_PROCESS peut conserver une valeur de
+construction décalée : il ne faut ni l'assimiler au CPU total, ni le sommer
+avec le GPU pour calculer un FPS. La construction est séparée du rendu.
+
+Les 64 rigs reviennent à trois nœuds, zéro orphelin ; le banc final revient
+à un nœud, zéro orphelin et 93 ressources dans chaque pack. Mémoire statique
+finale : 40 729 015→41 333 966 octets ; estimation graphique finale :
+255 495 188→251 335 346 octets. Ces compteurs ne sont pas RAM privée/VRAM
+physique ; caches et ressources peuvent rester résidents.
+
+Le rig exclut avions, DCA, HUD, collisions et combat : ce ne sont PAS les
+FPS du jeu complet. Deux passages de six secondes, une qualité et une
+machine n'établissent ni endurance, ni absence de fuite, ni garantie universelle.
+Aucune inspection artistique ou partie humaine n'est déduite de ces mesures.
+Les signatures d'implantation ont aussi changé : la mission complète avant/
+après sera une comparaison de contenu, pas une isolation du coût d'un shader.
+
+Preuves : game/tests/performance-terrain-1.7.0,
+game/tests/performance-terrain-1.8.0 et
+game/tests/performance-terrain-comparison (32 lignes CSV, synthèse JSON).
+Reproduction : game/tests/compare_raid_performance.py ; fournir les rapports,
+--probe, --expected-probe-sha256 et les deux hashes de packs comme provenance
+opérateur. Le comparateur ne réexécute ni ne rehash automatiquement les EXE.
+La session prolongée avec RAM privée et la seconde configuration restent
+nécessaires pour clore #20. Aucune garantie « zéro chute » n'est revendiquée.

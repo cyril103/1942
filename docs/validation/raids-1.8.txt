@@ -1,0 +1,292 @@
+PACIFIC STRIKE — VALIDATION DES RAIDS, CANDIDATE 1.8
+Lot #14/#17 ; état documentaire du 7 octobre 2026.
+
+ÉTAT ET PORTÉE
+
+Sources intégrées et validation technique effectuée sous Godot 4.7.2,
+Windows, rendu Compatibility. L'export Windows 1.8 a passé les contrôles
+d'archive et de démarrage ; cette candidate n'est pas encore poussée.
+Aucun résultat de performance phase 4 n'est validé à ce stade.
+Les essais humains de difficulté, compréhension, plaisir et campagne restent
+ouverts. Les rapports de test ci-dessous sont les preuves de cette passe ;
+les compteurs ne représentent ni un nombre de parties humaines ni des FPS.
+
+Contrats et compositions : docs/conception-secteurs.txt.
+Source partagée : game/scripts/campaign/raid_layouts.gd, préparée par
+operations.gd puis consommée par terrain, cibles, directeur et interface.
+
+SUITES EXÉCUTÉES
+
+Rapport sous game/tests                         Contrôles  Échecs
+raid-layouts-results.json                         111 806       0
+raid-tactics-results.json                           7 699       0
+raid-terrain-results.json                             693       0
+raid-ui-results.json                              16 240       0
+raid-result-radio-results.json                       946       0
+ground-assault-results.json                         4 403       0
+raid-quota-weapons-core-results.json                  194       0
+raid-quota-weapons-extra-results.json                 194       0
+
+Données : 96 configurations géométriques, huit compositions et données des
+32 missions. Réservations rectangulaires et balayages mobiles, IDs/copies,
+quotas/priorités/secondaires, textes, dimensions invalides et variantes
+compactes sont contrôlés. Le rapport original écrit par test_raid_layouts.gd
+est user://phase4-raid-layout-results.json ; son exemplaire archivé est le
+raid-layouts-results.json listé ci-dessus. C'est une preuve de données et
+de réservations, pas une preuve de tir ou de rendu.
+
+Combat : huit implantations, 18 fixtures radar (neuf réseaux × tir normal
+et laser), six mobiles, huit jeux d'objectifs et deux fins de mission.
+Les tests emploient vrais états, raycasts, projectiles et dégâts fractionnaires.
+Ils vérifient la destruction unique, l'expiration du brouillage, la pause,
+la mort/reprise, une nouvelle amorce et la reprise échelonnée des canons.
+Un mobile ne tire pas en mouvement ; son collider suit sa position actuelle,
+son trajet reste dans sa voie et ses reprises ne sautent pas la télégraphie.
+Les arènes isolent/déplacent des cibles pour tester ces mécanismes : ce n'est
+pas le protocole des sorties complètes ni une preuve de difficulté humaine.
+
+Terrain : vrais meshes et matériaux des huit biomes, trois qualités,
+couverture des voies/pistes et empreintes, mipmaps, ressources partagées,
+opacité et budgets, y compris reconfiguration. La suite ne mesure pas les FPS.
+Interface : briefings des 32 missions à deux tailles, objectifs principaux
+et secondaires, plan sectoriel, groupes radar et présentation des résultats.
+Il s'agit de géométrie et de texte, pas d'un test humain de compréhension.
+Régression ground-assault : entrée/sortie du vol rasant, avions avant/après
+le raid mais absents pendant celui-ci, retour au porte-avions et atterrissage.
+
+CORRECTIONS DE FIN DE REVUE — GAME OVER ET RADIO RADAR
+
+test_raid_result_radio.gd : 946 contrôles, aucun échec, 14 fixtures réellement
+exécutées. Huit décès par perte de la dernière vie en M15 : avant/après quota
+ET hangars prioritaires accomplis, deux états de décision d'atterrissage mis
+en cache, aux fenêtres 1280×720 et 1920×1080. Le chemin est réel : dégâts
+létaux du Player, callback Combat.game_over, délai de mort, Director.advance,
+rapport et affichage différé de l'App. Aucune émission artificielle de fin.
+
+Le rapport garde objective_met réel, y compris après un principal accompli,
+mais game_over prime sur objective_failed. La perte de toutes les vies affiche
+GAME OVER / AUCUNE VIE RESTANTE, sans médaille ni bonus de victoire. Les deux
+replis vivants sans objectif gardent MISSION INACCOMPLIE ; les deux victoires
+gardent MISSION ACCOMPLIE, après leur vrai atterrissage. La relecture des
+anciens rapports conserve cette distinction, même sans champ game_over.
+
+Les rectangles sont vérifiés dans le vrai cadre logique, puis transformés
+par le canvas et le stretch vers les pixels physiques. La lecture de l'image
+GPU attend frame_post_draw et confirme 1280×720 / 1920×1080 ; le cadre logique
+est 1920×1080 dans les deux cas. Une taille déclarée de ViewportTexture ne
+remplace pas cette lecture. Les observations enregistrent les dimensions,
+transformations et rectangles ; huit captures Game Over accompagnent ce run.
+
+Deux radars détruits par le vrai laser : storm/r01 en M11 et final/r02 en M31.
+Le signal de brouillage porte seul le message du directeur : Réseau Ouest
+et Ceinture intermédiaire, sans écrasement par west/middle. Le timer reste
+six secondes et le message quatre secondes. Pendant les trois secondes
+mesurées, le canon lié émet zéro projectile ; le réseau indépendant émet
+respectivement 12 et 20 projectiles dans le pool de production. Ce sont des
+arènes de régression isolées, pas des parties humaines ni une mesure FPS.
+La suite UI complète a également été rejouée : 16 240 contrôles, zéro échec.
+
+24 SORTIES AVEC ARMES ET COMMANDES RÉELLES
+
+Core : M03/M15/M19/M31 × trois avions = 12 sorties.
+Extra : M07/M11/M23/M27 × trois avions = 12 sorties.
+Les deux rapports sont complets, 12/12 fixtures réellement exécutées chacun,
+sans échec. Total : 24 sorties et 388 contrôles agrégés. Le contrôle
+d'initialisation est répété entre les deux lancements ; ne pas présenter
+ce total comme 388 cas indépendants ou comme une unique exécution de 24 cas.
+
+Résolution de la suite : 1920×1080. Difficulté normale, aucun module équipé,
+arme initiale normale sans POW. Le triplet d'améliorations est celui du profil
+(armement/blindage/condensateur). Pour chaque ligne, les trois avions sont Vanguard,
+Interceptor/P-38, Bulwark/F4U, dans cet ordre.
+
+Mission  Améliorations  Quota  Destructions V/I/B  Priorités V/I/B  Principal
+M03      [0,0,0]         12         28/28/28             0/0/0       3/3
+M07      [0,0,0]         14         28/29/26             0/0/0       3/3
+M11      [1,1,1]         14         28/28/29             2/2/2       3/3
+M15      [1,1,1]         16         36/36/35             3/3/3       3/3
+M19      [2,1,1]         18         30/30/28             2/2/2       3/3
+M23      [2,2,2]         20         31/30/29             2/2/2       3/3
+M27      [3,2,2]         22         38/38/38             0/0/0       3/3
+M31      [3,3,3]         26         37/39/39             1/1/1       3/3
+
+Principal = quota atteint ET tous les IDs obligatoires détruits :
+  M11 : storm/r01, storm/r02.
+  M15 : jade/h01, jade/h02, jade/h03.
+  M19 : volcanic/m01, volcanic/m02.
+  M23 : dusk/k05, dusk/k06.
+  M31 : final/command.
+  M03/M07/M27 : aucune priorité obligatoire, quota seul.
+Une priorité est déjà une destruction ; elle n'ajoute pas un second kill.
+Les 24 rapports de fin confirment won=true et objective_met=true après le
+retour réel. Les tests ne se contentent pas de comparer le compteur au quota.
+
+Secondaires : 21/24 réussis. M03 deux radars, M07 au moins trois dépôts,
+M11 trois radars, M15 quatre hangars, M23 deux radars, M27 deux dépôts et
+M31 trois radars sont obtenus avec les trois avions. M19 reste à trois des
+quatre mobiles arrière requis, avec chaque avion : le bonus n'est pas obtenu.
+La suite ne prouve donc pas que son pilote peut compléter tous les bonus.
+
+Méthode : scène de production, physique synchronisée, 60 Hz de gameplay,
+Engine.time_scale=4 et physique à 240 Hz pour accélérer le laboratoire.
+Aucun tick incorrect ou déplacement au-delà de la vitesse réelle n'est
+enregistré. Le pilote utilise Input et les limites de l'avion ; il choisit
+les priorités avant leur sortie, puis dépôts/menaces accessibles, et rejoint
+physiquement les POW. Bombes/frappes utilisent les appels de production,
+avec réserves et recharge normales. Aucun target téléporté, kill scripté,
+PV/quota adapté, collecte directe ou ravitaillement artificiel dans ces sorties.
+
+Protection : seul collision_layer de la Hurtbox du joueur vaut 0. Les tirs
+ennemis restent actifs, mais le joueur ne peut pas recevoir leurs impacts.
+Les zéros de dégâts/morts et les rangs/médailles de ces rapports ne prouvent
+donc pas l'équilibre, la survie ou une performance humaine. Les améliorations
+sont fixées par fixture ; leur achat pendant une vraie campagne n'est pas testé.
+
+Observation agrégée des deux rapports : 48 138 tirs joueur, 8 503 impacts
+d'armes, 8 015 tirs ennemis, 48 POW ramassés physiquement, 50 bombes et 26
+frappes. Pics simultanés : 46 projectiles joueur/96, 50 ennemis/192,
+10 explosions/18. Ces chiffres concernent ce pilote et ces sorties ; ils
+ne sont ni une saturation maximale de tous les scénarios ni une mesure FPS.
+
+HUIT IDENTITÉS ET CONTRATS TACTIQUES
+
+Corail M03 : première ligne DCA puis stations radar ; groupe global de
+brouillage pédagogique. Les deux radars restent un bonus, sans priorité.
+Convois M07 : défenses voisines des dépôts, ouverture canon ou carburant ;
+bonus trois dépôts, aucune priorité.
+Moussons M11 : trois réseaux locaux indépendants ; deux radars obligatoires,
+troisième optionnel pour le principal, tous trois pour le bonus.
+Jade M15 : deux aérodromes décalés ; trois hangars obligatoires, quatrième
+pour compléter le bonus des deux installations.
+Volcanique M19 : deux DCA mobiles annoncées en ouverture, puis complexes
+mixtes ; m01/m02 obligatoires et quatre mobiles arrière pour le bonus.
+Crépuscule M23 : bastions opposés ; deux bunkers obligatoires, radars locaux
+secondaires et ordre d'attaque libre.
+Arctique M27 : deux complexes indépendants, choisir radar ou dépôt ;
+deux dépôts pour le bonus, aucune priorité.
+Final M31 : commandement obligatoire, quota 26, trois ceintures radar
+locales ; attaque directe ou neutralisation préalable de son réseau.
+
+Détruire un radar brouille ses défenses liées pendant six secondes, sans
+retirer collider, PV ou mobilité ; les autres réseaux restent actifs.
+Corail est seul global. Reprise des tirs avec amorce et décalages individuels.
+Aucune invulnérabilité magique, aucun relèvement gratuit des PV : bonus
+sectoriels et variantes de combat restent les mêmes.
+Les six mobiles M19 utilisent des routes partagées à deux points : annonce
+0,60 s, mouvement 1,20 s, stabilisation 0,25 s, arrêt 2,80 s + décalage.
+Le visuel Hull/Turret du camion conserve l'empreinte battery 2,8×2,8 m.
+
+PREUVES VISUELLES APPARIÉES
+
+48 paires = huit raids × approche/descente/combat × deux tailles PNG.
+Référence avant : 1.7.0 ; après : phase4-final-candidate, seed 1942, qualité 1.
+Les deux séries comportent 48 captures et aucun échec de sauvegarde.
+tools/review/phase4-visual-comparison.json contient 48 comparaisons et aucun
+camera_mismatches. Les camera_position, camera_size, viewport, position joueur,
+altitude, position/largeur/longueur terrain et temps sont conservés dans :
+  tools/review/raid-before-1.7.0/capture-evidence.json
+  tools/review/raid-after-final-phase4/capture-evidence.json
+
+Les fichiers sont nommés 1280×720 et 1920×1080, mais le viewport de jeu
+enregistré reste 1920×972 dans les deux séries : deux tailles d'images de
+comparaison, pas deux résolutions internes natives validées. Position joueur
+fixée (-4,0,7), inspections accélérées et Hurtbox protégée. Cette méthode
+isole la différence visuelle ; elle n'est pas une partie ni un benchmark.
+
+Compte terrain dans les paires, mêmes caméras, instants et dimensions :
+Mission  Triangles avant/après   Décor avant/après
+M03         18 268 / 18 336           244 / 244
+M07         19 948 / 20 037           244 / 244
+M11         21 768 / 21 858           244 / 244
+M15         23 680 / 23 750           244 / 244
+M19         25 344 / 25 522           244 / 220
+M23         27 264 / 25 134           244 / 244
+M27         26 722 / 25 436           244 / 184
+M31         26 760 / 25 518           244 / 244
+Ces comptes de terrain respectent 29 000 triangles/340 instances ; ils
+n'incluent pas l'ensemble de la scène et ne prouvent pas une stabilité FPS.
+Les valeurs diffèrent de la fixture terrain pure car dimensions/états diffèrent.
+Les compositions et cibles ayant changé entre 1.7 et 1.8, les états de combat
+des deux séries ne sont pas identiques malgré leur caméra et leur horloge.
+
+Les 96 PNG originaux avant/après sont conservés localement sous tools/review.
+La sélection de preuves permanente est conservée sous
+renders/validation-raids-v18 : before-1.7.0, after-1.8.0, ui, tiling,
+contact-sheet.png, capture-before.json, capture-after.json, comparison.json
+et tiling-captures.json/README.md. Elle comporte les huit combats 720 avant/
+après (16 images), trois descentes M03/M19/M27, huit plans UI, deux Game Over et quatre vues
+de répétition. La planche indexe les huit raids/trois phases après en 1080p.
+Consulter README.md pour les images retenues, les noms et la reproduction.
+Les huit captures originales de répétition des albedos basalte/neige emploient le vrai shader
+sur un mesh continu 3×3 ; prompts et sources natives sont conservés dans
+textures/raid-v3/sources, crédits dans game/assets/environment/raid-v3.
+La sélection tiling conserve {arctic,volcanic}-raw-3x3-4m.png et
+{arctic,volcanic}-gameplay-oblique-3x3-4m.png. Inspection par l'agent : aucun
+joint carré net à cette échelle, motifs répétés toujours visibles. Les
+métadonnées gardent human_inspection=PENDING. Une image générée ne prouve
+pas une périodicité pixel parfaite ; aucune acceptation humaine n'est déduite
+de cette inspection, ni de ces vues fixes un jugement complet en mouvement.
+
+EXPORT WINDOWS
+
+game/tests/windows-package-results.json : 29 contrôles, aucun échec, version
+1.8.0.0 et démarrage de 180 images depuis l'exécutable extrait, exit_code=0.
+Archive : dist/PacificStrike-Windows-x64.zip. SHA256 de l'exécutable testé
+(ce n'est pas le hash de l'archive ZIP) :
+83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14
+Ce contrôle ne lance pas les suites GDScript dans l'exécutable release et
+ne valide ni une campagne complète, ni une partie humaine, ni les FPS.
+
+L'intégration contre les ressources du pack final a passé dix contrôles,
+aucun échec, avec physique, projectiles et audio actifs. Crête PCM 16 496 /
+32 768 ; journal local tools/review/phase4-pack-runtime.log. La valeur
+sampled_frame_p95_ms=27,569 vient de cette courte sonde de démarrage, pas d'un
+benchmark comparable de mission complète. Aucun FPS stable ou coût de raid
+n'est déduit de cette valeur, ni aucune préférence d'écoute de la crête PCM.
+Le moteur éditeur console charge les ressources via --main-pack ; cette
+validation est distincte du démarrage normal de l'EXE release extrait.
+
+Explorateur Windows : aucune observation humaine de l'export 1.8 n'est
+effectuée. Le joueur a confirmé les propriétés/icône de la version 1.6.1
+le 7 octobre 2026, consigné dans docs/validation/observations-humaines.txt.
+Cette confirmation reste attachée à 1.6.1 ; les contrôles Shell/VersionInfo
+de 1.8 ne la transfèrent pas à ce nouvel exécutable.
+
+REPRODUCTION — COMMANDES, PAS DE NOUVELLE EXÉCUTION PAR CE DOCUMENT
+
+Godot --headless --path game --script res://tests/test_raid_layouts.gd
+Godot --path game --script res://tests/test_raid_tactics.gd
+Godot --path game --script res://tests/test_raid_terrain.gd
+Godot --path game --script res://tests/test_raid_ui.gd
+Godot --path game --script res://tests/test_raid_result_radio.gd -- --capture-ui
+Godot --path game --script res://tests/test_ground_assault.gd
+Godot --path game --script res://tests/test_raid_quota_weapons.gd -- --time-factor=4 --include-missions=3,15,19,31 --output-path=res://tests/raid-quota-weapons-core-results.json
+Godot --path game --script res://tests/test_raid_quota_weapons.gd -- --time-factor=4 --include-missions=7,11,23,27 --output-path=res://tests/raid-quota-weapons-extra-results.json
+Sans filtre, la suite quota sélectionne les 24 fixtures ; préserver les deux
+rapports ci-dessus lors d'une reprise. Les captures sont reproductibles par
+game/tests/capture_raid_comparison.gd avec source et dossier de sortie distincts.
+Ne pas lancer plusieurs Godot ou des captures pendant une mesure de performances.
+
+CRITÈRES ENCORE OUVERTS
+
+Essais humains sans protection : survie, annonces comprises, évitabilité,
+temps d'exposition, progression d'achats, perte/reprise d'arme, plusieurs
+ordres radar/canon/dépôt, bastions M23, commandement M31, bonus M19, plaisir
+et diversité des huit identités au fil des 32 missions. Ces cas sont à
+consigner dans docs/protocole-parties.txt et docs/validation/matrice-parties.csv.
+Aucune ligne humaine n'a été remplie à partir de ces pilotes automatisés.
+
+Performance mesurée : 64 scénarios terrain avant/après, 32 paires avec les
+mêmes paramètres, zéro divergence. Les six replays complets M31 de chaque
+version couvrent les trois qualités et les phases de vol. Le contenu tactique
+ayant changé, les états de combat diffèrent entre versions : aucune différence
+de cadence n'est attribuée au seul shader. Les premières scènes présentent
+encore des pics ; le relevé Qualité avec intervention Windows est conservé,
+ainsi que sa répétition distincte. Tables, hashes, scripts, mémoire et limites :
+docs/validation/performance-missions.txt et game/tests/performance-*.
+Les captures comparatives restent à qualité 1 ; les replays ne constituent
+pas une inspection visuelle de toutes les qualités sur chacun des huit biomes.
+Endurance avec RAM privée, seconde configuration et parties humaines restent
+nécessaires. M31 dans le pack et son démarrage sont contrôlés ; les 32 missions
+ne sont pas une campagne humaine intégralement jouée. #14/#17 ne remplacent
+pas #20/#22.

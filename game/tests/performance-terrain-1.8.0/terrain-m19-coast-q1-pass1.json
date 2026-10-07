@@ -1,0 +1,117 @@
+{
+	"active_memory": {
+		"engine_static_bytes": 41703078,
+		"nodes": 19,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 303202440,
+		"resources": 94
+	},
+	"after_dispose_memory": {
+		"engine_static_bytes": 41448322,
+		"nodes": 3,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 295950346,
+		"resources": 93
+	},
+	"before_memory": {
+		"engine_static_bytes": 41436714,
+		"nodes": 3,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 295950346,
+		"resources": 93
+	},
+	"biome": "volcanic",
+	"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+	"camera_position": "(0.0, -3.2, 0.0)",
+	"camera_size": 21.0,
+	"configure_arguments": 4,
+	"construction_ms": 181.877,
+	"layout_id": "volcanic",
+	"length": 220.0,
+	"measurement": {
+		"cpu_process_ms": {
+			"max_ms": 187.714,
+			"mean_ms": 21.9732143121988,
+			"over_16_67ms": 247,
+			"over_33_33ms": 247,
+			"p95_ms": 187.714,
+			"p99_ms": 187.714,
+			"samples": 2697
+		},
+		"frame_intervals": {
+			"max_ms": 6.079,
+			"mean_ms": 2.22265517241379,
+			"over_16_67ms": 0,
+			"over_33_33ms": 0,
+			"p95_ms": 3.581,
+			"p99_ms": 4.581,
+			"samples": 2697
+		},
+		"gpu_completed_ms": {
+			"max_ms": 2.18899990618229,
+			"mean_ms": 1.85005895269107,
+			"over_16_67ms": 0,
+			"over_33_33ms": 0,
+			"p95_ms": 2.09800001978874,
+			"p99_ms": 2.13099999725819,
+			"samples": 2697
+		},
+		"gpu_zero_samples": 0,
+		"physics_ticks": 360,
+		"state_samples": [
+			{
+				"state": "60|-11600000",
+				"terrain_z": -116.0,
+				"tick": 60
+			},
+			{
+				"state": "120|-11300000",
+				"terrain_z": -113.0,
+				"tick": 120
+			},
+			{
+				"state": "180|-11000000",
+				"terrain_z": -110.0,
+				"tick": 180
+			},
+			{
+				"state": "240|-10700000",
+				"terrain_z": -107.0,
+				"tick": 240
+			},
+			{
+				"state": "300|-10400000",
+				"terrain_z": -104.0,
+				"tick": 300
+			},
+			{
+				"state": "360|-10100000",
+				"terrain_z": -101.0,
+				"tick": 360
+			}
+		],
+		"state_signature": 9724425,
+		"wall_seconds": 5.994509
+	},
+	"mission": 19,
+	"node_counts": {
+		"collision_objects": 0,
+		"mesh_instances": 6,
+		"multimesh_groups": 2,
+		"nodes": 16
+	},
+	"origin_z": -119.0,
+	"pass": 1,
+	"props": 220,
+	"safe_x": 18.4407407407407,
+	"scroll_speed": 3.0,
+	"triangles": 25614,
+	"view": "coast",
+	"viewport": [
+		1920,
+		972
+	],
+	"warmup_seconds": 0.865854,
+	"warmup_ticks": 60,
+	"width": 65.0
+}

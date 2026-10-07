@@ -1,0 +1,3822 @@
+{
+	"actual_window": "(1920, 1080)",
+	"after_fixture_dispose_memory": {
+		"engine_static_bytes": 41333966,
+		"nodes": 1,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 251335346,
+		"resources": 93
+	},
+	"after_rigs_memory": {
+		"engine_static_bytes": 41613506,
+		"nodes": 3,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 296125106,
+		"resources": 93
+	},
+	"build_id": "1.8.0",
+	"comparison_contract": "Use the identical external script, size, duration and quality on both immutable packs. Geometry/roads/props/albedos intentionally differ between versions; cameras and scroll paths do not.",
+	"cpu": "Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz",
+	"duration_ticks_per_scenario": 360,
+	"engine": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"entry_memory": {
+		"engine_static_bytes": 32568325,
+		"nodes": 1,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 23028395,
+		"resources": 1
+	},
+	"failures": [],
+	"field_length": 220.0,
+	"field_width": 65.0,
+	"gpu": "NVIDIA GeForce GTX 1650",
+	"human_visual_inspection": "NOT_PERFORMED",
+	"initial_memory": {
+		"engine_static_bytes": 36422869,
+		"nodes": 3,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 261305290,
+		"resources": 93
+	},
+	"max_fps": 0,
+	"measured_scroll_distance": 18.0,
+	"memory_limits": "Engine static and estimated render allocations are not process private bytes or physical VRAM. Cached scripts, source lighting resources, textures and sky shaders can remain resident; this fixture does not establish absence of memory leaks.",
+	"method": "32 art-only scenarios: eight prepared raid biomes x coast/plateau x two passes. Production terrain/ocean shaders and main.tscn lighting; no gameplay actors or collisions.",
+	"os": "Windows",
+	"other_gpu_processes": "operator_must_verify_none",
+	"physics_hz": 60,
+	"quality": 1,
+	"requested_window": [
+		1920,
+		1080
+	],
+	"root_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+	"scenarios": [
+		{
+			"active_memory": {
+				"engine_static_bytes": 41360941,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303055472,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41067998,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 37219121,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 261305290,
+				"resources": 93
+			},
+			"biome": "coral",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 253.842,
+			"layout_id": "coral",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 8.831,
+					"mean_ms": 5.04476503608656,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 5.464,
+					"p99_ms": 8.831,
+					"samples": 2494
+				},
+				"frame_intervals": {
+					"max_ms": 9.018,
+					"mean_ms": 2.40278548516439,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.262,
+					"p99_ms": 5.67,
+					"samples": 2494
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.75899994373322,
+					"mean_ms": 1.81647634308758,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.09400001168251,
+					"p99_ms": 2.13299995660782,
+					"samples": 2494
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.992561
+			},
+			"mission": 3,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25504,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.925519,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41353981,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303055472,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41067374,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41069654,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "coral",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 202.975,
+			"layout_id": "coral",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 213.915,
+					"mean_ms": 36.9051386217948,
+					"over_16_67ms": 376,
+					"over_33_33ms": 376,
+					"p95_ms": 213.915,
+					"p99_ms": 213.915,
+					"samples": 2496
+				},
+				"frame_intervals": {
+					"max_ms": 7.075,
+					"mean_ms": 2.40428325320513,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.262,
+					"p99_ms": 5.213,
+					"samples": 2496
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.92899996042252,
+					"mean_ms": 1.82622876543349,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.14499999582767,
+					"p99_ms": 2.17699997127056,
+					"samples": 2496
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.001103
+			},
+			"mission": 3,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25504,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.86271,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41516165,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303055472,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41216610,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41069250,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "coral",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 189.743,
+			"layout_id": "coral",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 226.224,
+					"mean_ms": 32.8133942196533,
+					"over_16_67ms": 323,
+					"over_33_33ms": 323,
+					"p95_ms": 226.224,
+					"p99_ms": 226.224,
+					"samples": 2595
+				},
+				"frame_intervals": {
+					"max_ms": 6.383,
+					"mean_ms": 2.31083044315992,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.021,
+					"p99_ms": 4.917,
+					"samples": 2595
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.21999996900558,
+					"mean_ms": 1.93488169462063,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.06100003421307,
+					"p99_ms": 2.09099996089935,
+					"samples": 2595
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.996626
+			},
+			"mission": 3,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25504,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.887707,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41529349,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303055472,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41229794,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41218222,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "coral",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 214.656,
+			"layout_id": "coral",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 244.031,
+					"mean_ms": 31.0270565894418,
+					"over_16_67ms": 286,
+					"over_33_33ms": 286,
+					"p95_ms": 244.031,
+					"p99_ms": 244.031,
+					"samples": 2633
+				},
+				"frame_intervals": {
+					"max_ms": 5.57,
+					"mean_ms": 2.27865400683631,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.685,
+					"p99_ms": 4.608,
+					"samples": 2633
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.1169999986887,
+					"mean_ms": 1.95030345589183,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.06799997389317,
+					"p99_ms": 2.08900003135204,
+					"samples": 2633
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.999711
+			},
+			"mission": 3,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25504,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.877825,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41534669,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303057758,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41243026,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41250298,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "convoy",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 198.123,
+			"layout_id": "convoy",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 205.383,
+					"mean_ms": 28.9874145880578,
+					"over_16_67ms": 293,
+					"over_33_33ms": 293,
+					"p95_ms": 205.383,
+					"p99_ms": 205.383,
+					"samples": 2646
+				},
+				"frame_intervals": {
+					"max_ms": 15.214,
+					"mean_ms": 2.26583257747543,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.727,
+					"p99_ms": 4.815,
+					"samples": 2646
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.30200001597404,
+					"mean_ms": 1.92066213103097,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.21200008690357,
+					"p99_ms": 2.24500001966953,
+					"samples": 2646
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.995399
+			},
+			"mission": 7,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25525,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.863244,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41547853,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303057758,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41256210,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41244610,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "convoy",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 193.138,
+			"layout_id": "convoy",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 200.594,
+					"mean_ms": 26.3179253731342,
+					"over_16_67ms": 268,
+					"over_33_33ms": 268,
+					"p95_ms": 200.594,
+					"p99_ms": 200.594,
+					"samples": 2680
+				},
+				"frame_intervals": {
+					"max_ms": 14.178,
+					"mean_ms": 2.23927089552239,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.558,
+					"p99_ms": 4.918,
+					"samples": 2680
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.2780000269413,
+					"mean_ms": 1.94474291005241,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.21699996292591,
+					"p99_ms": 2.24300011992455,
+					"samples": 2680
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.001253
+			},
+			"mission": 7,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25525,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.848708,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41574029,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303057758,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41269438,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41258162,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "convoy",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 207.592,
+			"layout_id": "convoy",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 239.435,
+					"mean_ms": 23.0758964986534,
+					"over_16_67ms": 191,
+					"over_33_33ms": 191,
+					"p95_ms": 239.435,
+					"p99_ms": 239.435,
+					"samples": 2599
+				},
+				"frame_intervals": {
+					"max_ms": 8.188,
+					"mean_ms": 2.30875759907657,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.747,
+					"p99_ms": 4.741,
+					"samples": 2599
+				},
+				"gpu_completed_ms": {
+					"max_ms": 4.2629998922348,
+					"mean_ms": 1.97805963605413,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.13399995863438,
+					"p99_ms": 2.16799995303154,
+					"samples": 2599
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 6.000481
+			},
+			"mission": 7,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25525,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.883985,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41587193,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303057758,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41282598,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41271026,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "convoy",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 193.533,
+			"layout_id": "convoy",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 224.396,
+					"mean_ms": 18.3059815233787,
+					"over_16_67ms": 158,
+					"over_33_33ms": 158,
+					"p95_ms": 224.396,
+					"p99_ms": 224.396,
+					"samples": 2652
+				},
+				"frame_intervals": {
+					"max_ms": 6.069,
+					"mean_ms": 2.26307390648567,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.595,
+					"p99_ms": 4.597,
+					"samples": 2652
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.16600009799004,
+					"mean_ms": 1.97017156715374,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.10099999606609,
+					"p99_ms": 2.13299995660782,
+					"samples": 2652
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 6.001678
+			},
+			"mission": 7,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25525,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.881721,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41599433,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303231900,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41300922,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41305846,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295775586,
+				"resources": 93
+			},
+			"biome": "storm",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 221.118,
+			"layout_id": "storm",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 233.171,
+					"mean_ms": 18.008403314917,
+					"over_16_67ms": 131,
+					"over_33_33ms": 131,
+					"p95_ms": 14.403,
+					"p99_ms": 233.171,
+					"samples": 2715
+				},
+				"frame_intervals": {
+					"max_ms": 14.455,
+					"mean_ms": 2.21084788213628,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.48,
+					"p99_ms": 4.658,
+					"samples": 2715
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.42399996519089,
+					"mean_ms": 1.90624677586621,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.1519999653101,
+					"p99_ms": 2.18200001120567,
+					"samples": 2715
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.00246
+			},
+			"mission": 11,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25526,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.867439,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41612713,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303231900,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41314202,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41302598,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "storm",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 213.884,
+			"layout_id": "storm",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 219.753,
+					"mean_ms": 13.4648788326562,
+					"over_16_67ms": 85,
+					"over_33_33ms": 85,
+					"p95_ms": 14.663,
+					"p99_ms": 219.753,
+					"samples": 2707
+				},
+				"frame_intervals": {
+					"max_ms": 14.702,
+					"mean_ms": 2.21653749538234,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.595,
+					"p99_ms": 4.669,
+					"samples": 2707
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.22899994254112,
+					"mean_ms": 1.90493091931247,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.15399990975857,
+					"p99_ms": 2.19099999964237,
+					"samples": 2707
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.000171
+			},
+			"mission": 11,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25526,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.863018,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41638817,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303231900,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41327358,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41316082,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "storm",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 199.82,
+			"layout_id": "storm",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 231.866,
+					"mean_ms": 7.86081591083787,
+					"over_16_67ms": 31,
+					"over_33_33ms": 31,
+					"p95_ms": 5.687,
+					"p99_ms": 231.866,
+					"samples": 2602
+				},
+				"frame_intervals": {
+					"max_ms": 5.802,
+					"mean_ms": 2.30580860876249,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.64,
+					"p99_ms": 4.614,
+					"samples": 2602
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.15699999034405,
+					"mean_ms": 1.9587205993348,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.09700001776218,
+					"p99_ms": 2.12200000882149,
+					"samples": 2602
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.999735
+			},
+			"mission": 11,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25526,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.889034,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41651977,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303231900,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41340518,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41328942,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "storm",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 214.063,
+			"layout_id": "storm",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 5.498,
+					"mean_ms": 5.12674305291185,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 5.498,
+					"p99_ms": 5.498,
+					"samples": 2627
+				},
+				"frame_intervals": {
+					"max_ms": 5.704,
+					"mean_ms": 2.28396764370003,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.653,
+					"p99_ms": 4.64,
+					"samples": 2627
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.21700002253056,
+					"mean_ms": 1.95133802724125,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.1150000244379,
+					"p99_ms": 2.15099991858006,
+					"samples": 2627
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.99999
+			},
+			"mission": 11,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25526,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.875773,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41650841,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303230436,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41352298,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41362354,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "jade",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 251.501,
+			"layout_id": "jade",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 260.406,
+					"mean_ms": 40.3252765553871,
+					"over_16_67ms": 366,
+					"over_33_33ms": 366,
+					"p95_ms": 260.406,
+					"p99_ms": 260.406,
+					"samples": 2636
+				},
+				"frame_intervals": {
+					"max_ms": 5.316,
+					"mean_ms": 2.27632625189682,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.569,
+					"p99_ms": 4.458,
+					"samples": 2636
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.21700002253056,
+					"mean_ms": 1.86511305052567,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.15399998426437,
+					"p99_ms": 2.17900007963181,
+					"samples": 2636
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.000438
+			},
+			"mission": 15,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25506,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.854043,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41664169,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303230436,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41365626,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41354022,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "jade",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 201.811,
+			"layout_id": "jade",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 208.948,
+					"mean_ms": 34.7887051938552,
+					"over_16_67ms": 396,
+					"over_33_33ms": 396,
+					"p95_ms": 208.948,
+					"p99_ms": 208.948,
+					"samples": 2734
+				},
+				"frame_intervals": {
+					"max_ms": 6.436,
+					"mean_ms": 2.19247695683979,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.452,
+					"p99_ms": 4.458,
+					"samples": 2734
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.83199989795685,
+					"mean_ms": 1.90533138115856,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.15499991178513,
+					"p99_ms": 2.18500004708767,
+					"samples": 2734
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.994239
+			},
+			"mission": 15,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25506,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.86098,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41690605,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303230436,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41378782,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41367502,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "jade",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 221.864,
+			"layout_id": "jade",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 251.459,
+					"mean_ms": 32.8898670274452,
+					"over_16_67ms": 292,
+					"over_33_33ms": 292,
+					"p95_ms": 251.459,
+					"p99_ms": 251.459,
+					"samples": 2587
+				},
+				"frame_intervals": {
+					"max_ms": 5.816,
+					"mean_ms": 2.31842404329339,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.525,
+					"p99_ms": 4.467,
+					"samples": 2587
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.19199994206429,
+					"mean_ms": 2.02704058813056,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.14700005948544,
+					"p99_ms": 2.16600009799004,
+					"samples": 2587
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.997768
+			},
+			"mission": 15,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25506,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.87431,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41703765,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303230436,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41391942,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41380370,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "jade",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 195.646,
+			"layout_id": "jade",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 224.299,
+					"mean_ms": 27.5304698193002,
+					"over_16_67ms": 265,
+					"over_33_33ms": 265,
+					"p95_ms": 224.299,
+					"p99_ms": 224.299,
+					"samples": 2601
+				},
+				"frame_intervals": {
+					"max_ms": 5.682,
+					"mean_ms": 2.30655324875048,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.646,
+					"p99_ms": 4.673,
+					"samples": 2601
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.22599990665913,
+					"mean_ms": 1.98815147954826,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.13099998235703,
+					"p99_ms": 2.15800005197525,
+					"samples": 2601
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.999354
+			},
+			"mission": 15,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25506,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.880658,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41689894,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303202440,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41435138,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41414306,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "volcanic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 202.552,
+			"layout_id": "volcanic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 211.657,
+					"mean_ms": 25.1188111964872,
+					"over_16_67ms": 264,
+					"over_33_33ms": 264,
+					"p95_ms": 211.657,
+					"p99_ms": 211.657,
+					"samples": 2733
+				},
+				"frame_intervals": {
+					"max_ms": 5.541,
+					"mean_ms": 2.1925601902671,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.455,
+					"p99_ms": 4.459,
+					"samples": 2733
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.40799999237061,
+					"mean_ms": 1.88595243284674,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.11299999058247,
+					"p99_ms": 2.14200006425381,
+					"samples": 2733
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.992274
+			},
+			"mission": 19,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 220,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25614,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.862849,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41703078,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303202440,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41448322,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41436714,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "volcanic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 181.877,
+			"layout_id": "volcanic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 187.714,
+					"mean_ms": 21.9732143121988,
+					"over_16_67ms": 247,
+					"over_33_33ms": 247,
+					"p95_ms": 187.714,
+					"p99_ms": 187.714,
+					"samples": 2697
+				},
+				"frame_intervals": {
+					"max_ms": 6.079,
+					"mean_ms": 2.22265517241379,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.581,
+					"p99_ms": 4.581,
+					"samples": 2697
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.18899990618229,
+					"mean_ms": 1.85005895269107,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.09800001978874,
+					"p99_ms": 2.13099999725819,
+					"samples": 2697
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.994509
+			},
+			"mission": 19,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 220,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25614,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.865854,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41722038,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303202440,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41461478,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41450198,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "volcanic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 199.27,
+			"layout_id": "volcanic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 220.929,
+					"mean_ms": 20.5862033132528,
+					"over_16_67ms": 185,
+					"over_33_33ms": 185,
+					"p95_ms": 220.929,
+					"p99_ms": 220.929,
+					"samples": 2656
+				},
+				"frame_intervals": {
+					"max_ms": 7.649,
+					"mean_ms": 2.25921197289156,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.022,
+					"p99_ms": 4.882,
+					"samples": 2656
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.091000020504,
+					"mean_ms": 1.87668034676406,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.03199997544289,
+					"p99_ms": 2.05000002682209,
+					"samples": 2656
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 6.000473
+			},
+			"mission": 19,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 220,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25614,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.877519,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41735414,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303202440,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41474854,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41463282,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "volcanic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 190.164,
+			"layout_id": "volcanic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 208.006,
+					"mean_ms": 16.5484149277688,
+					"over_16_67ms": 143,
+					"over_33_33ms": 143,
+					"p95_ms": 208.006,
+					"p99_ms": 208.006,
+					"samples": 2492
+				},
+				"frame_intervals": {
+					"max_ms": 5.922,
+					"mean_ms": 2.40556902086677,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.976,
+					"p99_ms": 4.765,
+					"samples": 2492
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.54000009596348,
+					"mean_ms": 1.78596869982887,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.02899998426437,
+					"p99_ms": 2.05599996447563,
+					"samples": 2492
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.994688
+			},
+			"mission": 19,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 220,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25614,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.875908,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41758993,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303409912,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41461010,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41497322,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 295950346,
+				"resources": 93
+			},
+			"biome": "dusk",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 265.382,
+			"layout_id": "dusk",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 278.895,
+					"mean_ms": 17.5687794676806,
+					"over_16_67ms": 447,
+					"over_33_33ms": 85,
+					"p95_ms": 18.947,
+					"p99_ms": 278.895,
+					"samples": 2367
+				},
+				"frame_intervals": {
+					"max_ms": 18.993,
+					"mean_ms": 2.53487198986058,
+					"over_16_67ms": 2,
+					"over_33_33ms": 0,
+					"p95_ms": 4.004,
+					"p99_ms": 4.558,
+					"samples": 2367
+				},
+				"gpu_completed_ms": {
+					"max_ms": 7.70299983024597,
+					"mean_ms": 1.73254837301596,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.15000005066395,
+					"p99_ms": 2.21200007200241,
+					"samples": 2367
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.000049
+			},
+			"mission": 23,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25556,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.856669,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41772177,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303409912,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41474194,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41462594,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "dusk",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 315.998,
+			"layout_id": "dusk",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 325.751,
+					"mean_ms": 10.1487701096894,
+					"over_16_67ms": 372,
+					"over_33_33ms": 8,
+					"p95_ms": 23.714,
+					"p99_ms": 23.714,
+					"samples": 2188
+				},
+				"frame_intervals": {
+					"max_ms": 23.769,
+					"mean_ms": 2.74253016453382,
+					"over_16_67ms": 2,
+					"over_33_33ms": 0,
+					"p95_ms": 3.982,
+					"p99_ms": 5.297,
+					"samples": 2188
+				},
+				"gpu_completed_ms": {
+					"max_ms": 5.87299990653992,
+					"mean_ms": 1.62865813471159,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 1.92199996113777,
+					"p99_ms": 2.28400006890297,
+					"samples": 2188
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.000674
+			},
+			"mission": 23,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25556,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.8567,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41798281,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303409912,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41487350,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41476074,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "dusk",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 347.802,
+			"layout_id": "dusk",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 12.28,
+					"mean_ms": 6.84220694444458,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 12.28,
+					"p99_ms": 12.28,
+					"samples": 2160
+				},
+				"frame_intervals": {
+					"max_ms": 12.378,
+					"mean_ms": 2.77764861111111,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.118,
+					"p99_ms": 4.949,
+					"samples": 2160
+				},
+				"gpu_completed_ms": {
+					"max_ms": 10.3999999761581,
+					"mean_ms": 1.68185231402102,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 1.95299994945526,
+					"p99_ms": 2.02799999713898,
+					"samples": 2160
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.999727
+			},
+			"mission": 23,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25556,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.906478,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41811441,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303409912,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41500510,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41488942,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "dusk",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 239.858,
+			"layout_id": "dusk",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 275.593,
+					"mean_ms": 32.3099127201565,
+					"over_16_67ms": 255,
+					"over_33_33ms": 255,
+					"p95_ms": 275.593,
+					"p99_ms": 275.593,
+					"samples": 2555
+				},
+				"frame_intervals": {
+					"max_ms": 5.563,
+					"mean_ms": 2.34830919765167,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.968,
+					"p99_ms": 4.909,
+					"samples": 2555
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.12999996542931,
+					"mean_ms": 1.91838786552447,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.06500002741814,
+					"p99_ms": 2.09199997782707,
+					"samples": 2555
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.999941
+			},
+			"mission": 23,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25556,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.88589,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41788770,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303368428,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41542958,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41522754,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "arctic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 181.901,
+			"layout_id": "arctic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 189.465,
+					"mean_ms": 26.2718068181814,
+					"over_16_67ms": 288,
+					"over_33_33ms": 288,
+					"p95_ms": 189.465,
+					"p99_ms": 189.465,
+					"samples": 2728
+				},
+				"frame_intervals": {
+					"max_ms": 15.165,
+					"mean_ms": 2.19923130498534,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.521,
+					"p99_ms": 4.503,
+					"samples": 2728
+				},
+				"gpu_completed_ms": {
+					"max_ms": 3.36600005626678,
+					"mean_ms": 1.89343768181252,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.10699997842312,
+					"p99_ms": 2.14199993014336,
+					"samples": 2728
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.999508
+			},
+			"mission": 27,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 184,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25528,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.86225,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41801954,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303368428,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41556142,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41544542,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "arctic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 185.332,
+			"layout_id": "arctic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 193.113,
+					"mean_ms": 23.6548286341998,
+					"over_16_67ms": 253,
+					"over_33_33ms": 253,
+					"p95_ms": 193.113,
+					"p99_ms": 193.113,
+					"samples": 2731
+				},
+				"frame_intervals": {
+					"max_ms": 13.028,
+					"mean_ms": 2.19567081655071,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.452,
+					"p99_ms": 4.539,
+					"samples": 2731
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.44800001382828,
+					"mean_ms": 1.90224203559035,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.11499999463558,
+					"p99_ms": 2.14500004053116,
+					"samples": 2731
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.996389
+			},
+			"mission": 27,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 184,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25528,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.8582,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41820914,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303368428,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41569298,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41558022,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "arctic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 186.719,
+			"layout_id": "arctic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 207.105,
+					"mean_ms": 20.4465775147929,
+					"over_16_67ms": 191,
+					"over_33_33ms": 191,
+					"p95_ms": 207.105,
+					"p99_ms": 207.105,
+					"samples": 2535
+				},
+				"frame_intervals": {
+					"max_ms": 5.567,
+					"mean_ms": 2.36590295857988,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.162,
+					"p99_ms": 5.004,
+					"samples": 2535
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.35499995946884,
+					"mean_ms": 1.83267297909634,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.01600003242493,
+					"p99_ms": 2.04000002145767,
+					"samples": 2535
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.997571
+			},
+			"mission": 27,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 184,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25528,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.872287,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41834074,
+				"nodes": 19,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303368428,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41582458,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41570886,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "arctic",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 226.725,
+			"layout_id": "arctic",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 246.685,
+					"mean_ms": 19.3767955140185,
+					"over_16_67ms": 155,
+					"over_33_33ms": 155,
+					"p95_ms": 246.685,
+					"p99_ms": 246.685,
+					"samples": 2675
+				},
+				"frame_intervals": {
+					"max_ms": 6.094,
+					"mean_ms": 2.24281196261682,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.047,
+					"p99_ms": 4.935,
+					"samples": 2675
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.14500004053116,
+					"mean_ms": 1.84193794291989,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 1.99099999666214,
+					"p99_ms": 2.03299996256828,
+					"samples": 2675
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.999531
+			},
+			"mission": 27,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 2,
+				"nodes": 16
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 184,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25528,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.866768,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41880849,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303411208,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41569030,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41607570,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "final",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 197.629,
+			"layout_id": "final",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 204.9,
+					"mean_ms": 18.1038405405404,
+					"over_16_67ms": 547,
+					"over_33_33ms": 142,
+					"p95_ms": 204.9,
+					"p99_ms": 204.9,
+					"samples": 2590
+				},
+				"frame_intervals": {
+					"max_ms": 17.297,
+					"mean_ms": 2.31319343629344,
+					"over_16_67ms": 1,
+					"over_33_33ms": 0,
+					"p95_ms": 3.968,
+					"p99_ms": 5.092,
+					"samples": 2590
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.26700006425381,
+					"mean_ms": 1.89981351275587,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.20899997651577,
+					"p99_ms": 2.23800002038479,
+					"samples": 2590
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 5.991195
+			},
+			"mission": 31,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25580,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.869331,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41894033,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303411208,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41582214,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41570614,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "final",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 225.115,
+			"layout_id": "final",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 232.162,
+					"mean_ms": 17.6197114351496,
+					"over_16_67ms": 523,
+					"over_33_33ms": 96,
+					"p95_ms": 21.14,
+					"p99_ms": 232.162,
+					"samples": 2606
+				},
+				"frame_intervals": {
+					"max_ms": 21.18,
+					"mean_ms": 2.30299693016117,
+					"over_16_67ms": 1,
+					"over_33_33ms": 0,
+					"p95_ms": 3.764,
+					"p99_ms": 4.782,
+					"samples": 2606
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.28199990093708,
+					"mean_ms": 1.91444205616244,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.216000020504,
+					"p99_ms": 2.24400009214878,
+					"samples": 2606
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-11600000",
+						"terrain_z": -116.0,
+						"tick": 60
+					},
+					{
+						"state": "120|-11300000",
+						"terrain_z": -113.0,
+						"tick": 120
+					},
+					{
+						"state": "180|-11000000",
+						"terrain_z": -110.0,
+						"tick": 180
+					},
+					{
+						"state": "240|-10700000",
+						"terrain_z": -107.0,
+						"tick": 240
+					},
+					{
+						"state": "300|-10400000",
+						"terrain_z": -104.0,
+						"tick": 300
+					},
+					{
+						"state": "360|-10100000",
+						"terrain_z": -101.0,
+						"tick": 360
+					}
+				],
+				"state_signature": 9724425,
+				"wall_seconds": 6.001615
+			},
+			"mission": 31,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -119.0,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25580,
+			"view": "coast",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.850419,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41920137,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303411208,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41595370,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41584090,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "final",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 215.273,
+			"layout_id": "final",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 242.272,
+					"mean_ms": 9.08267913613555,
+					"over_16_67ms": 40,
+					"over_33_33ms": 40,
+					"p95_ms": 6.158,
+					"p99_ms": 242.272,
+					"samples": 2593
+				},
+				"frame_intervals": {
+					"max_ms": 6.484,
+					"mean_ms": 2.31244388738912,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.678,
+					"p99_ms": 4.745,
+					"samples": 2593
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.47799998521805,
+					"mean_ms": 1.97778056353629,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.11000001430511,
+					"p99_ms": 2.17399999499321,
+					"samples": 2593
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.996178
+			},
+			"mission": 31,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 0,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25580,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.876976,
+			"warmup_ticks": 60,
+			"width": 65.0
+		},
+		{
+			"active_memory": {
+				"engine_static_bytes": 41933297,
+				"nodes": 21,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 303411208,
+				"resources": 94
+			},
+			"after_dispose_memory": {
+				"engine_static_bytes": 41608530,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"before_memory": {
+				"engine_static_bytes": 41596958,
+				"nodes": 3,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 296125106,
+				"resources": 93
+			},
+			"biome": "final",
+			"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+			"camera_position": "(0.0, -3.2, 0.0)",
+			"camera_size": 21.0,
+			"configure_arguments": 4,
+			"construction_ms": 196.766,
+			"layout_id": "final",
+			"length": 220.0,
+			"measurement": {
+				"cpu_process_ms": {
+					"max_ms": 230.921,
+					"mean_ms": 5.69171166601666,
+					"over_16_67ms": 9,
+					"over_33_33ms": 9,
+					"p95_ms": 5.022,
+					"p99_ms": 5.022,
+					"samples": 2563
+				},
+				"frame_intervals": {
+					"max_ms": 5.442,
+					"mean_ms": 2.34090714007023,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.638,
+					"p99_ms": 4.591,
+					"samples": 2563
+				},
+				"gpu_completed_ms": {
+					"max_ms": 2.41099998354912,
+					"mean_ms": 1.96345025229468,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 2.13700005412102,
+					"p99_ms": 2.16999998688698,
+					"samples": 2563
+				},
+				"gpu_zero_samples": 0,
+				"physics_ticks": 360,
+				"state_samples": [
+					{
+						"state": "60|-3660000",
+						"terrain_z": -36.5999984741211,
+						"tick": 60
+					},
+					{
+						"state": "120|-3360000",
+						"terrain_z": -33.5999984741211,
+						"tick": 120
+					},
+					{
+						"state": "180|-3060000",
+						"terrain_z": -30.6000003814697,
+						"tick": 180
+					},
+					{
+						"state": "240|-2760000",
+						"terrain_z": -27.6000003814697,
+						"tick": 240
+					},
+					{
+						"state": "300|-2460000",
+						"terrain_z": -24.6000003814697,
+						"tick": 300
+					},
+					{
+						"state": "360|-2160000",
+						"terrain_z": -21.6000003814697,
+						"tick": 360
+					}
+				],
+				"state_signature": 671655762,
+				"wall_seconds": 5.999753
+			},
+			"mission": 31,
+			"node_counts": {
+				"collision_objects": 0,
+				"mesh_instances": 6,
+				"multimesh_groups": 4,
+				"nodes": 18
+			},
+			"origin_z": -39.6,
+			"pass": 1,
+			"props": 244,
+			"safe_x": 18.4407407407407,
+			"scroll_speed": 3.0,
+			"triangles": 25580,
+			"view": "plateau",
+			"viewport": [
+				1920,
+				972
+			],
+			"warmup_seconds": 0.880011,
+			"warmup_ticks": 60,
+			"width": 65.0
+		}
+	],
+	"schema": 1,
+	"seed": 1942,
+	"startup_asset_load_ms": 1557.526,
+	"terrain_rng_note": "Production terrain derives its local seed from the preserved mission ID: id*7919+1942",
+	"timing_limits": "Frame intervals are CPU-observed render cadence, not isolated shader time. GPU completed measurements may lag and zero may mean unavailable. TIME_PROCESS is process callbacks, not whole CPU time. Construction/startup/warmup are separate.",
+	"viewport": [
+		1920,
+		972
+	],
+	"vsync": false,
+	"warmup_ticks_per_scenario": 60,
+	"whole_game_fps": "NOT_MEASURED"
+}

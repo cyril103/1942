@@ -1,6 +1,6 @@
 # Pacific Strike — Campagne 1942
 
-Campagne solo de **32 missions** sous Godot 4.7.2, sur la branche `codex/jeu-final` : huit secteurs, huit combats de boss à trois phases, avions 3D low poly et décor océanique 2D. Le jeu occupe toute la largeur avec deux fines bandes de HUD, soit 90 % de la surface de l'écran. Menus, hangar, améliorations permanentes, trois difficultés, médailles et sauvegarde automatique.
+Campagne solo de **32 missions** sous Godot 4.7.2, sur la branche `jeu_toppissime` : huit secteurs, huit combats de boss à trois phases, avions 3D low poly, océan et raids terrestres. Le jeu occupe toute la largeur avec deux fines bandes de HUD, soit 90 % de la surface de l'écran. Menus, hangar, améliorations permanentes, trois difficultés, médailles et sauvegarde automatique.
 
 ## Lancer
 
@@ -16,7 +16,9 @@ Les missions proposent 19 à 35 rencontres avec des vagues de huit chasseurs, de
 
 Le score total, les vies restantes et l'arme équipée sont conservés entre les missions. Le bilan distingue le total de la partie des points de la mission. Recommencer une mission reprend son état de départ sauvegardé : cela évite de dupliquer les points d'une tentative abandonnée. Les anciennes sauvegardes sont compatibles ; leur total initial est reconstitué à partir des scores enregistrés.
 
-Le briefing indique l'objectif principal et les conditions de maîtrise pour l'or. Les premières victoires et les meilleures médailles donnent des pièces pour le hangar. Trois configurations du même avion privilégient polyvalence, vitesse ou résistance. La campagne traverse récifs, convois, mousson, mangroves, volcans, crépuscule et mer arctique.
+Le briefing indique l'objectif principal et les conditions de maîtrise pour l'or. Les premières victoires et les meilleures médailles donnent des pièces pour le hangar. Trois avions, Vanguard, P-38 Interceptor et Corsair Bulwark, privilégient polyvalence, vitesse ou résistance. La campagne traverse récifs, convois, mousson, mangroves, volcans, crépuscule et mer arctique.
+
+La version 1.8 distingue les huit raids par leurs infrastructures, réseaux radar et objectifs. Le plan de briefing montre les priorités ; le quota et les cibles obligatoires doivent être accomplis ensemble. Les batteries mobiles annoncent leur trajet et cessent de tirer pendant le déplacement. Le basalte et la neige utilisent des textures natives, avec routes et pistes intégrées au terrain. Les validations et leurs limites sont décrites dans `docs/validation/raids-1.8.txt`.
 
 La progression reprend au début de la mission débloquée, sans sauvegarde en plein vol. Le fichier `pacific-campaign-v1.json` est dans le dossier utilisateur Godot du jeu, avec copie `.bak`. Les niveaux restent rejouables. Nouvelle campagne demande confirmation et conserve options et record.
 

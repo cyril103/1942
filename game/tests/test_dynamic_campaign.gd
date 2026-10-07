@@ -29,7 +29,7 @@ func _run() -> void:
 		if m.get("ground_assault",false):
 			check(m.events.size()>=3 and m.events.all(func(e): return float(e.time)<12.0 and e.kind in ["zero","hayabusa","bomber"]),"Raid %d has a finite air approach before the low-flight handoff" % int(m.id))
 			check(m.boss=="" and m.objective=="ground" and int(m.quota)>0 and int(m.ground_count)>=int(m.quota),"Raid %d provides enough real ground targets for its required objective" % int(m.id))
-			check(m.secondary=="radar" and int(m.secondary_target)==2,"Raid %d exposes its radar disruption objective" % int(m.id))
+			check(m.secondary=="ground_layout" and int(m.secondary_target)==[2,3,3,4,4,2,2,3][int(m.sector)],"Raid %d exposes its independently specified tactical objective" % int(m.id))
 		else:
 			check(m.events.size()>=19,"Air mission %d retains its authored encounter budget" % int(m.id))
 		var ordered := true

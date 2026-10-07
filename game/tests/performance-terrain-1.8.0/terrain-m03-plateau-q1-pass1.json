@@ -1,0 +1,117 @@
+{
+	"active_memory": {
+		"engine_static_bytes": 41529349,
+		"nodes": 21,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 303055472,
+		"resources": 94
+	},
+	"after_dispose_memory": {
+		"engine_static_bytes": 41229794,
+		"nodes": 3,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 295775586,
+		"resources": 93
+	},
+	"before_memory": {
+		"engine_static_bytes": 41218222,
+		"nodes": 3,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 295775586,
+		"resources": 93
+	},
+	"biome": "coral",
+	"cache_note": "First or repeat construction of this biome/view in one process; driver/disk caches were not erased",
+	"camera_position": "(0.0, -3.2, 0.0)",
+	"camera_size": 21.0,
+	"configure_arguments": 4,
+	"construction_ms": 214.656,
+	"layout_id": "coral",
+	"length": 220.0,
+	"measurement": {
+		"cpu_process_ms": {
+			"max_ms": 244.031,
+			"mean_ms": 31.0270565894418,
+			"over_16_67ms": 286,
+			"over_33_33ms": 286,
+			"p95_ms": 244.031,
+			"p99_ms": 244.031,
+			"samples": 2633
+		},
+		"frame_intervals": {
+			"max_ms": 5.57,
+			"mean_ms": 2.27865400683631,
+			"over_16_67ms": 0,
+			"over_33_33ms": 0,
+			"p95_ms": 3.685,
+			"p99_ms": 4.608,
+			"samples": 2633
+		},
+		"gpu_completed_ms": {
+			"max_ms": 2.1169999986887,
+			"mean_ms": 1.95030345589183,
+			"over_16_67ms": 0,
+			"over_33_33ms": 0,
+			"p95_ms": 2.06799997389317,
+			"p99_ms": 2.08900003135204,
+			"samples": 2633
+		},
+		"gpu_zero_samples": 0,
+		"physics_ticks": 360,
+		"state_samples": [
+			{
+				"state": "60|-3660000",
+				"terrain_z": -36.5999984741211,
+				"tick": 60
+			},
+			{
+				"state": "120|-3360000",
+				"terrain_z": -33.5999984741211,
+				"tick": 120
+			},
+			{
+				"state": "180|-3060000",
+				"terrain_z": -30.6000003814697,
+				"tick": 180
+			},
+			{
+				"state": "240|-2760000",
+				"terrain_z": -27.6000003814697,
+				"tick": 240
+			},
+			{
+				"state": "300|-2460000",
+				"terrain_z": -24.6000003814697,
+				"tick": 300
+			},
+			{
+				"state": "360|-2160000",
+				"terrain_z": -21.6000003814697,
+				"tick": 360
+			}
+		],
+		"state_signature": 671655762,
+		"wall_seconds": 5.999711
+	},
+	"mission": 3,
+	"node_counts": {
+		"collision_objects": 0,
+		"mesh_instances": 6,
+		"multimesh_groups": 4,
+		"nodes": 18
+	},
+	"origin_z": -39.6,
+	"pass": 1,
+	"props": 244,
+	"safe_x": 18.4407407407407,
+	"scroll_speed": 3.0,
+	"triangles": 25504,
+	"view": "plateau",
+	"viewport": [
+		1920,
+		972
+	],
+	"warmup_seconds": 0.877825,
+	"warmup_ticks": 60,
+	"width": 65.0
+}

@@ -1,0 +1,87 @@
+{
+	"checks": 111806,
+	"failures": [],
+	"geometry_configurations": 96,
+	"missions": [
+		{
+			"briefing_characters": 306,
+			"mission": 3,
+			"priorities": [],
+			"quota": 12,
+			"secondary": "Neutraliser les deux stations radar",
+			"targets": 30
+		},
+		{
+			"briefing_characters": 311,
+			"mission": 7,
+			"priorities": [],
+			"quota": 14,
+			"secondary": "Détruire trois dépôts de carburant",
+			"targets": 32
+		},
+		{
+			"briefing_characters": 312,
+			"mission": 11,
+			"priorities": [
+				"storm/r01",
+				"storm/r02"
+			],
+			"quota": 14,
+			"secondary": "Neutraliser les trois réseaux radar",
+			"targets": 34
+		},
+		{
+			"briefing_characters": 357,
+			"mission": 15,
+			"priorities": [
+				"jade/h01",
+				"jade/h02",
+				"jade/h03"
+			],
+			"quota": 16,
+			"secondary": "Détruire les quatre hangars des deux aérodromes",
+			"targets": 36
+		},
+		{
+			"briefing_characters": 367,
+			"mission": 19,
+			"priorities": [
+				"volcanic/m01",
+				"volcanic/m02"
+			],
+			"quota": 18,
+			"secondary": "Détruire les quatre batteries mobiles des complexes",
+			"targets": 34
+		},
+		{
+			"briefing_characters": 339,
+			"mission": 23,
+			"priorities": [
+				"dusk/k05",
+				"dusk/k06"
+			],
+			"quota": 20,
+			"secondary": "Neutraliser les radars des deux bastions",
+			"targets": 32
+		},
+		{
+			"briefing_characters": 334,
+			"mission": 27,
+			"priorities": [],
+			"quota": 22,
+			"secondary": "Détruire les deux dépôts boréaux",
+			"targets": 38
+		},
+		{
+			"briefing_characters": 382,
+			"mission": 31,
+			"priorities": [
+				"final/command"
+			],
+			"quota": 26,
+			"secondary": "Neutraliser les trois radars de l'arsenal",
+			"targets": 40
+		}
+	],
+	"scope": "Pure authored data and rectangle reservations only; no gameplay/render/human proof"
+}

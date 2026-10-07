@@ -1,14 +1,24 @@
 extends Node3D
+## Sector-authored routes and targets share one local layout.
 ## Finite coastal battlefield. The campaign owns its scrolling transform.
 ## Only the outer third carries raised terrain and instanced scenery. The inner
 ## plateau stays at -8.0, below the physical cloud layer during the assault.
 
 const SURFACE_SHADER := preload("res://shaders/assault_terrain.gdshader")
-const LANDSCAPE := preload("res://assets/environment/raid-v2/tropical-battlefield.png")
+const LANDSCAPE_PATH := "res://assets/environment/raid-v2/tropical-battlefield.png"
 const PLATEAU_Y := -8.0
 const SEA_EDGE_Y := -9.48
 const MAX_TRIANGLES := 29000
 const MAX_PROP_INSTANCES := 340
+const MAX_INFRASTRUCTURE_TRIANGLES := 2000
+const MAX_ROUTE_SEGMENTS := 48
+const MAX_RUNWAYS := 8
+const INFRASTRUCTURE_Y := PLATEAU_Y + .040
+# Strings, not preloads: only the active biome texture is referenced at runtime.
+const BIOME_ALBEDO_PATHS := {
+	"volcanic": "res://assets/environment/raid-v3/volcanic-basalt-albedo-native.png",
+	"arctic": "res://assets/environment/raid-v3/arctic-packed-snow-albedo-native.png"
+}
 static var _coast_shader_cache: Shader
 
 var triangle_count := 0
@@ -30,15 +40,33 @@ var _random := RandomNumberGenerator.new()
 var _ground_detail: Texture2D
 var _scenery_clusters: Array[Vector2] = []
 var shoreline: MeshInstance3D
+var infrastructure_triangle_count := 0
+var route_segment_count := 0
+var runway_count := 0
+var layout_id := ""
+var _layout: Dictionary = {}
+var _route_segments: Array[Dictionary] = []
+var _runway_specs: Array[Dictionary] = []
+var _layout_geometry_valid := true
+var _layout_geometry_errors: Array[String] = []
+var _shared_parameters: Dictionary = {}
+var _infrastructure_materials: Array[ShaderMaterial] = []
+var _biome_albedo: Texture2D
+var _landscape: Texture2D
 
 
-func configure(mission: Dictionary, width: float, length: float) -> void:
+func configure(mission: Dictionary, width: float, length: float, layout: Dictionary = {}) -> void:
 	# Construction happens once, before the coast reaches the screen. Reusing a
 	# node is supported without retaining the old mesh or MultiMesh resources.
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
 	_groups.clear()
+	_infrastructure_materials.clear()
+	_shared_parameters.clear()
+	infrastructure_triangle_count = 0
+	route_segment_count = 0
+	runway_count = 0
 	terrain_width = maxf(width, 24.0)
 	terrain_length = maxf(length, 32.0)
 	useful_half_width = terrain_width * .33
@@ -46,26 +74,29 @@ func configure(mission: Dictionary, width: float, length: float) -> void:
 	_biome = str(mission.get("biome", "coral"))
 	_random.seed = int(mission.get("id", 1)) * 7919 + 1942
 	_seed_phase = _random.randf_range(0.0, TAU)
+	_layout = layout # The exact instance already used by GroundAssault targets.
+	layout_id = str(layout.get("id", ""))
+	_prepare_infrastructure()
+	_load_active_biome_albedo()
 	_build_surface()
 	_build_shoreline()
+	_build_infrastructure()
 	_build_scenery()
 	set_quality(_quality)
 
 
 func set_ground_detail(texture: Texture2D) -> void:
 	_ground_detail = texture
-	for material in [surface_material, coast_material]:
-		if is_instance_valid(material):
-			material.set_shader_parameter("ground_detail", texture)
-			material.set_shader_parameter("use_ground_detail", texture != null)
+	set_ocean_parameter("ground_detail", texture)
+	set_ocean_parameter("use_ground_detail", texture != null)
 
 
 func set_ocean_parameter(parameter: StringName, value: Variant) -> void:
 	## Keep the opaque shore and its transparent fringe in phase with the sea.
 	## Also accepts shared pigment parameters when preview tools need them.
-	for material in [surface_material, coast_material]:
-		if is_instance_valid(material):
-			material.set_shader_parameter(parameter, value)
+	_shared_parameters[parameter] = value
+	for material in _all_surface_materials():
+		material.set_shader_parameter(parameter, value)
 
 
 func set_quality(level: int) -> void:
@@ -102,7 +133,7 @@ func _build_surface() -> void:
 	var columns := int(ceil(terrain_width / spacing))
 	var rows := int(ceil(terrain_length / spacing))
 	# Leave room under the global mesh budget for the thin shoreline ribbon.
-	while columns * rows * 2 > MAX_TRIANGLES - 4000:
+	while columns * rows * 2 > MAX_TRIANGLES - 4000 - (MAX_INFRASTRUCTURE_TRIANGLES if not _layout.is_empty() else 0):
 		spacing *= 1.025
 		columns = int(ceil(terrain_width / spacing))
 		rows = int(ceil(terrain_length / spacing))
@@ -187,8 +218,13 @@ func _build_surface() -> void:
 	add_child(coastal_fringe)
 	set_ocean_parameter("field_size", Vector2(terrain_width, terrain_length))
 	set_ocean_parameter("seed_phase", _seed_phase)
-	set_ocean_parameter("landscape_texture", LANDSCAPE)
+	set_ocean_parameter("landscape_texture", _landscape)
 	set_ocean_parameter("pigment_exponent", 1.0)
+	set_ocean_parameter("use_shared_layout", not _layout.is_empty())
+	set_ocean_parameter("biome_material", 1 if _biome == "volcanic" else (2 if _biome == "arctic" else 0))
+	set_ocean_parameter("biome_albedo", _biome_albedo)
+	set_ocean_parameter("biome_tile_metres", 4.0)
+	set_ocean_parameter("landscape_gain", .48 if _biome == "volcanic" else (.34 if _biome == "arctic" else .38))
 	var palette := _palette()
 	for parameter in palette:
 		set_ocean_parameter(parameter, palette[parameter])
@@ -204,9 +240,9 @@ func _palette() -> Dictionary:
 		"convoy": grass = Color(.22, .37, .14); meadow = Color(.41, .48, .23)
 		"storm": grass = Color(.18, .31, .19); meadow = Color(.34, .41, .24); sand = Color(.65, .69, .57)
 		"jade": grass = Color(.17, .38, .18); meadow = Color(.32, .46, .22)
-		"volcanic": grass = Color(.25, .33, .18); meadow = Color(.40, .39, .24); sand = Color(.39, .38, .32); rock = Color(.26, .27, .27)
+		"volcanic": grass = Color(.25, .33, .18); meadow = Color(.40, .39, .24); sand = Color(.52, .49, .42); rock = Color(.45, .46, .44)
 		"dusk": grass = Color(.27, .37, .16); meadow = Color(.44, .46, .23)
-		"arctic": grass = Color(.56, .62, .63); meadow = Color(.67, .69, .67); sand = Color(.41, .46, .47); rock = Color(.28, .33, .36)
+		"arctic": grass = Color(.56, .62, .63); meadow = Color(.67, .69, .67); sand = Color(.65, .70, .71); rock = Color(.51, .57, .59)
 		"final": grass = Color(.21, .35, .15); meadow = Color(.38, .43, .21)
 	return {"grass_color": grass, "meadow_color": meadow, "sand_color": sand, "rock_color": rock, "snow_cover": 1.0 if _biome == "arctic" else 0.0}
 
@@ -283,6 +319,9 @@ func _material(color: Color) -> StandardMaterial3D:
 
 
 func _build_scenery() -> void:
+	if _biome in ["volcanic", "arctic"]:
+		_build_geological_scenery()
+		return
 	var scale_count := clampf(terrain_width * terrain_length / 5500.0, .60, 1.0)
 	var tree_count := int(52 * scale_count)
 	var rock_count := int(64 * scale_count)
@@ -453,6 +492,286 @@ func _canopy_mesh(pine: bool) -> ArrayMesh:
 	builder.generate_normals()
 	return builder.commit()
 
+
+
+func _all_surface_materials() -> Array[ShaderMaterial]:
+	var materials: Array[ShaderMaterial] = []
+	for material in [surface_material, coast_material]:
+		if is_instance_valid(material):
+			materials.append(material)
+	materials.append_array(_infrastructure_materials)
+	return materials
+
+
+func _load_active_biome_albedo() -> void:
+	_biome_albedo = null
+	_landscape = null
+	if BIOME_ALBEDO_PATHS.has(_biome):
+		# No asynchronous allocation during firing. GroundAssault constructs
+		# this battlefield before deployment, then holds one active material.
+		_biome_albedo = load(str(BIOME_ALBEDO_PATHS[_biome])) as Texture2D
+		assert(_biome_albedo != null, "Missing native biome albedo: " + _biome)
+	else:
+		_landscape = load(LANDSCAPE_PATH) as Texture2D
+		assert(_landscape != null, "Missing original tropical macro")
+
+
+func infrastructure_status() -> Dictionary:
+	## Construction observability; not a proof of runtime collider clearance.
+	return {
+		"layout_id": layout_id, "valid": _layout_geometry_valid,
+		"errors": _layout_geometry_errors.duplicate(),
+		"route_segments": route_segment_count, "runways": runway_count,
+		"triangles": infrastructure_triangle_count,
+		"opaque": true, "shared_layout": not _layout.is_empty(),
+		"biome_material": _biome, "native_albedo_loaded": _biome_albedo != null
+	}
+
+
+func _prepare_infrastructure() -> void:
+	_route_segments.clear()
+	_runway_specs.clear()
+	_layout_geometry_errors.clear()
+	_layout_geometry_valid = true
+	var routes: Dictionary = _layout.get("routes", {})
+	for route_id in routes:
+		var route: Dictionary = routes[route_id]
+		var points: Array = route.get("world_points", [])
+		var width := float(route.get("width", 0.0))
+		if not is_finite(width) or width <= 0.0:
+			_layout_geometry_errors.append("Invalid road width: " + str(route_id))
+			continue
+		for index in range(1, points.size()):
+			var a: Vector3 = points[index - 1]
+			var b: Vector3 = points[index]
+			var from := Vector2(a.x, a.z)
+			var to := Vector2(b.x, b.z)
+			if not a.is_finite() or not b.is_finite() or from.distance_to(to) < .01:
+				_layout_geometry_errors.append("Invalid road segment: " + str(route_id))
+				continue
+			var radius := width * .5 + .35
+			if not _fits_plateau(from, Vector2.ONE * radius) or not _fits_plateau(to, Vector2.ONE * radius):
+				_layout_geometry_errors.append("Road shoulders leave the flat plateau: " + str(route_id))
+				continue
+			_route_segments.append({"route_id": str(route_id), "from": from, "to": to, "half_width": width * .5})
+	for authored in _layout.get("runways", []):
+		var strip: Dictionary = authored
+		var strip_position: Vector3 = strip.get("position", Vector3.ZERO)
+		var extents: Vector2 = strip.get("world_half_extents", Vector2.ZERO)
+		if not strip_position.is_finite() or not extents.is_finite() or extents.x <= 0.0 or extents.y <= 0.0:
+			_layout_geometry_errors.append("Invalid airstrip: " + str(strip.get("id", "")))
+			continue
+		if not _fits_plateau(Vector2(strip_position.x, strip_position.z), extents + Vector2(.35, .66)):
+			_layout_geometry_errors.append("Airstrip shoulders leave the flat plateau: " + str(strip.get("id", "")))
+			continue
+		_runway_specs.append({"id": str(strip.get("id", "")), "center": Vector2(strip_position.x, strip_position.z), "extents": extents})
+	if _route_segments.size() > MAX_ROUTE_SEGMENTS or _runway_specs.size() > MAX_RUNWAYS:
+		_layout_geometry_errors.append("Authored infrastructure exceeds the bounded geometry budget")
+	_layout_geometry_valid = _layout_geometry_errors.is_empty()
+	if not _layout_geometry_valid:
+		# Reject the whole infrastructure set. Never silently truncate a shared
+		# route and draw a road that disagrees with a moving battery's path.
+		_route_segments.clear()
+		_runway_specs.clear()
+
+
+func _fits_plateau(center: Vector2, extent: Vector2) -> bool:
+	return absf(center.x) + extent.x <= useful_half_width and absf(center.y) + extent.y <= useful_half_length
+
+
+func _build_infrastructure() -> void:
+	if _layout.is_empty() or not _layout_geometry_valid:
+		return
+	var road_arrays := _new_infrastructure_arrays()
+	for segment_index in range(_route_segments.size()):
+		var spec: Dictionary = _route_segments[segment_index]
+		var a: Vector2 = spec.from
+		var b: Vector2 = spec.to
+		var half_width := float(spec.half_width)
+		var across := Vector2((b - a).normalized().y, -(b - a).normalized().x)
+		var offsets := [-half_width - .35, -half_width, half_width, half_width + .35]
+		var extent := Vector2(half_width, 0.0)
+		for band in range(3):
+			var left := float(offsets[band])
+			var right := float(offsets[band + 1])
+			_append_infrastructure_quad(road_arrays,
+				a + across * left, a + across * right, b + across * left, b + across * right,
+				Vector2(left, 0), Vector2(right, 0), Vector2(left, a.distance_to(b)), Vector2(right, a.distance_to(b)),
+				extent, INFRASTRUCTURE_Y)
+		# Only the region outside a segment receives a radial cap. A full disk
+		# painted terrain over the preceding road and exposed a circular seam.
+		# Interior bends add one outer arc; the rectangular strips already fill
+		# the inner corner. No overlapping elevated soil disks are generated.
+		if segment_index == 0 or _route_segments[segment_index - 1].route_id != spec.route_id:
+			_append_road_cap(road_arrays, a, half_width, a - b)
+		else:
+			var previous: Dictionary = _route_segments[segment_index - 1]
+			_append_road_join(road_arrays, a, half_width, a - Vector2(previous.from), b - a)
+		if segment_index == _route_segments.size() - 1 or _route_segments[segment_index + 1].route_id != spec.route_id:
+			_append_road_cap(road_arrays, b, half_width, b - a)
+	route_segment_count = _route_segments.size()
+	_commit_infrastructure("AuthoredServiceRoads", road_arrays, 1)
+	var runway_arrays := _new_infrastructure_arrays()
+	for spec in _runway_specs:
+		var center: Vector2 = spec.center
+		var extent: Vector2 = spec.extents
+		var margin := extent + Vector2(.35, .66)
+		_append_infrastructure_quad(runway_arrays,
+			center + Vector2(-margin.x, -margin.y), center + Vector2(margin.x, -margin.y),
+			center + Vector2(-margin.x, margin.y), center + Vector2(margin.x, margin.y),
+			Vector2(-margin.x, -margin.y), Vector2(margin.x, -margin.y),
+			Vector2(-margin.x, margin.y), Vector2(margin.x, margin.y), extent, INFRASTRUCTURE_Y + .005)
+	runway_count = _runway_specs.size()
+	_commit_infrastructure("AuthoredAirstrips", runway_arrays, 2)
+	assert(infrastructure_triangle_count <= MAX_INFRASTRUCTURE_TRIANGLES)
+	assert(triangle_count <= MAX_TRIANGLES)
+
+
+func _new_infrastructure_arrays() -> Dictionary:
+	return {
+		"vertices": PackedVector3Array(), "normals": PackedVector3Array(),
+		"uvs": PackedVector2Array(), "paint_uvs": PackedVector2Array(),
+		"colors": PackedColorArray(), "extents": PackedFloat32Array(), "indices": PackedInt32Array()
+	}
+
+
+func _ground_uv(point: Vector2) -> Vector2:
+	# Invert the exact surface grid mapping so a painted shoulder samples
+	# the same tropical macro texel as the opaque ground immediately below.
+	var v := point.y / (2.0 * _half_length(point.x)) + .5
+	var nominal_z := (v - .5) * terrain_length
+	var u := point.x / (2.0 * _half_width(nominal_z)) + .5
+	return Vector2(u, v)
+
+
+func _append_infrastructure_vertex(arrays: Dictionary, point: Vector2, paint_uv: Vector2, extent: Vector2, height: float) -> void:
+	arrays.vertices.append(Vector3(point.x, height, point.y))
+	arrays.normals.append(Vector3.UP)
+	arrays.uvs.append(_ground_uv(point))
+	arrays.paint_uvs.append(paint_uv)
+	# All shared routes/strips are on the exactly flat central plateau.
+	arrays.colors.append(Color(1.0, 0.0, 0.0, 1.0))
+	# COLOR is RGBA8/clamped by Godot. Preserve exact metre extents in the
+	# float custom attribute instead of truncating a 10 m strip to 1 m.
+	arrays.extents.append(extent.x)
+	arrays.extents.append(extent.y)
+
+
+func _append_infrastructure_quad(arrays: Dictionary, a: Vector2, b: Vector2, c: Vector2, d: Vector2,
+		uv_a: Vector2, uv_b: Vector2, uv_c: Vector2, uv_d: Vector2, extent: Vector2, height: float) -> void:
+	var first: int = arrays.vertices.size()
+	_append_infrastructure_vertex(arrays, a, uv_a, extent, height)
+	_append_infrastructure_vertex(arrays, b, uv_b, extent, height)
+	_append_infrastructure_vertex(arrays, c, uv_c, extent, height)
+	_append_infrastructure_vertex(arrays, d, uv_d, extent, height)
+	arrays.indices.append_array(PackedInt32Array([first, first + 1, first + 2, first + 1, first + 3, first + 2]))
+
+
+func _append_road_cap(arrays: Dictionary, center: Vector2, half_width: float, outward: Vector2) -> void:
+	_append_road_arc(arrays, center, half_width, outward.angle() - PI * .5, PI)
+
+
+func _append_road_join(arrays: Dictionary, center: Vector2, half_width: float, incoming: Vector2, outgoing: Vector2) -> void:
+	var from := incoming.normalized()
+	var to := outgoing.normalized()
+	var turn := from.cross(to)
+	if absf(turn) < .0001:
+		return
+	var side := 1.0 if turn > 0.0 else -1.0
+	var normal_from := Vector2(from.y, -from.x) * side
+	var normal_to := Vector2(to.y, -to.x) * side
+	var sweep := wrapf(normal_to.angle() - normal_from.angle(), -PI, PI)
+	_append_road_arc(arrays, center, half_width, normal_from.angle(), sweep)
+
+
+func _append_road_arc(arrays: Dictionary, center: Vector2, half_width: float, start_angle: float, sweep: float) -> void:
+	var extent := Vector2(half_width, 1.0)
+	var radius := half_width + .35
+	var first: int = arrays.vertices.size()
+	var slices := maxi(1, int(ceil(absf(sweep) / PI * 8.0)))
+	_append_infrastructure_vertex(arrays, center, Vector2.ZERO, extent, INFRASTRUCTURE_Y)
+	for index in range(slices + 1):
+		var angle := start_angle + float(index) / slices * sweep
+		var relative := Vector2(cos(angle), sin(angle)) * radius
+		_append_infrastructure_vertex(arrays, center + relative, relative, extent, INFRASTRUCTURE_Y)
+	for index in range(slices):
+		if sweep > 0.0:
+			arrays.indices.append_array(PackedInt32Array([first, first + index + 1, first + index + 2]))
+		else:
+			arrays.indices.append_array(PackedInt32Array([first, first + index + 2, first + index + 1]))
+
+
+func _commit_infrastructure(node_name: String, source: Dictionary, layer: int) -> void:
+	if source.indices.is_empty():
+		return
+	var arrays := []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = source.vertices
+	arrays[Mesh.ARRAY_NORMAL] = source.normals
+	arrays[Mesh.ARRAY_TEX_UV] = source.uvs
+	arrays[Mesh.ARRAY_TEX_UV2] = source.paint_uvs
+	arrays[Mesh.ARRAY_COLOR] = source.colors
+	arrays[Mesh.ARRAY_CUSTOM0] = source.extents
+	arrays[Mesh.ARRAY_INDEX] = source.indices
+	var mesh := ArrayMesh.new()
+	var custom_format := Mesh.ARRAY_CUSTOM_RG_FLOAT << Mesh.ARRAY_FORMAT_CUSTOM0_SHIFT
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays, [], {}, custom_format)
+	var material := ShaderMaterial.new()
+	material.shader = SURFACE_SHADER
+	for parameter in _shared_parameters:
+		material.set_shader_parameter(parameter, _shared_parameters[parameter])
+	material.set_shader_parameter("infrastructure_layer", layer)
+	_infrastructure_materials.append(material)
+	var instance := MeshInstance3D.new()
+	instance.name = node_name
+	instance.mesh = mesh
+	instance.material_override = material
+	instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(instance)
+	var added: int = source.indices.size() / 3
+	infrastructure_triangle_count += added
+	triangle_count += added
+
+
+func _build_geological_scenery() -> void:
+	# Material-specific geology replaces palm/fern groups entirely. The real
+	# tropical scenery path above remains intact for Coral/Jade/Storm/etc.
+	var scale_count := clampf(terrain_width * terrain_length / 5500.0, .60, 1.0)
+	var boulder_count := int((92 if _biome == "volcanic" else 64) * scale_count)
+	var scree_count := int((128 if _biome == "volcanic" else 120) * scale_count)
+	_scenery_clusters.clear()
+	for index in range(clampi(int(terrain_length / 11.0), 6, 32)):
+		var side := -1.0 if index % 2 == 0 else 1.0
+		_scenery_clusters.append(Vector2(side * _random.randf_range(terrain_width * .365, terrain_width * .415),
+			_random.randf_range(-useful_half_length, useful_half_length)))
+	var source := SphereMesh.new()
+	source.radius = .55
+	source.height = .82
+	source.radial_segments = 11
+	source.rings = 5
+	var geology := _weathered_rock(source)
+	var material := _material(Color.WHITE)
+	material.albedo_texture = _biome_albedo
+	material.uv1_triplanar = true
+	material.uv1_scale = Vector3(.25, .25, .25)
+	material.roughness = .98
+	geology.surface_set_material(0, material)
+	var boulders := _new_group("BasaltOutcrops" if _biome == "volcanic" else "FrostedOutcrops", geology, boulder_count)
+	var scree := _new_group("BasaltScree" if _biome == "volcanic" else "ArcticScree", geology, scree_count)
+	for index in range(boulder_count):
+		var anchor := _scenery_position()
+		var size := Vector3(_random.randf_range(.62, 1.55), _random.randf_range(.45, 1.08), _random.randf_range(.70, 1.55))
+		var basis := Basis.from_euler(Vector3(_random.randf_range(-.3, .3), _random.randf_range(0.0, TAU), _random.randf_range(-.25, .25))).scaled(size)
+		boulders.multimesh.set_instance_transform(index, Transform3D(basis, anchor + Vector3(0, size.y * .17, 0)))
+		boulders.multimesh.set_instance_color(index, Color.WHITE * _random.randf_range(.91, 1.08))
+	for index in range(scree_count):
+		var anchor := _scenery_position()
+		var size := Vector3(_random.randf_range(.22, .62), _random.randf_range(.08, .22), _random.randf_range(.27, .78))
+		var basis := Basis(Vector3.UP, _random.randf_range(0.0, TAU)).scaled(size)
+		scree.multimesh.set_instance_transform(index, Transform3D(basis, anchor + Vector3(0, size.y * .17, 0)))
+		scree.multimesh.set_instance_color(index, Color.WHITE * _random.randf_range(.94, 1.08))
+	prop_count = boulder_count + scree_count
+	assert(prop_count <= MAX_PROP_INSTANCES)
 
 func _add_triangle(builder: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 	builder.add_vertex(a)

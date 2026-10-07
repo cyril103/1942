@@ -1,0 +1,392 @@
+{
+	"briefings": [
+		{
+			"mission": 1,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 2,
+			"page": "briefing",
+			"secondary": "BONUS : Intercepter un bombardier",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 3,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux stations radar",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 4,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 5,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 6,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 7,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire trois dépôts de carburant",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 8,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 9,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 10,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 11,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les trois réseaux radar",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 12,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 13,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 14,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 15,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire les quatre hangars des deux aérodromes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 16,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 17,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 18,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 19,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire les quatre batteries mobiles des complexes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 20,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 21,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 22,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 23,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les radars des deux bastions",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 24,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 25,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 26,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 27,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire les deux dépôts boréaux",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 28,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 29,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 30,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 31,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les trois radars de l'arsenal",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 32,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1280, 720)"
+		},
+		{
+			"mission": 1,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 2,
+			"page": "briefing",
+			"secondary": "BONUS : Intercepter un bombardier",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 3,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux stations radar",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 4,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 5,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 6,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 7,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire trois dépôts de carburant",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 8,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 9,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 10,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 11,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les trois réseaux radar",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 12,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 13,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 14,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 15,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire les quatre hangars des deux aérodromes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 16,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 17,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 18,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 19,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire les quatre batteries mobiles des complexes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 20,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 21,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 22,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 23,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les radars des deux bastions",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 24,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 25,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 26,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 27,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire les deux dépôts boréaux",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 28,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 29,
+			"page": "briefing",
+			"secondary": "BONUS : Détruire une escadrille rouge complète",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 30,
+			"page": "briefing",
+			"secondary": "BONUS : Protéger le convoi pendant 32 secondes",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 31,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les trois radars de l'arsenal",
+			"size": "(1920, 1080)"
+		},
+		{
+			"mission": 32,
+			"page": "briefing",
+			"secondary": "BONUS : Neutraliser les deux points faibles du boss",
+			"size": "(1920, 1080)"
+		}
+	],
+	"checks": 16240,
+	"failures": [],
+	"human_comprehension": "NOT_PERFORMED",
+	"result_method": "Presentation fixtures; not a gameplay or human comprehension test"
+}

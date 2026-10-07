@@ -93,7 +93,7 @@ func _guide_and_results() -> void:
 			check(app.design.get_node("RankCriteria").text==RULES.criteria_text(RULES.rank_checks("S",report)),"Rank explanation matches actual S conditions: "+scenario[0])
 			check(app.design.get_node("RankObtained").text.ends_with(report.rank),"Debriefing retains the rank actually awarded")
 			if scenario[0]=="gold-A": check(report.grade==3 and report.rank=="A" and app.design.get_node("RankCriteria").text.contains("À atteindre"),"Gold plus A correctly leaves S criteria unmet")
-			if scenario[0]=="silver-S": check(report.grade==2 and report.rank=="S" and app.design.get_node("MedalCriteria").text.contains("À atteindre : Quota principal"),"S can coexist with silver when the gold quota was missed")
+			if scenario[0]=="silver-S": check(report.grade==2 and report.rank=="S" and app.design.get_node("MedalCriteria").text.contains("À atteindre : Objectif principal"),"S can coexist with silver when the main gold objective was missed")
 			_geometry("Result criteria "+scenario[0]+" "+str(dimensions))
 			await _capture(scenario[0]+"-%d" % dimensions.y)
 			_press("GUIDE DE SCORE")

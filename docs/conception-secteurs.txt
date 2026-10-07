@@ -1,284 +1,288 @@
-PACIFIC STRIKE — CONCEPTION DES SECTEURS ET DES RAIDS
-Tickets #14 et #17 ; prochaine étape du plan #23.
+PACIFIC STRIKE — SECTEURS ET RAIDS, CONTRAT DE LA PASSE 4
+Tickets #14 et #17 ; étape du plan #23.
 
-ÉTAT : PROPOSITION NON IMPLÉMENTÉE
+ÉTAT : VERSION 1.8.0, VALIDATION TECHNIQUE DU LOT #14/#17
 
-Ce document prépare les changements. Il ne décrit pas des mécaniques déjà
-livrées et ne valide aucun quota, taux de victoire, rendu ou gain de FPS.
-Les nombres ci-dessous sont des hypothèses de départ. Les huit raids
-proposés, les réseaux radar locaux, le véhicule DCA, leurs implantations
-et les matériaux par biome restent à implémenter puis à mesurer.
+Les huit raids ont passé les suites de données, de combat, de terrain et
+d'interface. Vingt-quatre sorties automatisées atteignent le quota ET les
+priorités avec les trois avions et les armes réelles. Leur Hurtbox protégée
+interdit d'en déduire un équilibre humain. Les comparaisons visuelles ont
+48 paires à caméra identique ; 32 paires de coût artistique et les replays
+complets M31 dans trois qualités sont mesurés avant/après. Ces comparaisons
+ne garantissent ni un équilibre humain, ni des FPS constants. L'export Windows
+1.8 a passé les contrôles d'archive et de démarrage silencieux.
+Résultats, méthode et limites : docs/validation/raids-1.8.txt.
 
-Sources de l'état actuel : game/data/missions.json, operations.gd,
-ground_assault.gd, ground_target.gd, assault_terrain.gd et scoring_rules.gd
-dans game/scripts/campaign. Les données utilisées en jeu sont celles
-obtenues après operations.prepare, pas le JSON brut seul.
+Sources : game/scripts/campaign/raid_layouts.gd, operations.gd,
+ground_assault.gd, ground_target.gd et assault_terrain.gd. Les missions
+jouées viennent de operations.prepare, et non du JSON brut seul.
 
-INTENTION DE LA PASSE
+CHANGEMENTS RÉELS ET PROPOSITIONS ÉCARTÉES
 
-Chaque secteur doit demander une décision identifiable : priorité de
-cible, changement de position ou usage d'une fenêtre de tir. Changer
-seulement les noms, la couleur du terrain ou le nombre de canons ne suffit
-pas. Les éléments du sol doivent aussi former une installation crédible :
-routes raccordées, dépôts accessibles, hangars proches de leur piste,
-défenses à une place utile et ombres cohérentes avec le littoral.
+Huit implantations composées cible par cible remplacent les rangées de cinq.
+IDs, voies, pistes, groupes radar, priorités et secondaires sont communs
+au terrain, aux unités et aux textes. Deux mécaniques : brouillage radar
+local de six secondes et DCA mobile sur une voie explicite. Aucune priorité
+ne rend une autre cible invulnérable. Les dépôts gardent leur explosion
+de proximité existante, sans nouvelle réaction simulée dans les données.
 
-La campagne garde 32 missions et huit secteurs. Les raids principaux
-restent M03 / M07 / M11 / M15 / M19 / M23 / M27 / M31. Les autres missions
-préparent leur tactique en mer ou la réemploient dans un combat de boss.
-M01 conserve son bombardier de commandement actuel : premier boss réduit,
-distinct du combat complet de M04. Aucune descente supplémentaire en M17.
+En mer, huit séquences de types/rôles et des fenêtres d'entrée réemploient
+les événements prévus ; pas de vague, quota ni PV ajouté. Les trois ajouts
+de M01 (navire, formation rouge, boss) appartenaient déjà à la version 1.7.
+Bombardiers et composants de boss conservent leurs comportements existants.
 
-INVARIANTS À PRÉSERVER
+La proposition de radar aérien en M09 est écartée : cette mécanique n'existe
+pas. M09 enseigne la prédiction et les passages latéraux, M11 les radars
+terrestres locaux. Aucun nouveau boss ou phase n'est livré par son briefing.
+La diversité d'une implantation n'est pas une preuve de diversité ressentie.
 
-Approche et remontée : avions ennemis au-dessus de l'océan. Combat rasant :
-aucune vague aérienne ni bombardier ennemi ; seule la défense au sol tire.
-La descente du joueur et de la caméra passe sous les nuages. Le retour
-réouvre l'espace aérien avec une nouvelle interception, sans rattrapage
-des événements écartés pendant le raid. L'atterrissage reste inchangé.
+INVARIANTS
 
-Navires, convoi et porte-avions circulent uniquement sur l'océan. La
-protection du convoi en M06 n'autorise aucun bateau dans le raid de M07.
-Les nouvelles implantations terrestres ne reconfigurent pas les îles avec
-les rotations ou retournements retirés à la demande du joueur.
+32 missions, raids M03/M07/M11/M15/M19/M23/M27/M31. M01 garde son bombardier
+de commandement réduit, distinct de M04. M17 demeure une mission en mer.
+Avions au-dessus de l'océan avant et après le raid ; au ras du sol seule
+la DCA tire. Joueur et caméra passent sous les nuages. Aucun rattrapage
+des événements écartés ; retour et atterrissage gardent leurs contraintes.
+Navires, convoi et porte-avions restent en mer. Aucun retournement/rotation
+des îles retirés à la demande du joueur n'est réintroduit.
 
-Conserver les vrais déplacements, l'écartement équitable des canons,
-les dégâts fractionnaires et les compromis des trois avions. Aucun
-équipement n'est obligatoire pour détruire un objectif. Une priorité
-stratégique ne rend pas une autre cible invulnérable : le joueur peut
-attaquer directement, mais s'expose davantage ou consomme plus de temps.
+Colliders et positions de combat : Y=0 ; altitude visuelle indépendante.
+Dégâts fractionnaires, trois avions et compromis d'équipement inchangés.
+Tirs de défense dans la zone visible, avec amorce et distance de sécurité.
+Le brouillage ne retire ni collider, ni PV, ni mouvement ; reprise échelonnée.
 
-Une cible émet ses tirs seulement dans sa zone visible, avec une amorce
-lisible et une distance de sécurité. Aucun retour de la zone sûre liée
-à la position du joueur en haut de l'écran. Les reprises après brouillage
-restent échelonnées ; ne pas relancer toutes les batteries simultanément.
+COMPOSITIONS ET DÉCISIONS DES HUIT RAIDS
 
-APPRENTISSAGE SUR LES 32 MISSIONS — PROPOSÉ
+Raid/biome     Fixes Mobiles Bunkers Dépôts Radars Hangars Total Quota
+M03 corail       18     0       6      3      2      1     30    12
+M07 convois      18     0       8      4      1      1     32    14
+M11 moussons     18     0      10      2      3      1     34    14
+M15 jade         22     0       7      2      1      4     36    16
+M19 volcanique   16     6       8      2      1      1     34    18
+M23 crépuscule   16     0      10      2      2      2     32    20
+M27 arctique     20     0      12      2      2      2     38    22
+M31 final        22     0      11      3      3      1     40    26
 
-M01  Corail : lire une trajectoire de chasseurs, esquiver et concentrer
-     son tir ; rencontrer le bombardier de commandement déjà présent.
-M02  Corail : suivre une formation rouge pour son POW, puis décider quand
-     remplacer son arme. Les cinq appareils doivent pouvoir être atteints.
-M03  Corail : raid d'introduction ; ligne DCA active avant le premier radar,
-     puis fenêtre globale de brouillage pour comprendre sa valeur.
-M04  Corail : bombardier complet ; points faibles et phases réelles.
+Fixes/mobiles = battery ; dépôts = fuel ; hangars = runway. Le commandement
+est l'un des onze bunkers M31. Bonus PV inchangés : [0,0,1,1,2,2,3,3].
+Bases : fuel 8, radar 7, battery 22, bunker 32, runway 14.
 
-M05  Convois : intercepter un bombardier visant une route maritime ;
-     premier emplacement de module, choix précision ou couverture.
-M06  Convois : protéger le convoi réel pendant sa traversée, puis dégager
-     l'approche. Les menaces prioritaires doivent réellement l'endommager.
-M07  Convois : dépôts groupés et réactions de proximité ; choisir le dépôt
-     ou un canon dangereux selon sa position, sans escorte terrestre fictive.
-M08  Convois : destroyer ; supprimer un flanc par ses composants destructibles.
+M03 : ligne DCA avant le radar, puis découverte du brouillage global.
+      Aucune priorité obligatoire ; secondaire : les deux radars.
+M07 : défenses voisines des dépôts ; choisir dépôt/canon selon sa position.
+      Aucune priorité obligatoire ; secondaire : trois des quatre dépôts.
+M11 : trois réseaux indépendants ; r01/r02 obligatoires, r03 facultatif
+      pour le principal. Secondaire : les trois radars.
+M15 : deux aérodromes décalés ; h01/h02/h03 obligatoires, h04 facultatif
+      pour le principal. Secondaire : les quatre hangars.
+M19 : m01 puis m02 avant les complexes fixes, tous deux obligatoires ;
+      quatre autres DCA mobiles dans des groupes mixtes, secondaires.
+      Les trois sorties protégées détruisent les deux priorités et passent
+      le quota. Elles n'obtiennent que trois des quatre mobiles du bonus ;
+      sa difficulté humaine et les autres politiques restent à éprouver.
+M23 : bastions k05/k06 opposés, profondeur voisine ; choisir leur ordre.
+      Tous deux obligatoires ; secondaire : les deux radars locaux.
+M27 : deux complexes indépendants ; ouverture radar ou dépôt.
+      Aucune priorité obligatoire ; secondaire : les deux dépôts.
+M31 : command obligatoire, trois ceintures radar ; approche directe ou
+      désorganisation locale. Secondaire : les trois radars.
 
-M09  Moussons : deux groupes guidés indépendants ; montrer qu'éliminer
-     l'un ne supprime pas les tirs de l'autre. Accès aux achats de rang II.
-M10  Moussons : combiner poursuite et protection du convoi en mer, avec
-     amorces de tir lisibles malgré l'ambiance d'orage.
-M11  Moussons : trois réseaux radar terrestres indépendants ; décider
-     quelle couverture locale neutraliser d'abord.
-M12  Moussons : escadre et escortes ; les escortes influencent le combat
-     sans rendre le commandant invulnérable.
+Principal = destructions >= quota ET tous les IDs prioritaires détruits.
+Les priorités font déjà partie des destructions, sans double compte.
+Secondaire = IDs distincts détruits dans secondary_spec.target_ids
+>= secondary_spec.minimum ; il reste séparé du quota principal.
 
-M13  Jade : attaques de côté et déplacement entre fenêtres de tir ;
-     second emplacement, compromis plaques ou aile vive.
-M14  Jade : combiner changement de côté, escorte en mer et priorité de feu.
-M15  Jade : trois hangars prioritaires répartis entre deux aérodromes ;
-     traverser après une rafale plutôt que camper sur un seul axe.
-M16  Jade : forteresse ; balayages annoncés, ouvertures et contre-attaque.
+Anciens quotas : [12,14,16,18,20,22,24,26]. La nouvelle table tient compte
+des priorités sans appliquer un ratio uniforme. Finale conservée à 26 :
+l'hypothèse initiale 18/40 est abandonnée sans preuve. Aucun gonflement
+uniforme des PV pour masquer un placement inefficace.
 
-M17  Ceinture de feu : poursuivre une cible aérienne pendant ses fenêtres
-     de tir. Choix rendement ou réserve. Aucun véhicule dans l'océan.
-M18  Ceinture de feu : combiner cette poursuite avec la protection maritime,
-     en conservant de l'espace pour manœuvrer.
-M19  Ceinture de feu : première batterie mobile isolée au début du combat
-     rasant, puis groupes mixtes. Le véhicule s'arrête avant sa rafale.
-M20  Ceinture de feu : cuirassé ; prioriser ses tourelles pour réduire
-     effectivement le barrage et exploiter une ouverture.
+RÉSEAUX ET DCA MOBILE
 
-M21  Crépuscule : visées verrouillées et déplacement après leur annonce ;
-     accès aux achats de rang III, sans saut arbitraire de dégâts.
-M22  Crépuscule : couvrir le convoi et gérer une seconde menace pendant
-     les fenêtres de récupération des tireurs.
-M23  Crépuscule : deux priorités éloignées ; choisir son ordre et déplacer
-     son appareil pendant la récupération, avec un sol toujours lisible.
-M24  Crépuscule : as ; poursuite, anticipation et fenêtres de contre-feu.
+radar_groups lie chaque radar aux IDs des défenses qu'il brouille.
+Corail : groupe global pédagogique ; ailleurs : réseaux locaux. Six
+secondes par destruction, autres réseaux actifs et reprise échelonnée.
+Le HUD et la radio annoncent la portée réelle, locale ou globale.
 
-M25  Front du nord : limiter les bombes dépensées inutilement ; proposer
-     soute ou préparation, sans exiger l'achat de l'un des deux.
-M26  Front du nord : escorte et frappe maritime ; décider quand garder
-     une charge pour la prochaine menace.
-M27  Front du nord : deux complexes indépendants ; comparer radar et
-     dépôt comme ouverture, puis rejoindre l'autre complexe.
-M28  Front du nord : porte-avions ennemi et escortes ; reconnaître les
-     menaces actives et ouvrir une route jusqu'au bâtiment.
+Six voies M19 à deux points ; premier point exactement à la position
+initiale, retour sur le même segment, sans saut de boucle. Phases :
+annonce 0,60 s, déplacement smoothstep 1,20 s, stabilisation 0,25 s,
+station 2,80 s + décalage individuel. Rafale préparée à l'arrêt.
+Le collider accompagne le véhicule ; son orientation visuelle évolue
+progressivement. Annonce de mouvement distincte de l'amorce de tir.
+La pause fige le déplacement ; une interruption par mort/reprise redonne
+une annonce avant de repartir. Le radar suspend les tirs, pas le moteur.
+Après brouillage, chaque canon reprend son amorce avec son propre décalage,
+sans rafale différée ni départ de tout le groupe au même instant.
 
-M29  Dernière offensive : reprendre séparément priorité et mobilité ;
-     choix endurance ou impact, compromis encore utile dans la finale.
-M30  Dernière offensive : combinaison maritime des tactiques précédentes,
-     avec une vraie menace sur le convoi et une extraction active.
-M31  Dernière offensive : bunker de commandement prioritaire ; attaque
-     directe possible ou désorganisation de ses défenses avant l'assaut.
-M32  Dernière offensive : citadelle ; combinaisons successives lisibles,
-     réutilisation des acquis. La campagne doit encore demander de piloter.
+CONTRAT SPATIAL UNIQUE
 
-Les phrases précédentes sont des engagements de conception. Elles ne
-prouvent pas que les boss existants possèdent déjà tous ces comportements.
-Leur traduction doit modifier rencontres, tirs et composants réels, puis
-être vérifiée dans le directeur et la scène active.
+layout_for_sector(sector) retourne une copie indépendante ; hors 0..7 : {}.
+instantiate_layout(mission,width,length,safe_x) convertit les coordonnées
+pour terrain, cibles et mobiles. +z = côte d'arrivée, -z = côte de sortie.
+half_x = max(0,min(safe_x,width*0,33-2,3)) ; half_z = max(0,length/2-16).
+position = (normalized.x*half_x,0,normalized.y*half_z).
 
-COMPOSITION DES HUIT RAIDS — HYPOTHÈSES INITIALES
+safe_x vient de la vraie caméra basse ; le plateau réserve les modèles.
+Sous half_x=13 m, une variante compacte composée pour chaque secteur adapte
+cibles, voies et pistes ensemble ; minimum half_x : 7 m. Quotas, IDs, PV,
+réseaux et durée inchangés. Minima half_z : [42,48,55,60,67,74,81,90] m.
+Dimensions insuffisantes/non finies : valid=false et warnings, sans
+placement compensatoire silencieux. valid couvre ces gardes seulement ;
+geometry_validated_in_game=false ne peut servir de preuve du jeu ou du rendu.
 
-Raid / biome    DCA fixe   DCA mobile   Bunkers  Dépôts  Radars  Hangars  Total
-M03 corail         18          0           6       3       2       1      30
-M07 convois        18          0           8       4       1       1      32
-M11 moussons       18          0          10       2       3       1      34
-M15 jade           22          0           7       2       1       4      36
-M19 volcanique     16          6           8       2       1       1      34
-M23 crépuscule     16          0          10       2       2       2      32
-M27 arctique       20          0          12       2       2       2      38
-M31 final          22          0          11       3       3       1      40
+Empreintes X/Z : battery 2,8×2,8 ; bunker 3,2×2,5 ; fuel 3,3×2,8 ;
+radar 2,6×2,6 ; runway 4×5,2 m. Dégagement : 0,25 m.
+routes.width = largeur totale monde ; world_points local au raid, Y=0.
+Pistes alignées Z : position/world_half_extents, sans rotation.
+Voies mobiles : 4,5 m ; rayon 2,25 > demi-diagonale du carré 2,8 +0,25 m.
+Le véhicule entier tient aussi aux bouts arrondis. Réservations vérifiées
+contre les bâtiments fixes, pistes et balayages complets des autres mobiles,
+pas seulement les positions de départ. La décoration ne remplace pas cela.
 
-Le bunker de commandement de M31 fait partie des onze bunkers. Les dépôts
-correspondent aux installations fuel et les hangars à la variante runway
-actuelles ; nommer explicitement leurs types évite un décompte divergent.
+IDENTITÉS EN MER ET APPRENTISSAGE DES 32 MISSIONS
 
-Quota proposé : minimum total, dont les priorités éventuelles. Les
-priorités ne s'ajoutent pas une seconde fois au nombre de destructions.
+Rôles réellement consommés : escort vise normalement ; interceptor anticipe
+le mouvement sur 0,18 s et se déplace ×1,08 ; gunner décale sa visée de
+sin(age*2)*2,4 m et se déplace ×0,88. Hayabusa arrive de côté, Zero du haut.
+Pattern Zero : deux profils par parité. Pattern Hayabusa : aucun changement
+actuel de trajectoire ; la variation vient de son type et de son rôle.
 
-M03 : 12 / 30 ; brouillage global de découverte, aucune cible imposée.
-M07 : 14 / 32 ; chaînes de dépôts, aucune cible imposée.
-M11 : 12 / 34, dont deux radars ; le troisième réseau reste une décision.
-M15 : 16 / 36, dont trois hangars ; plusieurs trajets possibles.
-M19 : 14 / 34, dont deux DCA mobiles ; les quatre autres restent optionnelles.
-M23 : 15 / 32, dont les bunkers Est et Ouest ; ces deux cibles font partie
-      des dix bunkers. Leur ordre reste libre, leurs visées sont annoncées.
-M27 : 16 / 38 ; choix des ouvertures, aucune priorité obligatoire proposée.
-M31 : 18 / 40, dont le commandement ; hypothèse particulièrement incertaine.
+Séquences cycliques (E=escort, I=interceptor, G=gunner ; Z=Zero, H=Hayabusa).
+Fenêtres : fraction de durée + secondes ; elles reportent seulement les
+nouvelles entrées des chasseurs standards. Tirs, ennemis déjà présents,
+formations rouges, navires et boss restent actifs.
 
-M31 ne doit pas être validée sur son seul ratio de 45 %. Avec le rang III,
-les POW et une frappe, dix-huit cibles pourraient devenir triviales ; avec
-un équipement bas et des cibles mal placées, elles pourraient être hors
-d'atteinte. Conserver les essais de quotas 18 à 26 comme comparaison,
-ainsi que l'état actuel, sans arrêter une valeur avant les vrais combats.
-Mesurer aussi le temps jusqu'au commandement et l'exposition nécessaire.
-Ne pas augmenter uniformément les PV pour masquer un placement inefficace.
+Corail     EEIE / ZZHZ ; .26+4 s. Amorce, formation rouge/POW.
+Convois    EGEI / ZZHZ ; .26+4, .69+3 s. Bombardier du convoi prioritaire.
+Moussons   IEIG / HZHZ ; .26+4, .52+2,4 s. Changer d'axe après l'amorce.
+Jade       GEIE / HHZZ ; .26+4, .56+3,6 s. Deux entrées latérales, puis face.
+Volcanique IGEI / HZZH ; .26+4, .62+2,8 s. Poursuite et contre-anticipation.
+Crépuscule GIGE / ZHZZ ; .26+4, .45+3 s. Visée décalée et intercepteur.
+Arctique   EGIE / ZZHH ; .26+4, .70+3,4 s. Garder une bombe, se replacer.
+Final      IGEIGE / HZHZZH ; .26+4, .49+2, .74+2,4 s. Combiner les acquis.
 
-La quantité authored doit être dérivée de la liste des objets réellement
-créés. Le code actuel construit des rangées de cinq : ce générateur ne
-peut pas représenter honnêtement toutes les quantités du tableau sans
-refonte. Les quotas et priorités doivent être testés sur les colliders
-actifs avant leur sortie d'écran, et pas seulement sur une liste JSON.
+Entrées standards espacées d'au moins 1,2 s après report ; aucune vague
+ajoutée. Débordement éventuel signalé par overlay_warnings. teaching,
+tactical_signature et encounter_overlay décrivent chaque mission ;
+la phrase tactique apparaît dans le briefing et les radios d'actes.
 
-DEUX NOUVELLES MÉCANIQUES, PAS HUIT SYSTÈMES SUPPLÉMENTAIRES
+M06/M10/M14/M18/M22/M26/M30 gardent leur convoi de 32 s. L'acte .26 produit
+déjà un bombardier ; une requête existante est repositionnée +8/+9/+7,5/
++10/+8/+9/+7 s dans l'escorte. Limite d'un bombardier actif conservée :
+si le premier survit, la seconde requête peut être ignorée. Le bombardier
+vivant vise réellement le convoi. M05/M08 n'annoncent pas une escorte absente.
 
-Réseaux radar locaux : chaque radar référence un groupe explicite de DCA.
-Sa destruction brouille ce groupe pendant une durée connue. M03 conserve
-une démonstration globale ; M11 introduit plusieurs groupes indépendants.
-Les groupes de M27 offrent ensuite deux ouvertures. Hors du groupe brouillé,
-les autres canons continuent normalement. Le compte à rebours visible doit
-indiquer sa portée réelle ; un réseau local ne peut afficher un arrêt global.
+Chaque quartet garde découverte/poursuite (première), escorte réelle ou
+formations rouges (deuxième), raid distinct (troisième), boss (quatrième).
+M01 présente déjà un boss réduit ; M02 le remplacement du POW ; M03 la
+première DCA. M09 enseigne la prédiction, M11 les réseaux au sol. M13/M14
+opposent passages latéraux et escorte ; M15 demande les deux aérodromes.
+M17/M18 préparent la poursuite ; les deux premières cibles M19 enseignent
+le mobile en terrain réel. M21/M22 opposent visée décalée et protection.
+M25/M26 préparent la réserve de bombes ; M27 propose deux ouvertures.
+M29/M30 recombinent les rôles ; M31 impose le commandement, quota 26.
 
-Véhicule DCA : un seul nouvel appareil terrestre. Il roule sur sa route,
-freine, annonce son tir, tire puis reprend son mouvement. La trajectoire
-et l'orientation restent continues. Ses tirs ne partent pas d'une tourelle
-instantanément téléportée sur le joueur. Le collider accompagne le véhicule.
-L'arrêt fournit une fenêtre exploitable sans annuler toute sa menace.
+Boss : M04 bombardier, M08 destroyer, M12 escadre, M16 forteresse,
+M20 cuirassé, M24 as, M28 porte-avions, M32 citadelle. Textes issus des
+composants existants : moteurs/points faibles réduisent l'éventail central ;
+tourelles navales détruites cessent leurs tirs de flanc ; escadre et
+porte-avions gardent leurs renforts ; forteresse/citadelle réemploient leurs
+phases et balayages. Aucun nouveau comportement de boss déclaré.
 
-Les réactions des dépôts réutilisent l'explosion de proximité existante.
-Les autres secteurs recombinent des mécaniques connues avec des placements
-différents. Aucun bouclier magique ou prérequis d'invulnérabilité ajouté.
+objective_text(kind) reste compatible pour les six types anciens.
+Pour ground_layout : passer mission ou lire secondary_text ; sans mission,
+réponse honnête « Accomplir l'objectif tactique du raid ». primary_text
+est construit depuis quota/priorités, sans texte parallèle contradictoire.
 
-DIRECTION GRAPHIQUE DES RAIDS — À CRÉER ET À RENDRE
+TERRAIN, BUDGETS ET PREUVES TECHNIQUES
 
-Corail : clairières séparées, petite piste latérale, accès sablonneux et
-herbe claire. L'approche doit prolonger les couleurs du lagon existant.
-Convois : axe logistique sinueux, dépôts desservis et embranchements utiles.
-Moussons : trois complexes distincts, séparés par des zones humides ; sol
-avec relief et nuances, sans assombrir les projectiles jusqu'à les masquer.
-Jade : deux aérodromes décalés, hangars raccordés, joints et accès usés.
-Volcanique : routes sur basalte, plateformes militaires et route visible
-pour la DCA mobile ; roches et sols fins cohérents avec les îles voisines.
-Crépuscule : installations en diagonale, éclairage chaud local ; conserver
-la lecture du sol et des tirs indépendamment de l'effet de lumière.
-Arctique : deux postes de ravitaillement, route glacée et neige tassée sous
-les passages ; différences de matériaux, pas une simple teinte blanche.
-Final : complexes concentriques incomplets, routes effectivement reliées,
-commandement identifiable et accès distincts pour deux stratégies.
+Terrain et unités consomment la même instance : routes/pistes rendues et
+voies des mobiles proviennent des coordonnées du catalogue. Le briefing
+reprend radars, groupes, priorités, mobiles et pistes dans un plan sectoriel
+indicatif, sans prétendre fournir une carte métrique de la caméra courante.
 
-Chaque bâtiment doit se poser sur une plateforme ou une zone logique,
-avec une ombre de contact et des raccords sans flotteur ni découpe visible.
-Pistes, chaussées et textures macro suivent les mêmes coordonnées que les
-objets. Le littoral garde les couleurs et la phase du shader d'océan actif.
-Une hausse de résolution seule ne corrige pas des UV étirés ni une route
-qui traverse un bunker. Vérifier ces problèmes avant de produire davantage
-de détails. Ne pas multiplier les cartes transparentes pour cacher les raccords.
+Les six secteurs non volcaniques/arctiques conservent les sources tropicales
+et leur microdétail, avec composition et pigments propres au biome. Basalte
+M19 et neige M27 utilisent deux nouveaux albedos natifs de 1 254×1 254 pixels,
+répétés en mètres et avec mipmaps. Ce sont des albedos, sans carte normale,
+hauteur ou roughness nouvelle. Les sources/prompts/crédits sont conservés.
+Routes et pistes sont de vrais meshes opaques ; leur shader applique usure
+et bords depuis les mêmes dimensions. Littoral et océan restent raccordés
+par les bandes de matériau existantes, sans nouvelle simulation volumétrique.
 
-Proposer un catalogue raid_layouts partagé : placements, routes, pistes,
-groupes radar, priorités et repères de carte. Le nombre de cibles vient de
-ce catalogue ; terrain, unités et briefing utilisent les mêmes données.
-Les quotas totaux et tags prioritaires doivent alimenter le briefing,
-le HUD compact et l'évaluation de victoire/médaille, sans textes copiés.
+La DCA mobile est un camion compact à six roues et doubles canons, avec Hull
+et Turret séparés : 1 768 triangles, deux meshes/surfaces, atlas existant.
+Sa silhouette remplace la batterie à sacs de sable pour les six mobiles ;
+le collider 2,8×2,8 m et les PV de battery restent identiques.
 
-BUDGETS ET MESURES — AUCUNE PROMESSE DE FPS À CE STADE
+Plafonds conservés : terrain 29 000 triangles, décor 340 instances, tirs
+ennemis 192, tirs joueur 96, explosions 18. Un raid actif préconstruit,
+ressources partagées ; pas huit terrains complets simultanés. Les tests de
+terrain inspectent les trois qualités, les vrais meshes/matériaux et leurs
+budgets. Ces plafonds et les compteurs observés ne constituent pas des FPS.
 
-Les plafonds présents dans les sources sont 29 000 triangles de terrain,
-340 instances de décor, 192 tirs ennemis, 96 tirs joueur et 18 effets
-d'explosion. Ils constituent des limites initiales à préserver ou à
-justifier par mesure. Un plafond n'est pas un nombre d'objets constamment
-visibles, ni une garantie de cadence d'affichage.
+Résultats archivés dans game/tests :
+  raid-layouts-results.json        : 111 806 contrôles, 96 géométries, 0 échec.
+  raid-tactics-results.json        :   7 699 contrôles, 0 échec.
+  raid-terrain-results.json        :     693 contrôles, 0 échec.
+  raid-ui-results.json             :  16 240 contrôles, 0 échec.
+  ground-assault-results.json      :   4 403 contrôles, 0 échec.
+  raid-quota-weapons-core-results.json + extra-results.json :
+      12 + 12 sorties, 194 + 194 contrôles, 0 échec.
+      Le contrôle d'initialisation est répété entre les deux lancements ;
+      les 388 contrôles agrégés ne désignent pas 388 scénarios distincts.
 
-Préparer un seul raid actif, avec maillages et textures partagés. Éviter
-le préchargement permanent des huit terrains complets. Charger/préparer
-les ressources avant la phase de combat ; ne pas lancer une génération de
-terrain ou une compilation de shader au milieu de la première rafale.
-Conserver mipmaps, matières opaques et détail local ; limiter la transparence
-au littoral et aux effets qui en ont besoin. Les modes de qualité gardent
-les mêmes cibles, collisions et fenêtres de tir.
+Le test de données couvre les 32 missions, compositions/priorités/secondaires,
+copies/IDs, textes, rôles/temps marins ; 48 configurations initiales puis 48
+cas minimum/portrait/frontière compacte, dimensions invalides et réservations
+bâtiments/voies/pistes/balayages mobiles. Le script écrit son rapport dans
+user://phase4-raid-layout-results.json ; la copie de preuve est celle ci-dessus.
+Un scan statique complémentaire de 968 cas compacts n'a pas trouvé de
+chevauchement dans les réservations. Ni ce scan ni le catalogue ne valident
+un redimensionnement arbitraire de fenêtre pendant une mission.
 
-Identifier le build, la configuration et les mesures froides/chaudes avant
-le premier changement visuel. Comparer ensuite sur cette même configuration,
-avec mêmes missions, caméra, trajet, durée et qualité. Consigner distribution
-des temps d'image, p95/p99, images dépassant le budget, coût des transitions,
-pics et stabilisation mémoire. Séparer les captures UI des benchmarks.
-La GTX 1650 de référence ne prouve pas le résultat sur une seconde machine.
+Les arènes de combat contrôlent projectiles/laser et dégâts fractionnaires,
+18 cas de réseaux, six trajets mobiles, pause/mort/expiration/reprise annoncée,
+collisions à la position actuelle et principal partagé avec victoire/médaille.
+Ces arènes isolent leurs cibles ; elles ne simulent pas une sortie complète.
+La suite historique confirme notamment les avions présents avant/après le
+raid, absents en vol rasant et pendant l'atterrissage.
 
-PREUVES REQUISES POUR #14
+Les 24 sorties complètes emploient les commandes du joueur, ses limites et
+les collisions réelles, aux équipements détaillés dans raids-1.8.txt. Bombes,
+frappes et ramassages POW passent par la production, sans recharge artificielle
+ni réduction de PV/quota. Seule la Hurtbox du joueur est protégée. Résultat :
+24/24 principaux réussis, 21/24 secondaires ; M19 reste à 3/4 mobiles bonus.
+Ce résultat prouve une possibilité géométrique et temporelle pour cette
+politique automatisée à 1080p, pas la survie ni l'accessibilité humaines.
 
-Sur chaque raid, instancier la vraie mission préparée et ses cibles ; vérifier
-les quantités, types, priorités, collisions et temps d'exposition. Les
-destructions passent par les armes réelles et leurs colliders. Tester les
-trois avions, une progression cohérente, rangs bas/hauts, POW et modules
-représentatifs. Une arme temporairement perdue ne doit pas bloquer une cible.
+COMPARAISONS VISUELLES ET ACCEPTATION RESTANTE
 
-Comparer radar d'abord / canon directement et dépôt d'abord / canon
-directement, à équipement et trajectoires documentés. Relever délai de
-neutralisation, tirs reçus, exposition et quota atteint avant la sortie.
-Le réseau indépendant doit réellement continuer à tirer ; le véhicule
-doit réellement déplacer son collider puis annoncer son arrêt et son feu.
-Une mort, pause ou transition ne crée aucun rattrapage de rafales.
+48 paires avant 1.7.0/après phase 4 finale : huit raids × trois phases
+(approche, descente, combat) × deux tailles PNG (1280×720 et 1920×1080),
+seed 1942, qualité 1. Les 48 comparaisons de caméra ne trouvent aucun écart ;
+tools/review/phase4-visual-comparison.json et les capture-evidence.json
+conservent positions, tailles, temps et compteurs. Le viewport interne
+enregistré est 1920×972 pour les deux tailles de capture : elles ne prouvent
+pas deux résolutions internes natives ni les trois qualités en image.
+La sélection permanente de preuves, dont quatre vues de répétition des
+albedos, est conservée dans renders/validation-raids-v18 et décrite dans
+raids-1.8.txt. Leurs raccords inspectés par l'agent n'ont pas de joint carré
+net à cette échelle ; les motifs restent visibles, sans acceptation humaine.
 
-Vérifier les approches et extractions réelles : avions présents en mer,
-absents pendant le vol rasant, puis nouvelle interception au retour.
-Les objectifs comptent chaque cible une fois et les priorités ne donnent
-pas deux destructions. Garder distinction quota principal / bonus secondaire.
-Le briefing ne doit promettre ni un radar inexistant, ni des cibles hors champ.
+Restent à effectuer : essais sans protection, survie et exposition, progression
+d'équipement réelle, perte d'arme, comparaison de plusieurs ordres tactiques
+(radar/direct/dépôt, bastions M23, commandement M31), bonus mobile M19,
+compréhension des annonces et variété ressentie sur campagne complète.
+Les sorties présentes ne couvrent pas tous les modules et ne démontrent pas
+que chaque stratégie ou taille de fenêtre peut obtenir chaque objectif.
 
-PREUVES REQUISES POUR #17
-
-Capturer les huit raids aux mêmes repères : approche du littoral, descente
-et altitude de combat. Contrôler routes/pistes, raccords bâtiment-sol,
-ombres, répétitions, UV, détail près de la caméra et continuité avec l'océan.
-Répéter les modes Performance / Équilibré / Qualité et les tailles utiles,
-dont 720p et 1080p. Identifier chaque image par mission et build réels.
-
-Mesurer avant/après sur les mêmes scènes froides et chaudes, puis une
-endurance avec plusieurs missions. Vérifier ressources/instances libérées
-au retour au menu et après plusieurs reprises. Aucun gain moyen de FPS ne
-compense une nouvelle saccade au passage sous les nuages.
-
-La diversité ressentie, le plaisir et la viabilité en campagne complète
-restent des questions humaines. Utiliser docs/protocole-parties.txt et
-docs/validation/matrice-parties.csv ; ne convertir aucune simulation en
-case jouée. Réessais, échecs et achats réels font partie des preuves.
-Cette proposition ne clôture ni #14 ni #17, et ne remplace pas #20 ou #22.
+Les FPS phase 4 restent non mesurés : comparer froid/chaud avec mêmes build,
+configuration, scénario, caméra et durée ; p95/p99, dépassements, transitions,
+mémoire et endurance à plusieurs missions/reprises, puis seconde machine.
+Séparer captures et benchmark ; aucun compteur de triangles ne remplace
+ces mesures. Références humaines : docs/protocole-parties.txt et
+docs/validation/matrice-parties.csv. Aucune simulation n'est une case jouée.
+La validation technique du lot et le démarrage de l'export ne remplacent pas
+l'acceptation humaine et performance #20/#22 ni une campagne dans cet export.

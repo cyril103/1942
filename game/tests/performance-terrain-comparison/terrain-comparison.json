@@ -1,0 +1,268 @@
+{
+  "schema": 1,
+  "comparable_recorded_protocol": true,
+  "errors": [],
+  "provenance": {
+    "before_report": {
+      "path": "C:\\ChatGPT\\1942\\game\\tests\\performance-terrain-1.7.0\\raid-terrain-q1-1920x1080.json",
+      "sha256": "499874F9DE802CE945B2A01333969A64854D7828A65D50873651CB5599D682B0"
+    },
+    "after_report": {
+      "path": "C:\\ChatGPT\\1942\\game\\tests\\performance-terrain-1.8.0\\raid-terrain-q1-1920x1080.json",
+      "sha256": "644B28B467E675495AFE8046AFEC1EA80446186FB8C34EBCD372925A17759E30"
+    },
+    "shared_probe": {
+      "path": "C:\\ChatGPT\\1942\\game\\tests\\benchmark_raid_terrain.gd",
+      "sha256": "89A236B153F6B631E9E10D2466B1A53B27EDD08E191F223630D54BEEF6D4BFC5",
+      "expected_operator_run_sha256": "89A236B153F6B631E9E10D2466B1A53B27EDD08E191F223630D54BEEF6D4BFC5"
+    },
+    "before_pack_sha256_operator_verified": "1D6F36B118C48CB13B94DD8166820C751F5867194A83322B4BC1B9FDF91E7BFC",
+    "after_pack_sha256_operator_verified": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+    "source_git_head": "f33a28e6dda2e3d64c95c9eb4268ca4ceb4d0ea2",
+    "camera_lighting_source_templates": [
+      {
+        "path": "game/scenes/main.tscn",
+        "current_file_sha256": "FDB1A4D16F616CA602C8D642255373EE4A7C5BB3A729CD45B937B589221012D6",
+        "head_blob_sha256": "0967EE0A7C038DAE61A070E3725A9F38E75BF1FA0BFC3E23FAB1F103BBE91716",
+        "normalised_lf_content_sha256": "0967EE0A7C038DAE61A070E3725A9F38E75BF1FA0BFC3E23FAB1F103BBE91716",
+        "head_matches_current_after_lf_normalisation": true
+      },
+      {
+        "path": "game/scripts/campaign/materials.gd",
+        "current_file_sha256": "0BCF77B19B6D33E498703D2A882827629CC7D64B3C421B2D261A52B91C788CBA",
+        "head_blob_sha256": "B2EF31C064FB9AAF11BC606193A1C94C64B3FAF4DC93A96FE1F97F128BEC553B",
+        "normalised_lf_content_sha256": "B2EF31C064FB9AAF11BC606193A1C94C64B3FAF4DC93A96FE1F97F128BEC553B",
+        "head_matches_current_after_lf_normalisation": true
+      }
+    ],
+    "provenance_limit": "Pack hashes/run probe identity are previously verified operator provenance. This tool hashes the reports, current probe and unchanged HEAD/current templates; it does not inspect or rerun the packs."
+  },
+  "before_build_id": "1.7.0",
+  "after_build_id": "1.8.0",
+  "pair_count": 32,
+  "recorded_protocol_before": {
+    "schema": 1,
+    "engine": {
+      "build": "official",
+      "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+      "hex": 263938,
+      "major": 4,
+      "minor": 7,
+      "patch": 2,
+      "status": "stable",
+      "string": "4.7.2-stable (official)",
+      "timestamp": 0
+    },
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "cpu": "Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz",
+    "os": "Windows",
+    "quality": 1,
+    "requested_window": [
+      1920,
+      1080
+    ],
+    "actual_window": "(1920, 1080)",
+    "root_visible_rect": "[P: (0.0, 0.0), S: (1920.0, 1080.0)]",
+    "viewport": [
+      1920,
+      972
+    ],
+    "duration_ticks_per_scenario": 360,
+    "warmup_ticks_per_scenario": 60,
+    "physics_hz": 60,
+    "vsync": false,
+    "max_fps": 0,
+    "seed": 1942,
+    "field_width": 65.0,
+    "field_length": 220.0,
+    "measured_scroll_distance": 18.0,
+    "terrain_rng_note": "Production terrain derives its local seed from the preserved mission ID: id*7919+1942",
+    "method": "32 art-only scenarios: eight prepared raid biomes x coast/plateau x two passes. Production terrain/ocean shaders and main.tscn lighting; no gameplay actors or collisions.",
+    "comparison_contract": "Use the identical external script, size, duration and quality on both immutable packs. Geometry/roads/props/albedos intentionally differ between versions; cameras and scroll paths do not."
+  },
+  "checked_root_fields": [
+    "schema",
+    "engine",
+    "gpu",
+    "cpu",
+    "os",
+    "quality",
+    "requested_window",
+    "actual_window",
+    "root_visible_rect",
+    "viewport",
+    "duration_ticks_per_scenario",
+    "warmup_ticks_per_scenario",
+    "physics_hz",
+    "vsync",
+    "max_fps",
+    "seed",
+    "field_width",
+    "field_length",
+    "measured_scroll_distance",
+    "terrain_rng_note",
+    "method",
+    "comparison_contract"
+  ],
+  "checked_scenario_fields": [
+    "mission",
+    "biome",
+    "view",
+    "pass",
+    "viewport",
+    "camera_position",
+    "camera_size",
+    "width",
+    "length",
+    "safe_x",
+    "scroll_speed",
+    "origin_z",
+    "warmup_ticks"
+  ],
+  "checked_deterministic_path_fields": [
+    "physics_ticks",
+    "state_signature",
+    "state_samples"
+  ],
+  "limits": [
+    "Art-only rig: no aircraft, DCA, HUD, collisions, input or combat. Whole-game FPS and difficulty are not measured.",
+    "32 matched scenarios at one quality, two 6-second measured passages per biome/view; not a long-duration or thermal/load-order controlled trial.",
+    "P95/P99 are compared per scenario. Ranges below are ranges of scenario percentiles, not pooled/global percentiles.",
+    "Rendering cadence/GPU completed times can lag; TIME_PROCESS can retain stale construction values and is not isolated or total CPU cost.",
+    "Camera position/size/path/viewport are recorded and compared. Rotation/projection/near/far/light properties are not recorded in JSON; unchanged HEAD/current source templates provide supplementary source evidence.",
+    "Rig construction and startup are separate costs and are not equivalent to a production gameplay-transition hitch.",
+    "Engine static/estimated graphics bytes are not process private RAM or physical VRAM; cached resources can remain. Cleanup does not establish absence of long-term leaks.",
+    "Geometry/layout/props/albedos intentionally differ between packs. No isolated shader causation or FPS guarantee is inferred.",
+    "Human visual inspection/listening is not performed by this analysis."
+  ],
+  "comparative_metrics": {
+    "frame": {
+      "before": {
+        "range_of_scenario_p99_ms": [
+          4.067,
+          6.495
+        ],
+        "largest_scenario_frame_or_monitor_ms": 24.993,
+        "sum_of_scenario_samples": 79826,
+        "sum_of_over_16_67ms_counts": 10,
+        "sum_of_over_33_33ms_counts": 0
+      },
+      "after": {
+        "range_of_scenario_p99_ms": [
+          4.458,
+          5.67
+        ],
+        "largest_scenario_frame_or_monitor_ms": 23.769,
+        "sum_of_scenario_samples": 82873,
+        "sum_of_over_16_67ms_counts": 6,
+        "sum_of_over_33_33ms_counts": 0
+      },
+      "range_of_paired_scenario_p99_deltas_ms": [
+        -0.8250000000000002,
+        0.9249999999999998
+      ],
+      "paired_scenario_p99_lower_equal_higher_counts": {
+        "lower": 9,
+        "equal": 0,
+        "higher": 23
+      }
+    },
+    "gpu": {
+      "before": {
+        "range_of_scenario_p99_ms": [
+          2.26300011575222,
+          2.50400003790855
+        ],
+        "largest_scenario_frame_or_monitor_ms": 4.54199981689453,
+        "sum_of_scenario_samples": 79826,
+        "sum_of_over_16_67ms_counts": 0,
+        "sum_of_over_33_33ms_counts": 0
+      },
+      "after": {
+        "range_of_scenario_p99_ms": [
+          2.02799999713898,
+          2.28400006890297
+        ],
+        "largest_scenario_frame_or_monitor_ms": 10.3999999761581,
+        "sum_of_scenario_samples": 82873,
+        "sum_of_over_16_67ms_counts": 0,
+        "sum_of_over_33_33ms_counts": 0
+      },
+      "range_of_paired_scenario_p99_deltas_ms": [
+        -0.41200006008148016,
+        -0.1080000251531601
+      ],
+      "paired_scenario_p99_lower_equal_higher_counts": {
+        "lower": 32,
+        "equal": 0,
+        "higher": 0
+      }
+    },
+    "cpu_monitor": {
+      "before": {
+        "range_of_scenario_p99_ms": [
+          5.316,
+          340.362
+        ],
+        "largest_scenario_frame_or_monitor_ms": 340.362,
+        "sum_of_scenario_samples": 79826,
+        "sum_of_over_16_67ms_counts": 7048,
+        "sum_of_over_33_33ms_counts": 4264
+      },
+      "after": {
+        "range_of_scenario_p99_ms": [
+          5.022,
+          278.895
+        ],
+        "largest_scenario_frame_or_monitor_ms": 325.751,
+        "sum_of_scenario_samples": 82873,
+        "sum_of_over_16_67ms_counts": 7380,
+        "sum_of_over_33_33ms_counts": 5822
+      },
+      "range_of_paired_scenario_p99_deltas_ms": [
+        -171.672,
+        240.731
+      ],
+      "paired_scenario_p99_lower_equal_higher_counts": {
+        "lower": 10,
+        "equal": 0,
+        "higher": 22
+      }
+    }
+  },
+  "cleanup": {
+    "before": {
+      "engine_static_bytes": 40729015,
+      "nodes": 1,
+      "orphan_nodes": 0,
+      "render_estimated_bytes": 255495188,
+      "resources": 93
+    },
+    "after": {
+      "engine_static_bytes": 41333966,
+      "nodes": 1,
+      "orphan_nodes": 0,
+      "render_estimated_bytes": 251335346,
+      "resources": 93
+    }
+  },
+  "identical_physics_state_sample_pairs": 192,
+  "construction_ms": {
+    "before_range": [
+      138.89,
+      273.052
+    ],
+    "after_range": [
+      181.877,
+      347.802
+    ],
+    "paired_delta_range": [
+      -84.63499999999999,
+      200.806
+    ]
+  },
+  "startup_asset_load_ms": {
+    "before": 1419.429,
+    "after": 1557.526
+  }
+}
