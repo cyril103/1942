@@ -7,9 +7,14 @@ var weather: ColorRect
 var armor_trail := 1.0
 var armor_hold := 0.0
 var previous_armor := 1.0
+var jam_badge: PanelContainer
+var jam_label: Label
+var jam_scale := -1.0
 const FONT := preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
+const COMMANDS := preload("res://scripts/campaign/command_labels.gd")
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	weather = ColorRect.new()
 	weather.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	weather.show_behind_parent = true
@@ -19,6 +24,27 @@ func _ready() -> void:
 	material.set_shader_parameter("strength",0.8 if director.mission.biome in ["storm","arctic","volcanic"] else 0.35)
 	weather.material = material
 	add_child(weather)
+	jam_badge = PanelContainer.new()
+	jam_badge.name = "GroundJamStatus"
+	jam_badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(.015,.07,.085,.92)
+	style.border_color = Color(.35,.88,.94,.65)
+	style.set_border_width_all(1)
+	style.set_corner_radius_all(4)
+	style.content_margin_left = 14
+	style.content_margin_right = 14
+	style.content_margin_top = 5
+	style.content_margin_bottom = 5
+	jam_badge.add_theme_stylebox_override("panel",style)
+	jam_label = Label.new()
+	jam_label.name = "Countdown"
+	jam_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	jam_label.add_theme_font_override("font",FONT)
+	jam_label.add_theme_color_override("font_color",Color(.45,.96,1))
+	jam_badge.add_child(jam_label)
+	add_child(jam_badge)
+	jam_badge.hide()
 func _process(delta: float) -> void:
 	elapsed += delta
 	var armor := float(director.player.health)/maxi(1,director.player.max_health)
@@ -29,7 +55,27 @@ func _process(delta: float) -> void:
 	if armor_hold <= 0: armor_trail = move_toward(armor_trail,armor,delta*.8)
 	weather.position = cockpit.play_rect.position
 	weather.size = cockpit.play_rect.size
+	_update_jam_status()
 	queue_redraw()
+
+func _update_jam_status() -> void:
+	var raid = director.assault
+	jam_badge.visible = is_instance_valid(raid) and raid.jam_remaining>0
+	if not jam_badge.visible: return
+	var u := cockpit.size.y/1080.0
+	var value := "DCA BROUILLÉE  %.1f s" % raid.jam_remaining
+	var changed := jam_label.text!=value or not is_equal_approx(jam_scale,u)
+	jam_label.text = value
+	if not is_equal_approx(jam_scale,u):
+		jam_scale = u
+		jam_label.add_theme_font_size_override("font_size",maxi(12,roundi(23*u)))
+		var style := jam_badge.get_theme_stylebox("panel") as StyleBoxFlat
+		style.content_margin_left = 14*u
+		style.content_margin_right = 14*u
+		style.content_margin_top = 5*u
+		style.content_margin_bottom = 5*u
+	if changed: jam_badge.reset_size()
+	jam_badge.position = Vector2(cockpit.play_rect.get_center().x-jam_badge.size.x*.5,cockpit.play_rect.position.y+12*u)
 func _draw() -> void:
 	if not is_instance_valid(director): return
 	var r: Rect2 = cockpit.play_rect
@@ -63,12 +109,13 @@ func _draw() -> void:
 	if power != "none":
 		draw_texture_rect(load("res://assets/campaign/icons/"+power+".svg"),Rect2(14*u,bottom+5*u,34*u,34*u),false)
 	text_at({"none":"TIR STANDARD","spread":"MULTI-TIR","laser":"LASER","life":"VIE +1  •  STANDARD"}[power],Vector2(60*u,bottom+29*u),24*u,Color.WHITE)
-	text_at("BOMBES  %d  / %s" % [director.bombs,key_name("bomb")],Vector2(w*.32,bottom+29*u),23*u,gold)
-	text_at("%s  %d%% / %s" % [["SURCHARGE","POURSUITE","BASTION"][director.profile.data.aircraft],int(director.charge),key_name("strike")],Vector2(w*.51,bottom+29*u),23*u,Color("95ecff"))
-	var charge_rect := Rect2(w*.69,bottom+17*u,w*.12,10*u)
+	text_at("BOMBES  %d  / %s" % [director.bombs,COMMANDS.hint("bomb")],Vector2(w*.24,bottom+29*u),21*u,gold,w*.22)
+	text_at("%s  %d%% / %s" % [["SURCHARGE","POURSUITE","BASTION"][director.profile.data.aircraft],int(director.charge),COMMANDS.hint("strike")],Vector2(w*.48,bottom+25*u),21*u,Color("95ecff"),w*.27)
+	var charge_rect := Rect2(w*.48,bottom+34*u,w*.27,3*u)
 	draw_rect(charge_rect,Color("233f4b"))
 	draw_rect(Rect2(charge_rect.position,Vector2(charge_rect.size.x*director.charge/100.0,charge_rect.size.y)),Color("68dced"))
-	text_at(key_name("focus_flight")+" PRÉCISION  •  ÉCHAP PAUSE",Vector2(w*.84,bottom+28*u),18*u,Color("9aadb8"),w*.15)
+	text_at(COMMANDS.hint("focus_flight")+"  PRÉCISION",Vector2(w*.77,bottom+18*u),17*u,Color("9aadb8"),w*.22)
+	text_at(COMMANDS.hint("quit_game")+"  PAUSE",Vector2(w*.77,bottom+35*u),17*u,Color("9aadb8"),w*.22)
 	var progress := clampf(director.elapsed/float(director.mission.duration),0,1)
 	draw_rect(Rect2(r.position,Vector2(r.size.x*progress,2*u)),gold)
 	if is_instance_valid(director.boss) and director.boss.alive:
@@ -146,8 +193,6 @@ func _draw_ground_assault(r: Rect2, u: float) -> void:
 	if raid.low_flight>.98: phase = "VOL RASANT"
 	elif raid.low_flight>.02: phase = "REMONTÉE" if raid.position.z>director.player.position.z else "DESCENTE"
 	text_at(phase,at+Vector2(0,23)*u,17*u,Color(.73,.85,.80))
-	if raid.jam_remaining>0:
-		text_at("DCA BROUILLÉE  %.1f s" % raid.jam_remaining,Vector2(size.x*.43,r.position.y+33*u),23*u,Color(.45,.96,1))
 	for target in raid.contacts():
 		var center: Vector2 = director.combat.camera.unproject_position(target.global_position)+r.position
 		if not r.grow(-35*u).has_point(center): continue
@@ -167,7 +212,4 @@ func _draw_ground_assault(r: Rect2, u: float) -> void:
 		text_at("DCA RAPIDE" if target.rapid_fire else raid.LABELS[target.variant],Vector2(box.position.x,box.end.y+17*u),15*u,Color(.85,.91,.80,.85),box.size.x+30*u)
 
 func key_name(action: String) -> String:
-	for event in InputMap.action_get_events(action):
-		if event is InputEventKey:
-			return "MAJ" if event.keycode==KEY_SHIFT else OS.get_keycode_string(event.keycode).to_upper()
-	return "—"
+	return COMMANDS.keyboard(action).to_upper()

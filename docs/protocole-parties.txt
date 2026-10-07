@@ -1,0 +1,290 @@
+PACIFIC STRIKE — PROTOCOLE DE PARTIES HUMAINES
+Revue du 7 octobre 2026 ; ticket #22, plan de travail #23.
+https://github.com/cyril103/1942/issues/22
+https://github.com/cyril103/1942/issues/23
+
+ÉTAT DU DOCUMENT
+
+Ce protocole organise les essais à réaliser. Il ne consigne aucune partie
+humaine déjà effectuée. La matrice initiale comporte 288 combinaisons :
+32 missions × Vanguard / Interceptor / Bulwark × Cadet / Pilote / As.
+Toutes sont NON_JOUE. Les preuves automatisées du lot de fiabilité sont
+dans docs/suivi-corrections.txt ; elles ne remplissent aucune case humaine.
+Référence avant cette passe : fbd6a332572c0d85574423d187e7565f7174c55b.
+Chaque essai doit indiquer le commit et le hash du paquet réellement joué.
+Une version de l'exécutable seule ne suffit pas à identifier un build.
+
+Le travail suit l'ordre de #23. Commencer par préparer ce protocole, puis
+stabiliser les défauts fonctionnels. Les premiers retours guident #11 à #14.
+Après chaque réglage, rejouer les situations concernées ; la validation
+finale vient après les corrections de combat, d'interface, de rendu et de son.
+Un test lancé dans Godot, un benchmark avec déplacement automatique, un
+pilote invulnérable ou des dégâts directs sont des simulations. Même verts,
+ils ne prouvent ni une victoire humaine, ni une difficulté agréable.
+
+1. ORGANISATION ET BUILD
+
+Responsable de la passe : attribuer les cas, conserver les fiches, relier les
+incidents aux tickets et mettre à jour la matrice sans effacer l'historique.
+Testeurs : au moins un débutant en shmup et un joueur expérimenté. Une seule
+personne peut commencer ; noter alors l'expérience manquante dans le bilan.
+Débutant = moins de cinq heures récentes de shmup ; expérimenté = pratique
+régulière et maîtrise des esquives/POW/bombes. Consigner aussi l'expérience
+de Pacific Strike, car la mémorisation des trajets influence le résultat.
+Ne pas exiger que les deux catégories aient le même taux de réussite.
+
+Identifier le build dans chaque fiche : version affichée, commit source,
+SHA-256 de PacificStrike.exe, date et origine du paquet. Un exécutable ancien
+ne valide pas les sources nouvelles. Conserver le ZIP et son manuel ensemble.
+Exemple de commande de lecture depuis la racine du dépôt :
+  Get-FileHash -LiteralPath 'dist/PacificStrike/PacificStrike.exe' -Algorithm SHA256
+
+Référence matérielle initiale : Windows x64, GTX 1650, écran 1920 × 1080,
+qualité Équilibré. Relever CPU, RAM, GPU/pilote, fréquence de l'écran,
+résolution réelle, VSync, qualité, plein écran/fenêtre, clavier/manette et
+volumes. Répéter les cas de lisibilité au minimum en 1280 × 720. Les essais
+Qualité et Performance complètent la référence, sans mélanger leurs mesures.
+L'essai audio principal se fait avec la musique d'action et les sons actifs.
+
+Avant la passe : vérifier l'identité du paquet, le démarrage, les commandes,
+la sauvegarde, la reprise, le Game Over et les cinq régressions #1 à #5.
+Ne pas jouer sur un build contenant un défaut connu qui fausse le cas étudié.
+Garder un build inchangé pour comparer deux avions ou deux équipements.
+
+2. SAUVEGARDES ET TYPES DE PARCOURS
+
+La sauvegarde réelle est pacific-campaign-v1.json dans user:// ; son dossier
+Windows dépend du nom d'application. Le localiser et le consigner, plutôt
+que supposer un chemin. Fermer complètement le jeu avant de copier/restaurer.
+Archiver ensemble le fichier principal, son .bak s'il existe et l'identité
+du build ; vérifier que les copies s'ouvrent. Ne jamais écraser la partie
+personnelle du joueur. Préférer un compte Windows de test distinct.
+À défaut, le responsable fournit une sauvegarde de la partie personnelle,
+confirme sa restauration après les essais et garde une copie supplémentaire.
+La suppression/réinitialisation d'un profil doit viser uniquement le profil
+de test identifié. Les fichiers de retour peuvent anonymiser le nom du joueur.
+
+Quatre parcours sont séparés dans la matrice et dans chaque fiche :
+
+CAMPAGNE : nouvelle partie réelle, de la mission 01 à la mission 32 dans
+l'ordre, sans déblocage artificiel, invulnérabilité ni dégâts de diagnostic.
+Achats au hangar uniquement avec les pièces gagnées en jouant. Score, vies,
+POW, records et sauvegardes restent ceux de la partie. Les morts, échecs et
+reprises font partie du parcours et sont conservés dans les résultats.
+Archiver la sauvegarde après chaque mission, avant le prochain achat, puis
+avant la mission suivante. Quitter et relancer au moins aux missions 03, 08,
+16, 24 et 31 pour vérifier la continuité. Tout changement d'avion/difficulté
+est enregistré : une campagne avec changements n'est pas neuf campagnes
+constantes et ne remplit pas les cases des configurations non jouées.
+
+PROGRESSION_ISOLEE : lancement de la mission choisie depuis une copie d'un
+checkpoint gagné par un humain. Équipement, pièces, vies et POW viennent de
+ce checkpoint ; seules les sélections normales du hangar/options changent.
+Inscrire le hash du profil parent et de la copie avant essai. Un checkpoint
+Pilote utilisé pour As est un équipement de référence comparable, pas la
+preuve qu'un joueur a atteint ce point en As. Les missions encore bloquées
+restent à préparer à partir d'un parcours valide, sans inventer une progression.
+
+SANS_AMELIORATION : essai de contraste à armes/coque/charge 0, trois vies,
+score 0 et POW initial none. Le mode Arcade actuel convient en Pilote :
+il fixe lui-même la difficulté Pilote et l'équipement ; il ne permet pas
+de valider Cadet ou As. Pour ces difficultés, le responsable prépare un
+profil de campagne isolé et valide, avec la mission ciblée accessible ;
+indiquer PREPARE, champs modifiés et provenance. Ce lancement préparé ne
+compte jamais comme campagne réelle, même si le combat est entièrement joué.
+
+EQUIPEMENT_ELEVE : référence au plafond légal de la version testée, obtenu
+au hangar sur un checkpoint réel lorsque possible. Relever les trois rangs,
+leurs effets et leur coût. Un profil préparé au plafond pour une mission
+précoce est volontairement artificiel : il teste un contraste ou le risque
+de trivialisation, pas l'accessibilité économique. Garder trois vies, score
+0 et POW none pour la comparaison isolée ; conserver les acquisitions pendant
+le combat. Ne pas modifier la santé en vol ni augmenter artificiellement les
+dégâts contre les cibles. Si le plafond/les coûts changent dans #12/#13,
+créer de nouveaux profils et ne pas réutiliser silencieusement les anciens.
+
+Pour chaque profil, consigner armes/coque/charge, pièces restantes, vies,
+POW initial, avion, difficulté, mission débloquée et next_mission. Vérifier
+ces valeurs dans le jeu avant de lancer. Toute préparation technique est
+archivée et déclarée ; elle ne constitue pas une preuve de progression.
+
+3. ORDRE DES SESSIONS
+
+Passe prioritaire : missions 01, 03, 08, 16, 24, 31 et 32, avec les trois
+avions et les trois difficultés, soit 63 combinaisons de référence.
+01 : entrée sans amélioration, commandes, apprentissage, premier boss.
+03 : premier raid, descente, DCA, quota, POW, remontée et récupération.
+08 / 16 / 24 : jalons de secteur, évolution de la pression et rencontres majeures.
+31 : dernier raid, densité maximale, effets et lisibilité sous pression.
+32 : finale, objectifs secondaires, rang, résultat et fin de campagne.
+
+Commencer par 01/03 en Pilote et Cadet, puis les trois avions ; compléter
+les jalons et As avec un joueur expérimenté. Les checkpoints tardifs exigent
+un premier parcours humain réel ou un profil préparé explicitement étiqueté.
+Un profil préparé permet le diagnostic rapide mais ne remplace pas ensuite
+la référence PROGRESSION_ISOLEE issue d'une vraie partie.
+
+Par combinaison prioritaire, prévoir trois tentatives au maximum dans une
+session de 20 à 30 minutes : découverte, adaptation, confirmation. Noter
+chaque tentative, y compris les échecs. Si les trois échouent, relever où,
+pourquoi et avec quelles ressources ; ne pas répéter jusqu'à masquer le
+problème. Faire une pause et choisir un autre cas pour limiter la fatigue.
+Rejouer 01/03 pour mesurer l'apprentissage, sans compter ces retours comme
+des parties de débutant. Alterner l'ordre des avions entre testeurs pour
+réduire l'avantage lié à la mémorisation.
+
+Étendre ensuite aux 25 autres missions et aux neuf configurations avion /
+difficulté. Objectif de couverture : les 288 combinaisons avec une preuve
+humaine de campagne ou de progression isolée, y compris les échecs observés.
+Les cases non jouées restent visibles. Au moins une campagne 01 → 32 doit
+être achevée réellement, avec progression, achats et sauvegarde normaux.
+Les parcours constants par avion/difficulté apportent les meilleures preuves
+de continuité ; les parties isolées complètent la comparaison, sans les imiter.
+
+Les contrastes sans amélioration / équipement élevé portent d'abord sur
+01/03/08/16/24/31/32. Ajouter toute mission signalée trop facile, trop dure,
+dépendante d'un POW ou d'un avion. Ces contrastes ont leurs colonnes propres :
+leur réussite ne remplit pas la couverture de progression cohérente.
+
+4. CE QU'IL FAUT OBSERVER
+
+Fonctionnel : départ/appontage, altitude/caméra/nuages, ennemis autorisés
+pendant chaque phase, collision/tirs, vies/blindage/respawn, POW exclusifs,
+objectifs/quotas, bonus/rangs, pause/options/reprise, achats et sauvegarde.
+Les tests humains vérifient aussi si le joueur comprend ces règles sans
+explication du responsable. Consigner tout incident avec mission, moment,
+conditions, capture éventuelle et lien vers un ticket ; ne pas le qualifier
+de difficulté quand une règle ou un affichage est incorrect.
+
+Difficulté : nombre de tentatives, pertes d'avion, dégâts reçus, vies et
+blindage au départ/à l'arrivée, cibles détruites/quota, progression avant
+Game Over, POW rencontrés/collectés/remplacés, bombes/frappes utilisées,
+score/chaîne/rang, durée totale et durée de combat. Relever la plus longue
+période sans menace et son emplacement : distinguer départ/atterrissage,
+respiration volontaire et attente au milieu du combat. Le temps non mesuré
+est INCONNU ; une estimation humaine est marquée ESTIME, pas une télémétrie.
+La durée du bilan est l'horloge de combat : elle ne remplace pas le temps
+réel comprenant décollage, pauses, respawns et appontage. Garder les deux
+valeurs séparées lorsque le joueur les mesure.
+
+Plaisir : rythme, contrôle, variété, compréhension et envie de rejouer,
+chacun de 1 (mauvais) à 5 (très bon). Difficulté ressentie de 1 (triviale)
+à 5 (débordement permanent). Demander la principale frustration et le moment
+le plus réussi, plutôt qu'une seule note globale. Une esquive apprise et
+reproductible se distingue d'un tir invisible ou d'un quota impraticable.
+
+Lisibilité : distinguer balles alliées/ennemies, anticiper les DCA, suivre
+les cibles derrière les effets, repérer POW/points faibles et lire le blindage.
+Vérifier mer/terrain/nuages et les trois qualités graphiques. Noter taille
+d'écran, chevauchement HUD, distraction, pertes de cible et fatigue visuelle.
+Vérifier aussi avec effets lumineux/secousses réduits si le joueur les choisit.
+
+Audio : musique entraînante, moteur reconnaissable, armes différentes,
+explosions profondes, préavis audibles, bruit fatigant ou saturation perçue.
+Noter casque/haut-parleurs, volumes et réglages. Une préférence musicale
+est subjective ; un son coupé ou une explosion masquant tous les préavis
+est un incident reproductible. Conserver musique et réglages constants
+pour comparer deux armes ; tester séparément les combats les plus denses.
+
+Performance : noter FPS minimal OBSERVE, ralentissements perceptibles,
+moment et situation. Le compteur FPS ne fournit ni p99 ni preuve d'absence
+de pics. Ajouter les traces instrumentées #20 séparément, avec même build,
+machine et scène, temps de construction compris et présentés à part.
+Les captures vidéo peuvent coûter des images : comparer aussi sans capture.
+Ne pas transformer une mesure GTX 1650 en garantie pour toutes les machines.
+
+5. RETOUR SIMPLE DU JOUEUR
+
+Le joueur peut copier ce bloc dans le chat ou une fiche texte. Remplir les
+champs connus ; écrire INCONNU pour ce qui n'a pas été observé. Le responsable
+complète build et profil depuis les archives, sans inventer les résultats.
+Une capture du bilan aide à relever score, dégâts, morts, rang et durée.
+
+SESSION : <date> / <identifiant joueur> / <débutant ou expérimenté> / <tentative>
+BUILD : <version> / <commit> / <SHA-256 EXE>
+CAS : <mission 01..32> / <Vanguard, Interceptor ou Bulwark> / <Cadet, Pilote ou As>
+PARCOURS : <CAMPAGNE, PROGRESSION_ISOLEE, SANS_AMELIORATION ou EQUIPEMENT_ELEVE>
+PROFIL : <référence et hash> / armes-coque-charge <rangs> / pièces <nombre>
+DEPART : vies <nombre> / blindage <nombre> / POW <none, spread, laser ou life>
+RESULTAT : <victoire, quota manqué, Game Over, interrompu> / durée <mesurée ou estimée>
+COMBAT : morts <nombre> / impacts <nombre> / cibles <nombre>/<quota>
+RESSOURCES : POW trouvés/pris <types> / bombes utilisées <nombre> / frappes <nombre>
+BILAN : vies et blindage restants <valeurs> / score <nombre> / rang <lettre>
+RYTHME : plus longue attente <secondes ou INCONNU> / moment <phase ou horodatage>
+NOTES 1..5 : difficulté <n> / plaisir <n> / contrôle <n> / variété <n> / lisibilité <n>
+AUDIO : matériel/volumes <référence> / avis <une phrase>
+PERF : machine/résolution/qualité/VSync <référence> / FPS ou ralentissement <observation>
+MEILLEUR MOMENT : <une phrase>
+FRUSTRATION OU BUG : <quoi, où, comment le reproduire> / preuve ou ticket <référence>
+ENVIE DE REJOUER : <oui, non, hésitation> / pourquoi <une phrase>
+
+ID conseillé : YYYYMMDD-joueur-M03-INT-PIL-01. Conserver les fiches et preuves
+hors des sauvegardes actives. Le bilan de campagne ajoute l'ordre des missions,
+achats, reprises et changements d'équipement ; chaque étape référence sa fiche.
+
+6. MATRICE ET INTERPRÉTATION
+
+docs/validation/matrice-parties.csv est la liste prévue, sans résultat initial.
+M01-VAN-CAD signifie mission 01 / Vanguard / Cadet. P1 = jalon prioritaire ;
+P2 = extension. Chaque colonne de parcours possède son propre statut :
+NON_JOUE, EN_COURS, JOUE_VICTOIRE, JOUE_ECHEC, JOUE_MIXTE ou A_REJOUER.
+JOUE_ECHEC signifie qu'un humain a joué et échoué ; ce n'est ni une case vide
+ni une validation de l'équilibrage. JOUE_MIXTE exige plusieurs fiches liées.
+EN_COURS exige une session réellement commencée, pas une attribution.
+A_REJOUER marque un résultat rendu obsolète par un changement significatif.
+Écrire les ID des fiches dans sessions_refs, profils_refs et build_refs.
+Les joueurs/équipements réels viennent des fiches ; ne pas les déduire du
+numéro de mission. Conserver les anciens résultats lors d'un changement de build.
+
+Bilan par mission, avion, difficulté et expérience : tentatives/victoires,
+morts/impacts, temps sans menace, quota, ressources, plaisir et frustrations.
+Indiquer l'effectif et les profils ; un ou deux joueurs ne permettent pas
+une conclusion statistique universelle. Vérifier les cas où seul le laser,
+un POW chanceux ou un avion permet de passer. Les échecs et les replays
+doivent expliquer l'apprentissage, pas disparaître dans une moyenne.
+
+Trois catégories de conclusion :
+- Incident fonctionnel : règle, collision, sauvegarde, UI, son ou perf incorrects.
+- Apprentissage : règle correcte, mais indication/tutoriel ou préavis insuffisants.
+- Équilibrage : règle lisible et fonctionnelle, pression/récompense/choix à ajuster.
+Relier les conclusions aux tickets concernés (#11 à #20, ou bug dédié).
+Un avis subjectif reste identifié ; une hypothèse demande une reproduction.
+
+7. APRÈS CORRECTION ET CRITÈRES DE SORTIE
+
+Modification d'avion/arme/économie : rejouer 01 et 03 avec équipement de base,
+les jalons concernés et leurs contrastes ; vérifier le budget sur campagne.
+Modification de secteur/raid : rejouer la mission, ses voisins, entrée/sortie,
+les trois avions et au moins Pilote ; compléter Cadet/As lorsque la pression
+ou les quotas changent. Modification visuelle/audio : reprendre les scènes
+denses, les résolutions/qualités concernées et les mesures #20 avant/après.
+Toute modification significative invalide les cases dépendantes du build ;
+elles deviennent A_REJOUER jusqu'à une nouvelle preuve, sans effacer l'ancienne.
+
+Une case est analysée quand ses fiches, profil, build, résultats et incidents
+sont accessibles. La victoire seule ne démontre pas plaisir ou progression.
+Une session interrompue par un bug conserve ses données mais doit être rejouée.
+Un cas difficile peut être validé après plusieurs échecs si ses règles sont
+justes/lisibles et si un joueur approprié au mode prouve qu'il est franchissable.
+Les seuils de difficulté sont des décisions de conception à confirmer avec
+les retours ; aucune statistique cible n'est présentée comme déjà démontrée.
+
+Avant de clore #22 :
+- matrice complète de 288 combinaisons, avec couverture réellement jouée et
+  tous les manques/replays visibles ; bilan de progression et décisions associés ;
+- trois avions, trois difficultés, débutants et expérimentés représentés,
+  avec fiches et profils traçables ; jalons prioritaires et contrastes analysés ;
+- au moins une campagne humaine réelle de 32 missions achevée, sans assistance
+  artificielle, achats/sauvegardes/reprises conservés et vérifiés ;
+- pas de blocage fonctionnel, quota impossible confirmé, dépendance obligatoire
+  à un POW aléatoire ou pic reproductible gênant laissé sans décision documentée ;
+- corrections significatives rejouées sur les cas concernés et premières missions ;
+- bilan final séparant les preuves humaines des simulations et les limites
+  matérielles/de recrutement de ce qui a effectivement été validé.
+
+ÉTAT ACTUEL DE #22
+
+Protocole et matrice préparés. Parties humaines, checkpoints de progression,
+campagne intégrale, retours débutants/expérimentés, bilan d'équilibrage et
+replays après réglage restent à réaliser. Aucun de ces critères humains
+n'est satisfait par la création de ce document ou par les tests automatisés.

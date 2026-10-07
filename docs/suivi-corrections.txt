@@ -82,16 +82,87 @@ Commandes de reproduction des nouvelles suites :
   Godot --path game --script res://tests/test_dynamic_campaign.gd -- --packaged
   Godot --path game --script res://tests/test_campaign_runtime.gd -- --packaged
 
+LOT 2 — INTERFACE ET LIVRAISON WINDOWS 1.6.1
+
+#6 : le HUD suit la taille du cockpit. Le badge de brouillage est ancré
+au centre supérieur du champ de vol ; sa durée et son décompte restent
+ceux du raid. La chaîne, le score, l'objectif et le blindage restent libres.
+
+#7 : la carte et le panneau d'ordres partagent mieux la hauteur du briefing.
+Les 32 textes restent entièrement dans leur panneau opaque à 720p et 1080p.
+La mission 03 possède aussi le texte le plus long. Aucun défilement ajouté.
+La carte adapte ses coordonnées à sa taille réelle, sans déborder.
+
+#8 : une présentation commune lit InputMap pour le HUD, le hangar, le
+briefing et la pause. Les aides suivent les changements, le rechargement
+du profil et la restauration des commandes. Les touches longues restent
+dans leurs panneaux. Les événements clavier français, touches spéciales,
+flèches et alternatives manette sont contrôlés automatiquement ; aucune
+manette physique n'a été utilisée pour ces validations.
+
+#9 : les résultats décrivent les récompenses et records de leur mode,
+y compris défaite et fin de campagne. Les crédits visibles identifient
+Juhani Junkala / SubspaceAudio pour les pistes actives CC0 et distinguent
+les sources originales historiques. Musique et licences conservées.
+
+#10 : le preset modifie les ressources Windows et utilise l'icône du jeu.
+Nom produit Pacific Strike ; description Pacific Strike - Campagne 1942 ;
+versions fichier et produit 1.6.1.0. Le script d'export vérifie ces quatre
+champs avant compression. Le ZIP contient le manuel 1.6.1 et les crédits.
+
+VALIDATION DU LOT 2
+
+UI : 1 085 assertions headless ; 1 110 avec rendu réel, dont 25 captures.
+Session : 165 assertions après les changements d'interface. Zéro échec
+et aucun ERROR / WARNING dans ces journaux. Les comptages comportent
+des répétitions par configuration, pas autant de scénarios indépendants.
+
+Le test UI inspecte les contrôles réels : texte complet, hauteur minimale,
+rectangles des panneaux/boutons, géométrie du HUD après redimensionnement,
+callbacks de reconfiguration et événements InputMap. Les images retenues
+sont versionnées dans renders/validation-interface ; les dimensions sont
+dans game/tests/ui-readability-results.json.
+
+Windows : 27 contrôles réussis. SHA-256 identique avant/après extraction :
+06BF66C22393B14A67512688E126D63048B5A09C4680214EC8AA5584EDB5B78A
+VersionInfo et les propriétés canoniques Shell.Application renvoient les
+valeurs attendues ; l'icône extraite a été inspectée. Le lancement normal
+de l'EXE extrait dans un dossier temporaire extérieur au dépôt termine
+180 images avec OpenGL actif, code zéro et sans diagnostic moteur.
+Le dossier de travail reste vide. Ce contrôle est un test de démarrage,
+pas une partie complète ni une suite de gameplay exécutée par l'EXE.
+L'inspection visuelle manuelle de la fenêtre Explorateur reste à faire.
+Résultat reproductible : game/tests/windows-package-results.json.
+
+Les templates officiels désactivent --path et --script. Le test autonome
+emploie uniquement leurs options prises en charge ; il ne prétend pas
+avoir lancé un pilote de test ignoré par l'exécutable de livraison.
+Les suites contre les ressources embarquées utilisent le moteur console
+éditeur avec --main-pack, ce qui constitue une validation distincte.
+La suite d'intégration campagne passe aussi contre le paquet 1.6.1 :
+10 assertions, zéro échec, physique/tirs/audio actifs ; crête audio
+18 350 sur 32 768. Ce scénario court n'est pas un benchmark de FPS.
+
+Commandes de reproduction :
+  Godot --headless --path game --script res://tests/test_ui_readability.gd
+  Godot --path game --script res://tests/test_ui_readability.gd -- --capture-ui
+  powershell -File game/tests/test_windows_package.ps1
+
 SUITE DU PLAN — ENCORE À TRAITER
 
-Lot 2 : #6, #7, #8, #9, #10 — HUD, briefing, commandes, textes, Windows.
-Le texte des résultats hors campagne de #9 est déjà corrigé ; les crédits
-musicaux restent à traiter avant de clôturer ce ticket.
+Le contrôle physique d'une manette (#8) et l'observation de l'Explorateur
+Windows (#10) ne sont pas revendiqués. Les contrôles techniques ci-dessus
+restent distincts de ces observations humaines.
 Lot 3 : #11 à #16 — rôles des avions, progression, tactique et confort.
 Lot 4 : #17 à #20 — terrain, lisibilité, son et mesures de régularité.
 Lot 5 : #22 — protocole et parties humaines sur la campagne complète.
 
-Ce lot n'achève pas les 22 tickets. L'export Windows 1.6 existant n'a pas
-été reconstruit pour ces correctifs ; les validations ci-dessus portent
-sur le projet source. Aucun parcours humain intégral de 32 missions ni
-garantie universelle de FPS n'est revendiqué.
+La conception commune #11/#12/#13 est préparée dans
+docs/equilibrage-equipement.txt ; ses valeurs ne sont pas implémentées.
+Le protocole #22 et sa matrice de 288 cas sont préparés dans
+docs/protocole-parties.txt et docs/validation/matrice-parties.csv.
+Toutes les cases humaines restent NON_JOUE.
+
+Ce lot n'achève pas les 22 tickets. L'export Windows 1.6.1 contient les
+correctifs de fiabilité et d'interface. Aucun parcours humain intégral
+de 32 missions ni garantie universelle de FPS n'est revendiqué.

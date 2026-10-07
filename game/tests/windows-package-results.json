@@ -1,0 +1,21 @@
+{
+  "shell_file_version": "1.6.1.0",
+  "checks": 27,
+  "runtime": [
+    {
+      "exit_code": 0,
+      "script_suites": "NOT_RUN_IN_RELEASE_EXECUTABLE",
+      "frames": 180,
+      "log": "C:\\Users\\cyril\\AppData\\Local\\Temp\\PacificStrike-package-validation\\windows-package-681ee3a6bdce49eb898222a9f320a551\\standalone-startup.log",
+      "scenario": "normal_main_scene_startup"
+    }
+  ],
+  "version": "1.6.1.0",
+  "product": "Pacific Strike",
+  "extracted_directory": "C:\\Users\\cyril\\AppData\\Local\\Temp\\PacificStrike-package-validation\\windows-package-681ee3a6bdce49eb898222a9f320a551\\PacificStrike",
+  "executable_sha256": "06BF66C22393B14A67512688E126D63048B5A09C4680214EC8AA5584EDB5B78A",
+  "explorer_visual_check": "NOT_PERFORMED",
+  "failures": [],
+  "shell_file_description": "Pacific Strike - Campagne 1942",
+  "description": "Pacific Strike - Campagne 1942"
+}

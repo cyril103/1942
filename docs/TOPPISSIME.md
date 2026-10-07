@@ -14,7 +14,15 @@ Branche : `jeu_toppissime`, issue de `dbcdd8e`. Le titre conserve ses 32 mission
 8. **Audio** : les pistes d'action de `codex/jeu-final` sont rétablies en version 1.5, avec les fondus entre vol et boss. La composition adaptative originale à 140 BPM reste conservée comme source historique. Messages radio sous-titrés avec indicatif sonore ; pas de comédiens enregistrés. Les morceaux CC0 sont conservés avec leurs crédits.
 9. **Finition et rejouabilité** : modes arcade à équipement fixe et entraînement direct aux boss, records arcade locaux par avion/mission, sauvegarde de campagne isolée, touches reconfigurables avec conflits détectés, conservation des commandes manette, trois profils graphiques, VSync et compteur FPS. Les indications de capacités dans le HUD suivent les touches attribuées.
 
-## Interceptions pendant le retour — version 1.6
+## Fiabilité et interface — version 1.6.1
+
+La passe de revue corrige les règles de DCA, les contacts des tirs, les récompenses de points faibles, les modes de session et la récupération des sauvegardes. Le HUD de brouillage, les briefings et les aides de commandes sont adaptés aux différentes résolutions. Les crédits distinguent les musiques actives des compositions historiques. Détails, commandes de reproduction et limites : [suivi des corrections](suivi-corrections.txt).
+
+Validation de l'interface : **1 110 assertions avec rendu réel**, dont 25 captures, sans échec. Session : 165 assertions sans échec. Les [captures avant/après](../renders/validation-interface/README.md) et les [mesures de géométrie](../game/tests/ui-readability-results.json) sont versionnées. La manette physique et une campagne humaine complète restent à vérifier.
+
+**Distribution actuelle : Windows 1.6.1**, `dist/PacificStrike/PacificStrike.exe` et `dist/PacificStrike-Windows-x64.zip`. Nom produit Pacific Strike, versions Windows 1.6.1.0, icône propre au jeu. SHA256 : `06BF66C22393B14A67512688E126D63048B5A09C4680214EC8AA5584EDB5B78A`. Le test du ZIP passe ses **27 contrôles**, dont un lancement normal de 180 images depuis un dossier temporaire extérieur au dépôt. Ce test ne remplace pas une partie complète ; l'observation visuelle des propriétés dans l'Explorateur reste à faire. Le ZIP et l'EXE sont générés localement et exclus du dépôt Git. Lancement : `Jouer-Final.cmd`, ou extraire le ZIP et ouvrir l'EXE.
+
+## Interceptions pendant le retour — version 1.6 (historique)
 
 Après le raid, le retour à l'altitude de croisière au-dessus de l'océan réactive les avions dès que la côte est derrière le joueur. Ce seuil est indépendant de la marge maritime plus large nécessaire au porte-avions. La première vague arrive immédiatement ; Zero de face et Hayabusa latéraux alternent ensuite toutes les 4,8 à 3,4 secondes selon le secteur, dans le même budget de chasseurs et de projectiles que les autres missions.
 
@@ -26,7 +34,7 @@ Capture réelle : `renders/assault-interception-retour.png`. Résultats détaill
 
 Les **4 997 contrôles de raids passent également contre le paquet Windows final**, sans erreur ni avertissement. Le ZIP contient le même exécutable (hash vérifié) et le manuel 1.6.
 
-**Distribution actuelle : Windows 1.6**, `dist/PacificStrike/PacificStrike.exe` et `dist/PacificStrike-Windows-x64.zip`. SHA256 de l'exécutable : `B1EBED616A0EDF05E680E514CFF3A9821D8AB9CB17CB40663A8E5C10884612AA`. Lancement : `Jouer-Final.cmd`. Essai direct : **Arcade / Score Attack → 03 / Opération Coupe-Circuit**.
+**Distribution antérieure : Windows 1.6**, `dist/PacificStrike/PacificStrike.exe` et `dist/PacificStrike-Windows-x64.zip`. SHA256 de l'exécutable : `B1EBED616A0EDF05E680E514CFF3A9821D8AB9CB17CB40663A8E5C10884612AA`. Lancement : `Jouer-Final.cmd`. Essai direct : **Arcade / Score Attack → 03 / Opération Coupe-Circuit**.
 
 ## Approche aérienne et assaut renforcé — version 1.5 (historique)
 
@@ -163,7 +171,7 @@ Mesures du test animé, GTX 1650 / 1080p :
 
 Ces profils ont été mesurés successivement dans une bataille évolutive (jusqu'à 35 contacts et 48 projectiles ennemis), pas sur des images identiques. La moyenne Qualité légèrement inférieure à Équilibré n'implique donc pas que MSAA 4× soit plus rapide. Le budget de 60 FPS est de 16,67 ms. Les chargements de scènes et la chauffe initiale sont exclus des mesures.
 
-La version 1.1 avait également passé ses 114 contrôles dédiés contre son paquet embarqué via le moteur console (`--main-pack`), avec un profil temporaire distinct supprimé après le test, et ses 946 contrôles de campagne après correction du cache de ciel. L'export courant est la version 1.6 décrite plus haut.
+La version 1.1 avait également passé ses 114 contrôles dédiés contre son paquet embarqué via le moteur console (`--main-pack`), avec un profil temporaire distinct supprimé après le test, et ses 946 contrôles de campagne après correction du cache de ciel. L'export courant est la version 1.6.1 décrite plus haut.
 
 ## Références consultées
 

@@ -2,6 +2,7 @@ extends Control
 const PROFILE := preload("res://scripts/campaign/profile.gd")
 const DIRECTOR := preload("res://scripts/campaign/director.gd")
 const HUD := preload("res://scripts/campaign/hud.gd")
+const COMMANDS := preload("res://scripts/campaign/command_labels.gd")
 const FONT := preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 const TITLE := preload("res://assets/ui/fonts/BlackOpsOne-Regular.ttf")
 const GOLD := Color("e2c383")
@@ -239,18 +240,26 @@ func _clear_menu(title: String, subtitle: String, dark := true) -> void:
 
 func _label(text: String, position_at: Vector2, dimensions: Vector2, font_size := 26, color := Color.WHITE, title := false) -> Label:
 	var label := Label.new()
-	label.text = text
 	label.position = position_at
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_font_override("font",TITLE if title else FONT)
 	label.add_theme_font_size_override("font_size",font_size)
 	label.add_theme_color_override("font_color",color)
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# Give wrapping a width before adding text. At width zero the first minimum
+	# height can span thousands of pixels and prevent a later size assignment.
+	label.size = dimensions
+	label.text = text
 	design.add_child(label)
-	# Set the width after wrapping/font overrides; otherwise the initial text's
-	# minimum width can expand the control beyond the right column.
 	label.size = dimensions
 	return label
+
+func _fit_label(label: Label, maximum_height: float, minimum_font_size := 18) -> void:
+	var pixels := label.get_theme_font_size("font_size")
+	while label.get_minimum_size().y>maximum_height and pixels>minimum_font_size:
+		pixels -= 1
+		label.add_theme_font_size_override("font_size",pixels)
+	label.size.y = maximum_height
 
 func _button(text: String, at: Vector2, dimensions: Vector2, callback: Callable, disabled := false) -> Button:
 	var button := Button.new()
@@ -393,7 +402,8 @@ func _show_credits() -> void:
 	text.fit_content = true
 	text.bbcode_enabled = false
 	text.add_theme_font_size_override("normal_font_size",25)
-	text.text = "PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\nMusique de combat adaptative : composition originale Pacific Strike. Menus : Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0.\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n"
+	text.text = "PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\n\nMUSIQUE ACTIVE\nMenus, vol, combats de boss et victoire : Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0. Les pistes gardent leur tempo et leurs mélodies d'origine, avec des transitions en fondu.\n\nCOMPOSITIONS HISTORIQUES\nLes anciennes compositions procédurales Pacific Strike et leurs pistes pulse / drive / hero sont conservées dans les sources ; elles ne sont plus diffusées comme musique de combat. Le signal radio original reste utilisé sur le bus des effets. Le son du laser est également une création procédurale originale.\n\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n"
+	text.name = "CreditsText"
 	for file in ["res://assets/audio/engine/CREDITS.md","res://assets/audio/weapons/CREDITS.md","res://assets/campaign/music/CREDITS.txt"]:
 		text.text += FileAccess.get_file_as_string(file)+"\n\n"
 	scroll.add_child(text)
@@ -460,7 +470,10 @@ func _show_pause() -> void:
 	_button("OPTIONS",Vector2(94,415),Vector2(580,64),func(): _show_settings(true))
 	_button("RECOMMENCER LA MISSION",Vector2(94,509),Vector2(580,64),_launch.bind(selected_mission))
 	_button("RETOUR À L'ACCUEIL",Vector2(94,603),Vector2(580,64),_show_main)
-	_label("La progression est enregistrée entre les missions.\nReprendre depuis l'accueil relance le briefing de la mission.\n\nEspace : tirer  •  Maj : précision\nX : bombe  •  C : frappe spéciale",Vector2(850,325),Vector2(870,320),32,MUTED)
+	_label("La progression est enregistrée entre les missions.\nReprendre depuis l'accueil relance le briefing de la mission.",Vector2(850,325),Vector2(870,150),32,MUTED)
+	_label("COMMANDES  /  CLAVIER · MANETTE",Vector2(850,495),Vector2(870,48),27,GOLD)
+	var commands := _label(COMMANDS.flight_guide(),Vector2(850,555),Vector2(870,325),30,MUTED)
+	commands.name = "FlightCommands"
 	_focus_first()
 
 func _resume() -> void:
@@ -501,9 +514,10 @@ func _show_result(report: Dictionary) -> void:
 	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else ("MISSION INACCOMPLIE" if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
 	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else ("OBJECTIF NON ATTEINT" if objective_failed else "AUCUNE VIE RESTANTE"),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
 	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.bonus,earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1"))
-	var summary := "32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est déverrouillée.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre record est enregistré.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde.")
-	if play_mode!="campaign": summary = ("Votre record Arcade est enregistré." if play_mode=="arcade" else "Entraînement terminé.")+"\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée."
-	_label(summary,Vector2(1210,336),Vector2(590,310),33,MUTED)
+	var summary := "32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est disponible.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre meilleur score est conservé.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde.")
+	if play_mode!="campaign": summary = ("Le record Arcade est mis à jour si ce score est supérieur." if play_mode=="arcade" else "Entraînement terminé. Aucun record ni récompense de campagne.")+"\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée."
+	var summary_label := _label(summary,Vector2(1210,336),Vector2(590,360),30,MUTED)
+	summary_label.name = "ResultSummary"
 	if report.won and selected_mission < 32 and play_mode=="campaign":
 		_button("MISSION SUIVANTE",Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
 	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission))

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="ocean" x2="0.25" y2="1">
+      <stop stop-color="#163e55"/>
+      <stop offset="1" stop-color="#061a2b"/>
+    </linearGradient>
+    <linearGradient id="metal" x2="0.7" y2="1">
+      <stop stop-color="#fff0bc"/>
+      <stop offset="1" stop-color="#bd8e49"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="244" height="244" rx="43" fill="url(#ocean)" stroke="#e2c383" stroke-width="7"/>
+  <path d="M23 163Q64 151 104 163T185 163T233 163 M23 188Q64 176 104 188T185 188T233 188 M28 211Q64 202 104 211T185 211T228 211" fill="none" stroke="#3c7288" stroke-width="5" opacity=".6"/>
+  <path d="M42 62H84 M172 62H214" stroke="#e2c383" stroke-width="5"/>
+  <path d="M128 29L145 76L145 101L224 146L224 166L142 143L140 180L166 201L166 214L128 205L90 214L90 201L116 180L114 143L32 166L32 146L111 101L111 76Z" fill="#02101c" stroke="#061a2b" stroke-width="12" stroke-linejoin="round" transform="translate(0 6)"/>
+  <path d="M128 29L145 76L145 101L224 146L224 166L142 143L140 180L166 201L166 214L128 205L90 214L90 201L116 180L114 143L32 166L32 146L111 101L111 76Z" fill="url(#metal)" stroke="#f6dc96" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M128 60L136 82V109L128 119L120 109V82Z" fill="#254b61" stroke="#6e9bad" stroke-width="2"/>
+  <path d="M128 125V191" stroke="#956d38" stroke-width="3"/>
+  <path d="M60 147L99 130 M157 130L196 147" stroke="#8d6535" stroke-width="3"/>
+</svg>

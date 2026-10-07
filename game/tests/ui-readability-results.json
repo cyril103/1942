@@ -1,0 +1,518 @@
+{
+	"briefings": [
+		{
+			"lines": 2,
+			"mission": 1,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 2,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 3,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 4,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 5,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 6,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 7,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 8,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 9,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 10,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 11,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 12,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 13,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 14,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 15,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 16,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 17,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 18,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 19,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 20,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 21,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 22,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 23,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 24,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 25,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 26,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 27,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 28,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 29,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 30,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 31,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 32,
+			"panel_end": 908.0,
+			"resolution": "(1280, 720)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 1,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 2,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 3,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 4,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 5,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 6,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 7,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 8,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 9,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 10,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 11,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 12,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 13,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 14,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 15,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 16,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 17,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 18,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 19,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 20,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 21,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 22,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 23,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 24,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 25,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 26,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 27,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 28,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 29,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 2,
+			"mission": 30,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		},
+		{
+			"lines": 5,
+			"mission": 31,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 177.0
+		},
+		{
+			"lines": 2,
+			"mission": 32,
+			"panel_end": 908.0,
+			"resolution": "(1920, 1080)",
+			"text_end": 888.0,
+			"text_height": 69.0
+		}
+	],
+	"checks": 1110,
+	"failures": []
+}
