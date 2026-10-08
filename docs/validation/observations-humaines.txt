@@ -35,8 +35,9 @@ Après proposition d'essayer quelques missions du ZIP 1.9 et de donner ses
 retours sur difficulté, améliorations, visibilité, son et incidents, le joueur
 répond : « ouai c'est bon tu peux valider ».
 
-Cet accord est enregistré comme acceptation produit globale des améliorations
-livrées (#11 à #16, #18 et #19), permettant leur clôture sur décision du joueur.
+Cet accord est enregistré comme acceptation produit globale de la version
+livrée. Il ne documente pas séparément les critères des tickets #11 à #16,
+#18 et #19.
 Référence livrée : d2b43140753a5fb8b08240297168ddcfdd166763 ; EXE 1.9 SHA256
 28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311.
 
@@ -45,5 +46,10 @@ durée, matériel d'écoute et observations individuelles ne sont pas précisés
 Les critères non mesurés et les protocoles proposés restent documentés comme
 tels ; aucun résultat détaillé, test multi-auditeurs ou parcours de 32 missions
 n'est inventé. La matrice ne reçoit donc aucune session jouée sans référence.
+Le contrôle automatique d'autorisation a refusé la clôture de #11 comme
+terminé, faute d'accord explicite pour clôturer malgré le critère non documenté
+sur la viabilité des trois avions en début et fin de campagne. Aucun ticket
+n'a été fermé lors de cette tentative. L'accord global peut être consigné,
+mais une clôture avec critères non mesurés demande une décision explicite.
 Le protocole exhaustif #22 et les contrôles matériels #8/#20 restent ouverts,
-ainsi que le ticket de suivi #23. L'acceptation produit ne les valide pas.
+ainsi que le suivi #23. L'acceptation produit ne les valide pas.
