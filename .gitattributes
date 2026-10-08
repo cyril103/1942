@@ -15,3 +15,10 @@
 *.mp3 binary
 *.ogg binary
 *.flac binary
+
+# Validation evidence is byte-addressed by its manifests and runtime hashes.
+# Preserve raw logs, JSON and external probe snapshots across platforms.
+audio/validation-mix-v19/** -text
+renders/validation-readability-v19/** -text
+game/tests/performance-1.9-comparison/** -text
+docs/validation/evidence-1.9/** -text
