@@ -1,0 +1,13 @@
+{
+  "audio_driver": "Dummy",
+  "physics_hz": 60,
+  "duration_ticks": 8400,
+  "mission": 31,
+  "quality": 2,
+  "pack_hashes": {
+    "1.8.0": "83399d4c520d6b71fafc86c529c9b39fbc8a2c092296fcaa9dda7f291a410b14",
+    "1.9.0": "28d3229336c09ab7872f2dec359287e3b5607e6ff470806277227e687bd2b311"
+  },
+  "probe_sha256": "2e7686bad1d7012ee631ff55c357c56f4e8e514332c499f62fbe6fa61aa00b25",
+  "limits": "Same immutable packs and external probe as q1; audio Dummy. Existing caches, uncontrolled system/thermal load; not human play."
+}

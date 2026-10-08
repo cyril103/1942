@@ -238,6 +238,7 @@ func _advance_mobile(delta: float) -> bool:
 		mobile_phase = MobilePhase.ANNOUNCE
 		_cancel_salvo(0.03+defense_stagger)
 		_announce_mobile_move()
+		flare.material_override.set_shader_parameter("kind",2)
 		return false
 	_cancel_salvo(0.03+defense_stagger)
 	motion_clock += maxf(0.0,delta)
@@ -273,6 +274,7 @@ func _advance_mobile(delta: float) -> bool:
 			mobile_phase = MobilePhase.STATIONARY
 			motion_clock = 0.0
 			motion_wait = MOVE_STATION_SECONDS+defense_stagger
+			flare.material_override.set_shader_parameter("kind",1)
 	return false
 
 func _announce_mobile_move() -> void:

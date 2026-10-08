@@ -1,0 +1,126 @@
+PERFORMANCES 1.8 / 1.9 — PASSE SILENCIEUSE DU 8 OCTOBRE 2026
+
+Le même banc externe benchmark_full_mission.gd est utilisé sur les deux packs
+immuables. SHA256 du banc :
+2E7686BAD1D7012EE631FF55C357C56F4E8E514332C499F62FBE6FA61AA00B25
+Packs et preuves brutes : game/tests/performance-1.9-comparison/identity-q1.json
+et sous-dossiers 1.8.0 / 1.9.0. Comparateur : compare_full_missions.py.
+
+Windows, i5-10300H / GTX 1650, Godot 4.7.2 Compatibility OpenGL, NVIDIA 561.03.
+Fenêtre 1920 x 1080, viewport 1920 x 972, VSync désactivée, audio Dummy dans
+les DEUX versions. Les anciens relevés WASAPI ne sont pas le témoin de cette
+comparaison. Une instance graphique du jeu à la fois ; caches disque/pilote
+existants, tâches système et conditions thermiques non contrôlées en laboratoire.
+
+Q1 ÉQUILIBRÉ — DEUX PASSAGES PAR VERSION, TERMINÉS
+Chaque passage : 140 s / 8400 ticks à 60 Hz, entrées prédéterminées, armes et
+collisions réelles. Joueur protégé : pas de preuve de survie ni d'équilibrage.
+Le premier passage crée une scène dans un processus neuf ; le second la recharge.
+
+Version / passage   moyenne   p95     p99     max      >16,67 / >33,33 ms
+1.8 / 0              2,775    4,192   5,171  134,336    10 / 5
+1.8 / 1              2,810    4,533   6,176   27,767     4 / 0
+1.9 / 0              3,153    4,841   6,050   89,970     6 / 4
+1.9 / 1              2,981    4,448   5,392   28,083     2 / 0
+
+Intervalles des images de gameplay, en ms ; les frames de résultat sont
+exclues, construction/initialisation mesurées séparément dans les JSON.
+Les percentiles ne sont ni moyennés entre passages ni présentés comme FPS
+garantis. Le coût moyen augmente légèrement dans ces essais ; les p99 varient
+dans les deux sens. Aucun gain général ni causalité d'un shader n'est établi.
+Les pics restent présents ; leur cause n'est pas démontrée.
+
+Les quatre historiques de 140 états, leurs entrées, résultats et ticks sont
+identiques, intra-version et entre versions : signature d'état 1729331200,
+résultat tick 6718. Le comparateur rejette aussi une fixture dont un état a
+été volontairement altéré. Cela couvre les états enregistrés, pas l'intégralité
+des variables internes ni la perception humaine.
+
+Après libération scène + télémétrie : un nœud, zéro orphelin sur les quatre
+passages. Ressources stables 212 avant / 213 après. Allocation statique moteur
+après : 56 524 731 puis 56 559 475 octets ; ce n'est pas la RAM privée Windows.
+La durée de deux passages ne suffit pas à une conclusion d'absence de fuite.
+
+Q0 PERFORMANCE — DEUX PASSAGES PAR VERSION, TERMINÉS
+Version / passage   moyenne   p95     p99     max      >16,67 / >33,33 ms
+1.8 / 0              2,697    4,205   5,507   84,374     7 / 2
+1.8 / 1              2,682    4,063   4,875   24,645     1 / 0
+1.9 / 0              2,724    4,308   5,658   79,553     7 / 3
+1.9 / 1              2,740    4,301   5,315   27,917     1 / 0
+Le comparateur confirme les états/protocoles enregistrés identiques avant/après
+et entre les deux passages. Les p99 augmentent légèrement dans cette qualité ;
+il ne serait donc pas exact de présenter le p99 Q1 rechargé comme un gain global.
+
+Q2 QUALITÉ — DEUX PASSAGES PAR VERSION, TERMINÉS
+Version / passage   moyenne   p95     p99     max      >16,67 / >33,33 ms
+1.8 / 0              2,915    4,411   5,335   88,371     5 / 2
+1.8 / 1              3,477    5,991   7,633   56,462    26 / 5
+1.9 / 0              3,383    5,001   6,041  149,989     7 / 3
+1.9 / 1              3,608    5,537   6,994   19,091     1 / 0
+États enregistrés identiques. Le premier passage est plus lent après ; le
+second a un p99 inférieur mais une moyenne supérieure. Les six paires, toutes
+qualités réunies, n'établissent donc pas une amélioration uniforme.
+
+ENDURANCE M31 TERMINÉE — HUIT RECHARGEMENTS
+1133,63 s observées (environ 18 min 54 s), huit passages de 8400 ticks.
+États enregistrés identiques entre les huit passages, résultat tick 6718 ;
+aucune erreur moteur ou observateur. Un nœud / zéro orphelin et 213 ressources
+après chaque libération. Allocation statique après libération de la sonde :
+56 547 282 → 57 065 854 octets ; rapport final 57 069 318. Les résumés restent
+résidents et les caches moteur ne sont pas diagnostiqués par ces compteurs.
+
+957 échantillons du renderer PID 13476 : pic observé de mémoire privée engagée
+1 065 730 048 octets ; pic de working set 374 374 400 octets. Intervalle médian
+1,014 s, maximum 3,149 s. Ni résident unique, ni VRAM physique, ni maximum
+instantané garanti. Les fenêtres de nettoyage de 250 ms ne permettent pas
+d'associer sûrement un échantillon Windows à chaque libération de scène.
+Le banc complémentaire réserve des fenêtres horodatées plus longues.
+
+Preuves : game/tests/performance-1.9-comparison/endurance-m31.
+Ces répétitions n'établissent ni une absence de fuite universelle, ni une
+campagne humaine de 32 missions. Deux vérifications de syntaxe headless
+sans scène/rendu ont eu lieu ; une seule instance graphique, charge système
+non isolée en laboratoire.
+
+SESSION MULTI-MISSIONS TERMINÉE
+Quatre raids (3/7/19/31), chacun suivi de sa vraie reprise courte, dans une
+même App persistante. Arcade/Pilote/équipement de base, pilote protégé, aucune
+progression de campagne sauvegardée. Les sept phases de vol sont présentes
+pour chacun des huit passages. Décollage normal : 537 ticks (8,95 s) ; reprise
+courte : 96 ticks (1,6 s). Résultats respectifs : 5878/5437, 5998/5557,
+6358/5917, 6718/6277 ticks. Aucun échec moteur, observateur ou d'analyse.
+
+1156,80 s observées, 953 relevés du renderer PID 23076. Intervalle médian
+1,018 s, maximum 3,397 s. Pic privé engagé observé : 1 075 052 544 octets ;
+pic working set : 377 835 520. Une fenêtre de trois secondes après chaque
+nettoyage permet l'appariement par horodatage Windows individuel (marge 50 ms).
+Les neuf fenêtres contiennent chacune un ou deux relevés : peu d'échantillons,
+pas des moyennes temporelles ni une preuve d'absence générale de fuite.
+
+Fenêtre                  Privé engagé médian    Working set médian (octets)
+M03 normale                995 057 664            363 819 008
+M03 reprise                969 363 456            364 875 776
+M07 normale                972 906 496            369 348 608
+M07 reprise                973 746 176            369 721 344
+M19 normale                969 195 520            362 020 864
+M19 reprise                969 007 104            362 151 936
+M31 normale                972 148 736            365 223 936
+M31 reprise                973 074 432            366 034 944
+Après libération App       909 885 440            351 649 792
+
+Menu : 27 nœuds, 265 ressources, zéro orphelin après les huit passages.
+Après App : un nœud, 214 ressources, zéro orphelin ; allocation statique moteur
+57 692 310 octets. Les ressources/caches et le moteur restent vivants jusqu'à
+l'arrêt du processus ; cette observation ne diagnostique pas leurs allocations.
+
+Preuves : game/tests/performance-1.9-comparison/endurance-session.
+Le banc et sa base sont copiés/hachés par l'observateur, puis revérifiés en fin
+de session ; tests/* est exclu de l'EXE. Un premier démarrage rejeté avant
+création de l'App est conservé dans session-startup-rejected : la garde lisait
+les arguments moteur consommés par Godot. Elle lit désormais le pilote réel
+AudioServer et exige Dummy avant toute voix. Ce rejet n'est pas un raid raté.
+L'outil summarize_process_memory.py rejette aussi le rapport historique en
+échec, au lieu de valider ses seuls nombres de samples.
+
+Le joueur confirme ne pas disposer d'un deuxième PC. Cette validation
+matérielle reste non effectuée et le ticket #20 demeure ouvert.

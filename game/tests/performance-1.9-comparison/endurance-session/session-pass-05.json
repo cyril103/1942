@@ -1,0 +1,368 @@
+{
+	"after_dispose_memory": {
+		"engine_static_bytes": 69504874,
+		"nodes": 27,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 366782033,
+		"resources": 265
+	},
+	"departure_tick": 96,
+	"elapsed_ms": 140227.982,
+	"finished_tick": 5917,
+	"idle_end_unix_s": 1791494444.989,
+	"idle_start_unix_s": 1791494441.992,
+	"loadout": {
+		"aircraft": 0,
+		"difficulty": 1,
+		"power": "none",
+		"upgrades": [
+			0,
+			0,
+			0
+		]
+	},
+	"memory_samples": [
+		{
+			"memory": {
+				"engine_static_bytes": 76609401,
+				"nodes": 1283,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435596951,
+				"resources": 268
+			},
+			"tick": 8
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76863877,
+				"nodes": 1325,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435606911,
+				"resources": 268
+			},
+			"tick": 308
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76908679,
+				"nodes": 1330,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435615211,
+				"resources": 268
+			},
+			"tick": 608
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76740803,
+				"nodes": 1295,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435611711,
+				"resources": 268
+			},
+			"tick": 908
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76720511,
+				"nodes": 1283,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435606167,
+				"resources": 268
+			},
+			"tick": 1208
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76722971,
+				"nodes": 1283,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435606167,
+				"resources": 268
+			},
+			"tick": 1508
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76709747,
+				"nodes": 1274,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435605919,
+				"resources": 268
+			},
+			"tick": 1808
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76732475,
+				"nodes": 1265,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435605671,
+				"resources": 268
+			},
+			"tick": 2108
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76553069,
+				"nodes": 1220,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435604431,
+				"resources": 268
+			},
+			"tick": 2408
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76140605,
+				"nodes": 1139,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435602199,
+				"resources": 268
+			},
+			"tick": 2708
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 76049135,
+				"nodes": 1121,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435601703,
+				"resources": 268
+			},
+			"tick": 3008
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75808165,
+				"nodes": 1076,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435600463,
+				"resources": 268
+			},
+			"tick": 3308
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75586549,
+				"nodes": 1031,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435599223,
+				"resources": 268
+			},
+			"tick": 3608
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75299913,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435597735,
+				"resources": 268
+			},
+			"tick": 3908
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75595731,
+				"nodes": 1041,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435604487,
+				"resources": 268
+			},
+			"tick": 4208
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75545373,
+				"nodes": 1019,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435601359,
+				"resources": 268
+			},
+			"tick": 4508
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75468953,
+				"nodes": 998,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435598107,
+				"resources": 268
+			},
+			"tick": 4808
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75613889,
+				"nodes": 1026,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435604363,
+				"resources": 268
+			},
+			"tick": 5108
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75373329,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435597735,
+				"resources": 268
+			},
+			"tick": 5408
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75400849,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435588519,
+				"resources": 268
+			},
+			"tick": 5708
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75342349,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 6008
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75349545,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 6308
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75356741,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 6608
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75363937,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 6908
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75371133,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 7208
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75378329,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 7508
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75385525,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 7808
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75392721,
+				"nodes": 975,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435560055,
+				"resources": 268
+			},
+			"tick": 8108
+		}
+	],
+	"mission": 19,
+	"pass": 5,
+	"peak_bullets": 92,
+	"peak_contacts": 13,
+	"phases": {
+		"approach": 4537,
+		"climb": 1165,
+		"descent": 587,
+		"ground": 11695,
+		"landing": 2389,
+		"return_combat": 7647,
+		"takeoff": 486
+	},
+	"physics_ticks": 8400,
+	"result": {
+		"accuracy": 0.123,
+		"best_chain": 10,
+		"bonus": 0,
+		"chain_bonus": 300,
+		"damage": 0,
+		"deaths": 0,
+		"game_over": false,
+		"grade": 0,
+		"ground_kills": 1,
+		"ground_status": {
+			"escaped_priority_ids": [
+				"volcanic/m01",
+				"volcanic/m02"
+			],
+			"kills": 1,
+			"layout_valid": true,
+			"layout_warnings": [],
+			"main_met": false,
+			"missing_priority_ids": [
+				"volcanic/m01",
+				"volcanic/m02"
+			],
+			"priority_destroyed": 0,
+			"priority_total": 2,
+			"quota": 18,
+			"secondary_kind": "ground_layout",
+			"secondary_label": "Détruire les quatre batteries mobiles des complexes",
+			"secondary_met": false,
+			"secondary_progress": 0,
+			"secondary_target": 4
+		},
+		"kills": 18,
+		"lives": 3,
+		"mission": 19.0,
+		"mission_score": 2750,
+		"naval_kills": 0,
+		"objective_failed": true,
+		"objective_met": false,
+		"power": "none",
+		"rank": "D",
+		"score": 2750,
+		"secondary": false,
+		"seconds": 90.0166666666628,
+		"spread": false,
+		"won": false
+	},
+	"retry": true
+}

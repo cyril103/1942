@@ -385,7 +385,7 @@
 			"size": "(1920, 1080)"
 		}
 	],
-	"checks": 16240,
+	"checks": 16232,
 	"failures": [],
 	"human_comprehension": "NOT_PERFORMED",
 	"result_method": "Presentation fixtures; not a gameplay or human comprehension test"

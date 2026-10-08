@@ -13,6 +13,7 @@ var jam_scale := -1.0
 const FONT := preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 const COMMANDS := preload("res://scripts/campaign/command_labels.gd")
 const RULES := preload("res://scripts/campaign/scoring_rules.gd")
+const READABILITY := preload("res://scripts/campaign/readability_policy.gd")
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -211,23 +212,125 @@ func _draw_ground_assault(r: Rect2, u: float) -> void:
 	if raid.low_flight>.98: phase = "VOL RASANT"
 	elif raid.low_flight>.02: phase = "REMONTÉE" if raid.position.z>director.player.position.z else "DESCENTE"
 	text_at(phase,at+Vector2(0,45 if has_priorities else 23)*u,17*u,Color(.73,.85,.80))
+	_draw_ground_contacts(raid, r, u)
+
+func _draw_ground_contacts(raid: Node, r: Rect2, u: float) -> void:
+	var snapshots: Array[Dictionary] = []
+	var targets_by_id := {}
+	var priorities: Array = raid.layout.get("priority_ids", [])
 	for target in raid.contacts():
-		var center: Vector2 = director.combat.camera.unproject_position(target.global_position)+r.position
-		if not r.grow(-35*u).has_point(center): continue
+		var center: Vector2 = director.combat.camera.unproject_position(target.global_position) + r.position
 		var footprint: Vector2 = target.FOOTPRINT[target.variant]
-		var first: Vector2 = director.combat.camera.unproject_position(target.global_position+Vector3(-footprint.x*.5,0,-footprint.y*.5))+r.position
-		var last: Vector2 = director.combat.camera.unproject_position(target.global_position+Vector3(footprint.x*.5,0,footprint.y*.5))+r.position
-		var box := Rect2(first,last-first).grow(5*u)
-		var color := Color(1,.65,.35,.63) if target.warning_time>0 else Color(.85,.89,.70,.48)
-		if target.variant=="radar": color=Color(.42,.91,.97,.72)
-		for corner in [box.position,Vector2(box.end.x,box.position.y),box.end,Vector2(box.position.x,box.end.y)]:
-			var direction: Vector2 = (box.get_center()-corner).sign()
-			draw_line(corner,corner+Vector2(direction.x*9*u,0),color,1.3*u,true)
-			draw_line(corner,corner+Vector2(0,direction.y*9*u),color,1.3*u,true)
-		if target.health<target.max_health:
-			draw_rect(Rect2(box.position-Vector2(0,7*u),Vector2(box.size.x,3*u)),Color(0,0,0,.55))
-			draw_rect(Rect2(box.position-Vector2(0,7*u),Vector2(box.size.x*float(target.health)/target.max_health,3*u)),color)
-		text_at("DCA RAPIDE" if target.rapid_fire else raid.LABELS[target.variant],Vector2(box.position.x,box.end.y+17*u),15*u,Color(.85,.91,.80,.85),box.size.x+30*u)
+		var first: Vector2 = director.combat.camera.unproject_position(target.global_position + Vector3(-footprint.x * .5, 0, -footprint.y * .5)) + r.position
+		var last: Vector2 = director.combat.camera.unproject_position(target.global_position + Vector3(footprint.x * .5, 0, footprint.y * .5)) + r.position
+		var projected := Rect2(first, last - first).abs().grow(5 * u)
+		var id := str(target.tactical_id)
+		var persistent: bool = target.variant == "radar" or id in priorities
+		var frame := READABILITY.marker_frame(projected, r, persistent, u)
+		if frame.size.x <= 0 or frame.size.y <= 0:
+			continue
+		targets_by_id[id] = target
+		snapshots.append({
+			"id": id, "variant": target.variant, "alive": target.alive, "visible": true,
+			"screen_position": center, "frame": frame, "priority": id in priorities,
+			"priority_tag": target.priority_tag, "rapid_fire": target.rapid_fire,
+			"mobile": target.mobile, "warning_time": target.warning_time,
+			"salvo_remaining": target.salvo_remaining, "health": target.health,
+			"max_health": target.max_health,
+			"motion_announced": target.mobile and target.mobile_phase == target.MobilePhase.ANNOUNCE
+		})
+	var player_at: Vector2 = director.combat.camera.unproject_position(director.player.global_position) + r.position
+	var focused: bool = Input.is_action_pressed("focus_flight") and director.player.alive and director.player.controls_enabled
+	var records := READABILITY.select(snapshots, player_at, focused, u)
+	var occupied := _ground_label_reservations(raid, r, u)
+	var placements := {}
+	var labelled: Array[Dictionary] = []
+	for record in records:
+		if record.label_visible:
+			labelled.append(record)
+	labelled.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		if bool(a.persistent) != bool(b.persistent):
+			return bool(a.persistent)
+		if int(a.attention_rank) != int(b.attention_rank):
+			return int(a.attention_rank) < int(b.attention_rank)
+		return str(a.id) < str(b.id))
+	for record in labelled:
+		var label := READABILITY.label_placement(record.frame, str(record.label), FONT, r, u, occupied)
+		placements[record.id] = label
+		if bool(label.valid):
+			occupied.append(label.rect)
+	for record in records:
+		var target: Area3D = targets_by_id[record.id]
+		var box: Rect2 = record.frame
+		var color := Color(.81, .87, .79, .67)
+		if record.persistent:
+			color = Color(.97, .78, .40, .87) if record.priority else Color(.42, .91, .97, .87)
+		if record.focused:
+			color = Color(.88, .98, 1.0, .90)
+		if record.fire_warning:
+			color = Color(1.0, .48, .16, .84 + .12 * sin(elapsed * TAU * 3.0))
+		if record.frame_visible:
+			var line_width := (1.9 if record.fire_warning else 1.15) * u
+			var corner_length := minf(8 * u, minf(box.size.x, box.size.y) * .5)
+			for corner in [box.position, Vector2(box.end.x, box.position.y), box.end, Vector2(box.position.x, box.end.y)]:
+				var direction: Vector2 = (box.get_center() - corner).sign()
+				draw_line(corner, corner + Vector2(direction.x * corner_length, 0), color, line_width, true)
+				draw_line(corner, corner + Vector2(0, direction.y * corner_length), color, line_width, true)
+		if record.health_visible:
+			var bar := READABILITY.health_bar(box, r, u)
+			draw_rect(bar, Color(0, 0, 0, .55))
+			draw_rect(Rect2(bar.position, Vector2(bar.size.x * float(target.health) / target.max_health, bar.size.y)), color)
+		if record.label_visible:
+			var label: Dictionary = placements[record.id]
+			if bool(label.valid):
+				for segment in READABILITY.label_link(box, label.rect, r, u, occupied):
+					draw_line(segment[0], segment[1], Color(color, .45), 1.0 * u, true)
+				text_at(str(label.text), label.baseline, float(label.font_size), color, float(label.glyph_width))
+		if record.motion_hint:
+			var raid_node := target.get_parent() as Node3D
+			var destination: Vector2 = director.combat.camera.unproject_position(raid_node.to_global(target.motion_intent)) + r.position
+			_draw_mobile_motion_hint(record.screen_position, destination, r, u)
+
+func _ground_label_reservations(raid: Node, r: Rect2, u: float) -> Array[Rect2]:
+	# Existing overlay panels; bounding labels avoids hiding their information.
+	var occupied: Array[Rect2] = [
+		Rect2(10 * u, r.position.y + 86 * u, 300 * u, (78 if not raid.layout.get("priority_ids", []).is_empty() else 56) * u),
+		Rect2(12 * u, r.position.y + 6 * u, 220 * u, 55 * u),
+		Rect2(cockpit.size.x - 430 * u, r.position.y + 6 * u, 410 * u, 60 * u)
+	]
+	if is_instance_valid(jam_badge) and jam_badge.visible:
+		occupied.append(Rect2(jam_badge.position, jam_badge.size))
+	if director.radio_time > 0:
+		occupied.append(Rect2(Vector2(12 * u, r.end.y - 69 * u), Vector2(minf(920 * u, cockpit.size.x - 40 * u), 39 * u)))
+	if is_instance_valid(director.boss) and director.boss.alive:
+		occupied.append(Rect2(cockpit.size.x * .25, r.position.y + 7 * u, cockpit.size.x * .5, 42 * u))
+	if director.feedback_time > 0:
+		# Match the actual feedback panel's measured width and position in _draw.
+		var pixels := maxi(14, int(26 * u))
+		var width := minf(cockpit.size.x - 40 * u, FONT.get_string_size(director.feedback, HORIZONTAL_ALIGNMENT_LEFT, -1, pixels).x + 40 * u)
+		occupied.append(Rect2(Vector2((cockpit.size.x - width) * .5, r.position.y + 75 * u), Vector2(width, 40 * u)))
+	if director.ability_time > 0:
+		# This cue has no backing panel: reserve its complete measured glyphs and
+		# the same one-pixel shadow used by text_at, rather than a guessed width.
+		var value := "CAPACITÉ ACTIVE  %.1f s" % director.ability_time
+		var pixels := maxi(12, int(24 * u))
+		var at := Vector2(cockpit.size.x * .4, r.end.y - 75 * u)
+		var size := FONT.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, pixels)
+		var glyphs := Rect2(at - Vector2(0, FONT.get_ascent(pixels)), Vector2(size.x, FONT.get_ascent(pixels) + FONT.get_descent(pixels)))
+		occupied.append(glyphs.merge(Rect2(glyphs.position + Vector2.ONE, glyphs.size)))
+	if director.combat.respawn_time > 0 or director.combat.game_over:
+		occupied.append(Rect2(r.get_center() - Vector2(290, 72) * u, Vector2(580, 144) * u))
+	return occupied
+
+func _draw_mobile_motion_hint(from: Vector2, to: Vector2, r: Rect2, u: float) -> void:
+	# At most eight dashes and one arrow. Actor state/timers remain untouched.
+	var geometry := READABILITY.motion_hint_geometry(from, to, r, u)
+	var color := Color(.70, .77, 1.0, .78)
+	for segment in geometry.segments:
+		draw_line(segment[0], segment[1], color, float(geometry.line_width), true)
+	if geometry.arrow.size() >= 3:
+		draw_colored_polygon(geometry.arrow, color)
+
 
 func key_name(action: String) -> String:
 	return COMMANDS.keyboard(action).to_upper()

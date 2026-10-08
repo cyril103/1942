@@ -1,5 +1,6 @@
 extends Node
 signal finished(report: Dictionary)
+signal audio_event(kind: String, event_id: String)
 const NAVAL := preload("res://scripts/campaign/enemy_naval.gd")
 const BOSS := preload("res://scripts/campaign/boss.gd")
 const LOADOUT := preload("res://scripts/campaign/loadout.gd")
@@ -167,6 +168,7 @@ func _update_acts() -> void:
 			combat.add_child(convoy)
 			combat.navigate_naval(convoy)
 			radio = "Convoi allié en approche. Interceptez les bombardiers !"
+			audio_event.emit("radio_important", "convoy-entry:%d" % int(mission.id))
 			combat.spawn_bomber()
 		if feedback_time<=0:
 			feedback = act_title
@@ -282,6 +284,7 @@ func _update_extraction() -> void:
 		act_title = "INTERCEPTION AU RETOUR"
 		radio = "Contrôle : chasseurs sur votre route de retour ! Dégagez l'approche du porte-avions."
 		radio_time = 5.0
+		audio_event.emit("radio_important", "air-return:%d" % int(mission.id))
 		feedback = "REMONTÉE  /  CONTACTS AÉRIENS"
 		feedback_time = 3.0
 	# Leave five seconds for the last formation to pass before automatic landing.

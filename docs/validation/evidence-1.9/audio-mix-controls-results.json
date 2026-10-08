@@ -1,0 +1,23 @@
+{
+	"checks": 619,
+	"cue_retirement_observations": [
+		{
+			"advanced_seconds": 0.035,
+			"case": "initial_retirement",
+			"pending": false,
+			"pitch_scale": 0.720000028610229,
+			"remaining_seconds": 0.0
+		},
+		{
+			"advanced_seconds": 0.035,
+			"case": "repeated_retirement",
+			"pending": false,
+			"pitch_scale": 0.720000028610229,
+			"remaining_seconds": 0.0
+		}
+	],
+	"driver": "Dummy",
+	"failures": [],
+	"human_listening": "NOT_PERFORMED",
+	"waveform_peak": "SEPARATE_RECORDING_REQUIRED"
+}

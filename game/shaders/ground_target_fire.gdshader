@@ -17,7 +17,15 @@ void fragment() {
 	vec2 p = UV*2.0-1.0;
 	vec3 color;
 	float alpha;
-	if (kind == 1) {
+	// PHASE 5 CANDIDATE: mobile intent is a dashed corridor, separate from fire.
+	if (kind == 2) {
+		float along = fract((p.y + 1.0) * 3.0);
+		float dash = smoothstep(.12, .22, along) * (1.0 - smoothstep(.68, .78, along));
+		float lane = 1.0 - smoothstep(.12, .22, abs(p.x));
+		float ends = 1.0 - smoothstep(.82, .98, abs(p.y));
+		color = vec3(.70, .77, 1.0);
+		alpha = dash * lane * ends * strength * .75;
+	} else if (kind == 1) {
 		float radius = length(p);
 		float ring = exp(-pow((radius-mix(0.76,0.28,strength))*22.0,2.0));
 		float hot = exp(-radius*radius*30.0) * strength;

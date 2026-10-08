@@ -1,0 +1,4049 @@
+{
+  "comparator_schema": 1,
+  "pose_match": true,
+  "errors": [],
+  "warnings": [],
+  "numeric_comparison": "Decimal exact numeric equality; no tolerance; booleans are not numbers",
+  "decimal_values_in_report": "exact decimal strings",
+  "expected_capture_count": 36,
+  "expected_files": [
+    "background-dark-ocean-clear-1080.png",
+    "background-dark-ocean-clear-720.png",
+    "background-dark-ocean-explosion-1080.png",
+    "background-dark-ocean-explosion-720.png",
+    "background-foam-clear-1080.png",
+    "background-foam-clear-720.png",
+    "background-foam-explosion-1080.png",
+    "background-foam-explosion-720.png",
+    "background-sand-clear-1080.png",
+    "background-sand-clear-720.png",
+    "background-sand-explosion-1080.png",
+    "background-sand-explosion-720.png",
+    "background-snow-clear-1080.png",
+    "background-snow-clear-720.png",
+    "background-snow-explosion-1080.png",
+    "background-snow-explosion-720.png",
+    "background-vegetation-clear-1080.png",
+    "background-vegetation-clear-720.png",
+    "background-vegetation-explosion-1080.png",
+    "background-vegetation-explosion-720.png",
+    "contacts-feedback-ability-1080.png",
+    "contacts-feedback-ability-720.png",
+    "contacts-game-over-1080.png",
+    "contacts-game-over-720.png",
+    "contacts-hierarchy-1080.png",
+    "contacts-hierarchy-720.png",
+    "contacts-mobile-announce-1080.png",
+    "contacts-mobile-announce-720.png",
+    "contacts-mobile-fire-1080.png",
+    "contacts-mobile-fire-720.png",
+    "contacts-mobile-move-1080.png",
+    "contacts-mobile-move-720.png",
+    "contacts-mobile-settle-1080.png",
+    "contacts-mobile-settle-720.png",
+    "contacts-reinforcement-1080.png",
+    "contacts-reinforcement-720.png"
+  ],
+  "info_whitelist": {
+    "capture_root_keys": [
+      "build",
+      "filesystem_text_diagnostics",
+      "memory",
+      "production_signature",
+      "runtime_provenance",
+      "source_hashes"
+    ],
+    "top_root_keys": [
+      "after_dispose_memory",
+      "build",
+      "filesystem_text_diagnostics",
+      "initial_memory",
+      "memory",
+      "production_signature",
+      "runtime_provenance",
+      "schema",
+      "source_hashes"
+    ]
+  },
+  "inputs": {
+    "before": {
+      "manifest": "C:\\ChatGPT\\1942\\renders\\validation-readability-v19\\1.8.0\\captures.json",
+      "manifest_sha256": "7e6b824526e758d76eb3c77d165c53e76d9931e5b784554d1170e907881840ae",
+      "png_directory": "C:\\ChatGPT\\1942\\renders\\validation-readability-v19\\1.8.0",
+      "schema": 2
+    },
+    "after": {
+      "manifest": "C:\\ChatGPT\\1942\\renders\\validation-readability-v19\\1.9.0\\captures.json",
+      "manifest_sha256": "bf7743444a954d1288e4e33c082bd0aaae0651e753c17bbde17403949142b45e",
+      "png_directory": "C:\\ChatGPT\\1942\\renders\\validation-readability-v19\\1.9.0",
+      "schema": 2
+    }
+  },
+  "provenance": {
+    "before": {
+      "schema": 2,
+      "build": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+      "build_label_kind": "sha256_label",
+      "build_label_independently_verified": false,
+      "source_hash_origin_counts": {
+        "resource_representation_not_exact_source_or_bytecode": 180
+      },
+      "unavailable_source_hashes": {
+        "res://scripts/campaign/ground_target.gd": [
+          "background-dark-ocean-clear-1080.png",
+          "background-dark-ocean-clear-720.png",
+          "background-dark-ocean-explosion-1080.png",
+          "background-dark-ocean-explosion-720.png",
+          "background-foam-clear-1080.png",
+          "background-foam-clear-720.png",
+          "background-foam-explosion-1080.png",
+          "background-foam-explosion-720.png",
+          "background-sand-clear-1080.png",
+          "background-sand-clear-720.png",
+          "background-sand-explosion-1080.png",
+          "background-sand-explosion-720.png",
+          "background-snow-clear-1080.png",
+          "background-snow-clear-720.png",
+          "background-snow-explosion-1080.png",
+          "background-snow-explosion-720.png",
+          "background-vegetation-clear-1080.png",
+          "background-vegetation-clear-720.png",
+          "background-vegetation-explosion-1080.png",
+          "background-vegetation-explosion-720.png",
+          "contacts-feedback-ability-1080.png",
+          "contacts-feedback-ability-720.png",
+          "contacts-game-over-1080.png",
+          "contacts-game-over-720.png",
+          "contacts-hierarchy-1080.png",
+          "contacts-hierarchy-720.png",
+          "contacts-mobile-announce-1080.png",
+          "contacts-mobile-announce-720.png",
+          "contacts-mobile-fire-1080.png",
+          "contacts-mobile-fire-720.png",
+          "contacts-mobile-move-1080.png",
+          "contacts-mobile-move-720.png",
+          "contacts-mobile-settle-1080.png",
+          "contacts-mobile-settle-720.png",
+          "contacts-reinforcement-1080.png",
+          "contacts-reinforcement-720.png"
+        ],
+        "res://scripts/campaign/hud.gd": [
+          "background-dark-ocean-clear-1080.png",
+          "background-dark-ocean-clear-720.png",
+          "background-dark-ocean-explosion-1080.png",
+          "background-dark-ocean-explosion-720.png",
+          "background-foam-clear-1080.png",
+          "background-foam-clear-720.png",
+          "background-foam-explosion-1080.png",
+          "background-foam-explosion-720.png",
+          "background-sand-clear-1080.png",
+          "background-sand-clear-720.png",
+          "background-sand-explosion-1080.png",
+          "background-sand-explosion-720.png",
+          "background-snow-clear-1080.png",
+          "background-snow-clear-720.png",
+          "background-snow-explosion-1080.png",
+          "background-snow-explosion-720.png",
+          "background-vegetation-clear-1080.png",
+          "background-vegetation-clear-720.png",
+          "background-vegetation-explosion-1080.png",
+          "background-vegetation-explosion-720.png",
+          "contacts-feedback-ability-1080.png",
+          "contacts-feedback-ability-720.png",
+          "contacts-game-over-1080.png",
+          "contacts-game-over-720.png",
+          "contacts-hierarchy-1080.png",
+          "contacts-hierarchy-720.png",
+          "contacts-mobile-announce-1080.png",
+          "contacts-mobile-announce-720.png",
+          "contacts-mobile-fire-1080.png",
+          "contacts-mobile-fire-720.png",
+          "contacts-mobile-move-1080.png",
+          "contacts-mobile-move-720.png",
+          "contacts-mobile-settle-1080.png",
+          "contacts-mobile-settle-720.png",
+          "contacts-reinforcement-1080.png",
+          "contacts-reinforcement-720.png"
+        ]
+      },
+      "captures_with_runtime_provenance": 36
+    },
+    "after": {
+      "schema": 2,
+      "build": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311",
+      "build_label_kind": "sha256_label",
+      "build_label_independently_verified": false,
+      "source_hash_origin_counts": {
+        "resource_representation_not_exact_source_or_bytecode": 180
+      },
+      "unavailable_source_hashes": {
+        "res://scripts/campaign/ground_target.gd": [
+          "background-dark-ocean-clear-1080.png",
+          "background-dark-ocean-clear-720.png",
+          "background-dark-ocean-explosion-1080.png",
+          "background-dark-ocean-explosion-720.png",
+          "background-foam-clear-1080.png",
+          "background-foam-clear-720.png",
+          "background-foam-explosion-1080.png",
+          "background-foam-explosion-720.png",
+          "background-sand-clear-1080.png",
+          "background-sand-clear-720.png",
+          "background-sand-explosion-1080.png",
+          "background-sand-explosion-720.png",
+          "background-snow-clear-1080.png",
+          "background-snow-clear-720.png",
+          "background-snow-explosion-1080.png",
+          "background-snow-explosion-720.png",
+          "background-vegetation-clear-1080.png",
+          "background-vegetation-clear-720.png",
+          "background-vegetation-explosion-1080.png",
+          "background-vegetation-explosion-720.png",
+          "contacts-feedback-ability-1080.png",
+          "contacts-feedback-ability-720.png",
+          "contacts-game-over-1080.png",
+          "contacts-game-over-720.png",
+          "contacts-hierarchy-1080.png",
+          "contacts-hierarchy-720.png",
+          "contacts-mobile-announce-1080.png",
+          "contacts-mobile-announce-720.png",
+          "contacts-mobile-fire-1080.png",
+          "contacts-mobile-fire-720.png",
+          "contacts-mobile-move-1080.png",
+          "contacts-mobile-move-720.png",
+          "contacts-mobile-settle-1080.png",
+          "contacts-mobile-settle-720.png",
+          "contacts-reinforcement-1080.png",
+          "contacts-reinforcement-720.png"
+        ],
+        "res://scripts/campaign/hud.gd": [
+          "background-dark-ocean-clear-1080.png",
+          "background-dark-ocean-clear-720.png",
+          "background-dark-ocean-explosion-1080.png",
+          "background-dark-ocean-explosion-720.png",
+          "background-foam-clear-1080.png",
+          "background-foam-clear-720.png",
+          "background-foam-explosion-1080.png",
+          "background-foam-explosion-720.png",
+          "background-sand-clear-1080.png",
+          "background-sand-clear-720.png",
+          "background-sand-explosion-1080.png",
+          "background-sand-explosion-720.png",
+          "background-snow-clear-1080.png",
+          "background-snow-clear-720.png",
+          "background-snow-explosion-1080.png",
+          "background-snow-explosion-720.png",
+          "background-vegetation-clear-1080.png",
+          "background-vegetation-clear-720.png",
+          "background-vegetation-explosion-1080.png",
+          "background-vegetation-explosion-720.png",
+          "contacts-feedback-ability-1080.png",
+          "contacts-feedback-ability-720.png",
+          "contacts-game-over-1080.png",
+          "contacts-game-over-720.png",
+          "contacts-hierarchy-1080.png",
+          "contacts-hierarchy-720.png",
+          "contacts-mobile-announce-1080.png",
+          "contacts-mobile-announce-720.png",
+          "contacts-mobile-fire-1080.png",
+          "contacts-mobile-fire-720.png",
+          "contacts-mobile-move-1080.png",
+          "contacts-mobile-move-720.png",
+          "contacts-mobile-settle-1080.png",
+          "contacts-mobile-settle-720.png",
+          "contacts-reinforcement-1080.png",
+          "contacts-reinforcement-720.png"
+        ]
+      },
+      "captures_with_runtime_provenance": 36
+    }
+  },
+  "metadata_info_differences": [
+    {
+      "path": "/after_dispose_memory/engine_static_bytes",
+      "before": 59451741,
+      "after": 59730938,
+      "delta": 279197
+    },
+    {
+      "path": "/after_dispose_memory/render_memory_estimate_bytes",
+      "before": 300382492,
+      "after": 302512684,
+      "delta": 2130192
+    },
+    {
+      "path": "/after_dispose_memory/resources",
+      "before": 212,
+      "after": 213,
+      "delta": 1
+    },
+    {
+      "path": "/build",
+      "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+      "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+    },
+    {
+      "path": "/initial_memory/engine_static_bytes",
+      "before": 32684775,
+      "after": 32685480,
+      "delta": 705
+    }
+  ],
+  "pairs": [
+    {
+      "file": "background-dark-ocean-clear-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93005175,
+          "after": 93294884,
+          "delta": 289709
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1283,
+          "after": 1284,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426227517,
+          "after": 428357709,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "ac34134ad74bf9a6e27f14dd1949e371617afb008a23a287f9a4d365f0038ba6",
+          "bytes": 2170022,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "95e6aa658c1bbf30a3ec97c046de7c34ae7a1ac84346c4e0d399cae642d5e703",
+          "bytes": 2169922,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-dark-ocean-clear-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 83516119,
+          "after": 83791278,
+          "delta": 275159
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1283,
+          "after": 1284,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 409823867,
+          "after": 416214443,
+          "delta": 6390576
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "f230680e92fb1b8b5703bc9c9e2604b6cbcd92d44d52e6591239dcd1412004f7",
+          "bytes": 1021898,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "1b171ea247e9722c893ec9a646a5c4552d906d4b2d450449b42809008192dc0f",
+          "bytes": 1021947,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-dark-ocean-explosion-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93070615,
+          "after": 93352420,
+          "delta": 281805
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1283,
+          "after": 1284,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426227517,
+          "after": 428357709,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "03143338b5c88a986e69432a7ab2c67bd5fcdd73770db97e747311994954c8d7",
+          "bytes": 2190775,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "6c8888425019c11e5711349b70ffa59014a2f612558957619039d3b6a6c4c7aa",
+          "bytes": 2190636,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-dark-ocean-explosion-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 83599999,
+          "after": 83874854,
+          "delta": 274855
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1283,
+          "after": 1284,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414084251,
+          "after": 416214443,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "1ea528f3cb508238ee7b3209d516c321bb0d87b89999b14bc12e76c905095bd3",
+          "bytes": 1031687,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "1ee271224f7d2ff0bf616ef6f14130188913356e29b000e3f6de5f010107fb0e",
+          "bytes": 1031708,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-foam-clear-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 92915523,
+          "after": 93190020,
+          "delta": 274497
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426095857,
+          "after": 428226049,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "1cd9ae3f597a43bf78dd739f45b594c1a1e2c45fc30356c565f3fa1b8aec9d31",
+          "bytes": 2558933,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "b32863d8475a94df79be92b299b14f7bca18dab4c3718b60fcedf2656df8a022",
+          "bytes": 2559096,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-foam-clear-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 83512525,
+          "after": 83787976,
+          "delta": 275451
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414127351,
+          "after": 416257543,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "6c2b883e448a713c5e46a287a49cb66de981a7eed56122c4487e2417d98e4cb4",
+          "bytes": 1269657,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "3fea7d4674c3723e526584e0bc9c096e8f5ec0b8f47595ae097f82110ebf073c",
+          "bytes": 1269653,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-foam-explosion-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 92977595,
+          "after": 93259996,
+          "delta": 282401
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426095857,
+          "after": 428226049,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "b9aaf2e5634f8c7fa3548ed6607621c32e66fe1f6585c004427a251995230e92",
+          "bytes": 2584451,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "11689012d9b91a32cdbd40d4603494b594cbe4becd785ea14043231034449f7c",
+          "bytes": 2584455,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-foam-explosion-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 83582705,
+          "after": 83858156,
+          "delta": 275451
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414127351,
+          "after": 416257543,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "81b56f2c9254eef1c736727012641216990825fe008dd6f2a4fe40f6e3e0960a",
+          "bytes": 1281478,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "d5383bd7263cd7366ecc9eaf7cff69a0107d53562dbab5f32a7756aa782cbf45",
+          "bytes": 1281435,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-sand-clear-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93052323,
+          "after": 93312268,
+          "delta": 259945
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426095857,
+          "after": 428226049,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "d4c37e11f21d235db3f2eb88a299443f7becbae6575d85a933c3be96bafb7915",
+          "bytes": 2645419,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "bfa3ccfda926e7d462e99d70cddfb2bd4acee7560c9f4c0198b760ee0e87f3f2",
+          "bytes": 2645433,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-sand-clear-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 83604485,
+          "after": 83932752,
+          "delta": 328267
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414127351,
+          "after": 416257543,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "66871a2c502a3afdf393cce535d487cc9c5aedf9492993d41463cb6feffa5a6d",
+          "bytes": 1315399,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "0968ded2033dafe65f429e42eb44db347f61c9264897969ad3579f6db89c451f",
+          "bytes": 1315133,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-sand-explosion-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93069483,
+          "after": 93351884,
+          "delta": 282401
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426095857,
+          "after": 428226049,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "b8e517db7caa679acfc1d9ee83ab1ce67e99a024529dad5a5d030b60ff753df8",
+          "bytes": 2670850,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "5c4bff56f734c5de3a7edf37c6b9aca138f72399962de1eb0f9a8664ec7f40fd",
+          "bytes": 2670657,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-sand-explosion-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 83674641,
+          "after": 83950092,
+          "delta": 275451
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1247,
+          "after": 1248,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414127351,
+          "after": 416257543,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "776247a3f0ea0e1d3d711312b747a50ea356dd0182e0a13beab3fc25b1d556c2",
+          "bytes": 1326770,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "7730a988fafd6b8f50ac3e5fad2444fe5e2634c6d5919d37ca5816afea5bf81b",
+          "bytes": 1326684,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-snow-clear-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93602444,
+          "after": 93832029,
+          "delta": 229585
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1317,
+          "after": 1318,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426326293,
+          "after": 428456485,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "c780e63f3a8dbdbbaf0e435a26300b3601400e28f03dc75ee76ed831fb54b700",
+          "bytes": 3390245,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "9b1b30a8f87432c64316222e8ffd18f9ad88953d63610ce07549f6942ee1dc2e",
+          "bytes": 3390601,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-snow-clear-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 84228140,
+          "after": 84503591,
+          "delta": 275451
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1317,
+          "after": 1318,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414357787,
+          "after": 416487979,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "a6bfbbd429fac38c442e90946e66b00df527c544b181c9c26c698a32d84cca74",
+          "bytes": 1578929,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "831d0a050e96f0e121ec79520fe48064fa485c49d92474cba8837ee94b80c08d",
+          "bytes": 1578972,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-snow-explosion-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93619604,
+          "after": 93902005,
+          "delta": 282401
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1317,
+          "after": 1318,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426326293,
+          "after": 428456485,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "416661eca3e89c18a9a04ccaf397f4b72bf1bba510e5b3a9ce0c8cdb592e715b",
+          "bytes": 3403693,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "f6263f0e7e60cb91dbc67785a6e5c3f43c520d3500c4c27e2da178b0e1d7db9b",
+          "bytes": 3403874,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-snow-explosion-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 84354012,
+          "after": 84576687,
+          "delta": 222675
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1317,
+          "after": 1318,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414357787,
+          "after": 416487979,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "2b580474b9e9c74e5dcfba27b5bd4e75e7cbaada5b0aaf84f8a8c7df030e9845",
+          "bytes": 1584287,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "fc7acfdd64f53b9620d897dfdaa1a2e8c3720fbdbfa36768acb3420cf38a4d13",
+          "bytes": 1584268,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-vegetation-clear-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93407219,
+          "after": 93681716,
+          "delta": 274497
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1301,
+          "after": 1302,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426297861,
+          "after": 428428053,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "8bbd09a52dd1429ee0f27a688c1f477ea3db289c7aa9b137170cb233983b371f",
+          "bytes": 3030546,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "7720e9b13e1a9dbf4d38bb3783c4dd4aaf56e4226918385496078a3796296e1d",
+          "bytes": 3030839,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-vegetation-clear-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 84060481,
+          "after": 84335932,
+          "delta": 275451
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1301,
+          "after": 1302,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414329355,
+          "after": 416459547,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "da58e213750b16811849a5739c2d17b5e0240532aba7c4f794ad221cd47251f7",
+          "bytes": 1489125,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "f48cfc4a4255c9d761373c1fdcbe70409d4e31c093aae57ea69e92a40c59749d",
+          "bytes": 1489057,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-vegetation-explosion-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 93469327,
+          "after": 93751728,
+          "delta": 282401
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1301,
+          "after": 1302,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426297861,
+          "after": 428428053,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "448d9ef9499df4caf3dd789acc6224452512df292d1b3030611a3cd3e5c8ea32",
+          "bytes": 3046972,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "5755b9d6f089f4f7ef5cdeacecf7456370efec23f2a9abefc35b46748b398cca",
+          "bytes": 3047333,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "background-vegetation-explosion-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 84130661,
+          "after": 84406112,
+          "delta": 275451
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1301,
+          "after": 1302,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414329355,
+          "after": 416459547,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "57a667353cfa93591edd740da24e947dfc40c9128902645616e716553d172fbb",
+          "bytes": 1497231,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "b8513a6ad6b21cc211cc33ab5af68e8d586f83575fb4e6d99a50956ee69ee34b",
+          "bytes": 1497190,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-feedback-ability-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 94615683,
+          "after": 94817228,
+          "delta": 201545
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426521085,
+          "after": 428651277,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "fceaa2ea9bfdccbe7c5abb6a3dabbf8de8f224a0ae1b843bc158c90538356b26",
+          "bytes": 3240385,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "a0e150d935cc0453c18ecf4b8f1e21dc5a503f433c31392f1bfaa8423e6c690f",
+          "bytes": 3218515,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-feedback-ability-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 85707313,
+          "after": 85902560,
+          "delta": 195247
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414552579,
+          "after": 416682771,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "90921048083c4de7182a5e908b987e85b4fc41fb49773853fedb0a30669cdad6",
+          "bytes": 1572786,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "6e4f43d40d995104a3e2435f84bc3dfa96ef0ddb9ca797293067554b74703247",
+          "bytes": 1564433,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-game-over-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 94979519,
+          "after": 95181064,
+          "delta": 201545
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 427220135,
+          "after": 429350327,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "e00fc72468d2d7683ec1f13bc8e50df8f4b080d9c674410e31d420f0d3914708",
+          "bytes": 3171853,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "b0548281826f0a6f1cfcdb5e135191c365422410494c702bcf858d0227e5ca9a",
+          "bytes": 3152086,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-game-over-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 86748023,
+          "after": 86943270,
+          "delta": 195247
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414683651,
+          "after": 416813843,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "817e282004160844278c55020d3e2f22f57e9f5597be967632934e9915c1be29",
+          "bytes": 1540220,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "59363c9b547a3cdda45379866053ff53e157e0122260cb92678e5741b93ff45c",
+          "bytes": 1532243,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-hierarchy-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 94440363,
+          "after": 94615356,
+          "delta": 174993
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 426521085,
+          "after": 428651277,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "f8b37dcb6e04f2a98f14473ed9df03e5af25939205b408f7c8e77217f5d925d6",
+          "bytes": 3224110,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "501535a3598ca0454d9dac5d938fcaae1736d8cfdca741a5cb240d84835d41e0",
+          "bytes": 3203532,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-hierarchy-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 85467205,
+          "after": 85658356,
+          "delta": 191151
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414552579,
+          "after": 416682771,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "e59320495320569b485ccc3c2857712f27910291fc8c5113cbbede9ceac0d456",
+          "bytes": 1562774,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "b95854951b5af4dd46ca0ac3902d9933f6c9f915cc0e8ee7abc50dcec4dd8822",
+          "bytes": 1554296,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-announce-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [
+        {
+          "path": "/final_contacts/0/flare_kind",
+          "before": 1,
+          "after": 2
+        },
+        {
+          "path": "/fixture/mobile/flare_kind",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 94789532,
+          "after": 95022525,
+          "delta": 232993
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 427182539,
+          "after": 429312767,
+          "delta": 2130228
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/actual_ground_material_uniforms/0/flare_kind",
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "16d8e809115c20b86239b962c973a7a1af234c60308c66b0e617120d9005c399",
+          "bytes": 3979787,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "d2b9fa163739455cc419a42d90067d33bbcf52a8461a2175e59a124b1c899a94",
+          "bytes": 3958756,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-announce-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [
+        {
+          "path": "/final_contacts/0/flare_kind",
+          "before": 1,
+          "after": 2
+        },
+        {
+          "path": "/fixture/mobile/flare_kind",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 86579172,
+          "after": 86782493,
+          "delta": 203321
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414646055,
+          "after": 416776283,
+          "delta": 2130228
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/actual_ground_material_uniforms/0/flare_kind",
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "d91ae2677a2f9a13bf1587513a8b1c4a153b412b872fcd8136718527f2aa5a79",
+          "bytes": 1807982,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "8c470bdb6eb89be53d5a0a2d4bc29051077ba44eb122a523623464e33edee666",
+          "bytes": 1799072,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-fire-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 95316832,
+          "after": 95510337,
+          "delta": 193505
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 427182539,
+          "after": 429312731,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "c85cd770b69b7ab4a7286dbf0c3ecb5cd6a448ad06108d2e021b9b7fd79066f0",
+          "bytes": 3979763,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "6393080b9767229ee8ad163308f818e8e3796ec6d8865e0bc7f83cdee8340085",
+          "bytes": 3957554,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-fire-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 87107024,
+          "after": 87301217,
+          "delta": 194193
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414646055,
+          "after": 416776247,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "8e3c8e54cd731f475cedf276e03d4094ebfb1c18783b9912cd616d7309486e78",
+          "bytes": 1807377,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "da3661d3b892f674002f045537cef99bb6f3558be6d2cfe653de0cc23010ff3a",
+          "bytes": 1798896,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-move-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [
+        {
+          "path": "/final_contacts/0/flare_kind",
+          "before": 1,
+          "after": 2
+        },
+        {
+          "path": "/fixture/mobile/flare_kind",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 95017512,
+          "after": 95188561,
+          "delta": 171049
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 427182539,
+          "after": 429312731,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/actual_ground_material_uniforms/0/flare_kind",
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "775401741b06fd3e6be83a729e6afb5385ef1d6a7902387ffa72573400150fd0",
+          "bytes": 3980965,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "8e7ae5db49ef2ab22ebd9fdef3ab686bdc279bdc5cd6cdb80716e61f5a7a18a5",
+          "bytes": 3959058,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-move-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [
+        {
+          "path": "/final_contacts/0/flare_kind",
+          "before": 1,
+          "after": 2
+        },
+        {
+          "path": "/fixture/mobile/flare_kind",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 86754888,
+          "after": 87001897,
+          "delta": 247009
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414646055,
+          "after": 416776247,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/actual_ground_material_uniforms/0/flare_kind",
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "a9f6c0b0ead8dc975ca5b0e45e62a09b288edbb12f2f0d1a39a2b38f8ce90472",
+          "bytes": 1808083,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "40c6d2c521b6ecd8368b22bc9d18b8cc69b5a215044e2c2adb9b78228272ffb8",
+          "bytes": 1799703,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-settle-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [
+        {
+          "path": "/final_contacts/0/flare_kind",
+          "before": 1,
+          "after": 2
+        },
+        {
+          "path": "/fixture/mobile/flare_kind",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 95140528,
+          "after": 95334033,
+          "delta": 193505
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 427182539,
+          "after": 429312731,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/actual_ground_material_uniforms/0/flare_kind",
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "c44f82399af7dbaa0402c7c026147de8ff5ddea1ec00317151befa4e88a3d2eb",
+          "bytes": 3979234,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "eb3307fe3e3845ffcc884d81b6a71f3794ee65bcea3d8c8e293ed94fadefa7ad",
+          "bytes": 3957513,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-mobile-settle-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [
+        {
+          "path": "/final_contacts/0/flare_kind",
+          "before": 1,
+          "after": 2
+        },
+        {
+          "path": "/fixture/mobile/flare_kind",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 86930720,
+          "after": 87124913,
+          "delta": 194193
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1281,
+          "after": 1282,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414646055,
+          "after": 416776247,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/actual_ground_material_uniforms/0/flare_kind",
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "22f56ac48cd06e083da36f5c85e956ad89e15ee8d42d55d84966c8532da71a88",
+          "bytes": 1807529,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "361f2d1e62b686d5076a39ef10e210e19733413b5121a22d18cd11fc67e69720",
+          "bytes": 1798952,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-reinforcement-1080.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 94788111,
+          "after": 94985560,
+          "delta": 197449
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 427220135,
+          "after": 429350327,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "881907b95d9dccca4c16e1b4bac09a48215fa7740694191124f06b0d3abc59ed",
+          "bytes": 3173258,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "a70e2a83ecf0485ddd4c9537dbf72a832fec3193209f20e38a764c786196b0ce",
+          "bytes": 3154657,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "ihdr_valid": true
+        }
+      }
+    },
+    {
+      "file": "contacts-reinforcement-720.png",
+      "pose_match": true,
+      "expected_flare_differences": [],
+      "info_differences": [
+        {
+          "path": "/build",
+          "before": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+          "after": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/filesystem_text_diagnostics/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        },
+        {
+          "path": "/memory/engine_static_bytes",
+          "before": 86549155,
+          "after": 86740306,
+          "delta": 191151
+        },
+        {
+          "path": "/memory/nodes",
+          "before": 1337,
+          "after": 1338,
+          "delta": 1
+        },
+        {
+          "path": "/memory/render_memory_estimate_bytes",
+          "before": 414683651,
+          "after": 416813843,
+          "delta": 2130192
+        },
+        {
+          "path": "/memory/resources",
+          "before": 271,
+          "after": 267,
+          "delta": -4
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_ground_contacts",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_draw_mobile_motion_hint",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/runtime_provenance/hud_methods/_ground_label_reservations",
+          "before": false,
+          "after": true
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1enemy_bullet.gdshader/sha256",
+          "before": "9fcc32c9b17522a5afd8d48b3dbd00d7bf78d845329fbd7b0b7493a3c9baca51",
+          "after": "0514e33d4a557464e6f085523b4369bfa3a5ea87154132ee433f1617a9627795"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1ground_target_fire.gdshader/sha256",
+          "before": "6c1cbf038b010bb08448333fe0dc11f86091a85329d6563da11c8b2bba2f7932",
+          "after": "32daec48cc7c69956b11dee80c141fe2e0b48b7d52dc72bca4f88a59a00f6d21"
+        },
+        {
+          "path": "/source_hashes/res:~1~1shaders~1tracer.gdshader/sha256",
+          "before": "218f276e74024f9481ac26ee8ea69123ca028a210a25d02f9f71eeeda55ff08b",
+          "after": "b9a9d859bad34d5e396539ce23bc5e65bd73b8fcfe3eb60a3ca54c635365a80f"
+        }
+      ],
+      "images": {
+        "before": {
+          "sha256": "d94873a9f36fad12eba0d6a41536126c9ff6f1bc0f7a43b279214c0fe36d0620",
+          "bytes": 1542689,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        },
+        "after": {
+          "sha256": "c502da2e55b6e42d82c4bd6b8fe69e97a1beb4c24a656272473c4e731d75d0dc",
+          "bytes": 1534785,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "ihdr_valid": true
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Posed production scenes and manually advanced controller snapshots; not a natural mission or playtest.",
+    "Initial builtin shader TIME is unavailable; equality across processes is not established.",
+    "No human recognition, continuous-motion, contrast, or artistic acceptance result.",
+    "No gameplay damage, raycast, target viability, cadence, performance, or FPS proof.",
+    "Physical PNG dimensions and internal gameplay viewport dimensions are separate measurements.",
+    "Memory values are engine/static and graphics estimates, not Windows private bytes or physical VRAM.",
+    "A source-candidate build marker does not identify an exported executable.",
+    "Recorded source text hashes do not prove the identity of executable bytecode."
+  ],
+  "summary": {
+    "paired_captures": 36,
+    "hashed_original_pngs": 72,
+    "expected_flare_differences": 12,
+    "capture_info_differences": 510,
+    "metadata_info_differences": 5,
+    "errors": 0
+  }
+}

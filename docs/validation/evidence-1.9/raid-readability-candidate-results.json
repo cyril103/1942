@@ -1,0 +1,123 @@
+{
+	"checks": 19460,
+	"expected_reservation_fixtures": 3,
+	"failures": [],
+	"limitations": [
+		"No shader compilation proof",
+		"No rendered pixel/occlusion proof",
+		"No frame timing or performance proof",
+		"No human threat recognition proof"
+	],
+	"observations": [
+		{
+			"ready": true,
+			"scene_tree_ready_or_rendering": false,
+			"scope": "production App/HUD load and constructor preflight",
+			"usable_scripts": 2
+		},
+		{
+			"cases": 1280,
+			"scope": "presentation truth table"
+		},
+		{
+			"contacts": 40,
+			"labels": 8,
+			"motion_hints": 6,
+			"scope": "worst authored contact count",
+			"warning_frames": 40
+		},
+		{
+			"contacts": 30,
+			"persistent": 2,
+			"scope": "actual sector label bound",
+			"sector": 1
+		},
+		{
+			"contacts": 32,
+			"persistent": 1,
+			"scope": "actual sector label bound",
+			"sector": 2
+		},
+		{
+			"contacts": 34,
+			"persistent": 3,
+			"scope": "actual sector label bound",
+			"sector": 3
+		},
+		{
+			"contacts": 36,
+			"persistent": 4,
+			"scope": "actual sector label bound",
+			"sector": 4
+		},
+		{
+			"contacts": 34,
+			"persistent": 3,
+			"scope": "actual sector label bound",
+			"sector": 5
+		},
+		{
+			"contacts": 32,
+			"persistent": 4,
+			"scope": "actual sector label bound",
+			"sector": 6
+		},
+		{
+			"contacts": 38,
+			"persistent": 2,
+			"scope": "actual sector label bound",
+			"sector": 7
+		},
+		{
+			"contacts": 40,
+			"persistent": 4,
+			"scope": "actual sector label bound",
+			"sector": 8
+		},
+		{
+			"panels": 9,
+			"runtime_projection": false,
+			"scope": "actual HUD reservation helper with Control rectangles and real font",
+			"viewport": "(1280.0, 720.0)"
+		},
+		{
+			"labels_measured": 225,
+			"scope": "real Barlow font and complete marker bounds",
+			"viewport": "(1280.0, 720.0)"
+		},
+		{
+			"panels": 9,
+			"runtime_projection": false,
+			"scope": "actual HUD reservation helper with Control rectangles and real font",
+			"viewport": "(1920.0, 1080.0)"
+		},
+		{
+			"labels_measured": 225,
+			"scope": "real Barlow font and complete marker bounds",
+			"viewport": "(1920.0, 1080.0)"
+		},
+		{
+			"panels": 9,
+			"runtime_projection": false,
+			"scope": "actual HUD reservation helper with Control rectangles and real font",
+			"viewport": "(960.0, 1080.0)"
+		},
+		{
+			"labels_measured": 225,
+			"scope": "real Barlow font and complete marker bounds",
+			"viewport": "(960.0, 1080.0)"
+		},
+		{
+			"files": 4,
+			"scope": "strict unchanged mechanics source and shader structural budget",
+			"source_normalization": "CRLF to LF; reverse only eight literal reviewed audio transformations, each installed literal required exactly once; remove exactly the two approved flare-kind presentation lines; strip_edges; SHA256 UTF8"
+		}
+	],
+	"passed": true,
+	"production_scripts_ready": true,
+	"rectangle_suite_completed": true,
+	"reservation_fixture_attempts": 3,
+	"reservation_fixtures_completed": 3,
+	"scope": "Pure presentation policy, actual font metric rectangles, and reviewed source safety only",
+	"source_safety_completed": true
+}

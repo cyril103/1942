@@ -363,3 +363,65 @@ p99 par scénario avant 4,067–6,495 ms, après 4,458–5,670 ms ; variations m
 Tables, scripts et rapports permanents : docs/validation/performance-missions.txt,
 game/tests/performance-1.7.0-matched, performance-1.8.0, performance-terrain-*.
 RAM privée prolongée et seconde configuration restent à contrôler pour #20.
+
+LOT 5 EN COURS — LISIBILITÉ ET MIX (8 OCTOBRE 2026)
+
+La présentation des contacts conserve radars/priorités et limite à quatre
+les autres étiquettes contextuelles. Les avertissements de tir restent tous
+visibles. Les textes évitent les panneaux et recherchent leurs bords proches ;
+une liaison fine associe les étiquettes éloignées, sans traverser les panneaux.
+Le stress de coin qui repoussait le commandement en bas de l'écran est corrigé.
+19 460 contrôles de politique, géométrie, vraie police et invariance mécanique
+passent. Les 36 paires de captures sont archivées et comparées ; les 36 images
+après et trois images avant ont été inspectées. Les six paires de replays
+q0/q1/q2 ont les mêmes états enregistrés, avec des variations de temps d'image
+dans les deux sens. Pas de gain général établi. Endurance mémoire en cours.
+
+Mix : musique d'action conservée, priorités d'alertes, enveloppes du laser,
+variations des salves et réglages séparés. Voir docs/validation/audio-1.9.txt.
+Les quatre captures PCM au gain retenu passent 110 contrôles sans saturation ;
+l'ancien gain échoue avec neuf échantillons saturés dans le profil complet.
+Les preuves WAV, traces, mute Windows et crédits sont archivés hors du jeu.
+Aucune écoute humaine n'est revendiquée.
+
+Premier export 1.9.0.0 (avant finalisation de tous les tests du lot) :
+28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311
+Contrôle du ZIP extrait et fermeture normale : 29 contrôles, zéro échec,
+code 0, demande WM_CLOSE envoyée au seul processus lancé, pilote audio Dummy.
+Le contrôle antérieur --quit-after 180 a signalé deux objets audio non libérés.
+Un banc isolé reproduit ce diagnostic aussi avec l'ancien lecteur. La fermeture
+normale App._quit arrête la musique, attend 150 ms puis quitte sans diagnostic.
+Les essais de duplication de WAV, nettoyage dans _exit_tree et niveau initial
+n'ont pas corrigé l'arrêt forcé ; ces modifications exploratoires sont retirées.
+Cette limitation de fermeture forcée reste documentée, pas masquée ni présentée
+comme une preuve de stabilité prolongée. Aucune validation humaine Explorateur
+1.9 n'est attribuée à la confirmation antérieure concernant 1.6.1.
+
+Complément #20 : benchmark_session_endurance.gd prépare quatre raids et leurs
+reprises courtes dans une même App persistante. La syntaxe est vérifiée ;
+ce protocole n'a pas encore été exécuté. Le lanceur archive et hache désormais
+les dépendances externes du banc ; tests/* est exclu du pack de distribution.
+Deux contrôles de syntaxe headless (sans scène ni rendu) ont eu lieu pendant
+l'endurance M31. Une seule instance graphique ; la charge système n'est pas
+présentée comme isolée en laboratoire. Les traces mémoire M31 restent distinctes
+et ne remplacent pas encore le contrôle multi-missions/reprises.
+
+Endurance M31 terminée : huit passages, états identiques, 957 relevés Windows,
+1133,63 s, un nœud et zéro orphelin à chaque nettoyage. Pic privé observé
+1 065 730 048 octets ; aucune extrapolation à une absence générale de fuite.
+Voir performance-1.9.txt et l'archive endurance-m31. Le contrôle complémentaire
+multi-missions a démarré ; un premier essai a échoué avant création de l'App
+car Godot consomme les arguments moteur. La garde inspecte désormais le vrai
+pilote via AudioServer ; le pilote Dummy est requis avant toute voix.
+Le pack 1.9 passe aussi 110 contrôles PCM supplémentaires sans saturation,
+muet côté Windows ; rapport et limites dans audio-1.9.txt.
+
+FINALISATION DU LOT 1.9
+Le contrôle multi-missions est terminé : quatre raids et leurs reprises,
+huit résultats atteints, neuf fenêtres Windows après nettoyage, aucun échec.
+27 nœuds au menu / zéro orphelin ; après App, un nœud / zéro orphelin.
+953 relevés en 1156,80 s ; détails, fenêtres, compteurs et limites dans
+performance-1.9.txt et performance-1.9-comparison/endurance-session.
+Les mentions « en cours » ci-dessus décrivent les étapes historiques.
+Aucune campagne humaine, écoute subjective, manette physique ni deuxième PC
+n'a été validé. Le protocole et les tickets gardent ces critères ouverts.

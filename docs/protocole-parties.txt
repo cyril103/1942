@@ -21,6 +21,20 @@ captures et démarrages d'export ne sont pas des parties humaines. Les cas
 4A ci-dessous complètent les observations des mêmes 288 combinaisons ; ils
 n'ajoutent aucune ligne jouée à la matrice et aucun résultat à ce document.
 
+Complément pour la passe 1.9 : lire docs/validation/lisibilite-1.9.txt et
+docs/validation/audio-1.9.txt. Vérifier en mouvement l'identification des
+projectiles sur les cinq fonds et sous explosions, puis des priorités et
+intentions de déplacement de la DCA avec les étiquettes contextuelles.
+Consigner les erreurs de lecture, pas seulement une préférence esthétique.
+Pour le mix, comparer l'identification des armes et des alertes sous feu,
+le retour de la musique après atténuation et le confort d'écoute prolongée,
+au casque puis sur enceintes avec plusieurs auditeurs. Les extraits PCM
+sans saturation ne remplissent pas ces critères. Aucun son n'est diffusé
+pendant les contrôles automatiques de l'agent.
+Le 8 octobre, le joueur indique n'avoir ni manette ni deuxième PC : les
+contrôles matériels #8/#20 correspondants restent non effectués. Cette
+absence ne transforme pas les événements simulés en tests de périphériques.
+
 Le travail suit l'ordre de #23. Commencer par préparer ce protocole, puis
 stabiliser les défauts fonctionnels. Les premiers retours guident #11 à #14.
 Après chaque réglage, rejouer les situations concernées ; la validation

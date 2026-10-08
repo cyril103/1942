@@ -1,0 +1,308 @@
+WorkerThreadPool: 8 threads, 2 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Accessibility: AccessKit driver loaded.
+Wacom tablet config found at "C:/Users/cyril/AppData/Roaming/WTablet/Wacom_Tablet.dat", Windows Ink support is disabled.
+Native OpenGL API detected: 3.3: NVIDIA - NVIDIA GeForce GTX 1650
+NVAPI: Init OK!
+NVAPI: Application not found in profile, creating...
+NVAPI: Error creating application: NVAPI_EXECUTABLE_ALREADY_IN_USE(code -167)
+Accessibility: window 0 adapter created.
+SDL: Init OK!
+Accessibility: window 0 adapter activated.
+Using "wintab" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: cb0a5ee25f557e8f12d793b7f5ac1b7ae22733c6d5243353dfafdfbbcf85aa79
+Shader 'SkeletonShaderGLES3' SHA256: f4600313b2e329c1aa9b8ee0298810ce0a1124fb3a05aefabbf8aac3d3ad2988
+Shader 'ParticlesShaderGLES3' SHA256: 2b35338936a07bdbd37e5ddd799663455d0ddc743600b85fff0173779f3d7e66
+Shader 'ParticlesCopyShaderGLES3' SHA256: 872824c201be9c0ac2b98aff6781d7d11b7c73e3d853593bf6b17a21944dadaf
+Shader 'CopyShaderGLES3' SHA256: cae96126fd3fc3469bdcef224d3bb1d292354402676203df555b81c8bca0d987
+Shader 'CubemapFilterShaderGLES3' SHA256: 854aba5bda4c72f443696cd3fc500acbbdea71b42cbfee7386d83d73b2afb58a
+Shader 'GlowShaderGLES3' SHA256: 399ee4253103f2048d09ceeaea5526fbe90817fa93ad1f8a029cfdd99c6c5608
+Shader 'PostShaderGLES3' SHA256: 658e45a5598fbc461d6d40298a5af391288c2974ea5a352cebadf924b87117b2
+Shader 'FeedShaderGLES3' SHA256: 77b3ec39bf1bdce6f35b2cb1cac0b327a9b6afc14f31e65e9872258b33df6cae
+Shader 'CanvasShaderGLES3' SHA256: 81e505d69aabfd010a62f717f569cac3142dcbdf44f00d10269a3a575e171fb4
+Shader 'CanvasOcclusionShaderGLES3' SHA256: a1e78a439f252256df5c3f8ff254ae2b1915801342e32fc6e3b18309be4eeb8e
+Shader 'SceneShaderGLES3' SHA256: 3facc5422d6a0de4781194a9988311f11d2cf0ab9b9cb5e50b35165e38140736
+Shader 'SkyShaderGLES3' SHA256: 3fa48d00260c0acca663dddd83613f6cf9b3adbe03691445f159ce162bcf2eea
+Shader 'TexBlitShaderGLES3' SHA256: cdf62c47fa0fc366c19c7c191466627d67d47f117747f4c23f30a6a48fc351ad
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: C:/ChatGPT/1942/tools/review/probe_normal_shutdown.gd remapped: C:/ChatGPT/1942/tools/review/probe_normal_shutdown.gd
+Completed load for: 'C:/ChatGPT/1942/tools/review/probe_normal_shutdown.gd' remapped 'C:/ChatGPT/1942/tools/review/probe_normal_shutdown.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://scripts/campaign/app.gd remapped: res://scripts/campaign/app.gd
+Loading resource: res://assets/ui/fonts/BarlowCondensed-Medium.ttf remapped: res://assets/ui/fonts/BarlowCondensed-Medium.ttf
+Loading resource: res://.godot/imported/BarlowCondensed-Medium.ttf-1ee23d3d3a212638e361d2f05496535f.fontdata remapped: res://.godot/imported/BarlowCondensed-Medium.ttf-1ee23d3d3a212638e361d2f05496535f.fontdata
+Completed load for: 'res://assets/ui/fonts/BarlowCondensed-Medium.ttf' remapped 'res://assets/ui/fonts/BarlowCondensed-Medium.ttf' at thread -1
+Loading resource: res://assets/ui/fonts/BlackOpsOne-Regular.ttf remapped: res://assets/ui/fonts/BlackOpsOne-Regular.ttf
+Loading resource: res://.godot/imported/BlackOpsOne-Regular.ttf-5ae9bdab87cd4e11c98c197ff816db3f.fontdata remapped: res://.godot/imported/BlackOpsOne-Regular.ttf-5ae9bdab87cd4e11c98c197ff816db3f.fontdata
+Completed load for: 'res://assets/ui/fonts/BlackOpsOne-Regular.ttf' remapped 'res://assets/ui/fonts/BlackOpsOne-Regular.ttf' at thread -1
+Loading resource: res://scenes/cockpit.tscn remapped: res://scenes/cockpit.tscn
+Loading resource: res://scripts/ui/cockpit.gd remapped: res://scripts/ui/cockpit.gd
+Loading resource: res://scenes/main.tscn remapped: res://scenes/main.tscn
+Loading resource: res://scripts/main.gd remapped: res://scripts/main.gd
+Completed load for: 'res://scripts/main.gd' remapped 'res://scripts/main.gd' at thread -1
+Loading resource: res://scripts/player.gd remapped: res://scripts/player.gd
+Completed load for: 'res://scripts/player.gd' remapped 'res://scripts/player.gd' at thread -1
+Loading resource: res://assets/aircraft.glb remapped: res://assets/aircraft.glb
+Loading resource: res://.godot/imported/aircraft.glb-223deeb60abbeed05871b9d514118acc.scn remapped: res://.godot/imported/aircraft.glb-223deeb60abbeed05871b9d514118acc.scn
+Loading resource: res://assets/aircraft_aircraft_paint.png remapped: res://assets/aircraft_aircraft_paint.png
+Loading resource: res://.godot/imported/aircraft_aircraft_paint.png-6a8d2d661b1b9b94c03fedd7c944849f.ctex remapped: res://.godot/imported/aircraft_aircraft_paint.png-6a8d2d661b1b9b94c03fedd7c944849f.ctex
+Completed load for: 'res://assets/aircraft_aircraft_paint.png' remapped 'res://assets/aircraft_aircraft_paint.png' at thread -1
+Loading resource: res://assets/aircraft_aircraft_insignia.png remapped: res://assets/aircraft_aircraft_insignia.png
+Loading resource: res://.godot/imported/aircraft_aircraft_insignia.png-672ffb7e6b41be449b6256da8c729fb3.ctex remapped: res://.godot/imported/aircraft_aircraft_insignia.png-672ffb7e6b41be449b6256da8c729fb3.ctex
+Completed load for: 'res://assets/aircraft_aircraft_insignia.png' remapped 'res://assets/aircraft_aircraft_insignia.png' at thread -1
+Loading resource: res://assets/aircraft_aircraft_atlas.png remapped: res://assets/aircraft_aircraft_atlas.png
+Loading resource: res://.godot/imported/aircraft_aircraft_atlas.png-9f4a91f33a3d3c4c60281dfdd460a49d.ctex remapped: res://.godot/imported/aircraft_aircraft_atlas.png-9f4a91f33a3d3c4c60281dfdd460a49d.ctex
+Completed load for: 'res://assets/aircraft_aircraft_atlas.png' remapped 'res://assets/aircraft_aircraft_atlas.png' at thread -1
+Completed load for: 'res://assets/aircraft.glb' remapped 'res://assets/aircraft.glb' at thread -1
+Loading resource: res://scripts/seascape.gd remapped: res://scripts/seascape.gd
+Loading resource: res://assets/environment/ocean.png remapped: res://assets/environment/ocean.png
+Loading resource: res://.godot/imported/ocean.png-c55b643cda046dbb3c194a1eb2a015a6.ctex remapped: res://.godot/imported/ocean.png-c55b643cda046dbb3c194a1eb2a015a6.ctex
+Completed load for: 'res://assets/environment/ocean.png' remapped 'res://assets/environment/ocean.png' at thread -1
+Loading resource: res://assets/environment/islands-atlas.png remapped: res://assets/environment/islands-atlas.png
+Loading resource: res://.godot/imported/islands-atlas.png-5039c13992d33bd5b52608f1d18c9f0d.ctex remapped: res://.godot/imported/islands-atlas.png-5039c13992d33bd5b52608f1d18c9f0d.ctex
+Completed load for: 'res://assets/environment/islands-atlas.png' remapped 'res://assets/environment/islands-atlas.png' at thread -1
+Loading resource: res://assets/environment/military-islands-atlas.png remapped: res://assets/environment/military-islands-atlas.png
+Loading resource: res://.godot/imported/military-islands-atlas.png-e590a693141ac37523f66d1eaa073d41.ctex remapped: res://.godot/imported/military-islands-atlas.png-e590a693141ac37523f66d1eaa073d41.ctex
+Completed load for: 'res://assets/environment/military-islands-atlas.png' remapped 'res://assets/environment/military-islands-atlas.png' at thread -1
+Loading resource: res://assets/environment/archipelago-atlas.png remapped: res://assets/environment/archipelago-atlas.png
+Loading resource: res://.godot/imported/archipelago-atlas.png-6a1adee14ac416f8692be8c3b2a8538a.ctex remapped: res://.godot/imported/archipelago-atlas.png-6a1adee14ac416f8692be8c3b2a8538a.ctex
+Completed load for: 'res://assets/environment/archipelago-atlas.png' remapped 'res://assets/environment/archipelago-atlas.png' at thread -1
+Loading resource: res://shaders/ocean.gdshader remapped: res://shaders/ocean.gdshader
+Loading resource: res://shaders/ocean_surface.gdshaderinc remapped: res://shaders/ocean_surface.gdshaderinc
+Completed load for: 'res://shaders/ocean_surface.gdshaderinc' remapped 'res://shaders/ocean_surface.gdshaderinc' at thread -1
+Completed load for: 'res://shaders/ocean.gdshader' remapped 'res://shaders/ocean.gdshader' at thread -1
+Loading resource: res://shaders/island.gdshader remapped: res://shaders/island.gdshader
+Completed load for: 'res://shaders/island.gdshader' remapped 'res://shaders/island.gdshader' at thread -1
+Completed load for: 'res://scripts/seascape.gd' remapped 'res://scripts/seascape.gd' at thread -1
+Loading resource: res://scripts/departure.gd remapped: res://scripts/departure.gd
+Loading resource: res://shaders/carrier.gdshader remapped: res://shaders/carrier.gdshader
+Completed load for: 'res://shaders/carrier.gdshader' remapped 'res://shaders/carrier.gdshader' at thread -1
+Loading resource: res://assets/environment/carrier.png remapped: res://assets/environment/carrier.png
+Loading resource: res://.godot/imported/carrier.png-bb6c00b46a25510902c054fc25d81ba5.ctex remapped: res://.godot/imported/carrier.png-bb6c00b46a25510902c054fc25d81ba5.ctex
+Completed load for: 'res://assets/environment/carrier.png' remapped 'res://assets/environment/carrier.png' at thread -1
+Loading resource: res://shaders/carrier_wake.gdshader remapped: res://shaders/carrier_wake.gdshader
+Completed load for: 'res://shaders/carrier_wake.gdshader' remapped 'res://shaders/carrier_wake.gdshader' at thread -1
+Loading resource: res://shaders/aircraft_shadow.gdshader remapped: res://shaders/aircraft_shadow.gdshader
+Completed load for: 'res://shaders/aircraft_shadow.gdshader' remapped 'res://shaders/aircraft_shadow.gdshader' at thread -1
+Completed load for: 'res://scripts/departure.gd' remapped 'res://scripts/departure.gd' at thread -1
+Loading resource: res://scripts/weapons.gd remapped: res://scripts/weapons.gd
+Loading resource: res://shaders/player_laser.gdshader remapped: res://shaders/player_laser.gdshader
+Completed load for: 'res://shaders/player_laser.gdshader' remapped 'res://shaders/player_laser.gdshader' at thread -1
+Loading resource: res://assets/campaign/laser-loop.wav remapped: res://assets/campaign/laser-loop.wav
+Loading resource: res://.godot/imported/laser-loop.wav-62305dc6aaa1efc2683885d4f26ec2d5.sample remapped: res://.godot/imported/laser-loop.wav-62305dc6aaa1efc2683885d4f26ec2d5.sample
+Completed load for: 'res://assets/campaign/laser-loop.wav' remapped 'res://assets/campaign/laser-loop.wav' at thread -1
+Loading resource: res://shaders/tracer.gdshader remapped: res://shaders/tracer.gdshader
+Completed load for: 'res://shaders/tracer.gdshader' remapped 'res://shaders/tracer.gdshader' at thread -1
+Loading resource: res://shaders/bullet_impact.gdshader remapped: res://shaders/bullet_impact.gdshader
+Completed load for: 'res://shaders/bullet_impact.gdshader' remapped 'res://shaders/bullet_impact.gdshader' at thread -1
+Loading resource: res://shaders/laser_flare.gdshader remapped: res://shaders/laser_flare.gdshader
+Completed load for: 'res://shaders/laser_flare.gdshader' remapped 'res://shaders/laser_flare.gdshader' at thread -1
+Loading resource: res://assets/audio/weapons/salvo_01.wav remapped: res://assets/audio/weapons/salvo_01.wav
+Loading resource: res://.godot/imported/salvo_01.wav-7dec7fd58e7a36e8829390eb10e31ac7.sample remapped: res://.godot/imported/salvo_01.wav-7dec7fd58e7a36e8829390eb10e31ac7.sample
+Completed load for: 'res://assets/audio/weapons/salvo_01.wav' remapped 'res://assets/audio/weapons/salvo_01.wav' at thread -1
+Loading resource: res://assets/audio/weapons/salvo_02.wav remapped: res://assets/audio/weapons/salvo_02.wav
+Loading resource: res://.godot/imported/salvo_02.wav-72d4d674b3f7ed5814d20113f4e06357.sample remapped: res://.godot/imported/salvo_02.wav-72d4d674b3f7ed5814d20113f4e06357.sample
+Completed load for: 'res://assets/audio/weapons/salvo_02.wav' remapped 'res://assets/audio/weapons/salvo_02.wav' at thread -1
+Loading resource: res://assets/audio/weapons/salvo_03.wav remapped: res://assets/audio/weapons/salvo_03.wav
+Loading resource: res://.godot/imported/salvo_03.wav-6c300ebeba2940303417de2443364d83.sample remapped: res://.godot/imported/salvo_03.wav-6c300ebeba2940303417de2443364d83.sample
+Completed load for: 'res://assets/audio/weapons/salvo_03.wav' remapped 'res://assets/audio/weapons/salvo_03.wav' at thread -1
+Loading resource: res://assets/audio/weapons/salvo_04.wav remapped: res://assets/audio/weapons/salvo_04.wav
+Loading resource: res://.godot/imported/salvo_04.wav-5cf66344d90c0dff0bdb20c6b19c9e51.sample remapped: res://.godot/imported/salvo_04.wav-5cf66344d90c0dff0bdb20c6b19c9e51.sample
+Completed load for: 'res://assets/audio/weapons/salvo_04.wav' remapped 'res://assets/audio/weapons/salvo_04.wav' at thread -1
+Loading resource: res://assets/audio/weapons/salvo_05.wav remapped: res://assets/audio/weapons/salvo_05.wav
+Loading resource: res://.godot/imported/salvo_05.wav-a541fecf15f5cb4a3944a28a684a34ee.sample remapped: res://.godot/imported/salvo_05.wav-a541fecf15f5cb4a3944a28a684a34ee.sample
+Completed load for: 'res://assets/audio/weapons/salvo_05.wav' remapped 'res://assets/audio/weapons/salvo_05.wav' at thread -1
+Loading resource: res://assets/audio/weapons/salvo_06.wav remapped: res://assets/audio/weapons/salvo_06.wav
+Loading resource: res://.godot/imported/salvo_06.wav-819c3b8a10a60165d52e7c8f47a400a3.sample remapped: res://.godot/imported/salvo_06.wav-819c3b8a10a60165d52e7c8f47a400a3.sample
+Completed load for: 'res://assets/audio/weapons/salvo_06.wav' remapped 'res://assets/audio/weapons/salvo_06.wav' at thread -1
+Completed load for: 'res://scripts/weapons.gd' remapped 'res://scripts/weapons.gd' at thread -1
+Loading resource: res://scripts/combat.gd remapped: res://scripts/combat.gd
+Loading resource: res://shaders/enemy_bullet.gdshader remapped: res://shaders/enemy_bullet.gdshader
+Completed load for: 'res://shaders/enemy_bullet.gdshader' remapped 'res://shaders/enemy_bullet.gdshader' at thread -1
+Loading resource: res://assets/audio/weapons/explosion.wav remapped: res://assets/audio/weapons/explosion.wav
+Loading resource: res://.godot/imported/explosion.wav-fc419cd8f76456a903bd1b768b0219aa.sample remapped: res://.godot/imported/explosion.wav-fc419cd8f76456a903bd1b768b0219aa.sample
+Completed load for: 'res://assets/audio/weapons/explosion.wav' remapped 'res://assets/audio/weapons/explosion.wav' at thread -1
+Loading resource: res://assets/effects/explosion-atlas.png remapped: res://assets/effects/explosion-atlas.png
+Loading resource: res://.godot/imported/explosion-atlas.png-72a625883cbcec4e113a4f062ba4db1e.ctex remapped: res://.godot/imported/explosion-atlas.png-72a625883cbcec4e113a4f062ba4db1e.ctex
+Completed load for: 'res://assets/effects/explosion-atlas.png' remapped 'res://assets/effects/explosion-atlas.png' at thread -1
+Loading resource: res://shaders/explosion_cloud.gdshader remapped: res://shaders/explosion_cloud.gdshader
+Completed load for: 'res://shaders/explosion_cloud.gdshader' remapped 'res://shaders/explosion_cloud.gdshader' at thread -1
+Loading resource: res://shaders/blast_flash.gdshader remapped: res://shaders/blast_flash.gdshader
+Completed load for: 'res://shaders/blast_flash.gdshader' remapped 'res://shaders/blast_flash.gdshader' at thread -1
+Loading resource: res://assets/enemies/zero.glb remapped: res://assets/enemies/zero.glb
+Loading resource: res://.godot/imported/zero.glb-a822f861e96278b7594c7ca77af9656a.scn remapped: res://.godot/imported/zero.glb-a822f861e96278b7594c7ca77af9656a.scn
+Loading resource: res://assets/enemies/zero_zero_basecolor.png remapped: res://assets/enemies/zero_zero_basecolor.png
+Loading resource: res://.godot/imported/zero_zero_basecolor.png-b34c615feb02d8333de4d9fc1a7ddeac.ctex remapped: res://.godot/imported/zero_zero_basecolor.png-b34c615feb02d8333de4d9fc1a7ddeac.ctex
+Completed load for: 'res://assets/enemies/zero_zero_basecolor.png' remapped 'res://assets/enemies/zero_zero_basecolor.png' at thread -1
+Loading resource: res://assets/enemies/zero_zero_metallic-zero_roughness.png remapped: res://assets/enemies/zero_zero_metallic-zero_roughness.png
+Loading resource: res://.godot/imported/zero_zero_metallic-zero_roughness.png-480c3617a11c498683ec92a2930b35a0.ctex remapped: res://.godot/imported/zero_zero_metallic-zero_roughness.png-480c3617a11c498683ec92a2930b35a0.ctex
+Completed load for: 'res://assets/enemies/zero_zero_metallic-zero_roughness.png' remapped 'res://assets/enemies/zero_zero_metallic-zero_roughness.png' at thread -1
+Loading resource: res://assets/enemies/zero_zero_normal.png remapped: res://assets/enemies/zero_zero_normal.png
+Loading resource: res://.godot/imported/zero_zero_normal.png-0c4993a07a9a095cea327c44896f0619.ctex remapped: res://.godot/imported/zero_zero_normal.png-0c4993a07a9a095cea327c44896f0619.ctex
+Completed load for: 'res://assets/enemies/zero_zero_normal.png' remapped 'res://assets/enemies/zero_zero_normal.png' at thread -1
+Completed load for: 'res://assets/enemies/zero.glb' remapped 'res://assets/enemies/zero.glb' at thread -1
+Loading resource: res://shaders/bomber_hit.gdshader remapped: res://shaders/bomber_hit.gdshader
+Completed load for: 'res://shaders/bomber_hit.gdshader' remapped 'res://shaders/bomber_hit.gdshader' at thread -1
+Loading resource: res://assets/enemies/hayabusa.glb remapped: res://assets/enemies/hayabusa.glb
+Loading resource: res://.godot/imported/hayabusa.glb-428a386ab67902a4578d08af2dfc5f64.scn remapped: res://.godot/imported/hayabusa.glb-428a386ab67902a4578d08af2dfc5f64.scn
+Loading resource: res://assets/enemies/hayabusa_hayabusa_basecolor.png remapped: res://assets/enemies/hayabusa_hayabusa_basecolor.png
+Loading resource: res://.godot/imported/hayabusa_hayabusa_basecolor.png-d473802266bbd472b8d44bb338be0674.ctex remapped: res://.godot/imported/hayabusa_hayabusa_basecolor.png-d473802266bbd472b8d44bb338be0674.ctex
+Completed load for: 'res://assets/enemies/hayabusa_hayabusa_basecolor.png' remapped 'res://assets/enemies/hayabusa_hayabusa_basecolor.png' at thread -1
+Loading resource: res://assets/enemies/hayabusa_hayabusa_metallic-hayabusa_roughness.png remapped: res://assets/enemies/hayabusa_hayabusa_metallic-hayabusa_roughness.png
+Loading resource: res://.godot/imported/hayabusa_hayabusa_metallic-hayabusa_roughness.png-689963d747161be549b16487834c407f.ctex remapped: res://.godot/imported/hayabusa_hayabusa_metallic-hayabusa_roughness.png-689963d747161be549b16487834c407f.ctex
+Completed load for: 'res://assets/enemies/hayabusa_hayabusa_metallic-hayabusa_roughness.png' remapped 'res://assets/enemies/hayabusa_hayabusa_metallic-hayabusa_roughness.png' at thread -1
+Loading resource: res://assets/enemies/hayabusa_hayabusa_normal.png remapped: res://assets/enemies/hayabusa_hayabusa_normal.png
+Loading resource: res://.godot/imported/hayabusa_hayabusa_normal.png-4b320e62f2fb1e90f06bfa062aba7dbf.ctex remapped: res://.godot/imported/hayabusa_hayabusa_normal.png-4b320e62f2fb1e90f06bfa062aba7dbf.ctex
+Completed load for: 'res://assets/enemies/hayabusa_hayabusa_normal.png' remapped 'res://assets/enemies/hayabusa_hayabusa_normal.png' at thread -1
+Completed load for: 'res://assets/enemies/hayabusa.glb' remapped 'res://assets/enemies/hayabusa.glb' at thread -1
+Loading resource: res://assets/enemies/bomber.glb remapped: res://assets/enemies/bomber.glb
+Loading resource: res://.godot/imported/bomber.glb-6a2e09186c48a5fd9da255cc5091356a.scn remapped: res://.godot/imported/bomber.glb-6a2e09186c48a5fd9da255cc5091356a.scn
+Loading resource: res://assets/enemies/bomber_bomber_basecolor.png remapped: res://assets/enemies/bomber_bomber_basecolor.png
+Loading resource: res://.godot/imported/bomber_bomber_basecolor.png-a57829d508997a03857966c3cb53881a.ctex remapped: res://.godot/imported/bomber_bomber_basecolor.png-a57829d508997a03857966c3cb53881a.ctex
+Completed load for: 'res://assets/enemies/bomber_bomber_basecolor.png' remapped 'res://assets/enemies/bomber_bomber_basecolor.png' at thread -1
+Loading resource: res://assets/enemies/bomber_bomber_metallic-bomber_roughness.png remapped: res://assets/enemies/bomber_bomber_metallic-bomber_roughness.png
+Loading resource: res://.godot/imported/bomber_bomber_metallic-bomber_roughness.png-9bcd4bb2aa28132693d6f28729824682.ctex remapped: res://.godot/imported/bomber_bomber_metallic-bomber_roughness.png-9bcd4bb2aa28132693d6f28729824682.ctex
+Completed load for: 'res://assets/enemies/bomber_bomber_metallic-bomber_roughness.png' remapped 'res://assets/enemies/bomber_bomber_metallic-bomber_roughness.png' at thread -1
+Loading resource: res://assets/enemies/bomber_bomber_normal.png remapped: res://assets/enemies/bomber_bomber_normal.png
+Loading resource: res://.godot/imported/bomber_bomber_normal.png-d0e123020eedfa48edf57909cf6bd4b8.ctex remapped: res://.godot/imported/bomber_bomber_normal.png-d0e123020eedfa48edf57909cf6bd4b8.ctex
+Completed load for: 'res://assets/enemies/bomber_bomber_normal.png' remapped 'res://assets/enemies/bomber_bomber_normal.png' at thread -1
+Completed load for: 'res://assets/enemies/bomber.glb' remapped 'res://assets/enemies/bomber.glb' at thread -1
+Loading resource: res://shaders/red_squadron.gdshader remapped: res://shaders/red_squadron.gdshader
+Completed load for: 'res://shaders/red_squadron.gdshader' remapped 'res://shaders/red_squadron.gdshader' at thread -1
+Loading resource: res://assets/campaign/icons/spread.svg remapped: res://assets/campaign/icons/spread.svg
+Loading resource: res://.godot/imported/spread.svg-346f0b2447c23f9e30f1cc4187ebba3d.ctex remapped: res://.godot/imported/spread.svg-346f0b2447c23f9e30f1cc4187ebba3d.ctex
+Completed load for: 'res://assets/campaign/icons/spread.svg' remapped 'res://assets/campaign/icons/spread.svg' at thread -1
+Loading resource: res://assets/campaign/icons/laser.svg remapped: res://assets/campaign/icons/laser.svg
+Loading resource: res://.godot/imported/laser.svg-503f5f54978b3b7eb0510357e23f45fa.ctex remapped: res://.godot/imported/laser.svg-503f5f54978b3b7eb0510357e23f45fa.ctex
+Completed load for: 'res://assets/campaign/icons/laser.svg' remapped 'res://assets/campaign/icons/laser.svg' at thread -1
+Loading resource: res://assets/campaign/icons/life.svg remapped: res://assets/campaign/icons/life.svg
+Loading resource: res://.godot/imported/life.svg-55e1bdb181222a056b5d33d89d8ca9fa.ctex remapped: res://.godot/imported/life.svg-55e1bdb181222a056b5d33d89d8ca9fa.ctex
+Completed load for: 'res://assets/campaign/icons/life.svg' remapped 'res://assets/campaign/icons/life.svg' at thread -1
+Loading resource: res://shaders/pow_halo.gdshader remapped: res://shaders/pow_halo.gdshader
+Completed load for: 'res://shaders/pow_halo.gdshader' remapped 'res://shaders/pow_halo.gdshader' at thread -1
+Completed load for: 'res://scripts/combat.gd' remapped 'res://scripts/combat.gd' at thread -1
+Loading resource: res://scripts/player_hurtbox.gd remapped: res://scripts/player_hurtbox.gd
+Completed load for: 'res://scripts/player_hurtbox.gd' remapped 'res://scripts/player_hurtbox.gd' at thread -1
+Loading resource: res://scripts/cloudscape.gd remapped: res://scripts/cloudscape.gd
+Loading resource: res://assets/environment/clouds/cumulus-refined-atlas.png remapped: res://assets/environment/clouds/cumulus-refined-atlas.png
+Loading resource: res://.godot/imported/cumulus-refined-atlas.png-4c25ca87e50011d71f65fd1c9fde0eb0.ctex remapped: res://.godot/imported/cumulus-refined-atlas.png-4c25ca87e50011d71f65fd1c9fde0eb0.ctex
+Completed load for: 'res://assets/environment/clouds/cumulus-refined-atlas.png' remapped 'res://assets/environment/clouds/cumulus-refined-atlas.png' at thread -1
+Loading resource: res://assets/environment/clouds/cumulus-variety-atlas.png remapped: res://assets/environment/clouds/cumulus-variety-atlas.png
+Loading resource: res://.godot/imported/cumulus-variety-atlas.png-c94ba0dd88462a279978b22e325d1570.ctex remapped: res://.godot/imported/cumulus-variety-atlas.png-c94ba0dd88462a279978b22e325d1570.ctex
+Completed load for: 'res://assets/environment/clouds/cumulus-variety-atlas.png' remapped 'res://assets/environment/clouds/cumulus-variety-atlas.png' at thread -1
+Loading resource: res://shaders/cumulus.gdshader remapped: res://shaders/cumulus.gdshader
+Completed load for: 'res://shaders/cumulus.gdshader' remapped 'res://shaders/cumulus.gdshader' at thread -1
+Loading resource: res://shaders/cloud_shadow.gdshader remapped: res://shaders/cloud_shadow.gdshader
+Completed load for: 'res://shaders/cloud_shadow.gdshader' remapped 'res://shaders/cloud_shadow.gdshader' at thread -1
+Completed load for: 'res://scripts/cloudscape.gd' remapped 'res://scripts/cloudscape.gd' at thread -1
+Completed load for: 'res://scenes/main.tscn' remapped 'res://scenes/main.tscn' at thread -1
+Loading resource: res://assets/ui/cockpit-metal.png remapped: res://assets/ui/cockpit-metal.png
+Loading resource: res://.godot/imported/cockpit-metal.png-7e302628ff3dbb8c363bc9eb10c3d3e2.ctex remapped: res://.godot/imported/cockpit-metal.png-7e302628ff3dbb8c363bc9eb10c3d3e2.ctex
+Completed load for: 'res://assets/ui/cockpit-metal.png' remapped 'res://assets/ui/cockpit-metal.png' at thread -1
+Loading resource: res://shaders/ui/panel_metal.gdshader remapped: res://shaders/ui/panel_metal.gdshader
+Completed load for: 'res://shaders/ui/panel_metal.gdshader' remapped 'res://shaders/ui/panel_metal.gdshader' at thread -1
+Loading resource: res://shaders/ui/radar.gdshader remapped: res://shaders/ui/radar.gdshader
+Completed load for: 'res://shaders/ui/radar.gdshader' remapped 'res://shaders/ui/radar.gdshader' at thread -1
+Loading resource: res://shaders/ui/stencil_paint.gdshader remapped: res://shaders/ui/stencil_paint.gdshader
+Completed load for: 'res://shaders/ui/stencil_paint.gdshader' remapped 'res://shaders/ui/stencil_paint.gdshader' at thread -1
+Loading resource: res://assets/ui/fonts/DSEG7Classic-Regular.ttf remapped: res://assets/ui/fonts/DSEG7Classic-Regular.ttf
+Loading resource: res://.godot/imported/DSEG7Classic-Regular.ttf-e2fbce9d120c03997ff6d529c603bdc5.fontdata remapped: res://.godot/imported/DSEG7Classic-Regular.ttf-e2fbce9d120c03997ff6d529c603bdc5.fontdata
+Completed load for: 'res://assets/ui/fonts/DSEG7Classic-Regular.ttf' remapped 'res://assets/ui/fonts/DSEG7Classic-Regular.ttf' at thread -1
+Loading resource: res://shaders/ui/instrument_glass.gdshader remapped: res://shaders/ui/instrument_glass.gdshader
+Completed load for: 'res://shaders/ui/instrument_glass.gdshader' remapped 'res://shaders/ui/instrument_glass.gdshader' at thread -1
+Completed load for: 'res://scripts/ui/cockpit.gd' remapped 'res://scripts/ui/cockpit.gd' at thread -1
+Completed load for: 'res://scenes/cockpit.tscn' remapped 'res://scenes/cockpit.tscn' at thread -1
+Loading resource: res://shaders/naval_wake.gdshader remapped: res://shaders/naval_wake.gdshader
+Completed load for: 'res://shaders/naval_wake.gdshader' remapped 'res://shaders/naval_wake.gdshader' at thread -1
+Loading resource: res://shaders/campaign_surface.gdshader remapped: res://shaders/campaign_surface.gdshader
+Completed load for: 'res://shaders/campaign_surface.gdshader' remapped 'res://shaders/campaign_surface.gdshader' at thread -1
+Loading resource: res://shaders/combat_detail.gdshader remapped: res://shaders/combat_detail.gdshader
+Completed load for: 'res://shaders/combat_detail.gdshader' remapped 'res://shaders/combat_detail.gdshader' at thread -1
+Loading resource: res://assets/environment/raid-v2/coral-grass-detail.png remapped: res://assets/environment/raid-v2/coral-grass-detail.png
+Loading resource: res://.godot/imported/coral-grass-detail.png-9146e06db902a01f9a550a782e9386ba.ctex remapped: res://.godot/imported/coral-grass-detail.png-9146e06db902a01f9a550a782e9386ba.ctex
+Completed load for: 'res://assets/environment/raid-v2/coral-grass-detail.png' remapped 'res://assets/environment/raid-v2/coral-grass-detail.png' at thread -1
+Loading resource: res://assets/ground-forces/fuel.glb remapped: res://assets/ground-forces/fuel.glb
+Loading resource: res://.godot/imported/fuel.glb-900232b0079fa44aa51385ed90db6c9c.scn remapped: res://.godot/imported/fuel.glb-900232b0079fa44aa51385ed90db6c9c.scn
+Completed load for: 'res://assets/ground-forces/fuel.glb' remapped 'res://assets/ground-forces/fuel.glb' at thread -1
+Loading resource: res://assets/ground-forces/radar.glb remapped: res://assets/ground-forces/radar.glb
+Loading resource: res://.godot/imported/radar.glb-2420e5ea50644ee6af716ced1a86c74c.scn remapped: res://.godot/imported/radar.glb-2420e5ea50644ee6af716ced1a86c74c.scn
+Completed load for: 'res://assets/ground-forces/radar.glb' remapped 'res://assets/ground-forces/radar.glb' at thread -1
+Loading resource: res://assets/ground-forces/battery.glb remapped: res://assets/ground-forces/battery.glb
+Loading resource: res://.godot/imported/battery.glb-fab5601a4650924903a2403929836627.scn remapped: res://.godot/imported/battery.glb-fab5601a4650924903a2403929836627.scn
+Completed load for: 'res://assets/ground-forces/battery.glb' remapped 'res://assets/ground-forces/battery.glb' at thread -1
+Loading resource: res://assets/ground-forces/bunker.glb remapped: res://assets/ground-forces/bunker.glb
+Loading resource: res://.godot/imported/bunker.glb-b1ca5ebef5b53e784da5f74e49ef72b1.scn remapped: res://.godot/imported/bunker.glb-b1ca5ebef5b53e784da5f74e49ef72b1.scn
+Completed load for: 'res://assets/ground-forces/bunker.glb' remapped 'res://assets/ground-forces/bunker.glb' at thread -1
+Loading resource: res://assets/ground-forces/runway.glb remapped: res://assets/ground-forces/runway.glb
+Loading resource: res://.godot/imported/runway.glb-a794bf92417fca654a5d8da5e1a60499.scn remapped: res://.godot/imported/runway.glb-a794bf92417fca654a5d8da5e1a60499.scn
+Completed load for: 'res://assets/ground-forces/runway.glb' remapped 'res://assets/ground-forces/runway.glb' at thread -1
+Loading resource: res://assets/ground-forces/field-material-atlas.png remapped: res://assets/ground-forces/field-material-atlas.png
+Loading resource: res://.godot/imported/field-material-atlas.png-f07243337905791267ad5543104536f6.ctex remapped: res://.godot/imported/field-material-atlas.png-f07243337905791267ad5543104536f6.ctex
+Completed load for: 'res://assets/ground-forces/field-material-atlas.png' remapped 'res://assets/ground-forces/field-material-atlas.png' at thread -1
+Loading resource: res://assets/ground-forces/battery_mobile.glb remapped: res://assets/ground-forces/battery_mobile.glb
+Loading resource: res://.godot/imported/battery_mobile.glb-7cdd60f92a5f4dca30ba7e0465f4d2d7.scn remapped: res://.godot/imported/battery_mobile.glb-7cdd60f92a5f4dca30ba7e0465f4d2d7.scn
+Completed load for: 'res://assets/ground-forces/battery_mobile.glb' remapped 'res://assets/ground-forces/battery_mobile.glb' at thread -1
+Loading resource: res://shaders/ground_target.gdshader remapped: res://shaders/ground_target.gdshader
+Completed load for: 'res://shaders/ground_target.gdshader' remapped 'res://shaders/ground_target.gdshader' at thread -1
+Loading resource: res://shaders/ground_target_fire.gdshader remapped: res://shaders/ground_target_fire.gdshader
+Completed load for: 'res://shaders/ground_target_fire.gdshader' remapped 'res://shaders/ground_target_fire.gdshader' at thread -1
+Loading resource: res://shaders/assault_terrain.gdshader remapped: res://shaders/assault_terrain.gdshader
+Completed load for: 'res://shaders/assault_terrain.gdshader' remapped 'res://shaders/assault_terrain.gdshader' at thread -1
+Loading resource: res://shaders/campaign_weather.gdshader remapped: res://shaders/campaign_weather.gdshader
+Completed load for: 'res://shaders/campaign_weather.gdshader' remapped 'res://shaders/campaign_weather.gdshader' at thread -1
+Completed load for: 'res://scripts/campaign/app.gd' remapped 'res://scripts/campaign/app.gd' at thread -1
+Loading resource: res://scripts/campaign/music.gd remapped: res://scripts/campaign/music.gd
+Loading resource: res://assets/campaign/music/radio-cue.wav remapped: res://assets/campaign/music/radio-cue.wav
+Loading resource: res://.godot/imported/radio-cue.wav-f9718ae95df2875272458fefb7bb9846.sample remapped: res://.godot/imported/radio-cue.wav-f9718ae95df2875272458fefb7bb9846.sample
+Completed load for: 'res://assets/campaign/music/radio-cue.wav' remapped 'res://assets/campaign/music/radio-cue.wav' at thread -1
+Completed load for: 'res://scripts/campaign/music.gd' remapped 'res://scripts/campaign/music.gd' at thread -1
+Loading resource: res://assets/campaign/music/menu.wav remapped: res://assets/campaign/music/menu.wav
+Loading resource: res://.godot/imported/menu.wav-0c1ef461a9cd95bb5a18d5e8811b6a6a.sample remapped: res://.godot/imported/menu.wav-0c1ef461a9cd95bb5a18d5e8811b6a6a.sample
+Completed load for: 'res://assets/campaign/music/menu.wav' remapped 'res://assets/campaign/music/menu.wav' at thread -1
+Loading resource: res://assets/campaign/music/flight.wav remapped: res://assets/campaign/music/flight.wav
+Loading resource: res://.godot/imported/flight.wav-f905a98f51b7e1430f69d96d24e12c4b.sample remapped: res://.godot/imported/flight.wav-f905a98f51b7e1430f69d96d24e12c4b.sample
+Completed load for: 'res://assets/campaign/music/flight.wav' remapped 'res://assets/campaign/music/flight.wav' at thread -1
+Loading resource: res://assets/campaign/music/flight2.wav remapped: res://assets/campaign/music/flight2.wav
+Loading resource: res://.godot/imported/flight2.wav-1dac9d1eca4244e146e35f7516b10aec.sample remapped: res://.godot/imported/flight2.wav-1dac9d1eca4244e146e35f7516b10aec.sample
+Completed load for: 'res://assets/campaign/music/flight2.wav' remapped 'res://assets/campaign/music/flight2.wav' at thread -1
+Loading resource: res://assets/campaign/music/boss.wav remapped: res://assets/campaign/music/boss.wav
+Loading resource: res://.godot/imported/boss.wav-1d733a708d296cc37965d741b074ceba.sample remapped: res://.godot/imported/boss.wav-1d733a708d296cc37965d741b074ceba.sample
+Completed load for: 'res://assets/campaign/music/boss.wav' remapped 'res://assets/campaign/music/boss.wav' at thread -1
+Loading resource: res://assets/campaign/music/victory.wav remapped: res://assets/campaign/music/victory.wav
+Loading resource: res://.godot/imported/victory.wav-a9ece85b63c4b28d3365e7aa7735de27.sample remapped: res://.godot/imported/victory.wav-a9ece85b63c4b28d3365e7aa7735de27.sample
+Completed load for: 'res://assets/campaign/music/victory.wav' remapped 'res://assets/campaign/music/victory.wav' at thread -1
+Loading resource: res://assets/campaign/models/destroyer.glb remapped: res://assets/campaign/models/destroyer.glb
+Loading resource: res://.godot/imported/destroyer.glb-8390198a90798afcd925441213988376.scn remapped: res://.godot/imported/destroyer.glb-8390198a90798afcd925441213988376.scn
+Completed load for: 'res://assets/campaign/models/destroyer.glb' remapped 'res://assets/campaign/models/destroyer.glb' at thread -1
+Loading resource: res://assets/campaign/models/fortress.glb remapped: res://assets/campaign/models/fortress.glb
+Loading resource: res://.godot/imported/fortress.glb-29c51f9889ec74800580359e4de7930e.scn remapped: res://.godot/imported/fortress.glb-29c51f9889ec74800580359e4de7930e.scn
+Loading resource: res://assets/campaign/models/fortress_bomber_basecolor.png remapped: res://assets/campaign/models/fortress_bomber_basecolor.png
+Loading resource: res://.godot/imported/fortress_bomber_basecolor.png-49462c87d50fe3751977a16b4b7d14e5.ctex remapped: res://.godot/imported/fortress_bomber_basecolor.png-49462c87d50fe3751977a16b4b7d14e5.ctex
+Completed load for: 'res://assets/campaign/models/fortress_bomber_basecolor.png' remapped 'res://assets/campaign/models/fortress_bomber_basecolor.png' at thread -1
+Loading resource: res://assets/campaign/models/fortress_bomber_metallic-bomber_roughness.png remapped: res://assets/campaign/models/fortress_bomber_metallic-bomber_roughness.png
+Loading resource: res://.godot/imported/fortress_bomber_metallic-bomber_roughness.png-60f7f68340398fe624faf5338bf7aacd.ctex remapped: res://.godot/imported/fortress_bomber_metallic-bomber_roughness.png-60f7f68340398fe624faf5338bf7aacd.ctex
+Completed load for: 'res://assets/campaign/models/fortress_bomber_metallic-bomber_roughness.png' remapped 'res://assets/campaign/models/fortress_bomber_metallic-bomber_roughness.png' at thread -1
+Loading resource: res://assets/campaign/models/fortress_bomber_normal.png remapped: res://assets/campaign/models/fortress_bomber_normal.png
+Loading resource: res://.godot/imported/fortress_bomber_normal.png-ac947190d4a7dfef08925017222de0aa.ctex remapped: res://.godot/imported/fortress_bomber_normal.png-ac947190d4a7dfef08925017222de0aa.ctex
+Completed load for: 'res://assets/campaign/models/fortress_bomber_normal.png' remapped 'res://assets/campaign/models/fortress_bomber_normal.png' at thread -1
+Completed load for: 'res://assets/campaign/models/fortress.glb' remapped 'res://assets/campaign/models/fortress.glb' at thread -1
+Loading resource: res://assets/campaign/models/battleship.glb remapped: res://assets/campaign/models/battleship.glb
+Loading resource: res://.godot/imported/battleship.glb-95027a541b1c3e82dc59e2a428ba2362.scn remapped: res://.godot/imported/battleship.glb-95027a541b1c3e82dc59e2a428ba2362.scn
+Completed load for: 'res://assets/campaign/models/battleship.glb' remapped 'res://assets/campaign/models/battleship.glb' at thread -1
+Loading resource: res://assets/campaign/models/carrier.glb remapped: res://assets/campaign/models/carrier.glb
+Loading resource: res://.godot/imported/carrier.glb-542ae7dfa2fbf046acefc9c2077a3274.scn remapped: res://.godot/imported/carrier.glb-542ae7dfa2fbf046acefc9c2077a3274.scn
+Completed load for: 'res://assets/campaign/models/carrier.glb' remapped 'res://assets/campaign/models/carrier.glb' at thread -1
+Loading resource: res://assets/campaign/title-ocean.png remapped: res://assets/campaign/title-ocean.png
+Loading resource: res://.godot/imported/title-ocean.png-36b3352b7d28e5bc126f7c375f170917.ctex remapped: res://.godot/imported/title-ocean.png-36b3352b7d28e5bc126f7c375f170917.ctex
+Completed load for: 'res://assets/campaign/title-ocean.png' remapped 'res://assets/campaign/title-ocean.png' at thread -1
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.

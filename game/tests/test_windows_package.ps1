@@ -1,7 +1,7 @@
 param(
     [string]$PackageZip = (Join-Path $PSScriptRoot '../../dist/PacificStrike-Windows-x64.zip'),
     [string]$BuiltExecutable = (Join-Path $PSScriptRoot '../../dist/PacificStrike/PacificStrike.exe'),
-    [string]$ExpectedVersion = '1.8.0.0',
+    [string]$ExpectedVersion = '1.9.0.0',
     [switch]$SkipRuntime
 )
 $ErrorActionPreference = 'Stop'
@@ -62,10 +62,24 @@ if (-not $SkipRuntime) {
     New-Item -ItemType Directory -Path $emptyDirectory | Out-Null
     $runLog = Join-Path $scratch 'standalone-startup.log'
     # Automated startup stays silent; audio mixing has separate real-driver probes.
-    $arguments = @('--audio-driver','Dummy','--windowed','--resolution','1280x720','--quit-after','180','--log-file',('"' + $runLog + '"'))
+    $arguments = @('--audio-driver','Dummy','--windowed','--resolution','1280x720','--log-file',('"' + $runLog + '"'))
     $stdout = Join-Path $scratch 'standalone-stdout.log'
     $stderr = Join-Path $scratch 'standalone-stderr.log'
     $process = Start-Process -FilePath $exe -WorkingDirectory $emptyDirectory -ArgumentList $arguments -WindowStyle Hidden -RedirectStandardOutput $stdout -RedirectStandardError $stderr -PassThru
+    $null = $process.Handle
+    # Exercise the actual WM_CLOSE -> App._quit path. --quit-after forcibly
+    # bypasses the game's stop/drain sequence and can retain an audio playback.
+    $startupClock = [System.Diagnostics.Stopwatch]::StartNew()
+    while (-not $process.HasExited -and $startupClock.Elapsed.TotalSeconds -lt 30) {
+        $process.Refresh()
+        if ($process.MainWindowHandle -ne [IntPtr]::Zero -and $startupClock.Elapsed.TotalSeconds -ge 3) { break }
+        Start-Sleep -Milliseconds 100
+    }
+    $closeRequested = -not $process.HasExited -and $process.CloseMainWindow()
+    if (-not $closeRequested) {
+        if (-not $process.HasExited) { $process.Kill() }
+        throw 'Impossible de demander la fermeture normale du processus extrait.'
+    }
     if (-not $process.WaitForExit(60000)) {
         # The process handle belongs to the executable just extracted above.
         Stop-Process -Id $process.Id -Force
@@ -79,7 +93,7 @@ if (-not $SkipRuntime) {
     Check-Package ($log -notmatch '(?m)(SCRIPT ERROR|ERROR:|WARNING:)') 'Diagnostic moteur pendant le lancement autonome.'
     Check-Package ($log -match 'OpenGL API') 'Initialisation du rendu OpenGL absente.'
     Check-Package (@(Get-ChildItem -LiteralPath $emptyDirectory -Force).Count -eq 0) 'Le dossier de travail autonome doit rester vide.'
-    $runtime += @{ scenario = 'normal_main_scene_startup'; frames = 180; exit_code = $process.ExitCode; log = $runLog; script_suites = 'NOT_RUN_IN_RELEASE_EXECUTABLE' }
+    $runtime += @{ scenario = 'normal_main_scene_startup_and_window_close'; minimum_startup_seconds = 3; elapsed_seconds = $startupClock.Elapsed.TotalSeconds; close_requested = $closeRequested; exit_code = $process.ExitCode; log = $runLog; script_suites = 'NOT_RUN_IN_RELEASE_EXECUTABLE' }
 }
 $report = @{
     version = $ExpectedVersion; product = $metadata.ProductName; description = $metadata.FileDescription

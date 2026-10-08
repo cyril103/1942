@@ -1,0 +1,9 @@
+{
+  "driver": "WASAPI",
+  "main_pack": "C:\\ChatGPT\\1942\\tools\\review\\baseline-1.9.0\\PacificStrike.exe",
+  "pack_sha256": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311",
+  "runtime": "Godot editor and optional embedded release pack; not direct release-template execution",
+  "recorder_sha256": "C703B3F6526FD33D4F778B6012C92D6C31BA92EDEA2ED65269E556BCA8FF3467",
+  "external_recorder": "C:\\ChatGPT\\1942\\tools\\review\\audio-1.9-packed-verified\\record_audio_priority_mix.gd",
+  "audible_output": "MUTE_ACK_REQUIRED_BEFORE_VOICES"
+}

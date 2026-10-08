@@ -1,0 +1,77 @@
+LISIBILITÉ 1.9 — TICKET #18 — VALIDATION EN COURS
+
+RÈGLES DE PRÉSENTATION
+Les radars et objectifs prioritaires conservent leur nom. Les autres textes
+sont limités à quatre, triés par tir imminent, dommage puis visée focalisée.
+Tous les cadres de menace imminente restent visibles, même sans texte.
+Les jauges apparaissent sur les cibles endommagées. La visée focalisée choisit
+une cible dans le couloir avant ; un ID départage les distances identiques.
+
+Les glyphes complets, leur ombre et les jauges restent dans l'aire de jeu.
+Les vrais panneaux du HUD et les étiquettes précédentes réservent leur place.
+Le placement teste aussi les bords de ces obstacles : une cible située dans
+un coin ne doit pas voir son nom repoussé à l'autre extrémité de l'écran.
+Au-delà de 24 unités de séparation, un trait fin sans flèche relie cible et
+nom ; les portions sous les panneaux sont retirées avec marge pour le trait.
+Si tout est occupé, le chevauchement résiduel est signalé par la géométrie,
+sans déplacer le texte dans le score ni tronquer son suffixe de priorité.
+
+Le couloir d'une DCA mobile reste pâle, segmenté, avec flèche. L'avertissement
+de tir reste chaud. Tirs joueurs : traits cyan ; hostiles : cœurs chauds ronds
+avec contour contrasté. Aucun changement de vitesse ou collision n'est prévu.
+
+PREUVES ACTUELLES
+19 460 contrôles sans échec : police réelle, réservations de vrais panneaux,
+bords, liaisons et invariance des sources mécaniques après retrait des seuls
+hooks audio/visuels explicitement autorisés. Rapport dans evidence-1.9.
+Un ancien test négatif charge volontairement une App invalide et échoue :
+un compteur de tests partiellement exécutés ne suffit pas à valider la suite.
+
+Captures : 36 par pack, 720p/1080p, cinq fonds avec/sans explosions et huit
+cas de contacts/panneaux/mobilité. Le viewport interne reste 1920 x 972.
+Avant : pack 1.8 SHA256
+83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14
+Après : premier pack 1.9 SHA256
+28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311
+Dossiers permanents : renders/validation-readability-v19/{1.8.0,1.9.0}.
+Comparateur : game/tests/compare_readability_captures.py.
+Résultat : 36 paires, 72 PNG hachés, zéro erreur, poses concordantes.
+Les douze écarts autorisés concernent exclusivement les deux observations
+du kind visuel mobile sur ANNOUNCE/MOVE/SETTLE, aux deux tailles. Pas FIRE.
+
+Le schéma 2 distingue représentation Script/Shader via ResourceLoader,
+observations de l'instance HUD et diagnostic du texte local FileAccess.
+Les anciens manifests de schéma 1 ne prouvent pas le code runtime : ils
+pouvaient lire le texte du workspace au lieu de celui du pack. Ils ne sont
+pas réécrits rétroactivement ni cités comme identité du bytecode.
+
+REVUE VISUELLE DU NOUVEAU PACK
+Les 36 PNG originaux du pack 1.9 ont été inspectés : 16 cas de contacts et
+20 plaques de fonds, répartis entre 720p et 1080p. Trois images avant 1.8
+du schéma 2 ont aussi été inspectées et comparées à leurs homologues 1.9 :
+hierarchy, mobile-announce et sand-explosion en 720p. Les 33 autres images
+avant ne font pas encore l'objet d'une inspection individuelle.
+La comparaison automatique des 36 paires ne remplace pas cette inspection.
+
+Le commandement reste en haut à gauche près de sa cible ; aucun texte coupé
+observé dans ces poses. Les panneaux Renfort et Game Over masquent volontairement
+les tirs centraux ; les étiquettes restent hors des panneaux. Le petit texte
+contextuel en 720p reste à évaluer en situation de jeu par un joueur.
+
+La flèche mobile pâle segmentée apparaît dans ANNOUNCE, disparaît dans MOVE
+et SETTLE ; l'avertissement de tir orange apparaît au canon dans FIRE. Ces
+instantanés ne prouvent pas la fluidité ni la compréhension en mouvement.
+
+Sur les cinq fonds aux deux tailles, les silhouettes rondes hostiles restent
+distinctes des traits joueurs. Sur sable et écume, les traits deviennent très
+blancs mais gardent une forme allongée. Les explosions masquent fortement le
+second trait de chaque paire joueur : ne pas annoncer tous les tirs visibles
+sous les effets. Cette limite était également présente dans l'ancienne collection.
+
+PERFORMANCE ET ACCEPTATION
+La comparaison des replays complets q0/q1/q2 est terminée avec audio Dummy
+sur les deux versions : états enregistrés identiques. Voir performance-1.9.txt.
+Les captures ci-dessus ne mesurent pas un coût de rendu.
+L'endurance mémoire est terminée sur ce PC ; reste la reconnaissance humaine
+des menaces/priorités en mouvement, avec erreurs de lecture consignées.
+Le ticket #18 ne peut pas être déclaré entièrement terminé à ce stade.

@@ -5,7 +5,9 @@ Runs the external full-mission probe against an embedded Windows game pack.
 .DESCRIPTION
 One rendered benchmark at a time. Process private bytes, working set and lifetime
 peak working set are sampled at a target of 1 Hz. These are not engine allocation
-monitors or VRAM readings. -DryRun validates files/arguments without launching,
+monitors or VRAM readings. The Dummy audio driver keeps these performance tests
+silent; use the separate muted-Windows audio recorder for actual PCM validation.
+-DryRun validates files/arguments without launching,
 hashing the pack, creating output files or taking process samples.
 #>
 [CmdletBinding()]
@@ -13,6 +15,7 @@ param(
     [string]$GodotConsole = 'D:/godot/Godot_v4.7.2-stable_win64/Godot_v4.7.2-stable_win64_console.exe',
     [string]$PackExecutable = (Join-Path $PSScriptRoot '../../dist/PacificStrike/PacificStrike.exe'),
     [string]$BenchmarkScript = (Join-Path $PSScriptRoot 'benchmark_full_mission.gd'),
+    [string[]]$BenchmarkDependencies = @(),
     [string]$GodotRenderExecutable = '',
     [ValidateRange(1, 32)][int]$Mission = 31,
     [ValidateRange(0, 2)][int]$Quality = 1,
@@ -179,6 +182,7 @@ function Read-OwnedMemory {
                 is_engine_candidate = ($taskRecord.Id -in $taskEngineIds)
                 private_memory_bytes = $taskPrivate; working_set_bytes = $taskWorking
                 peak_working_set_process_bytes = $taskPeakWorking
+                sampled_utc = (Get-Date).ToUniversalTime().ToString('o')
             })
         } catch {
             if (-not $taskRecord.Process.HasExited) { throw }
@@ -227,6 +231,15 @@ if ($env:OS -ne 'Windows_NT') { throw 'This observer requires Windows process/CI
 $script:taskConsolePath = Resolve-MeasurementFile $GodotConsole 'Godot console editor' '.exe'
 $taskPackPath = Resolve-MeasurementFile $PackExecutable 'Embedded game pack' '.exe'
 $taskSourcePath = Resolve-MeasurementFile $BenchmarkScript 'External benchmark script' '.gd'
+$taskDependencyPaths = @()
+$taskSnapshotNames = @([System.IO.Path]::GetFileName($taskSourcePath))
+foreach ($taskDependency in $BenchmarkDependencies) {
+    $taskResolvedDependency = Resolve-MeasurementFile $taskDependency 'External benchmark dependency' '.gd'
+    $taskDependencyName = [System.IO.Path]::GetFileName($taskResolvedDependency)
+    if ($taskSnapshotNames -contains $taskDependencyName) { throw "Duplicate snapshot filename: $taskDependencyName" }
+    $taskSnapshotNames += $taskDependencyName
+    $taskDependencyPaths += $taskResolvedDependency
+}
 if ([string]::IsNullOrWhiteSpace($GodotRenderExecutable)) {
     $script:taskRenderPath = $script:taskConsolePath -replace '(?i)([_\-.]console)\.exe$', '.exe'
 } else {
@@ -236,7 +249,7 @@ $taskOutputBase = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathF
 $taskRunId = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssfffZ') + '-' + [guid]::NewGuid().ToString('N').Substring(0, 8)
 $taskRunDirectory = Join-Path $taskOutputBase $taskRunId
 $taskWorkingDirectory = Join-Path $taskRunDirectory 'working'
-$taskSnapshotScript = Join-Path $taskRunDirectory 'benchmark_full_mission.gd'
+$taskSnapshotScript = Join-Path $taskRunDirectory ([System.IO.Path]::GetFileName($taskSourcePath))
 $taskMemoryPath = Join-Path $taskRunDirectory 'process-memory.json'
 $taskEnginePath = Join-Path $taskRunDirectory ('full-mission-{0:00}-q{1}-{2}x{3}.json' -f $Mission, $Quality, $Width, $Height)
 $taskEngineLog = Join-Path $taskRunDirectory 'engine.log'
@@ -245,7 +258,7 @@ $taskStderr = Join-Path $taskRunDirectory 'stderr.log'
 $taskEffectiveTimeout = $TimeoutSeconds
 if ($taskEffectiveTimeout -eq 0) { $taskEffectiveTimeout = [int][math]::Ceiling($Repeats * ($DurationSeconds * 2.5 + 30) + 120) }
 $taskArguments = @(
-    '--main-pack', $taskPackPath, '--script', $taskSnapshotScript,
+    '--main-pack', $taskPackPath, '--script', $taskSnapshotScript, '--audio-driver', 'Dummy',
     '--windowed', '--resolution', ('{0}x{1}' -f $Width, $Height), '--log-file', $taskEngineLog, '--',
     "--mission=$Mission", "--quality=$Quality", "--repeats=$Repeats", "--duration=$DurationSeconds",
     ('--size={0}x{1}' -f $Width, $Height), "--build-id=$BuildId", "--output-dir=$taskRunDirectory"
@@ -255,6 +268,7 @@ $taskPlan = [ordered]@{
     schema = 1; dry_run = [bool]$DryRun; godot_console = $script:taskConsolePath
     expected_render_executable = $script:taskRenderPath; embedded_pack = $taskPackPath
     source_script = $taskSourcePath; external_script_snapshot = $taskSnapshotScript
+    external_dependency_sources = $taskDependencyPaths
     arguments = $taskArguments; windows_argument_line = $taskArgumentLine
     working_directory = $taskWorkingDirectory; output_directory = $taskRunDirectory
     process_memory_report = $taskMemoryPath; engine_report = $taskEnginePath
@@ -280,6 +294,7 @@ $taskClock = [System.Diagnostics.Stopwatch]::new()
 $taskState = 'initializing'
 $taskPackHash = $null
 $taskSourceHash = $null
+$taskDependencySnapshots = @()
 $taskConsoleHash = $null
 $taskEngineReport = $null
 $taskStartedUtc = (Get-Date).ToUniversalTime()
@@ -287,6 +302,11 @@ $taskObservedChild = $false
 try {
     New-Item -ItemType Directory -Path $taskWorkingDirectory -Force | Out-Null
     Copy-Item -LiteralPath $taskSourcePath -Destination $taskSnapshotScript
+    foreach ($taskDependencyPath in $taskDependencyPaths) {
+        $taskDependencyDestination = Join-Path $taskRunDirectory ([System.IO.Path]::GetFileName($taskDependencyPath))
+        Copy-Item -LiteralPath $taskDependencyPath -Destination $taskDependencyDestination
+        $taskDependencySnapshots += [ordered]@{ source = $taskDependencyPath; snapshot = $taskDependencyDestination; sha256 = (Get-FileHash -LiteralPath $taskDependencyDestination -Algorithm SHA256).Hash }
+    }
     $taskPackHash = (Get-FileHash -LiteralPath $taskPackPath -Algorithm SHA256).Hash
     $taskSourceHash = (Get-FileHash -LiteralPath $taskSnapshotScript -Algorithm SHA256).Hash
     $taskConsoleHash = (Get-FileHash -LiteralPath $script:taskConsolePath -Algorithm SHA256).Hash
@@ -354,6 +374,10 @@ try {
     }
     if ($taskDiagnostic -match '(?m)(SCRIPT ERROR|ERROR:|WARNING:)') { throw 'Engine logs contain errors/warnings; see the retained logs.' }
     if ((Get-FileHash -LiteralPath $taskPackPath -Algorithm SHA256).Hash -ne $taskPackHash) { throw 'Embedded pack changed during measurement.' }
+    if ((Get-FileHash -LiteralPath $taskSnapshotScript -Algorithm SHA256).Hash -ne $taskSourceHash) { throw 'External probe snapshot changed during measurement.' }
+    foreach ($taskDependencySnapshot in $taskDependencySnapshots) {
+        if ((Get-FileHash -LiteralPath $taskDependencySnapshot.snapshot -Algorithm SHA256).Hash -ne $taskDependencySnapshot.sha256) { throw 'External dependency snapshot changed during measurement.' }
+    }
     $taskState = 'completed'
 } catch {
     [void]$taskErrors.Add($_.Exception.Message)
@@ -383,12 +407,13 @@ try {
     $taskReport = [ordered]@{
         schema = 1; state = $taskState; started_utc = $taskStartedUtc.ToString('o'); ended_utc = (Get-Date).ToUniversalTime().ToString('o')
         observer_wall_seconds = $taskClock.Elapsed.TotalSeconds; timeout_seconds = $taskEffectiveTimeout
-        parameters = @{mission = $Mission; quality = $Quality; repeats = $Repeats; duration_seconds = $DurationSeconds; size = @($Width, $Height); build_id = $BuildId}
+        parameters = @{mission = $Mission; quality = $Quality; repeats = $Repeats; duration_seconds = $DurationSeconds; size = @($Width, $Height); build_id = $BuildId; audio_driver = 'Dummy'}
         godot_console = $script:taskConsolePath; godot_console_sha256 = $taskConsoleHash
         expected_render_executable = $script:taskRenderPath
         runtime_type = 'Godot console editor + embedded data pack; not direct release-template execution'
         embedded_pack = $taskPackPath; pack_sha256 = $taskPackHash
         source_script = $taskSourcePath; external_script_snapshot = $taskSnapshotScript; script_sha256 = $taskSourceHash
+        external_dependencies = $taskDependencySnapshots
         launch_arguments = $taskArguments; windows_argument_line = $taskArgumentLine
         root_pid = $script:taskRootId; render_child_observed = $taskObservedChild
         observer_pid = [System.Diagnostics.Process]::GetCurrentProcess().Id

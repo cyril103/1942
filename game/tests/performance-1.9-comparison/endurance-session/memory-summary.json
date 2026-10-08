@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "errors": [],
+  "renderer_pids": [
+    23076
+  ],
+  "sample_count": 953,
+  "observer_seconds": 1156.7951036,
+  "observed_private_bytes_peak": 1075052544,
+  "observed_working_set_bytes_peak": 377835520,
+  "sample_gap_median_s": 1.0183125734329224,
+  "sample_gap_max_s": 3.3968639373779297,
+  "settled_windows": [
+    {
+      "window": "pass-00-m03-retry-False",
+      "samples": 1,
+      "private_bytes_min": 995057664,
+      "private_bytes_max": 995057664,
+      "private_bytes_median": 995057664,
+      "working_set_bytes_median": 363819008
+    },
+    {
+      "window": "pass-01-m03-retry-True",
+      "samples": 2,
+      "private_bytes_min": 969363456,
+      "private_bytes_max": 969363456,
+      "private_bytes_median": 969363456.0,
+      "working_set_bytes_median": 364875776.0
+    },
+    {
+      "window": "pass-02-m07-retry-False",
+      "samples": 1,
+      "private_bytes_min": 972906496,
+      "private_bytes_max": 972906496,
+      "private_bytes_median": 972906496,
+      "working_set_bytes_median": 369348608
+    },
+    {
+      "window": "pass-03-m07-retry-True",
+      "samples": 1,
+      "private_bytes_min": 973746176,
+      "private_bytes_max": 973746176,
+      "private_bytes_median": 973746176,
+      "working_set_bytes_median": 369721344
+    },
+    {
+      "window": "pass-04-m19-retry-False",
+      "samples": 2,
+      "private_bytes_min": 969195520,
+      "private_bytes_max": 969195520,
+      "private_bytes_median": 969195520.0,
+      "working_set_bytes_median": 362020864.0
+    },
+    {
+      "window": "pass-05-m19-retry-True",
+      "samples": 1,
+      "private_bytes_min": 969007104,
+      "private_bytes_max": 969007104,
+      "private_bytes_median": 969007104,
+      "working_set_bytes_median": 362151936
+    },
+    {
+      "window": "pass-06-m31-retry-False",
+      "samples": 2,
+      "private_bytes_min": 972148736,
+      "private_bytes_max": 972148736,
+      "private_bytes_median": 972148736.0,
+      "working_set_bytes_median": 365223936.0
+    },
+    {
+      "window": "pass-07-m31-retry-True",
+      "samples": 1,
+      "private_bytes_min": 973074432,
+      "private_bytes_max": 973074432,
+      "private_bytes_median": 973074432,
+      "working_set_bytes_median": 366034944
+    },
+    {
+      "window": "final-app-disposed",
+      "samples": 2,
+      "private_bytes_min": 909885440,
+      "private_bytes_max": 909885440,
+      "private_bytes_median": 909885440.0,
+      "working_set_bytes_median": 351649792.0
+    }
+  ],
+  "engine_cleanup": [
+    {
+      "pass": 0,
+      "memory": {
+        "engine_static_bytes": 69320966,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 367262627,
+        "resources": 265
+      }
+    },
+    {
+      "pass": 1,
+      "memory": {
+        "engine_static_bytes": 69344338,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 367044175,
+        "resources": 265
+      }
+    },
+    {
+      "pass": 2,
+      "memory": {
+        "engine_static_bytes": 69437926,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 366782033,
+        "resources": 265
+      }
+    },
+    {
+      "pass": 3,
+      "memory": {
+        "engine_static_bytes": 69446138,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 366782033,
+        "resources": 265
+      }
+    },
+    {
+      "pass": 4,
+      "memory": {
+        "engine_static_bytes": 69495210,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 366782033,
+        "resources": 265
+      }
+    },
+    {
+      "pass": 5,
+      "memory": {
+        "engine_static_bytes": 69504874,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 366782033,
+        "resources": 265
+      }
+    },
+    {
+      "pass": 6,
+      "memory": {
+        "engine_static_bytes": 69504622,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 366782033,
+        "resources": 265
+      }
+    },
+    {
+      "pass": 7,
+      "memory": {
+        "engine_static_bytes": 69512446,
+        "nodes": 27,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 366782033,
+        "resources": 265
+      }
+    }
+  ],
+  "engine_final_memory": {
+    "engine_static_bytes": 57692310,
+    "nodes": 1,
+    "orphan_nodes": 0,
+    "render_estimated_bytes": 308815888,
+    "resources": 214
+  },
+  "source_hashes": {
+    "tools\\review\\session-endurance-1.9.0\\20261008T210618831Z-125f5fad\\process-memory.json": "a080625ab232cb733536516040ffde3ef2c8ad441334a460bcdade1c6bfaf953",
+    "tools\\review\\session-endurance-1.9.0\\20261008T210618831Z-125f5fad\\full-mission-31-q1-1920x1080.json": "5acf5387d544e938e6ebc3caa7e02ccd6d96263034b8e06fd26aec8f8b9ab78f"
+  },
+  "limits": "Private bytes are committed private memory, not resident RAM; working set includes shared pages. Peaks are sampled, not guaranteed lifetime peaks. Engine/render monitors are distinct, and physical VRAM is not measured. Settled windows use per-process timestamps with 50 ms edge margins; old reports without windows do not establish private RAM after cleanup. No leak diagnosis, human gameplay, other hardware or FPS guarantee follows."
+}

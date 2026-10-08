@@ -1,0 +1,17 @@
+{
+  "process_path": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64.exe",
+  "helper_sha256": "C4B1E0E7F09DA1D4F938CCA0C9DBDFA988F8F45468E9EB0DE80D90D9551E2567",
+  "unmuted_by_launcher": false,
+  "process_creation_utc": "2026-10-08T21:03:50.5058190Z",
+  "ack": {
+    "volume": 0,
+    "token": "90a3f070946f4a13a45c9eb6906349f2",
+    "pid": 17960,
+    "muted": true
+  },
+  "observed_sessions": [
+    "pid=17960 role=0 volume=0 muted=True",
+    "pid=17960 role=1 volume=0 muted=True",
+    "pid=17960 role=2 volume=0 muted=True"
+  ]
+}

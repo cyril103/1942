@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+ERROR: Session endurance requires --audio-driver Dummy before creating voices
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _run (C:/ChatGPT/1942/tools/review/session-endurance-1.9.0/20261008T210517812Z-bc44a528/benchmark_session_endurance.gd:11)

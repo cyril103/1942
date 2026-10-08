@@ -15,3 +15,16 @@ Cette confirmation complète l'inspection automatique VersionInfo / shell
 et le lancement du ZIP extrait. L'issue #10 est clôturée avec cette preuve.
 Elle ne constitue pas une session de gameplay, un contrôle de manette
 ou une validation de performances. Les cases du protocole #22 ne changent pas.
+
+8 OCTOBRE 2026 — MATÉRIEL DISPONIBLE / TICKETS #8 ET #20
+
+Question posée au joueur : disponibilité d'une manette et d'un deuxième PC
+pour les validations matérielles restantes.
+Réponse explicite : « Ni manette ni deuxième PC ».
+
+Le contrôle physique manette et la comparaison sur une seconde configuration
+ne sont donc pas réalisables avec le matériel déclaré disponible. Les essais
+clavier, InputMap simulé et mesures sur le PC actuel continuent ; ils ne sont
+pas requalifiés comme validations de ce matériel absent. Les tickets restent
+ouverts sur ces points. Cette réponse ne valide aucun critère de gameplay,
+d'écoute ou de performance et ne modifie pas la matrice de parties humaines.

@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+BENCHMARK PASS 0 gameplay={"max_ms":140.494,"mean_ms":4.03611039803867,"over_16_67ms":13,"over_33_33ms":5,"p95_ms":6.051,"p99_ms":7.443,"samples":27736} ticks=8400 result_tick=6718
+BENCHMARK PASS 1 gameplay={"max_ms":18.335,"mean_ms":3.96849192661202,"over_16_67ms":2,"over_33_33ms":0,"p95_ms":6.046,"p99_ms":7.775,"samples":28179} ticks=8400 result_tick=6718
+BENCHMARK PASS 2 gameplay={"max_ms":18.59,"mean_ms":3.68627770452895,"over_16_67ms":2,"over_33_33ms":0,"p95_ms":5.462,"p99_ms":6.841,"samples":30338} ticks=8400 result_tick=6718
+BENCHMARK PASS 3 gameplay={"max_ms":16.702,"mean_ms":3.72278630401493,"over_16_67ms":1,"over_33_33ms":0,"p95_ms":5.471,"p99_ms":6.776,"samples":30038} ticks=8400 result_tick=6718
+BENCHMARK PASS 4 gameplay={"max_ms":16.139,"mean_ms":3.69099504819758,"over_16_67ms":0,"over_33_33ms":0,"p95_ms":5.504,"p99_ms":6.692,"samples":30292} ticks=8400 result_tick=6718
+BENCHMARK PASS 5 gameplay={"max_ms":18.15,"mean_ms":3.75170352230797,"over_16_67ms":2,"over_33_33ms":0,"p95_ms":5.346,"p99_ms":6.436,"samples":29810} ticks=8400 result_tick=6718
+BENCHMARK PASS 6 gameplay={"max_ms":27.112,"mean_ms":3.83794010434546,"over_16_67ms":2,"over_33_33ms":0,"p95_ms":5.89,"p99_ms":7.508,"samples":29134} ticks=8400 result_tick=6718
+BENCHMARK PASS 7 gameplay={"max_ms":34.164,"mean_ms":4.14344775455758,"over_16_67ms":3,"over_33_33ms":1,"p95_ms":6.332,"p99_ms":7.659,"samples":26988} ticks=8400 result_tick=6718
+FULL MISSION BENCHMARK full-mission-31-q1-1920x1080.json passes=8 failures=[]

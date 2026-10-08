@@ -1,0 +1,71 @@
+WorkerThreadPool: 8 threads, 2 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Accessibility: AccessKit driver loaded.
+Wacom tablet config found at "C:/Users/cyril/AppData/Roaming/WTablet/Wacom_Tablet.dat", Windows Ink support is disabled.
+Native OpenGL API detected: 3.3: NVIDIA - NVIDIA GeForce GTX 1650
+NVAPI: Init OK!
+NVAPI: Application not found in profile, creating...
+NVAPI: Error creating application: NVAPI_EXECUTABLE_ALREADY_IN_USE(code -167)
+Accessibility: window 0 adapter created.
+SDL: Init OK!
+Accessibility: window 0 adapter activated.
+Using "wintab" pen tablet driver...
+Shader 'CanvasSdfShaderGLES3' SHA256: cb0a5ee25f557e8f12d793b7f5ac1b7ae22733c6d5243353dfafdfbbcf85aa79
+Shader 'SkeletonShaderGLES3' SHA256: f4600313b2e329c1aa9b8ee0298810ce0a1124fb3a05aefabbf8aac3d3ad2988
+Shader 'ParticlesShaderGLES3' SHA256: 2b35338936a07bdbd37e5ddd799663455d0ddc743600b85fff0173779f3d7e66
+Shader 'ParticlesCopyShaderGLES3' SHA256: 872824c201be9c0ac2b98aff6781d7d11b7c73e3d853593bf6b17a21944dadaf
+Shader 'CopyShaderGLES3' SHA256: cae96126fd3fc3469bdcef224d3bb1d292354402676203df555b81c8bca0d987
+Shader 'CubemapFilterShaderGLES3' SHA256: 854aba5bda4c72f443696cd3fc500acbbdea71b42cbfee7386d83d73b2afb58a
+Shader 'GlowShaderGLES3' SHA256: 399ee4253103f2048d09ceeaea5526fbe90817fa93ad1f8a029cfdd99c6c5608
+Shader 'PostShaderGLES3' SHA256: 658e45a5598fbc461d6d40298a5af391288c2974ea5a352cebadf924b87117b2
+Shader 'FeedShaderGLES3' SHA256: 77b3ec39bf1bdce6f35b2cb1cac0b327a9b6afc14f31e65e9872258b33df6cae
+Shader 'CanvasShaderGLES3' SHA256: 81e505d69aabfd010a62f717f569cac3142dcbdf44f00d10269a3a575e171fb4
+Shader 'CanvasOcclusionShaderGLES3' SHA256: a1e78a439f252256df5c3f8ff254ae2b1915801342e32fc6e3b18309be4eeb8e
+Shader 'SceneShaderGLES3' SHA256: 3facc5422d6a0de4781194a9988311f11d2cf0ab9b9cb5e50b35165e38140736
+Shader 'SkyShaderGLES3' SHA256: 3fa48d00260c0acca663dddd83613f6cf9b3adbe03691445f159ce162bcf2eea
+Shader 'TexBlitShaderGLES3' SHA256: cdf62c47fa0fc366c19c7c191466627d67d47f117747f4c23f30a6a48fc351ad
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: C:/ChatGPT/1942/tools/review/probe_music_shutdown.gd remapped: C:/ChatGPT/1942/tools/review/probe_music_shutdown.gd
+Completed load for: 'C:/ChatGPT/1942/tools/review/probe_music_shutdown.gd' remapped 'C:/ChatGPT/1942/tools/review/probe_music_shutdown.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: C:/ChatGPT/1942/tools/review/music-before.gd remapped: C:/ChatGPT/1942/tools/review/music-before.gd
+Loading resource: res://assets/campaign/music/radio-cue.wav remapped: res://assets/campaign/music/radio-cue.wav
+Loading resource: res://.godot/imported/radio-cue.wav-f9718ae95df2875272458fefb7bb9846.sample remapped: res://.godot/imported/radio-cue.wav-f9718ae95df2875272458fefb7bb9846.sample
+Completed load for: 'res://assets/campaign/music/radio-cue.wav' remapped 'res://assets/campaign/music/radio-cue.wav' at thread -1
+Completed load for: 'C:/ChatGPT/1942/tools/review/music-before.gd' remapped 'C:/ChatGPT/1942/tools/review/music-before.gd' at thread -1
+Loading resource: res://assets/campaign/music/menu.wav remapped: res://assets/campaign/music/menu.wav
+Loading resource: res://.godot/imported/menu.wav-0c1ef461a9cd95bb5a18d5e8811b6a6a.sample remapped: res://.godot/imported/menu.wav-0c1ef461a9cd95bb5a18d5e8811b6a6a.sample
+Completed load for: 'res://assets/campaign/music/menu.wav' remapped 'res://assets/campaign/music/menu.wav' at thread -1
+Loading resource: res://assets/campaign/music/flight.wav remapped: res://assets/campaign/music/flight.wav
+Loading resource: res://.godot/imported/flight.wav-f905a98f51b7e1430f69d96d24e12c4b.sample remapped: res://.godot/imported/flight.wav-f905a98f51b7e1430f69d96d24e12c4b.sample
+Completed load for: 'res://assets/campaign/music/flight.wav' remapped 'res://assets/campaign/music/flight.wav' at thread -1
+Loading resource: res://assets/campaign/music/flight2.wav remapped: res://assets/campaign/music/flight2.wav
+Loading resource: res://.godot/imported/flight2.wav-1dac9d1eca4244e146e35f7516b10aec.sample remapped: res://.godot/imported/flight2.wav-1dac9d1eca4244e146e35f7516b10aec.sample
+Completed load for: 'res://assets/campaign/music/flight2.wav' remapped 'res://assets/campaign/music/flight2.wav' at thread -1
+Loading resource: res://assets/campaign/music/boss.wav remapped: res://assets/campaign/music/boss.wav
+Loading resource: res://.godot/imported/boss.wav-1d733a708d296cc37965d741b074ceba.sample remapped: res://.godot/imported/boss.wav-1d733a708d296cc37965d741b074ceba.sample
+Completed load for: 'res://assets/campaign/music/boss.wav' remapped 'res://assets/campaign/music/boss.wav' at thread -1
+Loading resource: res://assets/campaign/music/victory.wav remapped: res://assets/campaign/music/victory.wav
+Loading resource: res://.godot/imported/victory.wav-a9ece85b63c4b28d3365e7aa7735de27.sample remapped: res://.godot/imported/victory.wav-a9ece85b63c4b28d3365e7aa7735de27.sample
+Completed load for: 'res://assets/campaign/music/victory.wav' remapped 'res://assets/campaign/music/victory.wav' at thread -1
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Accessibility: window 0 adapter destroyed.
+Leaked instance: AudioStreamWAV:9223372064587515344 - Reference count: 1
+Leaked instance: AudioStreamPlaybackWAV:9223372065409598937 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://assets/campaign/music/menu.wav (AudioStreamWAV)
+Orphan StringName: Music (static: 0, total: 2)
+StringName: 1 unclaimed string names at exit.
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit.
+   at: clear (core/io/resource.cpp:817)

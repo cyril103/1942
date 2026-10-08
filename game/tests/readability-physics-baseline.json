@@ -1,0 +1,118 @@
+{
+  "scope": "Presentation candidate source safety baseline; refresh only after reviewing unrelated phase 4 changes",
+  "normalization": "CRLF to LF; reverse only eight literal reviewed audio transformations, each installed literal required exactly once; remove exactly the two approved flare-kind presentation lines; strip_edges; SHA256 UTF8",
+  "allowed_presentation_lines": [
+    "flare.material_override.set_shader_parameter(\"kind\",2)",
+    "flare.material_override.set_shader_parameter(\"kind\",1)"
+  ],
+  "files": {
+    "res://scripts/combat.gd": "b5aa7c60e51b2f707c659ff7000b4263a4a64a94699776e34afae7f067e8b5fe",
+    "res://scripts/weapons.gd": "e82374733632fb3cd8cc5b2b572b664c6d25c73259973b5a6ea8b3d5fb553491",
+    "res://scripts/campaign/ground_target.gd": "778b82c34137a7e543d279488cb28e0e46cadab19053be660f34c40c7645b249",
+    "res://scripts/campaign/ground_assault.gd": "32d3a45932cb535f014a8ab625a420fbcc9a49d017fc2af1a981b2861b64d568"
+  },
+  "unchanged_fire_shader_tail_sha256": "5424aefea1d93fa153caef35d2b6258b33546b8ff6f83e76f367e820d4e75305",
+  "reviewed_refresh": {
+    "file": "res://scripts/campaign/ground_assault.gd",
+    "previous_sha256": "4346cbf750a7588b0113796d2a91f4ce698a8948bc53b4ce2c38cbe571a813a1",
+    "current_sha256": "32d3a45932cb535f014a8ab625a420fbcc9a49d017fc2af1a981b2861b64d568",
+    "old_source": "tools/review/phase4-src/ground_assault.gd",
+    "reason": "Phase 4 independent review removed a redundant radio assignment that overwrote the director-authored radar label with internal network IDs. This refresh does not permit any phase 5 gameplay change.",
+    "exact_changes": [
+      "Remove unused scopes array declaration",
+      "Remove scopes.append(network_id)",
+      "Remove conditional duplicate director.radio/director.radio_time assignment",
+      "Add two comments explaining that network_disrupted hands readable wording to the director"
+    ],
+    "unchanged": [
+      "Radar network membership",
+      "Jam timers and durations",
+      "network_disrupted arguments",
+      "_refresh_global_jam()",
+      "set_jammed(_is_target_jammed(...)) calls",
+      "Target health, firing cadence, colliders, pools, movement and objective predicates"
+    ],
+    "review_scope": "Read-only textual comparison only; no Godot compilation or rendered/runtime proof"
+  },
+  "allowed_audio_changes": [
+    {
+      "id": "weapons-bind-laser",
+      "path": "res://scripts/weapons.gd",
+      "installed_literal": "\tadd_child(laser_audio)\n\taudio.bind_laser(laser_audio)\n",
+      "phase4_literal": "\tadd_child(laser_audio)\n",
+      "expected_installed_occurrences": 1
+    },
+    {
+      "id": "weapons-salvo-signature",
+      "path": "res://scripts/weapons.gd",
+      "installed_literal": "\taudio.play_salvo(\"spread\" if spread_enabled else \"standard\")\n",
+      "phase4_literal": "\taudio.play_salvo()\n",
+      "expected_installed_occurrences": 1
+    },
+    {
+      "id": "weapons-power-signature",
+      "path": "res://scripts/weapons.gd",
+      "installed_literal": "\taudio.set_signature(\"spread\" if spread_enabled else \"standard\")\n",
+      "phase4_literal": "\taudio.volume_db = -6.0 if spread_enabled else -5.0\n",
+      "expected_installed_occurrences": 1
+    },
+    {
+      "id": "weapons-stop-all",
+      "path": "res://scripts/weapons.gd",
+      "installed_literal": "func cease_fire() -> void:\n\tif is_instance_valid(audio): audio.stop_all()\n",
+      "phase4_literal": "func cease_fire() -> void:\n",
+      "expected_installed_occurrences": 1
+    },
+    {
+      "id": "weapons-laser-state",
+      "path": "res://scripts/weapons.gd",
+      "installed_literal": "\taudio.set_laser_active(firing)\n\tlaser.visible = firing\n",
+      "phase4_literal": "\tlaser.visible = firing\n",
+      "expected_installed_occurrences": 1
+    },
+    {
+      "id": "weapons-restore-idle-stop",
+      "path": "res://scripts/weapons.gd",
+      "installed_literal": "\tif not firing:\n\t\tlaser_clock = maxf(0.0,laser_clock)\n\t\treturn\n",
+      "phase4_literal": "\tif not firing:\n\t\tlaser_clock = maxf(0.0,laser_clock)\n\t\tlaser_audio.stop()\n\t\treturn\n",
+      "expected_installed_occurrences": 1
+    },
+    {
+      "id": "weapons-restore-playing-start",
+      "path": "res://scripts/weapons.gd",
+      "installed_literal": "\t\treturn\n\tvar origin := player.global_position+Vector3(0,0,laser_nose)\n",
+      "phase4_literal": "\t\treturn\n\tif not laser_audio.playing: laser_audio.play()\n\tvar origin := player.global_position+Vector3(0,0,laser_nose)\n",
+      "expected_installed_occurrences": 1
+    },
+    {
+      "id": "ground-assault-entry-cue",
+      "path": "res://scripts/campaign/ground_assault.gd",
+      "installed_literal": "\t\tdirector.radio_time = 4.0\n\t\tif director.has_signal(\"audio_event\"):\n\t\t\tdirector.emit_signal(\"audio_event\", \"radio_important\", \"raid-entry:%d\" % int(director.mission.id))\n",
+      "phase4_literal": "\t\tdirector.radio_time = 4.0\n",
+      "expected_installed_occurrences": 1
+    }
+  ],
+  "audio_provenance": {
+    "phase4_commit": "f4ec5d5dd6a82b326c2caaca5dd6e981f5f20288",
+    "review_method": "Compare the pre-audio snapshots to git show at the exact phase 4 commit, then reverse all reviewed literals and require the original mechanics hash. No gameplay hash is refreshed for audio integration.",
+    "snapshots": {
+      "res://scripts/weapons.gd": {
+        "path": "tools/review/pre-audio-integration/weapons.gd",
+        "phase4_normalized_sha256": "e82374733632fb3cd8cc5b2b572b664c6d25c73259973b5a6ea8b3d5fb553491",
+        "matches_phase4_commit": true
+      },
+      "res://scripts/campaign/ground_assault.gd": {
+        "path": "tools/review/pre-audio-integration/ground_assault.gd",
+        "phase4_normalized_sha256": "32d3a45932cb535f014a8ab625a420fbcc9a49d017fc2af1a981b2861b64d568",
+        "matches_phase4_commit": true
+      }
+    },
+    "weapons_scope": "Laser player registration; standard/spread salvo and signature dispatch; audio stop_all; laser state dispatch replacing direct idle stop/playing start. All raycasts, timings, projectile dimensions/speeds, damage, colliders and pools remain covered by the unchanged phase 4 hash.",
+    "ground_assault_scope": "Only guarded raid-entry audio_event emission after the unchanged radio_time=4.0 assignment. No timer, route, camera, altitude, target or objective change is exempted.",
+    "not_exempted": [
+      "App and Director hooks are outside the original four-file source-safety baseline and require their separate audio review/tests.",
+      "No new future audio or mechanics modification is automatically permitted."
+    ],
+    "review_scope": "Read-only exact textual/source-hash reconstruction only; no Godot compilation, rendering, audio listening or performance result."
+  }
+}

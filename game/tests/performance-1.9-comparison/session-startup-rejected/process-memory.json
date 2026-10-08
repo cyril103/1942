@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "state": "error",
+  "started_utc": "2026-10-08T21:05:17.9860580Z",
+  "ended_utc": "2026-10-08T21:05:22.4637426Z",
+  "observer_wall_seconds": 3.5825447,
+  "timeout_seconds": 1800,
+  "parameters": {
+    "size": [
+      1920,
+      1080
+    ],
+    "duration_seconds": 140,
+    "quality": 1,
+    "build_id": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311",
+    "audio_driver": "Dummy",
+    "mission": 31,
+    "repeats": 8
+  },
+  "godot_console": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64_console.exe",
+  "godot_console_sha256": "C8F0A6BC45A19B33541501E57F6F7CD972AB18453743266339D495CBBE846643",
+  "expected_render_executable": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64.exe",
+  "runtime_type": "Godot console editor + embedded data pack; not direct release-template execution",
+  "embedded_pack": "C:\\ChatGPT\\1942\\tools\\review\\baseline-1.9.0\\PacificStrike.exe",
+  "pack_sha256": "28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311",
+  "source_script": "C:\\ChatGPT\\1942\\game\\tests\\benchmark_session_endurance.gd",
+  "external_script_snapshot": "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\benchmark_session_endurance.gd",
+  "script_sha256": "D93AEF401CEA0A01DB953C89B57F02B56B10DD6009E644EEC77AC7D760C62C7C",
+  "external_dependencies": [
+    {
+      "source": "C:\\ChatGPT\\1942\\game\\tests\\benchmark_full_mission.gd",
+      "snapshot": "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\benchmark_full_mission.gd",
+      "sha256": "2E7686BAD1D7012EE631FF55C357C56F4E8E514332C499F62FBE6FA61AA00B25"
+    }
+  ],
+  "launch_arguments": [
+    "--main-pack",
+    "C:\\ChatGPT\\1942\\tools\\review\\baseline-1.9.0\\PacificStrike.exe",
+    "--script",
+    "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\benchmark_session_endurance.gd",
+    "--audio-driver",
+    "Dummy",
+    "--windowed",
+    "--resolution",
+    "1920x1080",
+    "--log-file",
+    "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\engine.log",
+    "--",
+    "--mission=31",
+    "--quality=1",
+    "--repeats=8",
+    "--duration=140",
+    "--size=1920x1080",
+    "--build-id=28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311",
+    "--output-dir=C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528"
+  ],
+  "windows_argument_line": "--main-pack C:\\ChatGPT\\1942\\tools\\review\\baseline-1.9.0\\PacificStrike.exe --script C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\benchmark_session_endurance.gd --audio-driver Dummy --windowed --resolution 1920x1080 --log-file C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\engine.log -- --mission=31 --quality=1 --repeats=8 --duration=140 --size=1920x1080 --build-id=28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311 --output-dir=C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528",
+  "root_pid": 27636,
+  "render_child_observed": true,
+  "observer_pid": 11700,
+  "process_identification": "Retained launch handle + ParentProcessId + creation/exit time bounds + identity checks; rendering path preferred over console launcher",
+  "sample_target_hz": 1.0,
+  "memory_units": "bytes",
+  "samples": [
+    {
+      "utc": "2026-10-08T21:05:19.7959967Z",
+      "elapsed_seconds": 0.917863,
+      "target_elapsed_seconds": 0.0,
+      "primary_engine_pid": 21044,
+      "processes": [
+        {
+          "pid": 27636,
+          "parent_pid": null,
+          "created_utc": "2026-10-08T21:05:18.8375909Z",
+          "executable": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64_console.exe",
+          "is_engine_candidate": false,
+          "private_memory_bytes": 1392640,
+          "working_set_bytes": 7598080,
+          "peak_working_set_process_bytes": 7684096,
+          "sampled_utc": "2026-10-08T21:05:19.6416380Z"
+        },
+        {
+          "pid": 21044,
+          "parent_pid": 27636,
+          "created_utc": "2026-10-08T21:05:18.9083310Z",
+          "executable": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64.exe",
+          "is_engine_candidate": true,
+          "private_memory_bytes": 84824064,
+          "working_set_bytes": 83652608,
+          "peak_working_set_process_bytes": 113840128,
+          "sampled_utc": "2026-10-08T21:05:19.7199419Z"
+        },
+        {
+          "pid": 26056,
+          "parent_pid": 27636,
+          "created_utc": "2026-10-08T21:05:18.8579500Z",
+          "executable": "C:\\WINDOWS\\system32\\conhost.exe",
+          "is_engine_candidate": false,
+          "private_memory_bytes": 1773568,
+          "working_set_bytes": 10805248,
+          "peak_working_set_process_bytes": 10805248,
+          "sampled_utc": "2026-10-08T21:05:19.7942538Z"
+        }
+      ],
+      "observer_poll_ms": 918.6135
+    },
+    {
+      "utc": "2026-10-08T21:05:20.5358111Z",
+      "elapsed_seconds": 1.657626,
+      "target_elapsed_seconds": 1.0,
+      "primary_engine_pid": 21044,
+      "processes": [
+        {
+          "pid": 27636,
+          "parent_pid": null,
+          "created_utc": "2026-10-08T21:05:18.8375909Z",
+          "executable": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64_console.exe",
+          "is_engine_candidate": false,
+          "private_memory_bytes": 1392640,
+          "working_set_bytes": 7598080,
+          "peak_working_set_process_bytes": 7684096,
+          "sampled_utc": "2026-10-08T21:05:20.3776918Z"
+        },
+        {
+          "pid": 21044,
+          "parent_pid": 27636,
+          "created_utc": "2026-10-08T21:05:18.9083310Z",
+          "executable": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64.exe",
+          "is_engine_candidate": true,
+          "private_memory_bytes": 248381440,
+          "working_set_bytes": 181309440,
+          "peak_working_set_process_bytes": 200437760,
+          "sampled_utc": "2026-10-08T21:05:20.4484207Z"
+        },
+        {
+          "pid": 26056,
+          "parent_pid": 27636,
+          "created_utc": "2026-10-08T21:05:18.8579500Z",
+          "executable": "C:\\WINDOWS\\system32\\conhost.exe",
+          "is_engine_candidate": false,
+          "private_memory_bytes": 1773568,
+          "working_set_bytes": 10805248,
+          "peak_working_set_process_bytes": 10805248,
+          "sampled_utc": "2026-10-08T21:05:20.5356071Z"
+        }
+      ],
+      "observer_poll_ms": 646.4031
+    },
+    {
+      "utc": "2026-10-08T21:05:21.0926282Z",
+      "elapsed_seconds": 2.2144943,
+      "target_elapsed_seconds": 2.0,
+      "primary_engine_pid": null,
+      "processes": [],
+      "observer_poll_ms": 193.50139999999988
+    }
+  ],
+  "processes": [
+    {
+      "pid": 27636,
+      "parent_pid": null,
+      "depth": 0,
+      "created_utc": "2026-10-08T21:05:18.8375909Z",
+      "parent_created_utc": null,
+      "executable": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64_console.exe",
+      "exit_code": 1,
+      "exited_utc": "2026-10-08T21:05:20.5602875Z",
+      "termination_requested": false,
+      "samples": 2,
+      "observed_peak_private_bytes": 1392640,
+      "observed_peak_working_set_bytes": 7598080,
+      "reported_lifetime_peak_working_set_bytes": 7684096
+    },
+    {
+      "pid": 21044,
+      "parent_pid": 27636,
+      "depth": 1,
+      "created_utc": "2026-10-08T21:05:18.9083310Z",
+      "parent_created_utc": "2026-10-08T21:05:18.8375909Z",
+      "executable": "D:\\godot\\Godot_v4.7.2-stable_win64\\Godot_v4.7.2-stable_win64.exe",
+      "exit_code": 1,
+      "exited_utc": "2026-10-08T21:05:20.5272360Z",
+      "termination_requested": false,
+      "samples": 2,
+      "observed_peak_private_bytes": 248381440,
+      "observed_peak_working_set_bytes": 181309440,
+      "reported_lifetime_peak_working_set_bytes": 200437760
+    },
+    {
+      "pid": 26056,
+      "parent_pid": 27636,
+      "depth": 1,
+      "created_utc": "2026-10-08T21:05:18.8579500Z",
+      "parent_created_utc": "2026-10-08T21:05:18.8375909Z",
+      "executable": "C:\\WINDOWS\\system32\\conhost.exe",
+      "exit_code": 0,
+      "exited_utc": "2026-10-08T21:05:20.5639758Z",
+      "termination_requested": false,
+      "samples": 2,
+      "observed_peak_private_bytes": 1773568,
+      "observed_peak_working_set_bytes": 10805248,
+      "reported_lifetime_peak_working_set_bytes": 10805248
+    }
+  ],
+  "engine_report_path": "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\full-mission-31-q1-1920x1080.json",
+  "engine_report_present": false,
+  "engine_memory_is_distinct": true,
+  "physical_vram_measured": false,
+  "memory_limits": [
+    "PrivateMemorySize64 is private committed process memory, not resident RAM.",
+    "WorkingSet64 includes shared resident pages; do not sum it across processes as unique RAM.",
+    "PeakWorkingSet64 is the OS lifetime peak, while private/working-set maxima here are observed only at 1Hz.",
+    "Engine static/render allocation monitors remain in the separate benchmark JSON; none is physical VRAM occupancy.",
+    "A 1Hz observer can miss short allocation spikes. Process/CIM polling adds observer load.",
+    "No human play, leak diagnosis, second hardware configuration or guaranteed FPS follows from these samples."
+  ],
+  "errors": [
+    "Owned PID 21044 exited with code 1."
+  ],
+  "cleanup_errors": [],
+  "stdout_path": "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\stdout.log",
+  "stderr_path": "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\stderr.log",
+  "engine_log_path": "C:\\ChatGPT\\1942\\tools\\review\\session-endurance-1.9.0\\20261008T210517812Z-bc44a528\\engine.log"
+}

@@ -504,6 +504,10 @@ func _launch(number: int, mode := "", retry := false) -> void:
 	director.practice = play_mode=="practice"
 	director.first_takeoff = true
 	director.finished.connect(func(report): _show_result.call_deferred(report))
+	if is_instance_valid(music):
+		music.foreground_gain_changed.connect(cockpit.flight.get_node("Weapons").audio.set_alert_attenuation)
+		music.begin_run()
+		director.audio_event.connect(_on_audio_event)
 	cockpit.flight.add_child(director)
 	cockpit.flight.get_node("Weapons").set_power(session_profile.data.power)
 	var departure = cockpit.flight.get_node("Departure")
@@ -526,6 +530,11 @@ func _launch(number: int, mode := "", retry := false) -> void:
 	_assign_audio(cockpit)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	if is_instance_valid(music): music.set_mode("flight")
+
+func _on_audio_event(kind: String, event_id: String) -> void:
+	if not is_instance_valid(music): return
+	music.notify_event(kind, event_id)
+	if is_instance_valid(director): music.previous_radio = director.radio
 
 func _assign_audio(node: Node) -> void:
 	if node is AudioStreamPlayer or node is AudioStreamPlayer3D: node.bus = "Effects"

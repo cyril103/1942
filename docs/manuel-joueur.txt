@@ -1,5 +1,5 @@
 PACIFIC STRIKE — CAMPAGNE 1942
-Version 1.8.0 — secteurs, objectifs de raid et nouveaux terrains.
+Version 1.9.0 — signalétique des raids et priorités du mix sonore.
 
 Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
 Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.

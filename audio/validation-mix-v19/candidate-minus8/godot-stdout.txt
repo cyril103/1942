@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+Audio capture awaiting Windows mute ack: pid=9972 path=C:\ChatGPT\1942\tools\review\audio-1.9-seeded-final-minus8\windows-session-mute-ack.json token=da157af9c4f741f28fc80238fe4fb777
+Audio priority recordings: 110 checks / 0 failures

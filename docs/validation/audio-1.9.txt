@@ -1,0 +1,76 @@
+MIX AUDIO 1.9 — CONTRÔLES TECHNIQUES DU 8 OCTOBRE 2026
+
+Ticket #19. Les cinq musiques d'action existantes sont conservées. Deux voix
+musicales effectuent les fondus ; deux voix de motifs annoncent les événements.
+Priorités : boss/danger, message important, radio ordinaire, récompense.
+L'information critique atténue la musique jusqu'à 4 dB, avec attaque 120 ms,
+maintien 450 ms et retour 700 ms. Les réglages du joueur restent indépendants.
+Les tirs standard/éventail ont des variations de hauteur distinctes ; le laser
+possède une attaque de 35 ms et une extinction de 70 ms. Pas de limiteur ajouté.
+
+619 assertions de contrôle du mix passent (journal local phase5-final).
+Les mesures PCM suivantes utilisent les vrais lecteurs et ressources de la
+scène principale, mais le gameplay est gelé et les demandes sont scriptées.
+Chaque profil cumule pendant environ huit secondes moteur, musique de boss,
+tirs, laser, DCA, explosions et cinq alertes/récompenses. RNG des armes : 1942.
+Les horaires réels et les variations sont enregistrés. Le seed ne supprime pas
+les différences de cadence des frames ou des buffers audio entre exécutions.
+
+SILENCE DES TESTS
+Le pilote WASAPI reste actif pour enregistrer le mix interne. Le lanceur
+attend une confirmation de mute Windows liée au PID et à un nonce avant de
+créer les voix. Mute=true, volume=0 vérifiés ; aucune remise du son ensuite.
+Aucune écoute ni lecture automatique des WAV n'a été effectuée.
+Les tests visuels et de performances emploient --audio-driver Dummy.
+
+MESURES PCM16 — les fichiers complets et traces sont dans
+audio/validation-mix-v19/{baseline-minus5,candidate-minus8}.
+
+Profil              Gain -5 dB : crête / saturés   Gain -8 dB : crête / saturés
+Musique+effets       32767 / 9                      30913 / 0 (-0,506 dBFS)
+Musique seule       13010 / 0                      13200 / 0 (-7,898 dBFS)
+Effets seuls        30868 / 0                      22326 / 0 (-3,333 dBFS)
+Réglages .37/.68    24505 / 0                      17870 / 0 (-5,267 dBFS)
+
+Ancien gain : 110 contrôles, un échec de saturation. Gain retenu : 110
+contrôles, aucun échec. Seul le gain nominal des canons joueur passe de -5
+à -8 dB ; les autres niveaux restent inchangés pour cette comparaison.
+La marge de 0,506 dB du profil complet est limitée : ces quatre séquences ne
+prouvent pas l'absence de saturation pour toute superposition possible.
+Les variations temporelles interdisent de présenter les WAV comme deux
+replays PCM identiques. Aucune comparaison subjective n'est déduite des pics.
+
+PROVENANCE ET LIMITES
+manifest.json identifie les preuves copiées et les ressources présentes au
+moment de l'archivage ; ce dernier inventaire n'atteste pas le bytecode chargé
+pendant l'enregistrement. Les rapports gardent leurs chemins locaux originaux.
+Les trois fichiers CREDITS accompagnent ces extraits de mix ; les tirs incluent
+Light Machine Gun de KuraiWolf, CC BY 4.0, adapté comme décrit dans les crédits.
+Pas de nouvelles ressources sonores ajoutées pour ce ticket.
+
+À réaliser avant acceptation perceptuelle : écoute au casque et sur enceintes
+par plusieurs auditeurs, intelligibilité sous tir continu/explosions,
+identification des armes, absence de pompage gênant, puis écoute prolongée.
+Le ticket #19 reste ouvert tant que ces observations humaines manquent.
+
+CONTRÔLE DU PACK 1.9 EXPORTÉ
+Un nouvel enregistrement utilise le même EXE embarqué SHA256
+28D3229336C09AB7872F2DEC359287E3B5607E6FF470806277227E687BD2B311
+avec le moteur éditeur et un enregistreur externe copié/haché. Il ne s'agit
+pas d'une exécution directe du template release. Les ressources du jeu
+sont chargées depuis ce pack ; les fichiers source_hashes du recorder
+ne sont pas à eux seuls une attestation de bytecode. Identité de lancement
+et preuve de mute PID 17960 archivées dans packed-minus8.
+
+110 contrôles, zéro échec ; volume Windows 0 et mute confirmé avant les voix.
+Crêtes PCM16 : complet 28 683 (-1,157 dBFS), musique 13 322 (-7,818),
+effets 25 353 (-2,228), réglages utilisateur 19 857 (-4,351). Aucun échantillon
+saturé dans ces quatre extraits de huit secondes. La variation depuis le
+contrôle source ne constitue pas une amélioration du mix : horaires et
+superpositions varient entre exécutions. Aucune écoute humaine réalisée.
+
+Le lanceur a terminé ses contrôles de processus, logs, PCM et hash du pack.
+La commande englobante a ensuite produit une fausse exception en consultant
+LASTEXITCODE, nul après un script PowerShell qui lance via Start-Process.
+Cette exception de commande n'est pas une erreur du mix ; les rapports et
+logs originaux sont conservés, sans relancer pour remplacer le résultat.

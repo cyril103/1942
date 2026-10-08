@@ -1,0 +1,362 @@
+{
+	"after_dispose_memory": {
+		"engine_static_bytes": 69320966,
+		"nodes": 27,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 367262627,
+		"resources": 265
+	},
+	"departure_tick": 537,
+	"elapsed_ms": 140449.406,
+	"finished_tick": 5878,
+	"idle_end_unix_s": 1791493727.388,
+	"idle_start_unix_s": 1791493724.384,
+	"loadout": {
+		"aircraft": 0,
+		"difficulty": 1,
+		"power": "none",
+		"upgrades": [
+			0,
+			0,
+			0
+		]
+	},
+	"memory_samples": [
+		{
+			"memory": {
+				"engine_static_bytes": 74502222,
+				"nodes": 1249,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 419399451,
+				"resources": 268
+			},
+			"tick": 8
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74513266,
+				"nodes": 1249,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434310795,
+				"resources": 268
+			},
+			"tick": 308
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74961022,
+				"nodes": 1305,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434408385,
+				"resources": 268
+			},
+			"tick": 608
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75160204,
+				"nodes": 1317,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434370239,
+				"resources": 268
+			},
+			"tick": 908
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75249202,
+				"nodes": 1310,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434372995,
+				"resources": 268
+			},
+			"tick": 1208
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74930064,
+				"nodes": 1249,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434363703,
+				"resources": 268
+			},
+			"tick": 1508
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74952092,
+				"nodes": 1249,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434363703,
+				"resources": 268
+			},
+			"tick": 1808
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75206992,
+				"nodes": 1249,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434494775,
+				"resources": 268
+			},
+			"tick": 2108
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75114230,
+				"nodes": 1213,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434493783,
+				"resources": 268
+			},
+			"tick": 2408
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74884438,
+				"nodes": 1159,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434492295,
+				"resources": 268
+			},
+			"tick": 2708
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74672310,
+				"nodes": 1123,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434491303,
+				"resources": 268
+			},
+			"tick": 3008
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74474206,
+				"nodes": 1087,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434490311,
+				"resources": 268
+			},
+			"tick": 3308
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74255658,
+				"nodes": 1033,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434445133,
+				"resources": 268
+			},
+			"tick": 3608
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 73949724,
+				"nodes": 979,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434443645,
+				"resources": 268
+			},
+			"tick": 3908
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74240964,
+				"nodes": 1043,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434444637,
+				"resources": 268
+			},
+			"tick": 4208
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74242694,
+				"nodes": 1035,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434444637,
+				"resources": 268
+			},
+			"tick": 4508
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74250170,
+				"nodes": 1021,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434444389,
+				"resources": 268
+			},
+			"tick": 4808
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74263412,
+				"nodes": 1028,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434444513,
+				"resources": 268
+			},
+			"tick": 5108
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74010194,
+				"nodes": 979,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434443645,
+				"resources": 268
+			},
+			"tick": 5408
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 74047832,
+				"nodes": 979,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 434434429,
+				"resources": 268
+			},
+			"tick": 5708
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75183688,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 6008
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75190884,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 6308
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75198080,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 6608
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75205276,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 6908
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75212472,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 7208
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75219668,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 7508
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75226864,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 7808
+		},
+		{
+			"memory": {
+				"engine_static_bytes": 75234060,
+				"nodes": 977,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 435804065,
+				"resources": 268
+			},
+			"tick": 8108
+		}
+	],
+	"mission": 3,
+	"pass": 0,
+	"peak_bullets": 44,
+	"peak_contacts": 14,
+	"phases": {
+		"approach": 4304,
+		"climb": 1288,
+		"descent": 730,
+		"ground": 7860,
+		"landing": 2250,
+		"return_combat": 6208,
+		"takeoff": 2632
+	},
+	"physics_ticks": 8400,
+	"result": {
+		"accuracy": 0.149671052631579,
+		"best_chain": 10,
+		"bonus": 0,
+		"chain_bonus": 500,
+		"damage": 0,
+		"deaths": 0,
+		"game_over": false,
+		"grade": 0,
+		"ground_kills": 4,
+		"ground_status": {
+			"escaped_priority_ids": [],
+			"kills": 4,
+			"layout_valid": true,
+			"layout_warnings": [],
+			"main_met": false,
+			"missing_priority_ids": [],
+			"priority_destroyed": 0,
+			"priority_total": 0,
+			"quota": 12,
+			"secondary_kind": "ground_layout",
+			"secondary_label": "Neutraliser les deux stations radar",
+			"secondary_met": false,
+			"secondary_progress": 0,
+			"secondary_target": 2
+		},
+		"kills": 23,
+		"lives": 3,
+		"mission": 3.0,
+		"mission_score": 3800,
+		"naval_kills": 0,
+		"objective_failed": true,
+		"objective_met": false,
+		"power": "none",
+		"rank": "D",
+		"score": 3800,
+		"secondary": false,
+		"seconds": 82.0166666666633,
+		"spread": false,
+		"won": false
+	},
+	"retry": false
+}

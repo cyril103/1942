@@ -1,0 +1,436 @@
+{
+  "schema": 1,
+  "matched": true,
+  "errors": [],
+  "pairs": [
+    {
+      "pass": 0,
+      "changed_fields": [],
+      "before": {
+        "gameplay": {
+          "max_ms": 84.374,
+          "mean_ms": 2.69682856936278,
+          "over_16_67ms": 7,
+          "over_33_33ms": 2,
+          "p95_ms": 4.205,
+          "p99_ms": 5.507,
+          "samples": 41492
+        },
+        "gpu_ms": {
+          "max_ms": 60.5009999871254,
+          "mean_ms": 1.29700985794804,
+          "over_16_67ms": 1,
+          "over_33_33ms": 1,
+          "p95_ms": 1.47800001502037,
+          "p99_ms": 1.77599999308586,
+          "samples": 41492
+        },
+        "phases": {
+          "approach": {
+            "max_ms": 44.453,
+            "mean_ms": 2.51556753069577,
+            "over_16_67ms": 3,
+            "over_33_33ms": 1,
+            "p95_ms": 3.809,
+            "p99_ms": 5.16,
+            "samples": 5864
+          },
+          "climb": {
+            "max_ms": 6.197,
+            "mean_ms": 2.19707221006564,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.39,
+            "p99_ms": 4.326,
+            "samples": 1828
+          },
+          "descent": {
+            "max_ms": 30.803,
+            "mean_ms": 2.8548743109151,
+            "over_16_67ms": 1,
+            "over_33_33ms": 0,
+            "p95_ms": 4.539,
+            "p99_ms": 5.704,
+            "samples": 907
+          },
+          "ground": {
+            "max_ms": 17.8,
+            "mean_ms": 2.89663159528243,
+            "over_16_67ms": 1,
+            "over_33_33ms": 0,
+            "p95_ms": 4.506,
+            "p99_ms": 6.112,
+            "samples": 19332
+          },
+          "landing": {
+            "max_ms": 18.4,
+            "mean_ms": 2.7977577689243,
+            "over_16_67ms": 1,
+            "over_33_33ms": 0,
+            "p95_ms": 3.872,
+            "p99_ms": 4.48,
+            "samples": 2510
+          },
+          "result_idle": {
+            "max_ms": 16.708,
+            "mean_ms": 2.12344815572219,
+            "over_16_67ms": 1,
+            "over_33_33ms": 0,
+            "p95_ms": 3.099,
+            "p99_ms": 3.617,
+            "samples": 13203
+          },
+          "return_combat": {
+            "max_ms": 5.87,
+            "mean_ms": 2.6285948689033,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.869,
+            "p99_ms": 4.489,
+            "samples": 7094
+          },
+          "takeoff": {
+            "max_ms": 84.374,
+            "mean_ms": 2.24225372757139,
+            "over_16_67ms": 1,
+            "over_33_33ms": 1,
+            "p95_ms": 3.565,
+            "p99_ms": 5.031,
+            "samples": 3957
+          }
+        },
+        "launch_ms": 384.155,
+        "init_ms": 1786.567,
+        "after_dispose_memory": {
+          "engine_static_bytes": 67557676,
+          "nodes": 1,
+          "orphan_nodes": 0,
+          "render_estimated_bytes": 300600952,
+          "resources": 212
+        }
+      },
+      "after": {
+        "gameplay": {
+          "max_ms": 79.553,
+          "mean_ms": 2.72445555257969,
+          "over_16_67ms": 7,
+          "over_33_33ms": 3,
+          "p95_ms": 4.308,
+          "p99_ms": 5.658,
+          "samples": 41071
+        },
+        "gpu_ms": {
+          "max_ms": 58.7630004882813,
+          "mean_ms": 1.29000922852566,
+          "over_16_67ms": 1,
+          "over_33_33ms": 1,
+          "p95_ms": 1.45200005173683,
+          "p99_ms": 1.50200003385544,
+          "samples": 41071
+        },
+        "phases": {
+          "approach": {
+            "max_ms": 37.082,
+            "mean_ms": 2.57302181120223,
+            "over_16_67ms": 3,
+            "over_33_33ms": 1,
+            "p95_ms": 3.905,
+            "p99_ms": 4.9,
+            "samples": 5731
+          },
+          "climb": {
+            "max_ms": 4.875,
+            "mean_ms": 2.1762830802603,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.165,
+            "p99_ms": 3.808,
+            "samples": 1844
+          },
+          "descent": {
+            "max_ms": 29.391,
+            "mean_ms": 2.55100691016782,
+            "over_16_67ms": 1,
+            "over_33_33ms": 0,
+            "p95_ms": 3.959,
+            "p99_ms": 4.764,
+            "samples": 1013
+          },
+          "ground": {
+            "max_ms": 34.376,
+            "mean_ms": 2.98035325421744,
+            "over_16_67ms": 2,
+            "over_33_33ms": 1,
+            "p95_ms": 4.737,
+            "p99_ms": 6.493,
+            "samples": 18791
+          },
+          "landing": {
+            "max_ms": 6.315,
+            "mean_ms": 2.5162341954023,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.823,
+            "p99_ms": 4.526,
+            "samples": 2784
+          },
+          "result_idle": {
+            "max_ms": 15.724,
+            "mean_ms": 1.99944323206389,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.107,
+            "p99_ms": 3.844,
+            "samples": 14022
+          },
+          "return_combat": {
+            "max_ms": 7.349,
+            "mean_ms": 2.58786380027739,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.866,
+            "p99_ms": 4.667,
+            "samples": 7210
+          },
+          "takeoff": {
+            "max_ms": 79.553,
+            "mean_ms": 2.40275229853975,
+            "over_16_67ms": 1,
+            "over_33_33ms": 1,
+            "p95_ms": 3.712,
+            "p99_ms": 5.405,
+            "samples": 3698
+          }
+        },
+        "launch_ms": 387.454,
+        "init_ms": 2093.842,
+        "after_dispose_memory": {
+          "engine_static_bytes": 67847099,
+          "nodes": 1,
+          "orphan_nodes": 0,
+          "render_estimated_bytes": 302731144,
+          "resources": 213
+        }
+      }
+    },
+    {
+      "pass": 1,
+      "changed_fields": [],
+      "before": {
+        "gameplay": {
+          "max_ms": 24.645,
+          "mean_ms": 2.6823991220706,
+          "over_16_67ms": 1,
+          "over_33_33ms": 0,
+          "p95_ms": 4.063,
+          "p99_ms": 4.875,
+          "samples": 41689
+        },
+        "gpu_ms": {
+          "max_ms": 5.91599977016449,
+          "mean_ms": 1.29004576797035,
+          "over_16_67ms": 0,
+          "over_33_33ms": 0,
+          "p95_ms": 1.45599994063377,
+          "p99_ms": 1.51999998092651,
+          "samples": 41689
+        },
+        "phases": {
+          "approach": {
+            "max_ms": 7.559,
+            "mean_ms": 2.80726852028185,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 4.352,
+            "p99_ms": 5.127,
+            "samples": 5251
+          },
+          "climb": {
+            "max_ms": 5.106,
+            "mean_ms": 2.17184090909091,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.187,
+            "p99_ms": 3.781,
+            "samples": 1848
+          },
+          "descent": {
+            "max_ms": 24.645,
+            "mean_ms": 2.41620486435921,
+            "over_16_67ms": 1,
+            "over_33_33ms": 0,
+            "p95_ms": 3.907,
+            "p99_ms": 4.679,
+            "samples": 1069
+          },
+          "ground": {
+            "max_ms": 11.148,
+            "mean_ms": 2.68572620018224,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 4.03,
+            "p99_ms": 4.839,
+            "samples": 20851
+          },
+          "landing": {
+            "max_ms": 6.304,
+            "mean_ms": 2.48420771408351,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.847,
+            "p99_ms": 4.514,
+            "samples": 2826
+          },
+          "result_idle": {
+            "max_ms": 12.885,
+            "mean_ms": 1.96653604993687,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.067,
+            "p99_ms": 3.857,
+            "samples": 14258
+          },
+          "return_combat": {
+            "max_ms": 7.816,
+            "mean_ms": 2.58378924760981,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.884,
+            "p99_ms": 4.554,
+            "samples": 7217
+          },
+          "takeoff": {
+            "max_ms": 14.254,
+            "mean_ms": 3.35798629615532,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 4.417,
+            "p99_ms": 5.7,
+            "samples": 2627
+          }
+        },
+        "launch_ms": 772.803,
+        "init_ms": 487.733,
+        "after_dispose_memory": {
+          "engine_static_bytes": 67516096,
+          "nodes": 1,
+          "orphan_nodes": 0,
+          "render_estimated_bytes": 300600952,
+          "resources": 212
+        }
+      },
+      "after": {
+        "gameplay": {
+          "max_ms": 27.917,
+          "mean_ms": 2.7400404322576,
+          "over_16_67ms": 1,
+          "over_33_33ms": 0,
+          "p95_ms": 4.301,
+          "p99_ms": 5.315,
+          "samples": 40809
+        },
+        "gpu_ms": {
+          "max_ms": 3.25800007581711,
+          "mean_ms": 1.28405204774217,
+          "over_16_67ms": 0,
+          "over_33_33ms": 0,
+          "p95_ms": 1.4480000436306,
+          "p99_ms": 1.53500002622604,
+          "samples": 40809
+        },
+        "phases": {
+          "approach": {
+            "max_ms": 8.417,
+            "mean_ms": 2.61251310662415,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.989,
+            "p99_ms": 5.067,
+            "samples": 5646
+          },
+          "climb": {
+            "max_ms": 4.574,
+            "mean_ms": 2.1738942516269,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.215,
+            "p99_ms": 3.946,
+            "samples": 1844
+          },
+          "descent": {
+            "max_ms": 27.917,
+            "mean_ms": 3.63989436619718,
+            "over_16_67ms": 1,
+            "over_33_33ms": 0,
+            "p95_ms": 5.693,
+            "p99_ms": 6.546,
+            "samples": 710
+          },
+          "ground": {
+            "max_ms": 8.028,
+            "mean_ms": 2.96719444738795,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 4.478,
+            "p99_ms": 5.546,
+            "samples": 18874
+          },
+          "landing": {
+            "max_ms": 5.53,
+            "mean_ms": 2.24724135723431,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.18,
+            "p99_ms": 3.695,
+            "samples": 3124
+          },
+          "result_idle": {
+            "max_ms": 10.737,
+            "mean_ms": 1.87166804646815,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 2.718,
+            "p99_ms": 3.32,
+            "samples": 14978
+          },
+          "return_combat": {
+            "max_ms": 6.995,
+            "mean_ms": 2.79759457027149,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 4.484,
+            "p99_ms": 5.298,
+            "samples": 6667
+          },
+          "takeoff": {
+            "max_ms": 6.807,
+            "mean_ms": 2.23131389452333,
+            "over_16_67ms": 0,
+            "over_33_33ms": 0,
+            "p95_ms": 3.269,
+            "p99_ms": 3.922,
+            "samples": 3944
+          }
+        },
+        "launch_ms": 376.843,
+        "init_ms": 302.268,
+        "after_dispose_memory": {
+          "engine_static_bytes": 66416003,
+          "nodes": 1,
+          "orphan_nodes": 0,
+          "render_estimated_bytes": 302731144,
+          "resources": 213
+        }
+      }
+    }
+  ],
+  "source_hashes": {
+    "game\\tests\\performance-1.9-comparison\\1.8.0\\full-mission-31-q0-1920x1080.json": "957a4507aae61e81630d50f648a0cd8842630508b29795d39e1d763864d76920",
+    "game\\tests\\performance-1.9-comparison\\1.8.0\\details-m31-q0-1920x1080-pass00.json": "eae544815ee988ba121c44bb8d0af712073190f3c4e99945c27dfafa6e1f3d66",
+    "game\\tests\\performance-1.9-comparison\\1.8.0\\details-m31-q0-1920x1080-pass01.json": "abe99d1cc5c92642df294108e127ec55dcf8a69eeebf96c048a573bdd9aa5222",
+    "game\\tests\\performance-1.9-comparison\\1.9.0\\full-mission-31-q0-1920x1080.json": "cf88665591445eb33e3bc6f5e81d53fa5ba07d49b53bf5ce805a6b8ceb1f5f3e",
+    "game\\tests\\performance-1.9-comparison\\1.9.0\\details-m31-q0-1920x1080-pass00.json": "20c636d3b3e7044710ae4728bfa749ebfac5190b559b41c58ed5152340ec3ec6",
+    "game\\tests\\performance-1.9-comparison\\1.9.0\\details-m31-q0-1920x1080-pass01.json": "b2357e777e59f49a3a7f1db4d567193436809119b3d864396325c7533122ea5f"
+  },
+  "limits": "Recorded states only; not every internal state. Audio driver and pack/probe identity require the launch manifest. No hardware cache/thermal control, causal shader attribution, averaged percentiles or human playability claim."
+}

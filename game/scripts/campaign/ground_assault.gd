@@ -158,6 +158,8 @@ func _update_airspace() -> void:
 		director.combat.withdraw_aircraft()
 		director.radio = "Leader : on passe sous les chasseurs ! Canons au sol, restez mobiles !"
 		director.radio_time = 4.0
+		if director.has_signal("audio_event"):
+			director.emit_signal("audio_event", "radio_important", "raid-entry:%d" % int(director.mission.id))
 	elif airspace_closed and extraction_ready():
 		airspace_closed = false
 		director.combat.aircraft_enabled = true

@@ -96,6 +96,7 @@ func _ready() -> void:
 	laser_audio.stream = laser_loop
 	laser_audio.volume_db = -15
 	add_child(laser_audio)
+	audio.bind_laser(laser_audio)
 	var material := ShaderMaterial.new()
 	material.shader = preload("res://shaders/tracer.gdshader")
 	var mesh := PlaneMesh.new()
@@ -204,7 +205,7 @@ func _fire_salvo() -> void:
 	var count := 4 if spread_enabled else 2
 	if active_count > CAPACITY - count:
 		return
-	audio.play_salvo()
+	audio.play_salvo("spread" if spread_enabled else "standard")
 	for barrel in range(count):
 		var muzzle: Vector3 = muzzle_positions[barrel / 2 if spread_enabled else barrel]
 		var angle := deg_to_rad([-15.0,-5.0,5.0,15.0][barrel])*spread_multiplier if spread_enabled else 0.0
@@ -254,10 +255,11 @@ func set_power(kind: String) -> void:
 	cease_fire()
 	power_type = kind if kind in ["spread","laser","life"] else "none"
 	spread_enabled = power_type == "spread"
-	audio.volume_db = -6.0 if spread_enabled else -5.0
+	audio.set_signature("spread" if spread_enabled else "standard")
 	for flash in flashes: flash.scale = Vector3(1.55,1,0.30) if spread_enabled else Vector3(1.125,1,0.225)
 
 func cease_fire() -> void:
+	if is_instance_valid(audio): audio.stop_all()
 	for i in range(CAPACITY):
 		if lifetimes[i] > 0: _release(i)
 	if is_instance_valid(laser): laser.hide()
@@ -269,14 +271,13 @@ func cease_fire() -> void:
 func _update_laser(delta: float) -> void:
 	laser_clock -= delta
 	var firing: bool = power_type == "laser" and player.alive and player.controls_enabled and Input.is_action_pressed("fire")
+	audio.set_laser_active(firing)
 	laser.visible = firing
 	laser_muzzle.visible = firing
 	laser_contact.hide()
 	if not firing:
 		laser_clock = maxf(0.0,laser_clock)
-		laser_audio.stop()
 		return
-	if not laser_audio.playing: laser_audio.play()
 	var origin := player.global_position+Vector3(0,0,laser_nose)
 	var end := Vector3(origin.x,0,minf(origin.z,camera.project_position(Vector2.ZERO,1.0).z-1))
 	# Parallel sweeps cover the luminous core, select the closest obstruction once.

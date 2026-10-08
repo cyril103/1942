@@ -1,0 +1,458 @@
+{
+	"audio_rng_seed": 1942,
+	"build_id": "83399D4C520D6B71FAFC86C529C9B39FBC8A2C092296FCAA9DDA7F291A410B14",
+	"cache_note": "First pass is a fresh process with existing driver/disk caches; no hardware cache was erased. Later passes reuse the same process.",
+	"cpu": "Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz",
+	"cpu_timing_note": "TIME_PROCESS is a process-callback monitor, not total CPU cost; it can be stale relative to the current frame.",
+	"duration_ticks": 8400,
+	"engine": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"failures": [],
+	"final_memory": {
+		"engine_static_bytes": 56292288,
+		"nodes": 1,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 300600952,
+		"resources": 212
+	},
+	"gpu": "NVIDIA GeForce GTX 1650",
+	"gpu_timing_note": "Completed viewport GPU measurements can lag process callback timing. They are correlations, not proof of a stall cause.",
+	"initial_memory": {
+		"engine_static_bytes": 32544922,
+		"nodes": 1,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 23028395,
+		"resources": 1
+	},
+	"input_isolation": "Hardware bindings are erased inside the fixture; prototype key/focus callbacks are detached after _ready and guarded against gameplay process callbacks. Actual movement, weapons and campaign controllers remain active.",
+	"inputs": "Predetermined horizontal/vertical/fire actions on physics ticks; actual player movement and weapon collisions",
+	"memory_note": "Engine/static and estimated graphics allocations are not full process private bytes or physical VRAM occupancy; zero can mean unavailable. after_probe_release_memory is taken after raw frame arrays and detailed telemetry have been released; compact summaries remain resident.",
+	"mission": 31,
+	"os": "Windows",
+	"other_gpu_processes": "operator_must_verify_none",
+	"passes": [
+		{
+			"after_dispose_memory": {
+				"engine_static_bytes": 66214704,
+				"nodes": 1,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 300600952,
+				"resources": 212
+			},
+			"after_probe_release_memory": {
+				"engine_static_bytes": 56254080,
+				"nodes": 1,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 300600952,
+				"resources": 212
+			},
+			"cache": "first_scene_in_fresh_process",
+			"cpu_process_ms": {
+				"max_ms": 497.296,
+				"mean_ms": 6.46282722383317,
+				"over_16_67ms": 2104,
+				"over_33_33ms": 1064,
+				"p95_ms": 17.15,
+				"p99_ms": 43.031,
+				"samples": 40347
+			},
+			"details_file": "details-m31-q1-1920x1080-pass00.json",
+			"finished_tick": 6718,
+			"gameplay": {
+				"max_ms": 134.336,
+				"mean_ms": 2.77458495055396,
+				"over_16_67ms": 10,
+				"over_33_33ms": 5,
+				"p95_ms": 4.192,
+				"p99_ms": 5.171,
+				"samples": 40347
+			},
+			"gpu_ms": {
+				"max_ms": 107.302000284195,
+				"mean_ms": 1.93513304526444,
+				"over_16_67ms": 1,
+				"over_33_33ms": 1,
+				"p95_ms": 2.44400000572205,
+				"p99_ms": 2.574000030756,
+				"samples": 40347
+			},
+			"init_ms": 1798.959,
+			"input_signature": 1547431443,
+			"instrumentation_ms": {
+				"max_ms": 1.173,
+				"mean_ms": 0.0596893894712778,
+				"over_16_67ms": 0,
+				"over_33_33ms": 0,
+				"p95_ms": 0.114,
+				"p99_ms": 0.156,
+				"samples": 52561
+			},
+			"launch_ms": 369.026,
+			"overall": {
+				"max_ms": 134.336,
+				"mean_ms": 2.66320083331748,
+				"over_16_67ms": 10,
+				"over_33_33ms": 5,
+				"p95_ms": 4.059,
+				"p99_ms": 5.023,
+				"samples": 52561
+			},
+			"pass": 0,
+			"peak_bullets": 83,
+			"peak_contacts": 13,
+			"phases": {
+				"approach": {
+					"max_ms": 44.454,
+					"mean_ms": 2.71827579218864,
+					"over_16_67ms": 5,
+					"over_33_33ms": 2,
+					"p95_ms": 4.002,
+					"p99_ms": 5.043,
+					"samples": 5428
+				},
+				"climb": {
+					"max_ms": 4.703,
+					"mean_ms": 2.31761720554272,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.381,
+					"p99_ms": 4.009,
+					"samples": 1732
+				},
+				"descent": {
+					"max_ms": 17.194,
+					"mean_ms": 2.7253266384778,
+					"over_16_67ms": 1,
+					"over_33_33ms": 0,
+					"p95_ms": 4.324,
+					"p99_ms": 5.332,
+					"samples": 946
+				},
+				"ground": {
+					"max_ms": 45.876,
+					"mean_ms": 2.91036337179087,
+					"over_16_67ms": 2,
+					"over_33_33ms": 1,
+					"p95_ms": 4.349,
+					"p99_ms": 5.289,
+					"samples": 19242
+				},
+				"landing": {
+					"max_ms": 4.662,
+					"mean_ms": 2.3794520176331,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.424,
+					"p99_ms": 4.029,
+					"samples": 2949
+				},
+				"result_idle": {
+					"max_ms": 12.555,
+					"mean_ms": 2.29526117570002,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.228,
+					"p99_ms": 3.928,
+					"samples": 12214
+				},
+				"return_combat": {
+					"max_ms": 79.699,
+					"mean_ms": 2.90113159122725,
+					"over_16_67ms": 1,
+					"over_33_33ms": 1,
+					"p95_ms": 4.252,
+					"p99_ms": 4.937,
+					"samples": 6429
+				},
+				"takeoff": {
+					"max_ms": 134.336,
+					"mean_ms": 2.46603562551781,
+					"over_16_67ms": 1,
+					"over_33_33ms": 1,
+					"p95_ms": 3.848,
+					"p99_ms": 5.854,
+					"samples": 3621
+				}
+			},
+			"physics_ticks": 8400,
+			"prototype_input_wrapper_methods": [
+				"_ready",
+				"_unhandled_key_input",
+				"_notification",
+				"_capture_preview"
+			],
+			"result": {
+				"accuracy": 0.0841004184100418,
+				"best_chain": 12,
+				"bonus": 0,
+				"chain_bonus": 1300,
+				"damage": 0,
+				"deaths": 0,
+				"game_over": false,
+				"grade": 0,
+				"ground_kills": 6,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"final/command"
+					],
+					"kills": 6,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"final/command"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 1,
+					"quota": 26,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Neutraliser les trois radars de l'arsenal",
+					"secondary_met": false,
+					"secondary_progress": 1,
+					"secondary_target": 3
+				},
+				"kills": 29,
+				"lives": 3,
+				"mission": 31.0,
+				"mission_score": 6100,
+				"naval_kills": 0,
+				"objective_failed": true,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 6100,
+				"secondary": false,
+				"seconds": 96.0166666666625,
+				"spread": false,
+				"won": false
+			},
+			"state_signature": 1729331200,
+			"viewport": [
+				1920,
+				972
+			],
+			"wall_seconds": 140.004858
+		},
+		{
+			"after_dispose_memory": {
+				"engine_static_bytes": 65953584,
+				"nodes": 1,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 300600952,
+				"resources": 212
+			},
+			"after_probe_release_memory": {
+				"engine_static_bytes": 56288824,
+				"nodes": 1,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 300600952,
+				"resources": 212
+			},
+			"cache": "warm_same_process",
+			"cpu_process_ms": {
+				"max_ms": 395.622,
+				"mean_ms": 7.88808165778596,
+				"over_16_67ms": 883,
+				"over_33_33ms": 251,
+				"p95_ms": 13.418,
+				"p99_ms": 26.723,
+				"samples": 39788
+			},
+			"details_file": "details-m31-q1-1920x1080-pass01.json",
+			"finished_tick": 6718,
+			"gameplay": {
+				"max_ms": 27.767,
+				"mean_ms": 2.81048547300692,
+				"over_16_67ms": 4,
+				"over_33_33ms": 0,
+				"p95_ms": 4.533,
+				"p99_ms": 6.176,
+				"samples": 39788
+			},
+			"gpu_ms": {
+				"max_ms": 9.70800018310547,
+				"mean_ms": 1.93830833283673,
+				"over_16_67ms": 0,
+				"over_33_33ms": 0,
+				"p95_ms": 2.46999993920326,
+				"p99_ms": 2.61100000143051,
+				"samples": 39788
+			},
+			"init_ms": 395.657,
+			"input_signature": 1547431443,
+			"instrumentation_ms": {
+				"max_ms": 2.317,
+				"mean_ms": 0.0592098896845342,
+				"over_16_67ms": 0,
+				"over_33_33ms": 0,
+				"p95_ms": 0.112,
+				"p99_ms": 0.152,
+				"samples": 51670
+			},
+			"launch_ms": 385.606,
+			"overall": {
+				"max_ms": 27.767,
+				"mean_ms": 2.70682268240758,
+				"over_16_67ms": 4,
+				"over_33_33ms": 0,
+				"p95_ms": 4.32,
+				"p99_ms": 5.922,
+				"samples": 51670
+			},
+			"pass": 1,
+			"peak_bullets": 83,
+			"peak_contacts": 13,
+			"phases": {
+				"approach": {
+					"max_ms": 10.714,
+					"mean_ms": 2.79273801856412,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.256,
+					"p99_ms": 5.191,
+					"samples": 5279
+				},
+				"climb": {
+					"max_ms": 5.479,
+					"mean_ms": 2.38830654761905,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.717,
+					"p99_ms": 4.535,
+					"samples": 1680
+				},
+				"descent": {
+					"max_ms": 15.199,
+					"mean_ms": 2.70729738219895,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.449,
+					"p99_ms": 5.79,
+					"samples": 955
+				},
+				"ground": {
+					"max_ms": 27.767,
+					"mean_ms": 3.03324187608318,
+					"over_16_67ms": 2,
+					"over_33_33ms": 0,
+					"p95_ms": 4.973,
+					"p99_ms": 6.742,
+					"samples": 18464
+				},
+				"landing": {
+					"max_ms": 17.688,
+					"mean_ms": 2.95360548523207,
+					"over_16_67ms": 1,
+					"over_33_33ms": 0,
+					"p95_ms": 5.134,
+					"p99_ms": 6.4,
+					"samples": 2370
+				},
+				"result_idle": {
+					"max_ms": 9.4,
+					"mean_ms": 2.35969803063457,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.349,
+					"p99_ms": 4.048,
+					"samples": 11882
+				},
+				"return_combat": {
+					"max_ms": 25.708,
+					"mean_ms": 2.45524167872649,
+					"over_16_67ms": 1,
+					"over_33_33ms": 0,
+					"p95_ms": 3.525,
+					"p99_ms": 4.22,
+					"samples": 7601
+				},
+				"takeoff": {
+					"max_ms": 7.608,
+					"mean_ms": 2.56318493748183,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.601,
+					"p99_ms": 4.097,
+					"samples": 3439
+				}
+			},
+			"physics_ticks": 8400,
+			"prototype_input_wrapper_methods": [
+				"_ready",
+				"_unhandled_key_input",
+				"_notification",
+				"_capture_preview"
+			],
+			"result": {
+				"accuracy": 0.0841004184100418,
+				"best_chain": 12,
+				"bonus": 0,
+				"chain_bonus": 1300,
+				"damage": 0,
+				"deaths": 0,
+				"game_over": false,
+				"grade": 0,
+				"ground_kills": 6,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"final/command"
+					],
+					"kills": 6,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"final/command"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 1,
+					"quota": 26,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Neutraliser les trois radars de l'arsenal",
+					"secondary_met": false,
+					"secondary_progress": 1,
+					"secondary_target": 3
+				},
+				"kills": 29,
+				"lives": 3,
+				"mission": 31.0,
+				"mission_score": 6100,
+				"naval_kills": 0,
+				"objective_failed": true,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 6100,
+				"secondary": false,
+				"seconds": 96.0166666666625,
+				"spread": false,
+				"won": false
+			},
+			"state_signature": 1729331200,
+			"viewport": [
+				1920,
+				972
+			],
+			"wall_seconds": 139.874024
+		}
+	],
+	"physics_hz": 60,
+	"player_invulnerable": true,
+	"quality": 1,
+	"resolution": [
+		1920,
+		1080
+	],
+	"rng_seed": 1942,
+	"schema": 2,
+	"vsync": false
+}

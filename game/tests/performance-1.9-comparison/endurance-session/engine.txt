@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+SESSION PASS 0 mission=3 retry=false departure_tick=537 result_tick=5878 memory={ "engine_static_bytes": 69320966, "render_estimated_bytes": 367262627, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION PASS 1 mission=3 retry=true departure_tick=96 result_tick=5437 memory={ "engine_static_bytes": 69344338, "render_estimated_bytes": 367044175, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION PASS 2 mission=7 retry=false departure_tick=537 result_tick=5998 memory={ "engine_static_bytes": 69437926, "render_estimated_bytes": 366782033, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION PASS 3 mission=7 retry=true departure_tick=96 result_tick=5557 memory={ "engine_static_bytes": 69446138, "render_estimated_bytes": 366782033, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION PASS 4 mission=19 retry=false departure_tick=537 result_tick=6358 memory={ "engine_static_bytes": 69495210, "render_estimated_bytes": 366782033, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION PASS 5 mission=19 retry=true departure_tick=96 result_tick=5917 memory={ "engine_static_bytes": 69504874, "render_estimated_bytes": 366782033, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION PASS 6 mission=31 retry=false departure_tick=537 result_tick=6718 memory={ "engine_static_bytes": 69504622, "render_estimated_bytes": 366782033, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION PASS 7 mission=31 retry=true departure_tick=96 result_tick=6277 memory={ "engine_static_bytes": 69512446, "render_estimated_bytes": 366782033, "nodes": 27, "resources": 265, "orphan_nodes": 0 }
+SESSION ENDURANCE full-mission-31-q1-1920x1080.json passes=8 failures=[]

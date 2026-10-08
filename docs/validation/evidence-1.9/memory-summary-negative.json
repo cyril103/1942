@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "errors": [
+    "Observer did not complete cleanly",
+    "Engine report has failures or no failure status",
+    "Unclean process termination: 12480",
+    "Unclean process termination: 26596"
+  ],
+  "renderer_pids": [
+    26596
+  ],
+  "sample_count": 225,
+  "observer_seconds": 288.5727084,
+  "observed_private_bytes_peak": 996880384,
+  "observed_working_set_bytes_peak": 425541632,
+  "sample_gap_median_s": 1.0199300050735474,
+  "sample_gap_max_s": 2.4098129272460938,
+  "settled_windows": [],
+  "engine_cleanup": [
+    {
+      "pass": 0,
+      "memory": {
+        "engine_static_bytes": 56848177,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 302957790,
+        "resources": 212
+      }
+    },
+    {
+      "pass": 1,
+      "memory": {
+        "engine_static_bytes": 56880481,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 302957790,
+        "resources": 212
+      }
+    }
+  ],
+  "engine_final_memory": {
+    "engine_static_bytes": 56884305,
+    "nodes": 1,
+    "orphan_nodes": 0,
+    "render_estimated_bytes": 302957790,
+    "resources": 212
+  },
+  "source_hashes": {
+    "tools\\review\\performance-1.8.0-q0\\20261007T131929999Z-07e2ec75\\process-memory.json": "9a257f982e54f9dec2e0b20464f4fa30c3f3c5adf26c1a2d46f3097ebbf6a31e",
+    "tools\\review\\performance-1.8.0-q0\\20261007T131929999Z-07e2ec75\\full-mission-31-q0-1920x1080.json": "c66580ed7301b680c074a0323b35d17369538bf429b18f30052914cad7af5358"
+  },
+  "limits": "Private bytes are committed private memory, not resident RAM; working set includes shared pages. Peaks are sampled, not guaranteed lifetime peaks. Engine/render monitors are distinct, and physical VRAM is not measured. Settled windows use per-process timestamps with 50 ms edge margins; old reports without windows do not establish private RAM after cleanup. No leak diagnosis, human gameplay, other hardware or FPS guarantee follows."
+}

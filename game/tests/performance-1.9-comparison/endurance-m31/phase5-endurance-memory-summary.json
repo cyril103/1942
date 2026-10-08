@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "errors": [],
+  "renderer_pids": [
+    13476
+  ],
+  "sample_count": 957,
+  "observer_seconds": 1133.6333361,
+  "observed_private_bytes_peak": 1065730048,
+  "observed_working_set_bytes_peak": 374374400,
+  "sample_gap_median_s": 1.0138649940490723,
+  "sample_gap_max_s": 3.1494319438934326,
+  "settled_windows": [],
+  "engine_cleanup": [
+    {
+      "pass": 0,
+      "memory": {
+        "engine_static_bytes": 56547282,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    },
+    {
+      "pass": 1,
+      "memory": {
+        "engine_static_bytes": 56582026,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    },
+    {
+      "pass": 2,
+      "memory": {
+        "engine_static_bytes": 56602178,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    },
+    {
+      "pass": 3,
+      "memory": {
+        "engine_static_bytes": 56622354,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    },
+    {
+      "pass": 4,
+      "memory": {
+        "engine_static_bytes": 56642482,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    },
+    {
+      "pass": 5,
+      "memory": {
+        "engine_static_bytes": 56662682,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    },
+    {
+      "pass": 6,
+      "memory": {
+        "engine_static_bytes": 56682810,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    },
+    {
+      "pass": 7,
+      "memory": {
+        "engine_static_bytes": 57065854,
+        "nodes": 1,
+        "orphan_nodes": 0,
+        "render_estimated_bytes": 306991528,
+        "resources": 213
+      }
+    }
+  ],
+  "engine_final_memory": {
+    "engine_static_bytes": 57069318,
+    "nodes": 1,
+    "orphan_nodes": 0,
+    "render_estimated_bytes": 306991528,
+    "resources": 213
+  },
+  "source_hashes": {
+    "tools\\review\\endurance-1.9.0-dummy\\20261008T204439624Z-ea2bc86e\\process-memory.json": "896af37485a5d592ac8e7477060e0bc0dbd8f5e8ae80c215bd50f91d9f38dec8",
+    "tools\\review\\endurance-1.9.0-dummy\\20261008T204439624Z-ea2bc86e\\full-mission-31-q1-1920x1080.json": "e811fb0056b8d580b52f29f8db0d31f5e8736d65cec37bab9601b6332801e33e"
+  },
+  "limits": "Private bytes are committed private memory, not resident RAM; working set includes shared pages. Peaks are sampled, not guaranteed lifetime peaks. Engine/render monitors are distinct, and physical VRAM is not measured. Settled windows use per-process timestamps with 50 ms edge margins; old reports without windows do not establish private RAM after cleanup. No leak diagnosis, human gameplay, other hardware or FPS guarantee follows."
+}

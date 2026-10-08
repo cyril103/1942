@@ -1,0 +1,4842 @@
+{
+	"alert_intelligibility": "HUMAN_LISTEN_REQUIRED",
+	"checks": 110,
+	"driver": "WASAPI",
+	"failures": [],
+	"fixture": "Production main scene/audio players, frozen gameplay and scripted cumulative requests",
+	"headroom": "Actual captured PCM16 peaks; not a limiter or a perceptual judgement",
+	"human_listening": "NOT_PERFORMED",
+	"mute_ack": {
+		"ack_file": "C:\\ChatGPT\\1942\\tools\\review\\audio-1.9-seeded-final-minus8\\windows-session-mute-ack.json",
+		"muted": true,
+		"pid": 9972.0,
+		"token": "da157af9c4f741f28fc80238fe4fb777",
+		"verification": "EXTERNAL_WINDOWS_SESSION_HARNESS_ACKNOWLEDGED",
+		"volume": 0.0,
+		"wait_seconds": 0.228678
+	},
+	"performance": "NOT_MEASURED",
+	"recordings": [
+		{
+			"cue_request_times": [
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 1.2,
+					"timeactual": 1.211551
+				},
+				{
+					"accepted": true,
+					"kind": "boss",
+					"scheduled_due": 2.0,
+					"timeactual": 2.009043
+				},
+				{
+					"accepted": true,
+					"kind": "radio_important",
+					"scheduled_due": 3.4,
+					"timeactual": 3.40452
+				},
+				{
+					"accepted": true,
+					"kind": "danger",
+					"scheduled_due": 4.8,
+					"timeactual": 4.800492
+				},
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 6.5,
+					"timeactual": 6.51124
+				}
+			],
+			"duck_max_db": 4.0,
+			"duration": 8.0,
+			"events": {
+				"boss:2.0": true,
+				"danger:4.8": true,
+				"radio_important:3.4": true,
+				"reward:1.2": true,
+				"reward:6.5": true
+			},
+			"guard_max_db": 2.0,
+			"laser_request_times": [
+				{
+					"active": true,
+					"scheduled_due": 5.0,
+					"timeactual": 5.015263
+				},
+				{
+					"active": false,
+					"scheduled_due": 7.0,
+					"timeactual": 7.008508
+				}
+			],
+			"music": {
+				"cue_voices": 2,
+				"duck_db": 0.0,
+				"duck_phase": 0,
+				"events": 5,
+				"guard_db": 0.0,
+				"history": 5,
+				"mode": "boss",
+				"music_gain_sum": 1.0,
+				"music_voices": 2,
+				"pending_mode": "",
+				"preemptions": 0,
+				"priority": 0,
+				"suppressed": 0
+			},
+			"path": "C:\\ChatGPT\\1942\\tools\\review\\audio-1.9-seeded-final-minus8/audio-priority-full.wav",
+			"peak_dbfs": -0.506175621400604,
+			"peak_pcm16": 30913,
+			"profile": {
+				"effects": 1.0,
+				"id": "full",
+				"music": 1.0
+			},
+			"quarter_second_windows": [
+				{
+					"peak_dbfs": -3.34251194518662,
+					"rms_dbfs": -16.2427336276325,
+					"start_seconds": 0.0
+				},
+				{
+					"peak_dbfs": -1.5213973226731,
+					"rms_dbfs": -14.5718765353324,
+					"start_seconds": 0.25
+				},
+				{
+					"peak_dbfs": -2.60438279695007,
+					"rms_dbfs": -13.4651523908524,
+					"start_seconds": 0.5
+				},
+				{
+					"peak_dbfs": -2.97755137553197,
+					"rms_dbfs": -14.1683244626143,
+					"start_seconds": 0.75
+				},
+				{
+					"peak_dbfs": -3.17968532968635,
+					"rms_dbfs": -14.1477955541572,
+					"start_seconds": 1.0
+				},
+				{
+					"peak_dbfs": -1.49018766840108,
+					"rms_dbfs": -13.314756530123,
+					"start_seconds": 1.25
+				},
+				{
+					"peak_dbfs": -3.44122074994728,
+					"rms_dbfs": -15.0590720937213,
+					"start_seconds": 1.5
+				},
+				{
+					"peak_dbfs": -2.30929757714535,
+					"rms_dbfs": -12.8853095202571,
+					"start_seconds": 1.75
+				},
+				{
+					"peak_dbfs": -4.46742325686121,
+					"rms_dbfs": -15.1295548475807,
+					"start_seconds": 2.0
+				},
+				{
+					"peak_dbfs": -4.13899099749369,
+					"rms_dbfs": -15.2557951101933,
+					"start_seconds": 2.25
+				},
+				{
+					"peak_dbfs": -3.75895924839268,
+					"rms_dbfs": -14.5362075283823,
+					"start_seconds": 2.5
+				},
+				{
+					"peak_dbfs": -3.99169008445878,
+					"rms_dbfs": -14.3571500138295,
+					"start_seconds": 2.75
+				},
+				{
+					"peak_dbfs": -1.89866207462202,
+					"rms_dbfs": -13.9661597905128,
+					"start_seconds": 3.0
+				},
+				{
+					"peak_dbfs": -3.62153232321026,
+					"rms_dbfs": -13.6596186513318,
+					"start_seconds": 3.25
+				},
+				{
+					"peak_dbfs": -3.6768091039125,
+					"rms_dbfs": -14.9219523624279,
+					"start_seconds": 3.5
+				},
+				{
+					"peak_dbfs": -4.51053390871427,
+					"rms_dbfs": -14.8975326933346,
+					"start_seconds": 3.75
+				},
+				{
+					"peak_dbfs": -3.73040332023636,
+					"rms_dbfs": -14.6618698873551,
+					"start_seconds": 4.0
+				},
+				{
+					"peak_dbfs": -2.5533741610736,
+					"rms_dbfs": -14.4151611875655,
+					"start_seconds": 4.25
+				},
+				{
+					"peak_dbfs": -3.45975549230943,
+					"rms_dbfs": -14.5050785032678,
+					"start_seconds": 4.5
+				},
+				{
+					"peak_dbfs": -3.12519471607814,
+					"rms_dbfs": -14.4831667824554,
+					"start_seconds": 4.75
+				},
+				{
+					"peak_dbfs": -5.23061348769613,
+					"rms_dbfs": -16.0848443624987,
+					"start_seconds": 5.0
+				},
+				{
+					"peak_dbfs": -4.63664297188148,
+					"rms_dbfs": -15.5455023685761,
+					"start_seconds": 5.25
+				},
+				{
+					"peak_dbfs": -3.85799750363408,
+					"rms_dbfs": -14.7184440322728,
+					"start_seconds": 5.5
+				},
+				{
+					"peak_dbfs": -3.86006424398648,
+					"rms_dbfs": -15.0309993259418,
+					"start_seconds": 5.75
+				},
+				{
+					"peak_dbfs": -3.65497915476675,
+					"rms_dbfs": -14.7359592967739,
+					"start_seconds": 6.0
+				},
+				{
+					"peak_dbfs": -3.24837918388873,
+					"rms_dbfs": -14.9484879457675,
+					"start_seconds": 6.25
+				},
+				{
+					"peak_dbfs": -3.66507879270156,
+					"rms_dbfs": -15.1007322360582,
+					"start_seconds": 6.5
+				},
+				{
+					"peak_dbfs": -2.7410406802316,
+					"rms_dbfs": -14.3538547109709,
+					"start_seconds": 6.75
+				},
+				{
+					"peak_dbfs": -4.25848403997953,
+					"rms_dbfs": -14.5633326172263,
+					"start_seconds": 7.0
+				},
+				{
+					"peak_dbfs": -2.93470951782181,
+					"rms_dbfs": -13.4142077197826,
+					"start_seconds": 7.25
+				},
+				{
+					"peak_dbfs": -4.06291220782023,
+					"rms_dbfs": -15.9518278632645,
+					"start_seconds": 7.5
+				},
+				{
+					"peak_dbfs": -0.506175621400604,
+					"rms_dbfs": -12.5568209871718,
+					"start_seconds": 7.75
+				}
+			],
+			"request_timings": {
+				"bomber_gun": {
+					"accepted": 68,
+					"delay_max_ms": 14.373,
+					"delay_min_ms": 4.89699999999971,
+					"delay_sum_ms": 438.288999999999,
+					"first_timeactual": 0.19031,
+					"last_timeactual": 7.988289,
+					"requests": 68
+				},
+				"enemy_gun": {
+					"accepted": 159,
+					"delay_max_ms": 43.053,
+					"delay_min_ms": 0.497999999999998,
+					"delay_sum_ms": 818.289000000035,
+					"first_timeactual": 0.103053,
+					"last_timeactual": 7.988289,
+					"requests": 159
+				},
+				"explosion": {
+					"accepted": 18,
+					"delay_max_ms": 12.8990000000009,
+					"delay_min_ms": 7.60299999999997,
+					"delay_sum_ms": 209.534000000003,
+					"first_timeactual": 0.447603,
+					"last_timeactual": 7.789534,
+					"requests": 18
+				},
+				"ground_volley": {
+					"accepted": 80,
+					"delay_max_ms": 11.2519999999989,
+					"delay_min_ms": 1.24400000000002,
+					"delay_sum_ms": 1544.88800000002,
+					"first_timeactual": 0.103053,
+					"last_timeactual": 8.004888,
+					"requests": 160
+				},
+				"player_salvo": {
+					"accepted": 99,
+					"delay_max_ms": 23.053,
+					"delay_min_ms": 6.24400000000003,
+					"delay_sum_ms": 1455.32499999995,
+					"first_timeactual": 0.103053,
+					"last_timeactual": 4.965325,
+					"requests": 99
+				}
+			},
+			"rms_dbfs": -14.4689312399389,
+			"samples": 768000,
+			"saturated_samples": 0,
+			"timing_limit": "Fixed RNG sequence per profile; frame/audio-buffer timing varies. No identical-PCM replay claim.",
+			"trace_capacity": 160,
+			"trace_dropped": 0,
+			"weapon_base_db": -8.0,
+			"weapon_request_trace": [
+				{
+					"gain": -8.08850479125977,
+					"pitch": 1.00278759002686,
+					"scheduled_due": 0.08,
+					"signature": "standard",
+					"timeactual": 0.103053,
+					"variant": 4,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.12371063232422,
+					"pitch": 0.998814940452576,
+					"scheduled_due": 0.138053,
+					"signature": "standard",
+					"timeactual": 0.148551,
+					"variant": 5,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.34086990356445,
+					"pitch": 0.993427872657776,
+					"scheduled_due": 0.183551,
+					"signature": "standard",
+					"timeactual": 0.19031,
+					"variant": 0,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.41325855255127,
+					"pitch": 1.00288379192352,
+					"scheduled_due": 0.22531,
+					"signature": "standard",
+					"timeactual": 0.231554,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.02956867218018,
+					"pitch": 0.996770858764648,
+					"scheduled_due": 0.266554,
+					"signature": "standard",
+					"timeactual": 0.281572,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.3705415725708,
+					"pitch": 0.994328856468201,
+					"scheduled_due": 0.316572,
+					"signature": "standard",
+					"timeactual": 0.331358,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.2377815246582,
+					"pitch": 1.00046098232269,
+					"scheduled_due": 0.366358,
+					"signature": "standard",
+					"timeactual": 0.381066,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.03506565093994,
+					"pitch": 1.00667810440063,
+					"scheduled_due": 0.416066,
+					"signature": "standard",
+					"timeactual": 0.430964,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.29591178894043,
+					"pitch": 1.00799715518951,
+					"scheduled_due": 0.465964,
+					"signature": "standard",
+					"timeactual": 0.480657,
+					"variant": 1,
+					"voicesstolen": 1
+				},
+				{
+					"gain": -8.15024185180664,
+					"pitch": 0.998046815395355,
+					"scheduled_due": 0.515657,
+					"signature": "standard",
+					"timeactual": 0.530647,
+					"variant": 2,
+					"voicesstolen": 2
+				},
+				{
+					"gain": -8.40366744995117,
+					"pitch": 1.00721085071564,
+					"scheduled_due": 0.565647,
+					"signature": "standard",
+					"timeactual": 0.580425,
+					"variant": 5,
+					"voicesstolen": 3
+				},
+				{
+					"gain": -8.41160011291504,
+					"pitch": 0.99943619966507,
+					"scheduled_due": 0.615425,
+					"signature": "standard",
+					"timeactual": 0.6302,
+					"variant": 4,
+					"voicesstolen": 4
+				},
+				{
+					"gain": -8.36561584472656,
+					"pitch": 0.994692265987396,
+					"scheduled_due": 0.6652,
+					"signature": "standard",
+					"timeactual": 0.680082,
+					"variant": 2,
+					"voicesstolen": 5
+				},
+				{
+					"gain": -8.02884101867676,
+					"pitch": 1.00318050384521,
+					"scheduled_due": 0.715082,
+					"signature": "standard",
+					"timeactual": 0.729864,
+					"variant": 5,
+					"voicesstolen": 6
+				},
+				{
+					"gain": -8.40555000305176,
+					"pitch": 0.99321174621582,
+					"scheduled_due": 0.764864,
+					"signature": "standard",
+					"timeactual": 0.779876,
+					"variant": 0,
+					"voicesstolen": 7
+				},
+				{
+					"gain": -8.17084121704102,
+					"pitch": 0.99721497297287,
+					"scheduled_due": 0.814876,
+					"signature": "standard",
+					"timeactual": 0.829511,
+					"variant": 4,
+					"voicesstolen": 8
+				},
+				{
+					"gain": -8.31558227539063,
+					"pitch": 1.00455117225647,
+					"scheduled_due": 0.864511,
+					"signature": "standard",
+					"timeactual": 0.879385,
+					"variant": 5,
+					"voicesstolen": 9
+				},
+				{
+					"gain": -8.0017032623291,
+					"pitch": 1.00734090805054,
+					"scheduled_due": 0.914385,
+					"signature": "standard",
+					"timeactual": 0.929205,
+					"variant": 3,
+					"voicesstolen": 10
+				},
+				{
+					"gain": -8.19338130950928,
+					"pitch": 1.0025372505188,
+					"scheduled_due": 0.964205,
+					"signature": "standard",
+					"timeactual": 0.978976,
+					"variant": 2,
+					"voicesstolen": 11
+				},
+				{
+					"gain": -8.27783107757568,
+					"pitch": 0.997646152973175,
+					"scheduled_due": 1.013976,
+					"signature": "standard",
+					"timeactual": 1.028864,
+					"variant": 0,
+					"voicesstolen": 12
+				},
+				{
+					"gain": -8.37061882019043,
+					"pitch": 0.997667193412781,
+					"scheduled_due": 1.063864,
+					"signature": "standard",
+					"timeactual": 1.078807,
+					"variant": 4,
+					"voicesstolen": 13
+				},
+				{
+					"gain": -8.19901657104492,
+					"pitch": 0.995465278625488,
+					"scheduled_due": 1.113807,
+					"signature": "standard",
+					"timeactual": 1.128505,
+					"variant": 2,
+					"voicesstolen": 14
+				},
+				{
+					"gain": -8.22904777526855,
+					"pitch": 0.998215854167938,
+					"scheduled_due": 1.163505,
+					"signature": "standard",
+					"timeactual": 1.178312,
+					"variant": 0,
+					"voicesstolen": 15
+				},
+				{
+					"gain": -8.27543258666992,
+					"pitch": 0.999147415161133,
+					"scheduled_due": 1.213312,
+					"signature": "standard",
+					"timeactual": 1.228184,
+					"variant": 1,
+					"voicesstolen": 16
+				},
+				{
+					"gain": -8.19822883605957,
+					"pitch": 0.993407487869263,
+					"scheduled_due": 1.263184,
+					"signature": "standard",
+					"timeactual": 1.277963,
+					"variant": 4,
+					"voicesstolen": 17
+				},
+				{
+					"gain": -8.30290603637695,
+					"pitch": 0.996295511722565,
+					"scheduled_due": 1.312963,
+					"signature": "standard",
+					"timeactual": 1.327848,
+					"variant": 5,
+					"voicesstolen": 18
+				},
+				{
+					"gain": -8.21120357513428,
+					"pitch": 0.995797216892242,
+					"scheduled_due": 1.362848,
+					"signature": "standard",
+					"timeactual": 1.37768,
+					"variant": 4,
+					"voicesstolen": 19
+				},
+				{
+					"gain": -8.18369102478027,
+					"pitch": 0.998034417629242,
+					"scheduled_due": 1.41268,
+					"signature": "standard",
+					"timeactual": 1.427487,
+					"variant": 2,
+					"voicesstolen": 20
+				},
+				{
+					"gain": -8.02908992767334,
+					"pitch": 1.00639879703522,
+					"scheduled_due": 1.462487,
+					"signature": "standard",
+					"timeactual": 1.477259,
+					"variant": 3,
+					"voicesstolen": 21
+				},
+				{
+					"gain": -8.31450653076172,
+					"pitch": 1.00353419780731,
+					"scheduled_due": 1.512259,
+					"signature": "standard",
+					"timeactual": 1.527138,
+					"variant": 4,
+					"voicesstolen": 22
+				},
+				{
+					"gain": -8.42143249511719,
+					"pitch": 1.00540542602539,
+					"scheduled_due": 1.562138,
+					"signature": "standard",
+					"timeactual": 1.576944,
+					"variant": 5,
+					"voicesstolen": 23
+				},
+				{
+					"gain": -8.18760871887207,
+					"pitch": 0.998581409454346,
+					"scheduled_due": 1.611944,
+					"signature": "standard",
+					"timeactual": 1.626791,
+					"variant": 0,
+					"voicesstolen": 24
+				},
+				{
+					"gain": -8.10013866424561,
+					"pitch": 0.997399151325226,
+					"scheduled_due": 1.661791,
+					"signature": "standard",
+					"timeactual": 1.676786,
+					"variant": 3,
+					"voicesstolen": 25
+				},
+				{
+					"gain": -8.00784587860107,
+					"pitch": 1.00586748123169,
+					"scheduled_due": 1.711786,
+					"signature": "standard",
+					"timeactual": 1.726489,
+					"variant": 2,
+					"voicesstolen": 26
+				},
+				{
+					"gain": -8.2484245300293,
+					"pitch": 1.00338101387024,
+					"scheduled_due": 1.761489,
+					"signature": "standard",
+					"timeactual": 1.776459,
+					"variant": 0,
+					"voicesstolen": 27
+				},
+				{
+					"gain": -8.37514495849609,
+					"pitch": 0.999079167842865,
+					"scheduled_due": 1.811459,
+					"signature": "standard",
+					"timeactual": 1.826231,
+					"variant": 4,
+					"voicesstolen": 28
+				},
+				{
+					"gain": -8.27876949310303,
+					"pitch": 1.00087881088257,
+					"scheduled_due": 1.861231,
+					"signature": "standard",
+					"timeactual": 1.87591,
+					"variant": 0,
+					"voicesstolen": 29
+				},
+				{
+					"gain": -8.18574333190918,
+					"pitch": 0.997739911079407,
+					"scheduled_due": 1.91091,
+					"signature": "standard",
+					"timeactual": 1.925725,
+					"variant": 1,
+					"voicesstolen": 30
+				},
+				{
+					"gain": -8.37692165374756,
+					"pitch": 0.99313873052597,
+					"scheduled_due": 1.960725,
+					"signature": "standard",
+					"timeactual": 1.975513,
+					"variant": 5,
+					"voicesstolen": 31
+				},
+				{
+					"gain": -8.4770622253418,
+					"pitch": 1.0060076713562,
+					"scheduled_due": 2.010513,
+					"signature": "standard",
+					"timeactual": 2.025465,
+					"variant": 0,
+					"voicesstolen": 32
+				},
+				{
+					"gain": -9.42928218841553,
+					"pitch": 1.00330650806427,
+					"scheduled_due": 2.060465,
+					"signature": "standard",
+					"timeactual": 2.075451,
+					"variant": 1,
+					"voicesstolen": 33
+				},
+				{
+					"gain": -10.0701551437378,
+					"pitch": 1.00661313533783,
+					"scheduled_due": 2.110451,
+					"signature": "standard",
+					"timeactual": 2.125205,
+					"variant": 0,
+					"voicesstolen": 34
+				},
+				{
+					"gain": -10.4174356460571,
+					"pitch": 0.994074583053589,
+					"scheduled_due": 2.160205,
+					"signature": "standard",
+					"timeactual": 2.175331,
+					"variant": 4,
+					"voicesstolen": 35
+				},
+				{
+					"gain": -10.0105743408203,
+					"pitch": 0.996047377586365,
+					"scheduled_due": 2.210331,
+					"signature": "standard",
+					"timeactual": 2.22528,
+					"variant": 5,
+					"voicesstolen": 36
+				},
+				{
+					"gain": -10.1593284606934,
+					"pitch": 1.0019439458847,
+					"scheduled_due": 2.26028,
+					"signature": "standard",
+					"timeactual": 2.274793,
+					"variant": 3,
+					"voicesstolen": 37
+				},
+				{
+					"gain": -10.3740539550781,
+					"pitch": 1.00174331665039,
+					"scheduled_due": 2.309793,
+					"signature": "standard",
+					"timeactual": 2.324587,
+					"variant": 1,
+					"voicesstolen": 38
+				},
+				{
+					"gain": -10.2861375808716,
+					"pitch": 1.00005483627319,
+					"scheduled_due": 2.359587,
+					"signature": "standard",
+					"timeactual": 2.37503,
+					"variant": 2,
+					"voicesstolen": 39
+				},
+				{
+					"gain": -10.1112155914307,
+					"pitch": 1.00308322906494,
+					"scheduled_due": 2.41003,
+					"signature": "standard",
+					"timeactual": 2.424993,
+					"variant": 0,
+					"voicesstolen": 40
+				},
+				{
+					"gain": -10.1031341552734,
+					"pitch": 1.00541305541992,
+					"scheduled_due": 2.459993,
+					"signature": "standard",
+					"timeactual": 2.4741,
+					"variant": 5,
+					"voicesstolen": 41
+				},
+				{
+					"gain": -10.3835945129395,
+					"pitch": 0.992150545120239,
+					"scheduled_due": 2.5091,
+					"signature": "standard",
+					"timeactual": 2.524,
+					"variant": 0,
+					"voicesstolen": 42
+				},
+				{
+					"gain": -10.1037139892578,
+					"pitch": 0.992433249950409,
+					"scheduled_due": 2.559,
+					"signature": "standard",
+					"timeactual": 2.573995,
+					"variant": 4,
+					"voicesstolen": 43
+				},
+				{
+					"gain": -10.4126482009888,
+					"pitch": 1.00076115131378,
+					"scheduled_due": 2.608995,
+					"signature": "standard",
+					"timeactual": 2.623597,
+					"variant": 0,
+					"voicesstolen": 44
+				},
+				{
+					"gain": -10.2089729309082,
+					"pitch": 0.998650729656219,
+					"scheduled_due": 2.658597,
+					"signature": "standard",
+					"timeactual": 2.673524,
+					"variant": 3,
+					"voicesstolen": 45
+				},
+				{
+					"gain": -10.129054069519,
+					"pitch": 0.997280895709991,
+					"scheduled_due": 2.708524,
+					"signature": "standard",
+					"timeactual": 2.723414,
+					"variant": 1,
+					"voicesstolen": 46
+				},
+				{
+					"gain": -9.70571231842041,
+					"pitch": 1.0060555934906,
+					"scheduled_due": 2.758414,
+					"signature": "standard",
+					"timeactual": 2.77317,
+					"variant": 2,
+					"voicesstolen": 47
+				},
+				{
+					"gain": -10.6215410232544,
+					"pitch": 0.89065420627594,
+					"scheduled_due": 2.80817,
+					"signature": "spread",
+					"timeactual": 2.823567,
+					"variant": 5,
+					"voicesstolen": 48
+				},
+				{
+					"gain": -10.6174201965332,
+					"pitch": 0.885995447635651,
+					"scheduled_due": 2.858567,
+					"signature": "spread",
+					"timeactual": 2.872938,
+					"variant": 4,
+					"voicesstolen": 49
+				},
+				{
+					"gain": -10.4733200073242,
+					"pitch": 0.884152770042419,
+					"scheduled_due": 2.907938,
+					"signature": "spread",
+					"timeactual": 2.92263,
+					"variant": 2,
+					"voicesstolen": 50
+				},
+				{
+					"gain": -10.0226430892944,
+					"pitch": 0.886475443840027,
+					"scheduled_due": 2.95763,
+					"signature": "spread",
+					"timeactual": 2.972648,
+					"variant": 0,
+					"voicesstolen": 51
+				},
+				{
+					"gain": -9.94910621643066,
+					"pitch": 0.882932484149933,
+					"scheduled_due": 3.007648,
+					"signature": "spread",
+					"timeactual": 3.023093,
+					"variant": 2,
+					"voicesstolen": 52
+				},
+				{
+					"gain": -9.44760513305664,
+					"pitch": 0.870400011539459,
+					"scheduled_due": 3.058093,
+					"signature": "spread",
+					"timeactual": 3.0726,
+					"variant": 3,
+					"voicesstolen": 53
+				},
+				{
+					"gain": -9.5400972366333,
+					"pitch": 0.88861072063446,
+					"scheduled_due": 3.1076,
+					"signature": "spread",
+					"timeactual": 3.12205,
+					"variant": 2,
+					"voicesstolen": 54
+				},
+				{
+					"gain": -9.32777118682861,
+					"pitch": 0.880965828895569,
+					"scheduled_due": 3.15705,
+					"signature": "spread",
+					"timeactual": 3.172266,
+					"variant": 0,
+					"voicesstolen": 55
+				},
+				{
+					"gain": -9.12676239013672,
+					"pitch": 0.888118267059326,
+					"scheduled_due": 3.207266,
+					"signature": "spread",
+					"timeactual": 3.221649,
+					"variant": 1,
+					"voicesstolen": 56
+				},
+				{
+					"gain": -9.03369331359863,
+					"pitch": 0.890550017356873,
+					"scheduled_due": 3.256649,
+					"signature": "spread",
+					"timeactual": 3.271382,
+					"variant": 3,
+					"voicesstolen": 57
+				},
+				{
+					"gain": -9.31426334381104,
+					"pitch": 0.872787892818451,
+					"scheduled_due": 3.306382,
+					"signature": "spread",
+					"timeactual": 3.321428,
+					"variant": 5,
+					"voicesstolen": 58
+				},
+				{
+					"gain": -9.2288064956665,
+					"pitch": 0.890426874160767,
+					"scheduled_due": 3.356428,
+					"signature": "spread",
+					"timeactual": 3.37125,
+					"variant": 2,
+					"voicesstolen": 59
+				},
+				{
+					"gain": -9.48184490203857,
+					"pitch": 0.886326611042023,
+					"scheduled_due": 3.40625,
+					"signature": "spread",
+					"timeactual": 3.421176,
+					"variant": 5,
+					"voicesstolen": 60
+				},
+				{
+					"gain": -10.6078205108643,
+					"pitch": 0.881055891513824,
+					"scheduled_due": 3.456176,
+					"signature": "spread",
+					"timeactual": 3.471131,
+					"variant": 1,
+					"voicesstolen": 61
+				},
+				{
+					"gain": -11.1002140045166,
+					"pitch": 0.869167327880859,
+					"scheduled_due": 3.506131,
+					"signature": "spread",
+					"timeactual": 3.521221,
+					"variant": 3,
+					"voicesstolen": 62
+				},
+				{
+					"gain": -11.3517694473267,
+					"pitch": 0.882888436317444,
+					"scheduled_due": 3.556221,
+					"signature": "spread",
+					"timeactual": 3.57131,
+					"variant": 2,
+					"voicesstolen": 63
+				},
+				{
+					"gain": -11.1612749099731,
+					"pitch": 0.873557686805725,
+					"scheduled_due": 3.60631,
+					"signature": "spread",
+					"timeactual": 3.621346,
+					"variant": 4,
+					"voicesstolen": 64
+				},
+				{
+					"gain": -11.4415597915649,
+					"pitch": 0.869684994220734,
+					"scheduled_due": 3.656346,
+					"signature": "spread",
+					"timeactual": 3.671729,
+					"variant": 5,
+					"voicesstolen": 65
+				},
+				{
+					"gain": -11.2425661087036,
+					"pitch": 0.869202733039856,
+					"scheduled_due": 3.706729,
+					"signature": "spread",
+					"timeactual": 3.721035,
+					"variant": 3,
+					"voicesstolen": 66
+				},
+				{
+					"gain": -11.0175151824951,
+					"pitch": 0.870044887065887,
+					"scheduled_due": 3.756035,
+					"signature": "spread",
+					"timeactual": 3.770075,
+					"variant": 0,
+					"voicesstolen": 67
+				},
+				{
+					"gain": -11.147180557251,
+					"pitch": 0.881680607795715,
+					"scheduled_due": 3.805075,
+					"signature": "spread",
+					"timeactual": 3.81961,
+					"variant": 5,
+					"voicesstolen": 68
+				},
+				{
+					"gain": -11.4344635009766,
+					"pitch": 0.891185700893402,
+					"scheduled_due": 3.85461,
+					"signature": "spread",
+					"timeactual": 3.869061,
+					"variant": 3,
+					"voicesstolen": 69
+				},
+				{
+					"gain": -11.0400810241699,
+					"pitch": 0.884781122207642,
+					"scheduled_due": 3.904061,
+					"signature": "spread",
+					"timeactual": 3.918896,
+					"variant": 4,
+					"voicesstolen": 70
+				},
+				{
+					"gain": -11.2747383117676,
+					"pitch": 0.88038045167923,
+					"scheduled_due": 3.953896,
+					"signature": "spread",
+					"timeactual": 3.968825,
+					"variant": 2,
+					"voicesstolen": 71
+				},
+				{
+					"gain": -11.0859680175781,
+					"pitch": 0.87691730260849,
+					"scheduled_due": 4.003825,
+					"signature": "spread",
+					"timeactual": 4.018674,
+					"variant": 5,
+					"voicesstolen": 72
+				},
+				{
+					"gain": -11.0074472427368,
+					"pitch": 0.888467311859131,
+					"scheduled_due": 4.053674,
+					"signature": "spread",
+					"timeactual": 4.069316,
+					"variant": 2,
+					"voicesstolen": 73
+				},
+				{
+					"gain": -10.8075494766235,
+					"pitch": 0.884698688983917,
+					"scheduled_due": 4.104316,
+					"signature": "spread",
+					"timeactual": 4.118346,
+					"variant": 3,
+					"voicesstolen": 74
+				},
+				{
+					"gain": -10.8965892791748,
+					"pitch": 0.869429111480713,
+					"scheduled_due": 4.153346,
+					"signature": "spread",
+					"timeactual": 4.168117,
+					"variant": 1,
+					"voicesstolen": 75
+				},
+				{
+					"gain": -10.6914825439453,
+					"pitch": 0.874064087867737,
+					"scheduled_due": 4.203117,
+					"signature": "spread",
+					"timeactual": 4.218327,
+					"variant": 4,
+					"voicesstolen": 76
+				},
+				{
+					"gain": -10.670729637146,
+					"pitch": 0.88996422290802,
+					"scheduled_due": 4.253327,
+					"signature": "spread",
+					"timeactual": 4.267818,
+					"variant": 0,
+					"voicesstolen": 77
+				},
+				{
+					"gain": -10.1410140991211,
+					"pitch": 0.880656599998474,
+					"scheduled_due": 4.302818,
+					"signature": "spread",
+					"timeactual": 4.317501,
+					"variant": 5,
+					"voicesstolen": 78
+				},
+				{
+					"gain": -10.1724491119385,
+					"pitch": 0.880860805511475,
+					"scheduled_due": 4.352501,
+					"signature": "spread",
+					"timeactual": 4.367406,
+					"variant": 2,
+					"voicesstolen": 79
+				},
+				{
+					"gain": -9.87721157073975,
+					"pitch": 0.885135233402252,
+					"scheduled_due": 4.402406,
+					"signature": "spread",
+					"timeactual": 4.417219,
+					"variant": 3,
+					"voicesstolen": 80
+				},
+				{
+					"gain": -9.58363628387451,
+					"pitch": 0.881203055381775,
+					"scheduled_due": 4.452219,
+					"signature": "spread",
+					"timeactual": 4.467045,
+					"variant": 5,
+					"voicesstolen": 81
+				},
+				{
+					"gain": -9.58657073974609,
+					"pitch": 0.868530809879303,
+					"scheduled_due": 4.502045,
+					"signature": "spread",
+					"timeactual": 4.516959,
+					"variant": 4,
+					"voicesstolen": 82
+				},
+				{
+					"gain": -9.17705821990967,
+					"pitch": 0.891215324401855,
+					"scheduled_due": 4.551959,
+					"signature": "spread",
+					"timeactual": 4.568016,
+					"variant": 0,
+					"voicesstolen": 83
+				},
+				{
+					"gain": -9.32348537445068,
+					"pitch": 0.890421986579895,
+					"scheduled_due": 4.603016,
+					"signature": "spread",
+					"timeactual": 4.616978,
+					"variant": 5,
+					"voicesstolen": 84
+				},
+				{
+					"gain": -9.31539726257324,
+					"pitch": 0.885651230812073,
+					"scheduled_due": 4.651978,
+					"signature": "spread",
+					"timeactual": 4.666649,
+					"variant": 1,
+					"voicesstolen": 85
+				},
+				{
+					"gain": -9.00279521942139,
+					"pitch": 0.870712399482727,
+					"scheduled_due": 4.701649,
+					"signature": "spread",
+					"timeactual": 4.717535,
+					"variant": 0,
+					"voicesstolen": 86
+				},
+				{
+					"gain": -9.35641288757324,
+					"pitch": 0.878678023815155,
+					"scheduled_due": 4.752535,
+					"signature": "spread",
+					"timeactual": 4.76633,
+					"variant": 1,
+					"voicesstolen": 87
+				},
+				{
+					"gain": -9.53499412536621,
+					"pitch": 0.877690017223358,
+					"scheduled_due": 4.80133,
+					"signature": "spread",
+					"timeactual": 4.817582,
+					"variant": 4,
+					"voicesstolen": 88
+				},
+				{
+					"gain": -10.4099540710449,
+					"pitch": 0.886592864990234,
+					"scheduled_due": 4.852582,
+					"signature": "spread",
+					"timeactual": 4.865714,
+					"variant": 1,
+					"voicesstolen": 89
+				},
+				{
+					"gain": -11.0335559844971,
+					"pitch": 0.891628265380859,
+					"scheduled_due": 4.900714,
+					"signature": "spread",
+					"timeactual": 4.91552,
+					"variant": 4,
+					"voicesstolen": 90
+				},
+				{
+					"gain": -11.3757543563843,
+					"pitch": 0.884688675403595,
+					"scheduled_due": 4.95052,
+					"signature": "spread",
+					"timeactual": 4.965325,
+					"variant": 1,
+					"voicesstolen": 91
+				}
+			],
+			"weapon_rng": {
+				"final_state": "528346150452898725",
+				"initial_state": "-8496568517173372688",
+				"seed": 1942
+			},
+			"weapons": {
+				"active": 0,
+				"guard_db": 0.0,
+				"laser_bound": true,
+				"laser_level": 0.0,
+				"pool": 8,
+				"salvos": 99,
+				"signature": "spread",
+				"stolen": 91
+			}
+		},
+		{
+			"cue_request_times": [
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 1.2,
+					"timeactual": 1.206461
+				},
+				{
+					"accepted": true,
+					"kind": "boss",
+					"scheduled_due": 2.0,
+					"timeactual": 2.003857
+				},
+				{
+					"accepted": true,
+					"kind": "radio_important",
+					"scheduled_due": 3.4,
+					"timeactual": 3.415493
+				},
+				{
+					"accepted": true,
+					"kind": "danger",
+					"scheduled_due": 4.8,
+					"timeactual": 4.810708
+				},
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 6.5,
+					"timeactual": 6.50504
+				}
+			],
+			"duck_max_db": 4.0,
+			"duration": 8.02133333333333,
+			"events": {
+				"boss:2.0": true,
+				"danger:4.8": true,
+				"radio_important:3.4": true,
+				"reward:1.2": true,
+				"reward:6.5": true
+			},
+			"guard_max_db": 2.0,
+			"laser_request_times": [
+				{
+					"active": true,
+					"scheduled_due": 5.0,
+					"timeactual": 5.010371
+				},
+				{
+					"active": false,
+					"scheduled_due": 7.0,
+					"timeactual": 7.003321
+				}
+			],
+			"music": {
+				"cue_voices": 2,
+				"duck_db": 0.0,
+				"duck_phase": 0,
+				"events": 5,
+				"guard_db": 0.0,
+				"history": 5,
+				"mode": "boss",
+				"music_gain_sum": 1.0,
+				"music_voices": 2,
+				"pending_mode": "",
+				"preemptions": 0,
+				"priority": 0,
+				"suppressed": 0
+			},
+			"path": "C:\\ChatGPT\\1942\\tools\\review\\audio-1.9-seeded-final-minus8/audio-priority-music-only.wav",
+			"peak_dbfs": -7.89752007507736,
+			"peak_pcm16": 13200,
+			"profile": {
+				"effects": 0.0,
+				"id": "music-only",
+				"music": 1.0
+			},
+			"quarter_second_windows": [
+				{
+					"peak_dbfs": -8.07837183058414,
+					"rms_dbfs": -17.4152522170788,
+					"start_seconds": 0.0
+				},
+				{
+					"peak_dbfs": -8.26993514965037,
+					"rms_dbfs": -17.5130987795472,
+					"start_seconds": 0.25
+				},
+				{
+					"peak_dbfs": -8.12350393458846,
+					"rms_dbfs": -17.3883413518062,
+					"start_seconds": 0.5
+				},
+				{
+					"peak_dbfs": -8.27199594043185,
+					"rms_dbfs": -18.812515349866,
+					"start_seconds": 0.75
+				},
+				{
+					"peak_dbfs": -8.33058912474776,
+					"rms_dbfs": -17.1610559359923,
+					"start_seconds": 1.0
+				},
+				{
+					"peak_dbfs": -9.05209643365335,
+					"rms_dbfs": -19.308776054166,
+					"start_seconds": 1.25
+				},
+				{
+					"peak_dbfs": -9.76526946245964,
+					"rms_dbfs": -17.9876942764012,
+					"start_seconds": 1.5
+				},
+				{
+					"peak_dbfs": -9.53341730808359,
+					"rms_dbfs": -18.2681144493699,
+					"start_seconds": 1.75
+				},
+				{
+					"peak_dbfs": -9.53580081314444,
+					"rms_dbfs": -19.6934595038805,
+					"start_seconds": 2.0
+				},
+				{
+					"peak_dbfs": -12.2471989593555,
+					"rms_dbfs": -21.6244840458933,
+					"start_seconds": 2.25
+				},
+				{
+					"peak_dbfs": -11.7042856438687,
+					"rms_dbfs": -20.9558271305317,
+					"start_seconds": 2.5
+				},
+				{
+					"peak_dbfs": -11.0805768178654,
+					"rms_dbfs": -20.2615447497401,
+					"start_seconds": 2.75
+				},
+				{
+					"peak_dbfs": -8.41608290707526,
+					"rms_dbfs": -18.4592190930845,
+					"start_seconds": 3.0
+				},
+				{
+					"peak_dbfs": -8.20152041631742,
+					"rms_dbfs": -16.625746905245,
+					"start_seconds": 3.25
+				},
+				{
+					"peak_dbfs": -12.4226774455056,
+					"rms_dbfs": -22.2777413336635,
+					"start_seconds": 3.5
+				},
+				{
+					"peak_dbfs": -12.0486250242352,
+					"rms_dbfs": -21.5547260143337,
+					"start_seconds": 3.75
+				},
+				{
+					"peak_dbfs": -11.8763094781203,
+					"rms_dbfs": -20.9300486250736,
+					"start_seconds": 4.0
+				},
+				{
+					"peak_dbfs": -9.29212708005598,
+					"rms_dbfs": -18.701239346099,
+					"start_seconds": 4.25
+				},
+				{
+					"peak_dbfs": -8.36663021230136,
+					"rms_dbfs": -17.8196532523173,
+					"start_seconds": 4.5
+				},
+				{
+					"peak_dbfs": -8.95122256548638,
+					"rms_dbfs": -21.1901957677086,
+					"start_seconds": 4.75
+				},
+				{
+					"peak_dbfs": -12.3312055806626,
+					"rms_dbfs": -21.2382839819291,
+					"start_seconds": 5.0
+				},
+				{
+					"peak_dbfs": -11.6038930635134,
+					"rms_dbfs": -21.9258268282549,
+					"start_seconds": 5.25
+				},
+				{
+					"peak_dbfs": -10.5084407237885,
+					"rms_dbfs": -19.3571789589328,
+					"start_seconds": 5.5
+				},
+				{
+					"peak_dbfs": -8.70440820149702,
+					"rms_dbfs": -18.6419835039889,
+					"start_seconds": 5.75
+				},
+				{
+					"peak_dbfs": -8.25552328821582,
+					"rms_dbfs": -18.0222353322614,
+					"start_seconds": 6.0
+				},
+				{
+					"peak_dbfs": -8.42936462091209,
+					"rms_dbfs": -17.5705599026915,
+					"start_seconds": 6.25
+				},
+				{
+					"peak_dbfs": -7.89752007507736,
+					"rms_dbfs": -18.7761938319102,
+					"start_seconds": 6.5
+				},
+				{
+					"peak_dbfs": -9.85383481445897,
+					"rms_dbfs": -19.5610867274861,
+					"start_seconds": 6.75
+				},
+				{
+					"peak_dbfs": -9.83325310339742,
+					"rms_dbfs": -19.6135718393149,
+					"start_seconds": 7.0
+				},
+				{
+					"peak_dbfs": -9.21520584019476,
+					"rms_dbfs": -16.9615055217795,
+					"start_seconds": 7.25
+				},
+				{
+					"peak_dbfs": -8.06092084483687,
+					"rms_dbfs": -18.2240448451104,
+					"start_seconds": 7.5
+				},
+				{
+					"peak_dbfs": -8.15123819553839,
+					"rms_dbfs": -17.1073422959263,
+					"start_seconds": 7.75
+				}
+			],
+			"request_timings": {
+				"bomber_gun": {
+					"accepted": 68,
+					"delay_max_ms": 14.06,
+					"delay_min_ms": 5.40600000000008,
+					"delay_sum_ms": 433.23300000004,
+					"first_timeactual": 0.19406,
+					"last_timeactual": 7.983233,
+					"requests": 68
+				},
+				"enemy_gun": {
+					"accepted": 160,
+					"delay_max_ms": 5.59300000000007,
+					"delay_min_ms": 0.359999999999999,
+					"delay_sum_ms": 768.233000000111,
+					"first_timeactual": 0.06036,
+					"last_timeactual": 7.983233,
+					"requests": 160
+				},
+				"explosion": {
+					"accepted": 18,
+					"delay_max_ms": 12.3130000000033,
+					"delay_min_ms": 2.778,
+					"delay_sum_ms": 203.889000000014,
+					"first_timeactual": 0.442778,
+					"last_timeactual": 7.783889,
+					"requests": 18
+				},
+				"ground_volley": {
+					"accepted": 80,
+					"delay_max_ms": 10.5930000000001,
+					"delay_min_ms": 9.26200000000005,
+					"delay_sum_ms": 1563.2330000001,
+					"first_timeactual": 0.110148,
+					"last_timeactual": 7.983233,
+					"requests": 159
+				},
+				"player_salvo": {
+					"accepted": 99,
+					"delay_max_ms": 15.536,
+					"delay_min_ms": 13.596,
+					"delay_sum_ms": 1467.01200000007,
+					"first_timeactual": 0.093596,
+					"last_timeactual": 4.977012,
+					"requests": 99
+				}
+			},
+			"rms_dbfs": -18.7898839266479,
+			"samples": 770048,
+			"saturated_samples": 0,
+			"timing_limit": "Fixed RNG sequence per profile; frame/audio-buffer timing varies. No identical-PCM replay claim.",
+			"trace_capacity": 160,
+			"trace_dropped": 0,
+			"weapon_base_db": -8.0,
+			"weapon_request_trace": [
+				{
+					"gain": -8.08850479125977,
+					"pitch": 1.00278759002686,
+					"scheduled_due": 0.08,
+					"signature": "standard",
+					"timeactual": 0.093596,
+					"variant": 4,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.12371063232422,
+					"pitch": 0.998814940452576,
+					"scheduled_due": 0.128596,
+					"signature": "standard",
+					"timeactual": 0.14353,
+					"variant": 5,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.34086990356445,
+					"pitch": 0.993427872657776,
+					"scheduled_due": 0.17853,
+					"signature": "standard",
+					"timeactual": 0.19406,
+					"variant": 0,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.41325855255127,
+					"pitch": 1.00288379192352,
+					"scheduled_due": 0.22906,
+					"signature": "standard",
+					"timeactual": 0.243407,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.02956867218018,
+					"pitch": 0.996770858764648,
+					"scheduled_due": 0.278407,
+					"signature": "standard",
+					"timeactual": 0.293614,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.3705415725708,
+					"pitch": 0.994328856468201,
+					"scheduled_due": 0.328614,
+					"signature": "standard",
+					"timeactual": 0.342892,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.2377815246582,
+					"pitch": 1.00046098232269,
+					"scheduled_due": 0.377892,
+					"signature": "standard",
+					"timeactual": 0.393009,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.03506565093994,
+					"pitch": 1.00667810440063,
+					"scheduled_due": 0.428009,
+					"signature": "standard",
+					"timeactual": 0.442778,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.29591178894043,
+					"pitch": 1.00799715518951,
+					"scheduled_due": 0.477778,
+					"signature": "standard",
+					"timeactual": 0.492811,
+					"variant": 1,
+					"voicesstolen": 1
+				},
+				{
+					"gain": -8.15024185180664,
+					"pitch": 0.998046815395355,
+					"scheduled_due": 0.527811,
+					"signature": "standard",
+					"timeactual": 0.542249,
+					"variant": 2,
+					"voicesstolen": 2
+				},
+				{
+					"gain": -8.40366744995117,
+					"pitch": 1.00721085071564,
+					"scheduled_due": 0.577249,
+					"signature": "standard",
+					"timeactual": 0.592127,
+					"variant": 5,
+					"voicesstolen": 3
+				},
+				{
+					"gain": -8.41160011291504,
+					"pitch": 0.99943619966507,
+					"scheduled_due": 0.627127,
+					"signature": "standard",
+					"timeactual": 0.641858,
+					"variant": 4,
+					"voicesstolen": 4
+				},
+				{
+					"gain": -8.36561584472656,
+					"pitch": 0.994692265987396,
+					"scheduled_due": 0.676858,
+					"signature": "standard",
+					"timeactual": 0.692394,
+					"variant": 2,
+					"voicesstolen": 5
+				},
+				{
+					"gain": -8.02884101867676,
+					"pitch": 1.00318050384521,
+					"scheduled_due": 0.727394,
+					"signature": "standard",
+					"timeactual": 0.741556,
+					"variant": 5,
+					"voicesstolen": 6
+				},
+				{
+					"gain": -8.40555000305176,
+					"pitch": 0.99321174621582,
+					"scheduled_due": 0.776556,
+					"signature": "standard",
+					"timeactual": 0.791423,
+					"variant": 0,
+					"voicesstolen": 7
+				},
+				{
+					"gain": -8.17084121704102,
+					"pitch": 0.99721497297287,
+					"scheduled_due": 0.826423,
+					"signature": "standard",
+					"timeactual": 0.841351,
+					"variant": 4,
+					"voicesstolen": 8
+				},
+				{
+					"gain": -8.31558227539063,
+					"pitch": 1.00455117225647,
+					"scheduled_due": 0.876351,
+					"signature": "standard",
+					"timeactual": 0.890983,
+					"variant": 5,
+					"voicesstolen": 9
+				},
+				{
+					"gain": -8.0017032623291,
+					"pitch": 1.00734090805054,
+					"scheduled_due": 0.925983,
+					"signature": "standard",
+					"timeactual": 0.940833,
+					"variant": 3,
+					"voicesstolen": 10
+				},
+				{
+					"gain": -8.19338130950928,
+					"pitch": 1.0025372505188,
+					"scheduled_due": 0.975833,
+					"signature": "standard",
+					"timeactual": 0.990622,
+					"variant": 2,
+					"voicesstolen": 11
+				},
+				{
+					"gain": -8.27783107757568,
+					"pitch": 0.997646152973175,
+					"scheduled_due": 1.025622,
+					"signature": "standard",
+					"timeactual": 1.040547,
+					"variant": 0,
+					"voicesstolen": 12
+				},
+				{
+					"gain": -8.37061882019043,
+					"pitch": 0.997667193412781,
+					"scheduled_due": 1.075547,
+					"signature": "standard",
+					"timeactual": 1.090285,
+					"variant": 4,
+					"voicesstolen": 13
+				},
+				{
+					"gain": -8.19901657104492,
+					"pitch": 0.995465278625488,
+					"scheduled_due": 1.125285,
+					"signature": "standard",
+					"timeactual": 1.139957,
+					"variant": 2,
+					"voicesstolen": 14
+				},
+				{
+					"gain": -8.22904777526855,
+					"pitch": 0.998215854167938,
+					"scheduled_due": 1.174957,
+					"signature": "standard",
+					"timeactual": 1.189854,
+					"variant": 0,
+					"voicesstolen": 15
+				},
+				{
+					"gain": -8.27543258666992,
+					"pitch": 0.999147415161133,
+					"scheduled_due": 1.224854,
+					"signature": "standard",
+					"timeactual": 1.239716,
+					"variant": 1,
+					"voicesstolen": 16
+				},
+				{
+					"gain": -8.19822883605957,
+					"pitch": 0.993407487869263,
+					"scheduled_due": 1.274716,
+					"signature": "standard",
+					"timeactual": 1.289458,
+					"variant": 4,
+					"voicesstolen": 17
+				},
+				{
+					"gain": -8.30290603637695,
+					"pitch": 0.996295511722565,
+					"scheduled_due": 1.324458,
+					"signature": "standard",
+					"timeactual": 1.339329,
+					"variant": 5,
+					"voicesstolen": 18
+				},
+				{
+					"gain": -8.21120357513428,
+					"pitch": 0.995797216892242,
+					"scheduled_due": 1.374329,
+					"signature": "standard",
+					"timeactual": 1.389177,
+					"variant": 4,
+					"voicesstolen": 19
+				},
+				{
+					"gain": -8.18369102478027,
+					"pitch": 0.998034417629242,
+					"scheduled_due": 1.424177,
+					"signature": "standard",
+					"timeactual": 1.439015,
+					"variant": 2,
+					"voicesstolen": 20
+				},
+				{
+					"gain": -8.02908992767334,
+					"pitch": 1.00639879703522,
+					"scheduled_due": 1.474015,
+					"signature": "standard",
+					"timeactual": 1.48881,
+					"variant": 3,
+					"voicesstolen": 21
+				},
+				{
+					"gain": -8.31450653076172,
+					"pitch": 1.00353419780731,
+					"scheduled_due": 1.52381,
+					"signature": "standard",
+					"timeactual": 1.538661,
+					"variant": 4,
+					"voicesstolen": 22
+				},
+				{
+					"gain": -8.42143249511719,
+					"pitch": 1.00540542602539,
+					"scheduled_due": 1.573661,
+					"signature": "standard",
+					"timeactual": 1.588507,
+					"variant": 5,
+					"voicesstolen": 23
+				},
+				{
+					"gain": -8.18760871887207,
+					"pitch": 0.998581409454346,
+					"scheduled_due": 1.623507,
+					"signature": "standard",
+					"timeactual": 1.638369,
+					"variant": 0,
+					"voicesstolen": 24
+				},
+				{
+					"gain": -8.10013866424561,
+					"pitch": 0.997399151325226,
+					"scheduled_due": 1.673369,
+					"signature": "standard",
+					"timeactual": 1.688591,
+					"variant": 3,
+					"voicesstolen": 25
+				},
+				{
+					"gain": -8.00784587860107,
+					"pitch": 1.00586748123169,
+					"scheduled_due": 1.723591,
+					"signature": "standard",
+					"timeactual": 1.737988,
+					"variant": 2,
+					"voicesstolen": 26
+				},
+				{
+					"gain": -8.2484245300293,
+					"pitch": 1.00338101387024,
+					"scheduled_due": 1.772988,
+					"signature": "standard",
+					"timeactual": 1.787996,
+					"variant": 0,
+					"voicesstolen": 27
+				},
+				{
+					"gain": -8.37514495849609,
+					"pitch": 0.999079167842865,
+					"scheduled_due": 1.822996,
+					"signature": "standard",
+					"timeactual": 1.837639,
+					"variant": 4,
+					"voicesstolen": 28
+				},
+				{
+					"gain": -8.27876949310303,
+					"pitch": 1.00087881088257,
+					"scheduled_due": 1.872639,
+					"signature": "standard",
+					"timeactual": 1.887456,
+					"variant": 0,
+					"voicesstolen": 29
+				},
+				{
+					"gain": -8.18574333190918,
+					"pitch": 0.997739911079407,
+					"scheduled_due": 1.922456,
+					"signature": "standard",
+					"timeactual": 1.937277,
+					"variant": 1,
+					"voicesstolen": 30
+				},
+				{
+					"gain": -8.37692165374756,
+					"pitch": 0.99313873052597,
+					"scheduled_due": 1.972277,
+					"signature": "standard",
+					"timeactual": 1.987301,
+					"variant": 5,
+					"voicesstolen": 31
+				},
+				{
+					"gain": -8.74856281280518,
+					"pitch": 1.0060076713562,
+					"scheduled_due": 2.022301,
+					"signature": "standard",
+					"timeactual": 2.03701,
+					"variant": 0,
+					"voicesstolen": 32
+				},
+				{
+					"gain": -9.81533241271973,
+					"pitch": 1.00330650806427,
+					"scheduled_due": 2.07201,
+					"signature": "standard",
+					"timeactual": 2.086801,
+					"variant": 1,
+					"voicesstolen": 33
+				},
+				{
+					"gain": -10.0761613845825,
+					"pitch": 1.00661313533783,
+					"scheduled_due": 2.121801,
+					"signature": "standard",
+					"timeactual": 2.136589,
+					"variant": 0,
+					"voicesstolen": 34
+				},
+				{
+					"gain": -10.4174356460571,
+					"pitch": 0.994074583053589,
+					"scheduled_due": 2.171589,
+					"signature": "standard",
+					"timeactual": 2.186456,
+					"variant": 4,
+					"voicesstolen": 35
+				},
+				{
+					"gain": -10.0105743408203,
+					"pitch": 0.996047377586365,
+					"scheduled_due": 2.221456,
+					"signature": "standard",
+					"timeactual": 2.236184,
+					"variant": 5,
+					"voicesstolen": 36
+				},
+				{
+					"gain": -10.1593284606934,
+					"pitch": 1.0019439458847,
+					"scheduled_due": 2.271184,
+					"signature": "standard",
+					"timeactual": 2.286068,
+					"variant": 3,
+					"voicesstolen": 37
+				},
+				{
+					"gain": -10.3740539550781,
+					"pitch": 1.00174331665039,
+					"scheduled_due": 2.321068,
+					"signature": "standard",
+					"timeactual": 2.33591,
+					"variant": 1,
+					"voicesstolen": 38
+				},
+				{
+					"gain": -10.2861375808716,
+					"pitch": 1.00005483627319,
+					"scheduled_due": 2.37091,
+					"signature": "standard",
+					"timeactual": 2.385791,
+					"variant": 2,
+					"voicesstolen": 39
+				},
+				{
+					"gain": -10.1112155914307,
+					"pitch": 1.00308322906494,
+					"scheduled_due": 2.420791,
+					"signature": "standard",
+					"timeactual": 2.435699,
+					"variant": 0,
+					"voicesstolen": 40
+				},
+				{
+					"gain": -10.1031341552734,
+					"pitch": 1.00541305541992,
+					"scheduled_due": 2.470699,
+					"signature": "standard",
+					"timeactual": 2.485396,
+					"variant": 5,
+					"voicesstolen": 41
+				},
+				{
+					"gain": -10.3835945129395,
+					"pitch": 0.992150545120239,
+					"scheduled_due": 2.520396,
+					"signature": "standard",
+					"timeactual": 2.535236,
+					"variant": 0,
+					"voicesstolen": 42
+				},
+				{
+					"gain": -10.1021766662598,
+					"pitch": 0.992433249950409,
+					"scheduled_due": 2.570236,
+					"signature": "standard",
+					"timeactual": 2.585124,
+					"variant": 4,
+					"voicesstolen": 43
+				},
+				{
+					"gain": -10.3929719924927,
+					"pitch": 1.00076115131378,
+					"scheduled_due": 2.620124,
+					"signature": "standard",
+					"timeactual": 2.634883,
+					"variant": 0,
+					"voicesstolen": 44
+				},
+				{
+					"gain": -10.1737880706787,
+					"pitch": 0.998650729656219,
+					"scheduled_due": 2.669883,
+					"signature": "standard",
+					"timeactual": 2.684741,
+					"variant": 3,
+					"voicesstolen": 45
+				},
+				{
+					"gain": -10.0810670852661,
+					"pitch": 0.997280895709991,
+					"scheduled_due": 2.719741,
+					"signature": "standard",
+					"timeactual": 2.734654,
+					"variant": 1,
+					"voicesstolen": 46
+				},
+				{
+					"gain": -9.64773178100586,
+					"pitch": 1.0060555934906,
+					"scheduled_due": 2.769654,
+					"signature": "standard",
+					"timeactual": 2.784445,
+					"variant": 2,
+					"voicesstolen": 47
+				},
+				{
+					"gain": -10.5589447021484,
+					"pitch": 0.89065420627594,
+					"scheduled_due": 2.819445,
+					"signature": "spread",
+					"timeactual": 2.83422,
+					"variant": 5,
+					"voicesstolen": 48
+				},
+				{
+					"gain": -10.5488662719727,
+					"pitch": 0.885995447635651,
+					"scheduled_due": 2.86922,
+					"signature": "spread",
+					"timeactual": 2.884057,
+					"variant": 4,
+					"voicesstolen": 49
+				},
+				{
+					"gain": -10.4029722213745,
+					"pitch": 0.884152770042419,
+					"scheduled_due": 2.919057,
+					"signature": "spread",
+					"timeactual": 2.933862,
+					"variant": 2,
+					"voicesstolen": 50
+				},
+				{
+					"gain": -9.95449256896973,
+					"pitch": 0.886475443840027,
+					"scheduled_due": 2.968862,
+					"signature": "spread",
+					"timeactual": 2.983722,
+					"variant": 0,
+					"voicesstolen": 51
+				},
+				{
+					"gain": -9.88779067993164,
+					"pitch": 0.882932484149933,
+					"scheduled_due": 3.018722,
+					"signature": "spread",
+					"timeactual": 3.033541,
+					"variant": 2,
+					"voicesstolen": 52
+				},
+				{
+					"gain": -9.39205932617188,
+					"pitch": 0.870400011539459,
+					"scheduled_due": 3.068541,
+					"signature": "spread",
+					"timeactual": 3.083368,
+					"variant": 3,
+					"voicesstolen": 53
+				},
+				{
+					"gain": -9.49323177337646,
+					"pitch": 0.88861072063446,
+					"scheduled_due": 3.118368,
+					"signature": "spread",
+					"timeactual": 3.133199,
+					"variant": 2,
+					"voicesstolen": 54
+				},
+				{
+					"gain": -9.29447841644287,
+					"pitch": 0.880965828895569,
+					"scheduled_due": 3.168199,
+					"signature": "spread",
+					"timeactual": 3.183112,
+					"variant": 0,
+					"voicesstolen": 55
+				},
+				{
+					"gain": -9.10844993591309,
+					"pitch": 0.888118267059326,
+					"scheduled_due": 3.218112,
+					"signature": "spread",
+					"timeactual": 3.232816,
+					"variant": 1,
+					"voicesstolen": 56
+				},
+				{
+					"gain": -9.03297996520996,
+					"pitch": 0.890550017356873,
+					"scheduled_due": 3.267816,
+					"signature": "spread",
+					"timeactual": 3.282614,
+					"variant": 3,
+					"voicesstolen": 57
+				},
+				{
+					"gain": -9.31426334381104,
+					"pitch": 0.872787892818451,
+					"scheduled_due": 3.317614,
+					"signature": "spread",
+					"timeactual": 3.332479,
+					"variant": 5,
+					"voicesstolen": 58
+				},
+				{
+					"gain": -9.2288064956665,
+					"pitch": 0.890426874160767,
+					"scheduled_due": 3.367479,
+					"signature": "spread",
+					"timeactual": 3.382365,
+					"variant": 2,
+					"voicesstolen": 59
+				},
+				{
+					"gain": -9.48263549804688,
+					"pitch": 0.886326611042023,
+					"scheduled_due": 3.417365,
+					"signature": "spread",
+					"timeactual": 3.432215,
+					"variant": 5,
+					"voicesstolen": 60
+				},
+				{
+					"gain": -10.6043376922607,
+					"pitch": 0.881055891513824,
+					"scheduled_due": 3.467215,
+					"signature": "spread",
+					"timeactual": 3.481963,
+					"variant": 1,
+					"voicesstolen": 61
+				},
+				{
+					"gain": -11.0991649627686,
+					"pitch": 0.869167327880859,
+					"scheduled_due": 3.516963,
+					"signature": "spread",
+					"timeactual": 3.531822,
+					"variant": 3,
+					"voicesstolen": 62
+				},
+				{
+					"gain": -11.3517694473267,
+					"pitch": 0.882888436317444,
+					"scheduled_due": 3.566822,
+					"signature": "spread",
+					"timeactual": 3.581673,
+					"variant": 2,
+					"voicesstolen": 63
+				},
+				{
+					"gain": -11.1612749099731,
+					"pitch": 0.873557686805725,
+					"scheduled_due": 3.616673,
+					"signature": "spread",
+					"timeactual": 3.631628,
+					"variant": 4,
+					"voicesstolen": 64
+				},
+				{
+					"gain": -11.4415597915649,
+					"pitch": 0.869684994220734,
+					"scheduled_due": 3.666628,
+					"signature": "spread",
+					"timeactual": 3.681298,
+					"variant": 5,
+					"voicesstolen": 65
+				},
+				{
+					"gain": -11.2425661087036,
+					"pitch": 0.869202733039856,
+					"scheduled_due": 3.716298,
+					"signature": "spread",
+					"timeactual": 3.731104,
+					"variant": 3,
+					"voicesstolen": 66
+				},
+				{
+					"gain": -11.0175151824951,
+					"pitch": 0.870044887065887,
+					"scheduled_due": 3.766104,
+					"signature": "spread",
+					"timeactual": 3.781003,
+					"variant": 0,
+					"voicesstolen": 67
+				},
+				{
+					"gain": -11.147180557251,
+					"pitch": 0.881680607795715,
+					"scheduled_due": 3.816003,
+					"signature": "spread",
+					"timeactual": 3.830793,
+					"variant": 5,
+					"voicesstolen": 68
+				},
+				{
+					"gain": -11.4344635009766,
+					"pitch": 0.891185700893402,
+					"scheduled_due": 3.865793,
+					"signature": "spread",
+					"timeactual": 3.880628,
+					"variant": 3,
+					"voicesstolen": 69
+				},
+				{
+					"gain": -11.0400810241699,
+					"pitch": 0.884781122207642,
+					"scheduled_due": 3.915628,
+					"signature": "spread",
+					"timeactual": 3.930434,
+					"variant": 4,
+					"voicesstolen": 70
+				},
+				{
+					"gain": -11.2747383117676,
+					"pitch": 0.88038045167923,
+					"scheduled_due": 3.965434,
+					"signature": "spread",
+					"timeactual": 3.980293,
+					"variant": 2,
+					"voicesstolen": 71
+				},
+				{
+					"gain": -11.0855045318604,
+					"pitch": 0.87691730260849,
+					"scheduled_due": 4.015293,
+					"signature": "spread",
+					"timeactual": 4.030103,
+					"variant": 5,
+					"voicesstolen": 72
+				},
+				{
+					"gain": -11.0081253051758,
+					"pitch": 0.888467311859131,
+					"scheduled_due": 4.065103,
+					"signature": "spread",
+					"timeactual": 4.079951,
+					"variant": 2,
+					"voicesstolen": 73
+				},
+				{
+					"gain": -10.8062829971313,
+					"pitch": 0.884698688983917,
+					"scheduled_due": 4.114951,
+					"signature": "spread",
+					"timeactual": 4.129771,
+					"variant": 3,
+					"voicesstolen": 74
+				},
+				{
+					"gain": -10.8950099945068,
+					"pitch": 0.869429111480713,
+					"scheduled_due": 4.164771,
+					"signature": "spread",
+					"timeactual": 4.17955,
+					"variant": 1,
+					"voicesstolen": 75
+				},
+				{
+					"gain": -10.6911277770996,
+					"pitch": 0.874064087867737,
+					"scheduled_due": 4.21455,
+					"signature": "spread",
+					"timeactual": 4.229391,
+					"variant": 4,
+					"voicesstolen": 76
+				},
+				{
+					"gain": -10.6687297821045,
+					"pitch": 0.88996422290802,
+					"scheduled_due": 4.264391,
+					"signature": "spread",
+					"timeactual": 4.27927,
+					"variant": 0,
+					"voicesstolen": 77
+				},
+				{
+					"gain": -10.1384563446045,
+					"pitch": 0.880656599998474,
+					"scheduled_due": 4.31427,
+					"signature": "spread",
+					"timeactual": 4.329071,
+					"variant": 5,
+					"voicesstolen": 78
+				},
+				{
+					"gain": -10.1702423095703,
+					"pitch": 0.880860805511475,
+					"scheduled_due": 4.364071,
+					"signature": "spread",
+					"timeactual": 4.378902,
+					"variant": 2,
+					"voicesstolen": 79
+				},
+				{
+					"gain": -9.87502098083496,
+					"pitch": 0.885135233402252,
+					"scheduled_due": 4.413902,
+					"signature": "spread",
+					"timeactual": 4.428742,
+					"variant": 3,
+					"voicesstolen": 80
+				},
+				{
+					"gain": -9.58178520202637,
+					"pitch": 0.881203055381775,
+					"scheduled_due": 4.463742,
+					"signature": "spread",
+					"timeactual": 4.478536,
+					"variant": 5,
+					"voicesstolen": 81
+				},
+				{
+					"gain": -9.58499431610107,
+					"pitch": 0.868530809879303,
+					"scheduled_due": 4.513536,
+					"signature": "spread",
+					"timeactual": 4.52846,
+					"variant": 4,
+					"voicesstolen": 82
+				},
+				{
+					"gain": -9.17871475219727,
+					"pitch": 0.891215324401855,
+					"scheduled_due": 4.56346,
+					"signature": "spread",
+					"timeactual": 4.578242,
+					"variant": 0,
+					"voicesstolen": 83
+				},
+				{
+					"gain": -9.32334327697754,
+					"pitch": 0.890421986579895,
+					"scheduled_due": 4.613242,
+					"signature": "spread",
+					"timeactual": 4.628061,
+					"variant": 5,
+					"voicesstolen": 84
+				},
+				{
+					"gain": -9.31536102294922,
+					"pitch": 0.885651230812073,
+					"scheduled_due": 4.663061,
+					"signature": "spread",
+					"timeactual": 4.677812,
+					"variant": 1,
+					"voicesstolen": 85
+				},
+				{
+					"gain": -9.00279521942139,
+					"pitch": 0.870712399482727,
+					"scheduled_due": 4.712812,
+					"signature": "spread",
+					"timeactual": 4.727709,
+					"variant": 0,
+					"voicesstolen": 86
+				},
+				{
+					"gain": -9.35641288757324,
+					"pitch": 0.878678023815155,
+					"scheduled_due": 4.762709,
+					"signature": "spread",
+					"timeactual": 4.777479,
+					"variant": 1,
+					"voicesstolen": 87
+				},
+				{
+					"gain": -9.52974987030029,
+					"pitch": 0.877690017223358,
+					"scheduled_due": 4.812479,
+					"signature": "spread",
+					"timeactual": 4.827364,
+					"variant": 4,
+					"voicesstolen": 88
+				},
+				{
+					"gain": -10.44189453125,
+					"pitch": 0.886592864990234,
+					"scheduled_due": 4.862364,
+					"signature": "spread",
+					"timeactual": 4.87722,
+					"variant": 1,
+					"voicesstolen": 89
+				},
+				{
+					"gain": -11.0386962890625,
+					"pitch": 0.891628265380859,
+					"scheduled_due": 4.91222,
+					"signature": "spread",
+					"timeactual": 4.927254,
+					"variant": 4,
+					"voicesstolen": 90
+				},
+				{
+					"gain": -11.3757543563843,
+					"pitch": 0.884688675403595,
+					"scheduled_due": 4.962254,
+					"signature": "spread",
+					"timeactual": 4.977012,
+					"variant": 1,
+					"voicesstolen": 91
+				}
+			],
+			"weapon_rng": {
+				"final_state": "528346150452898725",
+				"initial_state": "-8496568517173372688",
+				"seed": 1942
+			},
+			"weapons": {
+				"active": 0,
+				"guard_db": 0.0,
+				"laser_bound": true,
+				"laser_level": 0.0,
+				"pool": 8,
+				"salvos": 99,
+				"signature": "spread",
+				"stolen": 91
+			}
+		},
+		{
+			"cue_request_times": [
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 1.2,
+					"timeactual": 1.209637
+				},
+				{
+					"accepted": true,
+					"kind": "boss",
+					"scheduled_due": 2.0,
+					"timeactual": 2.006701
+				},
+				{
+					"accepted": true,
+					"kind": "radio_important",
+					"scheduled_due": 3.4,
+					"timeactual": 3.40183
+				},
+				{
+					"accepted": true,
+					"kind": "danger",
+					"scheduled_due": 4.8,
+					"timeactual": 4.813635
+				},
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 6.5,
+					"timeactual": 6.507866
+				}
+			],
+			"duck_max_db": 4.0,
+			"duration": 8.0,
+			"events": {
+				"boss:2.0": true,
+				"danger:4.8": true,
+				"radio_important:3.4": true,
+				"reward:1.2": true,
+				"reward:6.5": true
+			},
+			"guard_max_db": 2.0,
+			"laser_request_times": [
+				{
+					"active": true,
+					"scheduled_due": 5.0,
+					"timeactual": 5.012962
+				},
+				{
+					"active": false,
+					"scheduled_due": 7.0,
+					"timeactual": 7.006118
+				}
+			],
+			"music": {
+				"cue_voices": 2,
+				"duck_db": 0.0,
+				"duck_phase": 0,
+				"events": 5,
+				"guard_db": 0.0,
+				"history": 5,
+				"mode": "boss",
+				"music_gain_sum": 1.0,
+				"music_voices": 2,
+				"pending_mode": "",
+				"preemptions": 0,
+				"priority": 0,
+				"suppressed": 0
+			},
+			"path": "C:\\ChatGPT\\1942\\tools\\review\\audio-1.9-seeded-final-minus8/audio-priority-effects-only.wav",
+			"peak_dbfs": -3.3327802910908,
+			"peak_pcm16": 22326,
+			"profile": {
+				"effects": 1.0,
+				"id": "effects-only",
+				"music": 0.0
+			},
+			"quarter_second_windows": [
+				{
+					"peak_dbfs": -7.98481618312636,
+					"rms_dbfs": -22.3082019254778,
+					"start_seconds": 0.0
+				},
+				{
+					"peak_dbfs": -4.49406438695264,
+					"rms_dbfs": -17.1228047552171,
+					"start_seconds": 0.25
+				},
+				{
+					"peak_dbfs": -4.32931870452668,
+					"rms_dbfs": -16.0943065962475,
+					"start_seconds": 0.5
+				},
+				{
+					"peak_dbfs": -5.32258516644167,
+					"rms_dbfs": -15.6593738802688,
+					"start_seconds": 0.75
+				},
+				{
+					"peak_dbfs": -5.45022329860275,
+					"rms_dbfs": -16.8571188520115,
+					"start_seconds": 1.0
+				},
+				{
+					"peak_dbfs": -4.02238304877698,
+					"rms_dbfs": -15.3190353399493,
+					"start_seconds": 1.25
+				},
+				{
+					"peak_dbfs": -5.55762129523039,
+					"rms_dbfs": -16.9863737971149,
+					"start_seconds": 1.5
+				},
+				{
+					"peak_dbfs": -3.85965085657294,
+					"rms_dbfs": -14.7072482510022,
+					"start_seconds": 1.75
+				},
+				{
+					"peak_dbfs": -3.93896701601862,
+					"rms_dbfs": -16.3180417141609,
+					"start_seconds": 2.0
+				},
+				{
+					"peak_dbfs": -4.07434519034737,
+					"rms_dbfs": -16.6820082031035,
+					"start_seconds": 2.25
+				},
+				{
+					"peak_dbfs": -4.81199229886106,
+					"rms_dbfs": -16.475186067706,
+					"start_seconds": 2.5
+				},
+				{
+					"peak_dbfs": -5.44674884343104,
+					"rms_dbfs": -16.9599552618981,
+					"start_seconds": 2.75
+				},
+				{
+					"peak_dbfs": -3.3327802910908,
+					"rms_dbfs": -14.8557281948557,
+					"start_seconds": 3.0
+				},
+				{
+					"peak_dbfs": -5.01028226354065,
+					"rms_dbfs": -17.0901236407599,
+					"start_seconds": 3.25
+				},
+				{
+					"peak_dbfs": -5.0675744468485,
+					"rms_dbfs": -15.1473450099415,
+					"start_seconds": 3.5
+				},
+				{
+					"peak_dbfs": -5.79144612640399,
+					"rms_dbfs": -16.8890810246533,
+					"start_seconds": 3.75
+				},
+				{
+					"peak_dbfs": -6.22171460677425,
+					"rms_dbfs": -17.1862061936943,
+					"start_seconds": 4.0
+				},
+				{
+					"peak_dbfs": -3.98623557299799,
+					"rms_dbfs": -15.57158473498,
+					"start_seconds": 4.25
+				},
+				{
+					"peak_dbfs": -6.2401813625856,
+					"rms_dbfs": -16.8752569874368,
+					"start_seconds": 4.5
+				},
+				{
+					"peak_dbfs": -3.84684559548394,
+					"rms_dbfs": -15.7625698227289,
+					"start_seconds": 4.75
+				},
+				{
+					"peak_dbfs": -5.81626592556555,
+					"rms_dbfs": -16.9178927036576,
+					"start_seconds": 5.0
+				},
+				{
+					"peak_dbfs": -6.70648119591328,
+					"rms_dbfs": -17.0507111343783,
+					"start_seconds": 5.25
+				},
+				{
+					"peak_dbfs": -3.95859615349817,
+					"rms_dbfs": -16.8823007012386,
+					"start_seconds": 5.5
+				},
+				{
+					"peak_dbfs": -5.56063757826964,
+					"rms_dbfs": -16.7185371226041,
+					"start_seconds": 5.75
+				},
+				{
+					"peak_dbfs": -5.61460460675684,
+					"rms_dbfs": -16.6576345584895,
+					"start_seconds": 6.0
+				},
+				{
+					"peak_dbfs": -7.13571908291457,
+					"rms_dbfs": -19.3491125661624,
+					"start_seconds": 6.25
+				},
+				{
+					"peak_dbfs": -5.37902708327834,
+					"rms_dbfs": -16.0750262773217,
+					"start_seconds": 6.5
+				},
+				{
+					"peak_dbfs": -6.08872488711785,
+					"rms_dbfs": -17.566818834762,
+					"start_seconds": 6.75
+				},
+				{
+					"peak_dbfs": -5.44476406429917,
+					"rms_dbfs": -16.3103770123539,
+					"start_seconds": 7.0
+				},
+				{
+					"peak_dbfs": -5.22964543089512,
+					"rms_dbfs": -17.1096430490344,
+					"start_seconds": 7.25
+				},
+				{
+					"peak_dbfs": -6.61403474663554,
+					"rms_dbfs": -17.389828214501,
+					"start_seconds": 7.5
+				},
+				{
+					"peak_dbfs": -5.94984946365488,
+					"rms_dbfs": -16.565973738749,
+					"start_seconds": 7.75
+				}
+			],
+			"request_timings": {
+				"bomber_gun": {
+					"accepted": 68,
+					"delay_max_ms": 6.71599999999994,
+					"delay_min_ms": 0.501000000000001,
+					"delay_sum_ms": 419.518999999915,
+					"first_timeactual": 0.180501,
+					"last_timeactual": 7.969519,
+					"requests": 68
+				},
+				"enemy_gun": {
+					"accepted": 160,
+					"delay_max_ms": 5.86300000000062,
+					"delay_min_ms": 3.204,
+					"delay_sum_ms": 771.122999999834,
+					"first_timeactual": 0.063204,
+					"last_timeactual": 7.986123,
+					"requests": 160
+				},
+				"explosion": {
+					"accepted": 18,
+					"delay_max_ms": 12.3779999999982,
+					"delay_min_ms": 5.35000000000002,
+					"delay_sum_ms": 206.92899999998,
+					"first_timeactual": 0.44535,
+					"last_timeactual": 7.786929,
+					"requests": 18
+				},
+				"ground_volley": {
+					"accepted": 80,
+					"delay_max_ms": 13.135,
+					"delay_min_ms": 8.80900000000029,
+					"delay_sum_ms": 1566.12299999982,
+					"first_timeactual": 0.113135,
+					"last_timeactual": 7.986123,
+					"requests": 159
+				},
+				"player_salvo": {
+					"accepted": 99,
+					"delay_max_ms": 16.56,
+					"delay_min_ms": 13.6889999999998,
+					"delay_sum_ms": 1469.73799999984,
+					"first_timeactual": 0.09656,
+					"last_timeactual": 4.979738,
+					"requests": 99
+				}
+			},
+			"rms_dbfs": -16.5641436537302,
+			"samples": 768000,
+			"saturated_samples": 0,
+			"timing_limit": "Fixed RNG sequence per profile; frame/audio-buffer timing varies. No identical-PCM replay claim.",
+			"trace_capacity": 160,
+			"trace_dropped": 0,
+			"weapon_base_db": -8.0,
+			"weapon_request_trace": [
+				{
+					"gain": -8.08850479125977,
+					"pitch": 1.00278759002686,
+					"scheduled_due": 0.08,
+					"signature": "standard",
+					"timeactual": 0.09656,
+					"variant": 4,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.12371063232422,
+					"pitch": 0.998814940452576,
+					"scheduled_due": 0.13156,
+					"signature": "standard",
+					"timeactual": 0.146327,
+					"variant": 5,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.34086990356445,
+					"pitch": 0.993427872657776,
+					"scheduled_due": 0.181327,
+					"signature": "standard",
+					"timeactual": 0.196588,
+					"variant": 0,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.41325855255127,
+					"pitch": 1.00288379192352,
+					"scheduled_due": 0.231588,
+					"signature": "standard",
+					"timeactual": 0.246017,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.02956867218018,
+					"pitch": 0.996770858764648,
+					"scheduled_due": 0.281017,
+					"signature": "standard",
+					"timeactual": 0.295886,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.3705415725708,
+					"pitch": 0.994328856468201,
+					"scheduled_due": 0.330886,
+					"signature": "standard",
+					"timeactual": 0.345689,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.2377815246582,
+					"pitch": 1.00046098232269,
+					"scheduled_due": 0.380689,
+					"signature": "standard",
+					"timeactual": 0.395526,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.03506565093994,
+					"pitch": 1.00667810440063,
+					"scheduled_due": 0.430526,
+					"signature": "standard",
+					"timeactual": 0.44535,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.29591178894043,
+					"pitch": 1.00799715518951,
+					"scheduled_due": 0.48035,
+					"signature": "standard",
+					"timeactual": 0.495134,
+					"variant": 1,
+					"voicesstolen": 1
+				},
+				{
+					"gain": -8.15024185180664,
+					"pitch": 0.998046815395355,
+					"scheduled_due": 0.530134,
+					"signature": "standard",
+					"timeactual": 0.54502,
+					"variant": 2,
+					"voicesstolen": 2
+				},
+				{
+					"gain": -8.40366744995117,
+					"pitch": 1.00721085071564,
+					"scheduled_due": 0.58002,
+					"signature": "standard",
+					"timeactual": 0.595947,
+					"variant": 5,
+					"voicesstolen": 3
+				},
+				{
+					"gain": -8.41160011291504,
+					"pitch": 0.99943619966507,
+					"scheduled_due": 0.630947,
+					"signature": "standard",
+					"timeactual": 0.644636,
+					"variant": 4,
+					"voicesstolen": 4
+				},
+				{
+					"gain": -8.36561584472656,
+					"pitch": 0.994692265987396,
+					"scheduled_due": 0.679636,
+					"signature": "standard",
+					"timeactual": 0.694516,
+					"variant": 2,
+					"voicesstolen": 5
+				},
+				{
+					"gain": -8.02884101867676,
+					"pitch": 1.00318050384521,
+					"scheduled_due": 0.729516,
+					"signature": "standard",
+					"timeactual": 0.744279,
+					"variant": 5,
+					"voicesstolen": 6
+				},
+				{
+					"gain": -8.40555000305176,
+					"pitch": 0.99321174621582,
+					"scheduled_due": 0.779279,
+					"signature": "standard",
+					"timeactual": 0.794063,
+					"variant": 0,
+					"voicesstolen": 7
+				},
+				{
+					"gain": -8.17084121704102,
+					"pitch": 0.99721497297287,
+					"scheduled_due": 0.829063,
+					"signature": "standard",
+					"timeactual": 0.843934,
+					"variant": 4,
+					"voicesstolen": 8
+				},
+				{
+					"gain": -8.31558227539063,
+					"pitch": 1.00455117225647,
+					"scheduled_due": 0.878934,
+					"signature": "standard",
+					"timeactual": 0.893729,
+					"variant": 5,
+					"voicesstolen": 9
+				},
+				{
+					"gain": -8.0017032623291,
+					"pitch": 1.00734090805054,
+					"scheduled_due": 0.928729,
+					"signature": "standard",
+					"timeactual": 0.943678,
+					"variant": 3,
+					"voicesstolen": 10
+				},
+				{
+					"gain": -8.19338130950928,
+					"pitch": 1.0025372505188,
+					"scheduled_due": 0.978678,
+					"signature": "standard",
+					"timeactual": 0.993381,
+					"variant": 2,
+					"voicesstolen": 11
+				},
+				{
+					"gain": -8.27783107757568,
+					"pitch": 0.997646152973175,
+					"scheduled_due": 1.028381,
+					"signature": "standard",
+					"timeactual": 1.04323,
+					"variant": 0,
+					"voicesstolen": 12
+				},
+				{
+					"gain": -8.37061882019043,
+					"pitch": 0.997667193412781,
+					"scheduled_due": 1.07823,
+					"signature": "standard",
+					"timeactual": 1.093053,
+					"variant": 4,
+					"voicesstolen": 13
+				},
+				{
+					"gain": -8.19901657104492,
+					"pitch": 0.995465278625488,
+					"scheduled_due": 1.128053,
+					"signature": "standard",
+					"timeactual": 1.142906,
+					"variant": 2,
+					"voicesstolen": 14
+				},
+				{
+					"gain": -8.22904777526855,
+					"pitch": 0.998215854167938,
+					"scheduled_due": 1.177906,
+					"signature": "standard",
+					"timeactual": 1.192718,
+					"variant": 0,
+					"voicesstolen": 15
+				},
+				{
+					"gain": -8.27543258666992,
+					"pitch": 0.999147415161133,
+					"scheduled_due": 1.227718,
+					"signature": "standard",
+					"timeactual": 1.242586,
+					"variant": 1,
+					"voicesstolen": 16
+				},
+				{
+					"gain": -8.19822883605957,
+					"pitch": 0.993407487869263,
+					"scheduled_due": 1.277586,
+					"signature": "standard",
+					"timeactual": 1.292398,
+					"variant": 4,
+					"voicesstolen": 17
+				},
+				{
+					"gain": -8.30290603637695,
+					"pitch": 0.996295511722565,
+					"scheduled_due": 1.327398,
+					"signature": "standard",
+					"timeactual": 1.342241,
+					"variant": 5,
+					"voicesstolen": 18
+				},
+				{
+					"gain": -8.21120357513428,
+					"pitch": 0.995797216892242,
+					"scheduled_due": 1.377241,
+					"signature": "standard",
+					"timeactual": 1.392056,
+					"variant": 4,
+					"voicesstolen": 19
+				},
+				{
+					"gain": -8.18369102478027,
+					"pitch": 0.998034417629242,
+					"scheduled_due": 1.427056,
+					"signature": "standard",
+					"timeactual": 1.441884,
+					"variant": 2,
+					"voicesstolen": 20
+				},
+				{
+					"gain": -8.02908992767334,
+					"pitch": 1.00639879703522,
+					"scheduled_due": 1.476884,
+					"signature": "standard",
+					"timeactual": 1.491695,
+					"variant": 3,
+					"voicesstolen": 21
+				},
+				{
+					"gain": -8.31450653076172,
+					"pitch": 1.00353419780731,
+					"scheduled_due": 1.526695,
+					"signature": "standard",
+					"timeactual": 1.541594,
+					"variant": 4,
+					"voicesstolen": 22
+				},
+				{
+					"gain": -8.42143249511719,
+					"pitch": 1.00540542602539,
+					"scheduled_due": 1.576594,
+					"signature": "standard",
+					"timeactual": 1.591578,
+					"variant": 5,
+					"voicesstolen": 23
+				},
+				{
+					"gain": -8.18760871887207,
+					"pitch": 0.998581409454346,
+					"scheduled_due": 1.626578,
+					"signature": "standard",
+					"timeactual": 1.641623,
+					"variant": 0,
+					"voicesstolen": 24
+				},
+				{
+					"gain": -8.10013866424561,
+					"pitch": 0.997399151325226,
+					"scheduled_due": 1.676623,
+					"signature": "standard",
+					"timeactual": 1.691402,
+					"variant": 3,
+					"voicesstolen": 25
+				},
+				{
+					"gain": -8.00784587860107,
+					"pitch": 1.00586748123169,
+					"scheduled_due": 1.726402,
+					"signature": "standard",
+					"timeactual": 1.740859,
+					"variant": 2,
+					"voicesstolen": 26
+				},
+				{
+					"gain": -8.2484245300293,
+					"pitch": 1.00338101387024,
+					"scheduled_due": 1.775859,
+					"signature": "standard",
+					"timeactual": 1.79069,
+					"variant": 0,
+					"voicesstolen": 27
+				},
+				{
+					"gain": -8.37514495849609,
+					"pitch": 0.999079167842865,
+					"scheduled_due": 1.82569,
+					"signature": "standard",
+					"timeactual": 1.840588,
+					"variant": 4,
+					"voicesstolen": 28
+				},
+				{
+					"gain": -8.27876949310303,
+					"pitch": 1.00087881088257,
+					"scheduled_due": 1.875588,
+					"signature": "standard",
+					"timeactual": 1.890346,
+					"variant": 0,
+					"voicesstolen": 29
+				},
+				{
+					"gain": -8.18574333190918,
+					"pitch": 0.997739911079407,
+					"scheduled_due": 1.925346,
+					"signature": "standard",
+					"timeactual": 1.940222,
+					"variant": 1,
+					"voicesstolen": 30
+				},
+				{
+					"gain": -8.37692165374756,
+					"pitch": 0.99313873052597,
+					"scheduled_due": 1.975222,
+					"signature": "standard",
+					"timeactual": 1.989984,
+					"variant": 5,
+					"voicesstolen": 31
+				},
+				{
+					"gain": -8.74802398681641,
+					"pitch": 1.0060076713562,
+					"scheduled_due": 2.024984,
+					"signature": "standard",
+					"timeactual": 2.039827,
+					"variant": 0,
+					"voicesstolen": 32
+				},
+				{
+					"gain": -9.81703853607178,
+					"pitch": 1.00330650806427,
+					"scheduled_due": 2.074827,
+					"signature": "standard",
+					"timeactual": 2.089725,
+					"variant": 1,
+					"voicesstolen": 33
+				},
+				{
+					"gain": -10.0761613845825,
+					"pitch": 1.00661313533783,
+					"scheduled_due": 2.124725,
+					"signature": "standard",
+					"timeactual": 2.139481,
+					"variant": 0,
+					"voicesstolen": 34
+				},
+				{
+					"gain": -10.4174356460571,
+					"pitch": 0.994074583053589,
+					"scheduled_due": 2.174481,
+					"signature": "standard",
+					"timeactual": 2.18935,
+					"variant": 4,
+					"voicesstolen": 35
+				},
+				{
+					"gain": -10.0105743408203,
+					"pitch": 0.996047377586365,
+					"scheduled_due": 2.22435,
+					"signature": "standard",
+					"timeactual": 2.239137,
+					"variant": 5,
+					"voicesstolen": 36
+				},
+				{
+					"gain": -10.1593284606934,
+					"pitch": 1.0019439458847,
+					"scheduled_due": 2.274137,
+					"signature": "standard",
+					"timeactual": 2.28917,
+					"variant": 3,
+					"voicesstolen": 37
+				},
+				{
+					"gain": -10.3740539550781,
+					"pitch": 1.00174331665039,
+					"scheduled_due": 2.32417,
+					"signature": "standard",
+					"timeactual": 2.338769,
+					"variant": 1,
+					"voicesstolen": 38
+				},
+				{
+					"gain": -10.2861375808716,
+					"pitch": 1.00005483627319,
+					"scheduled_due": 2.373769,
+					"signature": "standard",
+					"timeactual": 2.388622,
+					"variant": 2,
+					"voicesstolen": 39
+				},
+				{
+					"gain": -10.1112155914307,
+					"pitch": 1.00308322906494,
+					"scheduled_due": 2.423622,
+					"signature": "standard",
+					"timeactual": 2.438378,
+					"variant": 0,
+					"voicesstolen": 40
+				},
+				{
+					"gain": -10.1031341552734,
+					"pitch": 1.00541305541992,
+					"scheduled_due": 2.473378,
+					"signature": "standard",
+					"timeactual": 2.488295,
+					"variant": 5,
+					"voicesstolen": 41
+				},
+				{
+					"gain": -10.3835945129395,
+					"pitch": 0.992150545120239,
+					"scheduled_due": 2.523295,
+					"signature": "standard",
+					"timeactual": 2.538053,
+					"variant": 0,
+					"voicesstolen": 42
+				},
+				{
+					"gain": -10.1021738052368,
+					"pitch": 0.992433249950409,
+					"scheduled_due": 2.573053,
+					"signature": "standard",
+					"timeactual": 2.587977,
+					"variant": 4,
+					"voicesstolen": 43
+				},
+				{
+					"gain": -10.3928995132446,
+					"pitch": 1.00076115131378,
+					"scheduled_due": 2.622977,
+					"signature": "standard",
+					"timeactual": 2.63778,
+					"variant": 0,
+					"voicesstolen": 44
+				},
+				{
+					"gain": -10.1736602783203,
+					"pitch": 0.998650729656219,
+					"scheduled_due": 2.67278,
+					"signature": "standard",
+					"timeactual": 2.687641,
+					"variant": 3,
+					"voicesstolen": 45
+				},
+				{
+					"gain": -10.0811452865601,
+					"pitch": 0.997280895709991,
+					"scheduled_due": 2.722641,
+					"signature": "standard",
+					"timeactual": 2.737472,
+					"variant": 1,
+					"voicesstolen": 46
+				},
+				{
+					"gain": -9.64785480499268,
+					"pitch": 1.0060555934906,
+					"scheduled_due": 2.772472,
+					"signature": "standard",
+					"timeactual": 2.787255,
+					"variant": 2,
+					"voicesstolen": 47
+				},
+				{
+					"gain": -10.5584678649902,
+					"pitch": 0.89065420627594,
+					"scheduled_due": 2.822255,
+					"signature": "spread",
+					"timeactual": 2.837183,
+					"variant": 5,
+					"voicesstolen": 48
+				},
+				{
+					"gain": -10.548975944519,
+					"pitch": 0.885995447635651,
+					"scheduled_due": 2.872183,
+					"signature": "spread",
+					"timeactual": 2.886875,
+					"variant": 4,
+					"voicesstolen": 49
+				},
+				{
+					"gain": -10.4030914306641,
+					"pitch": 0.884152770042419,
+					"scheduled_due": 2.921875,
+					"signature": "spread",
+					"timeactual": 2.936678,
+					"variant": 2,
+					"voicesstolen": 50
+				},
+				{
+					"gain": -9.95444679260254,
+					"pitch": 0.886475443840027,
+					"scheduled_due": 2.971678,
+					"signature": "spread",
+					"timeactual": 2.986577,
+					"variant": 0,
+					"voicesstolen": 51
+				},
+				{
+					"gain": -9.8877592086792,
+					"pitch": 0.882932484149933,
+					"scheduled_due": 3.021577,
+					"signature": "spread",
+					"timeactual": 3.036393,
+					"variant": 2,
+					"voicesstolen": 52
+				},
+				{
+					"gain": -9.39167881011963,
+					"pitch": 0.870400011539459,
+					"scheduled_due": 3.071393,
+					"signature": "spread",
+					"timeactual": 3.086324,
+					"variant": 3,
+					"voicesstolen": 53
+				},
+				{
+					"gain": -9.49316883087158,
+					"pitch": 0.88861072063446,
+					"scheduled_due": 3.121324,
+					"signature": "spread",
+					"timeactual": 3.136066,
+					"variant": 2,
+					"voicesstolen": 54
+				},
+				{
+					"gain": -9.29457664489746,
+					"pitch": 0.880965828895569,
+					"scheduled_due": 3.171066,
+					"signature": "spread",
+					"timeactual": 3.185905,
+					"variant": 0,
+					"voicesstolen": 55
+				},
+				{
+					"gain": -9.10837841033936,
+					"pitch": 0.888118267059326,
+					"scheduled_due": 3.220905,
+					"signature": "spread",
+					"timeactual": 3.235736,
+					"variant": 1,
+					"voicesstolen": 56
+				},
+				{
+					"gain": -9.03297996520996,
+					"pitch": 0.890550017356873,
+					"scheduled_due": 3.270736,
+					"signature": "spread",
+					"timeactual": 3.285621,
+					"variant": 3,
+					"voicesstolen": 57
+				},
+				{
+					"gain": -9.31426334381104,
+					"pitch": 0.872787892818451,
+					"scheduled_due": 3.320621,
+					"signature": "spread",
+					"timeactual": 3.33541,
+					"variant": 5,
+					"voicesstolen": 58
+				},
+				{
+					"gain": -9.2288064956665,
+					"pitch": 0.890426874160767,
+					"scheduled_due": 3.37041,
+					"signature": "spread",
+					"timeactual": 3.385252,
+					"variant": 2,
+					"voicesstolen": 59
+				},
+				{
+					"gain": -9.7562198638916,
+					"pitch": 0.886326611042023,
+					"scheduled_due": 3.420252,
+					"signature": "spread",
+					"timeactual": 3.435265,
+					"variant": 5,
+					"voicesstolen": 60
+				},
+				{
+					"gain": -10.9910097122192,
+					"pitch": 0.881055891513824,
+					"scheduled_due": 3.470265,
+					"signature": "spread",
+					"timeactual": 3.484875,
+					"variant": 1,
+					"voicesstolen": 61
+				},
+				{
+					"gain": -11.1046657562256,
+					"pitch": 0.869167327880859,
+					"scheduled_due": 3.519875,
+					"signature": "spread",
+					"timeactual": 3.534907,
+					"variant": 3,
+					"voicesstolen": 62
+				},
+				{
+					"gain": -11.3517694473267,
+					"pitch": 0.882888436317444,
+					"scheduled_due": 3.569907,
+					"signature": "spread",
+					"timeactual": 3.584476,
+					"variant": 2,
+					"voicesstolen": 63
+				},
+				{
+					"gain": -11.1612749099731,
+					"pitch": 0.873557686805725,
+					"scheduled_due": 3.619476,
+					"signature": "spread",
+					"timeactual": 3.63442,
+					"variant": 4,
+					"voicesstolen": 64
+				},
+				{
+					"gain": -11.4415597915649,
+					"pitch": 0.869684994220734,
+					"scheduled_due": 3.66942,
+					"signature": "spread",
+					"timeactual": 3.6842,
+					"variant": 5,
+					"voicesstolen": 65
+				},
+				{
+					"gain": -11.2425661087036,
+					"pitch": 0.869202733039856,
+					"scheduled_due": 3.7192,
+					"signature": "spread",
+					"timeactual": 3.734046,
+					"variant": 3,
+					"voicesstolen": 66
+				},
+				{
+					"gain": -11.0175151824951,
+					"pitch": 0.870044887065887,
+					"scheduled_due": 3.769046,
+					"signature": "spread",
+					"timeactual": 3.78374,
+					"variant": 0,
+					"voicesstolen": 67
+				},
+				{
+					"gain": -11.147180557251,
+					"pitch": 0.881680607795715,
+					"scheduled_due": 3.81874,
+					"signature": "spread",
+					"timeactual": 3.833678,
+					"variant": 5,
+					"voicesstolen": 68
+				},
+				{
+					"gain": -11.4344635009766,
+					"pitch": 0.891185700893402,
+					"scheduled_due": 3.868678,
+					"signature": "spread",
+					"timeactual": 3.883555,
+					"variant": 3,
+					"voicesstolen": 69
+				},
+				{
+					"gain": -11.0400810241699,
+					"pitch": 0.884781122207642,
+					"scheduled_due": 3.918555,
+					"signature": "spread",
+					"timeactual": 3.933275,
+					"variant": 4,
+					"voicesstolen": 70
+				},
+				{
+					"gain": -11.2731809616089,
+					"pitch": 0.88038045167923,
+					"scheduled_due": 3.968275,
+					"signature": "spread",
+					"timeactual": 3.983169,
+					"variant": 2,
+					"voicesstolen": 71
+				},
+				{
+					"gain": -11.0657749176025,
+					"pitch": 0.87691730260849,
+					"scheduled_due": 4.018169,
+					"signature": "spread",
+					"timeactual": 4.032937,
+					"variant": 5,
+					"voicesstolen": 72
+				},
+				{
+					"gain": -10.9726705551147,
+					"pitch": 0.888467311859131,
+					"scheduled_due": 4.067937,
+					"signature": "spread",
+					"timeactual": 4.082812,
+					"variant": 2,
+					"voicesstolen": 73
+				},
+				{
+					"gain": -10.7580556869507,
+					"pitch": 0.884698688983917,
+					"scheduled_due": 4.117812,
+					"signature": "spread",
+					"timeactual": 4.13262,
+					"variant": 3,
+					"voicesstolen": 74
+				},
+				{
+					"gain": -10.8359050750732,
+					"pitch": 0.869429111480713,
+					"scheduled_due": 4.16762,
+					"signature": "spread",
+					"timeactual": 4.182663,
+					"variant": 1,
+					"voicesstolen": 75
+				},
+				{
+					"gain": -10.6256017684937,
+					"pitch": 0.874064087867737,
+					"scheduled_due": 4.217663,
+					"signature": "spread",
+					"timeactual": 4.232316,
+					"variant": 4,
+					"voicesstolen": 76
+				},
+				{
+					"gain": -10.5990867614746,
+					"pitch": 0.88996422290802,
+					"scheduled_due": 4.267316,
+					"signature": "spread",
+					"timeactual": 4.282171,
+					"variant": 0,
+					"voicesstolen": 77
+				},
+				{
+					"gain": -10.067663192749,
+					"pitch": 0.880656599998474,
+					"scheduled_due": 4.317171,
+					"signature": "spread",
+					"timeactual": 4.33193,
+					"variant": 5,
+					"voicesstolen": 78
+				},
+				{
+					"gain": -10.1009769439697,
+					"pitch": 0.880860805511475,
+					"scheduled_due": 4.36693,
+					"signature": "spread",
+					"timeactual": 4.381764,
+					"variant": 2,
+					"voicesstolen": 79
+				},
+				{
+					"gain": -9.81007385253906,
+					"pitch": 0.885135233402252,
+					"scheduled_due": 4.416764,
+					"signature": "spread",
+					"timeactual": 4.431629,
+					"variant": 3,
+					"voicesstolen": 80
+				},
+				{
+					"gain": -9.52416896820068,
+					"pitch": 0.881203055381775,
+					"scheduled_due": 4.466629,
+					"signature": "spread",
+					"timeactual": 4.481411,
+					"variant": 5,
+					"voicesstolen": 81
+				},
+				{
+					"gain": -9.53756332397461,
+					"pitch": 0.868530809879303,
+					"scheduled_due": 4.516411,
+					"signature": "spread",
+					"timeactual": 4.531334,
+					"variant": 4,
+					"voicesstolen": 82
+				},
+				{
+					"gain": -9.14422130584717,
+					"pitch": 0.891215324401855,
+					"scheduled_due": 4.566334,
+					"signature": "spread",
+					"timeactual": 4.581162,
+					"variant": 0,
+					"voicesstolen": 83
+				},
+				{
+					"gain": -9.30464458465576,
+					"pitch": 0.890421986579895,
+					"scheduled_due": 4.616162,
+					"signature": "spread",
+					"timeactual": 4.631147,
+					"variant": 5,
+					"voicesstolen": 84
+				},
+				{
+					"gain": -9.31464385986328,
+					"pitch": 0.885651230812073,
+					"scheduled_due": 4.666147,
+					"signature": "spread",
+					"timeactual": 4.680896,
+					"variant": 1,
+					"voicesstolen": 85
+				},
+				{
+					"gain": -9.00279521942139,
+					"pitch": 0.870712399482727,
+					"scheduled_due": 4.715896,
+					"signature": "spread",
+					"timeactual": 4.73058,
+					"variant": 0,
+					"voicesstolen": 86
+				},
+				{
+					"gain": -9.35641288757324,
+					"pitch": 0.878678023815155,
+					"scheduled_due": 4.76558,
+					"signature": "spread",
+					"timeactual": 4.780446,
+					"variant": 1,
+					"voicesstolen": 87
+				},
+				{
+					"gain": -9.52909374237061,
+					"pitch": 0.877690017223358,
+					"scheduled_due": 4.815446,
+					"signature": "spread",
+					"timeactual": 4.830236,
+					"variant": 4,
+					"voicesstolen": 88
+				},
+				{
+					"gain": -10.4402141571045,
+					"pitch": 0.886592864990234,
+					"scheduled_due": 4.865236,
+					"signature": "spread",
+					"timeactual": 4.880079,
+					"variant": 1,
+					"voicesstolen": 89
+				},
+				{
+					"gain": -11.0385494232178,
+					"pitch": 0.891628265380859,
+					"scheduled_due": 4.915079,
+					"signature": "spread",
+					"timeactual": 4.930129,
+					"variant": 4,
+					"voicesstolen": 90
+				},
+				{
+					"gain": -11.3757543563843,
+					"pitch": 0.884688675403595,
+					"scheduled_due": 4.965129,
+					"signature": "spread",
+					"timeactual": 4.979738,
+					"variant": 1,
+					"voicesstolen": 91
+				}
+			],
+			"weapon_rng": {
+				"final_state": "528346150452898725",
+				"initial_state": "-8496568517173372688",
+				"seed": 1942
+			},
+			"weapons": {
+				"active": 0,
+				"guard_db": 0.0,
+				"laser_bound": true,
+				"laser_level": 0.0,
+				"pool": 8,
+				"salvos": 99,
+				"signature": "spread",
+				"stolen": 91
+			}
+		},
+		{
+			"cue_request_times": [
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 1.2,
+					"timeactual": 1.208314
+				},
+				{
+					"accepted": true,
+					"kind": "boss",
+					"scheduled_due": 2.0,
+					"timeactual": 2.005524
+				},
+				{
+					"accepted": true,
+					"kind": "radio_important",
+					"scheduled_due": 3.4,
+					"timeactual": 3.400751
+				},
+				{
+					"accepted": true,
+					"kind": "danger",
+					"scheduled_due": 4.8,
+					"timeactual": 4.812581
+				},
+				{
+					"accepted": true,
+					"kind": "reward",
+					"scheduled_due": 6.5,
+					"timeactual": 6.506832
+				}
+			],
+			"duck_max_db": 4.0,
+			"duration": 8.0,
+			"events": {
+				"boss:2.0": true,
+				"danger:4.8": true,
+				"radio_important:3.4": true,
+				"reward:1.2": true,
+				"reward:6.5": true
+			},
+			"guard_max_db": 2.0,
+			"laser_request_times": [
+				{
+					"active": true,
+					"scheduled_due": 5.0,
+					"timeactual": 5.011823
+				},
+				{
+					"active": false,
+					"scheduled_due": 7.0,
+					"timeactual": 7.005337
+				}
+			],
+			"music": {
+				"cue_voices": 2,
+				"duck_db": 0.0,
+				"duck_phase": 0,
+				"events": 5,
+				"guard_db": 0.0,
+				"history": 5,
+				"mode": "boss",
+				"music_gain_sum": 1.0,
+				"music_voices": 2,
+				"pending_mode": "",
+				"preemptions": 0,
+				"priority": 0,
+				"suppressed": 0
+			},
+			"path": "C:\\ChatGPT\\1942\\tools\\review\\audio-1.9-seeded-final-minus8/audio-priority-user-sliders.wav",
+			"peak_dbfs": -5.26650764908147,
+			"peak_pcm16": 17870,
+			"profile": {
+				"effects": 0.68,
+				"id": "user-sliders",
+				"music": 0.37
+			},
+			"quarter_second_windows": [
+				{
+					"peak_dbfs": -11.1654760910974,
+					"rms_dbfs": -23.6024956016278,
+					"start_seconds": 0.0
+				},
+				{
+					"peak_dbfs": -8.43986454922229,
+					"rms_dbfs": -20.2461103081716,
+					"start_seconds": 0.25
+				},
+				{
+					"peak_dbfs": -5.71536185284084,
+					"rms_dbfs": -18.806770115503,
+					"start_seconds": 0.5
+				},
+				{
+					"peak_dbfs": -5.59489552508527,
+					"rms_dbfs": -18.0844262805004,
+					"start_seconds": 0.75
+				},
+				{
+					"peak_dbfs": -7.1828627093129,
+					"rms_dbfs": -19.0986265407435,
+					"start_seconds": 1.0
+				},
+				{
+					"peak_dbfs": -6.27013743116135,
+					"rms_dbfs": -18.2746956738658,
+					"start_seconds": 1.25
+				},
+				{
+					"peak_dbfs": -7.230872996417,
+					"rms_dbfs": -19.4529387504274,
+					"start_seconds": 1.5
+				},
+				{
+					"peak_dbfs": -5.26650764908147,
+					"rms_dbfs": -17.2046653528639,
+					"start_seconds": 1.75
+				},
+				{
+					"peak_dbfs": -7.69524881955372,
+					"rms_dbfs": -19.4526602279463,
+					"start_seconds": 2.0
+				},
+				{
+					"peak_dbfs": -6.27777913685962,
+					"rms_dbfs": -18.1970630135239,
+					"start_seconds": 2.25
+				},
+				{
+					"peak_dbfs": -8.07232713621742,
+					"rms_dbfs": -19.5041244552903,
+					"start_seconds": 2.5
+				},
+				{
+					"peak_dbfs": -9.54216002612223,
+					"rms_dbfs": -20.3357836631966,
+					"start_seconds": 2.75
+				},
+				{
+					"peak_dbfs": -5.86768184742263,
+					"rms_dbfs": -18.0781403503659,
+					"start_seconds": 3.0
+				},
+				{
+					"peak_dbfs": -7.77987643055827,
+					"rms_dbfs": -19.2583763547651,
+					"start_seconds": 3.25
+				},
+				{
+					"peak_dbfs": -6.15469602308303,
+					"rms_dbfs": -18.4156758018628,
+					"start_seconds": 3.5
+				},
+				{
+					"peak_dbfs": -7.08103964827842,
+					"rms_dbfs": -19.7244646792417,
+					"start_seconds": 3.75
+				},
+				{
+					"peak_dbfs": -6.80224212335396,
+					"rms_dbfs": -19.0874342822923,
+					"start_seconds": 4.0
+				},
+				{
+					"peak_dbfs": -5.83492742874365,
+					"rms_dbfs": -18.1714619660931,
+					"start_seconds": 4.25
+				},
+				{
+					"peak_dbfs": -8.43916415897572,
+					"rms_dbfs": -19.5942238589673,
+					"start_seconds": 4.5
+				},
+				{
+					"peak_dbfs": -6.61233202052729,
+					"rms_dbfs": -18.6447830280749,
+					"start_seconds": 4.75
+				},
+				{
+					"peak_dbfs": -7.32892966062341,
+					"rms_dbfs": -20.5766502984337,
+					"start_seconds": 5.0
+				},
+				{
+					"peak_dbfs": -9.82174861212872,
+					"rms_dbfs": -20.0902792287758,
+					"start_seconds": 5.25
+				},
+				{
+					"peak_dbfs": -7.05412703448605,
+					"rms_dbfs": -18.9509202594267,
+					"start_seconds": 5.5
+				},
+				{
+					"peak_dbfs": -8.48973716727973,
+					"rms_dbfs": -20.2481072647623,
+					"start_seconds": 5.75
+				},
+				{
+					"peak_dbfs": -6.00047774331901,
+					"rms_dbfs": -18.614390071442,
+					"start_seconds": 6.0
+				},
+				{
+					"peak_dbfs": -10.0076744189714,
+					"rms_dbfs": -20.8265963304924,
+					"start_seconds": 6.25
+				},
+				{
+					"peak_dbfs": -8.60033275085457,
+					"rms_dbfs": -18.612663912716,
+					"start_seconds": 6.5
+				},
+				{
+					"peak_dbfs": -10.3350955329612,
+					"rms_dbfs": -20.3387236563894,
+					"start_seconds": 6.75
+				},
+				{
+					"peak_dbfs": -8.06561573916117,
+					"rms_dbfs": -18.9749961981291,
+					"start_seconds": 7.0
+				},
+				{
+					"peak_dbfs": -8.01211043629388,
+					"rms_dbfs": -19.4298262601292,
+					"start_seconds": 7.25
+				},
+				{
+					"peak_dbfs": -9.80779932720278,
+					"rms_dbfs": -20.1679087240665,
+					"start_seconds": 7.5
+				},
+				{
+					"peak_dbfs": -7.61780715074186,
+					"rms_dbfs": -19.0826303758381,
+					"start_seconds": 7.75
+				}
+			],
+			"request_timings": {
+				"bomber_gun": {
+					"accepted": 68,
+					"delay_max_ms": 15.144,
+					"delay_min_ms": 5.8559999999952,
+					"delay_sum_ms": 434.968999999789,
+					"first_timeactual": 0.195144,
+					"last_timeactual": 7.984969,
+					"requests": 68
+				},
+				"enemy_gun": {
+					"accepted": 160,
+					"delay_max_ms": 5.57099999999444,
+					"delay_min_ms": 2.296,
+					"delay_sum_ms": 769.968999999533,
+					"first_timeactual": 0.062296,
+					"last_timeactual": 7.984969,
+					"requests": 160
+				},
+				"explosion": {
+					"accepted": 18,
+					"delay_max_ms": 12.1989999999981,
+					"delay_min_ms": 4.28800000000001,
+					"delay_sum_ms": 205.707999999953,
+					"first_timeactual": 0.444288,
+					"last_timeactual": 7.785708,
+					"requests": 18
+				},
+				"ground_volley": {
+					"accepted": 80,
+					"delay_max_ms": 12.045,
+					"delay_min_ms": 9.13999999999504,
+					"delay_sum_ms": 1564.96899999952,
+					"first_timeactual": 0.112045,
+					"last_timeactual": 7.984969,
+					"requests": 159
+				},
+				"player_salvo": {
+					"accepted": 99,
+					"delay_max_ms": 15.5,
+					"delay_min_ms": 14.4449999999989,
+					"delay_sum_ms": 1468.66799999987,
+					"first_timeactual": 0.0955,
+					"last_timeactual": 4.978668,
+					"requests": 99
+				}
+			},
+			"rms_dbfs": -19.2134181890684,
+			"samples": 768000,
+			"saturated_samples": 0,
+			"timing_limit": "Fixed RNG sequence per profile; frame/audio-buffer timing varies. No identical-PCM replay claim.",
+			"trace_capacity": 160,
+			"trace_dropped": 0,
+			"weapon_base_db": -8.0,
+			"weapon_request_trace": [
+				{
+					"gain": -8.08850479125977,
+					"pitch": 1.00278759002686,
+					"scheduled_due": 0.08,
+					"signature": "standard",
+					"timeactual": 0.0955,
+					"variant": 4,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.12371063232422,
+					"pitch": 0.998814940452576,
+					"scheduled_due": 0.1305,
+					"signature": "standard",
+					"timeactual": 0.145326,
+					"variant": 5,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.34086990356445,
+					"pitch": 0.993427872657776,
+					"scheduled_due": 0.180326,
+					"signature": "standard",
+					"timeactual": 0.195144,
+					"variant": 0,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.41325855255127,
+					"pitch": 1.00288379192352,
+					"scheduled_due": 0.230144,
+					"signature": "standard",
+					"timeactual": 0.244914,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.02956867218018,
+					"pitch": 0.996770858764648,
+					"scheduled_due": 0.279914,
+					"signature": "standard",
+					"timeactual": 0.294752,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.3705415725708,
+					"pitch": 0.994328856468201,
+					"scheduled_due": 0.329752,
+					"signature": "standard",
+					"timeactual": 0.344706,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.2377815246582,
+					"pitch": 1.00046098232269,
+					"scheduled_due": 0.379706,
+					"signature": "standard",
+					"timeactual": 0.394481,
+					"variant": 3,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.03506565093994,
+					"pitch": 1.00667810440063,
+					"scheduled_due": 0.429481,
+					"signature": "standard",
+					"timeactual": 0.444288,
+					"variant": 2,
+					"voicesstolen": 0
+				},
+				{
+					"gain": -8.29591178894043,
+					"pitch": 1.00799715518951,
+					"scheduled_due": 0.479288,
+					"signature": "standard",
+					"timeactual": 0.49406,
+					"variant": 1,
+					"voicesstolen": 1
+				},
+				{
+					"gain": -8.15024185180664,
+					"pitch": 0.998046815395355,
+					"scheduled_due": 0.52906,
+					"signature": "standard",
+					"timeactual": 0.543921,
+					"variant": 2,
+					"voicesstolen": 2
+				},
+				{
+					"gain": -8.40366744995117,
+					"pitch": 1.00721085071564,
+					"scheduled_due": 0.578921,
+					"signature": "standard",
+					"timeactual": 0.593916,
+					"variant": 5,
+					"voicesstolen": 3
+				},
+				{
+					"gain": -8.41160011291504,
+					"pitch": 0.99943619966507,
+					"scheduled_due": 0.628916,
+					"signature": "standard",
+					"timeactual": 0.643714,
+					"variant": 4,
+					"voicesstolen": 4
+				},
+				{
+					"gain": -8.36561584472656,
+					"pitch": 0.994692265987396,
+					"scheduled_due": 0.678714,
+					"signature": "standard",
+					"timeactual": 0.693578,
+					"variant": 2,
+					"voicesstolen": 5
+				},
+				{
+					"gain": -8.02884101867676,
+					"pitch": 1.00318050384521,
+					"scheduled_due": 0.728578,
+					"signature": "standard",
+					"timeactual": 0.743217,
+					"variant": 5,
+					"voicesstolen": 6
+				},
+				{
+					"gain": -8.40555000305176,
+					"pitch": 0.99321174621582,
+					"scheduled_due": 0.778217,
+					"signature": "standard",
+					"timeactual": 0.793073,
+					"variant": 0,
+					"voicesstolen": 7
+				},
+				{
+					"gain": -8.17084121704102,
+					"pitch": 0.99721497297287,
+					"scheduled_due": 0.828073,
+					"signature": "standard",
+					"timeactual": 0.843072,
+					"variant": 4,
+					"voicesstolen": 8
+				},
+				{
+					"gain": -8.31558227539063,
+					"pitch": 1.00455117225647,
+					"scheduled_due": 0.878072,
+					"signature": "standard",
+					"timeactual": 0.892716,
+					"variant": 5,
+					"voicesstolen": 9
+				},
+				{
+					"gain": -8.0017032623291,
+					"pitch": 1.00734090805054,
+					"scheduled_due": 0.927716,
+					"signature": "standard",
+					"timeactual": 0.942566,
+					"variant": 3,
+					"voicesstolen": 10
+				},
+				{
+					"gain": -8.19338130950928,
+					"pitch": 1.0025372505188,
+					"scheduled_due": 0.977566,
+					"signature": "standard",
+					"timeactual": 0.992418,
+					"variant": 2,
+					"voicesstolen": 11
+				},
+				{
+					"gain": -8.27783107757568,
+					"pitch": 0.997646152973175,
+					"scheduled_due": 1.027418,
+					"signature": "standard",
+					"timeactual": 1.042225,
+					"variant": 0,
+					"voicesstolen": 12
+				},
+				{
+					"gain": -8.37061882019043,
+					"pitch": 0.997667193412781,
+					"scheduled_due": 1.077225,
+					"signature": "standard",
+					"timeactual": 1.091985,
+					"variant": 4,
+					"voicesstolen": 13
+				},
+				{
+					"gain": -8.19901657104492,
+					"pitch": 0.995465278625488,
+					"scheduled_due": 1.126985,
+					"signature": "standard",
+					"timeactual": 1.141855,
+					"variant": 2,
+					"voicesstolen": 14
+				},
+				{
+					"gain": -8.22904777526855,
+					"pitch": 0.998215854167938,
+					"scheduled_due": 1.176855,
+					"signature": "standard",
+					"timeactual": 1.191684,
+					"variant": 0,
+					"voicesstolen": 15
+				},
+				{
+					"gain": -8.27543258666992,
+					"pitch": 0.999147415161133,
+					"scheduled_due": 1.226684,
+					"signature": "standard",
+					"timeactual": 1.24155,
+					"variant": 1,
+					"voicesstolen": 16
+				},
+				{
+					"gain": -8.19822883605957,
+					"pitch": 0.993407487869263,
+					"scheduled_due": 1.27655,
+					"signature": "standard",
+					"timeactual": 1.291334,
+					"variant": 4,
+					"voicesstolen": 17
+				},
+				{
+					"gain": -8.30290603637695,
+					"pitch": 0.996295511722565,
+					"scheduled_due": 1.326334,
+					"signature": "standard",
+					"timeactual": 1.341296,
+					"variant": 5,
+					"voicesstolen": 18
+				},
+				{
+					"gain": -8.21120357513428,
+					"pitch": 0.995797216892242,
+					"scheduled_due": 1.376296,
+					"signature": "standard",
+					"timeactual": 1.391008,
+					"variant": 4,
+					"voicesstolen": 19
+				},
+				{
+					"gain": -8.18369102478027,
+					"pitch": 0.998034417629242,
+					"scheduled_due": 1.426008,
+					"signature": "standard",
+					"timeactual": 1.440824,
+					"variant": 2,
+					"voicesstolen": 20
+				},
+				{
+					"gain": -8.02908992767334,
+					"pitch": 1.00639879703522,
+					"scheduled_due": 1.475824,
+					"signature": "standard",
+					"timeactual": 1.490638,
+					"variant": 3,
+					"voicesstolen": 21
+				},
+				{
+					"gain": -8.31450653076172,
+					"pitch": 1.00353419780731,
+					"scheduled_due": 1.525638,
+					"signature": "standard",
+					"timeactual": 1.540472,
+					"variant": 4,
+					"voicesstolen": 22
+				},
+				{
+					"gain": -8.42143249511719,
+					"pitch": 1.00540542602539,
+					"scheduled_due": 1.575472,
+					"signature": "standard",
+					"timeactual": 1.590402,
+					"variant": 5,
+					"voicesstolen": 23
+				},
+				{
+					"gain": -8.18760871887207,
+					"pitch": 0.998581409454346,
+					"scheduled_due": 1.625402,
+					"signature": "standard",
+					"timeactual": 1.640257,
+					"variant": 0,
+					"voicesstolen": 24
+				},
+				{
+					"gain": -8.10013866424561,
+					"pitch": 0.997399151325226,
+					"scheduled_due": 1.675257,
+					"signature": "standard",
+					"timeactual": 1.689964,
+					"variant": 3,
+					"voicesstolen": 25
+				},
+				{
+					"gain": -8.00784587860107,
+					"pitch": 1.00586748123169,
+					"scheduled_due": 1.724964,
+					"signature": "standard",
+					"timeactual": 1.739825,
+					"variant": 2,
+					"voicesstolen": 26
+				},
+				{
+					"gain": -8.2484245300293,
+					"pitch": 1.00338101387024,
+					"scheduled_due": 1.774825,
+					"signature": "standard",
+					"timeactual": 1.78978,
+					"variant": 0,
+					"voicesstolen": 27
+				},
+				{
+					"gain": -8.37514495849609,
+					"pitch": 0.999079167842865,
+					"scheduled_due": 1.82478,
+					"signature": "standard",
+					"timeactual": 1.839595,
+					"variant": 4,
+					"voicesstolen": 28
+				},
+				{
+					"gain": -8.27876949310303,
+					"pitch": 1.00087881088257,
+					"scheduled_due": 1.874595,
+					"signature": "standard",
+					"timeactual": 1.889517,
+					"variant": 0,
+					"voicesstolen": 29
+				},
+				{
+					"gain": -8.18574333190918,
+					"pitch": 0.997739911079407,
+					"scheduled_due": 1.924517,
+					"signature": "standard",
+					"timeactual": 1.93924,
+					"variant": 1,
+					"voicesstolen": 30
+				},
+				{
+					"gain": -8.37692165374756,
+					"pitch": 0.99313873052597,
+					"scheduled_due": 1.97424,
+					"signature": "standard",
+					"timeactual": 1.989276,
+					"variant": 5,
+					"voicesstolen": 31
+				},
+				{
+					"gain": -8.75329208374023,
+					"pitch": 1.0060076713562,
+					"scheduled_due": 2.024276,
+					"signature": "standard",
+					"timeactual": 2.038913,
+					"variant": 0,
+					"voicesstolen": 32
+				},
+				{
+					"gain": -9.81863689422607,
+					"pitch": 1.00330650806427,
+					"scheduled_due": 2.073913,
+					"signature": "standard",
+					"timeactual": 2.088623,
+					"variant": 1,
+					"voicesstolen": 33
+				},
+				{
+					"gain": -10.0761613845825,
+					"pitch": 1.00661313533783,
+					"scheduled_due": 2.123623,
+					"signature": "standard",
+					"timeactual": 2.13845,
+					"variant": 0,
+					"voicesstolen": 34
+				},
+				{
+					"gain": -10.4174356460571,
+					"pitch": 0.994074583053589,
+					"scheduled_due": 2.17345,
+					"signature": "standard",
+					"timeactual": 2.188355,
+					"variant": 4,
+					"voicesstolen": 35
+				},
+				{
+					"gain": -10.0105743408203,
+					"pitch": 0.996047377586365,
+					"scheduled_due": 2.223355,
+					"signature": "standard",
+					"timeactual": 2.238083,
+					"variant": 5,
+					"voicesstolen": 36
+				},
+				{
+					"gain": -10.1593284606934,
+					"pitch": 1.0019439458847,
+					"scheduled_due": 2.273083,
+					"signature": "standard",
+					"timeactual": 2.287939,
+					"variant": 3,
+					"voicesstolen": 37
+				},
+				{
+					"gain": -10.3740539550781,
+					"pitch": 1.00174331665039,
+					"scheduled_due": 2.322939,
+					"signature": "standard",
+					"timeactual": 2.337803,
+					"variant": 1,
+					"voicesstolen": 38
+				},
+				{
+					"gain": -10.2861375808716,
+					"pitch": 1.00005483627319,
+					"scheduled_due": 2.372803,
+					"signature": "standard",
+					"timeactual": 2.387952,
+					"variant": 2,
+					"voicesstolen": 39
+				},
+				{
+					"gain": -10.1112155914307,
+					"pitch": 1.00308322906494,
+					"scheduled_due": 2.422952,
+					"signature": "standard",
+					"timeactual": 2.437397,
+					"variant": 0,
+					"voicesstolen": 40
+				},
+				{
+					"gain": -10.1031341552734,
+					"pitch": 1.00541305541992,
+					"scheduled_due": 2.472397,
+					"signature": "standard",
+					"timeactual": 2.487266,
+					"variant": 5,
+					"voicesstolen": 41
+				},
+				{
+					"gain": -10.3835945129395,
+					"pitch": 0.992150545120239,
+					"scheduled_due": 2.522266,
+					"signature": "standard",
+					"timeactual": 2.53704,
+					"variant": 0,
+					"voicesstolen": 42
+				},
+				{
+					"gain": -10.1021089553833,
+					"pitch": 0.992433249950409,
+					"scheduled_due": 2.57204,
+					"signature": "standard",
+					"timeactual": 2.587036,
+					"variant": 4,
+					"voicesstolen": 43
+				},
+				{
+					"gain": -10.392725944519,
+					"pitch": 1.00076115131378,
+					"scheduled_due": 2.622036,
+					"signature": "standard",
+					"timeactual": 2.63673,
+					"variant": 0,
+					"voicesstolen": 44
+				},
+				{
+					"gain": -10.1735687255859,
+					"pitch": 0.998650729656219,
+					"scheduled_due": 2.67173,
+					"signature": "standard",
+					"timeactual": 2.686504,
+					"variant": 3,
+					"voicesstolen": 45
+				},
+				{
+					"gain": -10.0811004638672,
+					"pitch": 0.997280895709991,
+					"scheduled_due": 2.721504,
+					"signature": "standard",
+					"timeactual": 2.73631,
+					"variant": 1,
+					"voicesstolen": 46
+				},
+				{
+					"gain": -9.64751148223877,
+					"pitch": 1.0060555934906,
+					"scheduled_due": 2.77131,
+					"signature": "standard",
+					"timeactual": 2.786173,
+					"variant": 2,
+					"voicesstolen": 47
+				},
+				{
+					"gain": -10.5583438873291,
+					"pitch": 0.89065420627594,
+					"scheduled_due": 2.821173,
+					"signature": "spread",
+					"timeactual": 2.836037,
+					"variant": 5,
+					"voicesstolen": 48
+				},
+				{
+					"gain": -10.5484600067139,
+					"pitch": 0.885995447635651,
+					"scheduled_due": 2.871037,
+					"signature": "spread",
+					"timeactual": 2.88582,
+					"variant": 4,
+					"voicesstolen": 49
+				},
+				{
+					"gain": -10.401930809021,
+					"pitch": 0.884152770042419,
+					"scheduled_due": 2.92082,
+					"signature": "spread",
+					"timeactual": 2.935772,
+					"variant": 2,
+					"voicesstolen": 50
+				},
+				{
+					"gain": -9.95427227020264,
+					"pitch": 0.886475443840027,
+					"scheduled_due": 2.970772,
+					"signature": "spread",
+					"timeactual": 2.985442,
+					"variant": 0,
+					"voicesstolen": 51
+				},
+				{
+					"gain": -9.8873929977417,
+					"pitch": 0.882932484149933,
+					"scheduled_due": 3.020442,
+					"signature": "spread",
+					"timeactual": 3.035311,
+					"variant": 2,
+					"voicesstolen": 52
+				},
+				{
+					"gain": -9.3916015625,
+					"pitch": 0.870400011539459,
+					"scheduled_due": 3.070311,
+					"signature": "spread",
+					"timeactual": 3.08517,
+					"variant": 3,
+					"voicesstolen": 53
+				},
+				{
+					"gain": -9.49279499053955,
+					"pitch": 0.88861072063446,
+					"scheduled_due": 3.12017,
+					"signature": "spread",
+					"timeactual": 3.135025,
+					"variant": 2,
+					"voicesstolen": 54
+				},
+				{
+					"gain": -9.29445648193359,
+					"pitch": 0.880965828895569,
+					"scheduled_due": 3.170025,
+					"signature": "spread",
+					"timeactual": 3.18479,
+					"variant": 0,
+					"voicesstolen": 55
+				},
+				{
+					"gain": -9.10832500457764,
+					"pitch": 0.888118267059326,
+					"scheduled_due": 3.21979,
+					"signature": "spread",
+					"timeactual": 3.234615,
+					"variant": 1,
+					"voicesstolen": 56
+				},
+				{
+					"gain": -9.03297996520996,
+					"pitch": 0.890550017356873,
+					"scheduled_due": 3.269615,
+					"signature": "spread",
+					"timeactual": 3.284715,
+					"variant": 3,
+					"voicesstolen": 57
+				},
+				{
+					"gain": -9.31426334381104,
+					"pitch": 0.872787892818451,
+					"scheduled_due": 3.319715,
+					"signature": "spread",
+					"timeactual": 3.334295,
+					"variant": 5,
+					"voicesstolen": 58
+				},
+				{
+					"gain": -9.2288064956665,
+					"pitch": 0.890426874160767,
+					"scheduled_due": 3.369295,
+					"signature": "spread",
+					"timeactual": 3.384124,
+					"variant": 2,
+					"voicesstolen": 59
+				},
+				{
+					"gain": -9.75112628936768,
+					"pitch": 0.886326611042023,
+					"scheduled_due": 3.419124,
+					"signature": "spread",
+					"timeactual": 3.433932,
+					"variant": 5,
+					"voicesstolen": 60
+				},
+				{
+					"gain": -10.9897947311401,
+					"pitch": 0.881055891513824,
+					"scheduled_due": 3.468932,
+					"signature": "spread",
+					"timeactual": 3.483739,
+					"variant": 1,
+					"voicesstolen": 61
+				},
+				{
+					"gain": -11.1046657562256,
+					"pitch": 0.869167327880859,
+					"scheduled_due": 3.518739,
+					"signature": "spread",
+					"timeactual": 3.533653,
+					"variant": 3,
+					"voicesstolen": 62
+				},
+				{
+					"gain": -11.3517694473267,
+					"pitch": 0.882888436317444,
+					"scheduled_due": 3.568653,
+					"signature": "spread",
+					"timeactual": 3.583438,
+					"variant": 2,
+					"voicesstolen": 63
+				},
+				{
+					"gain": -11.1612749099731,
+					"pitch": 0.873557686805725,
+					"scheduled_due": 3.618438,
+					"signature": "spread",
+					"timeactual": 3.633237,
+					"variant": 4,
+					"voicesstolen": 64
+				},
+				{
+					"gain": -11.4415597915649,
+					"pitch": 0.869684994220734,
+					"scheduled_due": 3.668237,
+					"signature": "spread",
+					"timeactual": 3.683157,
+					"variant": 5,
+					"voicesstolen": 65
+				},
+				{
+					"gain": -11.2425661087036,
+					"pitch": 0.869202733039856,
+					"scheduled_due": 3.718157,
+					"signature": "spread",
+					"timeactual": 3.732931,
+					"variant": 3,
+					"voicesstolen": 66
+				},
+				{
+					"gain": -11.0175151824951,
+					"pitch": 0.870044887065887,
+					"scheduled_due": 3.767931,
+					"signature": "spread",
+					"timeactual": 3.782729,
+					"variant": 0,
+					"voicesstolen": 67
+				},
+				{
+					"gain": -11.147180557251,
+					"pitch": 0.881680607795715,
+					"scheduled_due": 3.817729,
+					"signature": "spread",
+					"timeactual": 3.83255,
+					"variant": 5,
+					"voicesstolen": 68
+				},
+				{
+					"gain": -11.4344635009766,
+					"pitch": 0.891185700893402,
+					"scheduled_due": 3.86755,
+					"signature": "spread",
+					"timeactual": 3.88236,
+					"variant": 3,
+					"voicesstolen": 69
+				},
+				{
+					"gain": -11.0400810241699,
+					"pitch": 0.884781122207642,
+					"scheduled_due": 3.91736,
+					"signature": "spread",
+					"timeactual": 3.93223,
+					"variant": 4,
+					"voicesstolen": 70
+				},
+				{
+					"gain": -11.2732028961182,
+					"pitch": 0.88038045167923,
+					"scheduled_due": 3.96723,
+					"signature": "spread",
+					"timeactual": 3.98201,
+					"variant": 2,
+					"voicesstolen": 71
+				},
+				{
+					"gain": -11.0656957626343,
+					"pitch": 0.87691730260849,
+					"scheduled_due": 4.01701,
+					"signature": "spread",
+					"timeactual": 4.031916,
+					"variant": 5,
+					"voicesstolen": 72
+				},
+				{
+					"gain": -10.9725694656372,
+					"pitch": 0.888467311859131,
+					"scheduled_due": 4.066916,
+					"signature": "spread",
+					"timeactual": 4.081777,
+					"variant": 2,
+					"voicesstolen": 73
+				},
+				{
+					"gain": -10.7579622268677,
+					"pitch": 0.884698688983917,
+					"scheduled_due": 4.116777,
+					"signature": "spread",
+					"timeactual": 4.131572,
+					"variant": 3,
+					"voicesstolen": 74
+				},
+				{
+					"gain": -10.836724281311,
+					"pitch": 0.869429111480713,
+					"scheduled_due": 4.166572,
+					"signature": "spread",
+					"timeactual": 4.181357,
+					"variant": 1,
+					"voicesstolen": 75
+				},
+				{
+					"gain": -10.6256895065308,
+					"pitch": 0.874064087867737,
+					"scheduled_due": 4.216357,
+					"signature": "spread",
+					"timeactual": 4.231215,
+					"variant": 4,
+					"voicesstolen": 76
+				},
+				{
+					"gain": -10.5992469787598,
+					"pitch": 0.88996422290802,
+					"scheduled_due": 4.266215,
+					"signature": "spread",
+					"timeactual": 4.281054,
+					"variant": 0,
+					"voicesstolen": 77
+				},
+				{
+					"gain": -10.0678644180298,
+					"pitch": 0.880656599998474,
+					"scheduled_due": 4.316054,
+					"signature": "spread",
+					"timeactual": 4.330804,
+					"variant": 5,
+					"voicesstolen": 78
+				},
+				{
+					"gain": -10.1006526947021,
+					"pitch": 0.880860805511475,
+					"scheduled_due": 4.365804,
+					"signature": "spread",
+					"timeactual": 4.380763,
+					"variant": 2,
+					"voicesstolen": 79
+				},
+				{
+					"gain": -9.81011581420898,
+					"pitch": 0.885135233402252,
+					"scheduled_due": 4.415763,
+					"signature": "spread",
+					"timeactual": 4.430539,
+					"variant": 3,
+					"voicesstolen": 80
+				},
+				{
+					"gain": -9.5238151550293,
+					"pitch": 0.881203055381775,
+					"scheduled_due": 4.465539,
+					"signature": "spread",
+					"timeactual": 4.480436,
+					"variant": 5,
+					"voicesstolen": 81
+				},
+				{
+					"gain": -9.53763771057129,
+					"pitch": 0.868530809879303,
+					"scheduled_due": 4.515436,
+					"signature": "spread",
+					"timeactual": 4.530228,
+					"variant": 4,
+					"voicesstolen": 82
+				},
+				{
+					"gain": -9.14423084259033,
+					"pitch": 0.891215324401855,
+					"scheduled_due": 4.565228,
+					"signature": "spread",
+					"timeactual": 4.580078,
+					"variant": 0,
+					"voicesstolen": 83
+				},
+				{
+					"gain": -9.30478382110596,
+					"pitch": 0.890421986579895,
+					"scheduled_due": 4.615078,
+					"signature": "spread",
+					"timeactual": 4.62992,
+					"variant": 5,
+					"voicesstolen": 84
+				},
+				{
+					"gain": -9.31464385986328,
+					"pitch": 0.885651230812073,
+					"scheduled_due": 4.66492,
+					"signature": "spread",
+					"timeactual": 4.679735,
+					"variant": 1,
+					"voicesstolen": 85
+				},
+				{
+					"gain": -9.00279521942139,
+					"pitch": 0.870712399482727,
+					"scheduled_due": 4.714735,
+					"signature": "spread",
+					"timeactual": 4.72951,
+					"variant": 0,
+					"voicesstolen": 86
+				},
+				{
+					"gain": -9.35641288757324,
+					"pitch": 0.878678023815155,
+					"scheduled_due": 4.76451,
+					"signature": "spread",
+					"timeactual": 4.779595,
+					"variant": 1,
+					"voicesstolen": 87
+				},
+				{
+					"gain": -9.52905750274658,
+					"pitch": 0.877690017223358,
+					"scheduled_due": 4.814595,
+					"signature": "spread",
+					"timeactual": 4.829179,
+					"variant": 4,
+					"voicesstolen": 88
+				},
+				{
+					"gain": -10.4394969940186,
+					"pitch": 0.886592864990234,
+					"scheduled_due": 4.864179,
+					"signature": "spread",
+					"timeactual": 4.878996,
+					"variant": 1,
+					"voicesstolen": 89
+				},
+				{
+					"gain": -11.0377464294434,
+					"pitch": 0.891628265380859,
+					"scheduled_due": 4.913996,
+					"signature": "spread",
+					"timeactual": 4.928802,
+					"variant": 4,
+					"voicesstolen": 90
+				},
+				{
+					"gain": -11.3757543563843,
+					"pitch": 0.884688675403595,
+					"scheduled_due": 4.963802,
+					"signature": "spread",
+					"timeactual": 4.978668,
+					"variant": 1,
+					"voicesstolen": 91
+				}
+			],
+			"weapon_rng": {
+				"final_state": "528346150452898725",
+				"initial_state": "-8496568517173372688",
+				"seed": 1942
+			},
+			"weapons": {
+				"active": 0,
+				"guard_db": 0.0,
+				"laser_bound": true,
+				"laser_level": 0.0,
+				"pool": 8,
+				"salvos": 99,
+				"signature": "spread",
+				"stolen": 91
+			}
+		}
+	],
+	"source_hashes": {
+		"res://assets/audio/engine/merlin-body.wav": "26103ad3738a896a8331623ea0c8c6398fbb1aab0c3f716a742c69cdb84fa2c3",
+		"res://assets/audio/engine/merlin-exhaust.wav": "d461f33011b0aa6d05fca5bd53482a92644409fe8e0026f105fce17ae596a99f",
+		"res://assets/campaign/laser-loop.wav": "d3ad9442eacd724f9883f6cc2b995b0ade0ec63cd8edca1280d03f4bd60949c0",
+		"res://assets/campaign/music/boss.wav": "c54e14378be75da2dfa9970b15be32378805eaa3e412192b48d3cb9f4477814d",
+		"res://assets/campaign/music/flight.wav": "d444ea3ca3f8010330f155010db9815259b5242669a6d88217ee1b85b48214d0",
+		"res://assets/campaign/music/flight2.wav": "b7993357eb393b38453f877381f139470d231abd3b41410a664e12e515fa92c9",
+		"res://assets/campaign/music/radio-cue.wav": "103d2f42594b2a71844acca5b8498b3897e02bc79db855014a3b4884c5e41775"
+	}
+}
