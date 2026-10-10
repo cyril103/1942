@@ -1,6 +1,6 @@
 extends Node3D
 signal scrolled(distance: float)
-## Painted 2D scenery on flat unlit planes, below the 3D player.
+## Shared ocean shading and coast-shaped relief, below the 3D player.
 ## One shared speed scrolls water and islands from top (-Z) to bottom (+Z).
 
 const OCEAN_TEXTURE: Texture2D = preload("res://assets/environment/ocean.png")
@@ -9,6 +9,7 @@ const MILITARY_ATLAS: Texture2D = preload("res://assets/environment/military-isl
 const ARCHIPELAGO_ATLAS: Texture2D = preload("res://assets/environment/archipelago-atlas.png")
 const OCEAN_SHADER: Shader = preload("res://shaders/ocean.gdshader")
 const ISLAND_SHADER: Shader = preload("res://shaders/island.gdshader")
+const RELIEF := preload("res://scripts/island_relief.gd")
 const TILE_SIZE: float = 14.0
 const POOL_SIZE: int = 10
 # A swept navigation envelope includes the full carrier deck and turning bow.
@@ -51,6 +52,9 @@ func _ready() -> void:
 		var island := MeshInstance3D.new()
 		island.name = "Island%02d" % index
 		island.mesh = PlaneMesh.new()
+		(island.mesh as PlaneMesh).subdivide_width = RELIEF.SUBDIVISIONS
+		(island.mesh as PlaneMesh).subdivide_depth = RELIEF.SUBDIVISIONS
+		island.extra_cull_margin = RELIEF.RELIEF_HEIGHT
 		island.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		var material := ShaderMaterial.new()
 		material.shader = ISLAND_SHADER
@@ -182,6 +186,9 @@ func _configure_island(island: MeshInstance3D, at_z: float) -> void:
 	elif variant>=8: atlas = _sector_atlas
 	elif variant>=4: atlas = ARCHIPELAGO_ATLAS
 	material.set_shader_parameter("island_atlas",atlas)
+	material.set_shader_parameter("relief_atlas",RELIEF.texture_for(atlas))
+	material.set_shader_parameter("relief_height",RELIEF.RELIEF_HEIGHT)
+	material.set_shader_parameter("island_size",shape)
 	material.set_shader_parameter("atlas_cell",Vector2(variant%2,(variant%4)/2))
 	material.set_shader_parameter("phase_offset", _random.randf_range(0.0, TAU))
 	material.set_shader_parameter("detail_tint",Color(_random.randf_range(.94,1.04),_random.randf_range(.97,1.03),_random.randf_range(.93,1.03)))
@@ -228,17 +235,20 @@ func configure_sector(mission: Dictionary) -> void:
 	naval_corridor = true
 	_sector_atlas = load("res://assets/campaign/sector-islands.png")
 	_polar_atlas = load("res://assets/environment/polar-archipelago-atlas.png")
-	var sea_tints := {"coral":Color(0.8,1.08,1.0),"convoy":Color(0.75,0.95,0.9),"storm":Color(0.58,0.7,0.8),"jade":Color(0.8,1.1,0.9),"volcanic":Color(0.75,0.72,0.68),"dusk":Color(1.15,0.68,0.57),"arctic":Color(0.77,0.94,1.07),"final":Color(1.1,0.94,0.75)}
+	var sea_tints := {"coral":Color(.86,1.02,1.06),"convoy":Color(.79,.91,1.03),"storm":Color(.66,.77,.88),"jade":Color(.79,1.02,.96),"volcanic":Color(.73,.86,.92),"dusk":Color(.92,.84,.98),"arctic":Color(.74,.93,1.12),"final":Color(.9,1.0,1.03)}
 	var tint: Color = sea_tints[biome]
 	var desaturation := 0.4 if biome in ["storm","volcanic","arctic"] else 0.0
 	ocean_material.set_shader_parameter("ocean_tint",tint)
 	ocean_material.set_shader_parameter("sea_desaturation",desaturation)
+	var reflection := Color(1.0,.57,.29) if biome=="dusk" else Color(.48,.67,.72)
+	ocean_material.set_shader_parameter("reflection_tint",reflection)
 	var next_z := -3.0
 	for island in islands:
 		island.remove_meta("extent")
 	for island in islands:
 		island.material_override.set_shader_parameter("ocean_tint",tint)
 		island.material_override.set_shader_parameter("sea_desaturation",desaturation)
+		island.material_override.set_shader_parameter("reflection_tint",reflection)
 		island.material_override.set_shader_parameter("land_tint",Color(0.65,0.72,0.79) if biome == "storm" else (Color(1.0,0.83,0.65) if biome == "dusk" else Color.WHITE))
 		_configure_island(island,next_z)
 		next_z = island.position.z-_random.randf_range(spacing_range.x,spacing_range.y)

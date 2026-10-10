@@ -1,0 +1,40 @@
+PACIFIC STRIKE ULTIMATE 2.0 — DIRECTION ET PROVENANCE
+10 octobre 2026
+
+La version étend le jeu Godot existant, ses 32 missions, ses avions et ses assets
+originaux. Aucun asset graphique, sonore ou code d'un jeu commercial n'a été copié.
+Aucun téléchargement additionnel n'est nécessaire pour cette version.
+
+Références commerciales consultées :
+Crimzon Clover World EXplosion, page officielle de distribution de l'éditeur :
+https://store.steampowered.com/app/1718160/Crimzon_Clover_World_EXplosion/
+Raiden NOVA, site officiel MOSS :
+https://raiden.mossjp.co.jp/raiden_nova/
+
+Ces références orientent le travail sur la puissance de feu, le risque récompensé,
+la rejouabilité et la distinction des modes. Les règles ci-dessous sont propres
+à Pacific Strike, et ne reproduisent pas les systèmes précis de ces jeux.
+
+CHOIX DE CONCEPTION
+- Motifs déterministes propres aux huit familles, variantes selon phase et salve.
+- Visée et origine figées pendant 0,70 à 1,05 s de télégraphie.
+- Maximum 18 projectiles par motif, salves décalées et pools visuels fixes.
+- Transitions de phase supprimant les tirs et offrant une respiration.
+- Frôlements crédités après passage indemne, à partir du mouvement relatif balayé.
+- Pas de gain de chaîne par frôlement ni de recharge d'une capacité active.
+- Boss Rush isolé, aucun achat permanent ; stock de vies commun et huit victoires
+  nécessaires au record. Les réparations entre duels conservent un rythme soutenu.
+- Motifs, score, chaîne, charge et protection lisibles sans panneau central permanent.
+- Options existantes de flashes, secousses et qualité conservées.
+
+FICHIERS PRINCIPAUX
+game/scripts/campaign/boss_patterns.gd : catalogue de motifs original.
+game/scripts/campaign/boss.gd : télégraphie, salves, phases et points faibles.
+game/scripts/combat.gd : suivi des frôlements dans le pool de projectiles.
+game/scripts/campaign/director.gd : récompenses et fin rapide du Boss Rush.
+game/scripts/campaign/boss_rush.gd : parcours isolé et résultats idempotents.
+game/scripts/campaign/app.gd : accueil, choix du mode, progression et résultats.
+game/scripts/campaign/hud.gd : présentation de vol.
+
+Cette livraison est une version jouable et testée, pas une certification de qualité
+commerciale ni une affirmation de supériorité sur les jeux sortis en 2026.

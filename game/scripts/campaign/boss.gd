@@ -1,6 +1,7 @@
 extends Area3D
 signal defeated
 signal weak_points_neutralized
+const PATTERNS := preload("res://scripts/campaign/boss_patterns.gd")
 const MODELS := {"bomber":"res://assets/enemies/bomber.glb","destroyer":"res://assets/campaign/models/destroyer.glb","squadron":"res://assets/enemies/bomber.glb","fortress":"res://assets/campaign/models/fortress.glb","battleship":"res://assets/campaign/models/battleship.glb","ace":"res://assets/enemies/zero.glb","carrier":"res://assets/campaign/models/carrier.glb","citadel":"res://assets/campaign/models/fortress.glb"}
 const NAMES := {"bomber":"KESTREL • bombardier de commandement","destroyer":"KUROGANE • croiseur lourd","squadron":"RAIDEN • escadre de choc","fortress":"TENRYU • forteresse volante","battleship":"ONYX • cuirassé d'assaut","ace":"AKAI • l'as écarlate","carrier":"SHIRO • porte-avions","citadel":"DAWNBREAKER • dernier rempart"}
 var kind := "bomber"
@@ -28,6 +29,18 @@ var component_visuals: Array[MeshInstance3D] = []
 var component_fires: Array[MeshInstance3D] = []
 var transition_time := 0.0
 var previous_phase := 0
+var attack_label := "APPROCHE"
+var attack_hint := "REPÉREZ LES DEUX POINTS FAIBLES"
+var attack_progress := 0.0
+var attack_state := "arrival"
+var attack_plan: Dictionary = {}
+var pending_rounds: Array[Dictionary] = []
+var burst_age := 0.0
+var warning_duration := .75
+var motion_age := 0.0
+
+func presentation() -> Dictionary:
+	return {"label":attack_label,"hint":attack_hint,"progress":attack_progress,"state":attack_state,"phase":phase}
 
 func component_position(index: int) -> Vector3:
 	return Vector3((-1.0 if index==0 else 1.0)*.65,-1.5,1.8) if naval else Vector3((-1.0 if index==0 else 1.0)*(.65 if kind=="ace" else 1.15),.15,0)
@@ -124,6 +137,42 @@ func _ready() -> void:
 		fire.hide()
 		component_fires.append(fire)
 
+func _hide_warning() -> void:
+	flare.hide()
+
+func _cancel_attack() -> void:
+	telegraph = 0.0
+	attack_progress = 0.0
+	attack_plan.clear()
+	pending_rounds.clear()
+	_hide_warning()
+
+func _plan_attack(director: Node) -> Dictionary:
+	return PATTERNS.build(kind,phase,volley+1,global_position+Vector3(0,.22,1),telegraph_target,int(director.mission.sector),director.balance,component_health)
+
+func _begin_attack(director: Node) -> void:
+	telegraph_target = director.player.global_position
+	attack_plan = _plan_attack(director)
+	attack_label = str(attack_plan.label)
+	attack_hint = str(attack_plan.hint)
+	warning_duration = float(attack_plan.warning)
+	telegraph = warning_duration
+	attack_progress = 0.0
+	attack_state = "charging"
+	# The HUD and this local glow announce the locked attack without drawing
+	# projectile trajectories across the arena. Planning and timing stay intact.
+	flare.show()
+	flare.scale = Vector3.ONE*.4
+
+func _release_rounds(director: Node) -> void:
+	while not pending_rounds.is_empty() and float(pending_rounds[0].delay)<=burst_age+.00001:
+		var round: Dictionary = pending_rounds.pop_front()
+		var component := int(round.component)
+		if component>=0 and component_health[component]<=0: continue
+		var origin: Vector3 = round.origin
+		director.combat._launch_enemy_round(origin,origin+Vector3(round.direction)*10,float(round.speed))
+	if pending_rounds.is_empty(): attack_state = "recovery"
+
 func advance(delta: float, director: Node) -> void:
 	if not alive: return
 	age += delta
@@ -155,72 +204,66 @@ func advance(delta: float, director: Node) -> void:
 	if phase!=previous_phase:
 		previous_phase = phase
 		transition_time = 1.2
-		telegraph = 0
-		flare.hide()
+		_cancel_attack()
+		attack_state = "transition"
+		attack_label = "RECONFIGURATION"
+		attack_hint = "REPLACEZ-VOUS AVANT LA PROCHAINE OFFENSIVE"
+		cooldown = maxf(cooldown,.7)
 		combat.clear_enemy_bullets()
 		director.feedback = "PHASE %d  /  %s" % [phase+1,["APPROCHE","DÉFENSE RENFORCÉE","DERNIÈRE OFFENSIVE"][phase]]
 		director.feedback_time = 2
 	if transition_time>0:
 		transition_time = maxf(0,transition_time-delta)
 		return
+	if not director.player.alive:
+		_cancel_attack()
+		attack_state = "recovery"
+		cooldown = maxf(cooldown,.7)
+		return
+	if telegraph>0:
+		telegraph = maxf(0.0,telegraph-delta)
+		attack_progress = clampf(1.0-telegraph/warning_duration,0.0,1.0)
+		flare.scale = Vector3.ONE*(.4+.7*attack_progress)
+		if telegraph<=0:
+			_fire(director)
+			_hide_warning()
+		return
+	if not pending_rounds.is_empty():
+		burst_age += delta
+		cooldown = maxf(0.0,cooldown-delta)
+		_release_rounds(director)
+		return
+	attack_state = "recovery"
+	attack_progress = 0.0
+	motion_age += delta
 	var frequency := 0.38 if naval else (0.72 if kind == "ace" else 0.48)
 	var amplitude := 2.0 if naval else (5.0 if kind == "ace" else 3.3)
 	var half_width := absf(combat.camera.project_position(Vector2.ZERO,1.0).x)
 	amplitude = minf(half_width*(.16 if naval else .43),4.0 if naval else (12.0 if kind=="ace" else 10.0))
-	position.x = sin((age-4)*frequency)*amplitude
-	position.z = -6.3+sin((age-4)*0.33)*0.65
-	if naval: combat.navigate_naval(self,sin((age-4)*frequency)*1.2)
+	position.x = sin(motion_age*frequency)*amplitude
+	position.z = -6.3+sin(motion_age*0.33)*0.65
+	if naval: combat.navigate_naval(self,sin(motion_age*frequency)*1.2)
 	if not naval:
-		visual.rotation.z = -cos((age-4)*frequency)*0.22
+		visual.rotation.z = -cos(motion_age*frequency)*0.22
 		if kind == "ace":
-			visual.rotation.y = atan2(cos((age-4)*frequency)*amplitude*frequency,4.5)
-			visual.rotation.z = sin((age-4)*frequency)*0.55
-	if telegraph > 0:
-		telegraph -= delta
-		flare.show()
-		flare.scale = Vector3.ONE*(0.4+0.7*(1-telegraph/0.6))
-		if telegraph <= 0:
-			_fire(director)
-			flare.hide()
-	else:
-		cooldown -= delta
-		if cooldown <= 0 and director.player.alive:
-			telegraph = 0.6
-			telegraph_target = director.player.global_position
-			cooldown = (1.55-phase*0.18)*director.combat.enemy_interval_scale
+			visual.rotation.y = atan2(cos(motion_age*frequency)*amplitude*frequency,4.5)
+			visual.rotation.z = sin(motion_age*frequency)*0.55
+	cooldown -= delta
+	if cooldown<=0: _begin_attack(director)
 
 func _fire(director: Node) -> void:
+	if not alive or dying or transition_time>0 or not director.player.alive: return
+	if attack_plan.is_empty(): attack_plan = _plan_attack(director)
 	volley += 1
-	var origin := global_position+Vector3(0,0.22,1.0)
-	var aim := Vector3(telegraph_target.x-origin.x,0,telegraph_target.z-origin.z).normalized()
-	var sector: int = director.mission.sector
-	var count := mini(3+phase*2,int(director.balance.boss_fan))
-	count = maxi(1,count-(1 if component_health[0]==0 else 0)-(1 if component_health[1]==0 else 0))
-	var speed := 6.2+sector*0.25
-	if phase == 2 and volley%3 == 0 and director.balance.boss_ring:
-		# The rotating ring always retains a wide safe gap toward the bottom.
-		for i in range(12):
-			if i in [2,3]: continue
-			var angle := i*TAU/12+sin(volley*0.6)*0.35
-			var direction := Vector3(sin(angle),0,cos(angle))
-			director.combat._launch_enemy_round(origin,origin+direction*10,speed*0.82)
-	else:
-		var sweep := sin(volley*0.8)*0.45 if kind in ["fortress","citadel","carrier"] else 0.0
-		for i in range(count):
-			var angle := (i-(count-1)*0.5)*0.16+sweep
-			director.combat._launch_enemy_round(origin,origin+aim.rotated(Vector3.UP,angle)*10,speed)
-	if kind in ["destroyer","battleship"] and phase >= 1:
-		for side in [-1,1]:
-			if component_health[0 if side<0 else 1]==0: continue
-			var gun_origin := origin+Vector3(side*0.75,0,2.0)
-			for i in range(mini(2+phase,int(director.balance.boss_flank))):
-				var angle: float = side*(0.22+i*0.23)+sin(volley*0.7)*0.2
-				var direction := Vector3(sin(angle),0,cos(angle))
-				director.combat._launch_enemy_round(gun_origin,gun_origin+direction*10,speed*0.8)
-	if kind == "ace" and phase >= 1:
-		for side in [-1,1]:
-			var gun_origin := origin+Vector3(side*0.7,0,0)
-			director.combat._launch_enemy_round(gun_origin,gun_origin+aim*10,speed*1.25)
+	attack_label = str(attack_plan.label)
+	attack_hint = str(attack_plan.hint)
+	pending_rounds.assign(attack_plan.rounds)
+	attack_plan = {}
+	burst_age = 0.0
+	attack_state = "firing"
+	attack_progress = 1.0
+	cooldown = (1.55-phase*.18)*director.combat.enemy_interval_scale
+	_release_rounds(director)
 	if kind in ["squadron","carrier"] and volley%5 == 0: director.spawn_reinforcement()
 
 func take_damage(amount: float) -> void:
@@ -230,6 +273,8 @@ func take_damage(amount: float) -> void:
 	if health == 0:
 		dying = true
 		collision_layer = 0
-		telegraph = 0
-		flare.hide()
+		_cancel_attack()
+		attack_state = "defeated"
+		attack_label = "CIBLE NEUTRALISÉE"
+		attack_hint = ""
 		combat.clear_enemy_bullets()

@@ -22,7 +22,7 @@ func reset() -> void:
 func _default_data() -> Dictionary:
 	var defaults := {"version":VERSION,"unlocked":1,"next_mission":1,"completed":false,"pow_ready":false,"credits":0,"high_score":0,"aircraft":0,"difficulty":1,"upgrades":[0,0,0],"records":{},"settings":{"master":0.8,"music":0.35,"effects":0.8,"fullscreen":true,"shake":true,"flashes":true}}
 	defaults.merge({"run_score":0,"run_lives":3,"power":"none","arcade_records":{},"bindings":{}})
-	defaults.settings.merge({"quality":1,"fps":false,"vsync":true,"short_retry_intro":false})
+	defaults.settings.merge({"quality":1,"fps":false,"vsync":true,"short_retry_intro":false,"auto_fire":false})
 	defaults.merge({"equipment_revision":LOADOUT.EQUIPMENT_REVISION,"owned_modules":[],"equipped_modules":[]})
 	return defaults
 
@@ -65,7 +65,7 @@ func _decode_candidate(parsed: Variant) -> Dictionary:
 		if not str(key).is_valid_int() or str(key).to_int()<1 or str(key).to_int()>32: continue
 		if records[key] is not Dictionary or not _valid_fields(records[key],["score","grade","best_chain"],[],["rank"]): return {}
 	var settings: Dictionary = source.get("settings",{})
-	if not _valid_fields(settings,["master","music","effects","quality"],["fullscreen","shake","flashes","fps","vsync","short_retry_intro"]): return {}
+	if not _valid_fields(settings,["master","music","effects","quality"],["fullscreen","shake","flashes","fps","vsync","short_retry_intro","auto_fire"]): return {}
 	var bindings: Dictionary = source.get("bindings",{})
 	var binding_names := ["move_left","move_right","move_up","move_down","fire","bomb","strike","focus_flight"]
 	for key in bindings:
@@ -103,6 +103,7 @@ func _decode_candidate(parsed: Variant) -> Dictionary:
 	decoded.settings.fps = settings.get("fps",false)
 	decoded.settings.vsync = settings.get("vsync",true)
 	decoded.settings.short_retry_intro = settings.get("short_retry_intro",false)
+	decoded.settings.auto_fire = settings.get("auto_fire",false)
 	for key in bindings:
 		if key in binding_names: decoded.bindings[key] = _bounded_int(bindings[key],1,0x7fffff)
 	for key in arcade_records:

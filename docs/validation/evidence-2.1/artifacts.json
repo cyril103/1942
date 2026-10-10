@@ -1,0 +1,17 @@
+{
+  "version": "2.1.0",
+  "artifacts": [
+    {
+      "path": "dist/PacificStrike/PacificStrike.exe",
+      "bytes": 220245728,
+      "sha256": "4110CD1C7705F9C0568323A727A88F3FD5EDD96B1697A73357E9358477F8C384"
+    },
+    {
+      "path": "dist/PacificStrike-Windows-x64.zip",
+      "bytes": 148822513,
+      "sha256": "C343EF816C845AF7F0C4101EEC84FA7498A81C8C6FEA2EFE3042FE0A82E42612"
+    }
+  ],
+  "windows_package_checks": 30,
+  "runtime_exit_code": 0
+}

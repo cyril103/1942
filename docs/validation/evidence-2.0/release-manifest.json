@@ -1,0 +1,18 @@
+{
+  "engine": "Godot 4.7.2",
+  "platform": "Windows x64",
+  "version": "2.0.0",
+  "package_checks": 30,
+  "artifacts": [
+    {
+      "bytes": 220216328,
+      "sha256": "F9219C637D896EC0811C33954E8ED6288F4E9A1D8EDCC46A4CA2130DF48C9446",
+      "path": "dist/PacificStrike/PacificStrike.exe"
+    },
+    {
+      "bytes": 148800787,
+      "sha256": "C07E3F6E2410BE55EB4B20295637708DAAEE466B14134F6B850BC3C23BCEB6CC",
+      "path": "dist/PacificStrike-Windows-x64.zip"
+    }
+  ]
+}

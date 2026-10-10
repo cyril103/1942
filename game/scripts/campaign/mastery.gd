@@ -1,6 +1,7 @@
 extends RefCounted
 ## Deterministic scoring, independent from frame rate and campaign persistence.
 const RULES := preload("res://scripts/campaign/scoring_rules.gd")
+const GRAZE_POINTS := 25
 var chain := 0
 var best_chain := 0
 var multiplier := 1
@@ -12,6 +13,8 @@ var secondary_kind := "formation"
 var secondary_complete := false
 var cue := ""
 var cue_time := 0.0
+var grazes := 0
+var graze_score := 0
 
 func advance(delta: float) -> void:
 	window = maxf(0,window-delta)
@@ -35,6 +38,13 @@ func hit() -> void:
 	window = 0
 	cue = "CHAÎNE INTERROMPUE"
 	cue_time = 1.5
+
+func graze() -> int:
+	# Dodging contributes a small fixed score, never extends a kill chain or
+	# multiplies indefinitely while leaving an enemy alive.
+	grazes += 1
+	graze_score += GRAZE_POINTS
+	return GRAZE_POINTS
 
 func objective(kind: String) -> int:
 	if secondary_complete or kind!=secondary_kind: return 0

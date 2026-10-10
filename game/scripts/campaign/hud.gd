@@ -10,10 +10,16 @@ var previous_armor := 1.0
 var jam_badge: PanelContainer
 var jam_label: Label
 var jam_scale := -1.0
+var boss_identity := 0
+var boss_intro_time := 0.0
+var boss_health_trail := 1.0
+var last_multiplier := 1
+var combo_emphasis := 0.0
 const FONT := preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 const COMMANDS := preload("res://scripts/campaign/command_labels.gd")
 const RULES := preload("res://scripts/campaign/scoring_rules.gd")
 const READABILITY := preload("res://scripts/campaign/readability_policy.gd")
+const PRESENTATION := preload("res://scripts/campaign/hud_presentation.gd")
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -57,8 +63,30 @@ func _process(delta: float) -> void:
 	if armor_hold <= 0: armor_trail = move_toward(armor_trail,armor,delta*.8)
 	weather.position = cockpit.play_rect.position
 	weather.size = cockpit.play_rect.size
+	_update_presentation(delta)
 	_update_jam_status()
 	queue_redraw()
+
+func _update_presentation(delta: float) -> void:
+	# These local cues never stop flight, change score, or advance boss mechanics.
+	combo_emphasis = maxf(0, combo_emphasis - delta)
+	var multiplier := int(director.mastery.multiplier)
+	if multiplier > last_multiplier: combo_emphasis = .55
+	last_multiplier = multiplier
+	boss_intro_time = maxf(0, boss_intro_time - delta)
+	if not is_instance_valid(director.boss) or not director.boss.alive:
+		boss_intro_time = 0
+		return
+	var boss = director.boss
+	if boss_identity != boss.get_instance_id():
+		boss_identity = boss.get_instance_id()
+		boss_intro_time = PRESENTATION.INTRO_SECONDS if boss.age < 4 else 0.0
+		boss_health_trail = float(boss.health) / maxf(1, boss.max_health)
+	var ratio := float(boss.health) / maxf(1, boss.max_health)
+	boss_health_trail = move_toward(boss_health_trail, ratio, delta * .35)
+
+func _boss_alert_feedback() -> bool:
+	return is_instance_valid(director.boss) and director.boss.alive and director.feedback.begins_with("ALERTE  /  ")
 
 func _update_jam_status() -> void:
 	var raid = director.assault
@@ -93,9 +121,11 @@ func _draw() -> void:
 	var w := cockpit.size.x
 	var c = director.combat
 	var gold := Color("efcd88")
+	var rush: bool = bool(director.get("boss_rush"))
 	draw_rect(Rect2(0,0,w,64*u),Color("071720"))
 	draw_line(Vector2(0,63*u),Vector2(w,63*u),Color("68756c"),u)
-	text_at("%02d / 32  •  %s" % [director.mission.id,director.mission.region.to_upper()],Vector2(20*u,24*u),20*u,gold,w*.30)
+	var mission_label := "BOSS RUSH  •  DUEL %02d / 08" % (int(director.mission.sector)+1) if rush else "%02d / 32  •  %s" % [director.mission.id,director.mission.region.to_upper()]
+	text_at(mission_label,Vector2(20*u,24*u),20*u,gold,w*.30)
 	text_at(director.mission.title,Vector2(20*u,50*u),25*u,Color.WHITE,w*.30)
 	text_at("SCORE TOTAL",Vector2(w*.33,22*u),17*u,gold)
 	text_at("%08d" % c.score,Vector2(w*.33,51*u),30*u,Color.WHITE)
@@ -120,20 +150,23 @@ func _draw() -> void:
 		draw_texture_rect(load("res://assets/campaign/icons/"+power+".svg"),Rect2(14*u,bottom+5*u,34*u,34*u),false)
 	text_at({"none":"TIR STANDARD","spread":"MULTI-TIR","laser":"LASER","life":"VIE +1  •  STANDARD"}[power],Vector2(60*u,bottom+29*u),24*u,Color.WHITE)
 	text_at("BOMBES  %d  / %s" % [director.bombs,COMMANDS.hint("bomb")],Vector2(w*.24,bottom+29*u),21*u,gold,w*.22)
-	text_at("%s  %d%% / %s" % [["SURCHARGE","POURSUITE","BASTION"][director.profile.data.aircraft],int(director.charge),COMMANDS.hint("strike")],Vector2(w*.48,bottom+25*u),21*u,Color("95ecff"),w*.27)
+	var ready: bool = director.charge >= 100
+	var charge_label: String = ["SURCHARGE","POURSUITE","BASTION"][director.profile.data.aircraft]
+	var charge_value := "PRÊTE" if ready else "%d%%" % int(director.charge)
+	text_at("%s  %s / %s" % [charge_label,charge_value,COMMANDS.hint("strike")],Vector2(w*.48,bottom+25*u),21*u,PRESENTATION.IVORY if ready else Color("95ecff"),w*.27)
 	var charge_rect := Rect2(w*.48,bottom+34*u,w*.27,3*u)
 	draw_rect(charge_rect,Color("233f4b"))
-	draw_rect(Rect2(charge_rect.position,Vector2(charge_rect.size.x*director.charge/100.0,charge_rect.size.y)),Color("68dced"))
+	draw_rect(Rect2(charge_rect.position,Vector2(charge_rect.size.x*director.charge/100.0,charge_rect.size.y)),PRESENTATION.AMBER if ready else Color("68dced"))
+	for tick in range(1,10):
+		var tick_at := charge_rect.position + Vector2(charge_rect.size.x * tick / 10.0, 0)
+		draw_line(tick_at, tick_at + Vector2(0,charge_rect.size.y),PRESENTATION.INK,2*u)
 	text_at(COMMANDS.hint("focus_flight")+"  PRÉCISION",Vector2(w*.77,bottom+18*u),17*u,Color("9aadb8"),w*.22)
 	text_at(COMMANDS.hint("quit_game")+"  PAUSE",Vector2(w*.77,bottom+35*u),17*u,Color("9aadb8"),w*.22)
-	var progress := clampf(director.elapsed/float(director.mission.duration),0,1)
+	var progress := float(director.mission.sector)/8.0 if rush else clampf(director.elapsed/float(director.mission.duration),0,1)
 	draw_rect(Rect2(r.position,Vector2(r.size.x*progress,2*u)),gold)
 	if is_instance_valid(director.boss) and director.boss.alive:
 		var boss = director.boss
-		var boss_bar := Rect2(Vector2(w*.25,r.position.y+34*u),Vector2(w*.5,7*u))
-		draw_rect(boss_bar,Color("202c31"))
-		draw_rect(Rect2(boss_bar.position,Vector2(boss_bar.size.x*float(boss.health)/boss.max_health,boss_bar.size.y)),Color("ec7757"))
-		text_at(boss.NAMES[boss.kind].to_upper(),boss_bar.position-Vector2(0,8*u),20*u,Color("efc9b4"),boss_bar.size.x)
+		_draw_boss_status(boss,r,u)
 		for i in range(2):
 			if boss.component_health[i]<=0: continue
 			var point: Vector2 = c.camera.unproject_position(boss.to_global(boss.component_position(i)))+r.position
@@ -143,15 +176,10 @@ func _draw() -> void:
 		var ship = director.convoy
 		var at: Vector2 = c.camera.unproject_position(ship.global_position)+r.position
 		text_at("ALLIÉ  %d/6  •  %ds" % [ship.health,ceili(ship.remaining)],at+Vector2(-65,-50)*u,19*u,Color(.4,1,.75))
-	var status_at := Vector2(18*u,r.position.y+30*u)
-	text_at("CHAÎNE %d   ×%d" % [director.mastery.chain,director.mastery.multiplier],status_at,23*u,gold,145*u)
-	if director.mastery.window>0:
-		text_at("%.1f s" % director.mastery.window,status_at+Vector2(157*u,0),18*u,Color("a8bcc4"),60*u)
-	draw_rect(Rect2(status_at+Vector2(0,8*u),Vector2(145*u*director.mastery.window/RULES.CHAIN_SECONDS,3*u)),gold)
-	text_at(director.act_title,Vector2(w-430*u,r.position.y+28*u),19*u,Color(.75,.85,.87),410*u)
+	_draw_chain_status(r,u)
+	text_at("TRAVERSÉE DES HUIT COMMANDANTS" if rush else director.act_title,Vector2(w-430*u,r.position.y+28*u),19*u,Color(.75,.85,.87),410*u)
 	var objective := preload("res://scripts/campaign/operations.gd").objective_text(director.mastery.secondary_kind,director.mission)
-	text_at(("✓ " if director.mastery.secondary_complete else "◇ ")+objective,Vector2(w-430*u,r.position.y+53*u),18*u,gold,410*u)
-	if director.mastery.cue_time>0: text_at(director.mastery.cue,Vector2(18*u,r.position.y+77*u),23*u,gold)
+	text_at("◇ Neutralisez la cible pour poursuivre" if rush else ("✓ " if director.mastery.secondary_complete else "◇ ")+objective,Vector2(w-430*u,r.position.y+53*u),18*u,gold,410*u)
 	if is_instance_valid(director.assault): _draw_ground_assault(r,u)
 	if director.radio_time>0:
 		var radio_at := Vector2(20*u,r.end.y-44*u)
@@ -163,7 +191,7 @@ func _draw() -> void:
 		if not is_instance_valid(enemy) or not enemy.alive or not enemy.has_meta("fire_warning"): continue
 		var at: Vector2 = c.camera.unproject_position(enemy.global_position)+r.position
 		if r.has_point(at): draw_arc(at,18*u,0,TAU,20,Color(1,.58,.2,.85),2*u,true)
-	if director.feedback_time > 0:
+	if director.feedback_time > 0 and not _boss_alert_feedback():
 		var alpha := minf(1,director.feedback_time)
 		var value: String = director.feedback
 		var font_size := maxi(14,int(26*u))
@@ -171,6 +199,8 @@ func _draw() -> void:
 		var pos := Vector2((w-width)*.5,r.position.y+75*u)
 		draw_rect(Rect2(pos,Vector2(width,40*u)),Color(.02,.03,.04,.78*alpha))
 		text_at(value,pos+Vector2(20,28)*u,font_size,Color(1,.87,.57,alpha),width-40*u)
+	if boss_intro_time > 0 and is_instance_valid(director.boss):
+		_draw_boss_intro(director.boss,r,u)
 	if director.player.alive and director.player.controls_enabled and director.player.invulnerable_time > 0:
 		var protected_at: Vector2 = cockpit.combat.camera.unproject_position(director.player.global_position)+r.position
 		var protection := clampf(director.player.invulnerable_time/4.0,0,1)
@@ -183,10 +213,80 @@ func _draw() -> void:
 		text_at("GAME OVER" if c.game_over else "RENFORT EN APPROCHE",box.position+Vector2(30,52)*u,38*u,Color.WHITE)
 		var message := "Toutes les vies sont épuisées" if c.game_over else "Retour dans %.1f s  •  %d vies restantes" % [c.respawn_time,c.remaining_lives]
 		text_at(message,box.position+Vector2(30,99)*u,24*u,gold)
-	if Input.is_action_pressed("focus_flight") and director.player.alive:
+	if Input.is_action_pressed("focus_flight") and director.player.alive and director.player.controls_enabled:
 		var p: Vector2 = cockpit.combat.camera.unproject_position(director.player.global_position)+r.position
-		draw_circle(p,3*u,Color(1,.93,.65,.9))
-		draw_arc(p,6*u,0,TAU,24,Color(0,0,0,.7),1.5*u,true)
+		draw_circle(p,7*u,Color(.015,.035,.045,.9))
+		draw_arc(p,7*u,0,TAU,24,Color(.94,.92,.78,.95),1.2*u,true)
+		draw_circle(p,2.8*u,PRESENTATION.IVORY)
+		for side in [-1,1]:
+			draw_line(p+Vector2(side*10,0)*u,p+Vector2(side*14,0)*u,PRESENTATION.CYAN,1.2*u,true)
+
+func _draw_chain_status(r: Rect2, u: float) -> void:
+	var frame := PRESENTATION.chain_frame(r,u)
+	var at := frame.position
+	var ink := PRESENTATION.AMBER if director.mastery.multiplier > 1 else PRESENTATION.IVORY
+	draw_rect(frame,Color(.018,.045,.055,.70))
+	draw_rect(Rect2(at,Vector2(2*u,frame.size.y)),Color(ink,.65))
+	var emphasis := combo_emphasis / .55 if bool(director.profile.data.settings.get("flashes",true)) else 0.0
+	text_at("×%d" % director.mastery.multiplier,at+Vector2(9,38)*u,(38+4*emphasis)*u,ink,70*u)
+	text_at("CHAÎNE  %03d" % director.mastery.chain,at+Vector2(82,20)*u,18*u,ink,132*u)
+	var timer := "%.1f s" % director.mastery.window if director.mastery.window > 0 else "ENCHAÎNEZ LES CIBLES"
+	text_at(timer,at+Vector2(82,38)*u,14*u,Color("a8bcc4"),132*u)
+	var bar := Rect2(at+Vector2(9,45)*u,Vector2(202,3)*u)
+	draw_rect(bar,Color("2a3b43"))
+	draw_rect(Rect2(bar.position,Vector2(bar.size.x*clampf(director.mastery.window/RULES.CHAIN_SECONDS,0,1),bar.size.y)),ink)
+	var graze_time := float(director.get("graze_feedback_time")) if director.get("graze_feedback_time") != null else 0.0
+	var grazes := int(director.mastery.get("grazes")) if director.mastery.get("grazes") != null else 0
+	var label := "FRÔLEMENTS  %03d" % grazes
+	var color := PRESENTATION.CYAN
+	if graze_time > 0:
+		label = "FRÔLEMENT  +%d PTS" % (int(director.mastery.GRAZE_POINTS)*int(director.get("graze_feedback_count")))
+		color = PRESENTATION.IVORY
+	elif director.mastery.cue_time > 0:
+		label = director.mastery.cue
+		color = PRESENTATION.AMBER
+	text_at(PRESENTATION.fit(label,FONT,maxi(12,int(17*u)),202*u),at+Vector2(9,69)*u,17*u,color,202*u)
+
+func _draw_boss_status(boss: Node, r: Rect2, u: float) -> void:
+	var frame := PRESENTATION.boss_frame(cockpit.size,r,u)
+	var at := frame.position
+	var state: Dictionary = boss.presentation() if boss.has_method("presentation") else {"phase":boss.phase,"state":"arrival","label":"CONTACT LOURD","hint":"","progress":0.0}
+	var phase := clampi(int(state.get("phase",0)),0,2)
+	var active := str(state.get("state","")) in ["charging","transition"]
+	var ink := PRESENTATION.AMBER if active else PRESENTATION.IVORY
+	draw_rect(frame,Color(.018,.035,.045,.82))
+	var boss_name := str(boss.NAMES[boss.kind]).get_slice("•",0).strip_edges()
+	text_at(boss_name,at+Vector2(10,20)*u,23*u,PRESENTATION.IVORY,frame.size.x-170*u)
+	text_at("PHASE  %02d / 03" % (phase+1),at+Vector2(frame.size.x-130*u,19*u),16*u,ink,120*u)
+	var bar := Rect2(at+Vector2(10,27)*u,Vector2(frame.size.x-20*u,8*u))
+	draw_rect(bar,Color("2a3438"))
+	draw_rect(Rect2(bar.position,Vector2(bar.size.x*clampf(boss_health_trail,0,1),bar.size.y)),Color("f0c890"))
+	draw_rect(Rect2(bar.position,Vector2(bar.size.x*clampf(float(boss.health)/maxf(1,boss.max_health),0,1),bar.size.y)),Color("cf8563"))
+	for threshold in [1.0/3.0,2.0/3.0]:
+		var divider := bar.position+Vector2(bar.size.x*threshold,0)
+		draw_line(divider,divider+Vector2(0,bar.size.y),PRESENTATION.INK,3*u)
+	var caption := str(state.get("label","CONTACT LOURD"))
+	var hint := str(state.get("hint",""))
+	if not hint.is_empty(): caption += "  /  " + hint
+	text_at(PRESENTATION.fit(caption.to_upper(),FONT,maxi(12,int(17*u)),bar.size.x),at+Vector2(10,55)*u,17*u,ink,bar.size.x)
+	if str(state.get("state","")) == "charging":
+		draw_rect(Rect2(at+Vector2(10,61)*u,Vector2(bar.size.x*clampf(float(state.get("progress",0)),0,1),2*u)),PRESENTATION.AMBER)
+
+func _draw_boss_intro(boss: Node, r: Rect2, u: float) -> void:
+	var frame := PRESENTATION.intro_frame(cockpit.size,r,u)
+	var alpha := minf(1,boss_intro_time/.35)
+	var at := frame.position
+	draw_rect(frame,Color(.02,.035,.042,.91*alpha))
+	draw_line(at,at+Vector2(frame.size.x,0),Color(PRESENTATION.AMBER,alpha),2*u)
+	draw_line(at+Vector2(0,frame.size.y),frame.end,Color(PRESENTATION.AMBER,.4*alpha),u)
+	for index in range(5):
+		var mark := at+Vector2(14+index*13,13)*u
+		draw_line(mark,mark+Vector2(-5,11)*u,Color(PRESENTATION.AMBER,.75*alpha),3*u,true)
+	text_at("WARNING  /  CONTACT MAJEUR",at+Vector2(100,24)*u,18*u,Color(PRESENTATION.AMBER,alpha),frame.size.x-116*u)
+	var identity := str(boss.NAMES[boss.kind]).split("•")
+	text_at(identity[0].strip_edges(),at+Vector2(18,68)*u,40*u,Color(PRESENTATION.IVORY,alpha),frame.size.x-36*u)
+	var description := str(identity[1]).strip_edges().to_upper() if identity.size()>1 else "CIBLE PRIORITAIRE"
+	text_at(description+"  /  3 PHASES",at+Vector2(20,96)*u,18*u,Color(PRESENTATION.AMBER,alpha),frame.size.x-40*u)
 
 func text_at(value: String, at: Vector2, pixels: float, color: Color, width := -1.0) -> void:
 	draw_string(FONT,at+Vector2(1,1),value,HORIZONTAL_ALIGNMENT_LEFT,width,maxi(12,int(pixels)),Color(0,0,0,.8))
@@ -295,7 +395,7 @@ func _ground_label_reservations(raid: Node, r: Rect2, u: float) -> Array[Rect2]:
 	# Existing overlay panels; bounding labels avoids hiding their information.
 	var occupied: Array[Rect2] = [
 		Rect2(10 * u, r.position.y + 86 * u, 300 * u, (78 if not raid.layout.get("priority_ids", []).is_empty() else 56) * u),
-		Rect2(12 * u, r.position.y + 6 * u, 220 * u, 55 * u),
+		PRESENTATION.chain_frame(r, u),
 		Rect2(cockpit.size.x - 430 * u, r.position.y + 6 * u, 410 * u, 60 * u)
 	]
 	if is_instance_valid(jam_badge) and jam_badge.visible:
@@ -303,8 +403,10 @@ func _ground_label_reservations(raid: Node, r: Rect2, u: float) -> Array[Rect2]:
 	if director.radio_time > 0:
 		occupied.append(Rect2(Vector2(12 * u, r.end.y - 69 * u), Vector2(minf(920 * u, cockpit.size.x - 40 * u), 39 * u)))
 	if is_instance_valid(director.boss) and director.boss.alive:
-		occupied.append(Rect2(cockpit.size.x * .25, r.position.y + 7 * u, cockpit.size.x * .5, 42 * u))
-	if director.feedback_time > 0:
+		occupied.append(PRESENTATION.boss_frame(cockpit.size, r, u))
+	if boss_intro_time > 0:
+		occupied.append(PRESENTATION.intro_frame(cockpit.size, r, u))
+	if director.feedback_time > 0 and not _boss_alert_feedback():
 		# Match the actual feedback panel's measured width and position in _draw.
 		var pixels := maxi(14, int(26 * u))
 		var width := minf(cockpit.size.x - 40 * u, FONT.get_string_size(director.feedback, HORIZONTAL_ALIGNMENT_LEFT, -1, pixels).x + 40 * u)

@@ -1,0 +1,23 @@
+{
+  "explorer_visual_check": "NOT_PERFORMED",
+  "executable_sha256": "4110CD1C7705F9C0568323A727A88F3FD5EDD96B1697A73357E9358477F8C384",
+  "description": "Pacific Strike - Campagne 1942",
+  "checks": 30,
+  "runtime": [
+    {
+      "minimum_startup_seconds": 3,
+      "exit_code": 0,
+      "script_suites": "NOT_RUN_IN_RELEASE_EXECUTABLE",
+      "scenario": "normal_main_scene_startup_and_window_close",
+      "close_requested": true,
+      "log": "C:\\ChatGPT\\1942\\tools\\runtime-ultimate\\temp\\PacificStrike-package-validation\\windows-package-6f95f82f28f743198cde6a241d69a042\\standalone-startup.log",
+      "elapsed_seconds": 5.5696686
+    }
+  ],
+  "failures": [],
+  "extracted_directory": "C:\\ChatGPT\\1942\\tools\\runtime-ultimate\\temp\\PacificStrike-package-validation\\windows-package-6f95f82f28f743198cde6a241d69a042\\PacificStrike",
+  "shell_file_version": "2.1.0.0",
+  "version": "2.1.0.0",
+  "product": "Pacific Strike",
+  "shell_file_description": "Pacific Strike - Campagne 1942"
+}

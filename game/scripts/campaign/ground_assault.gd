@@ -62,7 +62,7 @@ func _ready() -> void:
 	terrain.configure(director.mission,width,length,layout)
 	terrain.set_ground_detail(preload("res://assets/environment/raid-v2/coral-grass-detail.png"))
 	terrain.set_ocean_parameter("ocean_texture",sea.OCEAN_TEXTURE)
-	for parameter in ["ocean_tint","sea_desaturation","tile_size"]:
+	for parameter in ["ocean_tint","sea_desaturation","tile_size","reflection_tint"]:
 		terrain.set_ocean_parameter(parameter,sea.ocean_material.get_shader_parameter(parameter))
 	_build_targets()
 	sea.scrolled.connect(_on_scrolled)

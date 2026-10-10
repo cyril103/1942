@@ -23,6 +23,9 @@ func prepare(flight: Node3D, director: Node) -> void:
 		var boss := preload("res://scripts/campaign/boss.gd").new()
 		boss.kind = kind
 		_sources.add_child(boss)
+	# The live fleet gets its finish on spawn. Prepare those exact surfaces too,
+	# including enemy normal/ORM textures, before the first squadron is visible.
+	preload("res://scripts/campaign/materials.gd").enhance_aircraft(_sources)
 	_collect(flight)
 	var camera: Camera3D = director.combat.camera
 	var viewport_size := camera.get_viewport().get_visible_rect().size

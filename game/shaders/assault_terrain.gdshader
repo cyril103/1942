@@ -220,14 +220,25 @@ void fragment() {
 		float shallows = smoothstep(0.16,0.30,shoreline_depth);
 		float water_detail = dot(water,vec3(.299,.587,.114));
 		vec3 lagoon = mix(water,turquoise*(0.78+water_detail*2.4),shallows * (0.71 + patches * 0.08));
-		float caustic = pow(max(0.0,sin(p.x*7.3+p.y*5.8+wave_phase*.7)),12.0);
+		// wave_phase wraps at TAU. Integral harmonics and a circular noise
+		// trajectory keep both generated coast shaders continuous at that wrap.
+		float caustic = pow(max(0.0,sin(p.x*7.3+p.y*5.8+wave_phase)),12.0);
 		lagoon += turquoise * caustic * 0.055 * shallows;
 		float dry_land = smoothstep(0.32,0.47,shoreline_depth);
 		vec3 coast_color = mix(lagoon,beach_color,dry_land);
-		float swash_center = 0.32 + sin(wave_phase*.85+p.x*.95+p.y*.72)*0.022 + noise(p*2.5)*.014;
-		float swash = exp(-pow((shoreline_depth-swash_center)/0.014,2.0));
-		swash *= smoothstep(0.18,0.66,noise(p*5.7+wave_phase*.08));
-		coast_color = mix(coast_color,vec3(.80,.90,.84),swash*.48);
+		// The mesh grades its side beaches over 3 m and its end beaches over
+		// 6 m. Convert the painted waterline into metres for the same broken
+		// incoming fronts and receding foam used around the offshore islands.
+		float side_edge = field_size.x*.5-1.05-sin(p.y*.083+seed_phase)*.68-sin(p.y*.21-seed_phase)*.32-abs(p.x);
+		float end_edge = field_size.y*.5-1.0-sin(p.x*.20+seed_phase)*.65-sin(p.x*.41)*.35-abs(p.y);
+		// Blend the two slope scales through rounded corners; a hard selector
+		// would jump the wave phase when both edges are equally close.
+		float end_beach = 1.0-smoothstep(-.18,.18,end_edge/6.0-side_edge/3.0);
+		float shore_metres = (.38-shoreline_depth)*mix(3.0,6.0,end_beach);
+		vec2 surf = shoreline_surf(p,shore_metres,seed_phase);
+		coast_color *= 1.0-surf.y*.10*(1.0-dry_land);
+		vec3 foam_color = mix(vec3(.68,.81,.79),vec3(.79,.87,.91),snow_cover);
+		coast_color = mix(coast_color,foam_color,surf.x*.82);
 		float lit_land = smoothstep(0.51,0.76,coast_depth);
 		ALBEDO *= lit_land;
 		EMISSION = coast_color * (1.0-lit_land);

@@ -49,6 +49,7 @@ var muzzle_positions: Array = MUZZLES.duplicate()
 var laser_nose := -0.55
 var nose_fan := false
 var presentation_altitude := 0.0
+var auto_fire := false
 
 func set_presentation_altitude(altitude: float) -> void:
 	var change := altitude-presentation_altitude
@@ -193,7 +194,7 @@ func _physics_process(delta: float) -> void:
 	_flash_time = maxf(0.0, _flash_time - delta)
 	for flash in flashes:
 		flash.visible = _flash_time > 0.0 and player.controls_enabled
-	if not player.controls_enabled or not Input.is_action_pressed("fire") or power_type == "laser":
+	if not player.alive or not player.controls_enabled or not (auto_fire or Input.is_action_pressed("fire")) or power_type == "laser":
 		_cooldown = maxf(0.0,_cooldown)
 		return
 	if _cooldown <= 0.0:
@@ -272,7 +273,7 @@ func cease_fire() -> void:
 
 func _update_laser(delta: float) -> void:
 	laser_clock -= delta
-	var firing: bool = power_type == "laser" and player.alive and player.controls_enabled and Input.is_action_pressed("fire")
+	var firing: bool = power_type == "laser" and player.alive and player.controls_enabled and (auto_fire or Input.is_action_pressed("fire"))
 	audio.set_laser_active(firing)
 	laser.visible = firing
 	laser_muzzle.visible = firing

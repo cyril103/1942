@@ -12,6 +12,10 @@ const WAVE_INTERVAL := 20.0
 const BULLET_CAPACITY := 192
 const BULLET_SPEED := 14.0
 const EFFECT_CAPACITY := 18
+## Deliberately outside the corners of the unchanged .45 x .90 hurtbox.
+const GRAZE_INNER_RADIUS := 0.55
+const GRAZE_RADIUS := 1.05
+enum GrazeState { FRESH, PASSING, RESOLVED }
 
 @export var player: Node3D
 @export var camera: Camera3D
@@ -47,6 +51,9 @@ var bomber_audio: AudioStreamPlayer
 var bullets: Array[MeshInstance3D] = []
 var velocities := PackedVector3Array()
 var lifetimes := PackedFloat32Array()
+var graze_states := PackedByteArray()
+var _graze_player_before := Vector3.ZERO
+var _graze_player_initialized := false
 var effects: Array[Node3D] = []
 var effect_times := PackedFloat32Array()
 var wave_count := 0
@@ -146,6 +153,7 @@ func _ready() -> void:
 	mesh.material = material
 	lifetimes.resize(BULLET_CAPACITY)
 	velocities.resize(BULLET_CAPACITY)
+	graze_states.resize(BULLET_CAPACITY)
 	for index in range(BULLET_CAPACITY):
 		var bullet := MeshInstance3D.new()
 		bullet.mesh = mesh
@@ -360,6 +368,9 @@ func _launch_enemy_round(origin: Vector3, target: Vector3, speed: float, visual_
 		bullets[index].show()
 		velocities[index] = direction*speed*projectile_speed_scale
 		lifetimes[index] = 6.0
+		# Rounds created inside the reward ring were never dodged on approach.
+		var relative := Vector2(origin.x-player.global_position.x,origin.z-player.global_position.z)
+		graze_states[index] = GrazeState.FRESH if relative.length_squared()>GRAZE_RADIUS*GRAZE_RADIUS else GrazeState.RESOLVED
 		enemy_shots += 1
 		return true
 	return false
@@ -406,6 +417,11 @@ func get_radar_contacts() -> Array[Area3D]:
 func _update_bullets(delta: float) -> void:
 	var viewport := get_viewport().get_visible_rect()
 	var space := get_world_3d().direct_space_state
+	var player_now := player.global_position
+	if not _graze_player_initialized:
+		_graze_player_before = player_now
+		_graze_player_initialized = true
+	var graze_allowed: bool = is_instance_valid(campaign_driver) and campaign_driver.can_graze()
 	for index in range(BULLET_CAPACITY):
 		if lifetimes[index] <= 0: continue
 		var before := bullets[index].global_position
@@ -416,12 +432,40 @@ func _update_bullets(delta: float) -> void:
 		var hit := space.intersect_ray(_query)
 		if not hit.is_empty() and player.alive:
 			lifetimes[index] = 0
+			graze_states[index] = GrazeState.RESOLVED
 			bullets[index].hide()
 			hit.collider.take_damage(1)
 			continue
+		if delta>0 and lifetimes[index]>0:
+			_update_bullet_graze(index,before,bullets[index].global_position,_graze_player_before,player_now,graze_allowed)
 		if lifetimes[index] <= 0 or not viewport.has_point(camera.unproject_position(bullets[index].global_position)):
 			lifetimes[index] = 0
+			graze_states[index] = GrazeState.RESOLVED
 			bullets[index].hide()
+	_graze_player_before = player_now
+
+func _update_bullet_graze(index: int, before: Vector3, after: Vector3, player_before: Vector3, player_after: Vector3, allowed: bool) -> void:
+	if graze_states[index]==GrazeState.RESOLVED: return
+	# Sweep relative motion, so a fast projectile or a lateral dodge cannot skip
+	# the ring between physics ticks. Presentation altitude never changes rules.
+	var start := Vector2(before.x-player_before.x,before.z-player_before.z)
+	var finish := Vector2(after.x-player_after.x,after.z-player_after.z)
+	var nearest := Geometry2D.get_closest_point_to_segment(Vector2.ZERO,start,finish)
+	var distance_squared := nearest.length_squared()
+	if distance_squared<=GRAZE_INNER_RADIUS*GRAZE_INNER_RADIUS:
+		graze_states[index] = GrazeState.RESOLVED
+		return
+	if not allowed:
+		# Protection cannot bank a passage and collect it after the shield ends.
+		if graze_states[index]==GrazeState.PASSING or distance_squared<=GRAZE_RADIUS*GRAZE_RADIUS:
+			graze_states[index] = GrazeState.RESOLVED
+		return
+	if distance_squared<=GRAZE_RADIUS*GRAZE_RADIUS:
+		graze_states[index] = GrazeState.PASSING
+	if graze_states[index]==GrazeState.PASSING and finish.length_squared()>GRAZE_RADIUS*GRAZE_RADIUS:
+		# Only a completed safe pass earns a reward; lingering earns nothing.
+		graze_states[index] = GrazeState.RESOLVED
+		campaign_driver.on_graze()
 
 func _on_enemy_destroyed(at: Vector3) -> void:
 	kills += 1
@@ -555,6 +599,8 @@ func _on_red_escaped() -> void:
 	special_resolved += 1
 
 func clear_enemy_bullets() -> void:
+	_graze_player_initialized = false
 	for index in range(BULLET_CAPACITY):
 		lifetimes[index] = 0
+		graze_states[index] = GrazeState.RESOLVED
 		bullets[index].hide()

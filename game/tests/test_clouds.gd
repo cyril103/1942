@@ -37,6 +37,8 @@ func _run() -> void:
 	departure.finish_immediately()
 	var ids := []
 	for cloud in field.clouds: ids.append(cloud.get_instance_id())
+	var columns := [0,0,0]
+	check(field.find_children("*","CollisionObject3D",true,false).is_empty(),"Clouds remain decorative and never own collisions")
 	for frame in range(60*60*10):
 		sea._physics_process(1.0/60)
 		field._physics_process(1.0/60)
@@ -49,14 +51,11 @@ func _run() -> void:
 				check(cloud.position.y<-.5 and cloud.position.y>sea.islands[0].position.y,"Cloud layer between terrain and aircraft")
 				check(shadow.position.y>sea.islands[0].position.y and shadow.position.y<cloud.position.y,"Soft shadow above terrain, below clouds")
 				check(is_equal_approx(shadow.position.x-cloud.position.x,.65),"Shadow follows bank without drift")
-				var extent: Vector2 = cloud.mesh.size*.5
-				for j in range(i):
-					var other = field.clouds[j]
-					var combined: Vector2 = (cloud.mesh.size+other.mesh.size)*.5
-					check(absf(cloud.position.x-other.position.x)>=combined.x or absf(cloud.position.z-other.position.z)>=combined.y,"Cloud cards do not stack transparent surfaces")
-				for offset in [-12.0,0.0,12.0]:
-					check(absf(cloud.position.x-sea.channel_center(cloud.position.z+offset))>extent.x+9.0,"Cloud bank keeps carrier approach clear throughout scrolling")
+				check(absf(cloud.position.x)<field._half.x+1.6,"Weather spans the view with bounded independent drift")
+				if absf(cloud.position.z)<field._half.y:
+					columns[clampi(int((cloud.position.x/field._half.x+1.0)*1.5),0,2)] += 1
 	check(field.recycle_count>100,"Endurance exercises recycling")
+	check(columns.all(func(count): return count>5),"Clouds cross left, center and right instead of following a carrier route")
 	check(field.clouds[0].material_override.get_shader_parameter("opacity")==field.strength*float(field.clouds[0].get_meta("density",1.0)),"Cruise preserves cloud opacity")
 	for number in [1,9,17,21,25]:
 		var mission: Dictionary = app.missions[number-1]
@@ -71,9 +70,22 @@ func _run() -> void:
 			field._physics_process(1.0/60)
 		app.director.mission = mission
 		app.director.feedback_time = 0
-		for frame in range(4): await process_frame
-		await RenderingServer.frame_post_draw
-		root.get_texture().get_image().save_png("C:/ChatGPT/1942/renders/clouds-%02d.png" % number)
+		if DisplayServer.get_name()!="headless":
+			for frame in range(4): await process_frame
+			await RenderingServer.frame_post_draw
+			root.get_texture().get_image().save_png("C:/ChatGPT/1942/renders/clouds-%02d.png" % number)
+	if DisplayServer.get_name()!="headless": await _check_aircraft_pixels(app,flight,field)
+	departure.begin_landing()
+	field._physics_process(2)
+	check(field.clouds[0].material_override.get_shader_parameter("opacity")==field.strength*float(field.clouds[0].get_meta("density",1.0)),"Recovery preserves cloud opacity")
+	app._show_main()
+	app.music.stop()
+	app.queue_free()
+	await create_timer(.35).timeout
+	print("CLOUDS: ",checks," checks; failures: ",failures)
+	quit(0 if failures.is_empty() else 1)
+
+func _check_aircraft_pixels(app: Node, flight: Node3D, field: Node3D) -> void:
 	# Opaque player pixels must remain unchanged when a cloud sits beneath it.
 	flight.get_node("Player").set_process(false)
 	for cloud in field.clouds: cloud.position.z = -100
@@ -97,11 +109,3 @@ func _run() -> void:
 			var b := with_cloud.get_pixelv(center+Vector2i(x,y))
 			difference = maxf(difference,absf(a.r-b.r)+absf(a.g-b.g)+absf(a.b-b.b))
 	check(difference<.035,"Aircraft fuselage renders above the cloud layer")
-	departure.begin_landing()
-	field._physics_process(2)
-	check(field.clouds[0].material_override.get_shader_parameter("opacity")==field.strength*float(field.clouds[0].get_meta("density",1.0)),"Recovery preserves cloud opacity")
-	app._show_main()
-	app.music.stop()
-	await process_frame
-	print("CLOUDS: ",checks," checks; failures: ",failures)
-	quit(0 if failures.is_empty() else 1)

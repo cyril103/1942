@@ -1,0 +1,12 @@
+[
+  {
+    "path": "dist/PacificStrike/PacificStrike.exe",
+    "bytes": 220250064,
+    "sha256": "21DB972E0A1598F598381E62F647035E3B87825816EBAC57B165E3C5A38DC6FF"
+  },
+  {
+    "path": "dist/PacificStrike-Windows-x64.zip",
+    "bytes": 148823975,
+    "sha256": "5B5DA7B7A46018CE70DA695B079BBCC9FF29698F89A82BCC5E8FA4BB90031ECC"
+  }
+]

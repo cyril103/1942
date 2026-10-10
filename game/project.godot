@@ -3,11 +3,11 @@ config_version=5
 
 [application]
 config/name="Pacific Strike — Campagne 1942"
-config/version="1.10.1"
+config/version="2.2.0"
 config/icon="res://assets/campaign/pacific-strike-icon.svg"
 run/main_scene="res://scenes/campaign.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/description="Campagne aérienne de 32 missions dans le Pacifique."
+config/description="Ultimate 2.2 : ressac côtier, océan vivant, nuages libres, hangar 3D, 32 missions et Boss Rush."
 
 [display]
 window/size/viewport_width=1920

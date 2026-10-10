@@ -22,6 +22,9 @@ var enabled := true
 var water_altitude := -2.9
 var presentation_altitude := 0.0
 var grounded := PackedByteArray()
+var trail_strength := 0.0
+var detail_age := 0.0
+var spark_material: ShaderMaterial
 
 func set_presentation_altitude(altitude: float) -> void:
 	var change := altitude-presentation_altitude
@@ -70,7 +73,7 @@ func _ready() -> void:
 	sparks.use_custom_data = true
 	var spark_mesh := PlaneMesh.new()
 	spark_mesh.size = Vector2(.075,.32)
-	var spark_material := ShaderMaterial.new()
+	spark_material = ShaderMaterial.new()
 	spark_material.shader = preload("res://shaders/impact_spark.gdshader")
 	spark_mesh.material = spark_material
 	sparks.mesh = spark_mesh
@@ -82,7 +85,7 @@ func _ready() -> void:
 	spark_velocities.resize(SPARK_CAPACITY)
 	for i in range(SPARK_CAPACITY): sparks.set_instance_transform(i,Transform3D(Basis.IDENTITY.scaled(Vector3.ZERO),Vector3.ZERO))
 	for side in [-1,1]:
-		var trail := make_card(2,Vector2(.24,1.8))
+		var trail := make_card(2,Vector2(.24,2.2))
 		trail.set_meta("side",side)
 		add_child(trail)
 		trail.hide()
@@ -119,7 +122,8 @@ func impact(at: Vector3, laser := false) -> void:
 		spark_cursor += 1
 		var angle := float(spark_cursor)*2.39996
 		spark_positions[slot] = at+Vector3(0,.12,0)
-		spark_velocities[slot] = Vector3(cos(angle)*3.5,1.0,sin(angle)*3.5)
+		var speed := 2.4+float(spark_cursor%4)*.65
+		spark_velocities[slot] = Vector3(cos(angle)*speed,.7+float(i%3)*.3,sin(angle)*speed)
 		spark_lives[slot] = .28
 		spark_batch.multimesh.set_instance_color(slot,Color(.38,.65,1) if laser else Color(1,.62,.19))
 
@@ -130,6 +134,8 @@ func set_ability(aircraft: int, strength: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	visible = enabled
+	detail_age = fposmod(detail_age+delta,120.0)
+	spark_material.set_shader_parameter("strength",.42 if reduced_flash else .9)
 	hit_cooldown = maxf(0,hit_cooldown-delta)
 	for i in range(SPARK_CAPACITY):
 		if spark_lives[i]<=0: continue
@@ -137,7 +143,8 @@ func _physics_process(delta: float) -> void:
 		spark_positions[i] += spark_velocities[i]*delta
 		spark_velocities[i] *= exp(-delta*5)
 		var basis := Basis(Vector3.UP,atan2(spark_velocities[i].x,spark_velocities[i].z))
-		basis = basis.scaled(Vector3.ONE*(spark_lives[i]/.28))
+		var fade := spark_lives[i]/.28
+		basis = basis.scaled(Vector3(sqrt(fade),1,fade*(.7+float(i%3)*.25)))
 		spark_batch.multimesh.set_instance_transform(i,Transform3D(basis,spark_positions[i]))
 		spark_batch.multimesh.set_instance_custom_data(i,Color(spark_lives[i]/.28,0,0,0))
 	for i in range(CAPACITY):
@@ -153,7 +160,11 @@ func _physics_process(delta: float) -> void:
 	if not is_instance_valid(player): return
 	ability_visual.visible = ability_strength>0 and player.alive and player.controls_enabled
 	ability_visual.global_position = player.bank.global_position+Vector3(0,.12,.10)
+	var banking := clampf((absf(player.bank.rotation.z)-.10)*2.5,0,1) if player.alive and player.controls_enabled else 0.0
+	trail_strength = move_toward(trail_strength,banking,delta*3.0)
 	for trail in trails:
-		trail.visible = player.alive and player.controls_enabled and absf(player.bank.rotation.z)>.18
-		trail.position = player.bank.to_global(Vector3(float(trail.get_meta("side"))*.64,-.08,1.05))
-		trail.material_override.set_shader_parameter("strength",clampf(absf(player.bank.rotation.z)*2,0,1))
+		trail.visible = player.alive and player.controls_enabled and trail_strength>.025
+		trail.position = player.bank.to_global(Vector3(float(trail.get_meta("side"))*.64,-.08,1.25))
+		trail.rotation.y = -player.bank.rotation.z*.3
+		trail.material_override.set_shader_parameter("strength",trail_strength)
+		trail.material_override.set_shader_parameter("age",detail_age)

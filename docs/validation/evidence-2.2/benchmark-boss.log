@@ -1,0 +1,6 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+RENDER PREPARATION count=79 ms=1077 launch_ms=2243.676
+BENCHMARK PASS 0 gameplay={"max_ms":21.473,"mean_ms":2.96648829787234,"over_16_67ms":1,"over_33_33ms":0,"p95_ms":4.382,"p99_ms":5.49,"samples":15040} ticks=4200 result_tick=2678
+FULL MISSION BENCHMARK full-mission-32-q1-1920x1080.json passes=1 failures=[]

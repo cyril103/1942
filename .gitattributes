@@ -24,3 +24,6 @@ game/tests/performance-1.9-comparison/** -text
 docs/validation/evidence-1.9/** -text
 docs/validation/evidence-1.10/** -text
 docs/validation/evidence-1.10.1/** -text
+docs/validation/evidence-2.0/** -text
+docs/validation/evidence-2.1/** -text
+docs/validation/evidence-2.2/** -text

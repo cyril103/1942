@@ -24,7 +24,7 @@ func _run() -> void:
 	app.profile.data.credits = 20
 	app._show_hangar()
 	await capture(app,"hangar")
-	check(app.buttons.size()==9,"Three aircraft, three upgrades, three navigation buttons including the workshop")
+	check(app.buttons.size()==10,"Three aircraft, three upgrades, three navigation buttons and the 3D inspection")
 	app.buttons[1].pressed.emit()
 	check(app.profile.data.aircraft==1 and app.page=="hangar","Aircraft selection updates loadout")
 	var credits: int = app.profile.data.credits

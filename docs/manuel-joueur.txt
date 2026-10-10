@@ -1,8 +1,55 @@
-PACIFIC STRIKE — CAMPAGNE 1942
-Version 1.10.1 — préparation du rendu avant le décollage pour éviter les blocages en combat.
+PACIFIC STRIKE ULTIMATE — CAMPAGNE 1942
+Version 2.2.0 — Ressac côtier, océan, nuages dispersés et hangar 3D.
 
 Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
 Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.
+
+NOUVEAUTÉS VISUELLES 2.2
+Les vagues dessinent une écume animée et irrégulière autour des côtes.
+Les nuages se dispersent librement dans le ciel : ils ne suivent plus le chenal
+des navires et n'ont aucun effet sur les tirs, les collisions ou la difficulté.
+Les lignes de trajectoire des boss ont été retirées. L'annonce dans le HUD et
+la lueur de charge restent disponibles pour anticiper leurs attaques.
+
+PRÉSENTATION 2.1
+Océan à grandes houles et reflets, îles en relief, éclairage de huit secteurs,
+carlingues métalliques, verrières et ombres aériennes. Les explosions évoluent
+du feu vers la fumée, accompagnées de braises et de débris. Le HUD reste net.
+Les options de réduction des flashes et des mouvements restent disponibles.
+
+Hangar > Inspecter l'appareil : examinez le modèle 3D utilisé en vol.
+Glisser avec le bouton gauche fait tourner l'avion ; la molette règle le zoom.
+Les boutons 3/4, Profil et Dessus sont aussi accessibles au clavier et à la manette.
+Appareil suivant parcourt les trois avions sans modifier l'équipement.
+Affecter cet appareil confirme la sélection ; Échap ramène au hangar.
+
+MODES ET PILOTAGE ULTIMATE 2.0
+Boss Rush : depuis l'accueil, affrontez les huit chefs de secteur dans l'ordre.
+Choisissez votre appareil : difficulté Pilote, aucun module, multi-tir, trois vies.
+Le score et les vies sont partagés entre les huit duels. Le blindage et les bombes
+sont restaurés avant le prochain boss. Pas d'appontage entre les affrontements.
+Une défaite arrête la traversée ; recommencer relance le premier boss à zéro point.
+Les records locaux, distincts par avion, exigent de terminer les huit duels.
+La campagne, ses pièces, ses médailles et son score ne sont pas modifiés par ce mode.
+
+Frôlements : évitez de très près un projectile ennemi. Après la sortie indemne de
+sa proximité, vous gagnez 25 points et jusqu'à 0,6 point de charge spéciale.
+Une balle ne rapporte qu'une fois. Les protections, bombes et transitions ne
+permettent pas de récolter des frôlements. Pendant une capacité, les points sont
+possibles si le pilote reste vulnérable, mais la capacité ne se recharge pas.
+Les frôlements ne prolongent pas la chaîne de destructions. Le débriefing détaille
+leur nombre et leurs points. La collision de l'avion n'a pas été agrandie.
+
+Chaque boss possède désormais ses motifs : éventails, chevrons, bordées, aiguilles,
+colonnes et anneaux avec une ouverture. Le HUD annonce le motif avant les tirs.
+La visée reste figée pendant cet avertissement. Les motifs évoluent
+avec les trois phases et les points faibles détruits réduisent les défenses.
+Le HUD affiche le motif et un conseil ; l'introduction du boss ne bloque pas le vol.
+
+Options > Commandes : le tir automatique facultatif libère la touche de tir.
+Il fonctionne avec toutes les armes et s'arrête lors du décollage, de la mort et
+de l'appontage. Le réglage reste désactivé pour les anciennes sauvegardes.
+Le Guide du pilote est accessible directement depuis l'accueil.
 
 32 missions / 8 secteurs / 9 combats de boss à phases, dont la mission vitrine Opération Brise-Lames.
 

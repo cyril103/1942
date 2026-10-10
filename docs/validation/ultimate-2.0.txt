@@ -1,0 +1,88 @@
+PACIFIC STRIKE ULTIMATE 2.0.0 — VALIDATION
+10 octobre 2026 — Godot 4.7.2 — Windows x64
+
+LIVRAISON
+Exécutable autonome : dist/PacificStrike/PacificStrike.exe
+Archive : dist/PacificStrike-Windows-x64.zip
+Lanceur : Jouer-Final.cmd
+Sources : game/ ; manuel : docs/manuel-joueur.txt
+Export release terminé sans erreur, versions fichier/produit Windows 2.0.0.0.
+ZIP extrait et exécutable démarré depuis un répertoire de travail vide :
+30 contrôles de distribution réussis, fermeture normale, code de sortie 0,
+aucune erreur/alerte moteur. Ces contrôles vérifient le démarrage autonome ;
+les suites de gameplay ci-dessous s'exécutent dans le projet avec le même moteur.
+L'empreinte de l'exécutable extrait correspond à celle de l'exécutable construit.
+Les licences, l'icône et le manuel versionné accompagnent la distribution.
+
+NOUVELLES VÉRIFICATIONS
+- test_ultimate_modes : 961 contrôles réussis sur le rendu OpenGL réel.
+  Huit vraies scènes de boss, continuité vies/score, profil de campagne isolé,
+  résultat idempotent, refus d'un ancien résultat différé après redémarrage,
+  record uniquement à 8/8, abandon/reprise, géométrie des nouveaux menus,
+  tir automatique standard/laser et conversion des anciennes sauvegardes.
+- test_graze : 81 contrôles réussis sur le rendu OpenGL réel.
+  Passages à 30/60/144 Hz, déplacement relatif, vraie collision, protection,
+  recyclage du pool, charge plafonnée, capacité active, feedback et debrief.
+  Inclut la vraie destruction d'un boss, sa fin rapide, pause et duel suivant.
+- test_boss_patterns : 1 838 contrôles ; motifs des huit familles, avertissement avant tir,
+  verrouillage, quotas, interruption des salves à la transition/mort, ouverture
+  des anneaux, points faibles et alternance réelle des brèches de la citadelle.
+- test_hud_presentation : 32 contrôles réussis ; intro limitée, aucun changement
+  du gameplay par le HUD, géométrie à 720p, 1080p, 1280x1024 et 2560x1080.
+- test_render_preparation : 30 contrôles réussis avec rendu réel. Correction du
+  retrait de l'écran de chargement avant reprise : retrait immédiat de l'arbre,
+  destruction différée ensuite, évitant un écran encore présent à la reprise.
+
+RÉGRESSIONS CONTRÔLÉES
+Session modes 165 ; score/retry UI 31 952 ; profile recovery 202 ;
+loadout profile 68 384 ; loadout UI 3 636 ; vie/respawn 17 ;
+raid tactics 7 699 ; raid layouts 111 806 configurations/contrôles ;
+presentation finish 35 ; player fleet 50 ; audio mix controls 619 ;
+difficulty progression 150 ; combat regressions 370 ; loadout combat 1 081.
+Tests weapons (simulation 300 s) et campaign smoke terminés avec succès.
+Raid result/radio : 938 contrôles réussis sur le rendu OpenGL réel.
+Les grands comptes de contrôles comprennent des boucles de géométrie exhaustives ;
+ce ne sont pas autant de scénarios joués manuellement.
+
+RENDU ET PERFORMANCES
+Captures de menus : renders/ultimate-2.0/.
+Captures de combat : renders/ultimate-hud/.
+Captures inspectées visuellement, incluant la télégraphie puis les véritables
+projectiles du boss final en phase 3. Les captures sont des fixtures composées,
+pas la preuve d'une partie humaine.
+Mesures : evidence-2.0/performance/ ; journaux benchmark-boss32.txt et
+benchmark-raid19.txt. Probes automatisées en 1920x1080, qualité Équilibré,
+VSync désactivée, NVIDIA GTX 1650, pilote invulnérable et entrées reproductibles.
+Les rapports JSON font foi pour les temps, pics, phases couvertes et résultats.
+Un passage ne constitue pas un benchmark universel ni un test d'endurance.
+Boss 32, code final : 15 178 images de vol, p99 5,585 ms, pic 42,327 ms ;
+6 images dépassent 16,67 ms et une dépasse 33,33 ms. Le pilote automatisé termine
+le boss et rejoint le bilan. Le benchmark dure 70 s, dont environ 44,6 s de vol.
+Raid 19 : 36 038 images pendant le vol, p99 5,785 ms, pic 79,218 ms ;
+9 images dépassent 16,67 ms et 2 dépassent 33,33 ms. Les pics restent documentés,
+leur cause n'est pas établie. Toutes les phases jusqu'au bilan ont été parcourues.
+Le pilote automatisé rate le quota terrestre : ce probe mesure le rendu et le
+cycle complet de la mission, il ne démontre pas une victoire sur ce raid.
+
+ENVIRONNEMENT ET LIMITES
+Toutes les sauvegardes de test utilisent APPDATA/LOCALAPPDATA isolés sous
+tools/runtime-ultimate, ou les environnements isolés des sous-tests.
+L'export initial a été rejeté à cause du dossier temporaire de l'environnement.
+Le passage final utilise également TEMP/TMP sous tools/runtime-ultimate/temp ;
+il a reconstruit l'exécutable et le ZIP avant les contrôles de distribution.
+Aucune sauvegarde du joueur n'a été ouverte ou écrasée par les validations.
+Certains tests historiques sous le renderer Dummy produisent "material null"
+lors du démontage de scènes. Les tests correspondants sur OpenGL réel et les
+captures ne produisent pas cette erreur ; elle n'est pas comptée comme un succès
+de validation du rendu headless.
+Le test raid_result_radio refuse volontairement --headless. Son premier appel
+rejeté est conservé ; le passage GPU suivant, réussi, le remplace pour validation.
+L'ancien test de lisibilité 1.9 exige des fichiers de mécanique byte-identiques
+à la phase 4 de l'ancienne version : deux hashes (combat/weapons) échouent à
+présent puisque les frôlements et le tir automatique sont des changements voulus.
+Ses vérifications géométriques passent ; son inventaire historique n'a pas été
+réécrit pour faire croire que les mécaniques sont restées identiques.
+L'équilibrage de toute la campagne à la main, la manette physique, toutes les
+machines et toutes les combinaisons d'options n'ont pas été éprouvés ici.
+
+Les preuves détaillées sont dans docs/validation/evidence-2.0/.

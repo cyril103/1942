@@ -1,7 +1,7 @@
 param(
     [string]$PackageZip = (Join-Path $PSScriptRoot '../../dist/PacificStrike-Windows-x64.zip'),
     [string]$BuiltExecutable = (Join-Path $PSScriptRoot '../../dist/PacificStrike/PacificStrike.exe'),
-    [string]$ExpectedVersion = '1.10.1.0',
+    [string]$ExpectedVersion = '2.2.0.0',
     [switch]$SkipRuntime
 )
 $ErrorActionPreference = 'Stop'
@@ -62,7 +62,7 @@ if (-not $SkipRuntime) {
     $emptyDirectory = Join-Path $scratch 'isolated-working-directory'
     New-Item -ItemType Directory -Path $emptyDirectory | Out-Null
     $runLog = Join-Path $scratch 'standalone-startup.log'
-    # Automated startup stays silent; audio mixing has separate real-driver probes.
+    # User-requested silence: no audio device is opened during automated tests.
     $arguments = @('--audio-driver','Dummy','--windowed','--resolution','1280x720','--log-file',('"' + $runLog + '"'))
     $stdout = Join-Path $scratch 'standalone-stdout.log'
     $stderr = Join-Path $scratch 'standalone-stderr.log'

@@ -1,8 +1,32 @@
-# Pacific Strike — Campagne 1942
+# Pacific Strike Ultimate 2.2 — Campagne 1942
 
 Campagne solo de **32 missions** sous Godot 4.7.2, sur la branche `jeu_toppissime` : huit secteurs, huit combats de boss à trois phases, avions 3D low poly, océan et raids terrestres. Le jeu occupe toute la largeur avec deux fines bandes de HUD, soit 90 % de la surface de l'écran. Menus, hangar, améliorations permanentes, trois difficultés, médailles et sauvegarde automatique.
 
 ## Lancer
+
+Version **2.2.0 Ultimate** : écume animée le long des plages et des rochers,
+ressac irrégulier, reflets de houle et nuages dispersés sur toute la largeur.
+Les nuages sont décoratifs et leur placement ne dépend plus des routes des navires.
+Les traits prédictifs des boss ont été retirés ; le HUD et la charge locale
+annoncent toujours leurs attaques. Validation : `docs/validation/atmosphere-2.2.txt`.
+
+La version conserve les ajouts **2.1** : mer à grandes houles et reflets, relief géométrique des
+îles, éclairage propre à chaque secteur, surfaces métalliques et ombres aériennes,
+explosions en feu et fumée, hangar avec les trois appareils en 3D et inspection
+interactive. Les réglages de réduction des flashes et des mouvements restent actifs.
+Validation visuelle et performances : `docs/validation/presentation-2.1.txt`.
+
+La version conserve les ajouts **2.0** : huit familles de boss avec motifs propres,
+attaques annoncées dans le HUD et rafales espacées ; **Boss Rush** de huit duels avec vies partagées
+et records par avion ; **frôlements** récompensés (+25 points et jusqu'à +0,6 % de
+charge par projectile évité) ; HUD de boss à trois phases, guide du pilote,
+accueil animé et tir automatique facultatif dans Options > Commandes.
+
+Le Boss Rush utilise un équipement fixe et n'avance pas la campagne. Le blindage
+et les bombes sont restaurés entre les duels ; score et vies restent communs.
+Le record est validé seulement après les huit victoires. Les sauvegardes 1.x restent
+compatibles, sans modifier les commandes ni activer le tir automatique par défaut.
+Voir `docs/validation/ultimate-2.0.txt` pour les validations et leurs limites.
 
 Correctif **1.10.1** : préparation des matériaux et effets sous un écran de chargement
 avant le décollage. Le jeu reste figé pendant cette préparation, puis le vol démarre
@@ -48,7 +72,10 @@ Manuel : `docs/manuel-joueur.txt`. Validation : `docs/jeu-final-validation.md`. 
 Les crédits des samples sont conservés dans `game/assets/audio/`.
 Les outils portables, environnements Python et caches ne sont pas versionnés.
 
-Les tests Godot se lancent avec `--headless --path game --script res://tests/test_combat.gd`
-(ou un autre script `test_*.gd`). La préparation audio utilise Python avec NumPy,
+Les tests se lancent sans son et avec un profil isolé via
+`./Tester-Silencieux.ps1 -Script res://tests/test_combat.gd` (ou un autre `test_*.gd`).
+Ajouter `-Rendered` pour les contrôles avec rendu GPU. Toute invocation directe
+de Godot pour un test doit inclure `--audio-driver Dummy`. Le volume du joueur
+n'est pas modifié. La préparation audio utilise Python avec NumPy,
 SciPy et SoundFile. Les chemins des outils dans les lanceurs correspondent à
 l'installation locale et peuvent devoir être adaptés sur une autre machine.

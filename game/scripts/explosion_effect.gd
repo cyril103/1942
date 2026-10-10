@@ -10,6 +10,8 @@ var debris: Array[MeshInstance3D] = []
 var flash: MeshInstance3D
 var age := DURATION
 var variant := 0.0
+var reduced_flash := false
+var ember_material: ShaderMaterial
 
 func _ready() -> void:
 	scale = Vector3.ONE * AIRCRAFT_EFFECT_SCALE
@@ -35,9 +37,9 @@ func _ready() -> void:
 	add_child(flash)
 	var spark_mesh := PlaneMesh.new()
 	spark_mesh.size = Vector2(0.10, 0.5)
-	var spark_material := ShaderMaterial.new()
-	spark_material.shader = preload("res://shaders/tracer.gdshader")
-	spark_mesh.material = spark_material
+	ember_material = ShaderMaterial.new()
+	ember_material.shader = preload("res://shaders/explosion_ember.gdshader")
+	spark_mesh.material = ember_material
 	for index in range(16):
 		var spark := MeshInstance3D.new()
 		spark.mesh = spark_mesh
@@ -63,6 +65,12 @@ func trigger(at: Vector3, seed_value: float) -> void:
 	global_position = at + Vector3(0, 0.3, 0)
 	age = 0.0
 	variant = seed_value
+	var driver: Variant = get_parent().get("campaign_driver") if is_instance_valid(get_parent()) else null
+	if is_instance_valid(driver): reduced_flash = not bool(driver.profile.data.settings.get("flashes",true))
+	flash.material_override.set_shader_parameter("strength",.24 if reduced_flash else .8)
+	flash.material_override.set_shader_parameter("variation",variant)
+	ember_material.set_shader_parameter("strength",.42 if reduced_flash else 1.0)
+	for cloud in clouds: cloud.material_override.set_shader_parameter("peak",.72 if reduced_flash else 1.0)
 	show()
 	advance(0.0)
 
@@ -75,29 +83,32 @@ func advance(delta: float) -> void:
 	position.z += delta * 0.7
 	for index in range(clouds.size()):
 		var cloud := clouds[index]
-		var delay := index * 0.035
+		var delay := index * 0.024
 		var t := maxf(0, age - delay)
 		cloud.visible = age >= delay
 		var angle := variant + index * 2.39996
-		var spread := (1.0 - exp(-t * 3.0)) * (0.0 if index == 0 else 1.0 + index * 0.06)
-		cloud.position = Vector3(cos(angle) * spread + t * 0.12, 0.05 * index + t * 0.11, sin(angle) * spread)
-		cloud.rotation.y = angle + t * (0.07 if index % 2 == 0 else -0.06)
-		var size := (0.7 + 2.7 * (1.0 - exp(-t * 5.5)) + t * 0.45) * (1.0 if index == 0 else 0.72)
-		cloud.scale = Vector3.ONE * size
-		cloud.material_override.set_shader_parameter("age", t * 2.6 * (0.93 + index * 0.04))
+		var spread := (1.0 - exp(-t * 3.2)) * (0.0 if index == 0 else .78 + index * .10)
+		# Each lobe has its own buoyancy, tumbling and cooling rate. A broken
+		# silhouette replaces the old five coincident circular fireballs.
+		cloud.position = Vector3(cos(angle) * spread + t * .22, -.10 + .035 * index + t * .18, sin(angle) * spread + t*t*.18)
+		cloud.rotation.y = angle + t * (.16 if index % 2 == 0 else -.13)
+		var size := (.58 + 2.8 * (1.0 - exp(-t * 6.2)) + t * .46) * (1.0 if index == 0 else .64 + .025*index)
+		cloud.scale = Vector3(size*(1.0+.09*sin(angle)),size,size*(.86+.13*cos(angle)+t*.10))
+		cloud.material_override.set_shader_parameter("age", t * (2.4 + index * .13) + (.0 if index == 0 else index * .045))
 		cloud.material_override.set_shader_parameter("variation", angle)
-		cloud.material_override.set_shader_parameter("opacity", 1.0 if index == 0 else 0.82)
-	flash.visible = age < 0.34
+		cloud.material_override.set_shader_parameter("opacity", .94 if index == 0 else .66)
+	flash.visible = age < 0.28
 	flash.material_override.set_shader_parameter("age", age)
 	for index in range(sparks.size()):
 		var spark := sparks[index]
-		var a := variant + index * 2.39996
-		var life := 0.48 + float(index % 5) * 0.12
+		var a := variant + index * 2.39996 + .22*sin(float(index)*4.73+variant)
+		var life := .34 + float(index % 5) * .12
 		spark.visible = age < life
-		var distance := (2.3 + float(index % 4) * 0.7) * (1.0 - exp(-age * 3.0))
-		spark.position = Vector3(cos(a) * distance, 0.32 + age * 0.3, sin(a) * distance)
+		var distance := (1.6 + float(index % 4) * .78) * (1.0 - exp(-age * 3.4))
+		spark.position = Vector3(cos(a) * distance, .16 + age*.8-age*age*1.6, sin(a) * distance + age*.3)
 		spark.rotation.y = -a + PI * 0.5
-		spark.scale = Vector3.ONE * maxf(0.01, 1.0 - age / life)
+		var fade := maxf(.01,1.0-age/life)
+		spark.scale = Vector3(.62+float(index%3)*.15,1,(1.2+float(index%4)*.46)*fade)
 	for index in range(debris.size()):
 		var chunk := debris[index]
 		var a := variant + index * 2.39996 + 0.6

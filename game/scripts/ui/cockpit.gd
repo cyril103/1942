@@ -44,6 +44,9 @@ func _ready() -> void:
 	combat.hud.get_parent().hide()
 	screen = TextureRect.new()
 	screen.texture = viewport.get_texture()
+	var grade := ShaderMaterial.new()
+	grade.shader = preload("res://shaders/flight_grade.gdshader")
+	screen.material = grade
 	screen.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	screen.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(screen)
@@ -70,6 +73,30 @@ func _ready() -> void:
 	add_child(message)
 	resized.connect(_layout)
 	_layout()
+
+func set_presentation(biome: String, _quality: int) -> void:
+	if not is_instance_valid(screen): return
+	var grade := screen.material as ShaderMaterial
+	var shadows := Color(.965,1.0,1.025)
+	var lights := Color(1.03,1.01,.97)
+	var saturation := .97
+	match biome:
+		"dusk":
+			shadows = Color(.98,.975,1.045)
+			lights = Color(1.05,1.015,.95)
+		"storm":
+			shadows = Color(.955,.99,1.025)
+			lights = Color(.985,1.005,1.03)
+			saturation = .92
+		"arctic":
+			shadows = Color(.95,.995,1.03)
+			lights = Color(1.015,1.02,1.025)
+		"volcanic":
+			shadows = Color(.985,.98,1.02)
+			lights = Color(1.045,1.0,.97)
+	grade.set_shader_parameter("shadow_tint",Vector3(shadows.r,shadows.g,shadows.b))
+	grade.set_shader_parameter("light_tint",Vector3(lights.r,lights.g,lights.b))
+	grade.set_shader_parameter("saturation",saturation)
 
 func _layout() -> void:
 	if not is_instance_valid(viewport): return

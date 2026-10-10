@@ -1,0 +1,71 @@
+PACIFIC STRIKE ULTIMATE 2.1 — VALIDATION VISUELLE ET EXÉCUTION
+10 octobre 2026 — Godot 4.7.2, Windows x64, GL Compatibility
+
+LIVRAISON
+dist/PacificStrike/PacificStrike.exe et dist/PacificStrike-Windows-x64.zip.
+Version fichier/produit Windows 2.1.0.0; données utilisateur compatibles 2.0.
+La distribution précédente est conservée dans dist/PacificStrike-2.0-Windows-x64.zip.
+Les détails de rendu sont dans docs/direction-visuelle-2.1.txt.
+Paquet extrait et exécuté depuis un dossier indépendant : 30 contrôles réussis
+(métadonnées, empreinte identique, icône, manuel/licences, démarrage réel, fermeture).
+Le processus distribué sort avec le code 0; journal sans erreur ni avertissement.
+Empreintes et tailles exactes : evidence-2.1/artifacts.json.
+
+VALIDATION
+- Galerie : 160 contrôles headless, 165 avec captures natives. Navigation réelle,
+  trois appareils et vues, sélection, retour Échap, géométrie UI 1080p et 720p,
+  profil intact pendant la consultation. Les textures de ciel partagées suppriment
+  les fuites GL observées au premier essai. Capture finale sans erreur moteur.
+- Revue indépendante : parcours clavier corrigé avec FOCUS_CLICK; sommets des
+  trois avions cadrés dans les trois vues, avec les extrêmes de mouvement;
+  SubViewports libérés à la navigation et désactivés quand masqués.
+- Interface hangar : 24 contrôles; équipement : 3 746 contrôles; modes Ultimate :
+  961 contrôles. Aucun échec d'assertion.
+- Flotte : 44 contrôles nouveaux, 50 contrôles flotte existants. Matériaux importés
+  immuables, application idempotente, overlays de dégâts conservés, acteurs retirés
+  sans référence invalide, huit ciels en cache et ombres limitées à 48 instances.
+- Relief : 6 425 contrôles. Chenaux vérifiés sur les 32 missions, bounds de
+  déplacement, texture/cache, lagons et absence de croissance des pools.
+  Régression mer : 4 377 contrôles et 30 minutes simulées de recyclage.
+- Eau/raids : 20 contrôles de continuité des phases et des uniforms partagés.
+- Effets : 30 contrôles nouveaux et 35 de présentation. Expiration, pool constant,
+  réduction des flashes effective et séparation des éclats et des projectiles.
+- Préparation réelle GPU : 30 contrôles, niveaux de qualité 0/1/2. Matériaux de la
+  flotte améliorée inclus; aucune avance du temps, score ou progression au chargement.
+
+CAPTURES NATIVES
+renders/presentation-2.1 : accueil, huit secteurs en combat, raids volcanique et
+arctique. Scènes de contrôle composées par simulation accélérée, pas parties humaines.
+renders/sublime-showroom : hangar et inspection des trois appareils en 1080p/720p.
+renders/sublime-vfx : cinq âges d'explosion, impacts et réduction des flashes.
+Les captures finales sont produites par les mêmes scripts/shaders que le jeu.
+
+PERFORMANCES — REPLAYS RÉELS SÉPARÉS DES CAPTURES
+NVIDIA GTX 1650, pilote 561.03, OpenGL 3.3; fenêtre 1920×1080; qualité Équilibré,
+MSAA 2×, VSync désactivée pour mesurer. Un seul processus GPU à la fois.
+Pilote automatique avec invulnérabilité et entrées déterministes; armes/collisions
+réelles. Ces tests mesurent l'exécution, pas la difficulté ni une réussite humaine.
+
+Boss final M32 : 70 s d'observation, victoire/débriefing au tick 2678.
+14 870 images de jeu, moyenne 3,000 ms, p99 5,762 ms, maximum 16,504 ms.
+Aucune image de jeu >16,67 ms. Un pic de 21,265 ms dans l'écran de résultat.
+Préparation graphique 1 708 ms; lancement mesuré 2 727 ms.
+
+Raid volcanique M19 : 140 s d'observation, débriefing au tick 6358.
+35 753 images de jeu, moyenne 2,963 ms, p99 5,938 ms, maximum 15,111 ms.
+Aucune image de jeu >16,67 ms. Décollage, approche, descente, sol, remontée,
+combat de retour et appontage tous couverts. Préparation 1 436 ms; lancement 2 466 ms.
+Objectif volontairement non garanti par le pilote de mesure : seulement 6 cibles
+sur 18, priorités manquées. Le résultat de ce raid est donc une défaite.
+
+Ces mesures tiennent le budget 60 i/s sur ces deux replays, avec zéro nœud orphelin
+après libération. Elles ne garantissent pas les performances de toute machine ni
+de toutes les combinaisons de jeu. Pas de campagne entière testée manuellement.
+
+JOURNAUX ET LIMITES
+Les mesures JSON détaillées et journaux sont dans evidence-2.1/.
+Les contrôles headless impliquant certains matériaux de boss émettent encore
+"Parameter material is null" dans le renderer Dummy. Ce diagnostic préexistant
+ne se reproduit pas dans les captures, la préparation ni les replays GPU 2.1.
+Les textures/caches sont volontairement résidents; les octets vidéo estimés du
+moteur ne sont pas une mesure complète de la VRAM physique ou du processus.

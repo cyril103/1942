@@ -1,0 +1,39 @@
+PACIFIC STRIKE ULTIMATE 2.1 — DIRECTION VISUELLE
+10 octobre 2026
+
+Cette passe vise la profondeur, la cohérence de lumière et la lisibilité du jeu
+Godot existant. Elle conserve les 32 missions, les silhouettes et les règles 2.0.
+Les sources Blender et textures originales restent disponibles et inchangées.
+Aucun téléchargement d'asset supplémentaire n'a été nécessaire.
+
+Référence commerciale consultée : présentation officielle UNDER DEFEAT,
+https://city-connection.co.jp/underdefeat/
+L'attention portée au décor, aux explosions et à la perception du champ de bataille
+informe la direction. Aucun asset, musique, code ou mécanisme exclusif n'est repris.
+
+RÉALISATION
+Océan : microdétail atténué, grandes houles, reflets étirés et palettes par secteur.
+Les îles et les côtes des raids partagent la fonction et les phases de l'eau.
+Relief : masque dérivé des atlas existants, distance à la côte, grille déplacée,
+normales des pentes et éclairage sobre. Dix îles réutilisées, jamais de géométrie
+hors de leurs anciennes enveloppes XZ. Les lagons restent plats.
+Flotte : textures/UV conservés, métal et bois distincts, normal maps originales,
+reflets de verrière, huit ambiances de lumière. Ombres aériennes en batch borné.
+Combat : lobes d'explosion asymétriques, braises, refroidissement en fumée et
+dispersion; budgets fixes inchangés et options de réduction des flashes respectées.
+Étalonnage : un passage sur l'image du vol, avant HUD; pas de flou, bruit ou
+aberration chromatique. Le cœur lumineux des projectiles conserve sa lisibilité.
+Hangar : vrais modèles en trois aperçus 3D et studio d'inspection, glisser/zoom,
+boutons de vues accessibles clavier/manette. La consultation ne modifie pas le
+profil; l'affectation utilise le callback d'équipement déjà existant.
+Préparation graphique : les matériaux réellement utilisés par la flotte sont
+dessinés avant le vol, alors que la simulation reste gelée.
+
+LIMITES VISUELLES CONNUES
+La direction demeure un shmup stylisé utilisant des avions low poly et des îles
+illustrées; ces changements ne constituent pas une certification AAA.
+Le volume des îles se voit surtout en angle oblique et par la lumière des pentes
+en caméra verticale. Les ombres marines ne projettent pas sur les cartes des îles;
+elles sont désactivées sous le plateau des raids. Pas de ray tracing ou SSR.
+Les captures de présentation sont des scènes de contrôle composées, distinctes
+des replays réels utilisés pour la mesure de performances.

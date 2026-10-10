@@ -37,6 +37,8 @@ var module_group := 0
 var rules_from := "briefing"
 var seen_departures: Dictionary = {}
 var session_profile: RefCounted
+var boss_rush = preload("res://scripts/campaign/boss_rush.gd").new()
+var run_generation := 0
 var asset_cache: Array[Resource] = []
 const BIND_NAMES := {"move_left":"Gauche","move_right":"Droite","move_up":"Monter","move_down":"Descendre","fire":"Tirer","bomb":"Bombe","strike":"Capacité de l'avion","focus_flight":"Vol de précision"}
 
@@ -59,6 +61,14 @@ func _show_bindings() -> void:
 			if event is InputEventKey: label += (" / " if label!="" else "")+OS.get_keycode_string(event.keycode)
 		_button(BIND_NAMES[action]+"  :  "+label,Vector2(94+(i%2)*860,290+(i/2)*125),Vector2(810,76),func(): waiting_binding=action; notice.text="Appuyez sur la nouvelle touche pour "+BIND_NAMES[action])
 		i += 1
+	var automatic := CheckButton.new()
+	automatic.name = "AutomaticFire"
+	automatic.text = "TIR AUTOMATIQUE  /  libère la touche de tir pendant le vol"
+	automatic.position = Vector2(94,786)
+	automatic.size = Vector2(1600,52)
+	automatic.button_pressed = bool(profile.data.settings.get("auto_fire",false))
+	automatic.toggled.connect(func(value): profile.data.settings.auto_fire=value; _apply_settings(); _save())
+	design.add_child(automatic)
 	_button("RÉTABLIR",Vector2(94,862),Vector2(330,60),func():
 		profile.data.bindings.clear()
 		for action in BIND_NAMES:
@@ -97,6 +107,7 @@ func _show_graphics() -> void:
 func _apply_graphics() -> void:
 	if not is_instance_valid(cockpit): return
 	var quality := int(profile.data.settings.get("quality",1))
+	cockpit.set_presentation(str(director.mission.get("biome","coral")) if is_instance_valid(director) else "coral",quality)
 	cockpit.viewport.msaa_3d = [Viewport.MSAA_DISABLED,Viewport.MSAA_2X,Viewport.MSAA_4X][quality]
 	cockpit.flight.get_node("KeyLight").shadow_enabled = quality>0
 	if is_instance_valid(director) and is_instance_valid(director.details): director.details.enabled = quality>0
@@ -122,8 +133,9 @@ func _start_mode(mode: String, number: int) -> void:
 	_launch(number,mode)
 
 func _can_launch(number: int, mode: String) -> bool:
-	if mode not in ["campaign","arcade","practice"] or number < 1 or number > missions.size(): return false
+	if mode not in ["campaign","arcade","practice","boss_rush"] or number < 1 or number > missions.size(): return false
 	if mode=="campaign": return number <= int(profile.data.unlocked)
+	if mode=="boss_rush": return boss_rush.active and boss_rush.stage_open and number==boss_rush.mission_id() and preload("res://scripts/campaign/boss.gd").MODELS.has(str(missions[number-1].get("boss","")))
 	if mode=="practice": return preload("res://scripts/campaign/boss.gd").MODELS.has(str(missions[number-1].get("boss","")))
 	return true
 
@@ -206,6 +218,7 @@ func _setup_audio() -> void:
 
 func _apply_settings() -> void:
 	if is_instance_valid(session_profile) and session_profile!=profile: session_profile.data.settings=profile.data.settings.duplicate()
+	if is_instance_valid(director): director.weapons.auto_fire = bool(profile.data.settings.get("auto_fire",false))
 	for pair in [["Master","master"],["Music","music"],["Effects","effects"]]:
 		var volume: float = profile.data.settings[pair[1]]
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index(pair[0]),linear_to_db(maxf(0.0001,volume)))
@@ -309,23 +322,71 @@ func _show_main() -> void:
 	page = "main"
 	_campaign_context(int(profile.data.next_mission))
 	if is_instance_valid(music): music.set_mode("menu")
-	_clear_menu("PACIFIC STRIKE", "CAMPAGNE 1942  /  32 MISSIONS  /  8 SECTEURS",false)
+	_clear_menu("PACIFIC STRIKE", "ULTIMATE 2.2  /  CAMPAGNE 1942  /  32 MISSIONS  /  8 SECTEURS",false)
+	var radar := preload("res://scripts/campaign/title_radar.gd").new()
+	radar.name = "PacificOperationsRadar"
+	radar.position = Vector2(680,242)
+	radar.size = Vector2(570,700)
+	radar.reduced_motion = not bool(profile.data.settings.shake)
+	design.add_child(radar)
 	var completed: int = profile.data.records.size()
-	_label("LE PACIFIQUE\nVOUS ATTEND.",Vector2(94,266),Vector2(730,190),66,GOLD,true)
-	_label("Du premier décollage à la dernière offensive.\nUne campagne aérienne à travers les îles, les convois et les tempêtes.",Vector2(96,475),Vector2(630,90),29,Color("c5d1d5"))
+	_label("CHAQUE ESQUIVE\nCOMPTE.",Vector2(94,266),Vector2(900,190),64,GOLD,true)
+	_label("Frôlez le danger. Brisez leurs formations.\nDes récifs du Pacifique au dernier rempart,\nla maîtrise fait la différence.",Vector2(96,470),Vector2(660,110),29,Color("d5dfe0"))
 	_button("COMMENCER LA CAMPAGNE" if profile.data.records.is_empty() else "REPRENDRE  /  MISSION %02d" % profile.data.next_mission,Vector2(94,590),Vector2(490,62),func(): _show_briefing(profile.data.next_mission))
 	_button("CARTE DES MISSIONS",Vector2(94,670),Vector2(490,56),_show_missions)
 	_button("HANGAR & AMÉLIORATIONS",Vector2(94,744),Vector2(490,56),_show_hangar)
 	_button("OPTIONS",Vector2(94,818),Vector2(235,54),func(): _show_settings(false))
 	_button("CRÉDITS",Vector2(349,818),Vector2(235,54),_show_credits)
 	_button("QUITTER",Vector2(94,892),Vector2(490,54),_quit)
-	_button("ARCADE  /  SCORE ATTACK",Vector2(1290,590),Vector2(510,58),_show_challenges.bind("arcade"))
-	_button("ENTRAÎNEMENT AUX BOSS",Vector2(1290,667),Vector2(510,58),_show_challenges.bind("practice"))
-	_label("CARNET DE VOL",Vector2(1290,792),Vector2(520,45),26,GOLD)
-	_label("%02d / 32 missions accomplies\nRecord  %08d\n%d pièces disponibles au hangar" % [completed,profile.data.high_score,profile.data.credits],Vector2(1290,842),Vector2(520,120),29,Color("dae5e7"))
+	_label("L'ÉPREUVE ULTIME",Vector2(1290,294),Vector2(510,44),25,GOLD)
+	_label("8 BOSS.\n3 VIES.\nUNE SEULE CHANCE.",Vector2(1290,346),Vector2(510,165),41,Color("f1ede2"),true)
+	_button("BOSS RUSH  /  ENTRER DANS L'ARÈNE",Vector2(1290,534),Vector2(510,62),_show_boss_rush).name = "BossRushEntry"
+	_button("ARCADE  /  SCORE ATTACK",Vector2(1290,612),Vector2(510,58),_show_challenges.bind("arcade"))
+	_button("ENTRAÎNEMENT AUX BOSS",Vector2(1290,686),Vector2(510,58),_show_challenges.bind("practice"))
+	_button("GUIDE DU PILOTE",Vector2(1290,760),Vector2(510,54),_show_pilot_guide)
+	_label("%02d / 32 MISSIONS  •  %d PIÈCES\nRECORD CAMPAGNE  %08d" % [completed,profile.data.credits,profile.data.high_score],Vector2(1290,842),Vector2(520,90),26,Color("dae5e7"))
 	if not profile.data.records.is_empty() or profile.last_error==ERR_FILE_CORRUPT: _button("NOUVELLE CAMPAGNE",Vector2(1290,950),Vector2(510,52),_confirm_new_campaign)
 	if profile.last_error==ERR_FILE_CORRUPT: notice.text = "SAUVEGARDE ILLISIBLE — fichiers conservés. Progression non enregistrée. Nouvelle campagne permet de repartir après confirmation."
 	_focus_first()
+
+func _show_pilot_guide() -> void:
+	page = "pilot_guide"
+	_clear_menu("GUIDE DU PILOTE","LE VOL EST SIMPLE À PRENDRE EN MAIN. LA MAÎTRISE SE CONSTRUIT À CHAQUE SORTIE.")
+	_label("01  /  PILOTER",Vector2(94,282),Vector2(790,52),32,GOLD,true)
+	_label(COMMANDS.flight_guide(),Vector2(94,352),Vector2(790,340),31,Color("d4dfe1"))
+	_label("02  /  LIRE LE DANGER",Vector2(1000,282),Vector2(800,52),32,GOLD,true)
+	_label("Vos tirs sont cyan. Les tirs ennemis sont orangés.\nMaintenez la précision pour ajuster votre trajectoire et voir le centre vulnérable de votre avion.\n\nLe HUD annonce le motif du boss et un conseil pour l'éviter. Observez sa charge, puis esquivez les projectiles. Détruisez ses deux points faibles pour réduire sa puissance.",Vector2(1000,352),Vector2(800,310),29,Color("d4dfe1"))
+	_label("03  /  FRÔLER & ENCHAÎNER",Vector2(94,729),Vector2(1660,48),32,GOLD,true)
+	_label("Un projectile évité de très près rapporte 25 points et jusqu'à 0,6 % de charge spéciale, une seule fois par balle.\nDétruisez à nouveau en 4,5 s pour entretenir votre chaîne, jusqu'à ×5. Utilisez votre bombe avant d'être encerclé.",Vector2(94,800),Vector2(1660,100),29,MUTED)
+	_button("RETOUR À L'ACCUEIL",Vector2(94,942),Vector2(440,58),_show_main)
+	_focus_first()
+
+func _show_boss_rush() -> void:
+	page = "boss_rush"
+	_clear_menu("BOSS RUSH  /  LA TRAVERSÉE","HUIT ADVERSAIRES. UN STOCK DE VIES COMMUN. LE DÉFI EST OUVERT DÈS LE PREMIER VOL.")
+	var boss_script := preload("res://scripts/campaign/boss.gd")
+	for index in range(boss_rush.ROUTE.size()):
+		var mission: Dictionary = missions[boss_rush.ROUTE[index]-1]
+		var at := Vector2(94+(index%4)*437,286+(index/4)*164)
+		_label("%02d  /  %s" % [index+1,str(mission.region).to_upper()],at,Vector2(402,40),22,MUTED)
+		_label(str(boss_script.NAMES[mission.boss]).split(" • ")[0],at+Vector2(0,48),Vector2(402,53),32,GOLD,true)
+		_label(str(mission.title),at+Vector2(0,100),Vector2(402,48),22,Color("d4dfe1"))
+	_label("VOTRE APPAREIL",Vector2(94,656),Vector2(650,45),25,GOLD)
+	for index in range(3):
+		_button(("✓  " if int(profile.data.aircraft)==index else "")+PROFILE.AIRCRAFT[index],Vector2(94+index*570,714),Vector2(542,57),func(): profile.data.aircraft=index; _save(); _show_boss_rush())
+	var record := int(profile.data.arcade_records.get("rush:%d" % profile.data.aircraft,0))
+	_label("Difficulté Pilote • Multi-tir • Aucun module • Blindage et bombes restaurés entre les duels.\nLes vies et le score se conservent. Recommencer relance les huit boss. Record validé après la traversée complète.",Vector2(94,801),Vector2(1720,89),27,MUTED)
+	_button("LANCER LA TRAVERSÉE",Vector2(94,938),Vector2(540,62),_begin_boss_rush).name = "StartBossRush"
+	_button("RETOUR",Vector2(665,938),Vector2(280,62),_show_main)
+	_label("RECORD  %08d" % record,Vector2(1200,943),Vector2(600,50),30,GOLD)
+	_focus_first()
+
+func _begin_boss_rush() -> void:
+	boss_rush.begin(int(profile.data.aircraft))
+	_launch(boss_rush.mission_id(),"boss_rush")
+
+func _next_boss_rush() -> void:
+	if boss_rush.advance(): _launch(boss_rush.mission_id(),"boss_rush")
 
 func _show_missions() -> void:
 	_campaign_context(selected_mission)
@@ -367,6 +428,13 @@ func _select_aircraft(index: int) -> void:
 	profile.data.aircraft = index
 	_save()
 	_show_hangar()
+
+func _show_aircraft_gallery(index := -1) -> void:
+	page = "aircraft_gallery"
+	var shown := int(profile.data.aircraft) if index<0 else clampi(index,0,2)
+	_clear_menu("LES AILES DU PACIFIQUE","HANGAR  /  INSPECTION DES APPAREILS  /  TROIS VUES DISPONIBLES")
+	preload("res://scripts/campaign/carrier_menu.gd").new().gallery(self,shown)
+	_focus_first()
 
 func _buy(index: int) -> void:
 	var purchased: bool = profile.buy_upgrade(index)
@@ -526,6 +594,7 @@ func _launch(number: int, mode := "", retry := false) -> void:
 		last_preparation_ms = Time.get_ticks_msec()-started
 		if cockpit.flight.get_node("Departure").active: engine_audio.start()
 		cockpit.process_mode = Node.PROCESS_MODE_PAUSABLE
+		remove_child(cover)
 		cover.queue_free()
 		page = "playing"
 		preparing = false
@@ -553,23 +622,29 @@ func _build_run(number: int, launch_mode: String, retry: bool) -> void:
 		session_profile.data.aircraft = profile.data.aircraft
 		session_profile.data.settings = profile.data.settings.duplicate()
 		session_profile.data.difficulty = 1
-		session_profile.data.power = "spread" if play_mode=="practice" else "none"
+		session_profile.data.power = "spread" if play_mode in ["practice","boss_rush"] else "none"
+		if play_mode=="boss_rush":
+			session_profile.data.aircraft = boss_rush.aircraft
+			session_profile.data.run_score = boss_rush.score
+			session_profile.data.run_lives = boss_rush.lives
 	director.profile = session_profile
-	director.practice = play_mode=="practice"
+	director.practice = play_mode in ["practice","boss_rush"]
+	director.boss_rush = play_mode=="boss_rush"
 	director.first_takeoff = true
-	director.finished.connect(func(report): _show_result.call_deferred(report))
+	director.finished.connect(_queue_run_result.bind(run_generation))
 	if is_instance_valid(music):
 		music.foreground_gain_changed.connect(cockpit.flight.get_node("Weapons").audio.set_alert_attenuation)
 		music.begin_run()
 		director.audio_event.connect(_on_audio_event)
 	cockpit.flight.add_child(director)
 	cockpit.flight.get_node("Weapons").set_power(session_profile.data.power)
+	director.weapons.auto_fire = bool(profile.data.settings.get("auto_fire",false))
 	var departure = cockpit.flight.get_node("Departure")
 	var departure_key := "%s:%d" % [play_mode,number]
-	var use_short_intro: bool = retry and play_mode!="practice" and bool(profile.data.settings.get("short_retry_intro",false)) and seen_departures.has(departure_key)
+	var use_short_intro: bool = retry and play_mode not in ["practice","boss_rush"] and bool(profile.data.settings.get("short_retry_intro",false)) and seen_departures.has(departure_key)
 	# Mark only a normal takeoff that actually reached flight. Leaving the menu
 	# during its choreography never makes the next attempt skip that discovery.
-	if play_mode!="practice" and not use_short_intro:
+	if play_mode not in ["practice","boss_rush"] and not use_short_intro:
 		departure.flight_started.connect(func(): seen_departures[departure_key]=true,CONNECT_ONE_SHOT)
 	if use_short_intro: departure.begin_short_retry()
 	var hud := HUD.new()
@@ -577,7 +652,7 @@ func _build_run(number: int, launch_mode: String, retry: bool) -> void:
 	hud.cockpit = cockpit
 	hud.director = director
 	cockpit.add_child(hud)
-	if play_mode=="practice":
+	if play_mode in ["practice","boss_rush"]:
 		departure.finish_immediately()
 		director._spawn_boss(director.mission.boss)
 	_apply_graphics()
@@ -602,9 +677,9 @@ func _show_pause() -> void:
 	_clear_menu("VOL SUSPENDU","MISSION %02d  /  %s" % [selected_mission,director.mission.title])
 	_button("REPRENDRE LE VOL",Vector2(94,315),Vector2(580,70),_resume)
 	_button("OPTIONS",Vector2(94,415),Vector2(580,64),func(): _show_settings(true))
-	_button("RECOMMENCER LA MISSION",Vector2(94,509),Vector2(580,64),_launch.bind(selected_mission,"",true))
+	_button("RECOMMENCER LA TRAVERSÉE" if play_mode=="boss_rush" else "RECOMMENCER LA MISSION",Vector2(94,509),Vector2(580,64),_begin_boss_rush if play_mode=="boss_rush" else _launch.bind(selected_mission,"",true))
 	_button("RETOUR À L'ACCUEIL",Vector2(94,603),Vector2(580,64),_show_main)
-	_label("La progression est enregistrée entre les missions.\nReprendre depuis l'accueil relance le briefing de la mission.",Vector2(850,325),Vector2(870,150),32,MUTED)
+	_label("BOSS RUSH  /  DUEL %d SUR 8\n%d vies restantes. Recommencer remet le score à zéro et relance le premier boss." % [boss_rush.cursor+1,director.combat.remaining_lives] if play_mode=="boss_rush" else "La progression est enregistrée entre les missions.\nReprendre depuis l'accueil relance le briefing de la mission.",Vector2(850,325),Vector2(870,150),32,MUTED)
 	_label("COMMANDES  /  CLAVIER · MANETTE",Vector2(850,495),Vector2(870,48),27,GOLD)
 	var commands := _label(COMMANDS.flight_guide(),Vector2(850,555),Vector2(870,325),30,MUTED)
 	commands.name = "FlightCommands"
@@ -617,8 +692,17 @@ func _resume() -> void:
 	menu.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
+func _queue_run_result(report: Dictionary, generation: int) -> void:
+	_accept_run_result.call_deferred(report,generation)
+
+func _accept_run_result(report: Dictionary, generation: int) -> void:
+	# A queued report belongs to the flight that emitted it, even after restart.
+	if generation!=run_generation: return
+	_show_result(report)
+
 func _show_result(report: Dictionary) -> void:
 	if not is_instance_valid(director): return
+	if play_mode=="boss_rush" and not boss_rush.accept(report): return
 	result = report
 	cockpit.get_node("CampaignHUD").hide()
 	if is_instance_valid(music):
@@ -632,6 +716,9 @@ func _show_result(report: Dictionary) -> void:
 	elif play_mode=="arcade":
 		var key := "%d:%d" % [selected_mission,profile.data.aircraft]
 		profile.data.arcade_records[key] = maxi(int(profile.data.arcade_records.get(key,0)),int(report.get("mission_score",report.score)))
+	elif play_mode=="boss_rush" and boss_rush.complete():
+		var key: String = boss_rush.record_key()
+		profile.data.arcade_records[key] = maxi(int(profile.data.arcade_records.get(key,0)),boss_rush.score)
 	if report.won and play_mode=="campaign":
 		profile.data.run_score = int(report.score)
 		profile.data.run_lives = int(report.get("lives",3))
@@ -648,6 +735,9 @@ func _show_result(report: Dictionary) -> void:
 
 func _draw_result(report: Dictionary) -> void:
 	if not is_instance_valid(director): return
+	if play_mode=="boss_rush":
+		_draw_rush_result(report)
+		return
 	page = "result"
 	var victory: bool = report.won and selected_mission == 32 and play_mode=="campaign"
 	# Explicit terminal cause takes precedence over an old cached objective flag.
@@ -656,7 +746,7 @@ func _draw_result(report: Dictionary) -> void:
 	var objective_failed: bool = not game_over and bool(report.get("objective_failed",false))
 	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else ("MISSION INACCOMPLIE" if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
 	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else ("OBJECTIF NON ATTEINT" if objective_failed else "AUCUNE VIE RESTANTE"),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
-	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.bonus,result_earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1")).name = "ResultScoreDetails"
+	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nFRÔLEMENTS    %d  /  +%d POINTS\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.get("grazes",0),report.get("graze_score",0),report.bonus,result_earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1")).name = "ResultScoreDetails"
 	var summary := "32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est disponible.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre meilleur score est conservé.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde.")
 	if play_mode!="campaign": summary = ("Le record Arcade est mis à jour si ce score est supérieur." if play_mode=="arcade" else "Entraînement terminé. Aucun record ni récompense de campagne.")+"\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée."
 	var summary_y := 336.0
@@ -688,6 +778,25 @@ func _draw_result(report: Dictionary) -> void:
 	_label("RANG %s   •   CHAÎNE MAX %d   •   PRÉCISION %d %%\nOBJECTIF SECONDAIRE : %s" % [report.get("rank","C"),report.get("best_chain",0),int(float(report.get("accuracy",0))*100),"ACCOMPLI" if report.get("secondary",false) else "NON ACCOMPLI"],Vector2(94,744),Vector2(1620,85),27,GOLD)
 	_focus_first()
 
+func _draw_rush_result(report: Dictionary) -> void:
+	page = "result"
+	var complete: bool = boss_rush.complete()
+	var continuing: bool = boss_rush.active and boss_rush.last_won
+	_clear_menu("TRAVERSÉE ACCOMPLIE" if complete else ("BOSS NEUTRALISÉ" if continuing else "FIN DE LA TRAVERSÉE"),"BOSS RUSH  /  %d ADVERSAIRES VAINCUS SUR 8  /  %s" % [boss_rush.cleared,PROFILE.AIRCRAFT[boss_rush.aircraft]])
+	_label("%02d / 08" % boss_rush.cleared,Vector2(94,295),Vector2(920,160),108,GOLD,true)
+	_label("SCORE TOTAL  %08d\nVIES RESTANTES  %d\nTEMPS DE COMBAT  %02d:%02d\nFRÔLEMENTS  %d" % [boss_rush.score,boss_rush.lives,int(boss_rush.seconds)/60,int(boss_rush.seconds)%60,boss_rush.grazes],Vector2(94,497),Vector2(950,262),39,Color("e1e8e5")).name = "RushScoreDetails"
+	var summary := "Les huit chefs de secteur sont tombés.\nVotre record de traversée a été enregistré pour cet appareil."
+	if continuing:
+		var next_mission: Dictionary = missions[boss_rush.ROUTE[boss_rush.cursor+1]-1]
+		summary = "PROCHAINE CIBLE\n%s\n\nLe blindage et les bombes sont restaurés. Vos %d vies et vos %d points restent en jeu." % [str(preload("res://scripts/campaign/boss.gd").NAMES[next_mission.boss]),boss_rush.lives,boss_rush.score]
+	elif not complete: summary = "La traversée s'arrête ici.\nEntraînez-vous contre les boss pour apprendre leurs motifs, puis tentez une nouvelle route.\n\nUn record exige de vaincre les huit adversaires."
+	_label(summary,Vector2(1120,340),Vector2(680,380),32,MUTED).name = "RushSummary"
+	_label("RECORD DE CET APPAREIL  %08d" % int(profile.data.arcade_records.get(boss_rush.record_key(),0)),Vector2(94,785),Vector2(1620,53),30,GOLD)
+	_button("AFFRONTER LE BOSS SUIVANT" if continuing else "RETENTER LA TRAVERSÉE",Vector2(94,902),Vector2(650,72),_next_boss_rush if continuing else _begin_boss_rush).name = "RushContinue"
+	_button("ACCUEIL",Vector2(774,902),Vector2(390,72),_show_main)
+	_button("ENTRAÎNEMENT AUX BOSS",Vector2(1194,902),Vector2(606,72),func(): _dispose_run(); _show_challenges("practice"))
+	_focus_first()
+
 func _briefing_after_result(number: int) -> void:
 	_dispose_run()
 	_show_briefing(number)
@@ -701,6 +810,7 @@ func _credits_after_result() -> void:
 	_show_credits()
 
 func _dispose_run() -> void:
+	run_generation += 1
 	get_tree().paused = false
 	if is_instance_valid(cockpit):
 		cockpit._stop_audio(cockpit)
@@ -741,7 +851,7 @@ func _input(event: InputEvent) -> void:
 			"playing": _show_pause()
 			"pause": _resume()
 			"bindings", "graphics": _show_settings(settings_from_pause)
-			"modules": _show_hangar()
+			"modules", "aircraft_gallery": _show_hangar()
 			"rules": _return_from_rules()
 			"criteria": _draw_result(result)
 			"settings":

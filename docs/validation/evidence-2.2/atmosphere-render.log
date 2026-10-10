@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 561.03 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce GTX 1650
+
+Full sea and coast agree at phase 0 and TAU: { "mean": 0.00000005106212, "maximum": 0.00392158329487, "outliers": 0 }
+First water layer wraps continuously from scroll 2 to 0: { "mean": 0.00000016453341, "maximum": 0.00392157584429, "outliers": 0 }
+Second water layer wraps continuously from scroll 2 to 0: { "mean": 0.0000000170207, "maximum": 0.00392156839371, "outliers": 0 }
+Production seascape binds the same phases to sea and coast: { "mean": 0.0, "maximum": 0.0, "outliers": 0 }
+ATMOSPHERE GPU: 9 checks; coastal pixels 16195; animated foam pixels 6988; foam peak 0.66252160072327; water delta { "mean": 0.02182172622812, "maximum": 0.16862747073174, "outliers": 19503 }; failures []

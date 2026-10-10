@@ -34,7 +34,17 @@ func panel(app: Control, rect: Rect2, opacity := .90, selected := false) -> Pane
 	app.design.add_child(p)
 	return p
 
-func image(app: Control, asset: String, rect: Rect2) -> TextureRect:
+func image(app: Control, asset: String, rect: Rect2) -> Control:
+	if asset.trim_suffix(".png") in PLANES:
+		var preview := preload("res://scripts/campaign/aircraft_showcase.gd").new()
+		preview.aircraft_index = PLANES.find(asset.trim_suffix(".png"))
+		preview.compact = true
+		preview.reduced_motion = not bool(app.profile.data.settings.shake)
+		preview.quality = int(app.profile.data.settings.get("quality",1))
+		preview.position = rect.position
+		preview.size = rect.size
+		app.design.add_child(preview)
+		return preview
 	var view := TextureRect.new()
 	view.texture = load(ASSETS+asset)
 	view.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -142,6 +152,35 @@ func hangar(app: Control) -> void:
 	app._button("RETOUR AU BRIEFING",Vector2(94,946),Vector2(420,55),app._show_briefing.bind(app.selected_mission)).name = "HangarBriefing"
 	app._button("MODULES & ÉQUIPEMENT",Vector2(539,946),Vector2(510,55),app._show_modules).name = "HangarModules"
 	app._button("ACCUEIL",Vector2(1074,946),Vector2(240,55),app._show_main)
+	app._button("INSPECTER L'APPAREIL",Vector2(1339,946),Vector2(485,55),app._show_aircraft_gallery).name = "InspectAircraft"
+
+func gallery(app: Control, index: int) -> void:
+	backdrop(app,"hangar")
+	var aircraft: Dictionary = LOADOUT.aircraft(index)
+	var stats: Dictionary = LOADOUT.stats(app.profile.data,index)
+	panel(app,Rect2(94,270,1100,648),.98)
+	var studio := preload("res://scripts/campaign/aircraft_showcase.gd").new()
+	studio.name = "AircraftGallery"
+	studio.aircraft_index = index
+	studio.reduced_motion = not bool(app.profile.data.settings.shake)
+	studio.quality = int(app.profile.data.settings.get("quality",1))
+	studio.position = Vector2(97,273)
+	studio.size = Vector2(1094,642)
+	app.design.add_child(studio)
+	panel(app,Rect2(1220,270,604,648),.95)
+	text(app,"0%d  /  ESCADRILLE DU PACIFIQUE" % (index+1),Vector2(1250,294),Vector2(540,31),22,GOLD)
+	text(app,str(aircraft.label).to_upper(),Vector2(1250,345),Vector2(540,68),48,WHITE)
+	text(app,str(aircraft.model_label),Vector2(1250,426),Vector2(540,46),28,MUTED)
+	text(app,str(aircraft.description),Vector2(1250,500),Vector2(530,92),28)
+	text(app,"VITESSE                 %.1f\nBLINDAGE               %d\nPUISSANCE             %.1f DPS\nBOMBES                 %d" % [float(stats.speed),int(stats.max_health),float(stats.standard_dps),int(stats.bombs)],Vector2(1250,624),Vector2(520,168),28,GOLD)
+	text(app,_ability_copy(stats),Vector2(1250,818),Vector2(530,64),24,MUTED)
+	text(app,"GLISSER POUR TOURNER  /  MOLETTE POUR ZOOMER",Vector2(116,877),Vector2(1020,32),20,MUTED)
+	compact_button(app,"GalleryThreeQuarter","3/4",Rect2(94,936,100,55),studio.set_view.bind(0))
+	compact_button(app,"GalleryProfile","PROFIL",Rect2(208,936,138,55),studio.set_view.bind(1))
+	compact_button(app,"GalleryTop","DESSUS",Rect2(360,936,148,55),studio.set_view.bind(2))
+	app._button("APPAREIL SUIVANT",Vector2(531,936),Vector2(326,55),app._show_aircraft_gallery.bind((index+1)%3)).name = "GalleryNext"
+	app._button("RETOUR AU HANGAR",Vector2(880,936),Vector2(314,55),app._show_hangar).name = "GalleryBack"
+	app._button("EN SERVICE" if index==int(app.profile.data.aircraft) else "AFFECTER CET APPAREIL",Vector2(1220,936),Vector2(604,55),app._select_aircraft.bind(index)).name = "GalleryAssign"
 
 func modules(app: Control) -> void:
 	backdrop(app,"hangar")

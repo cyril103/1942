@@ -5,6 +5,9 @@ const NAVAL := preload("res://scripts/campaign/enemy_naval.gd")
 const BOSS := preload("res://scripts/campaign/boss.gd")
 const LOADOUT := preload("res://scripts/campaign/loadout.gd")
 const SCORING := preload("res://scripts/campaign/scoring_rules.gd")
+const GRAZE_CHARGE := 0.6
+const GRAZE_FEEDBACK_INTERVAL := 0.18
+const GRAZE_FEEDBACK_DURATION := 0.7
 var cockpit: Control
 var mission: Dictionary
 var profile: RefCounted
@@ -52,6 +55,12 @@ var base_damage := 1.0
 var equipment: Dictionary
 var base_laser_interval := 1.0
 var practice := false
+var boss_rush := false
+var graze_charge_gain := 0.0
+var graze_feedback_time := 0.0
+var graze_feedback_count := 0
+var graze_feedback_cooldown := 0.0
+var _graze_pending := 0
 var last_boss_phase := -1
 var convoy: Area3D
 var assault: Node3D
@@ -150,6 +159,30 @@ func on_kill(base: int, kind: String) -> void:
 	combat.score += mastery.kill(base)
 	complete_objective(kind)
 
+func can_graze() -> bool:
+	return active and not paused and not ending and not get_tree().paused and not combat.game_over and combat.respawn_time<=0 and player.alive and player.controls_enabled and player.invulnerable_time<=0 and ring_time<=0
+
+func on_graze() -> bool:
+	if not can_graze(): return false
+	combat.score += mastery.graze()
+	if ability_time<=0:
+		var gain := minf(GRAZE_CHARGE,maxf(0,100-charge))
+		charge += gain
+		graze_charge_gain += gain
+	_graze_pending += 1
+	return true
+
+func _update_graze_feedback(delta: float) -> void:
+	graze_feedback_time = maxf(0,graze_feedback_time-delta)
+	graze_feedback_cooldown = maxf(0,graze_feedback_cooldown-delta)
+	if _graze_pending==0 or graze_feedback_cooldown>0: return
+	# Dense patterns share one discreet HUD pulse instead of stacking VFX or
+	# hiding radio calls beneath a stream of central score notifications.
+	graze_feedback_count = _graze_pending
+	_graze_pending = 0
+	graze_feedback_time = GRAZE_FEEDBACK_DURATION
+	graze_feedback_cooldown = GRAZE_FEEDBACK_INTERVAL
+
 func award_formation(at: Vector3, bonus: int, red: bool) -> void:
 	combat.score += bonus
 	mastery.bonus_score += bonus
@@ -172,7 +205,7 @@ func _update_acts() -> void:
 		act_title = acts[act_index].title
 		radio = acts[act_index].radio
 		radio_time = 5
-		if act_index==1 and mastery.secondary_kind=="convoy" and not practice:
+		if act_index==1 and mastery.secondary_kind=="convoy" and not practice and not boss_rush:
 			convoy = preload("res://scripts/campaign/convoy.gd").new()
 			convoy.position = Vector3(0,0,4)
 			convoy.rescued.connect(func(): complete_objective("convoy"); radio="Convoi : route sécurisée. Merci pour la couverture."; radio_time=5)
@@ -217,6 +250,7 @@ func _physics_process(delta: float) -> void:
 
 func advance(delta: float) -> void:
 	if not active or paused: return
+	_update_graze_feedback(delta)
 	feedback_time = maxf(0,feedback_time-delta)
 	radio_time = maxf(0,radio_time-delta)
 	if player.alive and player.controls_enabled and not ending:
@@ -255,6 +289,9 @@ func advance(delta: float) -> void:
 		return
 	if ending:
 		ending_time += delta
+		if boss_rush:
+			if ending_time>=1.5: _end(mission_completed)
+			return
 		var departure = cockpit.flight.get_node("Departure")
 		departure.advance_landing(delta)
 		if departure.landed: _end(mission_completed)
@@ -270,18 +307,18 @@ func advance(delta: float) -> void:
 	combat.next_wave = maxf(0,combat_deadline-elapsed)
 	if Input.is_action_just_pressed("bomb"): use_bomb()
 	if Input.is_action_just_pressed("strike"): use_strike()
-	if (elapsed >= combat_deadline or practice) and (mission.boss == "" or boss_won):
+	if (elapsed >= combat_deadline or practice or boss_rush) and (mission.boss == "" or boss_won):
 		if is_instance_valid(assault) and (not assault.approach_clear() or extraction_started_at<0): return
 		mission_completed = not is_instance_valid(assault) or assault.main_objective_met()
 		ending = true
 		_update_ability(0)
-		feedback = "SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS" if mission_completed else "OBJECTIF INCOMPLET  /  REPLI VERS LE PORTE-AVIONS"
+		feedback = "BOSS NEUTRALISÉ  /  DUEL TERMINÉ" if boss_rush else ("SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS" if mission_completed else "OBJECTIF INCOMPLET  /  REPLI VERS LE PORTE-AVIONS")
 		feedback_time = 6
 		combat.clear_enemy_bullets()
 		player.invulnerable_time = 6
 		_clear_actors()
 		weapons.cease_fire()
-		cockpit.flight.get_node("Departure").begin_landing()
+		if not boss_rush: cockpit.flight.get_node("Departure").begin_landing()
 
 func _update_extraction() -> void:
 	if not is_instance_valid(assault) or ending or not active or paused: return
@@ -348,7 +385,7 @@ func _spawn_boss(kind: String) -> void:
 	if mission.get("ground_assault",false): return
 	if boss_spawned: return
 	boss_spawned = true
-	if practice: event_index = mission.events.size()
+	if practice or boss_rush: event_index = mission.events.size()
 	boss = BOSS.new()
 	boss.kind = kind
 	boss.combat = combat
@@ -468,4 +505,4 @@ func _end(won: bool) -> void:
 	var grade := SCORING.medal(won,deaths,damage_taken,objective_met)
 	var bonus := maxi(0,player.health*100+combat.remaining_lives*250+bombs*150) if won else 0
 	combat.score += bonus
-	finished.emit({"game_over":game_over,"objective_met":objective_met,"ground_status":assault.objective_status() if is_instance_valid(assault) else {},"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":objective_failed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})
+	finished.emit({"game_over":game_over,"objective_met":objective_met,"ground_status":assault.objective_status() if is_instance_valid(assault) else {},"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":objective_failed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"grazes":mastery.grazes,"graze_score":mastery.graze_score,"graze_charge":graze_charge_gain,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})

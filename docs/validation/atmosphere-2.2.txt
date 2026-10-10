@@ -1,0 +1,106 @@
+PACIFIC STRIKE ULTIMATE 2.2 — OCÉAN, RESSAC ET CIEL
+11 octobre 2026 — Godot 4.7.2, Windows x64, rendu GL Compatibility
+
+CHANGEMENTS LIVRÉS DANS LES SOURCES
+L'écume utilise la distance réelle au rivage, calculée et mise en cache à partir
+des cinq atlas d'îles existants. Les baies et les îlots suivent leur contour ;
+les petits pixels de récif isolés ne deviennent pas des couronnes de mousse.
+Les fronts avancent vers la côte, se fragmentent puis se dissipent. Un filtrage
+du champ de distance et plusieurs échelles de bruit adoucissent les trouées.
+La résolution reste 256 x 256 par atlas, sans nouvelle passe de rendu.
+
+L'océan associe houles croisées, reflets courbes et détails de surface. Les îles,
+la mer et les littoraux des raids utilisent la même fonction d'eau et les mêmes
+phases. Le ressac des raids raccorde progressivement les plages latérales et
+les extrémités. Les sillages des navires ont une mousse diffuse et turbulente.
+
+Les nuages ne consultent plus le chenal des navires, les acteurs ni leurs voisins.
+Huit cartes et huit ombres sont recyclées avec positions, profondeurs, densités
+et dérives indépendantes. Aucun collider, effet sur les tirs ou changement de
+difficulté. Le passage sous la couche nuageuse dans les raids est conservé.
+
+Les meshes de prédiction des boss ont été supprimés. Les délais, les origines,
+les directions, les vitesses et les rafales restent identiques. Le HUD et la
+lueur locale annoncent la charge. Le conseil Aube rouge indique le côté réel
+de l'ouverture de l'anneau, pour rester utile sans lignes sur l'aire de jeu.
+
+CONTRÔLES
+- Boss : 4 870 vérifications, y compris huit familles / trois phases, absence
+  des meshes prédictifs, verrouillage de visée, émission et interruptions.
+- Modes Ultimate : 961 vérifications d'intégration réussies.
+- Distance au rivage : 14 vérifications sur contours, baies, îlots et atlas.
+- Relief et navigation : 6 425 vérifications sur les 32 missions ; pool constant.
+- Continuité des shaders : 22 vérifications de phases et paramètres partagés.
+- Terrains des raids : 963 vérifications de géométrie et matériaux.
+- Distribution nuageuse : 263 vérifications, dont 32 missions et endurance.
+  Occupation moyenne des rectangles : 24,5 % avant application de l'alpha.
+- Nuages : 2 511 vérifications headless / 2 512 avec rendu réel, dix minutes
+  simulées et contrôle des pixels du fuselage au-dessus d'un nuage.
+- Caméra de basse altitude : 130 vérifications d'intégration, trois avions.
+- Préparation graphique : 30 vérifications GPU, qualités 0/1/2, sans avance
+  de simulation ni modification de progression ou de préférences.
+- Comparaisons GPU de l'eau : neuf vérifications sur images 640 x 360.
+  Phase 0 / TAU et scroll 0 / 2 : aucun pixel ne dépasse deux niveaux sur 255.
+  6 988 pixels côtiers montrent une variation d'écume dépassant quatre niveaux
+  sur 255 entre les phases ; contrôle A/B du vrai matériau de production.
+
+CAPTURES
+renders/atmosphere-2.2 : accueil, huit secteurs, deux raids, trois boss pendant
+leur charge et quatre états du ressac sur une île agrandie pour inspection.
+Les scènes de contrôle sont composées par simulation accélérée, distincte des
+mesures de performance en temps réel. Aucun montage ne remplace le rendu du jeu.
+La première version formait des contours trop réguliers : deux itérations ont
+été contrôlées avant de conserver des arcs brisés et un contact plus doux.
+
+TESTS SILENCIEUX
+Toutes les exécutions de cette passe utilisent --audio-driver Dummy, y compris
+les captures GPU, les replays, l'export et le lancement du paquet extrait.
+Tester-Silencieux.ps1 impose cette option et isole les données de test dans
+tools/runtime-coast. Aucun volume du profil du joueur n'est modifié.
+
+LIMITES
+Les suites headless Ultimate et basse altitude produisent encore le diagnostic
+préexistant « Parameter material is null » du renderer Dummy, sans échec de leurs
+assertions. Les captures et tests du vrai renderer OpenGL ont des journaux propres.
+Pas de nouvelle campagne entière jouée manuellement ; les replays automatisés
+mesurent l'exécution et ne valident pas la difficulté pour un joueur humain.
+Les journaux et rapports de cette passe sont conservés dans evidence-2.2/.
+Les comptes boss et Ultimate ci-dessus proviennent des sorties console constatées
+par l'agent de revue ; ces deux exécutions n'avaient pas de journal dédié sur disque.
+
+PERFORMANCES — MÉTHODE
+NVIDIA GTX 1650 / OpenGL 3.3, 1920 x 1080, qualité Équilibré, MSAA 2x,
+VSync désactivée. Pilote automatique invulnérable, vraies armes et collisions,
+entrées déterministes à 60 ticks/s. Pas de validation de difficulté humaine.
+
+Boss final M32 : 70 s d'observation, victoire/débriefing au tick 2678.
+15 040 images de jeu ; moyenne 2,966 ms, p99 5,490 ms, maximum 21,473 ms.
+Une image de jeu >16,67 ms ; aucune >33,33 ms. Préparation 1 077 ms,
+79 représentants de matériaux ; zéro nœud orphelin après libération.
+
+La première passe du raid M19 dans evidence-2.2/raid a chevauché l'export
+headless et la compression Windows. Elle est conservée pour traçabilité mais
+exclue de la conclusion de performance. La passe raid-isolated est la référence.
+
+Raid volcanique M19, passe isolée : 140 s, débriefing au tick 6358.
+30 936 images de jeu ; moyenne 3,425 ms, p99 7,143 ms, maximum 32,074 ms.
+Deux images >16,67 ms, aucune >33,33 ms. Décollage, approche, descente,
+combat au sol, remontée, combat de retour et appontage tous couverts.
+Préparation 1 537 ms, 79 représentants ; zéro nœud orphelin après libération.
+Le pilote de mesure détruit six cibles au sol sur 18 et manque les priorités :
+le raid se termine par une défaite, sans échec d'exécution du replay.
+
+Ces mesures restent largement dans le budget 60 i/s pour la quasi-totalité des
+images des deux scénarios, avec trois pics ponctuels recensés. Elles ne sont
+pas une garantie de 60 i/s constants sur toute machine ou sur toute la campagne.
+
+DISTRIBUTION WINDOWS
+dist/PacificStrike/PacificStrike.exe et dist/PacificStrike-Windows-x64.zip.
+Version fichier/produit 2.2.0.0, manuel et licences inclus. Les données joueur
+conservent leur nom et leur format. La distribution précédente reste disponible
+dans dist/PacificStrike-2.1-Windows-x64.zip.
+
+30 contrôles du paquet extrait réussis : empreinte identique à l'exécutable
+construit, métadonnées et icône, manuel/crédits, démarrage OpenGL autonome depuis
+un dossier vide, fermeture normale code 0. Aucun diagnostic moteur au démarrage.
+Tailles et SHA-256 exacts dans evidence-2.2/artifacts.json.
