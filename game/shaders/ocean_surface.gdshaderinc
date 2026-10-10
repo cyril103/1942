@@ -32,5 +32,10 @@ vec3 ocean_surface(vec2 world_xz) {
 	water *= 1.0 + 0.025 * glint;
 	vec3 result = mix(vec3(0.003, 0.026, 0.044), water, 0.64);
 	result = mix(result,vec3(dot(result,vec3(0.299,0.587,0.114))),sea_desaturation);
+	// Crossing swells create small glints; the coast uses this same function.
+	float swell_a = sin(world_xz.x*2.1+world_xz.y*1.7-wave_phase*1.6);
+	float swell_b = sin(world_xz.x*-3.2+world_xz.y*2.3+wave_phase*1.1);
+	float crest = pow(max(0.0,swell_a*.55+swell_b*.45),24.0);
+	result += vec3(.13,.28,.32)*crest*.075*(1.0-sea_desaturation*.7);
 	return result * ocean_tint;
 }

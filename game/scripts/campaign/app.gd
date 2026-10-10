@@ -25,6 +25,11 @@ var notice: Label
 var buttons: Array[Button] = []
 var settings_from_pause := false
 var testing := false
+var quitting := false
+var preparing := false
+var prepare_in_tests := false
+var last_preparation_ms := 0
+var last_preparation_count := 0
 var music: Node
 var play_mode := "campaign"
 var waiting_binding := ""
@@ -95,6 +100,8 @@ func _apply_graphics() -> void:
 	cockpit.viewport.msaa_3d = [Viewport.MSAA_DISABLED,Viewport.MSAA_2X,Viewport.MSAA_4X][quality]
 	cockpit.flight.get_node("KeyLight").shadow_enabled = quality>0
 	if is_instance_valid(director) and is_instance_valid(director.details): director.details.enabled = quality>0
+	if is_instance_valid(director) and is_instance_valid(director.details): director.details.reduced_flash = not bool(profile.data.settings.flashes)
+	if is_instance_valid(director) and is_instance_valid(director.score_bursts): director.score_bursts.reduced_flash = not bool(profile.data.settings.flashes)
 	if is_instance_valid(director) and is_instance_valid(director.assault): director.assault.set_quality(quality)
 
 func _show_challenges(mode: String) -> void:
@@ -474,10 +481,57 @@ func _show_credits() -> void:
 	_focus_first()
 
 func _launch(number: int, mode := "", retry := false) -> void:
+	if preparing or quitting: return
 	var launch_mode: String = play_mode if mode.is_empty() else mode
 	if not _can_launch(number,launch_mode):
 		if is_instance_valid(notice): notice.text = "Mission indisponible dans ce mode. Choisissez une mission accessible."
 		return
+	var warm := (not testing or prepare_in_tests) and DisplayServer.get_name()!="headless"
+	var cover: ColorRect
+	if warm:
+		preparing = true
+		page = "loading"
+		cover = ColorRect.new()
+		cover.name = "MissionPreparation"
+		cover.color = Color("07141c")
+		cover.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		cover.z_index = 100
+		add_child(cover)
+		var title := Label.new()
+		title.text = "PRÉPARATION DU VOL"
+		title.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		title.add_theme_font_override("font",TITLE)
+		title.add_theme_font_size_override("font_size",36)
+		title.modulate = GOLD
+		cover.add_child(title)
+		await RenderingServer.frame_post_draw
+		if quitting: return
+	_build_run(number,launch_mode,retry)
+	if warm:
+		page = "loading"
+		cockpit.process_mode = Node.PROCESS_MODE_DISABLED
+		var engine_audio: Node = cockpit.flight.get_node("Departure").engine_audio
+		engine_audio.stop()
+		var started := Time.get_ticks_msec()
+		var preparation := preload("res://scripts/campaign/render_preparation.gd").new()
+		cockpit.flight.add_child(preparation)
+		await preparation.prepare(cockpit.flight,director)
+		if quitting or not is_instance_valid(cockpit): return
+		last_preparation_count = preparation.prepared_count
+		preparation.queue_free()
+		await RenderingServer.frame_post_draw
+		if quitting or not is_instance_valid(cockpit): return
+		last_preparation_ms = Time.get_ticks_msec()-started
+		if cockpit.flight.get_node("Departure").active: engine_audio.start()
+		cockpit.process_mode = Node.PROCESS_MODE_PAUSABLE
+		cover.queue_free()
+		page = "playing"
+		preparing = false
+		if not testing and not DisplayServer.window_is_focused(): _show_pause()
+
+func _build_run(number: int, launch_mode: String, retry: bool) -> void:
 	_dispose_run()
 	play_mode = launch_mode
 	selected_mission = number
@@ -657,6 +711,9 @@ func _dispose_run() -> void:
 	director = null
 
 func _input(event: InputEvent) -> void:
+	if preparing:
+		get_viewport().set_input_as_handled()
+		return
 	if waiting_binding!="" and event is InputEventKey and event.pressed and not event.echo:
 		get_viewport().set_input_as_handled()
 		if event.keycode==KEY_ESCAPE:
@@ -699,10 +756,18 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST: _quit()
 
 func _quit() -> void:
+	if quitting: return
+	quitting = true
 	_save()
 	_dispose_run()
-	if is_instance_valid(music): music.stop()
-	await get_tree().create_timer(0.15).timeout
+	if is_instance_valid(music):
+		music.stop()
+		music.set_process(false)
+	# A slow startup frame can consume a delta-based timer immediately. Allow
+	# real mixer time to retire the WAV playback before the audio server exits.
+	var drain_until := Time.get_ticks_msec()+300
+	while Time.get_ticks_msec()<drain_until:
+		await get_tree().create_timer(.05).timeout
 	get_tree().quit()
 
 

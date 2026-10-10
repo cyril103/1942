@@ -1,0 +1,263 @@
+{
+	"audio_rng_seed": 1942,
+	"build_id": "stutter-final-m19",
+	"cache_note": "First pass is a fresh process with existing driver/disk caches; no hardware cache was erased. Later passes reuse the same process.",
+	"cpu": "Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz",
+	"cpu_timing_note": "TIME_PROCESS is a process-callback monitor, not total CPU cost; it can be stale relative to the current frame.",
+	"duration_ticks": 8400,
+	"engine": {
+		"build": "official",
+		"hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+		"hex": 263938,
+		"major": 4,
+		"minor": 7,
+		"patch": 2,
+		"status": "stable",
+		"string": "4.7.2-stable (official)",
+		"timestamp": 0
+	},
+	"failures": [],
+	"final_memory": {
+		"engine_static_bytes": 64264383,
+		"nodes": 1,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 309546886,
+		"resources": 220
+	},
+	"gpu": "NVIDIA GeForce GTX 1650",
+	"gpu_timing_note": "Completed viewport GPU measurements can lag process callback timing. They are correlations, not proof of a stall cause.",
+	"initial_memory": {
+		"engine_static_bytes": 32403209,
+		"nodes": 1,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 23028395,
+		"resources": 1
+	},
+	"input_isolation": "Hardware bindings are erased inside the fixture; prototype key/focus callbacks are detached after _ready and guarded against gameplay process callbacks. Actual movement, weapons and campaign controllers remain active.",
+	"inputs": "Predetermined horizontal/vertical/fire actions on physics ticks; actual player movement and weapon collisions",
+	"memory_note": "Engine/static and estimated graphics allocations are not full process private bytes or physical VRAM occupancy; zero can mean unavailable. after_probe_release_memory is taken after raw frame arrays and detailed telemetry have been released; compact summaries remain resident.",
+	"mission": 19,
+	"os": "Windows",
+	"other_gpu_processes": "operator_must_verify_none",
+	"passes": [
+		{
+			"after_dispose_memory": {
+				"engine_static_bytes": 73701831,
+				"nodes": 1,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 309546886,
+				"resources": 220
+			},
+			"after_probe_release_memory": {
+				"engine_static_bytes": 64261111,
+				"nodes": 1,
+				"orphan_nodes": 0,
+				"render_estimated_bytes": 309546886,
+				"resources": 220
+			},
+			"cache": "first_scene_in_fresh_process",
+			"cpu_process_ms": {
+				"max_ms": 519.761,
+				"mean_ms": 6.00106129724019,
+				"over_16_67ms": 837,
+				"over_33_33ms": 5,
+				"p95_ms": 10.686,
+				"p99_ms": 28.514,
+				"samples": 35907
+			},
+			"details_file": "details-m19-q1-1920x1080-pass00.json",
+			"finished_tick": 6358,
+			"gameplay": {
+				"max_ms": 26.261,
+				"mean_ms": 2.95069627092209,
+				"over_16_67ms": 8,
+				"over_33_33ms": 0,
+				"p95_ms": 4.511,
+				"p99_ms": 5.65,
+				"samples": 35907
+			},
+			"gpu_ms": {
+				"max_ms": 23.3609991073608,
+				"mean_ms": 1.92520138004318,
+				"over_16_67ms": 7,
+				"over_33_33ms": 0,
+				"p95_ms": 2.47300004959106,
+				"p99_ms": 2.60800009965897,
+				"samples": 35907
+			},
+			"init_ms": 2613.343,
+			"input_signature": 1351020308,
+			"instrumentation_ms": {
+				"max_ms": 2.012,
+				"mean_ms": 0.0567131688743042,
+				"over_16_67ms": 0,
+				"over_33_33ms": 0,
+				"p95_ms": 0.11,
+				"p99_ms": 0.153,
+				"samples": 49374
+			},
+			"launch_ms": 1995.647,
+			"overall": {
+				"max_ms": 26.261,
+				"mean_ms": 2.83508046745251,
+				"over_16_67ms": 9,
+				"over_33_33ms": 0,
+				"p95_ms": 4.49,
+				"p99_ms": 5.732,
+				"samples": 49374
+			},
+			"pass": 0,
+			"peak_bullets": 80,
+			"peak_contacts": 13,
+			"phases": {
+				"approach": {
+					"max_ms": 13.332,
+					"mean_ms": 2.81485113572367,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.336,
+					"p99_ms": 5.481,
+					"samples": 5327
+				},
+				"climb": {
+					"max_ms": 9.371,
+					"mean_ms": 2.59445684877276,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 3.824,
+					"p99_ms": 4.633,
+					"samples": 3789
+				},
+				"descent": {
+					"max_ms": 7.762,
+					"mean_ms": 2.80554714912281,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.373,
+					"p99_ms": 5.472,
+					"samples": 912
+				},
+				"ground": {
+					"max_ms": 12.664,
+					"mean_ms": 3.08470801103114,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.515,
+					"p99_ms": 5.521,
+					"samples": 14867
+				},
+				"landing": {
+					"max_ms": 12.189,
+					"mean_ms": 3.98890056818183,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 5.786,
+					"p99_ms": 7.223,
+					"samples": 1760
+				},
+				"result_idle": {
+					"max_ms": 19.444,
+					"mean_ms": 2.52681458379744,
+					"over_16_67ms": 1,
+					"over_33_33ms": 0,
+					"p95_ms": 4.391,
+					"p99_ms": 5.998,
+					"samples": 13467
+				},
+				"return_combat": {
+					"max_ms": 6.72,
+					"mean_ms": 2.8265455465587,
+					"over_16_67ms": 0,
+					"over_33_33ms": 0,
+					"p95_ms": 4.273,
+					"p99_ms": 5.098,
+					"samples": 5928
+				},
+				"takeoff": {
+					"max_ms": 26.261,
+					"mean_ms": 2.68661311672684,
+					"over_16_67ms": 8,
+					"over_33_33ms": 0,
+					"p95_ms": 4.189,
+					"p99_ms": 6.448,
+					"samples": 3324
+				}
+			},
+			"physics_ticks": 8400,
+			"prototype_input_wrapper_methods": [
+				"_ready",
+				"_unhandled_key_input",
+				"_notification",
+				"_capture_preview"
+			],
+			"render_preparation": {
+				"enabled": true,
+				"milliseconds": 1546,
+				"representatives": 78
+			},
+			"result": {
+				"accuracy": 0.107493309545049,
+				"best_chain": 13,
+				"bonus": 0,
+				"chain_bonus": 1600,
+				"damage": 0,
+				"deaths": 0,
+				"game_over": false,
+				"grade": 0,
+				"ground_kills": 6,
+				"ground_status": {
+					"escaped_priority_ids": [
+						"volcanic/m01",
+						"volcanic/m02"
+					],
+					"kills": 6,
+					"layout_valid": true,
+					"layout_warnings": [],
+					"main_met": false,
+					"missing_priority_ids": [
+						"volcanic/m01",
+						"volcanic/m02"
+					],
+					"priority_destroyed": 0,
+					"priority_total": 2,
+					"quota": 18,
+					"secondary_kind": "ground_layout",
+					"secondary_label": "Détruire les quatre batteries mobiles des complexes",
+					"secondary_met": false,
+					"secondary_progress": 0,
+					"secondary_target": 4
+				},
+				"kills": 32,
+				"lives": 3,
+				"mission": 19.0,
+				"mission_score": 6700,
+				"naval_kills": 0,
+				"objective_failed": true,
+				"objective_met": false,
+				"power": "none",
+				"rank": "D",
+				"score": 6700,
+				"secondary": false,
+				"seconds": 90.0166666666628,
+				"spread": false,
+				"won": false
+			},
+			"state_signature": 777145288,
+			"viewport": [
+				1920,
+				972
+			],
+			"wall_seconds": 139.99217
+		}
+	],
+	"physics_hz": 60,
+	"player_invulnerable": true,
+	"quality": 1,
+	"resolution": [
+		1920,
+		1080
+	],
+	"rng_seed": 1942,
+	"schema": 2,
+	"vsync": false
+}

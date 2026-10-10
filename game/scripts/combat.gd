@@ -69,8 +69,10 @@ var explosion_audio: AudioStreamPlayer
 var ground_audio: AudioStreamPlayer
 var ground_audio_cooldown := 0.0
 var presentation_altitude := 0.0
+var formations = preload("res://scripts/campaign/formation_tracker.gd").new()
 
 func withdraw_aircraft() -> void:
+	formations.reset()
 	# The player dives beneath this airspace. Stop gameplay immediately, while
 	# the detached models climb above the descending camera for a short exit.
 	for group in [enemies,bombers,red_enemies]:
@@ -134,6 +136,7 @@ func _apply_aircraft_altitude(actor: Node3D) -> void:
 		if actor.phase==ENEMY.Phase.LOOP: actor.visual.position.y = actor.loop_elevation*actor.loop_height_scale
 
 func _ready() -> void:
+	formations.cleared.connect(_on_formation_cleared)
 	seascape = get_parent().get_node_or_null("Seascape")
 	player.destroyed.connect(_on_player_destroyed)
 	var mesh := PlaneMesh.new()
@@ -260,6 +263,7 @@ func spawn_wave() -> void:
 	var lanes := [-0.95, -0.32, 0.32, 0.95]
 	var delays := [0.0, 0.75, 0.30, 1.15]
 	var speeds := [10.0, 11.4, 10.7, 11.0]
+	var formation_id: int = formations.begin(8 if dense_waves else 4)
 	for index in range(8 if dense_waves else 4):
 		var profile := (index + wave_count - 1) % 4
 		var side := -1.0 if index < 2 else 1.0
@@ -282,11 +286,13 @@ func spawn_wave() -> void:
 		enemy.turn_duration = 2.5 + profile * 0.15
 		enemy.turn_angle = 0.42 + profile * 0.035
 		enemy.destroyed.connect(_on_enemy_destroyed)
+		formations.register(enemy,formation_id)
 		add_child(enemy)
 		_apply_aircraft_altitude(enemy)
 		enemies.append(enemy)
 
 func _spawn_hayabusa(half_width: float) -> void:
+	var formation_id: int = formations.begin(8 if dense_waves else 4)
 	for slot in range(8 if dense_waves else 4):
 		var index := slot % 4
 		var enemy := HAYABUSA.new()
@@ -304,6 +310,7 @@ func _spawn_hayabusa(half_width: float) -> void:
 			enemy.position = Vector3(enemy.side*(half_width+2.2),0,screen_top()-.4+index*.55)
 			enemy.entry_delay = (slot/4)*1.1+index*.16
 		enemy.destroyed.connect(_on_enemy_destroyed)
+		formations.register(enemy,formation_id)
 		add_child(enemy)
 		_apply_aircraft_altitude(enemy)
 		enemies.append(enemy)
@@ -422,6 +429,11 @@ func _on_enemy_destroyed(at: Vector3) -> void:
 	if is_instance_valid(campaign_driver): campaign_driver.on_kill(100,"fighter")
 	_explode(at)
 
+func _on_formation_cleared(at: Vector3, bonus: int, red: bool) -> void:
+	if game_over or not is_instance_valid(campaign_driver): return
+	if campaign_driver.ending or not campaign_driver.active: return
+	campaign_driver.award_formation(at+Vector3(0,presentation_altitude,0),bonus,red)
+
 func _on_player_destroyed(at: Vector3) -> void:
 	remaining_lives = maxi(0,remaining_lives-1)
 	game_over = remaining_lives == 0
@@ -511,11 +523,13 @@ func spawn_special() -> void:
 		point.x *= side
 		tangent.x *= side
 		route.add_point(point,-tangent,tangent)
+	var formation_id: int = formations.begin(5,true)
 	for index in range(5):
 		var red := RED.new()
 		red.route = route
 		red.slot = index
 		red.destroyed.connect(_on_red_destroyed)
+		formations.register(red,formation_id)
 		red.escaped.connect(_on_red_escaped)
 		add_child(red)
 		_apply_aircraft_altitude(red)

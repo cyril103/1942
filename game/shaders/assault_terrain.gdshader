@@ -16,10 +16,12 @@ uniform sampler2D landscape_texture : source_color, filter_linear_mipmap_anisotr
 uniform bool use_ground_detail = false;
 uniform float pigment_exponent = 1.0;
 uniform float landscape_gain = 0.38;
+uniform float detail_relief = 1.0;
 // Only the active non-tropical material is loaded by terrain.
 // 0=tropical original, 1=basalt, 2=arctic; no jungle recolouring in 1/2.
 uniform int biome_material = 0;
 uniform sampler2D biome_albedo : source_color, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform sampler2D biome_macro : source_color, filter_linear_mipmap_anisotropic, repeat_disable;
 uniform float biome_tile_metres = 4.0;
 uniform float biome_secondary_strength : hint_range(0.0, 0.3) = 0.2;
 uniform bool use_shared_layout = false;
@@ -105,6 +107,10 @@ void fragment() {
 		vec3 material_a = texture(biome_albedo, material_uv).rgb;
 		vec3 material_b = texture(biome_albedo, material_uv * 0.63 + vec2(0.37, 0.61)).rgb;
 		soil = mix(material_a, material_b, biome_secondary_strength);
+		vec2 landscape_uv = p / field_size + vec2(.5);
+		vec3 geology = texture(biome_macro,landscape_uv).rgb;
+		// Authored macro landforms break tiling, native detail supplies close grain.
+		soil = mix(geology,soil*.82,.28) * (.92+grain*.08);
 		float macro_variation = noise(p * 0.035 + vec2(seed_phase));
 		soil *= 0.94 + macro_variation * 0.12;
 		// Flat base colour only: real mesh/light creates relief. No parallax,
@@ -226,7 +232,17 @@ void fragment() {
 		ALBEDO *= lit_land;
 		EMISSION = coast_color * (1.0-lit_land);
 	}
-	ROUGHNESS = mix(0.95, 0.79, wet * beach);
+	// Surface-gradient microrelief reuses noise without extra texture fetches.
+	float inland_detail = smoothstep(.76,.94,coast_depth) * detail_relief;
+	float height_detail = (grain*.025+patches*.06) * inland_detail;
+	vec3 dpdx = dFdx(VERTEX);
+	vec3 dpdy = dFdy(VERTEX);
+	vec3 r1 = cross(dpdy,NORMAL);
+	vec3 r2 = cross(NORMAL,dpdx);
+	float determinant = dot(dpdx,r1);
+	vec3 gradient = sign(determinant)*(dFdx(height_detail)*r1+dFdy(height_detail)*r2);
+	NORMAL = normalize(abs(determinant)*NORMAL-gradient+NORMAL*.000001);
+	ROUGHNESS = clamp(mix(0.95, 0.72, wet * beach) - patches*.08*inland_detail, .65, 1.0);
 	METALLIC = 0.0;
 	// COAST_ALPHA_HOOK
 }

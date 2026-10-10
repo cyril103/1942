@@ -18,14 +18,17 @@ void fragment() {
  float filament=0.0;
  for(int i=0; i<3; i++) {
   float phase=float(i)*2.094;
-  float ribbon=sin(z*3.7+TIME*12.0+phase)*.32;
-  ribbon+=(noise(flow+float(i)*19.0)-.5)*.09;
+  float ribbon=sin(z*2.4+TIME*9.0+phase)*.19;
+  ribbon+=(noise(flow*.7+float(i)*19.0)-.5)*.30;
+  ribbon+=sin(z*7.1-TIME*6.0+phase)*.035;
   filament+=exp(-pow((x-ribbon)*42.0,2.0))*.65;
  }
  float packets=pow(.5+.5*sin(z*5.0+TIME*24.0),8.0)*sheath*.25;
+ float spine = exp(-pow((abs(x)-.38)*35.0,2.0))*(.4+.6*noise(z*5.0+TIME*18.0));
  float ends=smoothstep(0.0,.16,z)*smoothstep(0.0,.12,beam_length-z);
  vec3 energy=vec3(.19,.26,1.0)*(sheath+halo);
  energy+=vec3(.73,.27,1.0)*filament;
+ energy+=vec3(.18,.55,1.0)*spine*.5;
  energy+=vec3(.72,.94,1.0)*core*1.4+vec3(.25,.6,1.0)*packets;
  ALBEDO=energy;
  ALPHA=ends*(1.0-smoothstep(.82,1.05,abs(x)));

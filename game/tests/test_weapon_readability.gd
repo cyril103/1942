@@ -102,7 +102,11 @@ func _run() -> void:
 	check(near.health == 97 and far.health == 97,"Outside beam is safe and unobstructed central target takes damage")
 	Input.action_release("fire")
 	w._update_laser(.016)
-	check(not w.laser.visible and not w.laser_contact.visible and not w.laser_muzzle.visible and not w.laser_audio.playing,"Releasing fire clears all beam effects and audio")
+	check(not w.laser.visible and not w.laser_contact.visible and not w.laser_muzzle.visible,"Releasing fire clears all beam effects immediately")
+	# Since 1.9 audio ends with a 70 ms release, independent of collision ticks.
+	w.audio.advance(.08)
+	w._update_laser(.08)
+	check(not w.laser_audio.playing and near.health==97 and far.health==97,"Laser audio drains within 80 ms without residual damage")
 	w.set_power("spread")
 	check(w.active_count == 0 and not w.laser.visible,"Switching weapons leaves no residual laser")
 	Input.action_press("fire")

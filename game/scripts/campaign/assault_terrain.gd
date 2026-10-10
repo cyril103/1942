@@ -52,6 +52,8 @@ var _layout_geometry_errors: Array[String] = []
 var _shared_parameters: Dictionary = {}
 var _infrastructure_materials: Array[ShaderMaterial] = []
 var _biome_albedo: Texture2D
+var _biome_macro: Texture2D
+var interior_anchors: Array[Vector2] = []
 var _landscape: Texture2D
 
 
@@ -62,6 +64,7 @@ func configure(mission: Dictionary, width: float, length: float, layout: Diction
 		remove_child(child)
 		child.queue_free()
 	_groups.clear()
+	interior_anchors.clear()
 	_infrastructure_materials.clear()
 	_shared_parameters.clear()
 	infrastructure_triangle_count = 0
@@ -101,6 +104,7 @@ func set_ocean_parameter(parameter: StringName, value: Variant) -> void:
 
 func set_quality(level: int) -> void:
 	_quality = clampi(level, 0, 2)
+	set_ocean_parameter("detail_relief",0.0 if _quality==0 else 1.0)
 	for group in _groups:
 		var total := group.multimesh.instance_count
 		group.multimesh.visible_instance_count = int(ceil(total * [.55, .82, 1.0][_quality]))
@@ -223,6 +227,7 @@ func _build_surface() -> void:
 	set_ocean_parameter("use_shared_layout", not _layout.is_empty())
 	set_ocean_parameter("biome_material", 1 if _biome == "volcanic" else (2 if _biome == "arctic" else 0))
 	set_ocean_parameter("biome_albedo", _biome_albedo)
+	set_ocean_parameter("biome_macro", _biome_macro)
 	set_ocean_parameter("biome_tile_metres", 4.0)
 	set_ocean_parameter("landscape_gain", .48 if _biome == "volcanic" else (.34 if _biome == "arctic" else .38))
 	var palette := _palette()
@@ -317,6 +322,14 @@ func _material(color: Color) -> StandardMaterial3D:
 	material.roughness = .95
 	return material
 
+func _rock_material() -> ShaderMaterial:
+	var material := ShaderMaterial.new()
+	material.shader = preload("res://shaders/terrain_rock.gdshader")
+	material.set_shader_parameter("rock_texture",_biome_albedo)
+	material.set_shader_parameter("textured",_biome_albedo!=null)
+	material.set_shader_parameter("snowy",_biome=="arctic")
+	return material
+
 
 func _build_scenery() -> void:
 	if _biome in ["volcanic", "arctic"]:
@@ -343,7 +356,7 @@ func _build_scenery() -> void:
 	rock.radial_segments = 11
 	rock.rings = 5
 	var irregular_rock := _weathered_rock(rock)
-	irregular_rock.surface_set_material(0, _material(_palette().rock_color))
+	irregular_rock.surface_set_material(0, _rock_material())
 	var scrub := _scrub_mesh()
 	var scrub_material := _material(_palette().grass_color.lightened(.018))
 	scrub_material.cull_mode = BaseMaterial3D.CULL_DISABLED
@@ -362,7 +375,7 @@ func _build_scenery() -> void:
 		trunks.multimesh.set_instance_color(index, tint)
 		crowns.multimesh.set_instance_color(index, tint)
 	for index in range(rock_count):
-		var anchor := _scenery_position()
+		var anchor := _interior_scenery_position() if index%3==0 else _scenery_position()
 		var size := Vector3(_random.randf_range(.42, 1.25), _random.randf_range(.5, 1.15), _random.randf_range(.45, 1.15))
 		var basis := Basis.from_euler(Vector3(_random.randf_range(-.3, .3), _random.randf_range(0.0, TAU), _random.randf_range(-.25, .25))).scaled(size)
 		rocks.multimesh.set_instance_transform(index, Transform3D(basis, anchor + Vector3(0, size.y * .17, 0)))
@@ -398,6 +411,28 @@ func _scenery_position() -> Vector3:
 	var maximum := maxf(minimum, _half_width(z) - 3.35)
 	var x := side * clampf(absf(center.x) + _random.randfn(0.0, 1.25), minimum, maximum)
 	return Vector3(x, surface_height(Vector2(x, z)), z)
+
+func _interior_scenery_position() -> Vector3:
+	# Redistribute existing rocks, keeping the same instance/draw-call budget.
+	# Full rock radius clears fixed targets, mobile routes and runway shoulders.
+	if _layout.is_empty(): return _scenery_position()
+	for attempt in range(32):
+		var p := Vector2(_random.randf_range(-useful_half_width+1.5,useful_half_width-1.5),_random.randf_range(-useful_half_length+2,useful_half_length-2))
+		if not interior_position_clear(p): continue
+		if interior_anchors.any(func(other): return other.distance_to(p)<2.0): continue
+		interior_anchors.append(p)
+		return Vector3(p.x,PLATEAU_Y,p.y)
+	return _scenery_position()
+
+func interior_position_clear(p: Vector2) -> bool:
+	for target in _layout.get("targets",[]):
+		if Rect2(target.footprint_rect).grow(1.5).has_point(p): return false
+	for route in _route_segments:
+		var nearest := Geometry2D.get_closest_point_to_segment(p,route.from,route.to)
+		if nearest.distance_to(p)<float(route.half_width)+1.6: return false
+	for strip in _runway_specs:
+		if Rect2(strip.center-strip.extents,strip.extents*2).grow(1.6).has_point(p): return false
+	return true
 
 
 func _weathered_rock(source: SphereMesh) -> ArrayMesh:
@@ -505,11 +540,13 @@ func _all_surface_materials() -> Array[ShaderMaterial]:
 
 func _load_active_biome_albedo() -> void:
 	_biome_albedo = null
+	_biome_macro = null
 	_landscape = null
 	if BIOME_ALBEDO_PATHS.has(_biome):
 		# No asynchronous allocation during firing. GroundAssault constructs
 		# this battlefield before deployment, then holds one active material.
 		_biome_albedo = load(str(BIOME_ALBEDO_PATHS[_biome])) as Texture2D
+		_biome_macro = load("res://assets/environment/raid-v4/%s-landscape.png" % _biome) as Texture2D
 		assert(_biome_albedo != null, "Missing native biome albedo: " + _biome)
 	else:
 		_landscape = load(LANDSCAPE_PATH) as Texture2D
@@ -750,22 +787,18 @@ func _build_geological_scenery() -> void:
 	source.radial_segments = 11
 	source.rings = 5
 	var geology := _weathered_rock(source)
-	var material := _material(Color.WHITE)
-	material.albedo_texture = _biome_albedo
-	material.uv1_triplanar = true
-	material.uv1_scale = Vector3(.25, .25, .25)
-	material.roughness = .98
+	var material := _rock_material()
 	geology.surface_set_material(0, material)
 	var boulders := _new_group("BasaltOutcrops" if _biome == "volcanic" else "FrostedOutcrops", geology, boulder_count)
 	var scree := _new_group("BasaltScree" if _biome == "volcanic" else "ArcticScree", geology, scree_count)
 	for index in range(boulder_count):
-		var anchor := _scenery_position()
+		var anchor := _interior_scenery_position() if index%3==0 else _scenery_position()
 		var size := Vector3(_random.randf_range(.62, 1.55), _random.randf_range(.45, 1.08), _random.randf_range(.70, 1.55))
 		var basis := Basis.from_euler(Vector3(_random.randf_range(-.3, .3), _random.randf_range(0.0, TAU), _random.randf_range(-.25, .25))).scaled(size)
 		boulders.multimesh.set_instance_transform(index, Transform3D(basis, anchor + Vector3(0, size.y * .17, 0)))
 		boulders.multimesh.set_instance_color(index, Color.WHITE * _random.randf_range(.91, 1.08))
 	for index in range(scree_count):
-		var anchor := _scenery_position()
+		var anchor := _interior_scenery_position() if index%3==0 else _scenery_position()
 		var size := Vector3(_random.randf_range(.22, .62), _random.randf_range(.08, .22), _random.randf_range(.27, .78))
 		var basis := Basis(Vector3.UP, _random.randf_range(0.0, TAU)).scaled(size)
 		scree.multimesh.set_instance_transform(index, Transform3D(basis, anchor + Vector3(0, size.y * .17, 0)))

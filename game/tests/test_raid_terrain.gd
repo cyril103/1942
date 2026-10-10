@@ -177,11 +177,14 @@ func _sector_checks(terrain: Node3D, sector: int, layout: Dictionary) -> void:
 		check(on_core, label + " full mobile footprint stays on its rendered road " + str(target.id))
 	check(mobile_total == (6 if sector == 4 else 0), label + " mobile routes remain sector specific")
 	var groups: Array = terrain._groups
+	for anchor in terrain.interior_anchors:
+		check(terrain.interior_position_clear(anchor),label+" interior geology clears targets and all mobile routes")
 	var group_names: Array[String] = []
 	for group in groups:
 		group_names.append(str(group.name))
 	if sector in [4, 6]:
 		check(status.native_albedo_loaded and terrain._landscape == null, label + " uses its native albedo without a tropical macro")
+		check(terrain._biome_macro != null and terrain._biome_macro.get_image().has_mipmaps(),label+" authored landscape has mipmaps")
 		var texture_image: Image = terrain._biome_albedo.get_image()
 		check(texture_image != null and texture_image.has_mipmaps(), label + " native material imports mipmaps for distant/oblique filtering")
 		check(groups.size() == 2 and not group_names.has("PalmTrunks") and not group_names.has("PalmCrowns"), label + " geology replaces tropical foliage")

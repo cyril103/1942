@@ -1,0 +1,107 @@
+PACIFIC STRIKE 1.10.1 — BLOCAGES À LA PREMIÈRE APPARITION
+10 octobre 2026
+
+Correction
+Le rendu Compatibility/OpenGL compile des variantes de matériaux au premier
+dessin. Un preload de ressource seul ne prépare pas toutes les variantes GPU.
+Les pics de la 1.10 apparaissaient à la première utilisation de certains décors
+et effets et disparaissaient lors du passage suivant dans le même processus.
+
+Le lancement affiche désormais « PRÉPARATION DU VOL » avant de construire la
+mission. Les acteurs et leurs horloges sont ensuite désactivés pendant qu'une
+sélection représentative des géométries est réellement dessinée dans le viewport
+du vol, avec son éclairage, ses ombres et sa qualité. Le SubViewport continue de
+dessiner derrière l'écran opaque. Les matériaux et textures sont partagés avec
+ceux du jeu ; les copies servent uniquement à amorcer le rendu.
+
+Sont inclus : terrain actif, mer, nuages, avion choisi, chasseurs, bombardier,
+escadrille rouge, navire, convoi, boss de la mission, explosions, impacts, laser,
+capacités, MultiMesh et textes 3D. Les représentants sont dédupliqués par format
+de géométrie/matériau/textures et dessinés par lots de 24. Le terrain conserve
+ses matériaux et textures spécifiques au biome.
+
+La préparation n'enregistre aucune vague, n'attribue aucun point et ne change
+aucune sauvegarde. Les acteurs temporaires ont des collisions désactivées et
+aucune simulation. Ils sont libérés avant le début du vol. Le moteur de l'avion
+repart avec son attaque sonore normale au décollage. Les entrées sont absorbées
+pendant le chargement ; quitter la fenêtre reste possible. Une perte de focus
+pendant ce chargement place le jeu en pause à sa fin.
+
+Référence officielle consultée
+https://docs.godotengine.org/en/4.5/tutorials/rendering/jitter_stutter.html
+La section sur Compatibility recommande de dessiner les effets avant le jeu,
+derrière une interface opaque. Le correctif garde le rendu et les assets actuels.
+
+Contrôles
+- Test rendu de préparation : 30 assertions, zéro échec, sur missions 1, 19 et 4
+  aux trois qualités graphiques. Horloges de mission/décollage, score, progression,
+  contacts radar, libération des objets temporaires et reprise du vol contrôlés.
+- Fermeture normale pendant une préparation active : sortie sans diagnostic.
+- Modes campagne/arcade/entraînement : 165 assertions, zéro échec.
+- Score/reprises/menus : 31952 assertions, zéro échec.
+- Paquet Windows 1.10.1 : 30 contrôles, zéro échec ; exe extrait identique au build,
+  métadonnées et attributions, démarrage normal autonome et fermeture normale.
+- Tous les essais utilisent le pilote audio Dummy et les dossiers utilisateur
+  isolés sous tools/runtime-1.10 ; le volume et la sauvegarde du joueur sont préservés.
+
+Mesures retenues
+Configuration : GTX 1650, i5-10300H, Godot 4.7.2, NVIDIA 561.03, OpenGL,
+1920x1080 (vol 1920x972), Équilibré/MSAA2x, VSync désactivée.
+Une instance de jeu à la fois pour les mesures ci-dessous, nouveau processus
+pour chaque passage, caches disque/pilote conservés. Rejeu à entrées fixes,
+pilote invulnérable, tirs/collisions réels ; pas une partie humaine.
+
+Mission 19, 8400 ticks physiques / 140 secondes simulées :
+                           moyenne    p99        max     images >33,33 ms
+1.10 paquet, avant           3,200     6,382    1059,014      8 / 33574
+1.10.1 source corrigée       2,951     5,650      26,261      0 / 35907
+1.10.1 paquet corrigé        3,202     6,204      32,445      0 / 33081
+
+La source corrigée prépare 78 représentants en 1546 ms (lancement total 1996 ms).
+Les signatures d'entrées et d'état restent 1351020308 et 777145288 ; le résultat
+arrive toujours au tick 6358. Aucun nœud orphelin après libération. Huit images
+dépassent 16,67 ms sur ce passage : cela ne prouve pas un 60 FPS absolument fixe.
+Le paquet corrigé prépare les mêmes 78 représentants en 1292 ms (lancement total
+1734 ms), conserve les mêmes signatures et le même tick de résultat, sans nœud
+orphelin à la fin. Quatre images dépassent 16,67 ms ; aucune ne dépasse 33,33 ms.
+
+Le parcours automatique initial de mission 4 a atteint le boss, mais ne l'a pas
+vaincu dans sa fenêtre de 160 secondes. La sonde signale cet échec de complétion :
+ce passage n'est pas déclaré « mission validée ». Sa fenêtre de combat est fluide
+(max 12,243 ms, aucune image >16,67 ms), mais ne suffit pas à contrôler toute la
+fin du combat. Elle est conservée comme preuve incomplète.
+Une sonde distincte utilise le véritable mode Entraînement et suit le boss avec
+les commandes de déplacement/tir ; elle ne lui retire pas de points de vie par
+script. Elle relève ses phases réelles (l'ancien champ de télémétrie du directeur
+était obsolète) afin de vérifier transitions, mort et appontage.
+
+Deux essais exploratoires v1/v2 se sont partiellement chevauchés ; ils ne sont
+pas retenus pour les mesures comparatives. L'essai v1 comportait des erreurs de
+préparation (API d'un maillage primitif et route d'un avion temporaire), corrigées
+avant les essais et l'export retenus. Leurs résultats ne constituent pas une validation.
+
+La sonde de paquet utilise l'éditeur avec --main-pack sur l'EXE et un script
+externe. Elle contrôle les ressources exportées ; ce n'est pas un profilage du
+template release lui-même. Le lancement de l'EXE release fait l'objet du contrôle
+Windows distinct. Les caches matériels n'ont pas été vidés et aucun second PC
+n'a été testé. Les maxima incluent toutes les images lentes relevées en jeu.
+
+Contrôle final du boss en Entraînement
+75 représentants préparés en 979 ms (lancement total 1180 ms). Phases 0, 1 et 2
+observées aux ticks 2, 409 et 691 ; destruction, appontage et victoire au tick 1626.
+Moyenne 2,469 ms, p99 5,005 ms, maximum 24,411 ms ; 6 images >16,67 ms et aucune
+>33,33 ms parmi 10965 images de jeu. Zéro diagnostic moteur et zéro nœud orphelin
+après libération. Ce scénario de boss est distinct du parcours complet du raid.
+
+Livraison et preuves
+Exécutable et ZIP mis à jour en 1.10.1.0 :
+dist/PacificStrike/PacificStrike.exe
+dist/PacificStrike-Windows-x64.zip
+SHA256 EXE : 056632DEDCB45A26AF67A9130C0ADBED8802749B1CE2EAAF03BA9AA6EF2CFD8F
+SHA256 ZIP : 684264C56FFB716425E8D15F1B5F2EB4CCF8816538D31AD1494D6F8D2FEB209B
+Rapports détaillés, journaux et sonde dans docs/validation/evidence-1.10.1/.
+La référence 1.10 est dans docs/validation/evidence-1.10/performance-release/.
+Les copies temporaires du ZIP sont supprimées après archivage des journaux.
+Les données retenues ne montrent plus les blocages de plusieurs dixièmes de
+seconde constatés auparavant. Elles ne garantissent pas tous les scénarios sur
+tous les PC ; les quelques dépassements du budget de 16,67 ms restent visibles.

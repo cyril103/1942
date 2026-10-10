@@ -1,0 +1,10 @@
+{
+  "exe_sha256": "056632DEDCB45A26AF67A9130C0ADBED8802749B1CE2EAAF03BA9AA6EF2CFD8F",
+  "sound": "Dummy driver, isolated user directory",
+  "package_checks": 30,
+  "gameplay_benchmark_runtime": "Godot editor 4.7.2 loading final exported pack",
+  "date": "2026-10-10",
+  "version": "1.10.1.0",
+  "zip_sha256": "684264C56FFB716425E8D15F1B5F2EB4CCF8816538D31AD1494D6F8D2FEB209B",
+  "render_preparation_checks": 30
+}

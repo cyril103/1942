@@ -1,5 +1,5 @@
 PACIFIC STRIKE — CAMPAGNE 1942
-Version 1.9.0 — signalétique des raids et priorités du mix sonore.
+Version 1.10.1 — préparation du rendu avant le décollage pour éviter les blocages en combat.
 
 Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
 Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.
@@ -17,6 +17,9 @@ Détruire les cinq avions d'une formation rouge fait apparaître un bonus à ic�
 Un nouveau bonus remplace l'ancien. La vie supplémentaire est immédiatement acquise
 et rétablit le tir standard. Elle n'est pas retirée quand un autre bonus est ramassé.
 Le laser se maintient avec Espace, comme les tirs habituels.
+Détruire toute une vague de chasseurs rapporte un bonus de 100 points par avion
+(800 points pour huit chasseurs). Une escadrille rouge complète rapporte 1000 points
+en plus du POW. Le bonus doré apparaît dans la scène ; un avion échappé l'annule.
 Le briefing indique l'objectif de mission et les conditions de médaille d'or.
 Les pièces gagnées permettent d'améliorer les armes, la coque et la charge spéciale.
 Trois modèles d’avion et trois difficultés sont disponibles dans le hangar/options.

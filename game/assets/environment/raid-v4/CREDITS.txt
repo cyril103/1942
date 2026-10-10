@@ -1,0 +1,8 @@
+Pacific Strike 1.10 — nouvelles textures de paysage
+Créées le 10 octobre 2026 avec l’outil intégré ImageGen, pour ce projet.
+Aucune photographie tierce ni texture téléchargée. Sorties conservées sans retouche.
+Sources : exec-4422574a-f45c-4d0e-9ae4-2f63e9976556.png (volcanique),
+exec-e4554b02-be9a-4339-8858-11c153a6480d.png (arctique).
+Les prompts exacts figurent dans prompts.txt.
+Ces images générées servent à la composition macro de couleur ; elles ne sont
+pas des scans photogrammétriques ni des cartes de hauteur physiques.

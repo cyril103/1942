@@ -1,0 +1,18 @@
+{
+  "package_runtime": "Windows release executable normal startup and WM_CLOSE",
+  "artifacts": [
+    {
+      "path": "dist/PacificStrike/PacificStrike.exe",
+      "bytes": 220180696,
+      "sha256": "D00B4A9819E3E49947021BC99A6E2D21C886EE76D8D1C8597E89C412B935FD01"
+    },
+    {
+      "path": "dist/PacificStrike-Windows-x64.zip",
+      "bytes": 148765757,
+      "sha256": "CFBE14E0A02B1913545224D0A4ED13D2403400C62D484CAF5C0307844B2D096B"
+    }
+  ],
+  "version": "1.10.0.0",
+  "date": "2026-10-10",
+  "benchmark_runtime": "Godot editor 4.7.2 with exported main pack"
+}

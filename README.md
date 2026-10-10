@@ -4,6 +4,16 @@ Campagne solo de **32 missions** sous Godot 4.7.2, sur la branche `jeu_toppissim
 
 ## Lancer
 
+Correctif **1.10.1** : préparation des matériaux et effets sous un écran de chargement
+avant le décollage. Le jeu reste figé pendant cette préparation, puis le vol démarre
+normalement. Voir `docs/validation/fluidite-1.10.1.txt` pour les mesures comparatives.
+
+Version **1.10** : bonus de vague parfaite animé dans la scène, impacts à étincelles,
+signatures visuelles des trois capacités, laser retravaillé et nouveaux paysages
+volcaniques/arctiques. Les rochers occupent aussi les espaces libres au centre des
+raids, en gardant les routes et installations dégagées. Voir
+`docs/validation/finition-1.10.txt` pour les contrôles et limites.
+
 Ouvrir `game/project.godot` avec Godot 4.7.2, puis lancer la scène principale.
 Sur cette machine, `Jouer.cmd` et `Jouer.ps1` lancent le projet. `Jouer-Final.cmd` lance la distribution autonome `dist/PacificStrike/PacificStrike.exe`, sans installation de Godot.
 

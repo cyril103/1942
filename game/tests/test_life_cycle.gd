@@ -84,9 +84,16 @@ func _run() -> void:
 	await capture("game-over")
 	app._launch(1)
 	check(app.page=="playing" and not paused and app.cockpit.combat.remaining_lives>0,"Explicit retry starts a playable saved checkpoint")
+	# Drain all active voices before discarding the last test flight.
+	for voice in app.find_children("*","AudioStreamPlayer",true,false): voice.stop()
+	for voice in app.find_children("*","AudioStreamPlayer3D",true,false): voice.stop()
+	app.music.stop()
+	await create_timer(.2).timeout
 	app._show_main()
 	app.music.stop()
 	await create_timer(.2).timeout
+	app.queue_free()
+	await process_frame
 	var report := {"checks":checks,"failures":failures}
 	FileAccess.open("C:/ChatGPT/1942/game/tests/life-cycle-results.json",FileAccess.WRITE).store_string(JSON.stringify(report,"\t"))
 	print("LIFE CYCLE: ",report)

@@ -1,6 +1,16 @@
 extends Node3D
 ## Fixed GPU batch for opaque fragments and two wing trails; no rigid bodies.
 const CAPACITY := 64
+const SPARK_CAPACITY := 96
+var spark_batch: MultiMeshInstance3D
+var spark_lives := PackedFloat32Array()
+var spark_positions := PackedVector3Array()
+var spark_velocities := PackedVector3Array()
+var spark_cursor := 0
+var hit_cooldown := 0.0
+var ability_visual: MeshInstance3D
+var ability_strength := 0.0
+var reduced_flash := false
 var batch: MultiMeshInstance3D
 var lifetimes := PackedFloat32Array()
 var positions := PackedVector3Array()
@@ -19,6 +29,8 @@ func set_presentation_altitude(altitude: float) -> void:
 	if is_zero_approx(change): return
 	for i in range(CAPACITY):
 		if lifetimes[i]>0 and grounded[i]==0: positions[i].y += change
+	for i in range(SPARK_CAPACITY):
+		if spark_lives[i]>0: spark_positions[i].y += change
 
 func _ready() -> void:
 	batch = MultiMeshInstance3D.new()
@@ -39,7 +51,36 @@ func _ready() -> void:
 	positions.resize(CAPACITY)
 	velocities.resize(CAPACITY)
 	grounded.resize(CAPACITY)
+	ability_visual = MeshInstance3D.new()
+	var ability_mesh := PlaneMesh.new()
+	ability_mesh.size = Vector2(2.35,3.25)
+	ability_visual.mesh = ability_mesh
+	ability_visual.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var ability_material := ShaderMaterial.new()
+	ability_material.shader = preload("res://shaders/aircraft_ability.gdshader")
+	ability_visual.material_override = ability_material
+	add_child(ability_visual)
+	ability_visual.hide()
 	for i in range(CAPACITY): batch.multimesh.set_instance_transform(i,Transform3D(Basis.IDENTITY.scaled(Vector3.ZERO),Vector3.ZERO))
+	spark_batch = MultiMeshInstance3D.new()
+	spark_batch.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var sparks := MultiMesh.new()
+	sparks.transform_format = MultiMesh.TRANSFORM_3D
+	sparks.use_colors = true
+	sparks.use_custom_data = true
+	var spark_mesh := PlaneMesh.new()
+	spark_mesh.size = Vector2(.075,.32)
+	var spark_material := ShaderMaterial.new()
+	spark_material.shader = preload("res://shaders/impact_spark.gdshader")
+	spark_mesh.material = spark_material
+	sparks.mesh = spark_mesh
+	sparks.instance_count = SPARK_CAPACITY
+	spark_batch.multimesh = sparks
+	add_child(spark_batch)
+	spark_lives.resize(SPARK_CAPACITY)
+	spark_positions.resize(SPARK_CAPACITY)
+	spark_velocities.resize(SPARK_CAPACITY)
+	for i in range(SPARK_CAPACITY): sparks.set_instance_transform(i,Transform3D(Basis.IDENTITY.scaled(Vector3.ZERO),Vector3.ZERO))
 	for side in [-1,1]:
 		var trail := make_card(2,Vector2(.24,1.8))
 		trail.set_meta("side",side)
@@ -70,9 +111,35 @@ func burst(at: Vector3, naval := false, ground := false) -> void:
 		lifetimes[slot] = 1.4
 		batch.multimesh.set_instance_color(slot,Color(1,.49,.12) if i%3==0 else Color(.3,.35,.39))
 
+func impact(at: Vector3, laser := false) -> void:
+	if not enabled or hit_cooldown>0: return
+	hit_cooldown = .035
+	for i in range(6):
+		var slot := spark_cursor%SPARK_CAPACITY
+		spark_cursor += 1
+		var angle := float(spark_cursor)*2.39996
+		spark_positions[slot] = at+Vector3(0,.12,0)
+		spark_velocities[slot] = Vector3(cos(angle)*3.5,1.0,sin(angle)*3.5)
+		spark_lives[slot] = .28
+		spark_batch.multimesh.set_instance_color(slot,Color(.38,.65,1) if laser else Color(1,.62,.19))
+
+func set_ability(aircraft: int, strength: float) -> void:
+	ability_strength = strength
+	ability_visual.material_override.set_shader_parameter("mode",aircraft)
+	ability_visual.material_override.set_shader_parameter("strength",minf(1,strength*8)*(.35 if reduced_flash else 1.0))
+
 func _physics_process(delta: float) -> void:
 	visible = enabled
-	if not enabled: return
+	hit_cooldown = maxf(0,hit_cooldown-delta)
+	for i in range(SPARK_CAPACITY):
+		if spark_lives[i]<=0: continue
+		spark_lives[i] = maxf(0,spark_lives[i]-delta)
+		spark_positions[i] += spark_velocities[i]*delta
+		spark_velocities[i] *= exp(-delta*5)
+		var basis := Basis(Vector3.UP,atan2(spark_velocities[i].x,spark_velocities[i].z))
+		basis = basis.scaled(Vector3.ONE*(spark_lives[i]/.28))
+		spark_batch.multimesh.set_instance_transform(i,Transform3D(basis,spark_positions[i]))
+		spark_batch.multimesh.set_instance_custom_data(i,Color(spark_lives[i]/.28,0,0,0))
 	for i in range(CAPACITY):
 		if lifetimes[i]<=0: continue
 		lifetimes[i] = maxf(0,lifetimes[i]-delta)
@@ -84,7 +151,9 @@ func _physics_process(delta: float) -> void:
 		if lifetimes[i]<=0: basis = basis.scaled(Vector3.ZERO)
 		batch.multimesh.set_instance_transform(i,Transform3D(basis,positions[i]))
 	if not is_instance_valid(player): return
+	ability_visual.visible = ability_strength>0 and player.alive and player.controls_enabled
+	ability_visual.global_position = player.bank.global_position+Vector3(0,.12,.10)
 	for trail in trails:
 		trail.visible = player.alive and player.controls_enabled and absf(player.bank.rotation.z)>.18
-		trail.position = player.bank.global_position+Vector3(float(trail.get_meta("side"))*.64,-.08,1.05)
+		trail.position = player.bank.to_global(Vector3(float(trail.get_meta("side"))*.64,-.08,1.05))
 		trail.material_override.set_shader_parameter("strength",clampf(absf(player.bank.rotation.z)*2,0,1))

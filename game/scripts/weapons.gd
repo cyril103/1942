@@ -1,4 +1,5 @@
 extends Node3D
+signal impact_created(at: Vector3, laser_hit: bool)
 ## Fixed-capacity pool. Inactive slots have no processing or collision bodies.
 ## Enemy colliders occupy physics layer 2, cross Y=0 and expose take_damage(amount).
 
@@ -240,6 +241,7 @@ func _release(index: int) -> void:
 
 
 func _show_impact(point: Vector3) -> void:
+	impact_created.emit(point+Vector3(0,presentation_altitude+.15,0),power_type=="laser")
 	var impact := impacts[_impact_cursor]
 	impact.global_position = point + Vector3(0.0, presentation_altitude+0.2, 0.0)
 	impact.scale = Vector3.ONE * 0.25

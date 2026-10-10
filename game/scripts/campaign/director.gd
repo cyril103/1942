@@ -40,6 +40,7 @@ var defeat_time := 0.0
 var balance: Dictionary
 var mastery = preload("res://scripts/campaign/mastery.gd").new()
 var details: Node3D
+var score_bursts: Node3D
 var act_index := -1
 var act_title := ""
 var radio := ""
@@ -119,6 +120,11 @@ func _ready() -> void:
 	details = preload("res://scripts/campaign/combat_detail.gd").new()
 	details.player = player
 	cockpit.flight.add_child(details)
+	weapons.impact_created.connect(details.impact)
+	score_bursts = preload("res://scripts/campaign/score_bursts.gd").new()
+	score_bursts.camera = combat.camera
+	score_bursts.reduced_flash = not bool(profile.data.settings.flashes)
+	cockpit.flight.add_child(score_bursts)
 	if mission.get("ground_assault",false):
 		assault = preload("res://scripts/campaign/ground_assault.gd").new()
 		assault.director = self
@@ -143,6 +149,12 @@ func _build_ring() -> void:
 func on_kill(base: int, kind: String) -> void:
 	combat.score += mastery.kill(base)
 	complete_objective(kind)
+
+func award_formation(at: Vector3, bonus: int, red: bool) -> void:
+	combat.score += bonus
+	mastery.bonus_score += bonus
+	score_bursts.show_award(at,bonus,red)
+	audio_event.emit("reward","formation:%d" % combat.formations.serial)
 
 func complete_objective(kind: String) -> void:
 	combat.score += mastery.objective(kind)
@@ -181,6 +193,7 @@ func _update_ability(delta: float) -> void:
 	weapons.projectile_damage = base_damage
 	weapons.laser_interval_multiplier = base_laser_interval
 	if not player.alive or ending or not active: ability_time = 0
+	if is_instance_valid(details): details.set_ability(int(profile.data.aircraft),ability_time/float(equipment.ability_duration))
 	if ability_time<=0: return
 	player.speed *= float(equipment.ability_speed_multiplier)
 	weapons.projectile_damage *= float(equipment.ability_damage_multiplier)
@@ -428,6 +441,8 @@ func _discharge(damage: float, focused: bool) -> void:
 		if on_screen and (not focused or absf(target.global_position.x-player.global_position.x)<4.0): target.take_damage(damage)
 
 func _clear_actors() -> void:
+	combat.formations.reset()
+	if is_instance_valid(score_bursts): score_bursts.clear()
 	if is_instance_valid(assault): assault.finish()
 	if is_instance_valid(convoy): convoy.retire()
 	for group in [combat.enemies,combat.bombers,combat.red_enemies,navals]:

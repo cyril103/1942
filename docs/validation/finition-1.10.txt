@@ -1,0 +1,127 @@
+PACIFIC STRIKE — FINITION 1.10, 10 OCTOBRE 2026
+
+Livraison
+32 missions et progression existantes conservées. Exécutable Windows et ZIP :
+dist/PacificStrike/PacificStrike.exe
+dist/PacificStrike-Windows-x64.zip
+Version contrôlée : 1.10.0.0. Sauvegardes au format existant.
+SHA256 de l'exécutable extrait et livré :
+D00B4A9819E3E49947021BC99A6E2D21C886EE76D8D1C8597E89C412B935FD01
+
+Changements
+- Vague parfaite : bonus fixe de 100 points par chasseur (800 pour huit),
+  1000 pour les cinq rouges, en plus du POW existant. Tous les membres doivent
+  être détruits. Fuite, retrait tactique et fin de mission ne donnent pas de bonus.
+  Les formations simultanées ont des identifiants distincts ; un signal de mort
+  suivi du retrait de l'objet ne compte qu'une seule fois.
+- Le score réel reçoit ce bonus ; le guide de score et le manuel l'expliquent.
+  Trois récompenses 3D réutilisables au maximum, durée 1,65 s, contours sombres,
+  couleur or, expansion amortie, montée, fondu et accents lumineux.
+- Impacts : gerbes courtes, 96 étincelles maximum dans un seul MultiMesh,
+  emission au plus toutes les 35 ms. Les particules expirent aussi si la qualité
+  est réduite pendant leur vol. Aucun nouveau corps physique ni nouveau raycast.
+- Capacités : signatures cyan, violette et facettes de protection dorées.
+  Paramètre de flash réduit respecté pour les nouveaux accents/capacités.
+- Laser : filaments irréguliers, flux longitudinal et liserés électriques.
+  Portée, largeur de collision, cadence et dégâts des armes restent identiques.
+- Océan : crêtes lumineuses discrètes calculées par la même fonction sur la mer
+  et le littoral ; pas de nouveau cercle d'éclaboussure ni rotation d'île.
+- Terrains : microrelief par gradient de surface, cartes de paysage basaltique
+  et arctique, détails natifs conservés. Chargement du seul paysage actif.
+  Mipmaps pour les nouvelles textures. Les rochers sont répartis aussi dans les
+  espaces centraux, avec exclusion des emprises, routes mobiles et pistes.
+  Réemploi des instances existantes : pas d'augmentation du budget de rochers.
+  Matériau des rochers corrigé après inspection (premier essai trop clair).
+
+Assets et technique
+Textures originales produites avec l'outil intégré ImageGen. Prompts complets,
+fichiers natifs et provenance dans game/assets/environment/raid-v4/.
+Ce sont des images générées de couleur, pas des mesures photogrammétriques.
+Les nouveaux shaders fonctionnent avec le rendu GL Compatibility du projet.
+Références techniques officielles consultées :
+https://docs.godotengine.org/en/stable/tutorials/performance/using_multimesh.html
+https://docs.godotengine.org/en/4.3/classes/class_label3d.html
+
+Validation
+Captures dans renders/finish-1.10/. Ce sont des fixtures visuelles mises en scène
+(avion protégé, trajectoire contrôlée, morts déclenchées pour inspecter le bonus),
+pas une partie humaine ni une preuve d'équilibrage des 32 missions.
+Les essais utilisent --audio-driver Dummy et des dossiers APPDATA/LOCALAPPDATA
+isolés sous tools/. La sauvegarde personnelle et le volume utilisateur sont préservés.
+
+Diagnostics rencontrés et traités
+- Le premier test du pool a détecté une expiration imprécise en float32 : les
+  trois horloges utilisent maintenant des doubles, avec extinction testée.
+- Le test historique du laser attendait un arrêt sonore immédiat, contraire au
+  fondu de 70 ms déjà livré en 1.9. Il vérifie maintenant la disparition visuelle
+  immédiate, l'arrêt audio à 80 ms et l'absence de dégâts résiduels.
+- Des diagnostics de matériau du backend Dummy sont apparus dans les fixtures
+  de collisions ; la même suite passe sous OpenGL sans diagnostic de matériau.
+- Le lanceur de test de cycle de vie a été corrigé pour arrêter/drainer ses voix
+  avant de libérer sa scène.
+- La fermeture normale du ZIP a révélé une rétention intermittente de deux objets
+  audio (WAV et playback). L'arrêt attend désormais 300 ms d'horloge monotone,
+  au lieu d'un délai de scène pouvant être consommé par une longue image initiale.
+  Un verrou évite également deux fermetures simultanées. Après correction : sortie
+  du ZIP et trois lancements/fermetures supplémentaires sans diagnostic moteur.
+- Un premier export n'avait pas accès au dossier temporaire global, malgré un code
+  de sortie nul de Godot. Il a été remplacé par un export avec TEMP/TMP sous tools/.
+  Le script refuse désormais les diagnostics ERROR même avec un code de sortie nul.
+
+Contrôles automatisés
+- Présentation et formations : 35 assertions, aucun échec.
+- Collisions/combat avec rendu OpenGL : 370 assertions, aucun échec.
+- Score, reprise et géométrie des menus : 31952 assertions, aucun échec.
+- Contrat terrain et mipmaps : 963 assertions, aucun échec.
+- Lisibilité des armes : 19 assertions, aucun échec.
+- Vies, réapparition et Game Over : 17 assertions, aucun échec.
+- Modes de session : 165 assertions, aucun échec.
+- ZIP Windows : 30 contrôles, aucun échec. Exécutable extrait identique au build,
+  version, icône et crédits présents, démarrage depuis un dossier vide et fermeture
+  normale sans erreur ni avertissement. Lecture des propriétés Windows par l'API
+  Shell ; pas de nouvelle observation humaine dans l'Explorateur.
+Les suites de gameplay utilisent le moteur éditeur. Le test du véritable EXE
+release contrôle le menu et la fermeture ; il n'exécute pas ces scripts de test.
+La dernière correction concerne uniquement la fermeture, contrôlée sur l'EXE final.
+
+Performance — mesures, pas une garantie sur toutes les configurations
+Mission 19, 1920x1080 (aire de jeu 1920x972), qualité Équilibré, MSAA 2x, VSync
+désactivée, Godot 4.7.2 / OpenGL Compatibility, pilote NVIDIA 561.03,
+GTX 1650, Intel i5-10300H. Rejeu déterministe, pilote invulnérable, audio Dummy.
+8400 ticks physiques par passage, soit 140 secondes simulées à 60 Hz. Une seule
+instance graphique du jeu à la fois. Des tests headless ont accompagné le début
+de la référence 1.9 : cette comparaison n'est pas une mesure de laboratoire isolée.
+
+Temps d'image en jeu, en millisecondes (écran de résultat exclu) :
+                                  moyenne   p95    p99     max       >16,67 ms
+1.9, premier passage                3,232   4,185  5,286  5189,172    22/37068
+1.10 source, premier passage        2,966   4,189  5,933  2635,263    25/37095
+1.10 source, même processus chaud   2,719   3,938  4,632     9,438     0/38918
+1.10 paquet final, premier passage  3,200   5,085  6,382  1059,014    20/33574
+
+Les caches disque/pilote n'ont pas été effacés : « premier passage » signifie
+nouveau processus, pas une machine vierge. Les mesures source précèdent l'activation
+des mipmaps des deux nouvelles cartes macro ; le dernier passage contrôle le paquet
+final avec mipmaps et correction de fermeture. Les maxima et distributions incluent
+les pics ; aucune image lente n'a été retirée des statistiques.
+
+Le dernier passage emploie le moteur éditeur avec --main-pack sur l'EXE livré et
+une sonde externe (tools/review/finish-probe.gd, copie de benchmark_full_mission.gd).
+Il teste les ressources exportées, pas les performances du template release lui-même.
+L'EXE autonome fait l'objet du contrôle de lancement distinct indiqué plus haut.
+
+Les quatre passages gardent les mêmes signatures d'entrées (1351020308) et d'état
+de combat (777145288), le même résultat au tick 6358 et aucun nœud orphelin en fin
+de mesure. Cela vérifie ce rejeu, pas tous les scénarios des 32 missions.
+Sur le paquet final : descente, remontée, combat de retour et appontage restent
+sous 16,67 ms. Des pics persistent au décollage (1059 ms), en approche (244 ms)
+et au sol (613 ms). Leur cause exacte n'est pas isolée ici. Le budget en régime
+établi est bon ; une promesse « zéro chute de FPS » ne serait pas justifiée.
+
+Preuves et reproduction
+Journaux, rapports JSON détaillés et contrôles du paquet conservés dans
+docs/validation/evidence-1.10/. Les captures finales sont dans renders/finish-1.10/.
+Le dossier temporaire d'extraction est supprimé après archivage des journaux ;
+les chemins d'origine figurent encore dans le rapport du test Windows.
+Aucun nouvel essai humain à la manette ou sur un second PC. Aucun changement de
+volume personnel. Les fichiers du jeu sont prêts ; aucun commit/push dans cette passe.

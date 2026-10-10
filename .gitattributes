@@ -22,3 +22,5 @@ audio/validation-mix-v19/** -text
 renders/validation-readability-v19/** -text
 game/tests/performance-1.9-comparison/** -text
 docs/validation/evidence-1.9/** -text
+docs/validation/evidence-1.10/** -text
+docs/validation/evidence-1.10.1/** -text

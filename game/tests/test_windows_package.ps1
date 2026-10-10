@@ -1,7 +1,7 @@
 param(
     [string]$PackageZip = (Join-Path $PSScriptRoot '../../dist/PacificStrike-Windows-x64.zip'),
     [string]$BuiltExecutable = (Join-Path $PSScriptRoot '../../dist/PacificStrike/PacificStrike.exe'),
-    [string]$ExpectedVersion = '1.9.0.0',
+    [string]$ExpectedVersion = '1.10.1.0',
     [switch]$SkipRuntime
 )
 $ErrorActionPreference = 'Stop'
@@ -30,6 +30,7 @@ $requiredCredits = @('Godot-LICENSE.txt','Godot-COPYRIGHT.txt','Musique.txt','Ju
 foreach ($credit in $requiredCredits) {
     Check-Package (Test-Path -LiteralPath (Join-Path $directory ('Licences/' + $credit))) ('Attribution absente : ' + $credit)
 }
+Check-Package (Test-Path -LiteralPath (Join-Path $directory 'Licences/Paysages-1.10.txt')) 'Provenance des paysages 1.10 absente.'
 Check-Package ((Get-Content -LiteralPath (Join-Path $directory 'LISEZ-MOI.txt') -Raw).Contains('Version ' + ($ExpectedVersion -replace '\.0$',''))) 'Version du manuel incoherente.'
 
 # These are the same canonical file properties exposed by the Explorer shell.

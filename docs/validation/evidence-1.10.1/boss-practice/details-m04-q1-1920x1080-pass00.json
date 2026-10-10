@@ -1,0 +1,3195 @@
+{
+	"after_dispose_memory": {
+		"engine_static_bytes": 68388808,
+		"nodes": 1,
+		"orphan_nodes": 0,
+		"render_estimated_bytes": 311338204,
+		"resources": 220
+	},
+	"boss_practice": true,
+	"cache": "first_scene_in_fresh_process",
+	"cpu_process_ms": {
+		"max_ms": 225.211,
+		"mean_ms": 9.67166201550389,
+		"over_16_67ms": 604,
+		"over_33_33ms": 176,
+		"p95_ms": 30.352,
+		"p99_ms": 225.211,
+		"samples": 10965
+	},
+	"finished_tick": 1626,
+	"gameplay": {
+		"max_ms": 24.411,
+		"mean_ms": 2.46889940720474,
+		"over_16_67ms": 6,
+		"over_33_33ms": 0,
+		"p95_ms": 3.597,
+		"p99_ms": 5.005,
+		"samples": 10965
+	},
+	"gpu_ms": {
+		"max_ms": 22.824999332428,
+		"mean_ms": 1.90028362909083,
+		"over_16_67ms": 6,
+		"over_33_33ms": 0,
+		"p95_ms": 2.14999994635582,
+		"p99_ms": 2.18800002336502,
+		"samples": 10965
+	},
+	"init_ms": 2022.089,
+	"input_signature": 1332859605,
+	"instrumentation_ms": {
+		"max_ms": 1.994,
+		"mean_ms": 0.0311265666465228,
+		"over_16_67ms": 0,
+		"over_33_33ms": 0,
+		"p95_ms": 0.077,
+		"p99_ms": 0.118,
+		"samples": 38059
+	},
+	"launch_ms": 1179.892,
+	"markers": [
+		{
+			"init_ms": 2022.089,
+			"kind": "scene_build",
+			"launch_ms": 1179.892,
+			"tick": 0
+		},
+		{
+			"kind": "phase",
+			"mission_s": 0.0333333333333333,
+			"phase": "approach",
+			"tick": 2
+		},
+		{
+			"changes": [
+				"phase:approach",
+				"event:26",
+				"first:event",
+				"wave:0",
+				"bomber:0",
+				"special:0",
+				"enemy_shots:0",
+				"player_shots:4",
+				"first:player_shots",
+				"kills:0",
+				"boss_phase:0",
+				"boss_spawned:true",
+				"first:boss_spawned",
+				"terrain_deployed:false",
+				"jammed:false"
+			],
+			"kind": "state",
+			"mission_s": 0.0333333333333333,
+			"phase": "approach",
+			"tick": 2
+		},
+		{
+			"changes": [
+				"player_shots:8"
+			],
+			"kind": "state",
+			"mission_s": 0.1,
+			"phase": "approach",
+			"tick": 6
+		},
+		{
+			"changes": [
+				"player_shots:12"
+			],
+			"kind": "state",
+			"mission_s": 0.183333333333333,
+			"phase": "approach",
+			"tick": 11
+		},
+		{
+			"changes": [
+				"player_shots:16"
+			],
+			"kind": "state",
+			"mission_s": 0.283333333333333,
+			"phase": "approach",
+			"tick": 17
+		},
+		{
+			"changes": [
+				"player_shots:20"
+			],
+			"kind": "state",
+			"mission_s": 0.366666666666667,
+			"phase": "approach",
+			"tick": 22
+		},
+		{
+			"changes": [
+				"player_shots:24"
+			],
+			"kind": "state",
+			"mission_s": 0.466666666666667,
+			"phase": "approach",
+			"tick": 28
+		},
+		{
+			"changes": [
+				"player_shots:28"
+			],
+			"kind": "state",
+			"mission_s": 0.55,
+			"phase": "approach",
+			"tick": 33
+		},
+		{
+			"changes": [
+				"player_shots:32"
+			],
+			"kind": "state",
+			"mission_s": 0.633333333333334,
+			"phase": "approach",
+			"tick": 38
+		},
+		{
+			"changes": [
+				"player_shots:36"
+			],
+			"kind": "state",
+			"mission_s": 0.733333333333334,
+			"phase": "approach",
+			"tick": 44
+		},
+		{
+			"changes": [
+				"player_shots:40"
+			],
+			"kind": "state",
+			"mission_s": 0.816666666666668,
+			"phase": "approach",
+			"tick": 49
+		},
+		{
+			"changes": [
+				"player_shots:44"
+			],
+			"kind": "state",
+			"mission_s": 0.916666666666668,
+			"phase": "approach",
+			"tick": 55
+		},
+		{
+			"changes": [
+				"player_shots:48"
+			],
+			"kind": "state",
+			"mission_s": 1.0,
+			"phase": "approach",
+			"tick": 60
+		},
+		{
+			"changes": [
+				"player_shots:52"
+			],
+			"kind": "state",
+			"mission_s": 1.08333333333333,
+			"phase": "approach",
+			"tick": 65
+		},
+		{
+			"changes": [
+				"player_shots:56"
+			],
+			"kind": "state",
+			"mission_s": 1.18333333333333,
+			"phase": "approach",
+			"tick": 71
+		},
+		{
+			"changes": [
+				"player_shots:60"
+			],
+			"kind": "state",
+			"mission_s": 1.26666666666667,
+			"phase": "approach",
+			"tick": 76
+		},
+		{
+			"changes": [
+				"player_shots:64"
+			],
+			"kind": "state",
+			"mission_s": 1.36666666666667,
+			"phase": "approach",
+			"tick": 82
+		},
+		{
+			"changes": [
+				"player_shots:68"
+			],
+			"kind": "state",
+			"mission_s": 1.45,
+			"phase": "approach",
+			"tick": 87
+		},
+		{
+			"changes": [
+				"player_shots:72"
+			],
+			"kind": "state",
+			"mission_s": 1.53333333333333,
+			"phase": "approach",
+			"tick": 92
+		},
+		{
+			"changes": [
+				"player_shots:76"
+			],
+			"kind": "state",
+			"mission_s": 1.63333333333333,
+			"phase": "approach",
+			"tick": 98
+		},
+		{
+			"changes": [
+				"player_shots:80"
+			],
+			"kind": "state",
+			"mission_s": 1.71666666666667,
+			"phase": "approach",
+			"tick": 103
+		},
+		{
+			"changes": [
+				"player_shots:84"
+			],
+			"kind": "state",
+			"mission_s": 1.81666666666667,
+			"phase": "approach",
+			"tick": 109
+		},
+		{
+			"changes": [
+				"player_shots:88"
+			],
+			"kind": "state",
+			"mission_s": 1.9,
+			"phase": "approach",
+			"tick": 114
+		},
+		{
+			"changes": [
+				"player_shots:92"
+			],
+			"kind": "state",
+			"mission_s": 1.98333333333333,
+			"phase": "approach",
+			"tick": 119
+		},
+		{
+			"changes": [
+				"player_shots:96"
+			],
+			"kind": "state",
+			"mission_s": 2.08333333333333,
+			"phase": "approach",
+			"tick": 125
+		},
+		{
+			"changes": [
+				"player_shots:100"
+			],
+			"kind": "state",
+			"mission_s": 2.16666666666666,
+			"phase": "approach",
+			"tick": 130
+		},
+		{
+			"changes": [
+				"player_shots:104"
+			],
+			"kind": "state",
+			"mission_s": 2.26666666666666,
+			"phase": "approach",
+			"tick": 136
+		},
+		{
+			"changes": [
+				"player_shots:108"
+			],
+			"kind": "state",
+			"mission_s": 2.35,
+			"phase": "approach",
+			"tick": 141
+		},
+		{
+			"changes": [
+				"player_shots:112"
+			],
+			"kind": "state",
+			"mission_s": 2.43333333333333,
+			"phase": "approach",
+			"tick": 146
+		},
+		{
+			"changes": [
+				"player_shots:116"
+			],
+			"kind": "state",
+			"mission_s": 2.53333333333333,
+			"phase": "approach",
+			"tick": 152
+		},
+		{
+			"changes": [
+				"player_shots:120"
+			],
+			"kind": "state",
+			"mission_s": 2.61666666666666,
+			"phase": "approach",
+			"tick": 157
+		},
+		{
+			"changes": [
+				"player_shots:124"
+			],
+			"kind": "state",
+			"mission_s": 2.71666666666666,
+			"phase": "approach",
+			"tick": 163
+		},
+		{
+			"changes": [
+				"player_shots:128"
+			],
+			"kind": "state",
+			"mission_s": 2.79999999999999,
+			"phase": "approach",
+			"tick": 168
+		},
+		{
+			"changes": [
+				"player_shots:132"
+			],
+			"kind": "state",
+			"mission_s": 2.88333333333333,
+			"phase": "approach",
+			"tick": 173
+		},
+		{
+			"changes": [
+				"player_shots:136"
+			],
+			"kind": "state",
+			"mission_s": 2.98333333333333,
+			"phase": "approach",
+			"tick": 179
+		},
+		{
+			"changes": [
+				"player_shots:140"
+			],
+			"kind": "state",
+			"mission_s": 3.06666666666666,
+			"phase": "approach",
+			"tick": 184
+		},
+		{
+			"changes": [
+				"player_shots:144"
+			],
+			"kind": "state",
+			"mission_s": 3.16666666666666,
+			"phase": "approach",
+			"tick": 190
+		},
+		{
+			"changes": [
+				"player_shots:148"
+			],
+			"kind": "state",
+			"mission_s": 3.24999999999999,
+			"phase": "approach",
+			"tick": 195
+		},
+		{
+			"changes": [
+				"player_shots:152"
+			],
+			"kind": "state",
+			"mission_s": 3.33333333333333,
+			"phase": "approach",
+			"tick": 200
+		},
+		{
+			"changes": [
+				"player_shots:156"
+			],
+			"kind": "state",
+			"mission_s": 3.43333333333333,
+			"phase": "approach",
+			"tick": 206
+		},
+		{
+			"changes": [
+				"player_shots:160"
+			],
+			"kind": "state",
+			"mission_s": 3.51666666666666,
+			"phase": "approach",
+			"tick": 211
+		},
+		{
+			"changes": [
+				"player_shots:164"
+			],
+			"kind": "state",
+			"mission_s": 3.61666666666666,
+			"phase": "approach",
+			"tick": 217
+		},
+		{
+			"changes": [
+				"player_shots:168"
+			],
+			"kind": "state",
+			"mission_s": 3.69999999999999,
+			"phase": "approach",
+			"tick": 222
+		},
+		{
+			"changes": [
+				"player_shots:172"
+			],
+			"kind": "state",
+			"mission_s": 3.78333333333332,
+			"phase": "approach",
+			"tick": 227
+		},
+		{
+			"changes": [
+				"player_shots:176"
+			],
+			"kind": "state",
+			"mission_s": 3.88333333333332,
+			"phase": "approach",
+			"tick": 233
+		},
+		{
+			"changes": [
+				"player_shots:180"
+			],
+			"kind": "state",
+			"mission_s": 3.96666666666666,
+			"phase": "approach",
+			"tick": 238
+		},
+		{
+			"changes": [
+				"player_shots:184"
+			],
+			"kind": "state",
+			"mission_s": 4.06666666666666,
+			"phase": "approach",
+			"tick": 244
+		},
+		{
+			"changes": [
+				"player_shots:188"
+			],
+			"kind": "state",
+			"mission_s": 4.14999999999999,
+			"phase": "approach",
+			"tick": 249
+		},
+		{
+			"changes": [
+				"player_shots:192"
+			],
+			"kind": "state",
+			"mission_s": 4.23333333333332,
+			"phase": "approach",
+			"tick": 254
+		},
+		{
+			"changes": [
+				"player_shots:196"
+			],
+			"kind": "state",
+			"mission_s": 4.33333333333332,
+			"phase": "approach",
+			"tick": 260
+		},
+		{
+			"changes": [
+				"player_shots:200"
+			],
+			"kind": "state",
+			"mission_s": 4.41666666666666,
+			"phase": "approach",
+			"tick": 265
+		},
+		{
+			"changes": [
+				"player_shots:204"
+			],
+			"kind": "state",
+			"mission_s": 4.51666666666666,
+			"phase": "approach",
+			"tick": 271
+		},
+		{
+			"changes": [
+				"player_shots:208"
+			],
+			"kind": "state",
+			"mission_s": 4.59999999999999,
+			"phase": "approach",
+			"tick": 276
+		},
+		{
+			"changes": [
+				"player_shots:212"
+			],
+			"kind": "state",
+			"mission_s": 4.68333333333332,
+			"phase": "approach",
+			"tick": 281
+		},
+		{
+			"changes": [
+				"player_shots:216"
+			],
+			"kind": "state",
+			"mission_s": 4.78333333333332,
+			"phase": "approach",
+			"tick": 287
+		},
+		{
+			"changes": [
+				"player_shots:220"
+			],
+			"kind": "state",
+			"mission_s": 4.86666666666665,
+			"phase": "approach",
+			"tick": 292
+		},
+		{
+			"changes": [
+				"player_shots:224"
+			],
+			"kind": "state",
+			"mission_s": 4.96666666666665,
+			"phase": "approach",
+			"tick": 298
+		},
+		{
+			"changes": [
+				"player_shots:228"
+			],
+			"kind": "state",
+			"mission_s": 5.04999999999999,
+			"phase": "approach",
+			"tick": 303
+		},
+		{
+			"changes": [
+				"player_shots:232"
+			],
+			"kind": "state",
+			"mission_s": 5.13333333333332,
+			"phase": "approach",
+			"tick": 308
+		},
+		{
+			"changes": [
+				"player_shots:236"
+			],
+			"kind": "state",
+			"mission_s": 5.23333333333332,
+			"phase": "approach",
+			"tick": 314
+		},
+		{
+			"changes": [
+				"player_shots:240"
+			],
+			"kind": "state",
+			"mission_s": 5.31666666666665,
+			"phase": "approach",
+			"tick": 319
+		},
+		{
+			"changes": [
+				"player_shots:244"
+			],
+			"kind": "state",
+			"mission_s": 5.41666666666665,
+			"phase": "approach",
+			"tick": 325
+		},
+		{
+			"changes": [
+				"player_shots:248"
+			],
+			"kind": "state",
+			"mission_s": 5.49999999999999,
+			"phase": "approach",
+			"tick": 330
+		},
+		{
+			"changes": [
+				"player_shots:252"
+			],
+			"kind": "state",
+			"mission_s": 5.58333333333332,
+			"phase": "approach",
+			"tick": 335
+		},
+		{
+			"changes": [
+				"enemy_shots:3",
+				"first:enemy_shots"
+			],
+			"kind": "state",
+			"mission_s": 5.59999999999999,
+			"phase": "approach",
+			"tick": 336
+		},
+		{
+			"changes": [
+				"player_shots:256"
+			],
+			"kind": "state",
+			"mission_s": 5.68333333333332,
+			"phase": "approach",
+			"tick": 341
+		},
+		{
+			"changes": [
+				"player_shots:260"
+			],
+			"kind": "state",
+			"mission_s": 5.76666666666665,
+			"phase": "approach",
+			"tick": 346
+		},
+		{
+			"changes": [
+				"player_shots:264"
+			],
+			"kind": "state",
+			"mission_s": 5.86666666666665,
+			"phase": "approach",
+			"tick": 352
+		},
+		{
+			"changes": [
+				"player_shots:268"
+			],
+			"kind": "state",
+			"mission_s": 5.94999999999998,
+			"phase": "approach",
+			"tick": 357
+		},
+		{
+			"changes": [
+				"player_shots:272"
+			],
+			"kind": "state",
+			"mission_s": 6.03333333333332,
+			"phase": "approach",
+			"tick": 362
+		},
+		{
+			"changes": [
+				"player_shots:276"
+			],
+			"kind": "state",
+			"mission_s": 6.13333333333332,
+			"phase": "approach",
+			"tick": 368
+		},
+		{
+			"changes": [
+				"player_shots:280"
+			],
+			"kind": "state",
+			"mission_s": 6.21666666666665,
+			"phase": "approach",
+			"tick": 373
+		},
+		{
+			"changes": [
+				"player_shots:284"
+			],
+			"kind": "state",
+			"mission_s": 6.31666666666665,
+			"phase": "approach",
+			"tick": 379
+		},
+		{
+			"changes": [
+				"player_shots:288"
+			],
+			"kind": "state",
+			"mission_s": 6.39999999999998,
+			"phase": "approach",
+			"tick": 384
+		},
+		{
+			"changes": [
+				"player_shots:292"
+			],
+			"kind": "state",
+			"mission_s": 6.48333333333332,
+			"phase": "approach",
+			"tick": 389
+		},
+		{
+			"changes": [
+				"player_shots:296"
+			],
+			"kind": "state",
+			"mission_s": 6.58333333333332,
+			"phase": "approach",
+			"tick": 395
+		},
+		{
+			"changes": [
+				"player_shots:300"
+			],
+			"kind": "state",
+			"mission_s": 6.66666666666665,
+			"phase": "approach",
+			"tick": 400
+		},
+		{
+			"changes": [
+				"player_shots:304"
+			],
+			"kind": "state",
+			"mission_s": 6.76666666666665,
+			"phase": "approach",
+			"tick": 406
+		},
+		{
+			"changes": [
+				"boss_phase:1",
+				"first:boss_phase"
+			],
+			"kind": "state",
+			"mission_s": 6.81666666666665,
+			"phase": "approach",
+			"tick": 409
+		},
+		{
+			"changes": [
+				"player_shots:308"
+			],
+			"kind": "state",
+			"mission_s": 6.84999999999998,
+			"phase": "approach",
+			"tick": 411
+		},
+		{
+			"changes": [
+				"player_shots:312"
+			],
+			"kind": "state",
+			"mission_s": 6.93333333333331,
+			"phase": "approach",
+			"tick": 416
+		},
+		{
+			"changes": [
+				"player_shots:316"
+			],
+			"kind": "state",
+			"mission_s": 7.03333333333331,
+			"phase": "approach",
+			"tick": 422
+		},
+		{
+			"changes": [
+				"player_shots:320"
+			],
+			"kind": "state",
+			"mission_s": 7.11666666666665,
+			"phase": "approach",
+			"tick": 427
+		},
+		{
+			"changes": [
+				"player_shots:324"
+			],
+			"kind": "state",
+			"mission_s": 7.21666666666665,
+			"phase": "approach",
+			"tick": 433
+		},
+		{
+			"changes": [
+				"player_shots:328"
+			],
+			"kind": "state",
+			"mission_s": 7.29999999999998,
+			"phase": "approach",
+			"tick": 438
+		},
+		{
+			"changes": [
+				"player_shots:332"
+			],
+			"kind": "state",
+			"mission_s": 7.38333333333331,
+			"phase": "approach",
+			"tick": 443
+		},
+		{
+			"changes": [
+				"player_shots:336"
+			],
+			"kind": "state",
+			"mission_s": 7.48333333333331,
+			"phase": "approach",
+			"tick": 449
+		},
+		{
+			"changes": [
+				"player_shots:340"
+			],
+			"kind": "state",
+			"mission_s": 7.56666666666665,
+			"phase": "approach",
+			"tick": 454
+		},
+		{
+			"changes": [
+				"player_shots:344"
+			],
+			"kind": "state",
+			"mission_s": 7.66666666666664,
+			"phase": "approach",
+			"tick": 460
+		},
+		{
+			"changes": [
+				"player_shots:348"
+			],
+			"kind": "state",
+			"mission_s": 7.74999999999998,
+			"phase": "approach",
+			"tick": 465
+		},
+		{
+			"changes": [
+				"player_shots:352"
+			],
+			"kind": "state",
+			"mission_s": 7.83333333333331,
+			"phase": "approach",
+			"tick": 470
+		},
+		{
+			"changes": [
+				"player_shots:356"
+			],
+			"kind": "state",
+			"mission_s": 7.93333333333331,
+			"phase": "approach",
+			"tick": 476
+		},
+		{
+			"changes": [
+				"player_shots:360"
+			],
+			"kind": "state",
+			"mission_s": 8.01666666666664,
+			"phase": "approach",
+			"tick": 481
+		},
+		{
+			"changes": [
+				"player_shots:364"
+			],
+			"kind": "state",
+			"mission_s": 8.11666666666665,
+			"phase": "approach",
+			"tick": 487
+		},
+		{
+			"changes": [
+				"player_shots:368"
+			],
+			"kind": "state",
+			"mission_s": 8.19999999999999,
+			"phase": "approach",
+			"tick": 492
+		},
+		{
+			"changes": [
+				"player_shots:372"
+			],
+			"kind": "state",
+			"mission_s": 8.28333333333332,
+			"phase": "approach",
+			"tick": 497
+		},
+		{
+			"changes": [
+				"player_shots:376"
+			],
+			"kind": "state",
+			"mission_s": 8.38333333333333,
+			"phase": "approach",
+			"tick": 503
+		},
+		{
+			"changes": [
+				"player_shots:380"
+			],
+			"kind": "state",
+			"mission_s": 8.46666666666667,
+			"phase": "approach",
+			"tick": 508
+		},
+		{
+			"changes": [
+				"player_shots:384"
+			],
+			"kind": "state",
+			"mission_s": 8.56666666666667,
+			"phase": "approach",
+			"tick": 514
+		},
+		{
+			"changes": [
+				"player_shots:388"
+			],
+			"kind": "state",
+			"mission_s": 8.65000000000001,
+			"phase": "approach",
+			"tick": 519
+		},
+		{
+			"changes": [
+				"player_shots:392"
+			],
+			"kind": "state",
+			"mission_s": 8.73333333333335,
+			"phase": "approach",
+			"tick": 524
+		},
+		{
+			"changes": [
+				"player_shots:396"
+			],
+			"kind": "state",
+			"mission_s": 8.83333333333335,
+			"phase": "approach",
+			"tick": 530
+		},
+		{
+			"changes": [
+				"player_shots:400"
+			],
+			"kind": "state",
+			"mission_s": 8.91666666666669,
+			"phase": "approach",
+			"tick": 535
+		},
+		{
+			"changes": [
+				"player_shots:404"
+			],
+			"kind": "state",
+			"mission_s": 9.01666666666669,
+			"phase": "approach",
+			"tick": 541
+		},
+		{
+			"changes": [
+				"player_shots:408"
+			],
+			"kind": "state",
+			"mission_s": 9.10000000000003,
+			"phase": "approach",
+			"tick": 546
+		},
+		{
+			"changes": [
+				"player_shots:412"
+			],
+			"kind": "state",
+			"mission_s": 9.18333333333337,
+			"phase": "approach",
+			"tick": 551
+		},
+		{
+			"changes": [
+				"player_shots:416"
+			],
+			"kind": "state",
+			"mission_s": 9.28333333333337,
+			"phase": "approach",
+			"tick": 557
+		},
+		{
+			"changes": [
+				"player_shots:420"
+			],
+			"kind": "state",
+			"mission_s": 9.36666666666671,
+			"phase": "approach",
+			"tick": 562
+		},
+		{
+			"changes": [
+				"player_shots:424"
+			],
+			"kind": "state",
+			"mission_s": 9.46666666666672,
+			"phase": "approach",
+			"tick": 568
+		},
+		{
+			"changes": [
+				"player_shots:428"
+			],
+			"kind": "state",
+			"mission_s": 9.55000000000005,
+			"phase": "approach",
+			"tick": 573
+		},
+		{
+			"changes": [
+				"player_shots:432"
+			],
+			"kind": "state",
+			"mission_s": 9.63333333333339,
+			"phase": "approach",
+			"tick": 578
+		},
+		{
+			"changes": [
+				"player_shots:436"
+			],
+			"kind": "state",
+			"mission_s": 9.7333333333334,
+			"phase": "approach",
+			"tick": 584
+		},
+		{
+			"changes": [
+				"player_shots:440"
+			],
+			"kind": "state",
+			"mission_s": 9.81666666666673,
+			"phase": "approach",
+			"tick": 589
+		},
+		{
+			"changes": [
+				"player_shots:444"
+			],
+			"kind": "state",
+			"mission_s": 9.91666666666674,
+			"phase": "approach",
+			"tick": 595
+		},
+		{
+			"changes": [
+				"player_shots:448"
+			],
+			"kind": "state",
+			"mission_s": 10.0000000000001,
+			"phase": "approach",
+			"tick": 600
+		},
+		{
+			"changes": [
+				"player_shots:452"
+			],
+			"kind": "state",
+			"mission_s": 10.0833333333334,
+			"phase": "approach",
+			"tick": 605
+		},
+		{
+			"changes": [
+				"enemy_shots:4"
+			],
+			"kind": "state",
+			"mission_s": 10.1333333333334,
+			"phase": "approach",
+			"tick": 608
+		},
+		{
+			"changes": [
+				"player_shots:456"
+			],
+			"kind": "state",
+			"mission_s": 10.1833333333334,
+			"phase": "approach",
+			"tick": 611
+		},
+		{
+			"changes": [
+				"player_shots:460"
+			],
+			"kind": "state",
+			"mission_s": 10.2666666666668,
+			"phase": "approach",
+			"tick": 616
+		},
+		{
+			"changes": [
+				"player_shots:464"
+			],
+			"kind": "state",
+			"mission_s": 10.3666666666668,
+			"phase": "approach",
+			"tick": 622
+		},
+		{
+			"changes": [
+				"player_shots:468"
+			],
+			"kind": "state",
+			"mission_s": 10.4500000000001,
+			"phase": "approach",
+			"tick": 627
+		},
+		{
+			"changes": [
+				"player_shots:472"
+			],
+			"kind": "state",
+			"mission_s": 10.5333333333334,
+			"phase": "approach",
+			"tick": 632
+		},
+		{
+			"changes": [
+				"player_shots:476"
+			],
+			"kind": "state",
+			"mission_s": 10.6333333333334,
+			"phase": "approach",
+			"tick": 638
+		},
+		{
+			"changes": [
+				"player_shots:480"
+			],
+			"kind": "state",
+			"mission_s": 10.7166666666668,
+			"phase": "approach",
+			"tick": 643
+		},
+		{
+			"changes": [
+				"player_shots:484"
+			],
+			"kind": "state",
+			"mission_s": 10.8166666666668,
+			"phase": "approach",
+			"tick": 649
+		},
+		{
+			"changes": [
+				"player_shots:488"
+			],
+			"kind": "state",
+			"mission_s": 10.9000000000001,
+			"phase": "approach",
+			"tick": 654
+		},
+		{
+			"changes": [
+				"player_shots:492"
+			],
+			"kind": "state",
+			"mission_s": 10.9833333333335,
+			"phase": "approach",
+			"tick": 659
+		},
+		{
+			"changes": [
+				"player_shots:496"
+			],
+			"kind": "state",
+			"mission_s": 11.0833333333335,
+			"phase": "approach",
+			"tick": 665
+		},
+		{
+			"changes": [
+				"player_shots:500"
+			],
+			"kind": "state",
+			"mission_s": 11.1666666666668,
+			"phase": "approach",
+			"tick": 670
+		},
+		{
+			"changes": [
+				"player_shots:504"
+			],
+			"kind": "state",
+			"mission_s": 11.2666666666668,
+			"phase": "approach",
+			"tick": 676
+		},
+		{
+			"changes": [
+				"player_shots:508"
+			],
+			"kind": "state",
+			"mission_s": 11.3500000000001,
+			"phase": "approach",
+			"tick": 681
+		},
+		{
+			"changes": [
+				"player_shots:512"
+			],
+			"kind": "state",
+			"mission_s": 11.4333333333335,
+			"phase": "approach",
+			"tick": 686
+		},
+		{
+			"changes": [
+				"wave:1",
+				"first:wave",
+				"boss_phase:2"
+			],
+			"kind": "state",
+			"mission_s": 11.5166666666668,
+			"phase": "approach",
+			"tick": 691
+		},
+		{
+			"changes": [
+				"player_shots:516"
+			],
+			"kind": "state",
+			"mission_s": 11.5333333333335,
+			"phase": "approach",
+			"tick": 692
+		},
+		{
+			"changes": [
+				"player_shots:520"
+			],
+			"kind": "state",
+			"mission_s": 11.6166666666668,
+			"phase": "approach",
+			"tick": 697
+		},
+		{
+			"changes": [
+				"player_shots:524"
+			],
+			"kind": "state",
+			"mission_s": 11.7166666666668,
+			"phase": "approach",
+			"tick": 703
+		},
+		{
+			"changes": [
+				"player_shots:528"
+			],
+			"kind": "state",
+			"mission_s": 11.8000000000002,
+			"phase": "approach",
+			"tick": 708
+		},
+		{
+			"changes": [
+				"player_shots:532"
+			],
+			"kind": "state",
+			"mission_s": 11.8833333333335,
+			"phase": "approach",
+			"tick": 713
+		},
+		{
+			"changes": [
+				"kills:1",
+				"first:kills"
+			],
+			"kind": "state",
+			"mission_s": 11.9000000000002,
+			"phase": "approach",
+			"tick": 714
+		},
+		{
+			"changes": [
+				"player_shots:536"
+			],
+			"kind": "state",
+			"mission_s": 11.9833333333335,
+			"phase": "approach",
+			"tick": 719
+		},
+		{
+			"changes": [
+				"player_shots:540"
+			],
+			"kind": "state",
+			"mission_s": 12.0666666666668,
+			"phase": "approach",
+			"tick": 724
+		},
+		{
+			"changes": [
+				"player_shots:544"
+			],
+			"kind": "state",
+			"mission_s": 12.1666666666669,
+			"phase": "approach",
+			"tick": 730
+		},
+		{
+			"changes": [
+				"player_shots:548"
+			],
+			"kind": "state",
+			"mission_s": 12.2500000000002,
+			"phase": "approach",
+			"tick": 735
+		},
+		{
+			"changes": [
+				"enemy_shots:5"
+			],
+			"kind": "state",
+			"mission_s": 12.3166666666669,
+			"phase": "approach",
+			"tick": 739
+		},
+		{
+			"changes": [
+				"player_shots:552"
+			],
+			"kind": "state",
+			"mission_s": 12.3333333333335,
+			"phase": "approach",
+			"tick": 740
+		},
+		{
+			"changes": [
+				"player_shots:556"
+			],
+			"kind": "state",
+			"mission_s": 12.4333333333335,
+			"phase": "approach",
+			"tick": 746
+		},
+		{
+			"changes": [
+				"player_shots:560"
+			],
+			"kind": "state",
+			"mission_s": 12.5166666666669,
+			"phase": "approach",
+			"tick": 751
+		},
+		{
+			"changes": [
+				"player_shots:564"
+			],
+			"kind": "state",
+			"mission_s": 12.6166666666669,
+			"phase": "approach",
+			"tick": 757
+		},
+		{
+			"changes": [
+				"enemy_shots:6",
+				"player_shots:568"
+			],
+			"kind": "state",
+			"mission_s": 12.7000000000002,
+			"phase": "approach",
+			"tick": 762
+		},
+		{
+			"changes": [
+				"kills:2"
+			],
+			"kind": "state",
+			"mission_s": 12.7666666666669,
+			"phase": "approach",
+			"tick": 766
+		},
+		{
+			"changes": [
+				"enemy_shots:7",
+				"player_shots:572"
+			],
+			"kind": "state",
+			"mission_s": 12.7833333333335,
+			"phase": "approach",
+			"tick": 767
+		},
+		{
+			"changes": [
+				"player_shots:576"
+			],
+			"kind": "state",
+			"mission_s": 12.8833333333336,
+			"phase": "approach",
+			"tick": 773
+		},
+		{
+			"changes": [
+				"player_shots:580"
+			],
+			"kind": "state",
+			"mission_s": 12.9666666666669,
+			"phase": "approach",
+			"tick": 778
+		},
+		{
+			"changes": [
+				"enemy_shots:8",
+				"player_shots:584"
+			],
+			"kind": "state",
+			"mission_s": 13.0666666666669,
+			"phase": "approach",
+			"tick": 784
+		},
+		{
+			"changes": [
+				"player_shots:588"
+			],
+			"kind": "state",
+			"mission_s": 13.1500000000002,
+			"phase": "approach",
+			"tick": 789
+		},
+		{
+			"changes": [
+				"player_shots:592"
+			],
+			"kind": "state",
+			"mission_s": 13.2333333333336,
+			"phase": "approach",
+			"tick": 794
+		},
+		{
+			"changes": [
+				"enemy_shots:9"
+			],
+			"kind": "state",
+			"mission_s": 13.2500000000002,
+			"phase": "approach",
+			"tick": 795
+		},
+		{
+			"changes": [
+				"enemy_shots:10"
+			],
+			"kind": "state",
+			"mission_s": 13.2666666666669,
+			"phase": "approach",
+			"tick": 796
+		},
+		{
+			"changes": [
+				"player_shots:596"
+			],
+			"kind": "state",
+			"mission_s": 13.3333333333336,
+			"phase": "approach",
+			"tick": 800
+		},
+		{
+			"changes": [
+				"player_shots:600"
+			],
+			"kind": "state",
+			"mission_s": 13.4166666666669,
+			"phase": "approach",
+			"tick": 805
+		},
+		{
+			"changes": [
+				"player_shots:604"
+			],
+			"kind": "state",
+			"mission_s": 13.5166666666669,
+			"phase": "approach",
+			"tick": 811
+		},
+		{
+			"changes": [
+				"kills:3"
+			],
+			"kind": "state",
+			"mission_s": 13.5333333333336,
+			"phase": "approach",
+			"tick": 812
+		},
+		{
+			"changes": [
+				"player_shots:608"
+			],
+			"kind": "state",
+			"mission_s": 13.6000000000003,
+			"phase": "approach",
+			"tick": 816
+		},
+		{
+			"changes": [
+				"player_shots:612"
+			],
+			"kind": "state",
+			"mission_s": 13.6833333333336,
+			"phase": "approach",
+			"tick": 821
+		},
+		{
+			"changes": [
+				"player_shots:616"
+			],
+			"kind": "state",
+			"mission_s": 13.7833333333336,
+			"phase": "approach",
+			"tick": 827
+		},
+		{
+			"changes": [
+				"enemy_shots:11"
+			],
+			"kind": "state",
+			"mission_s": 13.8166666666669,
+			"phase": "approach",
+			"tick": 829
+		},
+		{
+			"changes": [
+				"player_shots:620"
+			],
+			"kind": "state",
+			"mission_s": 13.8666666666669,
+			"phase": "approach",
+			"tick": 832
+		},
+		{
+			"changes": [
+				"enemy_shots:12",
+				"player_shots:624"
+			],
+			"kind": "state",
+			"mission_s": 13.9666666666669,
+			"phase": "approach",
+			"tick": 838
+		},
+		{
+			"changes": [
+				"player_shots:628"
+			],
+			"kind": "state",
+			"mission_s": 14.0500000000003,
+			"phase": "approach",
+			"tick": 843
+		},
+		{
+			"changes": [
+				"enemy_shots:13"
+			],
+			"kind": "state",
+			"mission_s": 14.1000000000003,
+			"phase": "approach",
+			"tick": 846
+		},
+		{
+			"changes": [
+				"player_shots:632"
+			],
+			"kind": "state",
+			"mission_s": 14.1333333333336,
+			"phase": "approach",
+			"tick": 848
+		},
+		{
+			"changes": [
+				"player_shots:636"
+			],
+			"kind": "state",
+			"mission_s": 14.2333333333336,
+			"phase": "approach",
+			"tick": 854
+		},
+		{
+			"changes": [
+				"player_shots:640"
+			],
+			"kind": "state",
+			"mission_s": 14.316666666667,
+			"phase": "approach",
+			"tick": 859
+		},
+		{
+			"changes": [
+				"enemy_shots:14"
+			],
+			"kind": "state",
+			"mission_s": 14.3500000000003,
+			"phase": "approach",
+			"tick": 861
+		},
+		{
+			"changes": [
+				"player_shots:644"
+			],
+			"kind": "state",
+			"mission_s": 14.416666666667,
+			"phase": "approach",
+			"tick": 865
+		},
+		{
+			"changes": [
+				"player_shots:648"
+			],
+			"kind": "state",
+			"mission_s": 14.5000000000003,
+			"phase": "approach",
+			"tick": 870
+		},
+		{
+			"changes": [
+				"player_shots:652"
+			],
+			"kind": "state",
+			"mission_s": 14.5833333333336,
+			"phase": "approach",
+			"tick": 875
+		},
+		{
+			"changes": [
+				"player_shots:656"
+			],
+			"kind": "state",
+			"mission_s": 14.6833333333336,
+			"phase": "approach",
+			"tick": 881
+		},
+		{
+			"changes": [
+				"player_shots:660"
+			],
+			"kind": "state",
+			"mission_s": 14.766666666667,
+			"phase": "approach",
+			"tick": 886
+		},
+		{
+			"changes": [
+				"player_shots:664"
+			],
+			"kind": "state",
+			"mission_s": 14.866666666667,
+			"phase": "approach",
+			"tick": 892
+		},
+		{
+			"changes": [
+				"player_shots:668"
+			],
+			"kind": "state",
+			"mission_s": 14.9500000000003,
+			"phase": "approach",
+			"tick": 897
+		},
+		{
+			"changes": [
+				"player_shots:672"
+			],
+			"kind": "state",
+			"mission_s": 15.0333333333337,
+			"phase": "approach",
+			"tick": 902
+		},
+		{
+			"changes": [
+				"player_shots:676"
+			],
+			"kind": "state",
+			"mission_s": 15.1333333333337,
+			"phase": "approach",
+			"tick": 908
+		},
+		{
+			"changes": [
+				"player_shots:680"
+			],
+			"kind": "state",
+			"mission_s": 15.216666666667,
+			"phase": "approach",
+			"tick": 913
+		},
+		{
+			"changes": [
+				"player_shots:684"
+			],
+			"kind": "state",
+			"mission_s": 15.316666666667,
+			"phase": "approach",
+			"tick": 919
+		},
+		{
+			"changes": [
+				"player_shots:688"
+			],
+			"kind": "state",
+			"mission_s": 15.4000000000003,
+			"phase": "approach",
+			"tick": 924
+		},
+		{
+			"changes": [
+				"player_shots:692"
+			],
+			"kind": "state",
+			"mission_s": 15.4833333333337,
+			"phase": "approach",
+			"tick": 929
+		},
+		{
+			"changes": [
+				"player_shots:696"
+			],
+			"kind": "state",
+			"mission_s": 15.5833333333337,
+			"phase": "approach",
+			"tick": 935
+		},
+		{
+			"changes": [
+				"player_shots:700"
+			],
+			"kind": "state",
+			"mission_s": 15.666666666667,
+			"phase": "approach",
+			"tick": 940
+		},
+		{
+			"changes": [
+				"player_shots:704"
+			],
+			"kind": "state",
+			"mission_s": 15.766666666667,
+			"phase": "approach",
+			"tick": 946
+		},
+		{
+			"changes": [
+				"player_shots:708"
+			],
+			"kind": "state",
+			"mission_s": 15.8500000000004,
+			"phase": "approach",
+			"tick": 951
+		},
+		{
+			"changes": [
+				"player_shots:712"
+			],
+			"kind": "state",
+			"mission_s": 15.9333333333337,
+			"phase": "approach",
+			"tick": 956
+		},
+		{
+			"changes": [
+				"player_shots:716"
+			],
+			"kind": "state",
+			"mission_s": 16.0333333333337,
+			"phase": "approach",
+			"tick": 962
+		},
+		{
+			"changes": [
+				"player_shots:720"
+			],
+			"kind": "state",
+			"mission_s": 16.116666666667,
+			"phase": "approach",
+			"tick": 967
+		},
+		{
+			"changes": [
+				"player_shots:724"
+			],
+			"kind": "state",
+			"mission_s": 16.216666666667,
+			"phase": "approach",
+			"tick": 973
+		},
+		{
+			"changes": [
+				"player_shots:728"
+			],
+			"kind": "state",
+			"mission_s": 16.3000000000004,
+			"phase": "approach",
+			"tick": 978
+		},
+		{
+			"changes": [
+				"player_shots:732"
+			],
+			"kind": "state",
+			"mission_s": 16.3833333333337,
+			"phase": "approach",
+			"tick": 983
+		},
+		{
+			"changes": [
+				"player_shots:736"
+			],
+			"kind": "state",
+			"mission_s": 16.4833333333337,
+			"phase": "approach",
+			"tick": 989
+		},
+		{
+			"changes": [
+				"player_shots:740"
+			],
+			"kind": "state",
+			"mission_s": 16.566666666667,
+			"phase": "approach",
+			"tick": 994
+		},
+		{
+			"changes": [
+				"player_shots:744"
+			],
+			"kind": "state",
+			"mission_s": 16.666666666667,
+			"phase": "approach",
+			"tick": 1000
+		},
+		{
+			"changes": [
+				"player_shots:748"
+			],
+			"kind": "state",
+			"mission_s": 16.7500000000003,
+			"phase": "approach",
+			"tick": 1005
+		},
+		{
+			"changes": [
+				"player_shots:752"
+			],
+			"kind": "state",
+			"mission_s": 16.8333333333337,
+			"phase": "approach",
+			"tick": 1010
+		},
+		{
+			"changes": [
+				"player_shots:756"
+			],
+			"kind": "state",
+			"mission_s": 16.9333333333337,
+			"phase": "approach",
+			"tick": 1016
+		},
+		{
+			"changes": [
+				"player_shots:760"
+			],
+			"kind": "state",
+			"mission_s": 17.016666666667,
+			"phase": "approach",
+			"tick": 1021
+		},
+		{
+			"changes": [
+				"enemy_shots:15"
+			],
+			"kind": "state",
+			"mission_s": 17.0500000000003,
+			"phase": "approach",
+			"tick": 1023
+		},
+		{
+			"changes": [
+				"player_shots:764"
+			],
+			"kind": "state",
+			"mission_s": 17.116666666667,
+			"phase": "approach",
+			"tick": 1027
+		},
+		{
+			"changes": [
+				"player_shots:768"
+			],
+			"kind": "state",
+			"mission_s": 17.2000000000003,
+			"phase": "approach",
+			"tick": 1032
+		},
+		{
+			"changes": [
+				"player_shots:772"
+			],
+			"kind": "state",
+			"mission_s": 17.2833333333336,
+			"phase": "approach",
+			"tick": 1037
+		},
+		{
+			"changes": [
+				"player_shots:776"
+			],
+			"kind": "state",
+			"mission_s": 17.3833333333336,
+			"phase": "approach",
+			"tick": 1043
+		},
+		{
+			"changes": [
+				"player_shots:780"
+			],
+			"kind": "state",
+			"mission_s": 17.466666666667,
+			"phase": "approach",
+			"tick": 1048
+		},
+		{
+			"changes": [
+				"player_shots:784"
+			],
+			"kind": "state",
+			"mission_s": 17.566666666667,
+			"phase": "approach",
+			"tick": 1054
+		},
+		{
+			"changes": [
+				"player_shots:788"
+			],
+			"kind": "state",
+			"mission_s": 17.6500000000003,
+			"phase": "approach",
+			"tick": 1059
+		},
+		{
+			"changes": [
+				"player_shots:792"
+			],
+			"kind": "state",
+			"mission_s": 17.7333333333336,
+			"phase": "approach",
+			"tick": 1064
+		},
+		{
+			"changes": [
+				"player_shots:796"
+			],
+			"kind": "state",
+			"mission_s": 17.8333333333336,
+			"phase": "approach",
+			"tick": 1070
+		},
+		{
+			"changes": [
+				"player_shots:800"
+			],
+			"kind": "state",
+			"mission_s": 17.9166666666669,
+			"phase": "approach",
+			"tick": 1075
+		},
+		{
+			"changes": [
+				"player_shots:804"
+			],
+			"kind": "state",
+			"mission_s": 18.0166666666669,
+			"phase": "approach",
+			"tick": 1081
+		},
+		{
+			"changes": [
+				"player_shots:808"
+			],
+			"kind": "state",
+			"mission_s": 18.1000000000003,
+			"phase": "approach",
+			"tick": 1086
+		},
+		{
+			"changes": [
+				"player_shots:812"
+			],
+			"kind": "state",
+			"mission_s": 18.1833333333336,
+			"phase": "approach",
+			"tick": 1091
+		},
+		{
+			"changes": [
+				"player_shots:816"
+			],
+			"kind": "state",
+			"mission_s": 18.2833333333336,
+			"phase": "approach",
+			"tick": 1097
+		},
+		{
+			"changes": [
+				"player_shots:820"
+			],
+			"kind": "state",
+			"mission_s": 18.3666666666669,
+			"phase": "approach",
+			"tick": 1102
+		},
+		{
+			"changes": [
+				"player_shots:824"
+			],
+			"kind": "state",
+			"mission_s": 18.4666666666669,
+			"phase": "approach",
+			"tick": 1108
+		},
+		{
+			"changes": [
+				"player_shots:828"
+			],
+			"kind": "state",
+			"mission_s": 18.5500000000002,
+			"phase": "approach",
+			"tick": 1113
+		},
+		{
+			"changes": [
+				"player_shots:832"
+			],
+			"kind": "state",
+			"mission_s": 18.6333333333336,
+			"phase": "approach",
+			"tick": 1118
+		},
+		{
+			"changes": [
+				"player_shots:836"
+			],
+			"kind": "state",
+			"mission_s": 18.7333333333336,
+			"phase": "approach",
+			"tick": 1124
+		},
+		{
+			"changes": [
+				"player_shots:840"
+			],
+			"kind": "state",
+			"mission_s": 18.8166666666669,
+			"phase": "approach",
+			"tick": 1129
+		},
+		{
+			"changes": [
+				"player_shots:844"
+			],
+			"kind": "state",
+			"mission_s": 18.9166666666669,
+			"phase": "approach",
+			"tick": 1135
+		},
+		{
+			"changes": [
+				"player_shots:848"
+			],
+			"kind": "state",
+			"mission_s": 19.0000000000002,
+			"phase": "approach",
+			"tick": 1140
+		},
+		{
+			"changes": [
+				"player_shots:852"
+			],
+			"kind": "state",
+			"mission_s": 19.0833333333335,
+			"phase": "approach",
+			"tick": 1145
+		},
+		{
+			"changes": [
+				"player_shots:856"
+			],
+			"kind": "state",
+			"mission_s": 19.1833333333335,
+			"phase": "approach",
+			"tick": 1151
+		},
+		{
+			"changes": [
+				"player_shots:860"
+			],
+			"kind": "state",
+			"mission_s": 19.2666666666669,
+			"phase": "approach",
+			"tick": 1156
+		},
+		{
+			"changes": [
+				"player_shots:864"
+			],
+			"kind": "state",
+			"mission_s": 19.3666666666668,
+			"phase": "approach",
+			"tick": 1162
+		},
+		{
+			"changes": [
+				"player_shots:868"
+			],
+			"kind": "state",
+			"mission_s": 19.4500000000002,
+			"phase": "approach",
+			"tick": 1167
+		},
+		{
+			"changes": [
+				"player_shots:872"
+			],
+			"kind": "state",
+			"mission_s": 19.5333333333335,
+			"phase": "approach",
+			"tick": 1172
+		},
+		{
+			"changes": [
+				"player_shots:876"
+			],
+			"kind": "state",
+			"mission_s": 19.6333333333335,
+			"phase": "approach",
+			"tick": 1178
+		},
+		{
+			"changes": [
+				"player_shots:880"
+			],
+			"kind": "state",
+			"mission_s": 19.7166666666668,
+			"phase": "approach",
+			"tick": 1183
+		},
+		{
+			"changes": [
+				"player_shots:884"
+			],
+			"kind": "state",
+			"mission_s": 19.8166666666668,
+			"phase": "approach",
+			"tick": 1189
+		},
+		{
+			"changes": [
+				"player_shots:888"
+			],
+			"kind": "state",
+			"mission_s": 19.9000000000002,
+			"phase": "approach",
+			"tick": 1194
+		},
+		{
+			"changes": [
+				"player_shots:892"
+			],
+			"kind": "state",
+			"mission_s": 19.9833333333335,
+			"phase": "approach",
+			"tick": 1199
+		},
+		{
+			"kind": "phase",
+			"mission_s": 20.0833333333335,
+			"phase": "landing",
+			"tick": 1205
+		},
+		{
+			"changes": [
+				"phase:landing",
+				"player_shots:896",
+				"kills:4",
+				"boss_phase:-1"
+			],
+			"kind": "state",
+			"mission_s": 20.0833333333335,
+			"phase": "landing",
+			"tick": 1205
+		},
+		{
+			"kind": "phase",
+			"mission_s": -1.0,
+			"phase": "result_idle",
+			"tick": 1626
+		}
+	],
+	"memory_samples": [
+		{
+			"engine_static_bytes": 77883641,
+			"nodes": 995,
+			"orphan_nodes": 0,
+			"phase": "approach",
+			"render_estimated_bytes": 427427123,
+			"resources": 273,
+			"tick": 2
+		},
+		{
+			"engine_static_bytes": 78532499,
+			"nodes": 995,
+			"orphan_nodes": 0,
+			"phase": "approach",
+			"render_estimated_bytes": 427524393,
+			"resources": 273,
+			"tick": 302
+		},
+		{
+			"engine_static_bytes": 79122105,
+			"nodes": 995,
+			"orphan_nodes": 0,
+			"phase": "approach",
+			"render_estimated_bytes": 427517145,
+			"resources": 273,
+			"tick": 602
+		},
+		{
+			"engine_static_bytes": 79758017,
+			"nodes": 1023,
+			"orphan_nodes": 0,
+			"phase": "approach",
+			"render_estimated_bytes": 427423013,
+			"resources": 273,
+			"tick": 902
+		},
+		{
+			"engine_static_bytes": 79730969,
+			"nodes": 995,
+			"orphan_nodes": 0,
+			"phase": "approach",
+			"render_estimated_bytes": 427422517,
+			"resources": 273,
+			"tick": 1202
+		},
+		{
+			"engine_static_bytes": 80121796,
+			"nodes": 983,
+			"orphan_nodes": 0,
+			"phase": "landing",
+			"render_estimated_bytes": 427374481,
+			"resources": 273,
+			"tick": 1502
+		},
+		{
+			"engine_static_bytes": 83190312,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 1802
+		},
+		{
+			"engine_static_bytes": 83244716,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 2102
+		},
+		{
+			"engine_static_bytes": 83359048,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 2402
+		},
+		{
+			"engine_static_bytes": 83803044,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 2702
+		},
+		{
+			"engine_static_bytes": 83907516,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 3002
+		},
+		{
+			"engine_static_bytes": 83913968,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 3302
+		},
+		{
+			"engine_static_bytes": 84066076,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 3602
+		},
+		{
+			"engine_static_bytes": 84073416,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 3902
+		},
+		{
+			"engine_static_bytes": 84953780,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 4202
+		},
+		{
+			"engine_static_bytes": 84960232,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 4502
+		},
+		{
+			"engine_static_bytes": 84966684,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 4802
+		},
+		{
+			"engine_static_bytes": 84973136,
+			"nodes": 980,
+			"orphan_nodes": 0,
+			"phase": "result_idle",
+			"render_estimated_bytes": 430841269,
+			"resources": 273,
+			"tick": 5102
+		}
+	],
+	"overall": {
+		"max_ms": 57.523,
+		"mean_ms": 2.36403381591743,
+		"over_16_67ms": 7,
+		"over_33_33ms": 1,
+		"p95_ms": 3.215,
+		"p99_ms": 3.957,
+		"samples": 38059
+	},
+	"pass": 0,
+	"peak_bullets": 9,
+	"peak_contacts": 9,
+	"phases": {
+		"approach": {
+			"max_ms": 24.411,
+			"mean_ms": 2.51965246890313,
+			"over_16_67ms": 6,
+			"over_33_33ms": 0,
+			"p95_ms": 3.738,
+			"p99_ms": 5.363,
+			"samples": 7959
+		},
+		"landing": {
+			"max_ms": 13.003,
+			"mean_ms": 2.33452029274783,
+			"over_16_67ms": 0,
+			"over_33_33ms": 0,
+			"p95_ms": 3.23,
+			"p99_ms": 3.765,
+			"samples": 3006
+		},
+		"result_idle": {
+			"max_ms": 57.523,
+			"mean_ms": 2.32159448586401,
+			"over_16_67ms": 1,
+			"over_33_33ms": 1,
+			"p95_ms": 3.03,
+			"p99_ms": 3.552,
+			"samples": 27094
+		}
+	},
+	"physics_ticks": 5400,
+	"prototype_input_wrapper_methods": [
+		"_ready",
+		"_unhandled_key_input",
+		"_notification",
+		"_capture_preview"
+	],
+	"render_preparation": {
+		"enabled": true,
+		"milliseconds": 979,
+		"representatives": 75
+	},
+	"result": {
+		"accuracy": 0.375,
+		"best_chain": 3,
+		"bonus": 1250,
+		"chain_bonus": 2500,
+		"damage": 0,
+		"deaths": 0,
+		"game_over": false,
+		"grade": 3,
+		"ground_kills": 0,
+		"ground_status": {},
+		"kills": 4,
+		"lives": 3,
+		"mission": 4.0,
+		"mission_score": 9050,
+		"naval_kills": 0,
+		"objective_failed": false,
+		"objective_met": true,
+		"power": "spread",
+		"rank": "A",
+		"score": 9050,
+		"secondary": true,
+		"seconds": 20.0833333333335,
+		"spread": true,
+		"won": true
+	},
+	"spikes": [
+		{
+			"associated_markers": [],
+			"cause": "unknown; markers indicate correlation only",
+			"frame_ms": 24.411,
+			"interval_started_in_phase": "approach",
+			"mission_s": 0.0666666666666667,
+			"observed_phase": "approach",
+			"tick": 4
+		},
+		{
+			"associated_markers": [
+				"player_shots:8"
+			],
+			"cause": "unknown; markers indicate correlation only",
+			"frame_ms": 23.501,
+			"interval_started_in_phase": "approach",
+			"mission_s": 0.1,
+			"observed_phase": "approach",
+			"tick": 6
+		},
+		{
+			"associated_markers": [],
+			"cause": "unknown; markers indicate correlation only",
+			"frame_ms": 22.466,
+			"interval_started_in_phase": "approach",
+			"mission_s": 0.116666666666667,
+			"observed_phase": "approach",
+			"tick": 7
+		},
+		{
+			"associated_markers": [],
+			"cause": "unknown; markers indicate correlation only",
+			"frame_ms": 22.428,
+			"interval_started_in_phase": "approach",
+			"mission_s": 0.133333333333333,
+			"observed_phase": "approach",
+			"tick": 8
+		},
+		{
+			"associated_markers": [],
+			"cause": "unknown; markers indicate correlation only",
+			"frame_ms": 23.581,
+			"interval_started_in_phase": "approach",
+			"mission_s": 0.166666666666667,
+			"observed_phase": "approach",
+			"tick": 10
+		},
+		{
+			"associated_markers": [
+				"player_shots:12"
+			],
+			"cause": "unknown; markers indicate correlation only",
+			"frame_ms": 23.008,
+			"interval_started_in_phase": "approach",
+			"mission_s": 0.183333333333333,
+			"observed_phase": "approach",
+			"tick": 11
+		},
+		{
+			"associated_markers": [],
+			"cause": "unknown; markers indicate correlation only",
+			"frame_ms": 57.523,
+			"interval_started_in_phase": "result_idle",
+			"mission_s": -1.0,
+			"observed_phase": "result_idle",
+			"tick": 2964
+		}
+	],
+	"state_samples": [
+		{
+			"position": "(0.0, 0.0, 8.379999)",
+			"scroll_distance": 2.76316666666666,
+			"state": "0|8380|59|26|0|0",
+			"tick": 60,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(0.0, 0.0, 8.379999)",
+			"scroll_distance": 5.57316666666668,
+			"state": "0|8380|119|26|0|0",
+			"tick": 120,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(0.0, 0.0, 8.379999)",
+			"scroll_distance": 8.3831666666667,
+			"state": "0|8380|179|26|0|0",
+			"tick": 180,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(0.0, 0.0, 8.379999)",
+			"scroll_distance": 11.1931666666667,
+			"state": "0|8380|239|26|0|0",
+			"tick": 240,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(4.230213, 0.0, 8.499998)",
+			"scroll_distance": 14.0031666666667,
+			"state": "4230|8500|299|26|0|0",
+			"tick": 300,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(7.895792, 0.0, 8.499998)",
+			"scroll_distance": 16.8131666666667,
+			"state": "7896|8500|359|26|0|3",
+			"tick": 360,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(9.623565, 0.0, 8.499998)",
+			"scroll_distance": 19.6231666666667,
+			"state": "9624|8500|419|26|0|3",
+			"tick": 420,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(9.623917, 0.0, 8.499998)",
+			"scroll_distance": 22.4331666666666,
+			"state": "9624|8500|479|26|0|3",
+			"tick": 480,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(7.090752, 0.0, 8.499998)",
+			"scroll_distance": 25.2431666666665,
+			"state": "7091|8500|539|26|0|3",
+			"tick": 540,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(2.99305, 0.0, 8.499998)",
+			"scroll_distance": 28.0531666666664,
+			"state": "2993|8500|599|26|0|3",
+			"tick": 600,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-1.75399, 0.0, 8.499998)",
+			"scroll_distance": 30.8631666666663,
+			"state": "-1754|8500|659|26|0|4",
+			"tick": 660,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-4.305204, 0.0, 8.499998)",
+			"scroll_distance": 33.6731666666662,
+			"state": "-4305|8500|719|26|1|4",
+			"tick": 720,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-7.505201, 0.0, 8.499999)",
+			"scroll_distance": 36.4831666666662,
+			"state": "-7505|8500|779|26|2|7",
+			"tick": 780,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-9.878469, 0.0, 8.499999)",
+			"scroll_distance": 39.2931666666661,
+			"state": "-9878|8500|839|26|3|12",
+			"tick": 840,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-8.707351, 0.0, 8.499999)",
+			"scroll_distance": 42.103166666666,
+			"state": "-8707|8500|899|26|3|14",
+			"tick": 900,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-5.372055, 0.0, 8.499999)",
+			"scroll_distance": 44.9131666666659,
+			"state": "-5372|8500|959|26|3|14",
+			"tick": 960,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-0.849742, 0.0, 8.499999)",
+			"scroll_distance": 47.7231666666658,
+			"state": "-850|8500|1019|26|3|14",
+			"tick": 1020,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(1.67831, 0.0, 8.499999)",
+			"scroll_distance": 50.5331666666657,
+			"state": "1678|8500|1079|26|3|15",
+			"tick": 1080,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(1.67831, 0.0, 8.499999)",
+			"scroll_distance": 53.3431666666657,
+			"state": "1678|8500|1139|26|3|15",
+			"tick": 1140,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(1.67831, 0.0, 8.499999)",
+			"scroll_distance": 56.1531666666656,
+			"state": "1678|8500|1199|26|3|15",
+			"tick": 1200,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-4.08779, 0.0, -0.304197)",
+			"scroll_distance": 58.9210600989572,
+			"state": "-4088|-304|1205|26|4|15",
+			"tick": 1260,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-10.27005, 0.0, -2.566682)",
+			"scroll_distance": 61.4072899523523,
+			"state": "-10270|-2567|1205|26|4|15",
+			"tick": 1320,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-9.104442, -0.596652, 4.647184)",
+			"scroll_distance": 63.4055352764264,
+			"state": "-9104|4647|1205|26|4|15",
+			"tick": 1380,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-9.300849, -1.853348, 5.122688)",
+			"scroll_distance": 64.837726626735,
+			"state": "-9301|5123|1205|26|4|15",
+			"tick": 1440,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-9.970507, -2.45, 2.976746)",
+			"scroll_distance": 65.7541278921671,
+			"state": "-9971|2977|1205|26|4|15",
+			"tick": 1500,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.17824, -2.45, -2.1223)",
+			"scroll_distance": 66.3333362949449,
+			"state": "-11178|-2122|1205|26|4|15",
+			"tick": 1560,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.46307, -2.45, -2.978019)",
+			"scroll_distance": 66.8334166666659,
+			"state": "-11463|-2978|1205|26|4|15",
+			"tick": 1620,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 1680,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 1740,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 1800,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 1860,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 1920,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 1980,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2040,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2100,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2160,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2220,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2280,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2340,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2400,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2460,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2520,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2580,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2640,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2700,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2760,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2820,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2880,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 2940,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3000,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3060,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3120,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3180,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3240,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3300,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3360,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3420,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3480,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3540,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3600,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3660,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3720,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3780,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3840,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3900,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 3960,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4020,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4080,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4140,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4200,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4260,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4320,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4380,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4440,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4500,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4560,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4620,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4680,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4740,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4800,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4860,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4920,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 4980,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 5040,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 5100,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 5160,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 5220,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 5280,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 5340,
+			"viewport": "(1920, 972)"
+		},
+		{
+			"position": "(-11.4753, -2.45, -2.978693)",
+			"scroll_distance": 66.8917499999993,
+			"state": "-11475|-2979|1205|26|4|15",
+			"tick": 5400,
+			"viewport": "(1920, 972)"
+		}
+	],
+	"state_signature": 503878613,
+	"viewport": [
+		1920,
+		972
+	],
+	"wall_seconds": 89.982143
+}

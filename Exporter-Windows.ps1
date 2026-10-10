@@ -18,8 +18,10 @@ $expectedMetadata = @{
     FileDescription = Read-ExportProperty 'application/file_description'
 }
 New-Item -ItemType Directory -Force -Path $outputDirectory | Out-Null
-& $GodotBinary --headless --path $projectPath --export-release 'Windows Desktop' (Join-Path $outputDirectory 'PacificStrike.exe')
-if ($LASTEXITCODE -ne 0) { throw 'Export Godot en échec.' }
+$exportOutput = @(& $GodotBinary --headless --audio-driver Dummy --path $projectPath --export-release 'Windows Desktop' (Join-Path $outputDirectory 'PacificStrike.exe') 2>&1)
+$exportExitCode = $LASTEXITCODE
+$exportOutput | ForEach-Object { Write-Output $_ }
+if ($exportExitCode -ne 0 -or ($exportOutput -match '(^|\s)(SCRIPT ERROR:|ERROR:)')) { throw 'Export Godot en échec : consulter les diagnostics moteur avant de distribuer le jeu.' }
 $executable = Join-Path $outputDirectory 'PacificStrike.exe'
 $metadata = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($executable)
 foreach ($property in $expectedMetadata.Keys) {
@@ -37,6 +39,7 @@ Copy-Item -LiteralPath (Join-Path $projectPath 'assets/campaign/music/CREDITS.tx
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/campaign/music/Juhani-INFO.txt') -Destination $licenseDirectory
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/environment/raid-v2/CREDITS.md') -Destination (Join-Path $licenseDirectory 'Terrains-terrestres.md')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/environment/raid-v3/CREDITS.txt') -Destination (Join-Path $licenseDirectory 'Terrains-volcaniques-arctiques.txt')
+Copy-Item -LiteralPath (Join-Path $projectPath 'assets/environment/raid-v4/CREDITS.txt') -Destination (Join-Path $licenseDirectory 'Paysages-1.10.txt')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/ground-forces/CREDITS.md') -Destination (Join-Path $licenseDirectory 'Installations-militaires.md')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/ground-forces/MOBILE-AA-CREDITS.md') -Destination (Join-Path $licenseDirectory 'DCA-mobile.md')
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'docs/manuel-joueur.txt') -Destination (Join-Path $outputDirectory 'LISEZ-MOI.txt')
