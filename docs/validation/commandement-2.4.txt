@@ -1,0 +1,102 @@
+PACIFIC STRIKE ULTIMATE 2.4 — COMMANDEMENT
+Validation du 12 octobre 2026
+
+LIVRAISON
+Carte d'opérations en huit secteurs avec les vrais déblocages, médailles et
+rangs. Analyse du vol accessible après une mission ou un duel : score de combat,
+repères d'événements, conditions du prochain rang, conseils et comparaison avec
+le record d'avant la tentative. Pas de nouveau format de sauvegarde ni de replay.
+
+Reprise de trois secondes avec combat figé, annulation, pause lors de la perte
+de la manette active, protection du focus et navigation B dans les menus.
+Les nouvelles préférences sont désactivables et migrent avec les anciens profils.
+
+Cinq signatures audio originales, produites hors du jeu et intégrées aux deux
+voix, priorités et fondus existants. Aucun téléchargement ni sample tiers ajouté.
+
+Collisions joueur/projectile selon leurs mouvements relatifs contre la vraie
+boîte, en respectant le premier contact avec le convoi. Les nouvelles amorces de
+tir des chasseurs ne consomment plus le temps de l'image qui les a créées.
+
+CONTRÔLES
+Godot 4.7.2, audio Dummy ; données de test dans tools/runtime-coast, séparées
+du profil du joueur. Rendus successifs, sans autre processus GPU de test.
+
+Suites avec rendu OpenGL / GTX 1650, 1920 × 1080 sauf variantes UI :
+- test_command_bridge : 7 462 contrôles ; FR/EN, huit secteurs, 720p/1080p/ultralarge,
+  verrouillages, navigation, géométrie, conseils, comparaison et résultats uniques.
+- test_flight_comfort : 150 contrôles ; pause, reprise, options, dispositifs,
+  chargement et captures FR/EN du panneau de reprise final.
+- test_flight_integrity : 38 contrôles ; collisions, convoi, préavis, télémétrie.
+- test_ultimate_modes : 1 026 contrôles, dont huit étapes Boss Rush.
+- test_graze : 81 contrôles.
+- test_session_modes : 165 contrôles.
+- test_score_retry_ui : 31 992 contrôles.
+
+Suites sans rendu :
+- test_profile_recovery : 202 contrôles ; migrations et fichiers de secours.
+- test_scoring_rules : 70 contrôles.
+- test_localization : 782 contrôles.
+- test_event_audio : 228 contrôles PCM et intégration.
+- test_audio_mix_controls : 619 contrôles de priorités, fondus et arrêt des voix.
+- test_campaign : 791 contrôles ; simulation des 32 missions, résultat résumé.
+
+Les journaux et comptes rendus sont dans docs/validation/evidence-2.4.
+Les suites visuelles citées sont passées sans échec d'assertion. Certaines suites
+headless utilisant des modèles émettent « material is null » depuis le renderer
+Dummy de Godot ; cela est consigné dans le résumé de campagne. Le rendu réel
+des suites dédiées ne présente pas ce diagnostic. Un arrêt audio incomplet du
+test d'intégrité a été corrigé dans le test (arrêt/drainage avant destruction).
+
+VÉRIFICATION VISUELLE
+Captures réellement produites par Godot dans renders/command-2.4 :
+- fr-operations.png / en-operations.png : progression de test, non profil joueur.
+- fr-analysis-fixture.png / en-analysis-fixture.png : rapport synthétique contrôlé
+  pour vérifier l'interface. La collecte réelle est testée séparément par
+  test_flight_integrity ; ces courbes ne sont pas présentées comme une partie humaine.
+- comfort-fr.png / comfort-en.png, resume-fr.png / resume-en.png : options et
+  pause réelle d'une scène de boss, dans les deux langues.
+
+Les panneaux, textes et commandes ont été inspectés visuellement. Le contour de
+focus des secteurs reste distinct du secteur sélectionné. Le compte à rebours
+occupe une carte centrale et ne chevauche pas les bandes du HUD.
+
+PERFORMANCE MESURÉE
+benchmark_full_mission.gd : mission 19 entière, profil Équilibré, 1920 × 1080,
+GTX 1650, VSync désactivée, préparation des matériaux activée, un passage de
+140 secondes / 8 400 ticks. Pilote automatisé protégé, pas une partie humaine.
+33 751 images de jeu : moyenne 3,139 ms, p95 4,836 ms, p99 6,005 ms,
+maximum 15,569 ms ; zéro image de jeu au-dessus de 16,67 ms.
+Résultat atteint au tick 6 358. Préparation du rendu : 1 506 ms, lancement
+3 444,911 ms, hors statistiques de combat. Aucune autre mesure GPU simultanée.
+Toutes les phases du raid ont été observées, aucune erreur du benchmark.
+Détail et limites des métriques dans evidence-2.4/performance/ et benchmark-m19.txt.
+Ce passage ne garantit ni les autres machines, ni tous les scénarios de boss,
+ni l'absence de pics à froid ou pendant les chargements.
+
+PAQUET WINDOWS
+Export final : 2.4.0.0, Pacific Strike - Campaign 1942.
+dist/PacificStrike/PacificStrike.exe : 220 547 392 octets.
+dist/PacificStrike-Windows-x64.zip : 149 037 834 octets.
+SHA-256 de l'exécutable :
+24127FD4BBBD9134123C47A9E30BC6080D53670B47D10F650F1445FB16CA891C
+
+test_windows_package.ps1 : 38 contrôles réussis. Archive extraite dans un dossier
+isolé, hash identique, version et description Windows conformes, icône, deux
+manuels et licences présents. Exécutable extrait lancé en OpenGL avec audio Dummy
+depuis un répertoire vide, puis fermé par WM_CLOSE : code 0, journal sans erreur
+ni avertissement. Les suites GDScript s'exécutent sur le projet ; elles ne sont
+pas injectées dans l'exécutable release. Aucune inspection manuelle d'Explorer
+ni validation sur un second ordinateur n'est revendiquée.
+Preuves : windows-export.txt, windows-package.txt et windows-package-results.json.
+
+LIMITES DE COUVERTURE
+La manette et sa déconnexion sont vérifiées par événements/signaux Godot simulés,
+pas avec un périphérique physique. Pas de campagne entièrement jouée humainement
+ni de nouvelle écoute casque/enceintes. Les mesures PCM ne mesurent pas le mix
+final complet. Les comparaisons de performance se limitent aux scénarios mesurés.
+
+Les compteurs d'analyse sont bornés (256 segments de 12 secondes, 96 événements).
+Ils suivent le temps de mission actif, excluent le bonus final et ne sont pas
+persistés après avoir quitté le résultat. Les conditions de score restent celles
+de scoring_rules.gd. L'ambition de production figure dans ambition-aaa-2.4.txt.

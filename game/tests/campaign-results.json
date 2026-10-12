@@ -1,5 +1,5 @@
 {
-	"checks": 790,
+	"checks": 791,
 	"failures": [],
 	"missions": [
 		{
@@ -25,7 +25,7 @@
 		},
 		{
 			"elapsed": 119.883333333328,
-			"max_contacts": 13,
+			"max_contacts": 12,
 			"mission": 4,
 			"phases": 3,
 			"won": true
@@ -60,7 +60,7 @@
 		},
 		{
 			"elapsed": 74.0166666666638,
-			"max_contacts": 14,
+			"max_contacts": 13,
 			"mission": 9,
 			"phases": 0,
 			"won": true

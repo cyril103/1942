@@ -1,7 +1,8 @@
 extends Node
-## Phase 5 candidate #19. Existing action tracks; two bounded music voices.
+## Existing action tracks; two bounded music voices and five distinct event cues.
 ## Semantic events duck individual players, never the user's bus sliders.
 signal foreground_gain_changed(attenuation_db: float)
+const EVENT_AUDIO := preload("res://scripts/campaign/event_audio.gd")
 const TRACK_KEYS := ["menu", "flight", "flight2", "boss", "victory"]
 const MUSIC_BASE_DB := -6.0
 const CROSSFADE_SECONDS := 1.5
@@ -12,11 +13,11 @@ const CUE_VOICES := 2
 const CUE_RETIRE_SECONDS := .035
 const EVENT_HISTORY_CAPACITY := 16
 const EVENTS := {
-	"boss": {"priority": 4, "duck": 4.0, "guard": 2.0, "cooldown": 1.0, "pitch": .72, "gain": -13.0},
-	"danger": {"priority": 4, "duck": 4.0, "guard": 2.0, "cooldown": 2.0, "pitch": 1.22, "gain": -14.0},
-	"radio_important": {"priority": 3, "duck": 4.0, "guard": 2.0, "cooldown": .9, "pitch": 1.0, "gain": -12.0},
-	"radio": {"priority": 2, "duck": 2.0, "guard": 0.0, "cooldown": .8, "pitch": 1.0, "gain": -14.0},
-	"reward": {"priority": 1, "duck": 1.5, "guard": 0.0, "cooldown": .9, "pitch": 1.48, "gain": -17.0}
+	"boss": {"sound": "boss", "priority": 4, "duck": 4.0, "guard": 2.0, "cooldown": 1.0, "pitch": .72, "gain": -13.0},
+	"danger": {"sound": "danger", "priority": 4, "duck": 4.0, "guard": 2.0, "cooldown": 2.0, "pitch": 1.22, "gain": -14.0},
+	"radio_important": {"sound": "radio_important", "priority": 3, "duck": 4.0, "guard": 2.0, "cooldown": .9, "pitch": 1.0, "gain": -12.0},
+	"radio": {"sound": "radio", "priority": 2, "duck": 2.0, "guard": 0.0, "cooldown": .8, "pitch": 1.0, "gain": -14.0},
+	"reward": {"sound": "reward", "priority": 1, "duck": 1.5, "guard": 0.0, "cooldown": .9, "pitch": 1.48, "gain": -17.0}
 }
 enum DuckPhase { IDLE, ATTACK, HOLD, RELEASE }
 var players: Array[AudioStreamPlayer] = []
@@ -72,7 +73,7 @@ func _ready() -> void:
 		players.append(voice)
 	for index in range(CUE_VOICES):
 		var voice := AudioStreamPlayer.new()
-		voice.stream = preload("res://assets/campaign/music/radio-cue.wav")
+		voice.stream = EVENT_AUDIO.stream("radio")
 		voice.bus = "Effects"
 		voice.max_polyphony = 1
 		add_child(voice)
@@ -138,6 +139,7 @@ func _schedule_cue(spec: Dictionary) -> bool:
 
 func _start_cue(index: int, spec: Dictionary) -> void:
 	var voice := cue_players[index]
+	voice.stream = EVENT_AUDIO.stream(str(spec.sound))
 	voice.pitch_scale = float(spec.pitch)
 	voice.volume_db = float(spec.gain)
 	voice.play()

@@ -1,8 +1,47 @@
 PACIFIC STRIKE ULTIMATE — CAMPAGNE 1942
-Version 2.3.0 — Français / English, campagne et Boss Rush.
+Version 2.4.0 — Français / English, campagne et Boss Rush.
 
 Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
 Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.
+
+CONFIGURER LA MANETTE
+Options > Manette affiche le modèle connecté. Sélectionnez une action, puis
+appuyez sur le bouton ou la gâchette souhaitée, ou inclinez un stick.
+Relâchez d'abord les commandes maintenues. Échap, le bouton Annuler à la souris
+ou l'expiration du délai annulent la saisie sans modifier les commandes.
+Si la commande est déjà utilisée, les affectations sont échangées et signalées.
+Les réglages sont enregistrés par modèle, y compris après déconnexion/redémarrage.
+La zone morte (10 à 45 %) évite les déplacements d'un stick légèrement décentré.
+Tester les entrées montre les boutons, sticks et gâchettes en direct ; B termine
+le test. Rétablir la manette restaure ses boutons et sa zone morte uniquement.
+Avec plusieurs manettes, Changer de manette choisit celle à configurer.
+Dans les menus, A valide, B revient, stick/croix déplacent la sélection.
+Ces commandes restent accessibles même après une réaffectation en vol.
+Les indications utilisent les symboles du modèle reconnu ; les noms A/B ci-dessus
+correspondent à Xbox (croix/rond sur PlayStation, B/A sur Nintendo).
+
+COMMANDEMENT 2.4
+Carte des missions : choisissez l'un des huit secteurs, puis une de ses quatre
+missions. Les secteurs futurs restent consultables ; seules les missions
+débloquées peuvent être lancées. Le tableau rappelle les médailles et les rangs S.
+
+Après une mission ou un duel, ouvrez Analyse du vol. La courbe suit votre score
+de combat avant le bonus de fin. Les repères montrent les impacts, les pertes de
+vie, les bombes/capacités et l'arrivée du boss. Deux conseils maximum et les
+conditions du prochain rang aident à préparer une meilleure tentative.
+Le record comparé est celui d'avant la sortie ; une défaite de campagne ne crée
+pas de record de mission. L'analyse est consultable pour le vol courant seulement.
+
+La reprise après pause attend trois secondes, avec le vol entièrement figé.
+Échap, Start ou B interrompt le compte à rebours et maintient la pause.
+La déconnexion de la manette utilisée met le jeu en pause. La reconnexion ne
+redémarre jamais le combat automatiquement. Clavier et manette restent utilisables.
+Options > Graphismes & confort > Confort de vol & manette permet de désactiver
+séparément le compte à rebours et la pause à la déconnexion.
+Dans les menus : A / Entrée valide, B / Échap revient. B reste la bombe en vol.
+
+Les alertes de boss, de danger, de radio, d'ordre prioritaire et de récompense
+possèdent chacune leur signature sonore. Leurs informations visuelles demeurent.
 
 LANGUE / LANGUAGE
 Le jeu démarre en français. Le choix Français / English est accessible dès

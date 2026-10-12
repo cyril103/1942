@@ -1,0 +1,403 @@
+PACIFIC STRIKE — AMBITION ET FEUILLE DE ROUTE DE PRODUCTION
+Revue du 12 octobre 2026 — proposition pour la suite de la passe 2.4
+
+INTENTION
+
+Faire de Pacific Strike un jeu d'action aérienne immédiatement agréable,
+reconnaissable et très soigné : la précision d'un shoot them up, l'échelle
+d'une bataille navale, et une progression qui donne envie de repartir.
+L'ambition « AAA » désigne ici l'exigence de réalisation. Ce document ne
+prétend ni transformer cette production en studio AAA, ni garantir une
+durée, un budget, une certification ou un succès commercial.
+
+La direction recommandée est un jeu premium concentré. Garder la caméra
+verticale, la lisibilité des projectiles, le pilotage direct et les missions
+rejouables. Investir d'abord dans la qualité de quelques situations vécues,
+puis appliquer leurs règles aux 32 missions. La quantité de contenu actuel
+est suffisante pour commencer cette montée en qualité.
+
+1. CE QUI EXISTE RÉELLEMENT
+
+Le projet utilise Godot 4.7.2, le moteur Compatibility et une physique à
+60 Hz. Il possède déjà 32 missions, huit secteurs, huit familles de boss,
+trois avions, des améliorations et modules, huit raids terrestres composés
+cible par cible, des escortes de convoi, une campagne, des parties Arcade,
+un entraînement boss et un Boss Rush. Les rangs, médailles, chaînes,
+formations parfaites et frôlements encouragent la maîtrise.
+
+Océan animé, îles en relief, ciels par secteur, raids en vol rasant,
+décollage/appontage, hangar 3D, musiques, radio écrite, menus français et
+anglais, options de confort et sauvegardes avec récupération sont en place.
+Les données réellement jouées passent par operations.prepare ; missions.json
+seul ne décrit pas toute la campagne.
+
+Le point faible à traiter n'est donc pas l'absence de systèmes. C'est leur
+cohérence perceptible : qualité des transitions, diversité des décisions,
+lecture des intentions, réaction de la scène, hiérarchie des informations,
+équilibrage humain et constance de la finition sur toute la campagne.
+
+Sources locales principales :
+  game/scripts/campaign/operations.gd et raid_layouts.gd
+  game/scripts/campaign/director.gd et balance.gd
+  game/scripts/campaign/boss.gd et boss_patterns.gd
+  game/scripts/campaign/loadout.gd, profile.gd et scoring_rules.gd
+  docs/conception-secteurs.txt, direction-visuelle-2.1.txt
+  docs/equilibrage-equipement.txt et protocole-parties.txt
+
+2. CHANGEMENTS PRÉSENTS DANS LES SOURCES DE CETTE PASSE
+
+Cette liste décrit la passe en cours ; elle ne constitue pas une preuve
+d'export ni une validation humaine. L'identité et les résultats du paquet
+livré doivent être consignés séparément au terme de la validation.
+
+- Carte d'opérations : navigation par huit secteurs, accès aux missions et
+  état de progression fondés sur les données et records réels. Le dessin
+  reste une carte schématique, pas une reconstitution géographique.
+- Analyse de vol : relevés locaux de score, destructions, impacts et
+  frôlements par tranches de 12 secondes ; événements bombe, capacité,
+  impact, perte d'avion et apparition de boss ; bilan et conseils tirés
+  des résultats observés. Le relevé est borné et ne modifie pas les gains.
+  Il exclut le bonus final de survie et ne constitue pas un replay.
+- Collisions plus justes : le mouvement relatif du joueur et du projectile
+  est testé contre la vraie boîte de collision. Un croisement à des moments
+  différents ne suffit plus à provoquer un faux impact ; le premier
+  contact entre convoi et joueur consomme le projectile.
+- Préavis de tir : une nouvelle amorce de chasseur conserve son temps
+  complet, même si la mise à jour qui la crée est longue.
+- Confort de reprise : compte à rebours avant de reprendre le combat et
+  gestion de la déconnexion de manette, avec préférences mémorisées.
+- Identité sonore des événements : cinq signatures originales préparées
+  hors du jeu pour boss, danger, radio, radio prioritaire et récompense.
+  Ces sons ne constituent ni un doublage, ni une nouvelle bande originale.
+
+Fichiers de référence : operation_map.gd, flight_analysis.gd, debrief.gd,
+debrief_view.gd, event_audio.gd et audio/build_event_signatures.py.
+Les tests dédiés documentent les comportements ; les tests de manette
+simulée et les calculs PCM ne prouvent pas le confort d'un périphérique
+réel ou d'une écoute humaine.
+
+3. PRIORITÉS ET RÈGLES DE DÉCISION
+
+P0 = condition de qualité avant d'ajouter beaucoup de contenu.
+P1 = production du secteur de référence, puis extension après validation.
+P2 = pistes d'expansion à prototyper si elles renforcent l'expérience.
+Un travail passe en production lorsque son prototype montre un bénéfice
+joueur et que son coût de maintenance/rendu reste mesuré.
+
+P0 — FIABILITÉ, LECTURE, CONTRÔLE
+
+Combat et sensation de pilotage
+  Vérifier toutes les attaques rapides, les départs proches du joueur, les
+  collisions au bord de l'écran, le respawn et les transitions mer/terre.
+  La hitbox reste commune aux trois avions ; leur différence repose sur
+  leurs compromis annoncés. Donner à chaque coup un retour net sans couvrir
+  le projectile suivant. Un éventuel arrêt d'image à l'impact doit faire
+  l'objet d'un essai séparé : il ne doit pas altérer la cadence, la visée,
+  le temps de chaîne ou la fluidité du défilement.
+  Acceptation : résultats identiques des cas de collision à 30/60/144 mises
+  à jour de test ; aucune récompense de frôlement sur un impact ; aucun
+  tir ennemi non annoncé lié à une création de préavis dans la même image.
+  Garder les tests de limites de pools, de vies et de contacts de convoi.
+
+Commandes et reprise
+  Compléter les options par réglage de zone morte, inversion éventuelle,
+  remappage complet de manette, maintien/bascule de précision et rappel
+  immédiat de la commande active. Tester le passage clavier/manette, les
+  deux sticks, les diagonales et la perte de focus. Préserver le tir
+  automatique facultatif déjà présent.
+  Acceptation : toute action principale et tout menu utilisables sans
+  souris ; aucun tir/bombe involontaire après reprise ; absence de dérive
+  constatée sur les périphériques réellement testés. Nommer les matériels
+  couverts. Une injection d'événement ne valide pas un contrôleur physique.
+
+Sauvegardes et récompenses
+  Étendre la matrice de migration aux nouvelles options. Préserver les
+  invariants score de départ/retry, progression de campagne, records isolés
+  des autres modes, achats uniques et restauration du fichier de secours.
+  Afficher un échec de sauvegarde avec une action utile, sans écraser les
+  fichiers qui permettraient de récupérer la progression.
+  Acceptation : migration de chaque format conservé, fichier tronqué,
+  sauvegarde non inscriptible, quitter/reprendre et tentative abandonnée ;
+  aucune duplication de pièces, points ou vies dans ces scénarios.
+
+Lisibilité et accessibilité
+  Ajouter taille des textes, contraste du HUD, forme/contour des dangers,
+  réglages distincts de flashes, secousses et bruit visuel. Une couleur ne
+  doit pas être l'unique différence entre allié, ennemi, objectif et bonus.
+  Répliquer les alertes essentielles par au moins deux canaux pertinents
+  parmi forme/texte/son/vibration ; permettre de couper chaque effet de
+  confort. Associer les futurs dialogues à des sous-titres réglables.
+  Acceptation : aucun texte essentiel tronqué en FR/EN à 1280×720 et
+  1920×1080 ; focus visible sur tous les contrôles ; parcours réalisable
+  avec sons coupés ; revue avec des joueurs concernés par les options.
+  Les XAG servent de guide de conception et de test, pas de certification.
+  Référence officielle : [Xbox Accessibility Guidelines]
+  (https://learn.microsoft.com/en-us/xbox/accessibility/guidelines),
+  consultée le 12 octobre 2026.
+
+Performance et robustesse
+  Conserver une baseline reproductible avant tout embellissement. Mesurer
+  séparément CPU, GPU, chargement à froid, première apparition des effets,
+  transitions et durée prolongée. Les moyennes FPS seules masquent les
+  pics. Commencer par le coût dominant avant une réécriture architecturale.
+  Cible proposée, à valider sur une configuration minimale explicitement
+  nommée : en 1080p/Équilibré, p95 <= 16,7 ms et p99 <= 25 ms sur les
+  séquences de référence ; enquêter sur chaque pic > 50 ms attribuable au
+  jeu. En endurance, aucune croissance monotone des acteurs/ressources
+  après échauffement. Ne pas présenter ces cibles comme des mesures acquises.
+  Les pools actuels (192 tirs ennemis, 18 explosions) donnent une base
+  bornée ; réviser un plafond uniquement après mesure et test de saturation.
+  Méthode : [Godot — General optimization tips]
+  (https://docs.godotengine.org/en/stable/tutorials/performance/general_optimization.html),
+  consultée le 12 octobre 2026. Cette référence distingue notamment coût
+  permanent, pics intermittents et chargement ; notre budget reste un choix
+  de production propre au projet.
+
+P1 — UN SECTEUR QUI DONNE LA MESURE DU JEU ENTIER
+
+Identité artistique
+  Formaliser une bible courte : aéronautique stylisée, métal peint patiné,
+  mer à grande échelle, signalétique de porte-avions, éclairage et valeurs
+  qui détachent le combat du décor. Définir palette, silhouette, échelle,
+  matière et niveau de détail par famille. Réviser les modèles existants
+  à cette aune avant de chercher des ressources supplémentaires.
+  Harmoniser les textures et les dégâts entre avions, boss, DCA, navires
+  et installations. Ajouter détails lisibles à la distance de jeu, variantes
+  de destruction et traces d'activité localisées. Réserver les très petits
+  détails à la galerie 3D et aux scènes rapprochées.
+  Acceptation : planche comparative fixe des huit biomes et trois avions,
+  puis capture en mouvement ; silhouettes importantes identifiables en
+  image réduite ; aucun effet décoratif ne masque les projectiles testés.
+
+Mise en scène en temps réel
+  Faire du porte-avions un lieu reconnaissable : équipage stylisé, signaux
+  de pont, activité secondaire, préparation et accueil de la patrouille.
+  Introduire chaque grand adversaire avec une action caractéristique ;
+  transformer sa défaite en conséquence visible dans le secteur.
+  Les séquences répétées deviennent courtes ou sautables ; l'interruption
+  conserve un état de gameplay cohérent. Pendant le combat, la caméra reste
+  au service des trajectoires et du champ visible. Tout mouvement doit
+  respecter les options de confort.
+  Acceptation : chaque transition peut être passée, mise en pause et rejouée
+  sans perdre commande, sauvegarde ou synchronisation ; aucun dégât pendant
+  une séquence qui retire le contrôle ; les mêmes positions logiques et
+  visuelles restent alignées en vol rasant.
+
+Variété des ennemis et décisions
+  Les deux familles de chasseurs possèdent déjà des manœuvres, mais plusieurs
+  événements partagent les mêmes trajets ; operations.gd précise que les
+  patterns Hayabusa ne modifient pas actuellement les chemins. Prototyper
+  des entrées latérales réellement distinctes, puis un nouvel adversaire
+  qui change la décision du joueur : escorte protectrice, poseur de couloir
+  temporaire ou avion de soutien à intercepter. Choisir un seul prototype
+  initial et lui donner une annonce, une fenêtre vulnérable et une réponse.
+  Réutiliser les briques validées pour combiner chasse, escorte et DCA ;
+  ne pas augmenter partout les PV ou le nombre de projectiles.
+  Acceptation : le testeur peut expliquer la réponse à chaque rôle après
+  deux rencontres ; les variantes imposent des routes différentes ; toutes
+  les formations finissent ou quittent la scène avec un coût borné.
+
+Boss
+  Les huit familles et trois phases existent : approfondir leur personnalité
+  avant d'en ajouter. Donner à chaque boss une mécanique centrale, une
+  transition propre et une conséquence lisible à la perte d'un composant.
+  Examiner les fenêtres de tir, les angles morts, la pression des renforts
+  et le temps où l'on attend simplement de réduire une barre de vie.
+  Prototyper une attaque combinant déplacement du boss et choix d'abri,
+  avec issue réelle et annonce visible ; conserver les avertissements
+  locaux/HUD sans réintroduire les anciens traits prédictifs retirés.
+  Acceptation : chaque phase se distingue par un comportement observable ;
+  les composants modifient réellement les attaques ; aucune séquence testée
+  ne bloque toutes les issues par accumulation involontaire de renforts.
+
+Campagne, rythme et récit
+  Composer les missions en apprentissage, pression, respiration et résolution.
+  Vérifier les vrais temps de jeu et la possibilité de prolonger une chaîne,
+  en particulier entre les fenêtres d'entrée déjà écrites. Les escortes,
+  choix de radar/dépôt et priorités de raids fournissent une base de variété.
+  Faire évoluer l'état du secteur et quelques personnages radio selon les
+  victoires ou pertes effectivement constatées. Garder les appels courts,
+  relisibles au briefing/bilan ; éviter les dialogues pendant les décisions
+  les plus denses. Ne pas annoncer par texte une mécanique absente du jeu.
+  Acceptation : pour chaque mission, fiche d'une page avec décision propre,
+  courbe d'intensité attendue, événement marquant et critère de réussite ;
+  comparer cette fiche au relevé réel et à une partie humaine.
+
+Progression et rejouabilité
+  Mesurer l'intérêt des dix modules et des trois avions avec les véritables
+  achats de campagne. Ajouter d'abord des présentations d'équipement et
+  suggestions fondées sur le style souhaité. Prototyper des défis de maîtrise
+  et récompenses visuelles qui ne suppriment pas les compromis des avions.
+  Prévoir des emplacements de configuration pour éviter de reconstituer
+  manuellement son équipement entre deux essais.
+  Acceptation : le joueur comprend le coût et le compromis avant l'achat ;
+  deux configurations au moins offrent un intérêt distinct sur le secteur
+  de référence ; aucune configuration obligatoire pour franchir son premier
+  verrou ; progression vérifiée sans crédits artificiels.
+
+Apprentissage
+  Transformer les premières minutes en apprentissage par action : déplacer,
+  maintenir le tir, utiliser la précision, lire l'amorce, déclencher une
+  bombe, obtenir un POW, viser un composant. Utiliser les acteurs existants
+  avec des rencontres écrites. Aide contextuelle courte, désactivable et
+  consultable ; entraînement isolé pour répéter une compétence.
+  Le bilan peut conseiller un prochain objectif avec les données connues.
+  L'attribution exacte de l'ennemi responsable d'un impact et la trajectoire
+  complète ne sont pas enregistrées par l'analyse 2.4 : ne pas les inventer.
+  Acceptation exploratoire : sur six nouveaux testeurs, viser au moins
+  quatre capables d'expliquer les cinq commandes essentielles et de lire
+  une amorce sans aide orale. Conserver les observations individuelles ;
+  ce petit groupe ne fournit pas une preuve statistique d'équilibrage.
+
+Audio et musique
+  Construire un vocabulaire cohérent à partir des nouvelles signatures et
+  des armes existantes. Introduire variations contrôlées, moteurs propres
+  aux avions, passage des appareils, impacts selon la cible et ambiance
+  du pont. Composer ou obtenir un thème musical original et des transitions
+  adaptées à l'intensité. Envisager des voix dirigées uniquement après
+  stabilisation des textes et de leur durée en FR/EN.
+  Acceptation : menace, dégâts et récompense reconnaissables sous le mix
+  de bataille ; niveaux cohérents au casque et sur enceintes ; absence de
+  saturation dans les captures ; essai de fatigue d'écoute sur une session
+  longue. Un fichier sans clipping ne prouve pas un bon mix.
+
+P2 — EXTENSIONS À VALIDER PAR PROTOTYPES
+
+- Routes alternatives facultatives et conséquences de secteur : données,
+  sauvegardes et objectifs devront représenter réellement ces choix.
+- Défis quotidiens hors ligne à graine connue ; versionner les règles pour
+  comparer seulement les scores de configurations compatibles.
+- Replay ou fantôme local : enregistrer les entrées et vérifier le
+  déterminisme ; l'analyse agrégée actuelle ne permet pas de les reconstruire.
+- Mode photo et galerie d'archives : une occasion d'exposer le travail
+  artistique après que les scènes jouables sont suffisamment abouties.
+- Aides réglables supplémentaires : vitesse du jeu, visibilité, assistance
+  à la visée. Définir clairement leur effet sur les catégories de records.
+- Nouvelle famille de boss, campagnes supplémentaires, modding de rencontres.
+  Les ajouter par le même pipeline de données et de validation que le secteur
+  de référence.
+- Classements en ligne, coopération et plateformes supplémentaires : études
+  séparées. Elles demandent identité de build, synchronisation/sécurité,
+  services, support et tests dédiés ; elles ne sont pas nécessaires pour
+  valider le cœur solo. Aucun service payant n'est engagé par ce document.
+- Nouveau moteur de rendu, effets volumétriques ou éclairage plus coûteux :
+  comparer un prototype sur les machines visées. La migration de moteur
+  n'est pas un livrable en soi ; la qualité visible et la stabilité décident.
+
+4. SECTEUR DE RÉFÉRENCE — VERTICAL SLICE
+
+Périmètre : secteur corail, missions 01 à 04, trois avions, FR/EN,
+clavier et parcours manette. Utiliser l'ouverture et son bombardier réduit,
+la mission maritime suivante, le raid 03 puis le boss 04 déjà existants.
+Ce parcours expose naturellement les principaux systèmes et permet de
+tester la cohérence sans redessiner les huit secteurs simultanément.
+
+Livrables : une planche de direction artistique, quatre fiches de mission,
+une ouverture/mise en scène courte, un trajet latéral réellement nouveau,
+un boss amélioré, apprentissage contextuel, mix retravaillé, bilan utile,
+paquet autonome identifié et dossier d'observation humaine.
+
+Portes de validation, dans l'ordre :
+  A. Combat : collisions, tirs, objectifs, sauvegardes et commandes passent
+     les régressions sur sources et ressources exportées.
+  B. Expérience : nouveau joueur comprend ce qu'il tente et pourquoi il
+     échoue ; joueur expérimenté distingue deux routes de score possibles.
+     Recueillir temps de première action, pertes, bombes inutilisées,
+     causes déclarées d'échec et envie de recommencer, sans inventer de note.
+  C. Présentation : inspection en mouvement en 720p/1080p, FR/EN, trois
+     qualités et réglages de confort ; aucun chevauchement bloquant.
+  D. Performance : mêmes traces avant/après, à froid puis à chaud, avec
+     les budgets P0 ; isoler toute régression avant d'étendre le contenu.
+  E. Release : nouvelle partie et reprise de l'ancienne sauvegarde dans
+     le paquet distribué ; crédits/provenance présents ; défauts restants
+     explicitement consignés.
+
+Le secteur devient la référence uniquement lorsque ces portes sont passées.
+Ensuite étendre par lots de secteurs avec une régression à chaque lot.
+Un nouveau boss, un biome et une mission de raid ne valent pas validation
+des 32 missions. Le protocole humain existant reste la source des parcours
+réellement joués et de leurs configurations.
+
+5. OUTILS ET ORGANISATION DE PRODUCTION
+
+P0 : construire une commande de validation reproductible qui sépare tests
+purs, tests physiques, contrôles GPU, benchmarks et vérifications du paquet.
+Chaque sortie conserve build, scénario, matériel, options et journal. Les
+tests utilisent des profils isolés et l'audio Dummy ; l'écoute est une
+activité explicite. Investiguer les diagnostics du moteur même lorsque les
+assertions passent, en distinguant défaut du jeu et limite du backend de test.
+
+P1 : petit éditeur de chronologie dans Godot pour voir entrées, rôles,
+fenêtres d'amorce, objectifs, radars et budget d'acteurs sur le même axe.
+Ajouter validation de schéma, références d'assets, objectifs atteignables,
+durée des vagues et doublons. Prévisualiser une séquence depuis un point
+donné dans un mode de travail isolé de la sauvegarde du joueur.
+
+P1 : catalogues partagés pour les sons, modèles, effets et identifiants de
+localisation ; contrôle des clés FR/EN et des paramètres de texte ; revue
+des silhouettes/textures avec captures comparables. Conserver les sources
+Blender et scripts de génération pour produire une variante sans opération
+manuelle fragile. Extraire progressivement les sous-systèmes d'app.gd et
+director.gd quand cela facilite un changement réel, sans réécriture globale.
+
+P1 : pour chaque défaut ou proposition, une situation concrète, une preuve,
+un comportement attendu et un test pertinent. Les essais protégés/invincibles
+restent utiles pour inspecter une scène ; les résultats doivent le dire.
+
+6. QUALITÉ, LICENCES ET DISTRIBUTION
+
+Originalité et ressources
+  L'identité visuelle et sonore vient d'une direction commune. Avant tout
+  téléchargement, préciser le besoin manquant, consulter la source et la
+  licence de l'asset exact, archiver auteur, URL, date, licence, modifications
+  et attribution. Vérifier l'autorisation de redistribution dans un jeu et
+  la présence éventuelle de matériaux, polices ou samples tiers. Une page
+  « gratuit » ne constitue pas la provenance complète d'une ressource.
+  Pour une création générée, conserver prompt, référence autorisée, fichier
+  original et transformations. Intégrer des modèles propres au jeu plutôt
+  qu'imiter les signes distinctifs d'une autre franchise. Aucune dépense ni
+  acquisition de droits n'est déclarée réalisée par cette feuille de route.
+
+Matrice de QA
+  Cœur : tirs standard/éventail/laser, bombes, capacités, frôlements,
+  formations, convoi, boss/composants, DCA/radars/quotas, respawn et sortie.
+  Session : campagne, Arcade, entraînement, Boss Rush, retry, options en
+  pause, langue, déconnexion, perte de focus, fermeture et rechargement.
+  Présentation : 720p, 1080p, formats supplémentaires annoncés, trois
+  qualités, fenêtres/plein écran, confort, gros textes lorsqu'ils existent.
+  Charge : missions 01/03/19/31/32, sessions répétées, chargement à froid,
+  saturation des pools et endurance. Publier seulement les matériels testés.
+  Équilibre : campagnes humaines avec crédits réellement gagnés et profils
+  de débutant/expérimenté ; reprendre la matrice déjà décrite dans
+  docs/protocole-parties.txt, sans convertir une simulation en partie jouée.
+
+Préparation de sortie
+  Figement de la version et des données, reconstruction par le script
+  d'export, contrôle du contenu/CRC du ZIP, SHA-256 des binaires, tests sur
+  le paquet, puis installation/extraction sur un environnement distinct
+  lorsque disponible. Inclure manuel FR/EN, crédits, licences, configuration
+  mesurée, limites connues, méthode de récupération de sauvegarde et retour
+  à la version précédente. Distinguer le nom de version du hash exact.
+  La signature de code est une amélioration de distribution à préparer si
+  un certificat approprié est disponible ; elle n'est pas acquise ici.
+  Référence : [Godot — Exporting for Windows]
+  (https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_windows.html),
+  consultée le 12 octobre 2026 ; la documentation décrit l'export et la
+  configuration de signature, pas la validation de notre paquet.
+
+7. ORDRE DE TRAVAIL RECOMMANDÉ
+
+1) Achever et vérifier la passe 2.4 : carte, bilan, confort, audio,
+   collisions et préavis ; produire une version identifiable.
+2) Observer les premières parties humaines ; classer les obstacles P0
+   avec preuves. Corriger avant d'accroître la densité ou les effets.
+3) Produire le secteur corail de référence et le faire franchir les cinq
+   portes de validation ; retenir ce que les essais confirment.
+4) Étendre direction artistique, comportements et rythme aux autres
+   secteurs ; maintenir les migrations et budgets à chaque lot.
+5) Choisir les extensions P2 sur prototype et intérêt observé, puis préparer
+   la sortie avec couverture explicitement connue.
+
+Les critères numériques de ce document sont des objectifs proposés de
+production. Seuls les rapports de validation associés au build final et
+les fiches de parties réellement effectuées peuvent les déclarer atteints.

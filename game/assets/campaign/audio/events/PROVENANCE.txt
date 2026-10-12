@@ -1,0 +1,27 @@
+PACIFIC STRIKE — SIGNATURES SONORES ORIGINALES
+12 octobre 2026
+
+Cinq compositions procédurales créées pour ce projet, sans sample externe :
+- boss.wav : deux appels graves descendants, arrivée d'un adversaire majeur ;
+- danger.wav : trois pulsations rapides, changement de phase critique ;
+- radio.wav : double signal radio, message ordinaire ;
+- radio_important.wav : trois notes ascendantes, ordre prioritaire ;
+- reward.wav : arpège ascendant, réussite et progression de chaîne.
+
+Source reproductible : audio/build_event_signatures.py, bibliothèque standard
+Python uniquement. Aucun enregistrement, modèle, voix ou asset téléchargé.
+PCM mono 16 bits / 44 100 Hz ; sommation additive, bruit déterministe filtré,
+attaques de 9 ms et sorties de 45 ms par note. Frontières silencieuses.
+
+Crête de chaque fichier limitée à 0,18 (-14,90 dBFS), inférieure à la crête
+mesurée de l'ancien signal radio (0,18338). Les gains et hauteurs des lecteurs,
+les deux voix de signaux, les priorités et le ducking existants sont conservés.
+Les cinq musiques d'action et leurs crédits restent inchangés.
+
+Contrôles numériques reproductibles :
+python audio/build_event_signatures.py --verify
+./Tester-Silencieux.ps1 -Script res://tests/test_event_audio.gd
+./Tester-Silencieux.ps1 -Script res://tests/test_audio_mix_controls.gd
+
+Ces contrôles ne constituent pas une écoute humaine ni une mesure du mix
+complet en situation. La distinction perceptuelle reste à apprécier en jeu.

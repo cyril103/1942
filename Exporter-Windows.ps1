@@ -37,6 +37,7 @@ Copy-Item -LiteralPath (Join-Path $projectPath 'assets/audio/engine/CREDITS.md')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/audio/weapons/CREDITS.md') -Destination (Join-Path $licenseDirectory 'Tirs-explosions.md')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/campaign/music/CREDITS.txt') -Destination (Join-Path $licenseDirectory 'Musique.txt')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/campaign/music/Juhani-INFO.txt') -Destination $licenseDirectory
+Copy-Item -LiteralPath (Join-Path $projectPath 'assets/campaign/audio/events/PROVENANCE.txt') -Destination (Join-Path $licenseDirectory 'Signatures-sonores-2.4.txt')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/environment/raid-v2/CREDITS.md') -Destination (Join-Path $licenseDirectory 'Terrains-terrestres.md')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/environment/raid-v3/CREDITS.txt') -Destination (Join-Path $licenseDirectory 'Terrains-volcaniques-arctiques.txt')
 Copy-Item -LiteralPath (Join-Path $projectPath 'assets/environment/raid-v4/CREDITS.txt') -Destination (Join-Path $licenseDirectory 'Paysages-1.10.txt')

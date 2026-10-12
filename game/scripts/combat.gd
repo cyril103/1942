@@ -72,6 +72,8 @@ var hud: Label
 var death_panel: Control
 var _effect_cursor := 0
 var _query := PhysicsRayQueryParameters3D.new()
+var _player_hurtbox: Area3D
+var _player_hit_shape: CollisionShape3D
 var gun_audio: AudioStreamPlayer
 var explosion_audio: AudioStreamPlayer
 var ground_audio: AudioStreamPlayer
@@ -146,6 +148,8 @@ func _apply_aircraft_altitude(actor: Node3D) -> void:
 func _ready() -> void:
 	formations.cleared.connect(_on_formation_cleared)
 	seascape = get_parent().get_node_or_null("Seascape")
+	_player_hurtbox = player.get_node("Hurtbox")
+	_player_hit_shape = _player_hurtbox.get_node("Shape")
 	player.destroyed.connect(_on_player_destroyed)
 	var mesh := PlaneMesh.new()
 	mesh.size = Vector2(0.90, 0.90)
@@ -169,6 +173,10 @@ func _ready() -> void:
 		effects.append(effect)
 	_query.collision_mask = 4
 	_query.collide_with_areas = true
+	# Moving-player contact is solved in relative space below. Keep the world
+	# ray for other damageable actors (the convoy), without an endpoint-only
+	# player hit producing a false positive while both objects are moving.
+	_query.exclude = [_player_hurtbox.get_rid()]
 	gun_audio = AudioStreamPlayer.new()
 	gun_audio.stream = preload("res://assets/audio/weapons/salvo_03.wav")
 	gun_audio.volume_db = -15.0
@@ -219,13 +227,16 @@ func _physics_process(delta: float) -> void:
 	_update_bullets(delta)
 	for enemy in enemies:
 		if is_instance_valid(enemy) and enemy.alive:
-			enemy.advance(delta, self)
+			# Only spend time on a warning that existed before this update.
+			# A newly requested shot must be visible for its full warning time,
+			# including when one physics frame takes longer than the warning.
 			if enemy.has_meta("fire_warning"):
 				var remaining: float = float(enemy.get_meta("fire_warning"))-delta
 				enemy.set_meta("fire_warning",remaining)
 				if remaining<=0:
 					enemy.remove_meta("fire_warning")
 					_fire_enemy_now(enemy)
+			enemy.advance(delta, self)
 	enemies = enemies.filter(func(enemy): return is_instance_valid(enemy) and enemy.alive)
 	for bomber in bombers:
 		if is_instance_valid(bomber) and bomber.alive: bomber.advance(delta,self)
@@ -431,6 +442,13 @@ func _update_bullets(delta: float) -> void:
 		_query.from = Vector3(before.x, 0, before.z)
 		_query.to = Vector3(bullets[index].global_position.x, 0, bullets[index].global_position.z)
 		var hit := space.intersect_ray(_query)
+		var player_hit := _player_contact_fraction(_query.from,_query.to,_graze_player_before,player_now)
+		if player_hit >= 0:
+			var world_hit := INF
+			if not hit.is_empty():
+				var travel := _query.from.distance_to(_query.to)
+				world_hit = _query.from.distance_to(hit.position)/travel if travel>0 else 0.0
+			if player_hit <= world_hit: hit = {"collider":_player_hurtbox}
 		if not hit.is_empty() and player.alive:
 			lifetimes[index] = 0
 			graze_states[index] = GrazeState.RESOLVED
@@ -444,6 +462,31 @@ func _update_bullets(delta: float) -> void:
 			graze_states[index] = GrazeState.RESOLVED
 			bullets[index].hide()
 	_graze_player_before = player_now
+
+func _player_contact_fraction(before: Vector3, after: Vector3, player_before: Vector3, player_after: Vector3) -> float:
+	if not is_instance_valid(_player_hurtbox) or not is_instance_valid(_player_hit_shape): return -1.0
+	if (_player_hurtbox.collision_layer & _query.collision_mask)==0 or _player_hit_shape.disabled: return -1.0
+	if not _player_hit_shape.shape is BoxShape3D: return -1.0
+	# The production hurtbox stays in the logical flight plane. Transform the
+	# relative path into its current local space, preserving its real size,
+	# offset and scale instead of approximating the box with the graze circle.
+	var inverse := _player_hit_shape.global_transform.affine_inverse()
+	var start := inverse*(before+player_after-player_before)
+	var finish := inverse*after
+	var motion := finish-start
+	var half: Vector3 = _player_hit_shape.shape.size*.5
+	var entry := 0.0
+	var leave := 1.0
+	for axis in range(3):
+		if absf(motion[axis])<0.000001:
+			if start[axis]<-half[axis] or start[axis]>half[axis]: return -1.0
+			continue
+		var a: float = (-half[axis]-start[axis])/motion[axis]
+		var b: float = (half[axis]-start[axis])/motion[axis]
+		entry = maxf(entry,minf(a,b))
+		leave = minf(leave,maxf(a,b))
+		if entry>leave: return -1.0
+	return entry
 
 func _update_bullet_graze(index: int, before: Vector3, after: Vector3, player_before: Vector3, player_after: Vector3, allowed: bool) -> void:
 	if graze_states[index]==GrazeState.RESOLVED: return

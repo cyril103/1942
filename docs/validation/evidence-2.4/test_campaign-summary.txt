@@ -1,0 +1,11 @@
+Command: ./Tester-Silencieux.ps1 -Script res://tests/test_campaign.gd
+Runtime: Godot 4.7.2.stable.official.ed1daf0bf, headless, Dummy audio.
+Exit code: 0
+Captured completion line:
+CAMPAIGN TEST 791 checks, 0 failures: []
+
+The original terminal output included repeated Godot dummy-renderer errors:
+ERROR: Parameter "material" is null.
+at: material_get_instance_shader_parameters (servers/rendering/dummy/storage/material_storage.cpp:264)
+
+This file records the observed completion, not the full terminal log.

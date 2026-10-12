@@ -70,6 +70,16 @@ var extraction_started_at := -1.0
 var extraction_end_at := 0.0
 var extraction_next_wave := 0.0
 var extraction_wave_count := 0
+var flight_analysis = preload("res://scripts/campaign/flight_analysis.gd").new()
+
+func _capture_flight() -> void:
+	flight_analysis.capture(elapsed,{"score":maxi(0,combat.score-start_score),"kills":combat.kills,"damage":damage_taken,"grazes":mastery.grazes})
+
+func _record_flight_event(kind: String) -> void:
+	if not active or paused or ending or get_tree().paused: return
+	if not player.controls_enabled and kind!="death": return
+	flight_analysis.mark(elapsed,kind)
+	_capture_flight()
 
 func _ready() -> void:
 	combat = cockpit.combat
@@ -304,6 +314,7 @@ func advance(delta: float) -> void:
 	while event_index < mission.events.size() and elapsed >= float(mission.events[event_index].time):
 		_dispatch(mission.events[event_index])
 		event_index += 1
+	_capture_flight()
 	var combat_deadline := maxf(float(mission.duration),extraction_end_at)
 	combat.next_wave = maxf(0,combat_deadline-elapsed)
 	if Input.is_action_just_pressed("bomb"): use_bomb()
@@ -386,6 +397,7 @@ func _spawn_boss(kind: String) -> void:
 	if mission.get("ground_assault",false): return
 	if boss_spawned: return
 	boss_spawned = true
+	_record_flight_event("boss")
 	if practice or boss_rush: event_index = mission.events.size()
 	boss = BOSS.new()
 	boss.kind = kind
@@ -447,6 +459,7 @@ func _on_naval_destroyed(at: Vector3) -> void:
 
 func _on_damage(_health: int) -> void:
 	damage_taken += 1
+	_record_flight_event("hit")
 	mastery.hit()
 	shake_time = 0.28
 	feedback = L10N.text("IMPACT  /  BLINDAGE %d") % player.health
@@ -454,6 +467,7 @@ func _on_damage(_health: int) -> void:
 
 func _on_death(_at: Vector3) -> void:
 	deaths += 1
+	_record_flight_event("death")
 	ability_time = 0
 	_update_ability(0)
 	charge = maxf(0,charge-20)
@@ -468,6 +482,7 @@ func use_bomb() -> bool:
 	if not active or paused or ending or not player.alive or not player.controls_enabled or bombs <= 0: return false
 	bombs -= 1
 	attacks_used += 1
+	_record_flight_event("bomb")
 	_discharge(35,false)
 	feedback = L10N.text("BOMBE  /  ESPACE AÉRIEN DÉGAGÉ")
 	feedback_time = 2.0
@@ -477,6 +492,7 @@ func use_strike() -> bool:
 	if not active or paused or ending or not player.alive or not player.controls_enabled or ability_time>0 or charge < 100: return false
 	charge = 0
 	attacks_used += 1
+	_record_flight_event("strike")
 	ability_time = float(equipment.ability_duration)
 	_update_ability(0)
 	_discharge(float(equipment.strike_damage),bool(equipment.strike_focused))
@@ -510,6 +526,8 @@ func _clear_actors() -> void:
 
 func _end(won: bool) -> void:
 	if not active: return
+	# Freeze the combat record before the separate survival reward is credited.
+	_capture_flight()
 	active = false
 	_update_ability(0)
 	weapons.cease_fire()
@@ -526,4 +544,4 @@ func _end(won: bool) -> void:
 	var grade := SCORING.medal(won,deaths,damage_taken,objective_met)
 	var bonus := maxi(0,player.health*100+combat.remaining_lives*250+bombs*150) if won else 0
 	combat.score += bonus
-	finished.emit({"game_over":game_over,"objective_met":objective_met,"ground_status":assault.objective_status() if is_instance_valid(assault) else {},"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":objective_failed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"grazes":mastery.grazes,"graze_score":mastery.graze_score,"graze_charge":graze_charge_gain,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})
+	finished.emit({"flight_analysis":flight_analysis.snapshot(),"game_over":game_over,"objective_met":objective_met,"ground_status":assault.objective_status() if is_instance_valid(assault) else {},"ground_kills":assault.kills if is_instance_valid(assault) else 0,"objective_failed":objective_failed,"rank":mastery.rank(won,deaths,damage_taken),"best_chain":mastery.best_chain,"secondary":mastery.secondary_complete,"chain_bonus":mastery.bonus_score,"grazes":mastery.grazes,"graze_score":mastery.graze_score,"graze_charge":graze_charge_gain,"accuracy":float(weapons.hits_landed)/maxi(1,weapons.shots_fired),"won":won,"mission":mission.id,"score":combat.score,"mission_score":combat.score-start_score,"lives":combat.remaining_lives,"power":weapons.power_type,"kills":combat.kills,"naval_kills":naval_kills,"deaths":deaths,"damage":damage_taken,"grade":grade,"bonus":bonus,"seconds":elapsed,"spread":weapons.spread_enabled})

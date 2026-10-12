@@ -1,8 +1,33 @@
-# Pacific Strike Ultimate 2.3 — Campagne 1942
+# Pacific Strike Ultimate 2.4 — Campagne 1942
 
 Campagne solo de **32 missions** sous Godot 4.7.2, sur la branche `jeu_toppissime` : huit secteurs, huit combats de boss à trois phases, avions 3D low poly, océan et raids terrestres. Le jeu occupe toute la largeur avec deux fines bandes de HUD, soit 90 % de la surface de l'écran. Menus, hangar, améliorations permanentes, trois difficultés, médailles et sauvegarde automatique.
 
 ## Lancer
+
+**Manette configurable** : ouvrez **Options > Manette** (également accessible
+depuis Commandes). Le modèle connecté est affiché et ses réglages sont conservés
+automatiquement : boutons, directions des sticks, gâchettes et zone morte.
+Une affectation déjà utilisée échange les commandes concernées. Le test en direct
+permet de contrôler les entrées ; Rétablir remet uniquement cette manette à zéro.
+La navigation des menus reste indépendante : A valide, B revient en arrière,
+stick/croix déplacent la sélection, même après avoir changé le bouton de tir.
+Les symboles s'adaptent aux familles Xbox, PlayStation et Nintendo reconnues.
+
+Version **2.4.0 — Commandement** : carte d'opérations en huit secteurs, progression
+et médailles visibles ; **Analyse du vol** après chaque mission ou duel, avec courbe
+du score, impacts, bombes, capacités, arrivée du boss et conseils pour le prochain rang.
+La comparaison utilise le record précédant la tentative. L'analyse reste en mémoire
+pour la sortie courante et n'alourdit pas les sauvegardes.
+
+La reprise depuis la pause propose un compte à rebours de trois secondes, combat
+figé. Une déconnexion de la manette active met le vol en pause ; B permet de revenir
+dans les menus. Ces protections se règlent dans **Options > Graphismes & confort >
+Confort de vol & manette**. Cinq signatures sonores originales distinguent les
+événements. Les collisions prennent en compte le déplacement relatif du joueur et
+des projectiles ; les préavis de tir restent complets après une image lente.
+
+Direction et chantiers futurs : `docs/ambition-aaa-2.4.txt`. Validation de cette
+livraison et limites : `docs/validation/commandement-2.4.txt`.
 
 Version **2.3.0 Ultimate** : jeu disponible en **français et en anglais**.
 Choisir « Français / English » à l'accueil, ou **Options > Langue / Language**.

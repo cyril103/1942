@@ -1,0 +1,133 @@
+Investigation manette — 12 octobre 2026
+
+Environnement vérifié
+Godot 4.7.2-stable (official), ed1daf0bf, Windows, OpenGL Compatibility.
+Sonde indépendante : game/tests/probe_controller.gd.
+Elle ne charge ni la campagne ni un profil joueur. Audio Dummy ; APPDATA,
+LOCALAPPDATA et TEMP isolés sous tools/runtime-controller-probe pour la sonde
+avec affichage. Aucun processus joueur arrêté, aucune installation ajoutée.
+
+Cause reproduite avant correction
+Dans cet exécutable Godot, ui_accept contient Enter, Kp Enter et Space ;
+il ne contient aucun événement Joypad. ui_cancel contient seulement Escape.
+ui_select contient le bouton supérieur Y (indice 3) et Space. Les quatre
+directions ui_* contiennent déjà la croix et le stick gauche, device=-1.
+L'application configurait le bouton A pour fire, sans configurer ui_accept.
+Son code utilisait bien des Button avec focus pour les menus : le tir en vol
+fonctionnait, tandis que A ne correspondait à aucune validation native du menu.
+
+Reproduction isolée sur un Button ayant le focus
+Injection A appuyé puis relâché, appareils 0, 1, 2 et 7 :
+  configuration initiale : ui_accept=false, zéro activation à chaque essai ;
+  ajout explicite A, device=-1, à ui_accept : ui_accept=true, une activation
+  exacte à chaque essai. Vérifié avec le pilote headless.
+La première reproduction sans correction a aussi été confirmée avec le pilote
+Windows et rendu OpenGL. Le mapping wildcard fonctionne au niveau natif ; il
+est inutile d'émettre directement le signal pressed des Button pour ce cas.
+
+Matériel physiquement connecté lors de la sonde avec affichage
+Input.get_connected_joypads() : [0]
+Nom Godot : XInput Controller
+Nom matériel (raw_name) : Xbox One Controller
+GUID : 0300fa675e040000ff02000000007801
+Input.is_joy_known(0) : true
+vendor_id : 1118 ; product_id : 767 ; xinput_index : 0
+Axes 0 à 9 : 0.0 au repos ; aucun bouton enfoncé lors de l'échantillon.
+Ce résultat prouve la reconnaissance SDL ; aucun nouveau pilote n'est requis
+pour corriger le problème de validation observé. La sonde headless retourne
+une liste vide et ne permet donc pas de conclure à une absence de manette.
+Les pressions physiques du joueur n'ont pas été enregistrées ni demandées ;
+les tests de validation ci-dessus injectent des événements Godot synthétiques.
+
+Conséquences techniques pour l'implémentation
+- Définir explicitement les boutons de validation/retour des menus et garder
+  la navigation distincte des commandes de combat reconfigurables.
+- Conserver les événements clavier des ui_*. Ne pas affecter fire à ui_accept
+  en remplaçant globalement la liste des événements clavier.
+- Un événement Joypad destiné à toute manette doit avoir device=-1 ; la valeur
+  par défaut d'une nouvelle instance ne constitue pas cette garantie.
+- Une capture de nouvelle affectation doit consommer l'événement avant la
+  phase GUI, sinon un bouton de validation peut aussi agir sur le menu.
+- Une gâchette ou un stick est un axe, pas nécessairement un bouton ; une
+  capture fiable doit imposer seuil, retour au repos et sens de l'axe.
+- Les identifiants numériques d'appareils ne sont pas stables entre lancements.
+  Le GUID/nom est mieux adapté à une préférence durable, avec fallback.
+- is_joy_known=false doit conserver la capture brute possible, sans promettre
+  les labels Xbox/PlayStation pour des indices non normalisés.
+- set_input_as_handled bloque la propagation, mais ne remet pas à zéro les
+  états globaux Input. Le passage capture/menu/vol mérite des tests séparés.
+- Les événements de répétition clavier n'existent pas spontanément sur
+  manette ; une navigation maintenue nécessite sa propre temporisation.
+
+Sources primaires consultées
+https://docs.godotengine.org/en/4.7/tutorials/inputs/controllers_gamepads_joysticks.html
+  SDL3 depuis Godot 4.5 sur bureau ; zones mortes ; répétition et focus.
+https://docs.godotengine.org/en/4.7/tutorials/ui/gui_navigation.html
+  Actions ui_* et contrôle ayant le focus pour la navigation dans les menus.
+https://docs.godotengine.org/en/4.7/classes/class_input.html
+  Appareils connectés, identité, is_joy_known, état global et propagation.
+https://docs.godotengine.org/en/4.7/classes/class_inputevent.html
+  Correspondance des événements et actions.
+
+Cette note documente l'investigation et la correction minimale prouvée.
+La validation de l'écran de configuration complet est réalisée séparément.
+
+Validation de l'implémentation finale
+- test_gamepad_controls.gd : 1 080 contrôles headless, aucun échec, après
+  corrections des cas de pause analogique, sauvegarde impossible et déconnexion.
+  Le contrôle avec rendu précédant ces trois ajouts avait 1 071 contrôles,
+  aucun échec, avec la Xbox One branchée ; captures FR/EN et formats 720p,
+  1080p et ultralarge dans renders/controller-settings/.
+- test_menu_gamepad_navigation.gd : 20 contrôles, aucun échec.
+- test_flight_comfort.gd : 146 contrôles, aucun échec après intégration finale.
+- test_ui_readability.gd : 1 149 contrôles, aucun échec.
+- test_localization.gd : 782 contrôles, aucun échec.
+- test_profile_recovery.gd : 202 contrôles, aucun échec, fixture isolée.
+- audit_localization.py : 751 messages, 496 appels littéraux, aucune erreur.
+- Export Windows réussi. test_windows_package.ps1 : 38 contrôles, aucun échec ;
+  exécutable extrait du ZIP lancé sans sources, rendu OpenGL puis fermeture
+  normale, code 0 et aucun diagnostic moteur. Audio Dummy pour tous les tests.
+  SHA256 : F7156AA7BC980338B0F599C804BE5F849CE14FA28C2306BAD2AC7A5A6F6547E4.
+
+Les tests headless ouvrant une scène 3D émettent le diagnostic préexistant
+du renderer Dummy « material is null ». Les assertions passent ; le contrôle
+de l'exécutable Windows avec rendu réel ne produit pas ce diagnostic.
+La reconnaissance de la manette branchée a été vérifiée réellement. Les boutons
+des tests sont injectés dans Input.parse_input_event ; aucun appui physique
+humain ni débranchement USB physique n'est revendiqué.
+
+Comportement livré
+Options > Manette, ou Commandes > Commandes manette. Neuf actions configurables,
+échange explicite des commandes en conflit, boutons/sticks/gâchettes, capture
+avec neutralisation du bouton d'ouverture et de son relâchement, annulation et
+expiration, test des entrées, zone morte 10–45 %, rétablissement par modèle.
+Les profils utilisent GUID et identifiants vendeur/produit quand disponibles,
+jamais l'indice temporaire du périphérique comme clé durable. Deux exemplaires
+d'un même modèle partagent volontairement les réglages. Les préférences manette
+invalides ne détruisent pas la campagne ; les anciennes sauvegardes migrent.
+Clavier, navigation des menus et commandes de vol restent indépendants.
+La validation A est explicite et les directions maintenues se répètent après
+400 ms puis toutes les 120 ms. Les captures/test suspendent cette répétition.
+Le branchement actualise l'écran ; la perte de la manette active conserve la
+protection de pause existante et la reconnexion ne reprend pas le vol seule.
+
+Répétition de navigation — vérification et complément
+Une croix directionnelle maintenue ne répète pas spontanément la navigation
+sur ce runtime : six Button dans un même Control, événement bas injecté via
+Input.parse_input_event puis flush_buffered_events : focus 0 -> 1, toujours 1
+après 1,5 seconde. Le code natif est cohérent avec cette observation :
+https://raw.githubusercontent.com/godotengine/godot/4.7-stable/scene/main/viewport.cpp
+
+Le complément menu_gamepad_navigation.gd observe les événements originaux
+sans les consommer. Il produit seulement les répétitions UI (0,4 seconde de
+délai initial, puis 0,12 seconde), au maximum une par frame. Il retient l'axe
+dominant et utilise 0,55 / 0,35 comme seuils d'activation / relâchement.
+Le champ blocked permet à l'application de suspendre capture et test manette.
+Le helper réinitialise aussi sur changement de page, absence de focus, pause
+de préparation, capture clavier, retour au repos ou disparition du périphérique.
+
+Validation isolée : test_menu_gamepad_navigation.gd, 20 assertions réussies
+avec contrôle réel du focus GUI. Couverture : première navigation native,
+délai, cadence, relâchement, grande frame sans rafale, transition, vol/chargement/
+reprise exclus, captures, seuil/hystérésis, diagonale dominante, autre appareil
+au repos, perte de focus. Aucune campagne ni sauvegarde joueur n'est chargée.

@@ -1,23 +1,26 @@
 {
-  "description": "Pacific Strike - Campagne 1942",
-  "checks": 30,
-  "executable_sha256": "21DB972E0A1598F598381E62F647035E3B87825816EBAC57B165E3C5A38DC6FF",
-  "shell_file_version": "2.2.0.0",
-  "version": "2.2.0.0",
+  "explorer_visual_check": "NOT_PERFORMED",
+  "version": "2.4.0.0",
+  "export_preset": "C:\\ChatGPT\\1942\\game\\export_presets.cfg",
+  "executable_sha256": "F7156AA7BC980338B0F599C804BE5F849CE14FA28C2306BAD2AC7A5A6F6547E4",
+  "product_version": "2.4.0.0",
+  "description": "Pacific Strike - Campaign 1942",
   "runtime": [
     {
-      "script_suites": "NOT_RUN_IN_RELEASE_EXECUTABLE",
-      "elapsed_seconds": 5.4394724,
-      "log": "C:\\ChatGPT\\1942\\tools\\runtime-coast\\temp\\PacificStrike-package-validation\\windows-package-fd4c09d1a55546c68aa3cd9bec3ca80d\\standalone-startup.log",
       "close_requested": true,
+      "scenario": "normal_main_scene_startup_and_window_close",
       "minimum_startup_seconds": 3,
       "exit_code": 0,
-      "scenario": "normal_main_scene_startup_and_window_close"
+      "script_suites": "NOT_RUN_IN_RELEASE_EXECUTABLE",
+      "log": "C:\\ChatGPT\\1942\\tools\\runtime-gamepad-package\\temp\\PacificStrike-package-validation\\windows-package-c81db058ca2c417488688ac343e60553\\standalone-startup.log",
+      "elapsed_seconds": 7.3340553
     }
   ],
-  "extracted_directory": "C:\\ChatGPT\\1942\\tools\\runtime-coast\\temp\\PacificStrike-package-validation\\windows-package-fd4c09d1a55546c68aa3cd9bec3ca80d\\PacificStrike",
-  "failures": [],
-  "explorer_visual_check": "NOT_PERFORMED",
   "product": "Pacific Strike",
-  "shell_file_description": "Pacific Strike - Campagne 1942"
+  "failures": [],
+  "shell_file_version": "2.4.0.0",
+  "shell_file_description": "Pacific Strike - Campaign 1942",
+  "expected_description": "Pacific Strike - Campaign 1942",
+  "checks": 38,
+  "extracted_directory": "C:\\ChatGPT\\1942\\tools\\runtime-gamepad-package\\temp\\PacificStrike-package-validation\\windows-package-c81db058ca2c417488688ac343e60553\\PacificStrike"
 }

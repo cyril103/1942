@@ -1,9 +1,46 @@
 PACIFIC STRIKE ULTIMATE — CAMPAIGN 1942
-Version 2.3.0 — French / English
+Version 2.4.0 — French / English
 
 GETTING STARTED
 Run PacificStrike.exe. No Godot installation is required.
 Windows x64, OpenGL 3.3. Keyboard and controller supported.
+
+CONTROLLER SETUP
+Options > Controller shows the connected model. Select an action, then press
+a button or trigger, or move a stick in the direction you want to assign.
+Release any held inputs first. Escape, the on-screen Cancel button or the
+capture timeout cancels without changing your controls. Existing assignments
+are swapped when a control is already in use, with a message explaining it.
+Settings are saved per model and restored after reconnecting or restarting.
+Adjust stick deadzone (10–45%) if your plane moves with the stick at rest.
+Test inputs displays live buttons, sticks and triggers; B ends the test.
+Reset controller restores only that controller's bindings and deadzone.
+Switch controller selects which connected controller you want to configure.
+Menu controls stay independent: A confirms, B goes back, stick/D-pad navigate.
+Labels follow the recognized controller family; A/B above refer to Xbox
+(cross/circle on PlayStation, B/A on Nintendo).
+
+COMMAND 2.4
+The operations chart shows eight sectors with four missions each. Future sectors
+can be inspected; only unlocked missions can be launched. Medals and S ranks are
+shown alongside your campaign progress.
+
+After a mission or duel, open Flight analysis. The score chart covers combat,
+before the end-of-mission bonus. Markers show hits, lost lives, bombs/abilities
+and the boss arrival. Up to two tips and the next rank's criteria guide your
+next attempt. Score comparisons use your record before that flight; a campaign
+defeat does not create a mission record. Analysis is available for the current
+flight only and is not stored in your save.
+
+Resuming from pause starts a three-second countdown while combat stays frozen.
+Escape, Start or B cancels the countdown and keeps the game paused. Disconnecting
+the active controller pauses the flight. Reconnecting never resumes automatically.
+Both safeguards can be disabled separately under Options > Graphics & comfort >
+Flight comfort & controller. Menus use A / Enter to confirm and B / Escape to go
+back. B keeps its bomb action during flight.
+
+Boss, danger, radio, priority orders and rewards now have distinct sound cues.
+The corresponding visual information remains available.
 
 LANGUAGE
 The default language is French. Use Français / English on the title screen,

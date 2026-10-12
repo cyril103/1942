@@ -112,12 +112,15 @@ func _run() -> void:
 	for frame in range(8): await process_frame
 	check(d.elapsed==frozen and paused,"Pause freezes campaign")
 	app._resume()
+	check(paused and app.page=="resuming","Resume countdown keeps combat frozen")
+	app._advance_resume(3.0)
 	check(not paused and not d.paused,"Resume restores processing")
 	app._show_pause()
 	app._show_settings(true)
 	check(paused and app.settings_from_pause,"Options keep flight paused")
 	app._show_pause()
 	app._resume()
+	app._advance_resume(3.0)
 	# Defeat is a result, not a dead-end scene; retry creates fresh state.
 	for connection in d.finished.get_connections(): d.finished.disconnect(connection.callable)
 	stage_report = {}

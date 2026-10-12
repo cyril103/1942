@@ -1,0 +1,16 @@
+{
+  "FLÈCHES / STICK  •  A / ENTRÉE : VALIDER  •  B / ÉCHAP : REVENIR": "ARROWS / STICK  •  A / ENTER: CONFIRM  •  B / ESC: BACK",
+  "CONFORT DE VOL & MANETTE": "FLIGHT COMFORT & CONTROLLER",
+  "Gardez le temps de vous replacer avant de retrouver le combat.": "Give yourself time to get ready before returning to combat.",
+  "Compte à rebours avant la reprise": "Countdown before resuming",
+  "Le vol reste figé pendant 3 secondes. Échap, Start ou B annule la reprise. Aucun mouvement ni flash supplémentaire.": "Flight stays frozen for 3 seconds. Esc, Start or B cancels the countdown. No extra motion or flashes.",
+  "Pause si la manette active est déconnectée": "Pause when the active controller disconnects",
+  "Protège le vol lorsque la manette utilisée se déconnecte. Reconnectez-la ou utilisez le clavier, puis reprenez quand vous êtes prêt.": "Pauses flight if the controller you are using disconnects. Reconnect it or use the keyboard, then resume when you are ready.",
+  "MANETTE  /  A : valider  •  B : revenir  •  Start : pause\nEn vol, B conserve sa fonction de bombe.": "CONTROLLER  /  A: confirm  •  B: back  •  Start: pause\nDuring flight, B keeps its bomb action.",
+  "PRÊT À REPRENDRE": "READY TO RESUME",
+  "Le combat reprend à la fin du compte à rebours.": "Combat resumes when the countdown ends.",
+  "RESTER EN PAUSE": "STAY PAUSED",
+  "ÉCHAP / START / B  •  RESTER EN PAUSE": "ESC / START / B  •  STAY PAUSED",
+  "MANETTE RECONNECTÉE  •  Reprenez le vol quand vous êtes prêt.": "CONTROLLER RECONNECTED  •  Resume flight when you are ready.",
+  "MANETTE DÉCONNECTÉE  •  Vol suspendu. Reconnectez-la ou utilisez le clavier.": "CONTROLLER DISCONNECTED  •  Flight paused. Reconnect it or use the keyboard."
+}

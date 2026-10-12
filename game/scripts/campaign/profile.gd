@@ -4,6 +4,7 @@ const VERSION := 1
 const DIFFICULTIES := ["Cadet", "Pilote", "As"]
 const LOADOUT := preload("res://scripts/campaign/loadout.gd")
 const L10N := preload("res://scripts/campaign/localization.gd")
+const GAMEPAD := preload("res://scripts/campaign/gamepad_bindings.gd")
 const AIRCRAFT := [LOADOUT.AIRCRAFT[0]["label"],LOADOUT.AIRCRAFT[1]["label"],LOADOUT.AIRCRAFT[2]["label"]]
 var path := "user://pacific-campaign-v1.json"
 var data: Dictionary
@@ -23,7 +24,9 @@ func reset() -> void:
 func _default_data() -> Dictionary:
 	var defaults := {"version":VERSION,"unlocked":1,"next_mission":1,"completed":false,"pow_ready":false,"credits":0,"high_score":0,"aircraft":0,"difficulty":1,"upgrades":[0,0,0],"records":{},"settings":{"master":0.8,"music":0.35,"effects":0.8,"fullscreen":true,"shake":true,"flashes":true}}
 	defaults.merge({"run_score":0,"run_lives":3,"power":"none","arcade_records":{},"bindings":{}})
+	defaults.gamepad_profiles = {}
 	defaults.settings.merge({"quality":1,"fps":false,"vsync":true,"short_retry_intro":false,"auto_fire":false,"language":"fr"})
+	defaults.settings.merge({"resume_countdown":true,"pause_on_disconnect":true})
 	defaults.merge({"equipment_revision":LOADOUT.EQUIPMENT_REVISION,"owned_modules":[],"equipped_modules":[]})
 	return defaults
 
@@ -66,7 +69,7 @@ func _decode_candidate(parsed: Variant) -> Dictionary:
 		if not str(key).is_valid_int() or str(key).to_int()<1 or str(key).to_int()>32: continue
 		if records[key] is not Dictionary or not _valid_fields(records[key],["score","grade","best_chain"],[],["rank"]): return {}
 	var settings: Dictionary = source.get("settings",{})
-	if not _valid_fields(settings,["master","music","effects","quality"],["fullscreen","shake","flashes","fps","vsync","short_retry_intro","auto_fire"]): return {}
+	if not _valid_fields(settings,["master","music","effects","quality"],["fullscreen","shake","flashes","fps","vsync","short_retry_intro","auto_fire","resume_countdown","pause_on_disconnect"]): return {}
 	var bindings: Dictionary = source.get("bindings",{})
 	var binding_names := ["move_left","move_right","move_up","move_down","fire","bomb","strike","focus_flight"]
 	for key in bindings:
@@ -105,8 +108,12 @@ func _decode_candidate(parsed: Variant) -> Dictionary:
 	decoded.settings.vsync = settings.get("vsync",true)
 	decoded.settings.short_retry_intro = settings.get("short_retry_intro",false)
 	decoded.settings.auto_fire = settings.get("auto_fire",false)
+	decoded.settings.resume_countdown = settings.get("resume_countdown",true)
+	decoded.settings.pause_on_disconnect = settings.get("pause_on_disconnect",true)
 	# Missing/unknown language preferences never invalidate a valid campaign save.
 	decoded.settings.language = L10N.normalize(settings.get("language","fr"))
+	# Controller preferences are isolated: malformed mappings never reject campaign progress.
+	decoded.gamepad_profiles = GAMEPAD.sanitize_profiles(source.get("gamepad_profiles",{}))
 	for key in bindings:
 		if key in binding_names: decoded.bindings[key] = _bounded_int(bindings[key],1,0x7fffff)
 	for key in arcade_records:

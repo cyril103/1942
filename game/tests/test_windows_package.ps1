@@ -1,7 +1,9 @@
 param(
     [string]$PackageZip = (Join-Path $PSScriptRoot '../../dist/PacificStrike-Windows-x64.zip'),
     [string]$BuiltExecutable = (Join-Path $PSScriptRoot '../../dist/PacificStrike/PacificStrike.exe'),
-    [string]$ExpectedVersion = '2.2.0.0',
+    [string]$ExpectedVersion = '',
+    [string]$ExpectedDescription = '',
+    [string]$ExportPreset = (Join-Path $PSScriptRoot '../export_presets.cfg'),
     [switch]$SkipRuntime
 )
 $ErrorActionPreference = 'Stop'
@@ -9,6 +11,34 @@ $checks = 0
 function Check-Package([bool]$condition, [string]$message) {
     $script:checks += 1
     if (-not $condition) { throw $message }
+}
+# Read the same Windows Desktop metadata used by the exporter, rather than
+# silently validating a historical release. Explicit overrides remain useful
+# for an archived package whose preset is no longer the working version.
+function Read-WindowsExportMetadata([string]$PresetPath) {
+    $presetText = Get-Content -LiteralPath $PresetPath -Raw
+    $sections = [regex]::Matches($presetText, '(?ms)^\[preset\.(?<index>\d+)\]\r?\n(?<body>.*?)(?=^\[|\z)')
+    $windows = @($sections | Where-Object { $_.Groups['body'].Value -match '(?m)^name="Windows Desktop"\r?$' })
+    if ($windows.Count -ne 1) { throw 'Le preset doit contenir exactement un export Windows Desktop.' }
+    $sectionName = '[preset.' + $windows[0].Groups['index'].Value + '.options]'
+    $options = [regex]::Match($presetText, '(?ms)^' + [regex]::Escape($sectionName) + '\r?\n(?<body>.*?)(?=^\[|\z)')
+    if (-not $options.Success) { throw 'Options du preset Windows Desktop absentes.' }
+    $properties = @{}
+    foreach ($property in @('application/file_version','application/product_version','application/product_name','application/file_description')) {
+        $match = [regex]::Match($options.Groups['body'].Value, '(?m)^' + [regex]::Escape($property) + '="([^"]+)"\r?$')
+        if (-not $match.Success) { throw ('Metadonnee Windows absente du preset : ' + $property) }
+        $properties[$property] = $match.Groups[1].Value
+    }
+    return $properties
+}
+$presetMetadata = Read-WindowsExportMetadata $ExportPreset
+$expectedProductVersion = $ExpectedVersion
+if ([string]::IsNullOrWhiteSpace($ExpectedVersion)) {
+    $ExpectedVersion = $presetMetadata['application/file_version']
+    $expectedProductVersion = $presetMetadata['application/product_version']
+}
+if ([string]::IsNullOrWhiteSpace($ExpectedDescription)) {
+    $ExpectedDescription = $presetMetadata['application/file_description']
 }
 $scratchBase = Join-Path ([System.IO.Path]::GetTempPath()) 'PacificStrike-package-validation'
 $scratch = Join-Path $scratchBase ('windows-package-' + [guid]::NewGuid().ToString('N'))
@@ -21,17 +51,24 @@ $directory = $executables[0].DirectoryName
 $hash = (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash
 Check-Package ($hash -eq (Get-FileHash -LiteralPath $BuiltExecutable -Algorithm SHA256).Hash) 'Executable extrait different de celui controle avant compression.'
 $metadata = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($exe)
-Check-Package ($metadata.ProductName -eq 'Pacific Strike') 'Nom produit Windows incorrect.'
-Check-Package ($metadata.FileDescription -eq 'Pacific Strike - Campagne 1942') 'Description Windows incorrecte.'
+Check-Package ($metadata.ProductName -eq $presetMetadata['application/product_name']) 'Nom produit Windows incorrect.'
+Check-Package ($metadata.FileDescription -eq $ExpectedDescription) 'Description Windows incorrecte.'
 Check-Package ($metadata.FileVersion -eq $ExpectedVersion) 'Version fichier Windows incorrecte.'
-Check-Package ($metadata.ProductVersion -eq $ExpectedVersion) 'Version produit Windows incorrecte.'
+Check-Package ($metadata.ProductVersion -eq $expectedProductVersion) 'Version produit Windows incorrecte.'
 Check-Package (Test-Path -LiteralPath (Join-Path $directory 'LISEZ-MOI.txt')) 'Manuel absent du ZIP.'
+Check-Package (Test-Path -LiteralPath (Join-Path $directory 'README-English.txt')) 'Manuel anglais absent du ZIP.'
 $requiredCredits = @('Godot-LICENSE.txt','Godot-COPYRIGHT.txt','Musique.txt','Juhani-INFO.txt','Moteur-avion.md','Tirs-explosions.md','Terrains-terrestres.md','Terrains-volcaniques-arctiques.txt','Installations-militaires.md','DCA-mobile.md','barlowcondensed-OFL.txt','blackopsone-OFL.txt','DSEG-LICENSE.txt')
 foreach ($credit in $requiredCredits) {
     Check-Package (Test-Path -LiteralPath (Join-Path $directory ('Licences/' + $credit))) ('Attribution absente : ' + $credit)
 }
 Check-Package (Test-Path -LiteralPath (Join-Path $directory 'Licences/Paysages-1.10.txt')) 'Provenance des paysages 1.10 absente.'
+Check-Package (Test-Path -LiteralPath (Join-Path $directory 'Licences/Signatures-sonores-2.4.txt')) 'Provenance des signatures sonores absente.'
 Check-Package ((Get-Content -LiteralPath (Join-Path $directory 'LISEZ-MOI.txt') -Raw).Contains('Version ' + ($ExpectedVersion -replace '\.0$',''))) 'Version du manuel incoherente.'
+Check-Package ((Get-Content -LiteralPath (Join-Path $directory 'README-English.txt') -Raw).Contains('Version ' + ($ExpectedVersion -replace '\.0$',''))) 'Version du manuel anglais incoherente.'
+$audioProvenance = Get-Content -LiteralPath (Join-Path $directory 'Licences/Signatures-sonores-2.4.txt') -Raw
+foreach ($cue in @('boss.wav','danger.wav','radio.wav','radio_important.wav','reward.wav')) {
+    Check-Package ($audioProvenance.Contains($cue)) ('Signature sonore absente de la provenance : ' + $cue)
+}
 
 # These are the same canonical file properties exposed by the Explorer shell.
 # This read does not claim a manual visual check of the Explorer window.
@@ -97,7 +134,8 @@ if (-not $SkipRuntime) {
     $runtime += @{ scenario = 'normal_main_scene_startup_and_window_close'; minimum_startup_seconds = 3; elapsed_seconds = $startupClock.Elapsed.TotalSeconds; close_requested = $closeRequested; exit_code = $process.ExitCode; log = $runLog; script_suites = 'NOT_RUN_IN_RELEASE_EXECUTABLE' }
 }
 $report = @{
-    version = $ExpectedVersion; product = $metadata.ProductName; description = $metadata.FileDescription
+    version = $ExpectedVersion; product_version = $expectedProductVersion; product = $metadata.ProductName; description = $metadata.FileDescription
+    expected_description = $ExpectedDescription; export_preset = [System.IO.Path]::GetFullPath($ExportPreset)
     executable_sha256 = $hash; checks = $checks; failures = @(); extracted_directory = $directory
     shell_file_description = $shellDescription; shell_file_version = $shellVersion
     explorer_visual_check = 'NOT_PERFORMED'; runtime = $runtime

@@ -1,0 +1,32 @@
+{
+	"checks": 228,
+	"cues": {
+		"boss": {
+			"duration": 0.958333333333333,
+			"max_sample_step": 448,
+			"pcm_peak": 5898
+		},
+		"danger": {
+			"duration": 0.331957919779934,
+			"max_sample_step": 1162,
+			"pcm_peak": 5898
+		},
+		"radio": {
+			"duration": 0.244988662131519,
+			"max_sample_step": 1211,
+			"pcm_peak": 5898
+		},
+		"radio_important": {
+			"duration": 0.43,
+			"max_sample_step": 1233,
+			"pcm_peak": 5898
+		},
+		"reward": {
+			"duration": 0.324324324324324,
+			"max_sample_step": 972,
+			"pcm_peak": 5898
+		}
+	},
+	"failures": [],
+	"human_listening": "NOT_PERFORMED"
+}

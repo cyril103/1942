@@ -6,6 +6,9 @@ const CATALOG_PATHS := [
 	"res://data/localization/menus.en.json",
 	"res://data/localization/content.en.json",
 	"res://data/localization/gameplay.en.json",
+	"res://data/localization/experience.en.json",
+	"res://data/localization/command.en.json",
+	"res://data/localization/gamepad.en.json",
 ]
 static var locale: String = "fr"
 static var _english: Dictionary = {}
