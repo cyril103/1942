@@ -1,4 +1,5 @@
 extends RefCounted
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## PHASE 5 CANDIDATE ONLY. Pure presentation policy, never actor mutation.
 ## Input rows are already projected, visible live ground contacts.
 const MAX_CONTEXT_LABELS := 4
@@ -44,7 +45,8 @@ static func label_for(row: Dictionary) -> String:
 		label = "DCA MOBILE"
 	elif bool(row.get("rapid_fire", false)) and variant == "battery":
 		label = "DCA RAPIDE"
-	return label + " · PRIORITÉ" if priority else label
+	label = L10N.text(label)
+	return label + L10N.text(" · PRIORITÉ") if priority else label
 
 static func select(rows: Array[Dictionary], player_screen: Vector2, focus_enabled: bool, scale: float = 1.0) -> Array[Dictionary]:
 	# Persist radars/priorities. Other labels are contextual and limited; all

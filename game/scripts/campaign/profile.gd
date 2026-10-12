@@ -3,6 +3,7 @@ extends RefCounted
 const VERSION := 1
 const DIFFICULTIES := ["Cadet", "Pilote", "As"]
 const LOADOUT := preload("res://scripts/campaign/loadout.gd")
+const L10N := preload("res://scripts/campaign/localization.gd")
 const AIRCRAFT := [LOADOUT.AIRCRAFT[0]["label"],LOADOUT.AIRCRAFT[1]["label"],LOADOUT.AIRCRAFT[2]["label"]]
 var path := "user://pacific-campaign-v1.json"
 var data: Dictionary
@@ -22,7 +23,7 @@ func reset() -> void:
 func _default_data() -> Dictionary:
 	var defaults := {"version":VERSION,"unlocked":1,"next_mission":1,"completed":false,"pow_ready":false,"credits":0,"high_score":0,"aircraft":0,"difficulty":1,"upgrades":[0,0,0],"records":{},"settings":{"master":0.8,"music":0.35,"effects":0.8,"fullscreen":true,"shake":true,"flashes":true}}
 	defaults.merge({"run_score":0,"run_lives":3,"power":"none","arcade_records":{},"bindings":{}})
-	defaults.settings.merge({"quality":1,"fps":false,"vsync":true,"short_retry_intro":false,"auto_fire":false})
+	defaults.settings.merge({"quality":1,"fps":false,"vsync":true,"short_retry_intro":false,"auto_fire":false,"language":"fr"})
 	defaults.merge({"equipment_revision":LOADOUT.EQUIPMENT_REVISION,"owned_modules":[],"equipped_modules":[]})
 	return defaults
 
@@ -104,6 +105,8 @@ func _decode_candidate(parsed: Variant) -> Dictionary:
 	decoded.settings.vsync = settings.get("vsync",true)
 	decoded.settings.short_retry_intro = settings.get("short_retry_intro",false)
 	decoded.settings.auto_fire = settings.get("auto_fire",false)
+	# Missing/unknown language preferences never invalidate a valid campaign save.
+	decoded.settings.language = L10N.normalize(settings.get("language","fr"))
 	for key in bindings:
 		if key in binding_names: decoded.bindings[key] = _bounded_int(bindings[key],1,0x7fffff)
 	for key in arcade_records:

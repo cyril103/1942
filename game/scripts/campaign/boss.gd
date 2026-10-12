@@ -1,4 +1,5 @@
 extends Area3D
+const L10N := preload("res://scripts/campaign/localization.gd")
 signal defeated
 signal weak_points_neutralized
 const PATTERNS := preload("res://scripts/campaign/boss_patterns.gd")
@@ -39,8 +40,13 @@ var burst_age := 0.0
 var warning_duration := .75
 var motion_age := 0.0
 
+static func display_name(boss_kind: String) -> String:
+	return L10N.text(str(NAMES.get(boss_kind,boss_kind)))
+
 func presentation() -> Dictionary:
-	return {"label":attack_label,"hint":attack_hint,"progress":attack_progress,"state":attack_state,"phase":phase}
+	# Keep the attack snapshot language-independent so a paused language change
+	# updates the warning immediately without rebuilding its projectile plan.
+	return {"label":L10N.text(attack_label),"hint":L10N.text(attack_hint),"progress":attack_progress,"state":attack_state,"phase":phase}
 
 func component_position(index: int) -> Vector3:
 	return Vector3((-1.0 if index==0 else 1.0)*.65,-1.5,1.8) if naval else Vector3((-1.0 if index==0 else 1.0)*(.65 if kind=="ace" else 1.15),.15,0)
@@ -57,7 +63,7 @@ func take_hit_at(amount: float, at: Vector3) -> void:
 				component_fires[i].show()
 				combat._explode(to_global(target),.8)
 				if is_instance_valid(combat.campaign_driver):
-					combat.campaign_driver.feedback = "POINT FAIBLE NEUTRALISÉ  /  DÉFENSE RÉDUITE"
+					combat.campaign_driver.feedback = L10N.text("POINT FAIBLE NEUTRALISÉ  /  DÉFENSE RÉDUITE")
 					combat.campaign_driver.feedback_time = 2
 				if component_health[0]==0 and component_health[1]==0:
 					weak_points_neutralized.emit()
@@ -210,7 +216,7 @@ func advance(delta: float, director: Node) -> void:
 		attack_hint = "REPLACEZ-VOUS AVANT LA PROCHAINE OFFENSIVE"
 		cooldown = maxf(cooldown,.7)
 		combat.clear_enemy_bullets()
-		director.feedback = "PHASE %d  /  %s" % [phase+1,["APPROCHE","DÉFENSE RENFORCÉE","DERNIÈRE OFFENSIVE"][phase]]
+		director.feedback = "PHASE %d  /  %s" % [phase+1,L10N.text(["APPROCHE","DÉFENSE RENFORCÉE","DERNIÈRE OFFENSIVE"][phase])]
 		director.feedback_time = 2
 	if transition_time>0:
 		transition_time = maxf(0,transition_time-delta)

@@ -1,4 +1,5 @@
 extends RefCounted
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Pure authored raid catalogue: no scene creation, input mutation or live RNG.
 ## One coordinate contract for targets, service roads, mobile routes and airstrips.
 ## Normalized z = +1 is the incoming coast (seen first); -1 is the exit coast.
@@ -909,6 +910,12 @@ static func layout_for_sector(sector: int) -> Dictionary:
 	if sector < 0 or sector >= LAYOUTS.size():
 		return {}
 	var authored: Dictionary = LAYOUTS[sector].duplicate(true)
+	# Translate presentation fields on the copy; stable IDs and mechanics stay canonical.
+	for field in ["title", "signature", "learning"]:
+		authored[field] = L10N.text(str(authored[field]))
+	authored.secondary.label = L10N.text(str(authored.secondary.label))
+	for group in authored.radars.values():
+		group.label = L10N.text(str(group.label))
 	var result := authored.duplicate(true)
 	var prefix := str(authored.id)
 	var targets: Array[Dictionary] = []
@@ -956,6 +963,21 @@ static func layout_for_sector(sector: int) -> Dictionary:
 	result.minimum_target_half_length = MIN_TARGET_HALF_LENGTH[sector]
 	result.version = VERSION
 	return result
+
+static func refresh_localization(layout: Dictionary) -> void:
+	## Refresh only display text on an active raid, preserving all live state and geometry.
+	var fresh := layout_for_sector(int(layout.get("sector", -1)))
+	if fresh.is_empty():
+		return
+	for field in ["title", "signature", "learning"]:
+		layout[field] = fresh[field]
+	for field in ["secondary", "secondary_spec"]:
+		if layout.has(field):
+			layout[field].label = fresh[field].label
+	for field in ["radars", "radar_groups"]:
+		for group_id in layout.get(field, {}):
+			if fresh[field].has(group_id):
+				layout[field][group_id].label = fresh[field][group_id].label
 
 static func instantiate_layout(mission: Dictionary, width: float, length: float, safe_x: float) -> Dictionary:
 	## Pure conversion into the local GroundAssault coordinate system.

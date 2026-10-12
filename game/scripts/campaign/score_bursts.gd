@@ -1,4 +1,5 @@
 extends Node3D
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Three reusable world-space awards. No per-kill text, timers or particle nodes.
 const CAPACITY := 3
 const DURATION := 1.65
@@ -70,7 +71,7 @@ func show_award(at: Vector3, bonus: int, red := false) -> void:
 	var altitude := at.y+.9
 	origins[cursor] = ray+direction*((altitude-ray.y)/direction.y)
 	ages[cursor] = 0
-	slot.get_node("Title").text = "ESCADRILLE ROUGE" if red else "VAGUE PARFAITE"
+	slot.get_node("Title").text = L10N.text("ESCADRILLE ROUGE") if red else L10N.text("VAGUE PARFAITE")
 	slot.get_node("Points").text = "+%d" % bonus
 	slot.show()
 	cursor = (cursor+1)%CAPACITY

@@ -1,4 +1,5 @@
 extends RefCounted
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Authored encounter preparation and shared raid objective metadata.
 ## Encounter mechanics, altitude gates and rendering remain with their actors.
 const RAID_LAYOUTS := preload("res://scripts/campaign/raid_layouts.gd")
@@ -41,9 +42,12 @@ static func prepare(source: Dictionary) -> Dictionary:
 	# behavior already consumed by the current director/combat/boss scripts.
 	# This function still copies its input, preserving the historical interface.
 	var m := source.duplicate(true)
+	for field in ["title", "region", "briefing"]:
+		if m.has(field):
+			m[field] = L10N.text(str(m[field]))
 	if int(m.id) == 1:
-		m.title = "Opération Brise-Lames"
-		m.briefing = "Ouvrez la route de l’escadrille. Interceptez les chasseurs, éliminez les formations rouges puis neutralisez le bombardier de commandement. Ses moteurs sont ses points faibles."
+		m.title = L10N.text("Opération Brise-Lames")
+		m.briefing = L10N.text("Ouvrez la route de l’escadrille. Interceptez les chasseurs, éliminez les formations rouges puis neutralisez le bombardier de commandement. Ses moteurs sont ses points faibles.")
 		m.duration = 105
 		m.boss = "bomber"
 		m.boss_health_scale = .58
@@ -51,7 +55,7 @@ static func prepare(source: Dictionary) -> Dictionary:
 	var sector := int(m.sector)
 	m.acts = []
 	for i in range(4):
-		m.acts.append({"time": float(m.duration) * [0.0, .26, .55, .82][i], "title": ACTS[sector][i], "radio": RADIO[i]})
+		m.acts.append({"time": float(m.duration) * [0.0, .26, .55, .82][i], "title": L10N.text(ACTS[sector][i]), "radio": L10N.text(RADIO[i])})
 	var boundary := float(m.duration) * .26
 	var shifted := 0
 	for e in m.events:
@@ -80,12 +84,12 @@ static func prepare(source: Dictionary) -> Dictionary:
 static func _prepare_ocean_identity(m: Dictionary) -> void:
 	var sector := int(m.sector)
 	var plan: Dictionary = OCEAN_PLANS[sector]
-	m.teaching = str(plan.teaching)
+	m.teaching = L10N.text(str(plan.teaching))
 	# A convoy-priority instruction is shown only when a convoy truly spawns.
 	if sector == 1 and m.secondary != "convoy":
-		m.teaching = "Interceptez le bombardier pendant ses traversées ; profitez des arrivées espacées pour ouvrir la route maritime."
+		m.teaching = L10N.text("Interceptez le bombardier pendant ses traversées ; profitez des arrivées espacées pour ouvrir la route maritime.")
 	m.tactical_signature = str(plan.id) + " : " + str(m.teaching)
-	m.boss_teaching = str(BOSS_TEACHING.get(str(m.boss), ""))
+	m.boss_teaching = L10N.text(str(BOSS_TEACHING.get(str(m.boss), "")))
 	m.overlay_warnings = []
 	m.breathing_windows = []
 	for authored in plan.breathers:
@@ -114,7 +118,7 @@ static func _prepare_ocean_identity(m: Dictionary) -> void:
 				break
 		m.convoy_pressure_at = pressure_at
 		if sector != 1:
-			m.teaching += " En escorte, les bombardiers prennent le convoi pour cible."
+			m.teaching += L10N.text(" En escorte, les bombardiers prennent le convoi pour cible.")
 		m.tactical_signature = str(plan.id) + " : " + str(m.teaching)
 	m.events.sort_custom(func(a, b): return float(a.time) < float(b.time))
 	var previous := -100.0
@@ -138,7 +142,7 @@ static func _prepare_ocean_identity(m: Dictionary) -> void:
 	# Do not overwrite the real convoy act: director uses act_index==1 to spawn
 	# the friendly vessel and its initial bomber, regardless of this radio text.
 	for act_index in [0, 2]:
-		m.acts[act_index].radio = "Contrôle : " + (str(m.teaching) if act_index == 0 else (str(m.boss_teaching) if not str(m.boss_teaching).is_empty() else str(m.teaching)))
+		m.acts[act_index].radio = L10N.text("Contrôle : ") + (str(m.teaching) if act_index == 0 else (str(m.boss_teaching) if not str(m.boss_teaching).is_empty() else str(m.teaching)))
 
 static func _prepare_ground_raid(m: Dictionary) -> void:
 	var sector := int(m.sector)
@@ -147,7 +151,7 @@ static func _prepare_ground_raid(m: Dictionary) -> void:
 		push_error("Missing ground layout for sector %d" % sector)
 		return
 	m.ground_assault = true
-	m.title = RAID_TITLES[sector]
+	m.title = L10N.text(RAID_TITLES[sector])
 	m.objective = "ground"
 	m.raid_layout_id = str(layout.id)
 	m.raid_layout_version = int(layout.version)
@@ -177,12 +181,12 @@ static func _prepare_ground_raid(m: Dictionary) -> void:
 	m.secondary_text = str(m.secondary_spec.label)
 	m.radar_text = _radar_ground_text(layout)
 	var priorities := _priority_clause(layout)
-	m.briefing = "Survolez les patrouilles en mer, puis descendez sous les nuages : seule la DCA tire au sol. Objectif : %d installations%s. %s %s Rejoignez ensuite le porte-avions." % [int(layout.quota), priorities, str(layout.learning), m.radar_text]
+	m.briefing = L10N.text("Survolez les patrouilles en mer, puis descendez sous les nuages : seule la DCA tire au sol. Objectif : %d installations%s. %s %s Rejoignez ensuite le porte-avions.") % [int(layout.quota), priorities, str(layout.learning), m.radar_text]
 	m.acts = [
-		{"time": 0.0, "title": "APPROCHE MARITIME", "radio": "Contrôle : patrouilles ennemies entre vous et la côte. Ouvrez le passage !"},
-		{"time": 12.0, "title": "DESCENTE TACTIQUE", "radio": "Leader : vol rasant, la DCA prend le relais. " + str(layout.learning)},
-		{"time": float(m.duration) * .49, "title": str(layout.title).to_upper(), "radio": "Contrôle : " + str(layout.signature)},
-		{"time": float(m.duration) - 17.0, "title": "EXTRACTION VERS LA MER", "radio": "Tour : reprenez de l'altitude. Des chasseurs couvrent le retour : forcez le passage vers le porte-avions !"}
+		{"time": 0.0, "title": L10N.text("APPROCHE MARITIME"), "radio": L10N.text("Contrôle : patrouilles ennemies entre vous et la côte. Ouvrez le passage !")},
+		{"time": 12.0, "title": L10N.text("DESCENTE TACTIQUE"), "radio": L10N.text("Leader : vol rasant, la DCA prend le relais. ") + str(layout.learning)},
+		{"time": float(m.duration) * .49, "title": str(layout.title).to_upper(), "radio": L10N.text("Contrôle : ") + str(layout.signature)},
+		{"time": float(m.duration) - 17.0, "title": L10N.text("EXTRACTION VERS LA MER"), "radio": L10N.text("Tour : reprenez de l'altitude. Des chasseurs couvrent le retour : forcez le passage vers le porte-avions !")}
 	]
 	# These are the same four real approach encounters as in phase 3. The raid
 	# still owns the altitude gate; return interceptions remain director-driven.
@@ -209,34 +213,38 @@ static func _priority_clause(layout: Dictionary) -> String:
 		if bool(target.mobile):
 			mobile_count += 1
 	if tags.has("command_bunker") and required.size() == 1:
-		return ", dont le bunker de commandement"
+		return L10N.text(", dont le bunker de commandement")
 	if tags.has("western_bastion") and tags.has("eastern_bastion") and required.size() == 2:
-		return ", dont les bastions Est et Ouest"
+		return L10N.text(", dont les bastions Est et Ouest")
 	if mobile_count == required.size():
-		return ", dont les %d DCA mobiles d'ouverture" % mobile_count
+		if mobile_count == 1:
+			return L10N.text(", dont la DCA mobile d'ouverture")
+		return L10N.text(", dont les %d DCA mobiles d'ouverture") % mobile_count
 	var labels: Array[String] = []
-	var names := {"battery": ["DCA", "DCA"], "bunker": ["bunker", "bunkers"], "fuel": ["dépôt", "dépôts"], "radar": ["radar", "radars"], "runway": ["hangar", "hangars"]}
+	var names := {"battery": ["canon de DCA", "canons de DCA"], "bunker": ["bunker", "bunkers"], "fuel": ["dépôt", "dépôts"], "radar": ["radar", "radars"], "runway": ["hangar", "hangars"]}
 	for variant in ["battery", "bunker", "fuel", "radar", "runway"]:
 		var count := int(variants.get(variant, 0))
 		if count == 1:
-			labels.append("le %s prioritaire" % str(names[variant][0]))
+			labels.append(L10N.text("le %s prioritaire") % L10N.text(str(names[variant][0])))
 		elif count > 1:
-			labels.append("les %d %s prioritaires" % [count, str(names[variant][1])])
-	return ", dont " + " et ".join(labels)
+			labels.append(L10N.text("les %d %s prioritaires") % [count, L10N.text(str(names[variant][1]))])
+	return L10N.text(", dont ") + L10N.text(" et ").join(labels)
 
 static func _primary_ground_text(layout: Dictionary) -> String:
-	return "Détruire au moins %d installations%s, puis revenir au porte-avions." % [int(layout.quota), _priority_clause(layout)]
+	return L10N.text("Détruire au moins %d installations%s, puis revenir au porte-avions.") % [int(layout.quota), _priority_clause(layout)]
 
 static func _radar_ground_text(layout: Dictionary) -> String:
 	var global_scope := false
 	for group in layout.radar_groups.values():
 		global_scope = global_scope or bool(group.get("global", false))
-	var seconds := ("%.1f" % float(RAID_LAYOUTS.JAM_SECONDS)).replace(".", ",").trim_suffix(",0")
-	return ("Les radars brouillent toute la DCA pendant %s s." if global_scope else "Chaque radar brouille uniquement son réseau pendant %s s.") % seconds
+	var seconds := ("%.1f" % float(RAID_LAYOUTS.JAM_SECONDS)).trim_suffix(".0")
+	if L10N.locale == "fr":
+		seconds = seconds.replace(".", ",")
+	return L10N.text("Les radars brouillent toute la DCA pendant %s s." if global_scope else "Chaque radar brouille uniquement son réseau pendant %s s.") % seconds
 
 static func primary_text(mission: Dictionary) -> String:
 	if mission.get("ground_assault", false):
-		return str(mission.get("primary_text", "Détruire les installations prioritaires et revenir au porte-avions."))
+		return str(mission.get("primary_text", L10N.text("Détruire les installations prioritaires et revenir au porte-avions.")))
 	return ""
 
 static func secondary_text(mission: Dictionary) -> String:
@@ -247,8 +255,8 @@ static func objective_text(kind: String, mission: Dictionary = {}) -> String:
 	# A generic ground-layout label cannot honestly encode eight different goals;
 	# new consumers pass mission or read mission.secondary_text instead.
 	if kind == "ground_layout":
-		return str(mission.get("secondary_label", "Accomplir l'objectif tactique du raid"))
-	return {"formation": "Détruire une escadrille rouge complète", "bomber": "Intercepter un bombardier", "naval": "Couler deux navires", "boss": "Neutraliser les deux points faibles du boss", "convoy": "Protéger le convoi pendant 32 secondes", "radar": "Détruire les deux stations radar"}.get(kind, "")
+		return str(mission.get("secondary_label", L10N.text("Accomplir l'objectif tactique du raid")))
+	return L10N.text({"formation": "Détruire une escadrille rouge complète", "bomber": "Intercepter un bombardier", "naval": "Couler deux navires", "boss": "Neutraliser les deux points faibles du boss", "convoy": "Protéger le convoi pendant 32 secondes", "radar": "Détruire les deux stations radar"}.get(kind, ""))
 
 # Implemented here: metadata/text from eight authored layouts;
 # sector-specific roles, existing fighter kinds and recovery entry windows;

@@ -1,8 +1,18 @@
-# Pacific Strike Ultimate 2.2 — Campagne 1942
+# Pacific Strike Ultimate 2.3 — Campagne 1942
 
 Campagne solo de **32 missions** sous Godot 4.7.2, sur la branche `jeu_toppissime` : huit secteurs, huit combats de boss à trois phases, avions 3D low poly, océan et raids terrestres. Le jeu occupe toute la largeur avec deux fines bandes de HUD, soit 90 % de la surface de l'écran. Menus, hangar, améliorations permanentes, trois difficultés, médailles et sauvegarde automatique.
 
 ## Lancer
+
+Version **2.3.0 Ultimate** : jeu disponible en **français et en anglais**.
+Choisir « Français / English » à l'accueil, ou **Options > Langue / Language**.
+Le changement est immédiat, y compris depuis la pause, et mémorisé dans le profil.
+Les anciennes sauvegardes conservent le français et toute leur progression.
+Les catalogues sont dans `game/data/localization/` ; la traduction couvre menus,
+missions, radio, HUD, raids, équipements, aides et résultats.
+Manuel anglais : `docs/player-guide-en.txt` (livré aussi dans la distribution).
+Validation : `docs/validation/localisation-2.3.txt`. Maintenance des traductions :
+`docs/localisation.txt`.
 
 Version **2.2.0 Ultimate** : écume animée le long des plages et des rochers,
 ressac irrégulier, reflets de houle et nuages dispersés sur toute la largeur.

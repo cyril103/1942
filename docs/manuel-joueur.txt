@@ -1,8 +1,15 @@
 PACIFIC STRIKE ULTIMATE — CAMPAGNE 1942
-Version 2.2.0 — Ressac côtier, océan, nuages dispersés et hangar 3D.
+Version 2.3.0 — Français / English, campagne et Boss Rush.
 
 Double-cliquer sur PacificStrike.exe. Aucune installation de Godot nécessaire.
 Windows x64, rendu OpenGL 3.3. Jouable au clavier et à la manette.
+
+LANGUE / LANGUAGE
+Le jeu démarre en français. Le choix Français / English est accessible dès
+l'accueil et dans Options > Langue / Language, également depuis la pause.
+Le changement s'applique immédiatement et reste mémorisé au prochain lancement.
+La progression, les commandes et la mission en cours restent conservées.
+Le manuel anglais est fourni dans README-English.txt.
 
 NOUVEAUTÉS VISUELLES 2.2
 Les vagues dessinent une écume animée et irrégulière autour des côtes.

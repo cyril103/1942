@@ -1,4 +1,5 @@
 extends Node3D
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Test encounter director. Enemy bodies are freed; bullets and VFX have fixed pools.
 const EXPLOSION := preload("res://scripts/explosion_effect.gd")
 const HAYABUSA := preload("res://scripts/enemy_hayabusa.gd")
@@ -530,7 +531,7 @@ func _build_hud() -> void:
 	panel.add_theme_stylebox_override("panel", style)
 	death_panel.add_child(panel)
 	var label := Label.new()
-	label.text = "AVION DÉTRUIT\n\nR — Recommencer le test\nÉchap — Quitter"
+	label.text = L10N.text("AVION DÉTRUIT\n\nR — Recommencer le test\nÉchap — Quitter")
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.add_theme_font_size_override("font_size", 28)
 	panel.add_child(label)
@@ -539,9 +540,9 @@ func _build_hud() -> void:
 
 func _update_hud() -> void:
 	if not started:
-		hud.text = "TEST COMBAT  •  Décollage\nFlèches : piloter   Espace : tirer   R : recommencer"
+		hud.text = L10N.text("TEST COMBAT  •  Décollage\nFlèches : piloter   Espace : tirer   R : recommencer")
 	else:
-		hud.text = "VAGUE %d  •  %d ABATTUS  •  %s\nEspace : tirer   R : recommencer" % [wave_count, kills, "TEST TERMINÉ" if game_over else "PROCHAINE : %ds" % ceili(maxf(0, next_wave))]
+		hud.text = L10N.text("VAGUE %d  •  %d ABATTUS  •  %s\nEspace : tirer   R : recommencer") % [wave_count, kills, L10N.text("TEST TERMINÉ") if game_over else L10N.text("PROCHAINE : %ds") % ceili(maxf(0, next_wave))]
 
 func spawn_special() -> void:
 	if not aircraft_enabled: return

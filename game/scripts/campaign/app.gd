@@ -1,4 +1,5 @@
 extends Control
+const L10N := preload("res://scripts/campaign/localization.gd")
 const PROFILE := preload("res://scripts/campaign/profile.gd")
 const DIRECTOR := preload("res://scripts/campaign/director.gd")
 const HUD := preload("res://scripts/campaign/hud.gd")
@@ -53,55 +54,53 @@ func _apply_bindings() -> void:
 
 func _show_bindings() -> void:
 	page = "bindings"
-	_clear_menu("COMMANDES","Sélectionnez une action puis appuyez sur une touche. Échap annule. Manette : stick / A / B / X / LB.")
+	_clear_menu(L10N.text("COMMANDES"),L10N.text("Sélectionnez une action puis appuyez sur une touche. Échap annule. Manette : stick / A / B / X / LB."))
 	var i := 0
 	for action in BIND_NAMES:
-		var label := ""
-		for event in InputMap.action_get_events(action):
-			if event is InputEventKey: label += (" / " if label!="" else "")+OS.get_keycode_string(event.keycode)
-		_button(BIND_NAMES[action]+"  :  "+label,Vector2(94+(i%2)*860,290+(i/2)*125),Vector2(810,76),func(): waiting_binding=action; notice.text="Appuyez sur la nouvelle touche pour "+BIND_NAMES[action])
+		var label := " / ".join(COMMANDS.keys(action))
+		_button(L10N.text(BIND_NAMES[action])+"  :  "+label,Vector2(94+(i%2)*860,290+(i/2)*125),Vector2(810,76),func(): waiting_binding=action; notice.text=L10N.text("Appuyez sur la nouvelle touche pour ")+L10N.text(BIND_NAMES[action]))
 		i += 1
 	var automatic := CheckButton.new()
 	automatic.name = "AutomaticFire"
-	automatic.text = "TIR AUTOMATIQUE  /  libère la touche de tir pendant le vol"
+	automatic.text = L10N.text("TIR AUTOMATIQUE  /  libère la touche de tir pendant le vol")
 	automatic.position = Vector2(94,786)
 	automatic.size = Vector2(1600,52)
 	automatic.button_pressed = bool(profile.data.settings.get("auto_fire",false))
 	automatic.toggled.connect(func(value): profile.data.settings.auto_fire=value; _apply_settings(); _save())
 	design.add_child(automatic)
-	_button("RÉTABLIR",Vector2(94,862),Vector2(330,60),func():
+	_button(L10N.text("RÉTABLIR"),Vector2(94,862),Vector2(330,60),func():
 		profile.data.bindings.clear()
 		for action in BIND_NAMES:
 			for event in InputMap.action_get_events(action):
 				if event is InputEventKey: InputMap.action_erase_event(action,event)
 		_bind_controls(); _save(); _show_bindings())
-	_button("RETOUR",Vector2(454,862),Vector2(330,60),func(): _show_settings(settings_from_pause))
+	_button(L10N.text("RETOUR"),Vector2(454,862),Vector2(330,60),func(): _show_settings(settings_from_pause))
 	_focus_first()
 
 func _show_graphics() -> void:
 	page = "graphics"
-	_clear_menu("GRAPHISMES & CONFORT","Les effets utilisent des capacités fixes. Choisissez le compromis adapté à votre écran.")
+	_clear_menu(L10N.text("GRAPHISMES & CONFORT"),L10N.text("Les effets utilisent des capacités fixes. Choisissez le compromis adapté à votre écran."))
 	for i in range(3):
-		_button(("✓  " if int(profile.data.settings.get("quality",1))==i else "")+["PERFORMANCE","ÉQUILIBRÉ","QUALITÉ"][i],Vector2(94+i*560,320),Vector2(520,80),func(): profile.data.settings.quality=i; _apply_graphics(); _save(); _show_graphics())
-	_label("Performance : sans ombres dynamiques ni débris, anti-crénelage désactivé.\nÉquilibré : ombres, débris et anti-crénelage 2×.\nQualité : anti-crénelage 4×. Le gameplay et les nuages restent identiques.",Vector2(94,450),Vector2(1640,180),31,MUTED)
+		_button(("✓  " if int(profile.data.settings.get("quality",1))==i else "")+[L10N.text("PERFORMANCE"),L10N.text("ÉQUILIBRÉ"),L10N.text("QUALITÉ")][i],Vector2(94+i*560,320),Vector2(520,80),func(): profile.data.settings.quality=i; _apply_graphics(); _save(); _show_graphics())
+	_label(L10N.text("Performance : sans ombres dynamiques ni débris, anti-crénelage désactivé.\nÉquilibré : ombres, débris et anti-crénelage 2×.\nQualité : anti-crénelage 4×. Le gameplay et les nuages restent identiques."),Vector2(94,450),Vector2(1640,180),31,MUTED)
 	for i in range(2):
 		var key: String = ["vsync","fps"][i]
 		var check := CheckButton.new()
-		check.text = ["Synchronisation verticale","Afficher les FPS"][i]
+		check.text = [L10N.text("Synchronisation verticale"),L10N.text("Afficher les FPS")][i]
 		check.position = Vector2(94+i*700,700)
 		check.button_pressed = profile.data.settings.get(key,true if i==0 else false)
 		check.toggled.connect(func(value): profile.data.settings[key]=value; _apply_settings(); _save())
 		design.add_child(check)
 	var short_intro := CheckButton.new()
 	short_intro.name = "ShortRetryIntro"
-	short_intro.text = "Stabilisation courte après un décollage déjà vu"
+	short_intro.text = L10N.text("Stabilisation courte après un décollage déjà vu")
 	short_intro.position = Vector2(94,768)
 	short_intro.size = Vector2(1160,56)
 	short_intro.button_pressed = bool(profile.data.settings.get("short_retry_intro",false))
 	short_intro.toggled.connect(func(value): profile.data.settings.short_retry_intro=value; _apply_settings(); _save())
 	design.add_child(short_intro)
-	_label("Première découverte : décollage complet depuis le porte-avions. Réessayer : stabilisation de 1,6 s si activée.\nSans effet en entraînement aux boss. Le retour au porte-avions reste complet.",Vector2(94,833),Vector2(1670,71),25,MUTED).name = "ShortRetryExplanation"
-	_button("RETOUR",Vector2(94,946),Vector2(330,55),func(): _show_settings(settings_from_pause))
+	_label(L10N.text("Première découverte : décollage complet depuis le porte-avions. Réessayer : stabilisation de 1,6 s si activée.\nSans effet en entraînement aux boss. Le retour au porte-avions reste complet."),Vector2(94,833),Vector2(1670,71),25,MUTED).name = "ShortRetryExplanation"
+	_button(L10N.text("RETOUR"),Vector2(94,946),Vector2(330,55),func(): _show_settings(settings_from_pause))
 	_focus_first()
 
 func _apply_graphics() -> void:
@@ -117,16 +116,16 @@ func _apply_graphics() -> void:
 
 func _show_challenges(mode: String) -> void:
 	page = "challenges"
-	_clear_menu("ARCADE  /  SCORE ATTACK" if mode=="arcade" else "ÉCOLE DE CHASSE  /  BOSS","Équipement fixe, difficulté Pilote. Aucun changement à la progression de votre campagne.")
+	_clear_menu(L10N.text("ARCADE  /  SCORE ATTACK") if mode=="arcade" else L10N.text("ÉCOLE DE CHASSE  /  BOSS"),L10N.text("Équipement fixe, difficulté Pilote. Aucun changement à la progression de votre campagne."))
 	var index := 0
 	for m in missions:
 		if mode=="practice" and m.boss=="": continue
 		var key := "%d:%d" % [int(m.id),profile.data.aircraft]
-		var label := "%02d  /  %s\n%s" % [int(m.id),m.title,"RECORD  %08d" % int(profile.data.arcade_records.get(key,0)) if mode=="arcade" else "ENTRAÎNEMENT  /  MULTI-TIR"]
+		var label := "%02d  /  %s\n%s" % [int(m.id),m.title,L10N.text("RECORD  %08d") % int(profile.data.arcade_records.get(key,0)) if mode=="arcade" else L10N.text("ENTRAÎNEMENT  /  MULTI-TIR")]
 		var button := _button(label,Vector2(94+(index%4)*437,270+(index/4)*80),Vector2(418,72),_start_mode.bind(mode,int(m.id)))
 		button.add_theme_font_size_override("font_size",19)
 		index += 1
-	_button("RETOUR",Vector2(94,944),Vector2(300,56),_show_main)
+	_button(L10N.text("RETOUR"),Vector2(94,944),Vector2(300,56),_show_main)
 	_focus_first()
 
 func _start_mode(mode: String, number: int) -> void:
@@ -148,10 +147,14 @@ func _campaign_context(number: int) -> void:
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	# Explicit source-key translation is applied before formatting. Disable
+	# Godot's automatic second pass for this entire UI and its child controls.
+	auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	get_tree().auto_accept_quit = false
-	missions = JSON.parse_string(FileAccess.get_file_as_string("res://data/missions.json"))
-	for i in range(missions.size()): missions[i] = preload("res://scripts/campaign/operations.gd").prepare(missions[i])
 	profile.load_profile()
+	L10N.set_locale(str(profile.data.settings.get("language","fr")))
+	_update_window_title()
+	_prepare_missions()
 	_bind_controls()
 	_apply_bindings()
 	_setup_audio()
@@ -181,6 +184,50 @@ func _ready() -> void:
 	_layout()
 	_apply_settings()
 	_show_main()
+
+func _prepare_missions() -> void:
+	# Always begin with canonical data: prepared briefings contain translated
+	# text and cannot safely be used as the source for a second language.
+	missions = JSON.parse_string(FileAccess.get_file_as_string("res://data/missions.json"))
+	for i in range(missions.size()):
+		missions[i] = preload("res://scripts/campaign/operations.gd").prepare(missions[i])
+
+func _update_window_title() -> void:
+	if DisplayServer.get_name()!="headless":
+		DisplayServer.window_set_title(L10N.text("Pacific Strike — Campagne 1942"))
+
+func _set_language(code: String) -> void:
+	if code not in L10N.SUPPORTED: return
+	if code == L10N.locale and profile.data.settings.get("language","fr") == code: return
+	var focus_name := ""
+	var focused := get_viewport().gui_get_focus_owner()
+	if is_instance_valid(focused): focus_name = str(focused.name)
+	L10N.set_locale(code)
+	_update_window_title()
+	profile.data.settings.language = L10N.locale
+	if is_instance_valid(session_profile) and session_profile!=profile:
+		session_profile.data.settings.language = L10N.locale
+	_prepare_missions()
+	if is_instance_valid(director):
+		# Refresh narrative data only. Keep combat, timers, equipment and score.
+		for mission in missions:
+			if int(mission.id)==int(director.mission.id):
+				director.mission = mission.duplicate(true)
+				break
+		director.refresh_localization()
+	if page=="settings": _show_settings(settings_from_pause)
+	elif page=="main": _show_main()
+	if not focus_name.is_empty():
+		var restored := design.find_child(focus_name,true,false) as Control
+		if is_instance_valid(restored): restored.grab_focus()
+	_save()
+
+func _mode_label() -> String:
+	match play_mode:
+		"campaign": return L10N.text("CAMPAGNE")
+		"practice": return L10N.text("ENTRAÎNEMENT")
+		"boss_rush": return "BOSS RUSH"
+		_: return "ARCADE"
 
 func _layout() -> void:
 	if not is_instance_valid(design): return
@@ -271,7 +318,7 @@ func _clear_menu(title: String, subtitle: String, dark := true) -> void:
 	rule.size = Vector2(1732,1)
 	rule.color = Color("6a6957")
 	design.add_child(rule)
-	notice = _label("FLÈCHES / MANETTE  •  ENTRÉE POUR VALIDER  •  ÉCHAP POUR REVENIR",Vector2(94,1010),Vector2(1700,35),21,MUTED)
+	notice = _label(L10N.text("FLÈCHES / MANETTE  •  ENTRÉE POUR VALIDER  •  ÉCHAP POUR REVENIR"),Vector2(94,1010),Vector2(1700,35),21,MUTED)
 
 func _label(text: String, position_at: Vector2, dimensions: Vector2, font_size := 26, color := Color.WHITE, title := false) -> Label:
 	var label := Label.new()
@@ -315,14 +362,14 @@ func _focus_first() -> void:
 
 func _save() -> void:
 	if testing: return
-	if profile.save() != OK and is_instance_valid(notice): notice.text = "SAUVEGARDE IMPOSSIBLE — progression conservée pour cette session."
+	if profile.save() != OK and is_instance_valid(notice): notice.text = L10N.text("SAUVEGARDE IMPOSSIBLE — progression conservée pour cette session.")
 
 func _show_main() -> void:
 	_dispose_run()
 	page = "main"
 	_campaign_context(int(profile.data.next_mission))
 	if is_instance_valid(music): music.set_mode("menu")
-	_clear_menu("PACIFIC STRIKE", "ULTIMATE 2.2  /  CAMPAGNE 1942  /  32 MISSIONS  /  8 SECTEURS",false)
+	_clear_menu("PACIFIC STRIKE", L10N.text("ULTIMATE 2.3  /  CAMPAGNE 1942  /  32 MISSIONS  /  8 SECTEURS"),false)
 	var radar := preload("res://scripts/campaign/title_radar.gd").new()
 	radar.name = "PacificOperationsRadar"
 	radar.position = Vector2(680,242)
@@ -330,55 +377,59 @@ func _show_main() -> void:
 	radar.reduced_motion = not bool(profile.data.settings.shake)
 	design.add_child(radar)
 	var completed: int = profile.data.records.size()
-	_label("CHAQUE ESQUIVE\nCOMPTE.",Vector2(94,266),Vector2(900,190),64,GOLD,true)
-	_label("Frôlez le danger. Brisez leurs formations.\nDes récifs du Pacifique au dernier rempart,\nla maîtrise fait la différence.",Vector2(96,470),Vector2(660,110),29,Color("d5dfe0"))
-	_button("COMMENCER LA CAMPAGNE" if profile.data.records.is_empty() else "REPRENDRE  /  MISSION %02d" % profile.data.next_mission,Vector2(94,590),Vector2(490,62),func(): _show_briefing(profile.data.next_mission))
-	_button("CARTE DES MISSIONS",Vector2(94,670),Vector2(490,56),_show_missions)
-	_button("HANGAR & AMÉLIORATIONS",Vector2(94,744),Vector2(490,56),_show_hangar)
-	_button("OPTIONS",Vector2(94,818),Vector2(235,54),func(): _show_settings(false))
-	_button("CRÉDITS",Vector2(349,818),Vector2(235,54),_show_credits)
-	_button("QUITTER",Vector2(94,892),Vector2(490,54),_quit)
-	_label("L'ÉPREUVE ULTIME",Vector2(1290,294),Vector2(510,44),25,GOLD)
-	_label("8 BOSS.\n3 VIES.\nUNE SEULE CHANCE.",Vector2(1290,346),Vector2(510,165),41,Color("f1ede2"),true)
-	_button("BOSS RUSH  /  ENTRER DANS L'ARÈNE",Vector2(1290,534),Vector2(510,62),_show_boss_rush).name = "BossRushEntry"
-	_button("ARCADE  /  SCORE ATTACK",Vector2(1290,612),Vector2(510,58),_show_challenges.bind("arcade"))
-	_button("ENTRAÎNEMENT AUX BOSS",Vector2(1290,686),Vector2(510,58),_show_challenges.bind("practice"))
-	_button("GUIDE DU PILOTE",Vector2(1290,760),Vector2(510,54),_show_pilot_guide)
-	_label("%02d / 32 MISSIONS  •  %d PIÈCES\nRECORD CAMPAGNE  %08d" % [completed,profile.data.credits,profile.data.high_score],Vector2(1290,842),Vector2(520,90),26,Color("dae5e7"))
-	if not profile.data.records.is_empty() or profile.last_error==ERR_FILE_CORRUPT: _button("NOUVELLE CAMPAGNE",Vector2(1290,950),Vector2(510,52),_confirm_new_campaign)
-	if profile.last_error==ERR_FILE_CORRUPT: notice.text = "SAUVEGARDE ILLISIBLE — fichiers conservés. Progression non enregistrée. Nouvelle campagne permet de repartir après confirmation."
+	_label(L10N.text("CHAQUE ESQUIVE\nCOMPTE."),Vector2(94,266),Vector2(900,190),64,GOLD,true)
+	_label(L10N.text("Frôlez le danger. Brisez leurs formations.\nDes récifs du Pacifique au dernier rempart,\nla maîtrise fait la différence."),Vector2(96,470),Vector2(660,110),29,Color("d5dfe0"))
+	_button(L10N.text("COMMENCER LA CAMPAGNE") if profile.data.records.is_empty() else L10N.text("REPRENDRE  /  MISSION %02d") % profile.data.next_mission,Vector2(94,590),Vector2(490,62),func(): _show_briefing(profile.data.next_mission))
+	_button(L10N.text("CARTE DES MISSIONS"),Vector2(94,670),Vector2(490,56),_show_missions)
+	_button(L10N.text("HANGAR & AMÉLIORATIONS"),Vector2(94,744),Vector2(490,56),_show_hangar)
+	_button(L10N.text("OPTIONS"),Vector2(94,818),Vector2(235,54),func(): _show_settings(false))
+	_button(L10N.text("CRÉDITS"),Vector2(349,818),Vector2(235,54),_show_credits)
+	_button(L10N.text("QUITTER"),Vector2(94,892),Vector2(490,54),_quit)
+	_label(L10N.text("L'ÉPREUVE ULTIME"),Vector2(1290,294),Vector2(510,44),25,GOLD)
+	_label(L10N.text("8 BOSS.\n3 VIES.\nUNE SEULE CHANCE."),Vector2(1290,346),Vector2(510,165),41,Color("f1ede2"),true)
+	_button(L10N.text("BOSS RUSH  /  ENTRER DANS L'ARÈNE"),Vector2(1290,534),Vector2(510,62),_show_boss_rush).name = "BossRushEntry"
+	_button(L10N.text("ARCADE  /  SCORE ATTACK"),Vector2(1290,612),Vector2(510,58),_show_challenges.bind("arcade"))
+	_button(L10N.text("ENTRAÎNEMENT AUX BOSS"),Vector2(1290,686),Vector2(510,58),_show_challenges.bind("practice"))
+	_button(L10N.text("GUIDE DU PILOTE"),Vector2(1290,760),Vector2(510,54),_show_pilot_guide)
+	_label(L10N.text("%02d / 32 MISSIONS  •  %d PIÈCES\nRECORD CAMPAGNE  %08d") % [completed,profile.data.credits,profile.data.high_score],Vector2(1290,842),Vector2(520,90),26,Color("dae5e7"))
+	if not profile.data.records.is_empty() or profile.last_error==ERR_FILE_CORRUPT: _button(L10N.text("NOUVELLE CAMPAGNE"),Vector2(1290,950),Vector2(510,52),_confirm_new_campaign)
+	if profile.last_error==ERR_FILE_CORRUPT: notice.text = L10N.text("SAUVEGARDE ILLISIBLE — fichiers conservés. Progression non enregistrée. Nouvelle campagne permet de repartir après confirmation.")
+	var language := _button("Français  /  English",Vector2(1470,81),Vector2(330,52),func(): _set_language("en" if L10N.locale=="fr" else "fr"))
+	language.name = "LanguageMenu"
+	language.tooltip_text = "Switch to English" if L10N.locale=="fr" else "Passer en français"
+	language.add_theme_font_size_override("font_size",23)
 	_focus_first()
 
 func _show_pilot_guide() -> void:
 	page = "pilot_guide"
-	_clear_menu("GUIDE DU PILOTE","LE VOL EST SIMPLE À PRENDRE EN MAIN. LA MAÎTRISE SE CONSTRUIT À CHAQUE SORTIE.")
-	_label("01  /  PILOTER",Vector2(94,282),Vector2(790,52),32,GOLD,true)
+	_clear_menu(L10N.text("GUIDE DU PILOTE"),L10N.text("LE VOL EST SIMPLE À PRENDRE EN MAIN. LA MAÎTRISE SE CONSTRUIT À CHAQUE SORTIE."))
+	_label(L10N.text("01  /  PILOTER"),Vector2(94,282),Vector2(790,52),32,GOLD,true)
 	_label(COMMANDS.flight_guide(),Vector2(94,352),Vector2(790,340),31,Color("d4dfe1"))
-	_label("02  /  LIRE LE DANGER",Vector2(1000,282),Vector2(800,52),32,GOLD,true)
-	_label("Vos tirs sont cyan. Les tirs ennemis sont orangés.\nMaintenez la précision pour ajuster votre trajectoire et voir le centre vulnérable de votre avion.\n\nLe HUD annonce le motif du boss et un conseil pour l'éviter. Observez sa charge, puis esquivez les projectiles. Détruisez ses deux points faibles pour réduire sa puissance.",Vector2(1000,352),Vector2(800,310),29,Color("d4dfe1"))
-	_label("03  /  FRÔLER & ENCHAÎNER",Vector2(94,729),Vector2(1660,48),32,GOLD,true)
-	_label("Un projectile évité de très près rapporte 25 points et jusqu'à 0,6 % de charge spéciale, une seule fois par balle.\nDétruisez à nouveau en 4,5 s pour entretenir votre chaîne, jusqu'à ×5. Utilisez votre bombe avant d'être encerclé.",Vector2(94,800),Vector2(1660,100),29,MUTED)
-	_button("RETOUR À L'ACCUEIL",Vector2(94,942),Vector2(440,58),_show_main)
+	_label(L10N.text("02  /  LIRE LE DANGER"),Vector2(1000,282),Vector2(800,52),32,GOLD,true)
+	_label(L10N.text("Vos tirs sont cyan. Les tirs ennemis sont orangés.\nMaintenez la précision pour ajuster votre trajectoire et voir le centre vulnérable de votre avion.\n\nLe HUD annonce le motif du boss et un conseil pour l'éviter. Observez sa charge, puis esquivez les projectiles. Détruisez ses deux points faibles pour réduire sa puissance."),Vector2(1000,352),Vector2(800,310),29,Color("d4dfe1"))
+	_label(L10N.text("03  /  FRÔLER & ENCHAÎNER"),Vector2(94,729),Vector2(1660,48),32,GOLD,true)
+	_label(L10N.text("Un projectile évité de très près rapporte 25 points et jusqu'à 0,6 % de charge spéciale, une seule fois par balle.\nDétruisez à nouveau en 4,5 s pour entretenir votre chaîne, jusqu'à ×5. Utilisez votre bombe avant d'être encerclé."),Vector2(94,800),Vector2(1660,100),29,MUTED)
+	_button(L10N.text("RETOUR À L'ACCUEIL"),Vector2(94,942),Vector2(440,58),_show_main)
 	_focus_first()
 
 func _show_boss_rush() -> void:
 	page = "boss_rush"
-	_clear_menu("BOSS RUSH  /  LA TRAVERSÉE","HUIT ADVERSAIRES. UN STOCK DE VIES COMMUN. LE DÉFI EST OUVERT DÈS LE PREMIER VOL.")
+	_clear_menu(L10N.text("BOSS RUSH  /  LA TRAVERSÉE"),L10N.text("HUIT ADVERSAIRES. UN STOCK DE VIES COMMUN. LE DÉFI EST OUVERT DÈS LE PREMIER VOL."))
 	var boss_script := preload("res://scripts/campaign/boss.gd")
 	for index in range(boss_rush.ROUTE.size()):
 		var mission: Dictionary = missions[boss_rush.ROUTE[index]-1]
 		var at := Vector2(94+(index%4)*437,286+(index/4)*164)
 		_label("%02d  /  %s" % [index+1,str(mission.region).to_upper()],at,Vector2(402,40),22,MUTED)
-		_label(str(boss_script.NAMES[mission.boss]).split(" • ")[0],at+Vector2(0,48),Vector2(402,53),32,GOLD,true)
+		_label(boss_script.display_name(mission.boss).split(" • ")[0],at+Vector2(0,48),Vector2(402,53),32,GOLD,true)
 		_label(str(mission.title),at+Vector2(0,100),Vector2(402,48),22,Color("d4dfe1"))
-	_label("VOTRE APPAREIL",Vector2(94,656),Vector2(650,45),25,GOLD)
+	_label(L10N.text("VOTRE APPAREIL"),Vector2(94,656),Vector2(650,45),25,GOLD)
 	for index in range(3):
 		_button(("✓  " if int(profile.data.aircraft)==index else "")+PROFILE.AIRCRAFT[index],Vector2(94+index*570,714),Vector2(542,57),func(): profile.data.aircraft=index; _save(); _show_boss_rush())
 	var record := int(profile.data.arcade_records.get("rush:%d" % profile.data.aircraft,0))
-	_label("Difficulté Pilote • Multi-tir • Aucun module • Blindage et bombes restaurés entre les duels.\nLes vies et le score se conservent. Recommencer relance les huit boss. Record validé après la traversée complète.",Vector2(94,801),Vector2(1720,89),27,MUTED)
-	_button("LANCER LA TRAVERSÉE",Vector2(94,938),Vector2(540,62),_begin_boss_rush).name = "StartBossRush"
-	_button("RETOUR",Vector2(665,938),Vector2(280,62),_show_main)
-	_label("RECORD  %08d" % record,Vector2(1200,943),Vector2(600,50),30,GOLD)
+	_label(L10N.text("Difficulté Pilote • Multi-tir • Aucun module • Blindage et bombes restaurés entre les duels.\nLes vies et le score se conservent. Recommencer relance les huit boss. Record validé après la traversée complète."),Vector2(94,801),Vector2(1720,89),27,MUTED)
+	_button(L10N.text("LANCER LA TRAVERSÉE"),Vector2(94,938),Vector2(540,62),_begin_boss_rush).name = "StartBossRush"
+	_button(L10N.text("RETOUR"),Vector2(665,938),Vector2(280,62),_show_main)
+	_label(L10N.text("RECORD  %08d") % record,Vector2(1200,943),Vector2(600,50),30,GOLD)
 	_focus_first()
 
 func _begin_boss_rush() -> void:
@@ -391,11 +442,11 @@ func _next_boss_rush() -> void:
 func _show_missions() -> void:
 	_campaign_context(selected_mission)
 	page = "missions"
-	_clear_menu("CARTE DES OPÉRATIONS","Huit secteurs. Les missions accomplies restent rejouables pour améliorer leur médaille.")
+	_clear_menu(L10N.text("CARTE DES OPÉRATIONS"),L10N.text("Huit secteurs. Les missions accomplies restent rejouables pour améliorer leur médaille."))
 	for i in range(32):
 		var m: Dictionary = missions[i]
 		var record: Dictionary = profile.data.records.get(str(i+1),{})
-		var medal: String = ["—","BRONZE","ARGENT","OR"][int(record.get("grade",0))]
+		var medal: String = ["—",L10N.text("BRONZE"),L10N.text("ARGENT"),L10N.text("OR")][int(record.get("grade",0))]
 		var text := "%02d  /  %s\n%s\n%s" % [i+1,str(m.region).to_upper(),m.title,medal]
 		var button := _button(text,Vector2(94+(i%4)*437,256+(i/4)*81),Vector2(418,72),_show_briefing.bind(i+1),i+1>profile.data.unlocked)
 		button.add_theme_font_size_override("font_size",18)
@@ -404,7 +455,7 @@ func _show_missions() -> void:
 			style.content_margin_top = 2
 			style.content_margin_bottom = 2
 			button.add_theme_stylebox_override(state,style)
-	_button("RETOUR",Vector2(94,936),Vector2(260,56),_show_main)
+	_button(L10N.text("RETOUR"),Vector2(94,936),Vector2(260,56),_show_main)
 	_focus_first()
 
 func _show_briefing(number: int) -> void:
@@ -419,7 +470,7 @@ func _show_briefing(number: int) -> void:
 func _show_hangar() -> void:
 	_campaign_context(selected_mission)
 	page = "hangar"
-	_clear_menu("HANGAR D'ESCADRILLE","APPAREILS & RANGS  /  STATISTIQUES SANS POW, AVEC VOTRE ÉQUIPEMENT")
+	_clear_menu(L10N.text("HANGAR D'ESCADRILLE"),L10N.text("APPAREILS & RANGS  /  STATISTIQUES SANS POW, AVEC VOTRE ÉQUIPEMENT"))
 	preload("res://scripts/campaign/carrier_menu.gd").new().hangar(self)
 	var assigned_aircraft: Button = design.get_node("SelectAircraft_%d" % int(profile.data.aircraft))
 	assigned_aircraft.grab_focus()
@@ -432,20 +483,20 @@ func _select_aircraft(index: int) -> void:
 func _show_aircraft_gallery(index := -1) -> void:
 	page = "aircraft_gallery"
 	var shown := int(profile.data.aircraft) if index<0 else clampi(index,0,2)
-	_clear_menu("LES AILES DU PACIFIQUE","HANGAR  /  INSPECTION DES APPAREILS  /  TROIS VUES DISPONIBLES")
+	_clear_menu(L10N.text("LES AILES DU PACIFIQUE"),L10N.text("HANGAR  /  INSPECTION DES APPAREILS  /  TROIS VUES DISPONIBLES"))
 	preload("res://scripts/campaign/carrier_menu.gd").new().gallery(self,shown)
 	_focus_first()
 
 func _buy(index: int) -> void:
 	var purchased: bool = profile.buy_upgrade(index)
 	_show_hangar()
-	if not purchased and profile.last_error != OK: notice.text = "Achat annulé : la sauvegarde n’a pas pu être écrite."
+	if not purchased and profile.last_error != OK: notice.text = L10N.text("Achat annulé : la sauvegarde n’a pas pu être écrite.")
 
 func _show_modules(group := -1, focus_id := "") -> void:
 	_campaign_context(selected_mission)
 	if group>=0: module_group = clampi(group,0,4)
 	page = "modules"
-	_clear_menu("ATELIER D'ÉQUIPEMENT","DEUX EMPLACEMENTS MAXIMUM  /  UN MODULE PAR FAMILLE  /  CHANGEMENTS GRATUITS ENTRE LES MISSIONS")
+	_clear_menu(L10N.text("ATELIER D'ÉQUIPEMENT"),L10N.text("DEUX EMPLACEMENTS MAXIMUM  /  UN MODULE PAR FAMILLE  /  CHANGEMENTS GRATUITS ENTRE LES MISSIONS"))
 	preload("res://scripts/campaign/carrier_menu.gd").new().modules(self)
 	_focus_first()
 	if focus_id.is_empty(): focus_id = "ModuleTab_%d" % module_group
@@ -456,18 +507,18 @@ func _show_modules(group := -1, focus_id := "") -> void:
 func _show_rules(from_page := "briefing") -> void:
 	rules_from = from_page
 	page = "rules"
-	_clear_menu("GUIDE DE VOL  /  SCORE & MAÎTRISE","RÈGLES DE CAMPAGNE  /  LA MÉDAILLE ET LE RANG ÉVALUENT DES CRITÈRES DIFFÉRENTS")
+	_clear_menu(L10N.text("GUIDE DE VOL  /  SCORE & MAÎTRISE"),L10N.text("RÈGLES DE CAMPAGNE  /  LA MÉDAILLE ET LE RANG ÉVALUENT DES CRITÈRES DIFFÉRENTS"))
 	preload("res://scripts/campaign/carrier_menu.gd").new().scoring_guide(self)
-	_button("RETOUR AU BRIEFING" if rules_from=="briefing" else "RETOUR AU BILAN",Vector2(94,946),Vector2(440,55),_return_from_rules).name = "RulesReturn"
+	_button(L10N.text("RETOUR AU BRIEFING") if rules_from=="briefing" else L10N.text("RETOUR AU BILAN"),Vector2(94,946),Vector2(440,55),_return_from_rules).name = "RulesReturn"
 	_focus_first()
 
 func _show_criteria() -> void:
 	if result.is_empty() or not is_instance_valid(director): return
 	page = "criteria"
-	_clear_menu("DÉBRIEFING  /  MÉDAILLE & RANG","MISSION %02d  /  %s  /  %s" % [selected_mission,director.mission.title,play_mode.to_upper()])
+	_clear_menu(L10N.text("DÉBRIEFING  /  MÉDAILLE & RANG"),"MISSION %02d  /  %s  /  %s" % [selected_mission,director.mission.title,_mode_label()])
 	preload("res://scripts/campaign/carrier_menu.gd").new().scoring_criteria(self,result)
-	_button("RETOUR AU RÉSULTAT",Vector2(94,946),Vector2(440,55),_draw_result.bind(result)).name = "CriteriaReturn"
-	_button("GUIDE DE SCORE",Vector2(559,946),Vector2(440,55),_show_rules.bind("criteria")).name = "CriteriaRules"
+	_button(L10N.text("RETOUR AU RÉSULTAT"),Vector2(94,946),Vector2(440,55),_draw_result.bind(result)).name = "CriteriaReturn"
+	_button(L10N.text("GUIDE DE SCORE"),Vector2(559,946),Vector2(440,55),_show_rules.bind("criteria")).name = "CriteriaRules"
 	_focus_first()
 
 func _return_from_rules() -> void:
@@ -477,22 +528,22 @@ func _return_from_rules() -> void:
 func _buy_module(id: String) -> void:
 	var purchased: bool = profile.buy_module(id)
 	_show_modules(-1,"EquipModule_"+id if purchased else "BuyModule_"+id)
-	if purchased: notice.text = "MODULE ACQUIS — équipez-le sur un emplacement libre."
-	elif profile.last_error!=OK: notice.text = "Achat annulé : la sauvegarde n’a pas pu être écrite."
+	if purchased: notice.text = L10N.text("MODULE ACQUIS — équipez-le sur un emplacement libre.")
+	elif profile.last_error!=OK: notice.text = L10N.text("Achat annulé : la sauvegarde n’a pas pu être écrite.")
 
 func _equip_module(id: String) -> void:
 	var previously_equipped: bool = id in profile.data.equipped_modules
 	var changed: bool = profile.equip_module(id)
 	_show_modules(-1,"EquipModule_"+id)
-	if changed: notice.text = "MODULE RETIRÉ — emplacement libre." if previously_equipped else "MODULE ÉQUIPÉ — statistiques actualisées pour les trois appareils."
-	elif profile.last_error!=OK: notice.text = "Modification annulée : la sauvegarde n’a pas pu être écrite."
-	else: notice.text = "Retirez d'abord le module de cette famille ou libérez un emplacement."
+	if changed: notice.text = L10N.text("MODULE RETIRÉ — emplacement libre.") if previously_equipped else L10N.text("MODULE ÉQUIPÉ — statistiques actualisées pour les trois appareils.")
+	elif profile.last_error!=OK: notice.text = L10N.text("Modification annulée : la sauvegarde n’a pas pu être écrite.")
+	else: notice.text = L10N.text("Retirez d'abord le module de cette famille ou libérez un emplacement.")
 
 func _show_settings(from_pause: bool) -> void:
 	settings_from_pause = from_pause
 	page = "settings"
-	_clear_menu("OPTIONS","Réglages enregistrés automatiquement. Aucun clignotement stroboscopique n'est nécessaire au gameplay.")
-	var labels := ["VOLUME GÉNÉRAL","MUSIQUE","EFFETS SONORES"]
+	_clear_menu(L10N.text("OPTIONS"),L10N.text("Réglages enregistrés automatiquement. Aucun clignotement stroboscopique n'est nécessaire au gameplay."))
+	var labels := [L10N.text("VOLUME GÉNÉRAL"),L10N.text("MUSIQUE"),L10N.text("EFFETS SONORES")]
 	var keys := ["master","music","effects"]
 	for i in range(3):
 		_label(labels[i],Vector2(94,292+i*122),Vector2(420,50),28,GOLD)
@@ -506,21 +557,31 @@ func _show_settings(from_pause: bool) -> void:
 		design.add_child(slider)
 		var value_label := _label("%d %%" % slider.value,Vector2(1340,292+i*122),Vector2(180,50),28,MUTED)
 		slider.value_changed.connect(func(value): profile.data.settings[keys[i]]=value/100.0; value_label.text="%d %%" % value; _apply_settings(); _save())
+	_label("LANGUE / LANGUAGE",Vector2(94,620),Vector2(420,48),28,GOLD).name = "LanguageTitle"
+	for i in range(L10N.SUPPORTED.size()):
+		var code: String = L10N.SUPPORTED[i]
+		var caption: String = ("✓  " if L10N.locale==code else "")+["Français","English"][i]
+		var language := _button(caption,Vector2(530+i*380,615),Vector2(350,54),_set_language.bind(code))
+		language.name = "Language_"+code
+		language.tooltip_text = L10N.text("Interface, missions et radio. Changement immédiat.")
+	var language_hint := _label(L10N.text("Interface, missions et radio. Changement immédiat."),Vector2(1320,614),Vector2(500,58),23,MUTED)
+	language_hint.name = "LanguageExplanation"
+	_fit_label(language_hint,58,21)
 	for i in range(3):
 		var key: String = ["fullscreen","shake","flashes"][i]
 		var check := CheckButton.new()
-		check.text = ["Plein écran","Secousses de l'écran","Effets lumineux renforcés"][i]
+		check.text = [L10N.text("Plein écran"),L10N.text("Secousses de l'écran"),L10N.text("Effets lumineux renforcés")][i]
 		check.position = Vector2(94+i*550,687)
 		check.size = Vector2(520,64)
 		check.button_pressed = profile.data.settings[key]
 		design.add_child(check)
 		check.toggled.connect(func(value): profile.data.settings[key]=value; _apply_settings(); _save())
 	for i in range(3):
-		_button(("✓  " if profile.data.difficulty == i else "")+PROFILE.DIFFICULTIES[i],Vector2(94+i*320,802),Vector2(295,58),_difficulty.bind(i),from_pause)
-	_label("La difficulté agit sur les projectiles ennemis et la résistance des boss. Modifiable entre les missions.",Vector2(94,885),Vector2(1600,42),24,MUTED)
-	_button("RETOUR",Vector2(94,947),Vector2(280,56),_show_pause if from_pause else _show_main)
-	_button("COMMANDES",Vector2(410,947),Vector2(280,56),_show_bindings)
-	_button("GRAPHISMES",Vector2(726,947),Vector2(280,56),_show_graphics)
+		_button(("✓  " if profile.data.difficulty == i else "")+L10N.text(PROFILE.DIFFICULTIES[i]),Vector2(94+i*320,802),Vector2(295,58),_difficulty.bind(i),from_pause)
+	_label(L10N.text("La difficulté agit sur les projectiles ennemis et la résistance des boss. Modifiable entre les missions."),Vector2(94,885),Vector2(1600,42),24,MUTED)
+	_button(L10N.text("RETOUR"),Vector2(94,947),Vector2(280,56),_show_pause if from_pause else _show_main)
+	_button(L10N.text("COMMANDES"),Vector2(410,947),Vector2(280,56),_show_bindings)
+	_button(L10N.text("GRAPHISMES"),Vector2(726,947),Vector2(280,56),_show_graphics)
 	_focus_first()
 
 func _difficulty(index: int) -> void:
@@ -530,7 +591,7 @@ func _difficulty(index: int) -> void:
 
 func _show_credits() -> void:
 	page = "credits"
-	_clear_menu("CRÉDITS & SOURCES","Campagne originale réalisée avec Godot et Blender. Inspirée des shmups de la série 194X.")
+	_clear_menu(L10N.text("CRÉDITS & SOURCES"),L10N.text("Campagne originale réalisée avec Godot et Blender. Inspirée des shmups de la série 194X."))
 	var scroll := ScrollContainer.new()
 	scroll.position = Vector2(94,270)
 	scroll.size = Vector2(1710,620)
@@ -540,19 +601,19 @@ func _show_credits() -> void:
 	text.fit_content = true
 	text.bbcode_enabled = false
 	text.add_theme_font_size_override("normal_font_size",25)
-	text.text = "PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\n\nMUSIQUE ACTIVE\nMenus, vol, combats de boss et victoire : Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0. Les pistes gardent leur tempo et leurs mélodies d'origine, avec des transitions en fondu.\n\nCOMPOSITIONS HISTORIQUES\nLes anciennes compositions procédurales Pacific Strike et leurs pistes pulse / drive / hero sont conservées dans les sources ; elles ne sont plus diffusées comme musique de combat. Le signal radio original reste utilisé sur le bus des effets. Le son du laser est également une création procédurale originale.\n\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n"
+	text.text = L10N.text("PACIFIC STRIKE — CAMPAGNE 1942\n\nConception, programmation et assets originaux : projet Cyril / Codex.\nMoteur Godot (licence MIT), modélisation Blender, illustrations et textures générées avec imagegen.\n\nMUSIQUE ACTIVE\nMenus, vol, combats de boss et victoire : Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0. Les pistes gardent leur tempo et leurs mélodies d'origine, avec des transitions en fondu.\n\nCOMPOSITIONS HISTORIQUES\nLes anciennes compositions procédurales Pacific Strike et leurs pistes pulse / drive / hero sont conservées dans les sources ; elles ne sont plus diffusées comme musique de combat. Le signal radio original reste utilisé sur le bus des effets. Le son du laser est également une création procédurale originale.\n\n1942 et 1942: Joint Strike appartiennent à leurs ayants droit ; ce projet indépendant n'est pas affilié à Capcom.\n\nPOLICES\nBarlow Condensed, Black Ops One et DSEG : licences distribuées dans assets/ui/fonts.\n\n")
 	text.name = "CreditsText"
 	for file in ["res://assets/audio/engine/CREDITS.md","res://assets/audio/weapons/CREDITS.md","res://assets/campaign/music/CREDITS.txt"]:
 		text.text += FileAccess.get_file_as_string(file)+"\n\n"
 	scroll.add_child(text)
-	_button("RETOUR",Vector2(94,936),Vector2(280,56),_show_main)
+	_button(L10N.text("RETOUR"),Vector2(94,936),Vector2(280,56),_show_main)
 	_focus_first()
 
 func _launch(number: int, mode := "", retry := false) -> void:
 	if preparing or quitting: return
 	var launch_mode: String = play_mode if mode.is_empty() else mode
 	if not _can_launch(number,launch_mode):
-		if is_instance_valid(notice): notice.text = "Mission indisponible dans ce mode. Choisissez une mission accessible."
+		if is_instance_valid(notice): notice.text = L10N.text("Mission indisponible dans ce mode. Choisissez une mission accessible.")
 		return
 	var warm := (not testing or prepare_in_tests) and DisplayServer.get_name()!="headless"
 	var cover: ColorRect
@@ -566,7 +627,7 @@ func _launch(number: int, mode := "", retry := false) -> void:
 		cover.z_index = 100
 		add_child(cover)
 		var title := Label.new()
-		title.text = "PRÉPARATION DU VOL"
+		title.text = L10N.text("PRÉPARATION DU VOL")
 		title.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -674,13 +735,13 @@ func _show_pause() -> void:
 	page = "pause"
 	get_tree().paused = true
 	director.paused = true
-	_clear_menu("VOL SUSPENDU","MISSION %02d  /  %s" % [selected_mission,director.mission.title])
-	_button("REPRENDRE LE VOL",Vector2(94,315),Vector2(580,70),_resume)
-	_button("OPTIONS",Vector2(94,415),Vector2(580,64),func(): _show_settings(true))
-	_button("RECOMMENCER LA TRAVERSÉE" if play_mode=="boss_rush" else "RECOMMENCER LA MISSION",Vector2(94,509),Vector2(580,64),_begin_boss_rush if play_mode=="boss_rush" else _launch.bind(selected_mission,"",true))
-	_button("RETOUR À L'ACCUEIL",Vector2(94,603),Vector2(580,64),_show_main)
-	_label("BOSS RUSH  /  DUEL %d SUR 8\n%d vies restantes. Recommencer remet le score à zéro et relance le premier boss." % [boss_rush.cursor+1,director.combat.remaining_lives] if play_mode=="boss_rush" else "La progression est enregistrée entre les missions.\nReprendre depuis l'accueil relance le briefing de la mission.",Vector2(850,325),Vector2(870,150),32,MUTED)
-	_label("COMMANDES  /  CLAVIER · MANETTE",Vector2(850,495),Vector2(870,48),27,GOLD)
+	_clear_menu(L10N.text("VOL SUSPENDU"),"MISSION %02d  /  %s" % [selected_mission,director.mission.title])
+	_button(L10N.text("REPRENDRE LE VOL"),Vector2(94,315),Vector2(580,70),_resume)
+	_button(L10N.text("OPTIONS"),Vector2(94,415),Vector2(580,64),func(): _show_settings(true))
+	_button(L10N.text("RECOMMENCER LA TRAVERSÉE") if play_mode=="boss_rush" else L10N.text("RECOMMENCER LA MISSION"),Vector2(94,509),Vector2(580,64),_begin_boss_rush if play_mode=="boss_rush" else _launch.bind(selected_mission,"",true))
+	_button(L10N.text("RETOUR À L'ACCUEIL"),Vector2(94,603),Vector2(580,64),_show_main)
+	_label(L10N.text("BOSS RUSH  /  DUEL %d SUR 8\n%d vies restantes. Recommencer remet le score à zéro et relance le premier boss.") % [boss_rush.cursor+1,director.combat.remaining_lives] if play_mode=="boss_rush" else L10N.text("La progression est enregistrée entre les missions.\nReprendre depuis l'accueil relance le briefing de la mission."),Vector2(850,325),Vector2(870,150),32,MUTED)
+	_label(L10N.text("COMMANDES  /  CLAVIER · MANETTE"),Vector2(850,495),Vector2(870,48),27,GOLD)
 	var commands := _label(COMMANDS.flight_guide(),Vector2(850,555),Vector2(870,325),30,MUTED)
 	commands.name = "FlightCommands"
 	_focus_first()
@@ -744,21 +805,21 @@ func _draw_result(report: Dictionary) -> void:
 	# Zero lives also keeps historical reports without game_over unambiguous.
 	var game_over: bool = not report.won and (bool(report.get("game_over",false)) or int(report.get("lives",1))<=0)
 	var objective_failed: bool = not game_over and bool(report.get("objective_failed",false))
-	_clear_menu("LE PACIFIQUE EST LIBRE" if victory else ("MISSION ACCOMPLIE" if report.won else ("MISSION INACCOMPLIE" if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
-	_label(["—","BRONZE","ARGENT","OR"][int(report.grade)] if report.won else ("OBJECTIF NON ATTEINT" if objective_failed else "AUCUNE VIE RESTANTE"),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
-	_label("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nFRÔLEMENTS    %d  /  +%d POINTS\nBONUS DE FIN    %d  •  PIÈCES    +%d" % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.get("grazes",0),report.get("graze_score",0),report.bonus,result_earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1")).name = "ResultScoreDetails"
-	var summary := "32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or." if victory else ("La mission suivante est disponible.\nProfitez du hangar pour préparer votre appareil." if report.won else "Votre meilleur score est conservé.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde.")
-	if play_mode!="campaign": summary = ("Le record Arcade est mis à jour si ce score est supérieur." if play_mode=="arcade" else "Entraînement terminé. Aucun record ni récompense de campagne.")+"\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée."
+	_clear_menu(L10N.text("LE PACIFIQUE EST LIBRE") if victory else (L10N.text("MISSION ACCOMPLIE") if report.won else (L10N.text("MISSION INACCOMPLIE") if objective_failed else "GAME OVER")),"%02d / 32  •  %s" % [selected_mission,director.mission.title])
+	_label(["—",L10N.text("BRONZE"),L10N.text("ARGENT"),L10N.text("OR")][int(report.grade)] if report.won else (L10N.text("OBJECTIF NON ATTEINT") if objective_failed else L10N.text("AUCUNE VIE RESTANTE")),Vector2(94,298),Vector2(1050,100),62 if objective_failed else 70,GOLD,true)
+	_label(L10N.text("SCORE TOTAL    %08d\nCETTE MISSION    +%d\nAIR / MER / SOL    %d / %d / %d\nVIES PERDUES    %d\nFRÔLEMENTS    %d  /  +%d POINTS\nBONUS DE FIN    %d  •  PIÈCES    +%d") % [report.score,report.get("mission_score",report.score),report.kills-report.naval_kills-int(report.get("ground_kills",0)),report.naval_kills,report.get("ground_kills",0),report.deaths,report.get("grazes",0),report.get("graze_score",0),report.bonus,result_earned],Vector2(94,438),Vector2(1040,300),35,Color("d4dfe1")).name = "ResultScoreDetails"
+	var summary := L10N.text("32 missions. Huit secteurs. Une route jusqu'à l'aube.\n\nLa campagne est terminée. Les missions restent disponibles pour obtenir toutes les médailles d'or.") if victory else (L10N.text("La mission suivante est disponible.\nProfitez du hangar pour préparer votre appareil.") if report.won else L10N.text("Votre meilleur score est conservé.\n\nRéessayer reprend le début de cette mission avec le score et les vies du dernier point de sauvegarde."))
+	if play_mode!="campaign": summary = (L10N.text("Le record Arcade est mis à jour si ce score est supérieur.") if play_mode=="arcade" else L10N.text("Entraînement terminé. Aucun record ni récompense de campagne."))+L10N.text("\n\nRejouer conserve ce mode et son équipement fixe. Le hangar vous ramène à la campagne sauvegardée.")
 	var summary_y := 336.0
 	var summary_height := 320.0
 	var ground_status: Dictionary = report.get("ground_status",{})
 	if not ground_status.is_empty():
-		var ground_text := "CIBLES DÉTRUITES  %d / %d" % [int(ground_status.get("kills",0)),int(ground_status.get("quota",0))]
+		var ground_text := L10N.text("CIBLES DÉTRUITES  %d / %d") % [int(ground_status.get("kills",0)),int(ground_status.get("quota",0))]
 		var priority_total := int(ground_status.get("priority_total",0))
 		if priority_total>0:
-			ground_text += "\nPRIORITÉS  %d / %d" % [int(ground_status.get("priority_destroyed",0)),priority_total]
+			ground_text += L10N.text("\nPRIORITÉS  %d / %d") % [int(ground_status.get("priority_destroyed",0)),priority_total]
 			var escaped: Array = ground_status.get("escaped_priority_ids",[])
-			if not escaped.is_empty(): ground_text += "  •  %d ÉCHAPPÉE(S)" % escaped.size()
+			if not escaped.is_empty(): ground_text += L10N.text("  •  %d ÉCHAPPÉE(S)") % escaped.size()
 		var ground_label := _label(ground_text,Vector2(1210,336),Vector2(590,92),27,GOLD if bool(ground_status.get("main_met",false)) else Color("ff986c"))
 		ground_label.name = "ResultGroundObjective"
 		_fit_label(ground_label,92,21)
@@ -768,33 +829,33 @@ func _draw_result(report: Dictionary) -> void:
 	summary_label.name = "ResultSummary"
 	_fit_label(summary_label,summary_height,21)
 	if report.won and selected_mission < 32 and play_mode=="campaign":
-		_button("MISSION SUIVANTE",Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
-	else: _button("REJOUER LA MISSION" if report.won else "RÉESSAYER LA MISSION",Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission,"",true))
-	_button("HANGAR",Vector2(559,842),Vector2(320,66),_hangar_after_result)
-	_button("ACCUEIL",Vector2(904,842),Vector2(320,66),_show_main)
-	_button("MÉDAILLE & RANG  /  DÉTAILS",Vector2(1249,842),Vector2(551,66),_show_criteria).name = "ResultCriteria"
-	if victory: _button("CRÉDITS",Vector2(94,931),Vector2(320,55),_credits_after_result)
-	if play_mode!="campaign": _label("MODE "+play_mode.to_upper()+"  /  CAMPAGNE INCHANGÉE",Vector2(1210,665),Vector2(590,70),26,GOLD)
-	_label("RANG %s   •   CHAÎNE MAX %d   •   PRÉCISION %d %%\nOBJECTIF SECONDAIRE : %s" % [report.get("rank","C"),report.get("best_chain",0),int(float(report.get("accuracy",0))*100),"ACCOMPLI" if report.get("secondary",false) else "NON ACCOMPLI"],Vector2(94,744),Vector2(1620,85),27,GOLD)
+		_button(L10N.text("MISSION SUIVANTE"),Vector2(94,842),Vector2(440,66),_briefing_after_result.bind(selected_mission+1))
+	else: _button(L10N.text("REJOUER LA MISSION") if report.won else L10N.text("RÉESSAYER LA MISSION"),Vector2(94,842),Vector2(440,66),_launch.bind(selected_mission,"",true))
+	_button(L10N.text("HANGAR"),Vector2(559,842),Vector2(320,66),_hangar_after_result)
+	_button(L10N.text("ACCUEIL"),Vector2(904,842),Vector2(320,66),_show_main)
+	_button(L10N.text("MÉDAILLE & RANG  /  DÉTAILS"),Vector2(1249,842),Vector2(551,66),_show_criteria).name = "ResultCriteria"
+	if victory: _button(L10N.text("CRÉDITS"),Vector2(94,931),Vector2(320,55),_credits_after_result)
+	if play_mode!="campaign": _label("MODE "+_mode_label()+L10N.text("  /  CAMPAGNE INCHANGÉE"),Vector2(1210,665),Vector2(590,70),26,GOLD)
+	_label(L10N.text("RANG %s   •   CHAÎNE MAX %d   •   PRÉCISION %d %%\nOBJECTIF SECONDAIRE : %s") % [report.get("rank","C"),report.get("best_chain",0),int(float(report.get("accuracy",0))*100),L10N.text("ACCOMPLI") if report.get("secondary",false) else L10N.text("NON ACCOMPLI")],Vector2(94,744),Vector2(1620,85),27,GOLD)
 	_focus_first()
 
 func _draw_rush_result(report: Dictionary) -> void:
 	page = "result"
 	var complete: bool = boss_rush.complete()
 	var continuing: bool = boss_rush.active and boss_rush.last_won
-	_clear_menu("TRAVERSÉE ACCOMPLIE" if complete else ("BOSS NEUTRALISÉ" if continuing else "FIN DE LA TRAVERSÉE"),"BOSS RUSH  /  %d ADVERSAIRES VAINCUS SUR 8  /  %s" % [boss_rush.cleared,PROFILE.AIRCRAFT[boss_rush.aircraft]])
+	_clear_menu(L10N.text("TRAVERSÉE ACCOMPLIE") if complete else (L10N.text("BOSS NEUTRALISÉ") if continuing else L10N.text("FIN DE LA TRAVERSÉE")),L10N.text("BOSS RUSH  /  %d ADVERSAIRES VAINCUS SUR 8  /  %s") % [boss_rush.cleared,PROFILE.AIRCRAFT[boss_rush.aircraft]])
 	_label("%02d / 08" % boss_rush.cleared,Vector2(94,295),Vector2(920,160),108,GOLD,true)
-	_label("SCORE TOTAL  %08d\nVIES RESTANTES  %d\nTEMPS DE COMBAT  %02d:%02d\nFRÔLEMENTS  %d" % [boss_rush.score,boss_rush.lives,int(boss_rush.seconds)/60,int(boss_rush.seconds)%60,boss_rush.grazes],Vector2(94,497),Vector2(950,262),39,Color("e1e8e5")).name = "RushScoreDetails"
-	var summary := "Les huit chefs de secteur sont tombés.\nVotre record de traversée a été enregistré pour cet appareil."
+	_label(L10N.text("SCORE TOTAL  %08d\nVIES RESTANTES  %d\nTEMPS DE COMBAT  %02d:%02d\nFRÔLEMENTS  %d") % [boss_rush.score,boss_rush.lives,int(boss_rush.seconds)/60,int(boss_rush.seconds)%60,boss_rush.grazes],Vector2(94,497),Vector2(950,262),39,Color("e1e8e5")).name = "RushScoreDetails"
+	var summary := L10N.text("Les huit chefs de secteur sont tombés.\nVotre record de traversée a été enregistré pour cet appareil.")
 	if continuing:
 		var next_mission: Dictionary = missions[boss_rush.ROUTE[boss_rush.cursor+1]-1]
-		summary = "PROCHAINE CIBLE\n%s\n\nLe blindage et les bombes sont restaurés. Vos %d vies et vos %d points restent en jeu." % [str(preload("res://scripts/campaign/boss.gd").NAMES[next_mission.boss]),boss_rush.lives,boss_rush.score]
-	elif not complete: summary = "La traversée s'arrête ici.\nEntraînez-vous contre les boss pour apprendre leurs motifs, puis tentez une nouvelle route.\n\nUn record exige de vaincre les huit adversaires."
+		summary = L10N.text("PROCHAINE CIBLE\n%s\n\nLe blindage et les bombes sont restaurés. Vos %d vies et vos %d points restent en jeu.") % [preload("res://scripts/campaign/boss.gd").display_name(next_mission.boss),boss_rush.lives,boss_rush.score]
+	elif not complete: summary = L10N.text("La traversée s'arrête ici.\nEntraînez-vous contre les boss pour apprendre leurs motifs, puis tentez une nouvelle route.\n\nUn record exige de vaincre les huit adversaires.")
 	_label(summary,Vector2(1120,340),Vector2(680,380),32,MUTED).name = "RushSummary"
-	_label("RECORD DE CET APPAREIL  %08d" % int(profile.data.arcade_records.get(boss_rush.record_key(),0)),Vector2(94,785),Vector2(1620,53),30,GOLD)
-	_button("AFFRONTER LE BOSS SUIVANT" if continuing else "RETENTER LA TRAVERSÉE",Vector2(94,902),Vector2(650,72),_next_boss_rush if continuing else _begin_boss_rush).name = "RushContinue"
-	_button("ACCUEIL",Vector2(774,902),Vector2(390,72),_show_main)
-	_button("ENTRAÎNEMENT AUX BOSS",Vector2(1194,902),Vector2(606,72),func(): _dispose_run(); _show_challenges("practice"))
+	_label(L10N.text("RECORD DE CET APPAREIL  %08d") % int(profile.data.arcade_records.get(boss_rush.record_key(),0)),Vector2(94,785),Vector2(1620,53),30,GOLD)
+	_button(L10N.text("AFFRONTER LE BOSS SUIVANT") if continuing else L10N.text("RETENTER LA TRAVERSÉE"),Vector2(94,902),Vector2(650,72),_next_boss_rush if continuing else _begin_boss_rush).name = "RushContinue"
+	_button(L10N.text("ACCUEIL"),Vector2(774,902),Vector2(390,72),_show_main)
+	_button(L10N.text("ENTRAÎNEMENT AUX BOSS"),Vector2(1194,902),Vector2(606,72),func(): _dispose_run(); _show_challenges("practice"))
 	_focus_first()
 
 func _briefing_after_result(number: int) -> void:
@@ -831,13 +892,13 @@ func _input(event: InputEvent) -> void:
 			_show_bindings()
 			return
 		if event.keycode in [KEY_ENTER,KEY_TAB] or event.alt_pressed or event.ctrl_pressed or event.meta_pressed:
-			notice.text = "Cette touche est réservée à la navigation. Choisissez une autre touche."
+			notice.text = L10N.text("Cette touche est réservée à la navigation. Choisissez une autre touche.")
 			return
 		for action in BIND_NAMES:
 			if action==waiting_binding: continue
 			for bound in InputMap.action_get_events(action):
 				if bound is InputEventKey and bound.keycode==event.keycode:
-					notice.text = "Touche déjà utilisée : "+BIND_NAMES[action]
+					notice.text = L10N.text("Touche déjà utilisée : ")+L10N.text(BIND_NAMES[action])
 					return
 		profile.data.bindings[waiting_binding] = event.keycode
 		waiting_binding = ""
@@ -888,11 +949,11 @@ func _process(_delta: float) -> void:
 
 func _confirm_new_campaign() -> void:
 	page = "new_campaign"
-	_clear_menu("NOUVELLE CAMPAGNE","Le record et les options seront conservés.")
-	_label("Repartir de la mission 01 ?",Vector2(94,320),Vector2(1400,100),48,GOLD,true)
-	_label("Les médailles, les missions débloquées et les améliorations de cette campagne seront réinitialisées.",Vector2(94,465),Vector2(1300,150),34,MUTED)
-	_button("CONSERVER MA CAMPAGNE",Vector2(94,735),Vector2(520,64),_show_main)
-	_button("RECOMMENCER",Vector2(650,735),Vector2(400,64),_new_campaign)
+	_clear_menu(L10N.text("NOUVELLE CAMPAGNE"),L10N.text("Le record et les options seront conservés."))
+	_label(L10N.text("Repartir de la mission 01 ?"),Vector2(94,320),Vector2(1400,100),48,GOLD,true)
+	_label(L10N.text("Les médailles, les missions débloquées et les améliorations de cette campagne seront réinitialisées."),Vector2(94,465),Vector2(1300,150),34,MUTED)
+	_button(L10N.text("CONSERVER MA CAMPAGNE"),Vector2(94,735),Vector2(520,64),_show_main)
+	_button(L10N.text("RECOMMENCER"),Vector2(650,735),Vector2(400,64),_new_campaign)
 	_focus_first()
 
 func _new_campaign() -> void:

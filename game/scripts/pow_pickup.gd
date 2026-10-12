@@ -1,4 +1,5 @@
 extends Node3D
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## One reusable pickup and collection burst; no per-frame allocation.
 var power_kind := "spread"
 var icon: MeshInstance3D
@@ -31,7 +32,7 @@ func _ready() -> void:
 	icon.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	visual.add_child(icon)
 	label = Label3D.new()
-	label.text = "MULTI"
+	label.text = L10N.text("MULTI")
 	label.font = preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 	label.font_size = 48
 	label.pixel_size = .005
@@ -79,7 +80,7 @@ func _make_chime(ascending: bool) -> AudioStreamWAV:
 func activate(at: Vector3, player: Node3D, kind: String = "spread") -> void:
 	power_kind = kind if ICONS.has(kind) else "spread"
 	icon.material_override.albedo_texture = ICONS[power_kind]
-	label.text = {"spread":"MULTI","laser":"LASER","life":"1 UP"}[power_kind]
+	refresh_localization()
 	halo.material_override.set_shader_parameter("tint",{"spread":Color("54efff"),"laser":Color("f883ff"),"life":Color("75ffad")}[power_kind])
 	global_position = Vector3(at.x,presentation_altitude+0.35,at.z)
 	age = 0
@@ -121,6 +122,10 @@ func advance(delta: float, combat: Node) -> void:
 		active = false
 		hide()
 
+func refresh_localization() -> void:
+	if is_instance_valid(label):
+		label.text = L10N.text({"spread":"MULTI","laser":"LASER","life":"1 UP"}[power_kind])
+
 func collect(combat: Node) -> void:
 	if not active: return
 	active = false
@@ -129,7 +134,7 @@ func collect(combat: Node) -> void:
 	if power_kind == "life": combat.remaining_lives = mini(9,combat.remaining_lives+1)
 	var campaign = combat.campaign_driver
 	if is_instance_valid(campaign):
-		campaign.feedback = {"spread":"MULTI-TIR ÉQUIPÉ","laser":"LASER ÉQUIPÉ","life":"VIE SUPPLÉMENTAIRE  /  TIR STANDARD"}[power_kind]
+		campaign.feedback = L10N.text({"spread":"MULTI-TIR ÉQUIPÉ","laser":"LASER ÉQUIPÉ","life":"VIE SUPPLÉMENTAIRE  /  TIR STANDARD"}[power_kind])
 		campaign.feedback_time = 1.6
 	visual.hide()
 	burst_time = 0.65

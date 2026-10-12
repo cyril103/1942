@@ -1,4 +1,5 @@
 extends RefCounted
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Shared display names for the actual flight bindings; menu navigation is separate.
 const KEY_LABELS := {KEY_SPACE:"Espace",KEY_SHIFT:"Maj",KEY_ESCAPE:"Échap",KEY_ENTER:"Entrée",KEY_KP_ENTER:"Entrée pavé",KEY_LEFT:"←",KEY_RIGHT:"→",KEY_UP:"↑",KEY_DOWN:"↓",KEY_CTRL:"Ctrl",KEY_ALT:"Alt",KEY_CAPSLOCK:"Verr. maj.",KEY_BACKSPACE:"Retour arrière",KEY_PAGEUP:"Page préc.",KEY_PAGEDOWN:"Page suiv.",KEY_PRINT:"Impr. écran"}
 const PAD_LABELS := {JOY_BUTTON_A:"A",JOY_BUTTON_B:"B",JOY_BUTTON_X:"X",JOY_BUTTON_Y:"Y",JOY_BUTTON_LEFT_SHOULDER:"LB",JOY_BUTTON_RIGHT_SHOULDER:"RB",JOY_BUTTON_START:"Start",JOY_BUTTON_BACK:"Select",JOY_BUTTON_DPAD_LEFT:"← croix",JOY_BUTTON_DPAD_RIGHT:"→ croix",JOY_BUTTON_DPAD_UP:"↑ croix",JOY_BUTTON_DPAD_DOWN:"↓ croix"}
@@ -8,7 +9,7 @@ static func keys(action: String) -> Array[String]:
 	for event in InputMap.action_get_events(action):
 		if event is not InputEventKey: continue
 		var code: int = event.keycode if event.keycode!=0 else event.physical_keycode
-		var label: String = KEY_LABELS.get(code,OS.get_keycode_string(code))
+		var label: String = L10N.text(KEY_LABELS.get(code,OS.get_keycode_string(code)))
 		if not labels.has(label): labels.append(label)
 	return labels
 
@@ -18,7 +19,8 @@ static func keyboard(action: String) -> String:
 
 static func gamepad(action: String) -> String:
 	for event in InputMap.action_get_events(action):
-		if event is InputEventJoypadButton: return PAD_LABELS.get(event.button_index,"Bouton %d" % (event.button_index+1))
+		if event is InputEventJoypadButton:
+			return L10N.text(PAD_LABELS[event.button_index]) if PAD_LABELS.has(event.button_index) else L10N.text("Bouton %d") % (event.button_index+1)
 	return "—"
 
 static func hint(action: String) -> String:
@@ -30,16 +32,16 @@ static func movement() -> String:
 	var up := keys("move_up")
 	var down := keys("move_down")
 	var alternatives: Array[String] = []
-	if left.has("←") and right.has("→") and up.has("↑") and down.has("↓"): alternatives.append("Flèches")
+	if left.has("←") and right.has("→") and up.has("↑") and down.has("↓"): alternatives.append(L10N.text("Flèches"))
 	if left.has("Q") and right.has("D") and up.has("Z") and down.has("S"): alternatives.append("ZQSD")
 	if left.has("A") and right.has("D") and up.has("W") and down.has("S"): alternatives.append("WASD")
 	if not alternatives.is_empty(): return " / ".join(alternatives)
-	return "G/D/H/B : %s / %s / %s / %s" % [",".join(left),",".join(right),",".join(up),",".join(down)]
+	return L10N.text("G/D/H/B : %s / %s / %s / %s") % [",".join(left),",".join(right),",".join(up),",".join(down)]
 
 static func pad_movement() -> String:
 	for event in InputMap.action_get_events("move_left"):
-		if event is InputEventJoypadMotion: return "Stick / croix"
-	return "Croix directionnelle"
+		if event is InputEventJoypadMotion: return L10N.text("Stick / croix")
+	return L10N.text("Croix directionnelle")
 
 static func flight_guide() -> String:
-	return "PILOTER  %s   ·   %s\nTIR  %s   |   BOMBE  %s\nFRAPPE  %s   |   PRÉCISION  %s\nPAUSE  %s" % [movement(),pad_movement(),hint("fire"),hint("bomb"),hint("strike"),hint("focus_flight"),hint("quit_game")]
+	return L10N.text("PILOTER  %s   ·   %s\nTIR  %s   |   BOMBE  %s\nFRAPPE  %s   |   PRÉCISION  %s\nPAUSE  %s") % [movement(),pad_movement(),hint("fire"),hint("bomb"),hint("strike"),hint("focus_flight"),hint("quit_game")]

@@ -1,0 +1,56 @@
+PACIFIC STRIKE — LOCALISATION FRANÇAIS / ANGLAIS
+
+Le français reste la langue par défaut des nouveaux profils et des sauvegardes
+antérieures. settings.language contient fr ou en. Un code régional est normalisé
+(en-GB devient en) ; une valeur absente ou inconnue revient à fr sans invalider
+une progression valide. Le nom interne du projet et le chemin de sauvegarde
+restent inchangés.
+
+Le sélecteur est disponible à l'accueil et dans les options, également depuis
+la pause. Son activation reconstruit les textes des missions depuis les données
+canoniques, puis actualise les libellés du vol existant. Les acteurs, événements,
+objectifs, projectiles, capacités et compteurs restent en place. Les annonces
+temporaires déjà affichées sont retirées sans rejouer leurs événements audio.
+Le HUD de boss et ses consignes restent disponibles dans la nouvelle langue.
+La sélection garde le focus clavier/manette et se sauvegarde immédiatement.
+
+CATALOGUES
+game/data/localization/menus.en.json : accueil, réglages, hangar, briefings,
+résultats, guides et crédits.
+game/data/localization/content.en.json : missions, raids, équipement, commandes
+et critères de score.
+game/data/localization/gameplay.en.json : HUD, boss, radio, messages de combat,
+POW et interfaces du prototype.
+
+Le service game/scripts/campaign/localization.gd charge ces JSON une seule fois.
+Les clés sont les textes sources français ; les valeurs sont leurs traductions
+anglaises. Le repli d'une clé inconnue est le texte source lisible. Une entrée
+vide, un catalogue absent ou une traduction contradictoire produit un diagnostic.
+Aucun téléchargement ni service de traduction n'est requis pour jouer.
+
+AJOUTER OU MODIFIER UN TEXTE
+Employer L10N.text("Texte source") avant de substituer les paramètres avec %,
+et avant une conversion en majuscules. Ne jamais traduire un texte déjà formaté.
+Conserver exactement l'ordre et le type des paramètres (%s, %d, %.1f, etc.).
+Les phrases à paramètres portent leur propre traduction ; les identifiants de
+mission, d'arme, de module, les clés de sauvegarde et les conditions de jeu ne
+doivent jamais être traduits. Les descriptions sont traduites sur des copies,
+pour que plusieurs changements successifs repartent toujours de la source.
+
+Les boutons affichent les noms natifs Français / English. Les touches affichées
+proviennent des associations actives et les intitulés spéciaux sont localisés.
+L'interface désactive la seconde passe de traduction automatique de Godot :
+chaque chaîne est traduite explicitement avant son affichage.
+
+CONTRÔLES
+python game/tests/audit_localization.py
+./Tester-Silencieux.ps1 -Script res://tests/test_localization.gd
+./Tester-Silencieux.ps1 -Rendered -Script res://tests/test_localization.gd -TestArguments --capture
+./Tester-Silencieux.ps1 -Rendered -Script res://tests/test_localization_gameplay.gd
+
+Le premier test vérifie sauvegardes, paramètres des 32 missions, boutons réels,
+focus, briefings en 720p/1080p et changement en pause. Le second vérifie les
+motifs de boss et un raid avec radar détruit, brouillage, capacité et POW actifs.
+Les captures proviennent du moteur, avec données de test isolées et audio Dummy.
+L'export inclut explicitement data/localization/*.json. Le test externe
+test_localization_package.gd contrôle ces ressources dans l'exécutable livré.

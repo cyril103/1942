@@ -1,4 +1,5 @@
 extends RefCounted
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Single equipment catalogue shared by profile, hangar and actual combat.
 ## These functions are pure: they never mutate a save or charge the player.
 const EQUIPMENT_REVISION := 1
@@ -29,14 +30,18 @@ const MODULES := [
 static func aircraft(index: int) -> Dictionary:
 	var bounded := clampi(index,0,AIRCRAFT.size()-1)
 	var result: Dictionary = AIRCRAFT[bounded].duplicate(true)
+	for field in ["label", "role", "description", "tradeoff", "ability_label", "ability_description"]:
+		result[field] = L10N.text(str(result[field]))
 	result.name = result.label
-	result.model_label = ["Chasseur polyvalent","Lockheed P-38 Lightning","Chance Vought F4U Corsair"][bounded]
+	result.model_label = L10N.text(["Chasseur polyvalent","Lockheed P-38 Lightning","Chance Vought F4U Corsair"][bounded])
 	return result
 
 static func modules() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for entry in MODULES:
 		var item: Dictionary = entry.duplicate(true)
+		for field in ["label", "family_label", "description"]:
+			item[field] = L10N.text(str(item[field]))
 		item.name = item.label
 		item.unlock_mission = item.required_mission
 		result.append(item)

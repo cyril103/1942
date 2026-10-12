@@ -1,4 +1,5 @@
 extends Node
+const L10N := preload("res://scripts/campaign/localization.gd")
 signal finished(report: Dictionary)
 signal audio_event(kind: String, event_id: String)
 const NAVAL := preload("res://scripts/campaign/enemy_naval.gd")
@@ -140,7 +141,7 @@ func _ready() -> void:
 		cockpit.flight.add_child(assault)
 		assault.network_disrupted.connect(_on_network_disrupted)
 	_build_ring()
-	feedback = "MISSION %02d  /  %s" % [mission.id,mission.title.to_upper()]
+	feedback = L10N.text("MISSION %02d  /  %s") % [mission.id,mission.title.to_upper()]
 	feedback_time = 5
 
 func _build_ring() -> void:
@@ -194,8 +195,8 @@ func complete_objective(kind: String) -> void:
 
 func _on_network_disrupted(network_id: String, seconds: float, global_scope: bool) -> void:
 	var group: Dictionary = assault.layout.get("radar_groups",{}).get(network_id,{})
-	var label: String = str(group.get("label","Réseau radar"))
-	radio = "Contrôle : toute la DCA est brouillée pendant %.0f secondes." % seconds if global_scope else "Contrôle : %s brouillé %.0f secondes. Les autres défenses restent actives." % [label,seconds]
+	var label: String = str(group.get("label",L10N.text("Réseau radar")))
+	radio = L10N.text("Contrôle : toute la DCA est brouillée pendant %.0f secondes.") % seconds if global_scope else L10N.text("Contrôle : %s brouillé %.0f secondes. Les autres défenses restent actives.") % [label,seconds]
 	radio_time = 4.0
 
 func _update_acts() -> void:
@@ -208,11 +209,11 @@ func _update_acts() -> void:
 		if act_index==1 and mastery.secondary_kind=="convoy" and not practice and not boss_rush:
 			convoy = preload("res://scripts/campaign/convoy.gd").new()
 			convoy.position = Vector3(0,0,4)
-			convoy.rescued.connect(func(): complete_objective("convoy"); radio="Convoi : route sécurisée. Merci pour la couverture."; radio_time=5)
-			convoy.lost.connect(func(): combat._explode(convoy.position,1.6); radio="Contrôle : convoi perdu. Poursuivez la mission."; radio_time=5)
+			convoy.rescued.connect(func(): complete_objective("convoy"); radio=L10N.text("Convoi : route sécurisée. Merci pour la couverture."); radio_time=5)
+			convoy.lost.connect(func(): combat._explode(convoy.position,1.6); radio=L10N.text("Contrôle : convoi perdu. Poursuivez la mission."); radio_time=5)
 			combat.add_child(convoy)
 			combat.navigate_naval(convoy)
-			radio = "Convoi allié en approche. Interceptez les bombardiers !"
+			radio = L10N.text("Convoi allié en approche. Interceptez les bombardiers !")
 			audio_event.emit("radio_important", "convoy-entry:%d" % int(mission.id))
 			combat.spawn_bomber()
 		if feedback_time<=0:
@@ -312,7 +313,7 @@ func advance(delta: float) -> void:
 		mission_completed = not is_instance_valid(assault) or assault.main_objective_met()
 		ending = true
 		_update_ability(0)
-		feedback = "BOSS NEUTRALISÉ  /  DUEL TERMINÉ" if boss_rush else ("SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS" if mission_completed else "OBJECTIF INCOMPLET  /  REPLI VERS LE PORTE-AVIONS")
+		feedback = L10N.text("BOSS NEUTRALISÉ  /  DUEL TERMINÉ") if boss_rush else (L10N.text("SECTEUR SÉCURISÉ  /  APPROCHE DU PORTE-AVIONS") if mission_completed else L10N.text("OBJECTIF INCOMPLET  /  REPLI VERS LE PORTE-AVIONS"))
 		feedback_time = 6
 		combat.clear_enemy_bullets()
 		player.invulnerable_time = 6
@@ -331,11 +332,11 @@ func _update_extraction() -> void:
 		extraction_started_at = elapsed
 		extraction_end_at = maxf(float(mission.duration),elapsed+12.0)
 		extraction_next_wave = elapsed
-		act_title = "INTERCEPTION AU RETOUR"
-		radio = "Contrôle : chasseurs sur votre route de retour ! Dégagez l'approche du porte-avions."
+		act_title = L10N.text("INTERCEPTION AU RETOUR")
+		radio = L10N.text("Contrôle : chasseurs sur votre route de retour ! Dégagez l'approche du porte-avions.")
 		radio_time = 5.0
 		audio_event.emit("radio_important", "air-return:%d" % int(mission.id))
-		feedback = "REMONTÉE  /  CONTACTS AÉRIENS"
+		feedback = L10N.text("REMONTÉE  /  CONTACTS AÉRIENS")
 		feedback_time = 3.0
 	# Leave five seconds for the last formation to pass before automatic landing.
 	if elapsed>=extraction_end_at-5.0 or elapsed<extraction_next_wave: return
@@ -361,7 +362,7 @@ func _dispatch(event: Dictionary) -> void:
 					if event.get("role","")=="gunner": enemy.flight_speed *= .88
 		"red":
 			combat.spawn_special()
-			feedback = "ESCADRILLE ROUGE  •  5 AVIONS = POW"
+			feedback = L10N.text("ESCADRILLE ROUGE  •  5 AVIONS = POW")
 			feedback_time = 3
 		"bomber": combat.spawn_bomber()
 		"naval": _spawn_naval(int(event.get("pattern",0)))
@@ -398,13 +399,33 @@ func _spawn_boss(kind: String) -> void:
 	combat.add_child(boss)
 	if boss.naval: combat.navigate_naval(boss)
 	combat.clear_enemy_bullets()
-	feedback = "ALERTE  /  " + BOSS.NAMES[kind].to_upper()
+	feedback = L10N.text("ALERTE  /  ") + BOSS.display_name(kind).to_upper()
 	feedback_time = 4.5
 
 func spawn_reinforcement() -> void:
 	if combat.enemies.size() > 20: return
 	combat.wave_count = 0
 	combat.spawn_wave()
+
+func refresh_localization() -> void:
+	# App has already replaced mission with the newly localized copy. Refresh
+	# cached prose only: actors, resources, objectives and timers keep their state.
+	equipment.ability_label = LOADOUT.stats(profile.data,int(profile.data.aircraft)).ability_label
+	var acts: Array = mission.get("acts",[])
+	act_title = str(acts[act_index].title) if act_index>=0 and act_index<acts.size() else ""
+	if extraction_started_at>=0: act_title = L10N.text("INTERCEPTION AU RETOUR")
+	if is_instance_valid(assault):
+		preload("res://scripts/campaign/raid_layouts.gd").refresh_localization(assault.layout)
+	# Transient lines may contain formatted names, scores or network labels;
+	# retiring those cues prevents mixed-language text without replaying events.
+	feedback = ""
+	feedback_time = 0.0
+	radio = ""
+	radio_time = 0.0
+	mastery.cue = ""
+	mastery.cue_time = 0.0
+	if is_instance_valid(score_bursts): score_bursts.clear()
+	if is_instance_valid(combat.pickup): combat.pickup.refresh_localization()
 
 func _on_boss_defeated() -> void:
 	if boss_won: return
@@ -428,7 +449,7 @@ func _on_damage(_health: int) -> void:
 	damage_taken += 1
 	mastery.hit()
 	shake_time = 0.28
-	feedback = "IMPACT  /  BLINDAGE %d" % player.health
+	feedback = L10N.text("IMPACT  /  BLINDAGE %d") % player.health
 	feedback_time = 1.2
 
 func _on_death(_at: Vector3) -> void:
@@ -440,7 +461,7 @@ func _on_death(_at: Vector3) -> void:
 	feedback_time = 0
 
 func _on_respawn() -> void:
-	feedback = "RETOUR EN VOL  /  PROTECTION 4 SECONDES"
+	feedback = L10N.text("RETOUR EN VOL  /  PROTECTION 4 SECONDES")
 	feedback_time = 2.5
 
 func use_bomb() -> bool:
@@ -448,7 +469,7 @@ func use_bomb() -> bool:
 	bombs -= 1
 	attacks_used += 1
 	_discharge(35,false)
-	feedback = "BOMBE  /  ESPACE AÉRIEN DÉGAGÉ"
+	feedback = L10N.text("BOMBE  /  ESPACE AÉRIEN DÉGAGÉ")
 	feedback_time = 2.0
 	return true
 

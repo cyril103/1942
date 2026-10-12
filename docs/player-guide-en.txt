@@ -1,0 +1,122 @@
+PACIFIC STRIKE ULTIMATE — CAMPAIGN 1942
+Version 2.3.0 — French / English
+
+GETTING STARTED
+Run PacificStrike.exe. No Godot installation is required.
+Windows x64, OpenGL 3.3. Keyboard and controller supported.
+
+LANGUAGE
+The default language is French. Use Français / English on the title screen,
+or open Options > Langue / Language and select English.
+You can also change language from the pause menu. The change takes effect
+immediately and is remembered next time you play. Existing saves retain their
+progress, controls and French language until you choose otherwise.
+
+FLIGHT CONTROLS
+Arrow keys, WASD or ZQSD: move. Hold Space: fire. Hold Shift: precision flight.
+X: bomb. C: aircraft ability when the special gauge reaches 100%.
+Escape: pause or go back. Escape on the title screen exits the game.
+Controller: left stick or D-pad to move, A to fire, B for a bomb, X for your
+aircraft ability, LB for precision flight and Start to pause.
+Controls can be remapped in Options. In-game hints reflect your bindings.
+Optional auto-fire is available in the Controls menu and is off by default.
+
+READING THE BATTLE
+Your shots are cyan and white; enemy projectiles are orange and red.
+Precision flight slows movement and reveals the vulnerable centre of your plane.
+Boss attack warnings show the incoming pattern and an evasion tip. Watch the
+charge, then dodge the actual bullets. The two golden rings mark weak points;
+destroying them reduces the boss's firepower. Bosses have three phases.
+Keep bombs for moments when you are about to be surrounded.
+
+POWER-UPS AND SCORING
+Destroy all five aircraft in a red formation to release a POW pickup:
+cyan fan = spread fire; violet beam = laser; green plane with + = extra life.
+Each pickup replaces your current weapon. The extra life is granted immediately
+and restores standard fire; a later pickup does not remove that life.
+Hold your fire button to sustain the laser, just like standard shots.
+
+Destroy another enemy within 4.5 seconds to maintain your chain. Each group of
+eight kills increases the multiplier, up to x5. Taking a hit breaks the chain.
+A complete fighter wave awards 100 points per aircraft (800 for eight fighters).
+One escaping aircraft cancels the perfect-wave bonus. Clearing a red formation
+awards 1,000 points as well as a POW. A secondary objective awards 2,500 once.
+Grazing an enemy bullet safely awards 25 points and up to 0.6 special charge.
+Each bullet can reward you once. Grazes do not extend your kill chain.
+
+ARMOR, LIVES AND CHECKPOINTS
+Armor is the number of hits you can take before losing an aircraft and a life.
+If lives remain, you return after 1.5 seconds with full armor and four seconds
+of protection. Your score and progress within the current mission are retained.
+At zero lives, choose whether to retry the mission checkpoint or return home.
+
+Campaign score, remaining lives and equipped weapon carry between missions.
+Progress saves automatically between missions, rather than during flight.
+Retrying restores the starting checkpoint, preventing duplicated points.
+Unlocked missions remain replayable. New Campaign asks for confirmation and
+resets progression while retaining your settings and high score.
+
+CAMPAIGN AND HANGAR
+The campaign spans 32 missions across eight sectors. Read the briefing for your
+primary objective, secondary objective and gold-medal conditions.
+Campaign medals and first victories earn parts for permanent upgrades.
+
+Vanguard: highest sustained fire rate, with balanced speed and armor.
+Interceptor: P-38 Lightning, 16.7% faster with 10% lower standard DPS than Vanguard;
+the same armor and hitbox. Its ability boosts speed and damage for four seconds.
+Bulwark: F4U Corsair, one extra armor point and bomb; 13.3% slower with 18.2% lower
+standard DPS. Its ability grants protection and damage for 3.5 seconds with an
+area strike. Vanguard's ability boosts its fire rate for five seconds.
+Abilities preserve your POW weapon. Special charge pauses while an ability runs.
+
+Upgrade ranks I / II / III cost 2 / 4 / 6 parts and unlock at missions 01 / 09 / 21.
+Ten optional modules cost six parts each. The first slot unlocks at mission 05;
+the second at mission 13. Equip one module per family: Aim, Airframe or Systems.
+Buying a module does not equip it. Equipping and removing are free.
+The hangar shows actual equipped stats before POW and ability bonuses.
+Inspect Aircraft opens a 3D view: drag to rotate, scroll to zoom, or use the
+view buttons with your keyboard/controller. Assign Aircraft confirms selection.
+
+MEDALS AND RANKS
+Bronze: victory. Silver: victory without losing a life.
+Gold: victory, no lost lives, at most two hits and the primary objective complete.
+S rank: victory, no lost lives, at most one hit, the secondary objective complete
+and a best chain of at least 16. Medals and ranks measure different achievements.
+The briefing and results screens provide the full scoring guide.
+
+GROUND RAIDS
+Missions 03, 07, 11, 15, 19, 23, 27 and 31 approach over water, descend over a base,
+then climb for extraction and return to the carrier. Altitude changes are
+automatic; you retain flight control. Your weapons can damage installations.
+Complete both the required target quota and every marked priority target.
+A priority target counts toward the quota. If it escapes intact, retry the raid.
+Destroying a radar jams its linked AA network for six seconds. Only the first
+raid uses a network covering the whole base. Fuel tanks damage nearby defenses
+when they explode. Mobile AA stops before firing; move after its warning.
+Aircraft defend the sea approach and extraction; AA takes over at low altitude.
+An incomplete raid returns you to the deck, with the missing conditions shown
+in the debriefing. For a quick try, choose Arcade / Score Attack, mission 03.
+
+OTHER MODES
+Arcade: all 32 missions, Pilot difficulty, no upgrades, three lives, starting
+score zero. Local records are separate for each mission and aircraft.
+Boss Training: direct access to boss fights with spread fire.
+Boss Rush: eight sector bosses, three shared lives, Pilot difficulty and fixed
+equipment. Armor and bombs replenish between duels; score and lives carry over.
+A defeat ends the run. Restart begins again at the first boss. Records are
+awarded only after all eight victories and are tracked per aircraft.
+These modes do not change campaign progress, parts, medals or campaign score.
+
+COMFORT AND DISPLAY
+Options include master/music/effects volume, fullscreen, camera shake, reduced
+flashes, VSync and an FPS display. Graphics offers Performance, Balanced and
+Quality presets. Performance disables dynamic shadows and optional debris.
+Short retry intros are optional: once you have completed a takeoff in a mission
+and mode this session, retries can use a 1.6-second stabilization. First visits
+retain the full takeoff; the normal carrier landing remains unchanged.
+
+The animated ocean, coastal foam and clouds are decorative. Clouds do not affect
+weapons, collisions or difficulty. Combat music by Juhani Junkala is credited
+in game. Component licenses and credits are included in the Licences folder.
+
+Independent project inspired by 194X shoot-'em-ups. Not affiliated with Capcom.

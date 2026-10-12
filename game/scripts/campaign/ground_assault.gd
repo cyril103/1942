@@ -1,4 +1,5 @@
 extends Node3D
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## A finite, prebuilt coastal battlefield. One shared scroll moves terrain,
 ## installations and wrecks; it must fully clear the carrier approach.
 const TARGET := preload("res://scripts/campaign/ground_target.gd")
@@ -156,7 +157,7 @@ func _update_airspace() -> void:
 		airspace_closed = true
 		director.combat.aircraft_enabled = false
 		director.combat.withdraw_aircraft()
-		director.radio = "Leader : on passe sous les chasseurs ! Canons au sol, restez mobiles !"
+		director.radio = L10N.text("Leader : on passe sous les chasseurs ! Canons au sol, restez mobiles !")
 		director.radio_time = 4.0
 		if director.has_signal("audio_event"):
 			director.emit_signal("audio_event", "radio_important", "raid-entry:%d" % int(director.mission.id))
@@ -278,7 +279,7 @@ func _disrupt_radar_networks(radar_id: String) -> void:
 func _on_mobile_route_announced(target_id: String, from: Vector3, to: Vector3, seconds: float) -> void:
 	mobile_route_announced.emit(target_id,from,to,seconds)
 	if director.radio_time<=0:
-		director.radio = "DCA mobile en déplacement. Exploitez son arrêt avant la rafale !"
+		director.radio = L10N.text("DCA mobile en déplacement. Exploitez son arrêt avant la rafale !")
 		director.radio_time = 3.0
 
 func _on_destroyed(at: Vector3, target: Area3D) -> void:
@@ -304,7 +305,7 @@ func _on_destroyed(at: Vector3, target: Area3D) -> void:
 		director.complete_objective(str(secondary.get("kind",layout.get("secondary_kind","ground_layout"))))
 	if not _objective_announced and main_objective_met():
 		_objective_announced = true
-		director.feedback = "FRAPPE CONFIRMÉE  /  OBJECTIF TERRESTRE ACCOMPLI"
+		director.feedback = L10N.text("FRAPPE CONFIRMÉE  /  OBJECTIF TERRESTRE ACCOMPLI")
 		director.feedback_time = 4
 	_drop_supplies(at)
 

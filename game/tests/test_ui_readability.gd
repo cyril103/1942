@@ -183,7 +183,11 @@ func _inspect_results_and_credits() -> void:
 	var credits: RichTextLabel = app.design.find_child("CreditsText",true,false)
 	check(credits.text.contains("MUSIQUE ACTIVE") and credits.text.contains("Juhani Junkala / SubspaceAudio — 5 Chiptunes (Action), CC0"),"Credits attribute the soundtrack actually played")
 	check(credits.text.contains("COMPOSITIONS HISTORIQUES") and credits.text.contains("ne sont plus diffusées") and not credits.text.contains("Musique de combat adaptative :"),"Inactive procedural music is clearly distinguished from active tracks")
-	for name in ["menu","flight","flight2","boss","victory"]: check(app.music.tracks[name].resource_path.ends_with(name+".wav"),"Active track named in credits exists in the actual music player: "+name)
+	for name in ["menu","flight","flight2","boss","victory"]:
+		# Music duplicates streams to own their loop settings; duplicates have no
+		# resource_path. Compare their audio data to the actual credited source.
+		var source: AudioStreamWAV = load("res://assets/campaign/music/"+name+".wav")
+		check(app.music.tracks[name].data == source.data,"Active track named in credits exists in the actual music player: "+name)
 	await capture("credits")
 	app._show_main()
 

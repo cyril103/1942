@@ -1,4 +1,5 @@
 extends Control
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Resolution-independent cockpit artwork; textures contain no baked text.
 const LABEL_FONT = preload("res://assets/ui/fonts/BarlowCondensed-Medium.ttf")
 const TITLE_FONT = preload("res://assets/ui/fonts/BlackOpsOne-Regular.ttf")
@@ -164,55 +165,55 @@ func _draw_left() -> void:
 	for point in [Vector2(50,400),Vector2(505,400),Vector2(50,807),Vector2(505,807)]: _rivet(point)
 	_text("S C O R E",Vector2(72,428),28)
 	_text("H I G H   S C O R E",Vector2(72,593),28)
-	_text("V I E S",Vector2(72,770),27)
+	_text(L10N.text("V I E S"),Vector2(72,770),27)
 	for i in range(3):
 		_plane(Vector2(266+i*80,763),26,CREAM if i<dashboard.combat.remaining_lives else Color("3c3d30"))
-	var armament := "TIR STANDARD"
-	if dashboard.flight.get_node("Weapons").spread_enabled: armament = "POW  /  ÉVENTAIL x4"
+	var armament := L10N.text("TIR STANDARD")
+	if dashboard.flight.get_node("Weapons").spread_enabled: armament = L10N.text("POW  /  ÉVENTAIL x4")
 	if not dashboard.combat.red_enemies.is_empty():
-		armament = "ESCADRILLE ROUGE  %d/5" % dashboard.combat.special_kills
+		armament = L10N.text("ESCADRILLE ROUGE  %d/5") % dashboard.combat.special_kills
 	_text(armament,Vector2(277,881),26,CREAM,false,true)
 	draw_line(Vector2(108,905),Vector2(447,905),Color("514b37"),1,true)
-	var status := "PRÊT AU DÉCOLLAGE"
+	var status := L10N.text("PRÊT AU DÉCOLLAGE")
 	var lamp := Color("e7a947")
 	if dashboard.combat.game_over:
-		status = "MISSION TERMINÉE"
+		status = L10N.text("MISSION TERMINÉE")
 		lamp = Color("fa5b37")
 	elif dashboard.combat.respawn_time > 0:
-		status = "RENFORT EN APPROCHE"
+		status = L10N.text("RENFORT EN APPROCHE")
 	elif dashboard.combat.started:
-		status = "EN OPÉRATION"
+		status = L10N.text("EN OPÉRATION")
 		lamp = Color("9cae72")
 	draw_circle(Vector2(105,944),9,Color("080b08"))
 	draw_circle(Vector2(105,944),5,lamp)
 	_text(status,Vector2(132,952),25,CREAM)
 	if is_instance_valid(dashboard.campaign):
 		var c = dashboard.campaign
-		_text("COQUE %d/%d    •    BOMBES %d" % [c.player.health,c.player.max_health,c.bombs],Vector2(277,1003),24,CREAM,false,true)
-		_text("FRAPPE %d%%  /  C" % int(c.charge),Vector2(277,1036),20,CREAM,false,true)
+		_text(L10N.text("COQUE %d/%d    •    BOMBES %d") % [c.player.health,c.player.max_health,c.bombs],Vector2(277,1003),24,CREAM,false,true)
+		_text(L10N.text("FRAPPE %d%%  /  C") % int(c.charge),Vector2(277,1036),20,CREAM,false,true)
 	else:
 		_text("U.S. ARMY AIR FORCES",Vector2(277,1014),19,DIM,false,true)
 
 func _draw_right() -> void:
-	_text("M I S S I O N" if dashboard.campaign_mode else "V A G U E",Vector2(70,106),29)
+	_text("M I S S I O N" if dashboard.campaign_mode else L10N.text("V A G U E"),Vector2(70,106),29)
 	draw_line(Vector2(64,158),Vector2(490,158),BRASS,1,true)
-	_text("A B A T T U S",Vector2(70,234),29)
+	_text(L10N.text("A B A T T U S"),Vector2(70,234),29)
 	draw_line(Vector2(64,285),Vector2(490,285),BRASS,1,true)
-	var timer_label := "POINT DE SORTIE" if dashboard.campaign_mode else "PROCHAINE VAGUE"
-	if is_instance_valid(dashboard.campaign) and is_instance_valid(dashboard.campaign.boss) and dashboard.campaign.boss.alive: timer_label = "CONTACT MAJEUR"
+	var timer_label := L10N.text("POINT DE SORTIE") if dashboard.campaign_mode else L10N.text("PROCHAINE VAGUE")
+	if is_instance_valid(dashboard.campaign) and is_instance_valid(dashboard.campaign.boss) and dashboard.campaign.boss.alive: timer_label = L10N.text("CONTACT MAJEUR")
 	_text(timer_label,Vector2(277,321),27,CREAM,false,true)
 	_frame(Rect2(42,441,471,388))
-	_text("RADAR  /  SECTEUR %02d" % (int(dashboard.campaign.mission.sector)+1) if is_instance_valid(dashboard.campaign) else "R A D A R   /   S E C T E U R  0 1",Vector2(277,464),21,CREAM,false,true)
+	_text(L10N.text("RADAR  /  SECTEUR %02d") % (int(dashboard.campaign.mission.sector)+1) if is_instance_valid(dashboard.campaign) else L10N.text("R A D A R   /   S E C T E U R  0 1"),Vector2(277,464),21,CREAM,false,true)
 	draw_rect(RADAR.grow(2),BRASS,false,2)
 	_draw_contacts()
 	_text("N",Vector2(277,494),18,DIM,false,true)
 	_text("S",Vector2(277,795),18,DIM,false,true)
-	_text("O",Vector2(76,643),18,DIM)
+	_text(L10N.text("O"),Vector2(76,643),18,DIM)
 	_text("E",Vector2(474,643),18,DIM)
 	_draw_dial(Vector2(145,934))
-	_key("ESPACE","TIR",Vector2(265,872))
-	_key("X" if dashboard.campaign_mode else "R","BOMBE" if dashboard.campaign_mode else "REJOUER",Vector2(265,925))
-	_key("ÉCHAP","PAUSE" if dashboard.campaign_mode else "QUITTER",Vector2(265,978))
+	_key(L10N.text("ESPACE"),L10N.text("TIR"),Vector2(265,872))
+	_key("X" if dashboard.campaign_mode else "R",L10N.text("BOMBE") if dashboard.campaign_mode else L10N.text("REJOUER"),Vector2(265,925))
+	_key(L10N.text("ÉCHAP"),"PAUSE" if dashboard.campaign_mode else L10N.text("QUITTER"),Vector2(265,978))
 	_text("PACIFIC  /  1942",Vector2(277,1042),18,DIM,false,true)
 
 func _key(key: String, caption: String, pos: Vector2) -> void:
@@ -233,7 +234,7 @@ func _draw_dial(center: Vector2) -> void:
 		draw_line(inner,outer,CREAM,1.5,true)
 	draw_line(center+Vector2(-50,0),center+Vector2(50,0),Color("665c43"),1,true)
 	_plane(center,38,CREAM,-dial_bank)
-	_text("INCLINAISON",center+Vector2(0,52),16,DIM,false,true)
+	_text(L10N.text("INCLINAISON"),center+Vector2(0,52),16,DIM,false,true)
 
 func _draw_contacts() -> void:
 	var camera: Camera3D = dashboard.flight.get_node("Camera")

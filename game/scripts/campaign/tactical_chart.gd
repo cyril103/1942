@@ -1,4 +1,5 @@
 extends Control
+const L10N := preload("res://scripts/campaign/localization.gd")
 var sector := 0
 var boss := false
 var ground := false
@@ -56,14 +57,14 @@ func _draw() -> void:
 	for i in range(route.size()):
 		draw_circle(route[i],5,Color("e2c383"))
 		draw_arc(route[i],12,0,TAU,32,ink,1,true)
-		var labels := ["DÉPART","DESCENTE","RADARS","BASE AU SOL","RETOUR"] if ground else ["DÉPART","PATROUILLE","CONTACTS","INTERCEPTION","BOSS" if boss else "RETOUR"]
+		var labels := [L10N.text("DÉPART"),L10N.text("DESCENTE"),"RADARS",L10N.text("BASE AU SOL"),L10N.text("RETOUR")] if ground else [L10N.text("DÉPART"),L10N.text("PATROUILLE"),"CONTACTS","INTERCEPTION","BOSS" if boss else L10N.text("RETOUR")]
 		draw_string(FONT,route[i]+Vector2(16,-14),labels[i],HORIZONTAL_ALIGNMENT_LEFT,-1,18,ink)
 	var progress := fmod(clock*.17,4.0)
 	var at := route[int(progress)].lerp(route[mini(4,int(progress)+1)],fmod(progress,1.0))
 	draw_circle(at,4,Color.WHITE)
 	draw_arc(at,10+fmod(clock*10,14),0,TAU,32,Color(.75,.9,.9,.35),1,true)
-	draw_string(FONT,Vector2(15,25),"SCHÉMA TACTIQUE  /  SECTEUR %02d" % (sector+1),HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("e2c383"))
-	draw_string(FONT,Vector2(15,size.y-12),"ITINÉRAIRE INDICATIF • NON À L'ÉCHELLE",HORIZONTAL_ALIGNMENT_LEFT,-1,16,ink)
+	draw_string(FONT,Vector2(15,25),L10N.text("SCHÉMA TACTIQUE  /  SECTEUR %02d") % (sector+1),HORIZONTAL_ALIGNMENT_LEFT,-1,22,Color("e2c383"))
+	draw_string(FONT,Vector2(15,size.y-12),L10N.text("ITINÉRAIRE INDICATIF • NON À L'ÉCHELLE"),HORIZONTAL_ALIGNMENT_LEFT,-1,16,ink)
 
 func _raid_field() -> Rect2:
 	# The long raid axis runs left to right in this wide briefing card. Only
@@ -95,8 +96,8 @@ func _draw_raid() -> void:
 	var legend_width := maxf(80.0,size.x-legend_x-14.0)
 	for x in range(0,int(size.x),48): draw_line(Vector2(x,0),Vector2(x,size.y),Color(.32,.53,.55,.07))
 	for y in range(0,int(size.y),48): draw_line(Vector2(0,y),Vector2(size.x,y),Color(.32,.53,.55,.07))
-	draw_string(FONT,Vector2(15,25),"PLAN DE RAID  /  "+str(layout.get("title","SECTEUR %02d" % (sector+1))),HORIZONTAL_ALIGNMENT_LEFT,field.size.x,21,RAID_GOLD)
-	draw_string(FONT,Vector2(field.position.x,field.position.y-10),"ENTRÉE",HORIZONTAL_ALIGNMENT_LEFT,120,13,RAID_INK)
+	draw_string(FONT,Vector2(15,25),L10N.text("PLAN DE RAID  /  ")+str(layout.get("title",L10N.text("SECTEUR %02d") % (sector+1))),HORIZONTAL_ALIGNMENT_LEFT,field.size.x,21,RAID_GOLD)
+	draw_string(FONT,Vector2(field.position.x,field.position.y-10),L10N.text("ENTRÉE"),HORIZONTAL_ALIGNMENT_LEFT,120,13,RAID_INK)
 	draw_string(FONT,Vector2(field.end.x-68,field.position.y-10),"EXTRACTION",HORIZONTAL_ALIGNMENT_LEFT,80,13,RAID_INK)
 	# A schematic coastal envelope rather than another imaginary island route.
 	var outline := PackedVector2Array([
@@ -135,7 +136,7 @@ func _draw_raid() -> void:
 			var marker := at+Vector2(0,-12) if target.variant=="radar" or bool(target.get("mobile",false)) else at
 			_raid_marker(marker,"priority",RAID_GOLD,priorities.find(target.id)+1)
 	# Exact group labels and scope come from the same catalogue as the real guns.
-	draw_string(FONT,Vector2(legend_x,25),"GUIDAGE RADAR",HORIZONTAL_ALIGNMENT_LEFT,legend_width,18,RAID_INK)
+	draw_string(FONT,Vector2(legend_x,25),L10N.text("GUIDAGE RADAR"),HORIZONTAL_ALIGNMENT_LEFT,legend_width,18,RAID_INK)
 	var groups: Dictionary = layout.get("radar_groups",{})
 	var row := 0
 	for network_id in groups:
@@ -149,9 +150,9 @@ func _draw_raid() -> void:
 	_raid_marker(Vector2(27,key_y-5),"radar",RAID_BLUE)
 	draw_string(FONT,Vector2(44,key_y),"RADAR",HORIZONTAL_ALIGNMENT_LEFT,72,14,RAID_INK)
 	_raid_marker(Vector2(146,key_y-5),"priority",RAID_GOLD)
-	draw_string(FONT,Vector2(164,key_y),"PRIORITÉ",HORIZONTAL_ALIGNMENT_LEFT,92,14,RAID_INK)
+	draw_string(FONT,Vector2(164,key_y),L10N.text("PRIORITÉ"),HORIZONTAL_ALIGNMENT_LEFT,92,14,RAID_INK)
 	_raid_marker(Vector2(289,key_y-5),"mobile",RAID_MOBILE)
-	draw_string(FONT,Vector2(307,key_y),"DCA MOBILE",HORIZONTAL_ALIGNMENT_LEFT,110,14,RAID_INK)
+	draw_string(FONT,Vector2(307,key_y),L10N.text("DCA MOBILE"),HORIZONTAL_ALIGNMENT_LEFT,110,14,RAID_INK)
 	draw_line(Vector2(446,key_y-5),Vector2(466,key_y-5),Color(.65,.74,.69,.65),1.4,true)
-	draw_string(FONT,Vector2(475,key_y),"ROUTES / PISTES",HORIZONTAL_ALIGNMENT_LEFT,170,14,RAID_INK)
-	draw_string(FONT,Vector2(15,size.y-12),"PLAN SECTORIEL INDICATIF • NON À L'ÉCHELLE • LES AUTRES DÉFENSES NE SONT PAS REPRÉSENTÉES",HORIZONTAL_ALIGNMENT_LEFT,size.x-30,13,RAID_INK)
+	draw_string(FONT,Vector2(475,key_y),L10N.text("ROUTES / PISTES"),HORIZONTAL_ALIGNMENT_LEFT,170,14,RAID_INK)
+	draw_string(FONT,Vector2(15,size.y-12),L10N.text("PLAN SECTORIEL INDICATIF • NON À L'ÉCHELLE • LES AUTRES DÉFENSES NE SONT PAS REPRÉSENTÉES"),HORIZONTAL_ALIGNMENT_LEFT,size.x-30,13,RAID_INK)

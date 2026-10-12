@@ -1,4 +1,5 @@
 extends Control
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Gameplay lives in its own 3:4 viewport: panels cannot obscure actors or shots.
 const PANEL = preload("res://scripts/ui/cockpit_panel.gd")
 const SAVE_PATH := "user://pilot-record.cfg"
@@ -143,7 +144,7 @@ func _process(delta: float) -> void:
 		left.refresh(delta)
 		right.refresh(delta)
 	message.visible = not campaign_mode and (combat.game_over or combat.respawn_time > 0)
-	message.text = "MISSION TERMINÉE\n\nR  —  REJOUER\nÉCHAP  —  QUITTER" if combat.game_over else "RENFORT EN APPROCHE"
+	message.text = L10N.text("MISSION TERMINÉE\n\nR  —  REJOUER\nÉCHAP  —  QUITTER") if combat.game_over else L10N.text("RENFORT EN APPROCHE")
 
 func save_record() -> void:
 	if not persistence_enabled or high_score <= _saved_high_score: return

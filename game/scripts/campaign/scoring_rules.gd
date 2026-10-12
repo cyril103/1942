@@ -1,4 +1,5 @@
 extends RefCounted
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## One source for scoring decisions and the explanations shown to the pilot.
 const CHAIN_SECONDS := 4.5
 const CHAIN_STEP := 8
@@ -9,7 +10,7 @@ const S_CHAIN := 16
 const GOLD_MAX_HITS := 2
 
 static func _criterion(label: String, passed: bool) -> Dictionary:
-	return {"label":label,"passed":passed}
+	return {"label":L10N.text(label),"passed":passed}
 
 static func _all_passed(criteria: Array) -> bool:
 	for criterion in criteria:
@@ -22,9 +23,9 @@ static func rank_checks(target: String, report: Dictionary) -> Array:
 	match target:
 		"S":
 			rows.append(_criterion("Aucune vie perdue",deaths==0))
-			rows.append(_criterion("Au plus %d impact" % S_MAX_HITS,int(report.get("damage",0))<=S_MAX_HITS))
+			rows.append(_criterion(L10N.text("Au plus %d impact") % S_MAX_HITS,int(report.get("damage",0))<=S_MAX_HITS))
 			rows.append(_criterion("Objectif secondaire accompli",bool(report.get("secondary",false))))
-			rows.append(_criterion("Meilleure chaîne d'au moins %d" % S_CHAIN,int(report.get("best_chain",0))>=S_CHAIN))
+			rows.append(_criterion(L10N.text("Meilleure chaîne d'au moins %d") % S_CHAIN,int(report.get("best_chain",0))>=S_CHAIN))
 		"A":
 			rows.append(_criterion("Aucune vie perdue",deaths==0))
 			rows.append(_criterion("Objectif secondaire accompli",bool(report.get("secondary",false))))
@@ -37,7 +38,7 @@ static func medal_checks(target: int, report: Dictionary) -> Array:
 	var rows := [_criterion("Victoire",bool(report.get("won",false)))]
 	if target>=2: rows.append(_criterion("Aucune vie perdue",int(report.get("deaths",0))==0))
 	if target>=3:
-		rows.append(_criterion("Au plus %d impacts" % GOLD_MAX_HITS,int(report.get("damage",0))<=GOLD_MAX_HITS))
+		rows.append(_criterion(L10N.text("Au plus %d impacts") % GOLD_MAX_HITS,int(report.get("damage",0))<=GOLD_MAX_HITS))
 		rows.append(_criterion("Objectif principal accompli",bool(report.get("objective_met",false))))
 	return rows
 
@@ -59,8 +60,11 @@ static func chain_multiplier(chain: int) -> int:
 static func criteria_text(rows: Array) -> String:
 	var text := ""
 	for row in rows:
-		text += ("✓ " if row.passed else "À atteindre : ")+str(row.label)+"\n"
+		text += ("✓ " if row.passed else L10N.text("À atteindre : "))+str(row.label)+"\n"
 	return text.strip_edges()
 
 static func guide() -> String:
-	return "MÉDAILLE — RÉCOMPENSE DE CAMPAGNE\nBronze : victoire. Argent : victoire sans vie perdue.\nOr : victoire, aucune vie perdue, au plus %d impacts et objectif principal accompli.\n\nRANG — MAÎTRISE DU PILOTAGE\nS : victoire, aucune vie perdue, au plus %d impact, objectif secondaire et chaîne ≥ %d.\nA : victoire sans vie perdue avec l'objectif secondaire.\nB : victoire avec au plus une vie perdue. C : autre victoire. D : défaite.\n\nCHAÎNE — SCORE EN COMBAT\nDétruire à nouveau en %.1f secondes maintient la chaîne.\nMultiplicateur +1 tous les %d ennemis, jusqu'à ×%d. Un impact rompt la chaîne.\nObjectif secondaire : +%d points, une seule fois.\nVague parfaite : +100 par chasseur (+800 pour huit).\nEscadrille rouge complète : +1000 et un POW.\nUn avion échappé annule le bonus de vague.\nLa médaille et le rang évaluent des critères différents." % [GOLD_MAX_HITS,S_MAX_HITS,S_CHAIN,CHAIN_SECONDS,CHAIN_STEP,MAX_MULTIPLIER,SECONDARY_BONUS]
+	var seconds := "%.1f" % CHAIN_SECONDS
+	if L10N.locale == "fr":
+		seconds = seconds.replace(".", ",")
+	return L10N.text("MÉDAILLE — RÉCOMPENSE DE CAMPAGNE\nBronze : victoire. Argent : victoire sans vie perdue.\nOr : victoire, aucune vie perdue, au plus %d impacts et objectif principal accompli.\n\nRANG — MAÎTRISE DU PILOTAGE\nS : victoire, aucune vie perdue, au plus %d impact, objectif secondaire et chaîne ≥ %d.\nA : victoire sans vie perdue avec l'objectif secondaire.\nB : victoire avec au plus une vie perdue. C : autre victoire. D : défaite.\n\nCHAÎNE — SCORE EN COMBAT\nDétruire à nouveau en %s secondes maintient la chaîne.\nMultiplicateur +1 tous les %d ennemis, jusqu'à ×%d. Un impact rompt la chaîne.\nObjectif secondaire : +%d points, une seule fois.\nVague parfaite : +100 par chasseur (+800 pour huit).\nEscadrille rouge complète : +1000 et un POW.\nUn avion échappé annule le bonus de vague.\nLa médaille et le rang évaluent des critères différents.") % [GOLD_MAX_HITS,S_MAX_HITS,S_CHAIN,seconds,CHAIN_STEP,MAX_MULTIPLIER,SECONDARY_BONUS]

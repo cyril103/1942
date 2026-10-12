@@ -1,4 +1,5 @@
 extends RefCounted
+const L10N := preload("res://scripts/campaign/localization.gd")
 ## Deterministic scoring, independent from frame rate and campaign persistence.
 const RULES := preload("res://scripts/campaign/scoring_rules.gd")
 const GRAZE_POINTS := 25
@@ -36,7 +37,7 @@ func hit() -> void:
 	chain = 0
 	multiplier = 1
 	window = 0
-	cue = "CHAÎNE INTERROMPUE"
+	cue = L10N.text("CHAÎNE INTERROMPUE")
 	cue_time = 1.5
 
 func graze() -> int:
@@ -51,7 +52,7 @@ func objective(kind: String) -> int:
 	secondary_progress += 1
 	if secondary_progress<secondary_target: return 0
 	secondary_complete = true
-	cue = "OBJECTIF SECONDAIRE  +%d" % RULES.SECONDARY_BONUS
+	cue = L10N.text("OBJECTIF SECONDAIRE  +%d") % RULES.SECONDARY_BONUS
 	cue_time = 4
 	bonus_score += RULES.SECONDARY_BONUS
 	return RULES.SECONDARY_BONUS

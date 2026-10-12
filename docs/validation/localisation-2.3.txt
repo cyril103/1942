@@ -1,0 +1,71 @@
+PACIFIC STRIKE ULTIMATE 2.3 — FRANÇAIS / ENGLISH
+12 octobre 2026 — Godot 4.7.2, Windows x64, GL Compatibility, GTX 1650
+
+LIVRAISON
+Choix Français / English dans l'accueil et Options > Langue / Language.
+Application immédiate, également pendant la pause, avec focus clavier/manette
+préservé et préférence enregistrée. Français par défaut pour les profils anciens.
+672 messages anglais : menus, aides, équipements, 32 missions, huit raids,
+radio, HUD, boss, POW, résultats et crédits. Aucun service distant requis.
+Manuel anglais inclus dans la distribution. Version Windows : 2.3.0.0.
+
+VÉRIFICATIONS CIBLÉES
+- Audit Python : 672 messages, 413 appels littéraux, zéro erreur. Vérification
+  des doublons, des conflits, des entrées absentes et des paramètres de format.
+- Localisation : 782 assertions réussies. Sauvegarde/relecture, migration,
+  normalisation de langue, boutons réels accueil/options, focus, paramètres des
+  32 missions inchangés, tous les briefings FR/EN en 1280x720 et 1920x1080,
+  et aller-retour de langue pendant une mission en pause.
+- Gameplay localisé avec rendu : 994 assertions réussies. 144 configurations
+  de motifs de boss (8 familles x 3 phases x 6 salves), état des attaques conservé,
+  puis raid 11 réel avec radar détruit, brouillage local, capacité et POW actifs.
+  Les textes réellement dessinés du HUD sont contrôlés ; état et identité des
+  acteurs, temps, score, armes, objectifs et réseaux restent identiques.
+- Captures : 15 images dans renders/localization, issues du moteur. Accueil,
+  options, hangar, guide, Boss Rush, briefings dans les deux langues, pause,
+  HUD de raid brouillé et boss en anglais. Inspection visuelle sans coupure de
+  texte ni mélange de langues sur les captures examinées.
+
+RÉGRESSIONS
+Campagne complète automatisée : 790 assertions, 32 victoires.
+Récupération de profil : 202. Règles de score : 70.
+Profils et équipements : 68 384. Interface d'équipement : 3 746.
+Hangar/briefing : 24. Modes et isolation de progression : 165.
+Modes Ultimate : 994. Motifs de boss : 4 870.
+Résultats de raid et radio avec rendu : 938.
+Lisibilité des interfaces avec rendu : 1 149.
+Toutes ces assertions passent dans leur dernière exécution.
+
+Le test de lisibilité avait une assertion ancienne sur resource_path des pistes
+audio, alors que le lecteur du jeu duplique déjà ces ressources pour régler leur
+boucle. L'assertion compare désormais les données audio avec la source créditée.
+Aucune modification des pistes ou de leur lecture n'a été nécessaire.
+
+DISTRIBUTION
+Exporter-Windows.ps1 reconstruit l'exécutable autonome et le ZIP ; les trois
+catalogues JSON sont explicitement inclus dans le paquet.
+Test externe sur le pack embarqué : 9 assertions réussies, catalogues chargés,
+démarrage en anglais sauvegardé et boutons français/anglais fonctionnels.
+Le runtime console Godot exécute ce test avec --main-pack sur l'exécutable :
+les templates release ignorent --script. Le test vérifie que les ressources
+proviennent bien du paquet de distribution (tests source exclus).
+Le ZIP a aussi été extrait ; l'exécutable extrait est identique par SHA256 et
+son démarrage normal avec profil anglais isolé retourne un code de sortie 0.
+Le manuel README-English.txt est présent dans le ZIP.
+
+SHA256 PacificStrike.exe :
+101FF793C1E228703D589D114478A1CEA34E335619E7B972151C939BBEC671FE
+
+LIMITES ET CONDITIONS
+Tests avec --audio-driver Dummy et profils isolés sous tools/runtime-localization
+ou tools/runtime-coast. Les sauvegardes et volumes du joueur ne sont pas modifiés.
+Les simulations headless de campagne/modes signalent encore « Parameter material
+is null » dans le renderer Dummy, déjà documenté en 2.2. Leurs assertions passent.
+Le démarrage du binaire arrêté automatiquement avec --quit-after signale deux
+instances ObjectDB restantes ; le contrôle du pack qui ferme proprement la scène
+ne produit pas ce diagnostic. Pas de nouvelle mesure de performance ni de campagne
+complète jouée manuellement ; les contrôles ci-dessus sont automatisés.
+
+Les journaux finaux conservés sont dans evidence-2.3/. Le résultat de la dernière
+exécution gameplay (994 assertions) provient de la sortie console de
+Tester-Silencieux.ps1 ; les deux captures de HUD en sont également issues.
